@@ -1,215 +1,231 @@
 /* page-search-auto-saffron.js
-   Auto-visible text search with LIGHT SAFFRON THEME
+   Auto-visible text search (CASE-INSENSITIVE, NO REGEX)
+   Light Saffron Theme
 */
 
 (function () {
   "use strict";
 
-  const IGNORE_TAGS = new Set([
-    "SCRIPT", "STYLE", "NOSCRIPT", "IFRAME",
-    "TEXTAREA", "INPUT", "SELECT", "BUTTON"
-  ]);
+  function initPageSearch() {
 
-  let matches = [];
-  let activeIndex = -1;
+    /* ---------- CONFIG ---------- */
+    const IGNORE_TAGS = new Set([
+      "SCRIPT", "STYLE", "NOSCRIPT", "IFRAME",
+      "TEXTAREA", "INPUT", "SELECT", "BUTTON"
+    ]);
 
-  /* ---------- STYLES (Light Saffron) ---------- */
-  const style = document.createElement("style");
-  style.textContent = `
-    #pageSearchBox{
-      position: fixed;
-      top: 14px;
-      right: 14px;
-      z-index: 999999;
-      width: 350px;
-      background: linear-gradient(
-        145deg,
-        #fffaf2,
-        #fff1d6
-      );
-      backdrop-filter: blur(8px);
-      border-radius: 16px;
-      box-shadow:
-        0 10px 30px rgba(180,120,20,.25),
-        inset 0 0 0 1px rgba(200,140,40,.25);
-      padding: 12px;
-      font-family: "Segoe UI", system-ui, sans-serif;
-    }
+    let matches = [];
+    let activeIndex = -1;
 
-    #pageSearchBox input{
-      width: 100%;
-      padding: 11px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(200,140,40,.4);
-      outline: none;
-      font-size: 14px;
-      background: #fffdf8;
-      color: #4b2e05;
-    }
+    /* ---------- STYLES ---------- */
+    const style = document.createElement("style");
+    style.textContent = `
+      #pageSearchBox{
+        position: fixed;
+        top: 14px;
+        right: 14px;
+        z-index: 999999;
+        width: 350px;
+        background: linear-gradient(145deg,#fffaf2,#fff1d6);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        box-shadow:
+          0 10px 30px rgba(180,120,20,.25),
+          inset 0 0 0 1px rgba(200,140,40,.25);
+        padding: 12px;
+        font-family: "Segoe UI", system-ui, sans-serif;
+      }
 
-    #pageSearchBox input::placeholder{
-      color: rgba(120,80,20,.6);
-    }
+      #pageSearchBox input{
+        width: 100%;
+        padding: 11px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(200,140,40,.4);
+        outline: none;
+        font-size: 14px;
+        background: #fffdf8;
+        color: #4b2e05;
+      }
 
-    #pageSearchBox input:focus{
-      border-color: #e39a1d;
-      box-shadow: 0 0 0 2px rgba(227,154,29,.25);
-    }
+      #pageSearchBox input::placeholder{
+        color: rgba(120,80,20,.6);
+      }
 
-    #pageSearchBox .controls{
-      display: flex;
-      justify-content: space-between;
-      margin-top: 8px;
-      align-items: center;
-      font-size: 12px;
-      color: #6b4308;
-    }
+      #pageSearchBox input:focus{
+        border-color: #e39a1d;
+        box-shadow: 0 0 0 2px rgba(227,154,29,.25);
+      }
 
-    #pageSearchBox button{
-      border: 1px solid rgba(200,140,40,.45);
-      background: linear-gradient(
-        to bottom,
-        #fff6df,
-        #ffe2a6
-      );
-      border-radius: 10px;
-      padding: 5px 10px;
-      cursor: pointer;
-      font-size: 12px;
-      color: #5c3a07;
-      transition: all .15s ease;
-    }
+      #pageSearchBox .controls{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        align-items: center;
+        font-size: 12px;
+        color: #6b4308;
+      }
 
-    #pageSearchBox button:hover{
-      background: linear-gradient(
-        to bottom,
-        #ffefcc,
-        #ffd98a
-      );
-      transform: translateY(-1px);
-    }
+      #pageSearchBox button{
+        border: 1px solid rgba(200,140,40,.45);
+        background: linear-gradient(to bottom,#fff6df,#ffe2a6);
+        border-radius: 10px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 12px;
+        color: #5c3a07;
+        transition: all .15s ease;
+      }
 
-    #pageSearchBox button:active{
-      transform: translateY(0);
-    }
+      #pageSearchBox button:hover{
+        background: linear-gradient(to bottom,#ffefcc,#ffd98a);
+        transform: translateY(-1px);
+      }
 
-    /* ---------- Highlighting ---------- */
-    .pageSearchHit{
-      background: linear-gradient(
-        to bottom,
-        #fff2c4,
-        #ffe19a
-      );
-      border-radius: 4px;
-      padding: 0 3px;
-    }
+      #pageSearchBox button:active{
+        transform: translateY(0);
+      }
 
-    .pageSearchActive{
-      background: linear-gradient(
-        to bottom,
-        #ffd36a,
-        #ffbf3a
-      );
-      outline: 2px solid rgba(200,120,20,.5);
-    }
-  `;
-  document.head.appendChild(style);
+      .pageSearchHit{
+        background: linear-gradient(to bottom,#fff2c4,#ffe19a);
+        border-radius: 4px;
+        padding: 0 3px;
+      }
 
-  /* ---------- UI ---------- */
-  const box = document.createElement("div");
-  box.id = "pageSearchBox";
-  box.innerHTML = `
-    <input type="text" placeholder="Search this page…" />
-    <div class="controls">
-      <div>
-        <button data-act="prev">◀</button>
-        <button data-act="next">▶</button>
-      </div>
-      <div id="pageSearchCount">0 / 0</div>
-    </div>
-  `;
-  document.body.appendChild(box);
+      .pageSearchActive{
+        background: linear-gradient(to bottom,#ffd36a,#ffbf3a);
+        outline: 2px solid rgba(200,120,20,.5);
+      }
 
-  const input = box.querySelector("input");
-  const countEl = document.getElementById("pageSearchCount");
-
-  /* ---------- LOGIC ---------- */
-  function clearHighlights() {
-    document.querySelectorAll(".pageSearchHit").forEach(span => {
-      span.replaceWith(document.createTextNode(span.textContent));
-    });
-    matches = [];
-    activeIndex = -1;
-    countEl.textContent = "0 / 0";
-  }
-
-  function highlight(query) {
-    clearHighlights();
-    if (!query) return;
-
-    const safe = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const regex = new RegExp(safe, "gi");
-
-    const walker = document.createTreeWalker(
-      document.body,
-      NodeFilter.SHOW_TEXT,
-      {
-        acceptNode(node) {
-          if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-          const p = node.parentElement;
-          if (!p || IGNORE_TAGS.has(p.tagName)) return NodeFilter.FILTER_REJECT;
-          return NodeFilter.FILTER_ACCEPT;
+      @media (max-width:480px){
+        #pageSearchBox{
+          width: calc(100% - 20px);
+          left: 10px;
+          right: 10px;
         }
       }
-    );
+    `;
+    document.head.appendChild(style);
 
-    let node;
-    while ((node = walker.nextNode())) {
-      const text = node.nodeValue;
-      if (!regex.test(text)) continue;
+    /* ---------- UI ---------- */
+    const box = document.createElement("div");
+    box.id = "pageSearchBox";
+    box.innerHTML = `
+      <input type="text" placeholder="Search this page…" />
+      <div class="controls">
+        <div>
+          <button data-act="prev">◀</button>
+          <button data-act="next">▶</button>
+        </div>
+        <div id="pageSearchCount">0 / 0</div>
+      </div>
+    `;
+    document.body.appendChild(box);
 
-      const frag = document.createDocumentFragment();
-      let last = 0;
+    const input = box.querySelector("input");
+    const countEl = box.querySelector("#pageSearchCount");
 
-      text.replace(regex, (m, i) => {
-        frag.append(text.slice(last, i));
-        const span = document.createElement("span");
-        span.className = "pageSearchHit";
-        span.textContent = m;
-        frag.append(span);
-        matches.push(span);
-        last = i + m.length;
+    /* ---------- LOGIC ---------- */
+    function clearHighlights() {
+      document.querySelectorAll(".pageSearchHit").forEach(span => {
+        span.replaceWith(document.createTextNode(span.textContent));
       });
-
-      frag.append(text.slice(last));
-      node.replaceWith(frag);
+      matches = [];
+      activeIndex = -1;
+      countEl.textContent = "0 / 0";
     }
 
-    if (matches.length) gotoMatch(0);
+    function highlight(query) {
+      clearHighlights();
+      if (!query) return;
+
+      const q = query.toLowerCase();
+
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        {
+          acceptNode(node) {
+            if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            const p = node.parentElement;
+            if (!p || IGNORE_TAGS.has(p.tagName)) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        }
+      );
+
+      let node;
+      while ((node = walker.nextNode())) {
+        const text = node.nodeValue;
+        const lower = text.toLowerCase();
+
+        let index = lower.indexOf(q);
+        if (index === -1) continue;
+
+        const frag = document.createDocumentFragment();
+        let last = 0;
+
+        while (index !== -1) {
+          frag.append(text.slice(last, index));
+
+          const span = document.createElement("span");
+          span.className = "pageSearchHit";
+          span.textContent = text.slice(index, index + query.length);
+
+          frag.append(span);
+          matches.push(span);
+
+          last = index + query.length;
+          index = lower.indexOf(q, last);
+        }
+
+        frag.append(text.slice(last));
+        node.replaceWith(frag);
+      }
+
+      if (matches.length) gotoMatch(0);
+    }
+
+    function gotoMatch(i) {
+      if (!matches.length) return;
+
+      if (i < 0) i = matches.length - 1;
+      if (i >= matches.length) i = 0;
+
+      matches.forEach(m => m.classList.remove("pageSearchActive"));
+      matches[i].classList.add("pageSearchActive");
+
+      matches[i].scrollIntoView({ behavior: "smooth", block: "center" });
+      activeIndex = i;
+      countEl.textContent = `${i + 1} / ${matches.length}`;
+    }
+
+    /* ---------- EVENTS ---------- */
+    input.addEventListener("input", () =>
+      highlight(input.value.trim())
+    );
+
+    box.addEventListener("click", e => {
+      const act = e.target.dataset.act;
+      if (!act) return;
+      if (act === "next") gotoMatch(activeIndex + 1);
+      if (act === "prev") gotoMatch(activeIndex - 1);
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Enter") gotoMatch(activeIndex + 1);
+      if (e.key === "Escape") {
+        input.value = "";
+        clearHighlights();
+      }
+    });
+
   }
 
-  function gotoMatch(i) {
-    if (!matches.length) return;
-
-    if (i < 0) i = matches.length - 1;
-    if (i >= matches.length) i = 0;
-
-    matches.forEach(m => m.classList.remove("pageSearchActive"));
-    matches[i].classList.add("pageSearchActive");
-
-    matches[i].scrollIntoView({ behavior: "smooth", block: "center" });
-    activeIndex = i;
-    countEl.textContent = `${i + 1} / ${matches.length}`;
+  /* ---------- SAFE INIT ---------- */
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPageSearch);
+  } else {
+    initPageSearch();
   }
-
-  /* ---------- EVENTS ---------- */
-  input.addEventListener("input", () => highlight(input.value.trim()));
-
-  box.addEventListener("click", e => {
-    const act = e.target.dataset.act;
-    if (!act) return;
-    if (act === "next") gotoMatch(activeIndex + 1);
-    if (act === "prev") gotoMatch(activeIndex - 1);
-  });
 
 })();
