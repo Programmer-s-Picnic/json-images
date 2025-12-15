@@ -1,6 +1,7 @@
 /* page-search-auto-saffron.js
    Auto-visible text search (CASE-INSENSITIVE, NO REGEX)
-   TRULY FIXED Next / Prev
+   Light Saffron Theme
+   STABLE Next / Prev + RESTORED STYLES
 */
 
 (function () {
@@ -29,25 +30,81 @@
         z-index: 999999;
         width: 350px;
         background: linear-gradient(145deg,#fffaf2,#fff1d6);
+        backdrop-filter: blur(8px);
         border-radius: 16px;
+        box-shadow:
+          0 10px 30px rgba(180,120,20,.25),
+          inset 0 0 0 1px rgba(200,140,40,.25);
         padding: 12px;
-        font-family: system-ui;
-        box-shadow: 0 10px 30px rgba(180,120,20,.25);
+        font-family: "Segoe UI", system-ui, sans-serif;
       }
+
       #${SEARCH_BOX_ID} input{
         width: 100%;
-        padding: 10px;
-        border-radius: 12px;
-        border: 1px solid #d9a441;
+        padding: 11px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(200,140,40,.4);
+        outline: none;
+        font-size: 14px;
+        background: #fffdf8;
+        color: #4b2e05;
       }
+
+      #${SEARCH_BOX_ID} input::placeholder{
+        color: rgba(120,80,20,.6);
+      }
+
+      #${SEARCH_BOX_ID} input:focus{
+        border-color: #e39a1d;
+        box-shadow: 0 0 0 2px rgba(227,154,29,.25);
+      }
+
+      #${SEARCH_BOX_ID} .controls{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        align-items: center;
+        font-size: 12px;
+        color: #6b4308;
+      }
+
+      #${SEARCH_BOX_ID} button{
+        border: 1px solid rgba(200,140,40,.45);
+        background: linear-gradient(to bottom,#fff6df,#ffe2a6);
+        border-radius: 10px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 12px;
+        color: #5c3a07;
+        transition: all .15s ease;
+      }
+
+      #${SEARCH_BOX_ID} button:hover{
+        background: linear-gradient(to bottom,#ffefcc,#ffd98a);
+        transform: translateY(-1px);
+      }
+
+      #${SEARCH_BOX_ID} button:active{
+        transform: translateY(0);
+      }
+
       .pageSearchHit{
-        background: #ffe19a;
+        background: linear-gradient(to bottom,#fff2c4,#ffe19a);
+        border-radius: 4px;
         padding: 0 3px;
-        border-radius: 3px;
       }
+
       .pageSearchActive{
-        background: #ffbf3a;
-        outline: 2px solid #c97a00;
+        background: linear-gradient(to bottom,#ffd36a,#ffbf3a);
+        outline: 2px solid rgba(200,120,20,.5);
+      }
+
+      @media (max-width:480px){
+        #${SEARCH_BOX_ID}{
+          width: calc(100% - 20px);
+          left: 10px;
+          right: 10px;
+        }
       }
     `;
     document.head.appendChild(style);
@@ -56,8 +113,8 @@
     const box = document.createElement("div");
     box.id = SEARCH_BOX_ID;
     box.innerHTML = `
-      <input type="text" placeholder="Search page…" />
-      <div style="display:flex;justify-content:space-between;margin-top:6px">
+      <input type="text" placeholder="Search this page…" />
+      <div class="controls">
         <div>
           <button data-act="prev">◀</button>
           <button data-act="next">▶</button>
@@ -70,13 +127,12 @@
     const input = box.querySelector("input");
     const countEl = box.querySelector("#pageSearchCount");
 
-    /* ---------- SAFE CLEAR ---------- */
+    /* ---------- CLEAR ---------- */
     function clearHighlights() {
       document.querySelectorAll(".pageSearchHit").forEach(span => {
         span.replaceWith(span.textContent);
       });
-
-      document.body.normalize(); // 🔑 FIX
+      document.body.normalize();
       matches = [];
       activeIndex = -1;
       countEl.textContent = "0 / 0";
@@ -116,7 +172,6 @@
         const text = node.nodeValue;
         const lower = text.toLowerCase();
         let index = lower.indexOf(q);
-        if (index === -1) return;
 
         const frag = document.createDocumentFragment();
         let last = 0;
@@ -152,7 +207,7 @@
       matches.forEach(m => m.classList.remove("pageSearchActive"));
       matches[i].classList.add("pageSearchActive");
 
-      matches[i].scrollIntoView({ block: "center" });
+      matches[i].scrollIntoView({ behavior: "smooth", block: "center" });
       activeIndex = i;
       countEl.textContent = `${i + 1} / ${matches.length}`;
     }
