@@ -1,330 +1,215 @@
-/* page-search.js
-   Drop-in "Find on page" search UI.
-   - Highlights matches
-   - Next/Prev navigation
-   - Match count
-   - ESC to close
-   - Ctrl+F / Cmd+F to open
+/* page-search-auto-saffron.js
+   Auto-visible text search with LIGHT SAFFRON THEME
 */
 
 (function () {
   "use strict";
 
-  // ====== Config ======
-  const CONFIG = {
-    ignoreTags: new Set(["SCRIPT", "STYLE", "NOSCRIPT", "IFRAME", "TEXTAREA", "INPUT", "SELECT", "OPTION", "BUTTON"]),
-    highlightClass: "pps__find_hit",
-    activeClass: "pps__find_active",
-    uiId: "pps__find_ui",
-    root: document.body, // change if you want a narrower scope
-  };
+  const IGNORE_TAGS = new Set([
+    "SCRIPT", "STYLE", "NOSCRIPT", "IFRAME",
+    "TEXTAREA", "INPUT", "SELECT", "BUTTON"
+  ]);
 
-  // ====== State ======
-  let hits = [];
+  let matches = [];
   let activeIndex = -1;
-  let lastQuery = "";
-  let ui;
 
-  // ====== Styles ======
-  function injectStyles() {
-    if (document.getElementById("pps__find_styles")) return;
+  /* ---------- STYLES (Light Saffron) ---------- */
+  const style = document.createElement("style");
+  style.textContent = `
+    #pageSearchBox{
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 999999;
+      width: 350px;
+      background: linear-gradient(
+        145deg,
+        #fffaf2,
+        #fff1d6
+      );
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      box-shadow:
+        0 10px 30px rgba(180,120,20,.25),
+        inset 0 0 0 1px rgba(200,140,40,.25);
+      padding: 12px;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
 
-    const style = document.createElement("style");
-    style.id = "pps__find_styles";
-    style.textContent = `
-      #${CONFIG.uiId}{
-        position: fixed; z-index: 2147483647;
-        top: 14px; right: 14px;
-        width: min(420px, calc(100vw - 28px));
-        background: rgba(255,255,255,.92);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(0,0,0,.12);
-        border-radius: 14px;
-        box-shadow: 0 10px 30px rgba(0,0,0,.16);
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        padding: 10px;
-        display: none;
-      }
-      #${CONFIG.uiId}.open{ display:block; }
-      #${CONFIG.uiId} .row{ display:flex; gap:8px; align-items:center; }
-      #${CONFIG.uiId} input{
-        flex: 1;
-        padding: 10px 12px;
-        border-radius: 12px;
-        border: 1px solid rgba(0,0,0,.18);
-        outline: none;
-        font-size: 14px;
-      }
-      #${CONFIG.uiId} button{
-        padding: 9px 10px;
-        border-radius: 12px;
-        border: 1px solid rgba(0,0,0,.18);
-        background: white;
-        cursor: pointer;
-        font-size: 13px;
-        user-select:none;
-      }
-      #${CONFIG.uiId} button:active{ transform: translateY(1px); }
-      #${CONFIG.uiId} .meta{
-        margin-top: 6px;
-        display:flex;
-        justify-content: space-between;
-        align-items:center;
-        font-size: 12px;
-        color: rgba(0,0,0,.65);
-      }
-      #${CONFIG.uiId} .kbd{
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        border: 1px solid rgba(0,0,0,.2);
-        border-bottom-width: 2px;
-        padding: 1px 6px;
-        border-radius: 8px;
-        background: rgba(255,255,255,.8);
-        margin-left: 6px;
-      }
-      .${CONFIG.highlightClass}{
-        background: #ffe38a;
-        border-radius: 3px;
-        padding: 0 2px;
-      }
-      .${CONFIG.activeClass}{
-        background: #ffb84a;
-        outline: 2px solid rgba(0,0,0,.25);
-      }
-    `;
-    document.head.appendChild(style);
-  }
+    #pageSearchBox input{
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(200,140,40,.4);
+      outline: none;
+      font-size: 14px;
+      background: #fffdf8;
+      color: #4b2e05;
+    }
 
-  // ====== UI ======
-  function createUI() {
-    if (document.getElementById(CONFIG.uiId)) return;
+    #pageSearchBox input::placeholder{
+      color: rgba(120,80,20,.6);
+    }
 
-    ui = document.createElement("div");
-    ui.id = CONFIG.uiId;
-    ui.innerHTML = `
-      <div class="row">
-        <input type="text" placeholder="Search on this page..." aria-label="Search on this page" />
-        <button type="button" data-act="prev" title="Previous match">◀</button>
-        <button type="button" data-act="next" title="Next match">▶</button>
-        <button type="button" data-act="close" title="Close">✕</button>
+    #pageSearchBox input:focus{
+      border-color: #e39a1d;
+      box-shadow: 0 0 0 2px rgba(227,154,29,.25);
+    }
+
+    #pageSearchBox .controls{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      align-items: center;
+      font-size: 12px;
+      color: #6b4308;
+    }
+
+    #pageSearchBox button{
+      border: 1px solid rgba(200,140,40,.45);
+      background: linear-gradient(
+        to bottom,
+        #fff6df,
+        #ffe2a6
+      );
+      border-radius: 10px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      color: #5c3a07;
+      transition: all .15s ease;
+    }
+
+    #pageSearchBox button:hover{
+      background: linear-gradient(
+        to bottom,
+        #ffefcc,
+        #ffd98a
+      );
+      transform: translateY(-1px);
+    }
+
+    #pageSearchBox button:active{
+      transform: translateY(0);
+    }
+
+    /* ---------- Highlighting ---------- */
+    .pageSearchHit{
+      background: linear-gradient(
+        to bottom,
+        #fff2c4,
+        #ffe19a
+      );
+      border-radius: 4px;
+      padding: 0 3px;
+    }
+
+    .pageSearchActive{
+      background: linear-gradient(
+        to bottom,
+        #ffd36a,
+        #ffbf3a
+      );
+      outline: 2px solid rgba(200,120,20,.5);
+    }
+  `;
+  document.head.appendChild(style);
+
+  /* ---------- UI ---------- */
+  const box = document.createElement("div");
+  box.id = "pageSearchBox";
+  box.innerHTML = `
+    <input type="text" placeholder="Search this page…" />
+    <div class="controls">
+      <div>
+        <button data-act="prev">◀</button>
+        <button data-act="next">▶</button>
       </div>
-      <div class="meta">
-        <div><span data-role="count">0/0</span></div>
-        <div>
-          <span class="kbd">Ctrl</span>+<span class="kbd">F</span>
-          <span class="kbd">Esc</span>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(ui);
+      <div id="pageSearchCount">0 / 0</div>
+    </div>
+  `;
+  document.body.appendChild(box);
 
-    const input = ui.querySelector("input");
-    const countEl = ui.querySelector('[data-role="count"]');
+  const input = box.querySelector("input");
+  const countEl = document.getElementById("pageSearchCount");
 
-    // Debounce typing
-    let t = null;
-    input.addEventListener("input", () => {
-      clearTimeout(t);
-      t = setTimeout(() => {
-        const q = input.value.trim();
-        search(q);
-      }, 120);
-    });
-
-    ui.addEventListener("click", (e) => {
-      const btn = e.target.closest("button");
-      if (!btn) return;
-      const act = btn.getAttribute("data-act");
-      if (act === "close") closeUI();
-      if (act === "next") gotoHit(activeIndex + 1);
-      if (act === "prev") gotoHit(activeIndex - 1);
-    });
-
-    // Enter = next, Shift+Enter = prev
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        if (e.shiftKey) gotoHit(activeIndex - 1);
-        else gotoHit(activeIndex + 1);
-      } else if (e.key === "Escape") {
-        e.preventDefault();
-        closeUI();
-      }
-    });
-
-    // expose updater
-    ui._updateCount = (a, b) => (countEl.textContent = `${a}/${b}`);
-  }
-
-  function openUI() {
-    injectStyles();
-    createUI();
-    ui.classList.add("open");
-    const input = ui.querySelector("input");
-    input.focus();
-    input.select();
-    ui._updateCount(Math.max(activeIndex + 1, 0), hits.length);
-  }
-
-  function closeUI() {
-    if (!ui) return;
-    ui.classList.remove("open");
-    clearHighlights();
-  }
-
-  // ====== Search logic ======
+  /* ---------- LOGIC ---------- */
   function clearHighlights() {
-    // unwrap all highlights
-    const nodes = CONFIG.root.querySelectorAll(`span.${CONFIG.highlightClass}`);
-    nodes.forEach((span) => {
-      const parent = span.parentNode;
-      if (!parent) return;
-      parent.replaceChild(document.createTextNode(span.textContent), span);
-      parent.normalize(); // merge text nodes
+    document.querySelectorAll(".pageSearchHit").forEach(span => {
+      span.replaceWith(document.createTextNode(span.textContent));
     });
-
-    hits = [];
+    matches = [];
     activeIndex = -1;
-    if (ui) ui._updateCount(0, 0);
+    countEl.textContent = "0 / 0";
   }
 
-  function search(query) {
-    if (query === lastQuery) return;
-    lastQuery = query;
-
+  function highlight(query) {
     clearHighlights();
     if (!query) return;
 
-    const regex = makeRegex(query);
-    if (!regex) return;
+    const safe = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(safe, "gi");
 
-    // Walk text nodes and wrap matches
-    const walker = document.createTreeWalker(CONFIG.root, NodeFilter.SHOW_TEXT, {
-      acceptNode(node) {
-        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-        const p = node.parentElement;
-        if (!p) return NodeFilter.FILTER_REJECT;
-        if (CONFIG.ignoreTags.has(p.tagName)) return NodeFilter.FILTER_REJECT;
-        // Ignore already-highlighted
-        if (p.classList && p.classList.contains(CONFIG.highlightClass)) return NodeFilter.FILTER_REJECT;
-        return NodeFilter.FILTER_ACCEPT;
-      },
-    });
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          const p = node.parentElement;
+          if (!p || IGNORE_TAGS.has(p.tagName)) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
 
-    const textNodes = [];
-    let n;
-    while ((n = walker.nextNode())) textNodes.push(n);
-
-    textNodes.forEach((textNode) => {
-      const text = textNode.nodeValue;
-      if (!regex.test(text)) return;
+    let node;
+    while ((node = walker.nextNode())) {
+      const text = node.nodeValue;
+      if (!regex.test(text)) continue;
 
       const frag = document.createDocumentFragment();
-      let lastIndexLocal = 0;
+      let last = 0;
 
-      text.replace(regex, (match, offset) => {
-        // prepend plain text chunk
-        if (offset > lastIndexLocal) {
-          frag.appendChild(document.createTextNode(text.slice(lastIndexLocal, offset)));
-        }
-        // matched span
+      text.replace(regex, (m, i) => {
+        frag.append(text.slice(last, i));
         const span = document.createElement("span");
-        span.className = CONFIG.highlightClass;
-        span.textContent = match;
-        frag.appendChild(span);
-        hits.push(span);
-
-        lastIndexLocal = offset + match.length;
-        return match;
+        span.className = "pageSearchHit";
+        span.textContent = m;
+        frag.append(span);
+        matches.push(span);
+        last = i + m.length;
       });
 
-      // tail
-      if (lastIndexLocal < text.length) {
-        frag.appendChild(document.createTextNode(text.slice(lastIndexLocal)));
-      }
-
-      textNode.parentNode.replaceChild(frag, textNode);
-    });
-
-    if (hits.length > 0) {
-      gotoHit(0, true);
-    } else {
-      activeIndex = -1;
-      if (ui) ui._updateCount(0, 0);
+      frag.append(text.slice(last));
+      node.replaceWith(frag);
     }
+
+    if (matches.length) gotoMatch(0);
   }
 
-  function makeRegex(query) {
-    // Escape regex special chars; keep simple literal find (case-insensitive)
-    try {
-      const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      return new RegExp(escaped, "gi");
-    } catch {
-      return null;
-    }
+  function gotoMatch(i) {
+    if (!matches.length) return;
+
+    if (i < 0) i = matches.length - 1;
+    if (i >= matches.length) i = 0;
+
+    matches.forEach(m => m.classList.remove("pageSearchActive"));
+    matches[i].classList.add("pageSearchActive");
+
+    matches[i].scrollIntoView({ behavior: "smooth", block: "center" });
+    activeIndex = i;
+    countEl.textContent = `${i + 1} / ${matches.length}`;
   }
 
-  function gotoHit(index, force) {
-    if (!hits.length) {
-      if (ui) ui._updateCount(0, 0);
-      return;
-    }
+  /* ---------- EVENTS ---------- */
+  input.addEventListener("input", () => highlight(input.value.trim()));
 
-    // Wrap around
-    if (index < 0) index = hits.length - 1;
-    if (index >= hits.length) index = 0;
-
-    // Remove old active
-    if (activeIndex >= 0 && hits[activeIndex]) {
-      hits[activeIndex].classList.remove(CONFIG.activeClass);
-    }
-
-    activeIndex = index;
-
-    const el = hits[activeIndex];
-    el.classList.add(CONFIG.activeClass);
-
-    // Scroll into view
-    el.scrollIntoView({ behavior: force ? "auto" : "smooth", block: "center" });
-
-    if (ui) ui._updateCount(activeIndex + 1, hits.length);
-  }
-
-  // ====== Keyboard shortcuts ======
-  document.addEventListener("keydown", (e) => {
-    const isMac = navigator.platform.toUpperCase().includes("MAC");
-    const mod = isMac ? e.metaKey : e.ctrlKey;
-
-    // Ctrl/Cmd+F opens our find box
-    if (mod && e.key.toLowerCase() === "f") {
-      e.preventDefault();
-      openUI();
-      return;
-    }
-
-    if (e.key === "Escape") {
-      if (ui && ui.classList.contains("open")) {
-        e.preventDefault();
-        closeUI();
-      }
-    }
-
-    // F3 next, Shift+F3 prev (like browsers)
-    if (e.key === "F3") {
-      if (!ui || !ui.classList.contains("open")) openUI();
-      e.preventDefault();
-      if (e.shiftKey) gotoHit(activeIndex - 1);
-      else gotoHit(activeIndex + 1);
-    }
+  box.addEventListener("click", e => {
+    const act = e.target.dataset.act;
+    if (!act) return;
+    if (act === "next") gotoMatch(activeIndex + 1);
+    if (act === "prev") gotoMatch(activeIndex - 1);
   });
 
-  // Optional: expose a tiny API if needed
-  window.PageFind = {
-    open: openUI,
-    close: closeUI,
-    search,
-    next: () => gotoHit(activeIndex + 1),
-    prev: () => gotoHit(activeIndex - 1),
-    clear: clearHighlights,
-  };
 })();
