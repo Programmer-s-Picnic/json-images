@@ -1,7 +1,7 @@
 /* page-search-auto-saffron.js
    Auto-visible text search (CASE-INSENSITIVE, NO REGEX)
    Light Saffron Theme
-   STABLE Next / Prev + RESTORED STYLES
+   Stable Next / Prev + Drag to Move (Option 1)
 */
 
 (function () {
@@ -37,6 +37,12 @@
           inset 0 0 0 1px rgba(200,140,40,.25);
         padding: 12px;
         font-family: "Segoe UI", system-ui, sans-serif;
+        cursor: grab;
+      }
+
+      #${SEARCH_BOX_ID}.dragging{
+        cursor: grabbing;
+        opacity: 0.95;
       }
 
       #${SEARCH_BOX_ID} input{
@@ -230,8 +236,61 @@
         clearHighlights();
       }
     });
+
+    /* ---------- DRAG TO MOVE (OPTION 1) ---------- */
+    let isDragging = false;
+    let startX = 0, startY = 0;
+    let boxX = 0, boxY = 0;
+
+    function dragStart(x, y) {
+      const rect = box.getBoundingClientRect();
+      boxX = rect.left;
+      boxY = rect.top;
+      startX = x;
+      startY = y;
+      isDragging = true;
+      box.classList.add("dragging");
+    }
+
+    function dragMove(x, y) {
+      if (!isDragging) return;
+      box.style.left = boxX + (x - startX) + "px";
+      box.style.top  = boxY + (y - startY) + "px";
+      box.style.right = "auto";
+    }
+
+    function dragEnd() {
+      isDragging = false;
+      box.classList.remove("dragging");
+    }
+
+    box.addEventListener("mousedown", e => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "BUTTON") return;
+      dragStart(e.clientX, e.clientY);
+    });
+
+    document.addEventListener("mousemove", e =>
+      dragMove(e.clientX, e.clientY)
+    );
+
+    document.addEventListener("mouseup", dragEnd);
+
+    box.addEventListener("touchstart", e => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "BUTTON") return;
+      const t = e.touches[0];
+      dragStart(t.clientX, t.clientY);
+    }, { passive: true });
+
+    document.addEventListener("touchmove", e => {
+      if (!isDragging) return;
+      const t = e.touches[0];
+      dragMove(t.clientX, t.clientY);
+    }, { passive: true });
+
+    document.addEventListener("touchend", dragEnd);
   }
 
+  /* ---------- SAFE INIT ---------- */
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initPageSearch);
   } else {
