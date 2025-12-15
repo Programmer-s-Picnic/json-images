@@ -1,6 +1,7 @@
 /* page-search-auto-saffron.js
    Auto-visible text search (CASE-INSENSITIVE, NO REGEX)
    Light Saffron Theme
+   FIXED Next / Prev Navigation
 */
 
 (function () {
@@ -139,7 +140,9 @@
       if (!query) return;
 
       const q = query.toLowerCase();
+      const textNodes = [];
 
+      /* PASS 1: COLLECT */
       const walker = document.createTreeWalker(
         document.body,
         NodeFilter.SHOW_TEXT,
@@ -155,11 +158,18 @@
 
       let node;
       while ((node = walker.nextNode())) {
+        if (node.nodeValue.toLowerCase().includes(q)) {
+          textNodes.push(node);
+        }
+      }
+
+      /* PASS 2: HIGHLIGHT */
+      textNodes.forEach(node => {
         const text = node.nodeValue;
         const lower = text.toLowerCase();
 
         let index = lower.indexOf(q);
-        if (index === -1) continue;
+        if (index === -1) return;
 
         const frag = document.createDocumentFragment();
         let last = 0;
@@ -180,7 +190,7 @@
 
         frag.append(text.slice(last));
         node.replaceWith(frag);
-      }
+      });
 
       if (matches.length) gotoMatch(0);
     }
@@ -194,7 +204,11 @@
       matches.forEach(m => m.classList.remove("pageSearchActive"));
       matches[i].classList.add("pageSearchActive");
 
-      matches[i].scrollIntoView({ behavior: "smooth", block: "center" });
+      matches[i].scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
       activeIndex = i;
       countEl.textContent = `${i + 1} / ${matches.length}`;
     }
@@ -211,7 +225,7 @@
       if (act === "prev") gotoMatch(activeIndex - 1);
     });
 
-    document.addEventListener("keydown", e => {
+    input.addEventListener("keydown", e => {
       if (e.key === "Enter") gotoMatch(activeIndex + 1);
       if (e.key === "Escape") {
         input.value = "";
