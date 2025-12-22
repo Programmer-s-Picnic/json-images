@@ -1,6 +1,7 @@
 /* page-search-auto-saffron.js
    Auto-visible text search (CASE-INSENSITIVE, NO REGEX)
    Light Saffron Theme
+   Stable Next / Prev + Drag to Move (Option 1)
 */
 
 (function () {
@@ -14,13 +15,15 @@
       "TEXTAREA", "INPUT", "SELECT", "BUTTON"
     ]);
 
+    const SEARCH_BOX_ID = "pageSearchBox";
+
     let matches = [];
     let activeIndex = -1;
 
     /* ---------- STYLES ---------- */
     const style = document.createElement("style");
     style.textContent = `
-      #pageSearchBox{
+      #${SEARCH_BOX_ID}{
         position: fixed;
         top: 14px;
         right: 14px;
@@ -34,9 +37,15 @@
           inset 0 0 0 1px rgba(200,140,40,.25);
         padding: 12px;
         font-family: "Segoe UI", system-ui, sans-serif;
+        cursor: grab;
       }
 
-      #pageSearchBox input{
+      #${SEARCH_BOX_ID}.dragging{
+        cursor: grabbing;
+        opacity: 0.95;
+      }
+
+      #${SEARCH_BOX_ID} input{
         width: 100%;
         padding: 11px 14px;
         border-radius: 14px;
@@ -47,16 +56,16 @@
         color: #4b2e05;
       }
 
-      #pageSearchBox input::placeholder{
+      #${SEARCH_BOX_ID} input::placeholder{
         color: rgba(120,80,20,.6);
       }
 
-      #pageSearchBox input:focus{
+      #${SEARCH_BOX_ID} input:focus{
         border-color: #e39a1d;
         box-shadow: 0 0 0 2px rgba(227,154,29,.25);
       }
 
-      #pageSearchBox .controls{
+      #${SEARCH_BOX_ID} .controls{
         display: flex;
         justify-content: space-between;
         margin-top: 8px;
@@ -65,7 +74,7 @@
         color: #6b4308;
       }
 
-      #pageSearchBox button{
+      #${SEARCH_BOX_ID} button{
         border: 1px solid rgba(200,140,40,.45);
         background: linear-gradient(to bottom,#fff6df,#ffe2a6);
         border-radius: 10px;
@@ -76,12 +85,12 @@
         transition: all .15s ease;
       }
 
-      #pageSearchBox button:hover{
+      #${SEARCH_BOX_ID} button:hover{
         background: linear-gradient(to bottom,#ffefcc,#ffd98a);
         transform: translateY(-1px);
       }
 
-      #pageSearchBox button:active{
+      #${SEARCH_BOX_ID} button:active{
         transform: translateY(0);
       }
 
@@ -97,7 +106,7 @@
       }
 
       @media (max-width:480px){
-        #pageSearchBox{
+        #${SEARCH_BOX_ID}{
           width: calc(100% - 20px);
           left: 10px;
           right: 10px;
@@ -108,7 +117,7 @@
 
     /* ---------- UI ---------- */
     const box = document.createElement("div");
-    box.id = "pageSearchBox";
+    box.id = SEARCH_BOX_ID;
     box.innerHTML = `
       <input type="text" placeholder="Search this page…" />
       <div class="controls">
@@ -124,30 +133,35 @@
     const input = box.querySelector("input");
     const countEl = box.querySelector("#pageSearchCount");
 
-    /* ---------- LOGIC ---------- */
+    /* ---------- CLEAR ---------- */
     function clearHighlights() {
       document.querySelectorAll(".pageSearchHit").forEach(span => {
-        span.replaceWith(document.createTextNode(span.textContent));
+        span.replaceWith(span.textContent);
       });
+      document.body.normalize();
       matches = [];
       activeIndex = -1;
       countEl.textContent = "0 / 0";
     }
 
+    /* ---------- HIGHLIGHT ---------- */
     function highlight(query) {
       clearHighlights();
       if (!query) return;
 
       const q = query.toLowerCase();
+      const textNodes = [];
 
       const walker = document.createTreeWalker(
         document.body,
         NodeFilter.SHOW_TEXT,
         {
           acceptNode(node) {
-            if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
             const p = node.parentElement;
-            if (!p || IGNORE_TAGS.has(p.tagName)) return NodeFilter.FILTER_REJECT;
+            if (!p) return NodeFilter.FILTER_REJECT;
+            if (p.closest(`#${SEARCH_BOX_ID}`)) return NodeFilter.FILTER_REJECT;
+            if (IGNORE_TAGS.has(p.tagName)) return NodeFilter.FILTER_REJECT;
+            if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
             return NodeFilter.FILTER_ACCEPT;
           }
         }
@@ -155,11 +169,15 @@
 
       let node;
       while ((node = walker.nextNode())) {
+        if (node.nodeValue.toLowerCase().includes(q)) {
+          textNodes.push(node);
+        }
+      }
+
+      textNodes.forEach(node => {
         const text = node.nodeValue;
         const lower = text.toLowerCase();
-
         let index = lower.indexOf(q);
-        if (index === -1) continue;
 
         const frag = document.createDocumentFragment();
         let last = 0;
@@ -180,11 +198,12 @@
 
         frag.append(text.slice(last));
         node.replaceWith(frag);
-      }
+      });
 
       if (matches.length) gotoMatch(0);
     }
 
+    /* ---------- NAV ---------- */
     function gotoMatch(i) {
       if (!matches.length) return;
 
@@ -206,12 +225,11 @@
 
     box.addEventListener("click", e => {
       const act = e.target.dataset.act;
-      if (!act) return;
       if (act === "next") gotoMatch(activeIndex + 1);
       if (act === "prev") gotoMatch(activeIndex - 1);
     });
 
-    document.addEventListener("keydown", e => {
+    input.addEventListener("keydown", e => {
       if (e.key === "Enter") gotoMatch(activeIndex + 1);
       if (e.key === "Escape") {
         input.value = "";
@@ -219,6 +237,57 @@
       }
     });
 
+    /* ---------- DRAG TO MOVE (OPTION 1) ---------- */
+    let isDragging = false;
+    let startX = 0, startY = 0;
+    let boxX = 0, boxY = 0;
+
+    function dragStart(x, y) {
+      const rect = box.getBoundingClientRect();
+      boxX = rect.left;
+      boxY = rect.top;
+      startX = x;
+      startY = y;
+      isDragging = true;
+      box.classList.add("dragging");
+    }
+
+    function dragMove(x, y) {
+      if (!isDragging) return;
+      box.style.left = boxX + (x - startX) + "px";
+      box.style.top  = boxY + (y - startY) + "px";
+      box.style.right = "auto";
+    }
+
+    function dragEnd() {
+      isDragging = false;
+      box.classList.remove("dragging");
+    }
+
+    box.addEventListener("mousedown", e => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "BUTTON") return;
+      dragStart(e.clientX, e.clientY);
+    });
+
+    document.addEventListener("mousemove", e =>
+      dragMove(e.clientX, e.clientY)
+    );
+
+    document.addEventListener("mouseup", dragEnd);
+
+    box.addEventListener("touchstart", e => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "BUTTON") return;
+      const t = e.touches[0];
+      dragStart(t.clientX, t.clientY);
+    }, { passive: true });
+
+    document.addEventListener("touchmove", e => {
+      if (!isDragging) return;
+      const t = e.touches[0];
+      dragMove(t.clientX, t.clientY);
+    }, { passive: true });
+
+    document.addEventListener("touchend", dragEnd);
   }
 
   /* ---------- SAFE INIT ---------- */
