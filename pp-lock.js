@@ -7,7 +7,7 @@
 
 (function () {
   const PASSWORD_URL =
-    "https://champakroy.github.io/pp-lock/password.json";
+    "https://programmer-s-picnic.github.io/json-images/password.json";
 
   const LOCK_HTML = `
     <div id="pp-lock-screen" style="
