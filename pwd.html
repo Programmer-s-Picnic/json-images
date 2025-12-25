@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHA-256 Hash Generator – Programmer’s Picnic</title>
+  <meta name="description" content="Offline SHA-256 hash generator (browser-based) for Programmer’s Picnic password.json." />
+
+  <style>
+    :root{
+      --bg:#fffaf2;
+      --card:#ffffff;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --accent:#d97706;
+      --border:#e5e7eb;
+      --shadow:0 12px 28px rgba(0,0,0,.08);
+      --r:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+    }
+    .container{
+      max-width:900px;
+      margin:auto;
+      padding:24px;
+    }
+    header{
+      background:linear-gradient(135deg,#fff3e0,#fff7ed);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      padding:24px;
+      margin-bottom:18px;
+    }
+    header h1{
+      margin:0 0 6px;
+      color:var(--accent);
+      font-size:1.8rem;
+    }
+    header p{ margin:0; color:var(--muted); }
+    section{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      padding:22px;
+      margin-bottom:18px;
+    }
+    label{
+      display:block;
+      font-weight:600;
+      margin-bottom:8px;
+    }
+    input[type="text"], input[type="text"], textarea{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 14px;
+      font-size:1rem;
+      outline:none;
+      background:#fffdf8;
+    }
+    textarea{ min-height:92px; resize:vertical; }
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    @media(max-width:720px){ .row{ grid-template-columns:1fr; } }
+    .btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+    button{
+      border:none;
+      border-radius:999px;
+      padding:11px 16px;
+      font-weight:700;
+      cursor:pointer;
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 10px 22px rgba(217,119,6,.28);
+    }
+    button.secondary{
+      background:#fff;
+      color:var(--ink);
+      border:1px solid var(--border);
+      box-shadow:none;
+    }
+    .hint{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:.98rem;
+    }
+    code.inline{
+      background:#fff7ed;
+      padding:2px 6px;
+      border-radius:6px;
+      border:1px solid #f3e8d0;
+    }
+    pre{
+      margin:10px 0 0;
+      background:#0b1020;
+      color:#e5e7eb;
+      padding:14px;
+      border-radius:12px;
+      overflow:auto;
+      font-size:.95rem;
+      line-height:1.5;
+    }
+    .ok{ color:#065f46; font-weight:700; }
+    .err{ color:#b91c1c; font-weight:700; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>SHA-256 Hash Generator</h1>
+      <p>Use this to generate <code class="inline">password_hash</code> for your <code class="inline">password.json</code> (works fully in the browser).</p>
+    </header>
+
+    <section>
+      <div class="row">
+        <div>
+          <label for="pwd">Password (plain text)</label>
+          <input id="pwd" type="text" placeholder="Type password here (e.g., ppday3)" autocomplete="new-password" />
+          <div class="hint">Tip: Use a weekly pattern like <code class="inline">pp-w1-d3</code>, <code class="inline">pp-w1-d4</code> etc.</div>
+        </div>
+        <div>
+          <label for="hash">SHA-256 Hash (hex)</label>
+          <input id="hash" type="text" placeholder="Hash will appear here" readonly />
+          <div class="btns">
+            <button id="btnHash">Generate Hash</button>
+            <button id="btnCopyHash" class="secondary">Copy Hash</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint" id="status"></div>
+    </section>
+
+    <section>
+      <label for="jsonOut">Generated password.json</label>
+      <textarea id="jsonOut" readonly placeholder='{"password_hash":"..."}'></textarea>
+      <div class="btns">
+        <button id="btnCopyJson" class="secondary">Copy JSON</button>
+        <button id="btnDownload">Download password.json</button>
+        <button id="btnClear" class="secondary">Clear</button>
+      </div>
+      <div class="hint">
+        Put <code class="inline">password.json</code> on your GitHub Pages site and update it whenever you rotate the password.
+      </div>
+      <pre id="notes">How it works:
+- Your browser computes SHA-256 using Web Crypto (crypto.subtle).
+- Only the hash goes into password.json.
+- Your protected pages compare entered password hash with this stored hash.</pre>
+    </section>
+  </div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+
+  async function sha256Hex(text){
+    const enc = new TextEncoder();
+    const data = enc.encode(text);
+    const buf = await crypto.subtle.digest("SHA-256", data);
+    const arr = Array.from(new Uint8Array(buf));
+    return arr.map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  function setStatus(msg, kind){
+    const s = $("status");
+    s.textContent = msg;
+    s.className = "hint " + (kind || "");
+  }
+
+  function buildJson(hash){
+    return JSON.stringify({ password_hash: hash }, null, 2);
+  }
+
+  async function generate(){
+    const pwd = $("pwd").value;
+    if(!pwd){
+      setStatus("Please enter a password first.", "err");
+      return;
+    }
+    try{
+      const hash = await sha256Hex(pwd);
+      $("hash").value = hash;
+      $("jsonOut").value = buildJson(hash);
+      setStatus("Hash generated successfully.", "ok");
+    }catch(e){
+      console.error(e);
+      setStatus("Unable to generate hash. Your browser may not support Web Crypto.", "err");
+    }
+  }
+
+  async function copyText(text){
+    await navigator.clipboard.writeText(text);
+  }
+
+  $("btnHash").addEventListener("click", generate);
+
+  // Auto-generate as user types (optional but helpful)
+  $("pwd").addEventListener("input", () => {
+    // keep it lightweight: only generate if length >= 3
+    if($("pwd").value.length >= 3) generate();
+    else{
+      $("hash").value = "";
+      $("jsonOut").value = "";
+      setStatus("Type at least 3 characters to auto-generate.", "");
+    }
+  });
+
+  $("btnCopyHash").addEventListener("click", async () => {
+    const hash = $("hash").value;
+    if(!hash) return setStatus("No hash to copy.", "err");
+    try{
+      await copyText(hash);
+      setStatus("Hash copied to clipboard.", "ok");
+    }catch(e){
+      setStatus("Clipboard copy failed (browser permission).", "err");
+    }
+  });
+
+  $("btnCopyJson").addEventListener("click", async () => {
+    const json = $("jsonOut").value;
+    if(!json) return setStatus("No JSON to copy.", "err");
+    try{
+      await copyText(json);
+      setStatus("JSON copied to clipboard.", "ok");
+    }catch(e){
+      setStatus("Clipboard copy failed (browser permission).", "err");
+    }
+  });
+
+  $("btnDownload").addEventListener("click", () => {
+    const json = $("jsonOut").value;
+    if(!json) return setStatus("Generate a hash first, then download.", "err");
+    const blob = new Blob([json], { type:"application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "password.json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    setStatus("Downloaded password.json", "ok");
+  });
+
+  $("btnClear").addEventListener("click", () => {
+    $("pwd").value = "";
+    $("hash").value = "";
+    $("jsonOut").value = "";
+    setStatus("Cleared.", "");
+  });
+
+  // Initial status
+  setStatus("Enter a password to generate its SHA-256 hash.", "");
+</script>
+</body>
+</html>
