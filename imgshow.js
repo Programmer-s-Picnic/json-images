@@ -171,7 +171,7 @@
 
   /* ---------------- DRAGGABLE BUTTON ---------------- */
   const btn = document.getElementById("pp-open-gallery-btn");
-  let dragging = false, moved = false, sx = 0, sy = 0, bx =s=0, by = 0;
+  let dragging = false, moved = false, sx = 0, sy = 0, bx =0, by = 0;
 
   function startDrag(x, y) {
     dragging = true;
