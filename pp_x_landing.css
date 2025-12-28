@@ -97,3 +97,66 @@ body.pp_x_landing .widget-content {
 .pp_x_hidden { display: none !important; }
 .pp_x_visible { display: block !important; }
 .pp_x_no_scroll { overflow: hidden !important; }
+
+ 
+    .pp_x_links{
+      width: min(96%, 980px);
+      margin: 18px auto;
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(135deg,#fff4dc,#ffe8b5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    .pp_x_links h3{
+      margin: 0 0 12px 0;
+      color:#92400e;
+      font-size: 18px;
+    }
+    .pp_x_btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .pp_x_btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(146,64,14,0.18);
+      background: #ffffff;
+      color:#1f2937;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+    }
+    .pp_x_btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.10);
+    }
+    .pp_x_icon{
+      width:34px;height:34px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg,#fff7ed,#fde68a);
+      color:#92400e;
+      font-size: 18px;
+      flex: 0 0 auto;
+    }
+    .pp_x_sub{
+      display:block;
+      font-size:12px;
+      font-weight:600;
+      color:#6b7280;
+      margin-top:2px;
+      line-height:1.2;
+    }
+    @media (max-width:520px){
+      .pp_x_btn{ width:100%; justify-content:flex-start; }
+    }
+   
+ 

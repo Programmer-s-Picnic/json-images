@@ -49,3 +49,20 @@
   setupSkeleton();
 
 })();
+
+
+/* =========================================================
+   Programmer’s Picnic – Python Starter Links
+   JS Enhancements (pp_x_)
+   ========================================================= */
+
+(function(){
+  const buttons = document.querySelectorAll(".pp_x_btn");
+
+  buttons.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      // future analytics hook
+      // console.log("Clicked:", btn.textContent.trim());
+    });
+  });
+})();
