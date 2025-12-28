@@ -95,7 +95,23 @@
     color:#ffd7a3;
     opacity:.85;
     z-index:100001;
-  }`;
+  }
+    
+  /* ---------- SLIDE / FADE ANIMATION ---------- */
+#pp-gallery-modal img{
+  opacity: 0;
+  transform: translateX(20px) scale(0.98);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+#pp-gallery-modal img.pp-animate{
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+  `;
   document.head.appendChild(style);
 
   /* ---------------- HTML ---------------- */
@@ -116,20 +132,33 @@
   document.body.appendChild(wrap);
 
   /* ---------------- LOGIC ---------------- */
-  let images = [], index = 0, autoplay = null;
+  let images = [],
+    index = 0,
+    autoplay = null;
 
   function collectImages() {
-    images = [...document.querySelectorAll("img")].filter(img =>
-      img.src &&
-      !img.closest("#pp-gallery-modal") &&
-      img.naturalWidth > 150
+    images = [...document.querySelectorAll("img")].filter(
+      (img) =>
+        img.src && !img.closest("#pp-gallery-modal") && img.naturalWidth > 150
     );
   }
 
   function show() {
     const img = images[index];
-    document.getElementById("pp-modal-img").src = img.src;
+    const modalImg = document.getElementById("pp-modal-img");
+
+    // reset animation
+    modalImg.classList.remove("pp-animate");
+
+    // change content
+    modalImg.src = img.src;
     document.getElementById("pp-caption").innerHTML = img.alt || "";
+
+    // force reflow to restart animation
+    void modalImg.offsetWidth;
+
+    // start animation
+    modalImg.classList.add("pp-animate");
   }
 
   function openModal() {
@@ -171,7 +200,12 @@
 
   /* ---------------- DRAGGABLE BUTTON ---------------- */
   const btn = document.getElementById("pp-open-gallery-btn");
-  let dragging = false, moved = false, sx = 0, sy = 0, bx =0, by = 0;
+  let dragging = false,
+    moved = false,
+    sx = 0,
+    sy = 0,
+    bx = 0,
+    by = 0;
 
   function startDrag(x, y) {
     dragging = true;
@@ -181,33 +215,44 @@
     btn.style.top = r.top + "px";
     btn.style.right = "auto";
     btn.style.bottom = "auto";
-    bx = r.left; by = r.top; sx = x; sy = y;
+    bx = r.left;
+    by = r.top;
+    sx = x;
+    sy = y;
     btn.classList.add("dragging");
   }
 
-  btn.addEventListener("mousedown", e => startDrag(e.clientX, e.clientY));
-  btn.addEventListener("touchstart", e => {
-    const t = e.touches[0];
-    startDrag(t.clientX, t.clientY);
-  }, { passive: true });
+  btn.addEventListener("mousedown", (e) => startDrag(e.clientX, e.clientY));
+  btn.addEventListener(
+    "touchstart",
+    (e) => {
+      const t = e.touches[0];
+      startDrag(t.clientX, t.clientY);
+    },
+    { passive: true }
+  );
 
-  document.addEventListener("mousemove", e => {
+  document.addEventListener("mousemove", (e) => {
     if (!dragging) return;
     moved = true;
     btn.style.left = bx + (e.clientX - sx) + "px";
     btn.style.top = by + (e.clientY - sy) + "px";
   });
 
-  document.addEventListener("touchmove", e => {
-    if (!dragging) return;
-    const t = e.touches[0];
-    moved = true;
-    btn.style.left = bx + (t.clientX - sx) + "px";
-    btn.style.top = by + (t.clientY - sy) + "px";
-  }, { passive: true });
+  document.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!dragging) return;
+      const t = e.touches[0];
+      moved = true;
+      btn.style.left = bx + (t.clientX - sx) + "px";
+      btn.style.top = by + (t.clientY - sy) + "px";
+    },
+    { passive: true }
+  );
 
-  document.addEventListener("mouseup", () => dragging = false);
-  document.addEventListener("touchend", () => dragging = false);
+  document.addEventListener("mouseup", () => (dragging = false));
+  document.addEventListener("touchend", () => (dragging = false));
 
   btn.addEventListener("click", () => {
     if (moved) return;
@@ -222,12 +267,11 @@
   document.getElementById("pp-prev").onclick = () => prev(true);
 
   const autoBtn = document.getElementById("pp-auto");
-  autoBtn.onclick = () => autoplay ? stopAuto() : startAuto();
+  autoBtn.onclick = () => (autoplay ? stopAuto() : startAuto());
 
-  document.addEventListener("keydown", e => {
+  document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
     if (e.key === "ArrowRight") next(true);
     if (e.key === "ArrowLeft") prev(true);
   });
-
 })();
