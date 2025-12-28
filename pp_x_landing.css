@@ -1,0 +1,99 @@
+/* =========================================================
+   Programmer’s Picnic – Python Starter Landing
+   Namespace: pp_x_
+   ========================================================= */
+
+/* ---------- GLOBAL LANDING OVERRIDES (BLOGGER SAFE) ---------- */
+
+body.pp_x_landing header,
+body.pp_x_landing footer,
+body.pp_x_landing .sidebar,
+body.pp_x_landing #navbar-iframe,
+body.pp_x_landing .header,
+body.pp_x_landing .footer,
+body.pp_x_landing .page-footer {
+  display: none !important;
+}
+
+html, body {
+  height: 100% !important;
+}
+
+body.pp_x_landing,
+body.pp_x_landing .content,
+body.pp_x_landing .content-outer,
+body.pp_x_landing .content-inner,
+body.pp_x_landing .post,
+body.pp_x_landing .post-body,
+body.pp_x_landing .post-body-container,
+body.pp_x_landing .widget-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+/* ---------- FULLSCREEN WRAPPER ---------- */
+
+.pp_x_wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fffaf2;
+  z-index: 9999;
+}
+
+/* ---------- SKELETON LOADER ---------- */
+
+.pp_x_skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    #fff7ed 30%,
+    #fde68a 50%,
+    #fff7ed 70%
+  );
+  background-size: 400% 100%;
+  animation: pp_x_shimmer 1.2s infinite;
+  z-index: 2;
+  transition: opacity .35s ease;
+}
+
+@keyframes pp_x_shimmer {
+  from { background-position: 100% 0; }
+  to   { background-position: -100% 0; }
+}
+
+.pp_x_skeleton::after {
+  content: "Loading Python Starter…";
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: system-ui, sans-serif;
+  color: #92400e;
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+/* ---------- IFRAME ---------- */
+
+.pp_x_iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: transparent;
+}
+
+/* ---------- OPTIONAL UTILITIES ---------- */
+
+.pp_x_hidden { display: none !important; }
+.pp_x_visible { display: block !important; }
+.pp_x_no_scroll { overflow: hidden !important; }
