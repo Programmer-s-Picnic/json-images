@@ -1,6 +1,6 @@
 /* ==========================================================
    Programmer’s Picnic — Draggable Image Gallery
-   Plug-and-Play JS File
+   Amazon-Style Hover Zoom (FULL VERSION)
    Author: Champak Roy
    ========================================================== */
 
@@ -45,6 +45,14 @@
     display:block;
     margin:70px auto 10px;
     border-radius:10px;
+    opacity:0;
+    transform:translateX(20px) scale(0.98);
+    transition:opacity .45s ease, transform .45s ease;
+  }
+
+  #pp-gallery-modal img.pp-animate{
+    opacity:1;
+    transform:translateX(0) scale(1);
   }
 
   .pp-nav-btn,
@@ -96,21 +104,35 @@
     opacity:.85;
     z-index:100001;
   }
-    
-  /* ---------- SLIDE / FADE ANIMATION ---------- */
-#pp-gallery-modal img{
-  opacity: 0;
-  transform: translateX(20px) scale(0.98);
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
-}
 
-#pp-gallery-modal img.pp-animate{
-  opacity: 1;
-  transform: translateX(0) scale(1);
-}
+  /* ---------- AMAZON STYLE ZOOM ---------- */
+  #pp-zoom-lens{
+    position:absolute;
+    width:140px;
+    height:140px;
+    border:2px solid #ffb74d;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(2px);
+    pointer-events:none;
+    display:none;
+    z-index:100002;
+    border-radius:10px;
+  }
 
+  #pp-zoom-result{
+    position:fixed;
+    top:90px;
+    right:90px;
+    width:360px;
+    height:360px;
+    border-radius:14px;
+    border:2px solid #ffb74d;
+    background-repeat:no-repeat;
+    background-size:200%;
+    display:none;
+    z-index:100002;
+    box-shadow:0 12px 30px rgba(0,0,0,.45);
+  }
   `;
   document.head.appendChild(style);
 
@@ -126,50 +148,43 @@
       <span id="pp-next" class="pp-nav-btn">&#10095;</span>
 
       <img id="pp-modal-img"/>
+      <div id="pp-zoom-lens"></div>
+      <div id="pp-zoom-result"></div>
+
       <div id="pp-caption"></div>
       <div id="pp-brand">Programmer’s Picnic • Learn with Champak</div>
     </div>`;
   document.body.appendChild(wrap);
 
   /* ---------------- LOGIC ---------------- */
-  let images = [],
-    index = 0,
-    autoplay = null;
+  let images = [], index = 0, autoplay = null;
 
   function collectImages() {
     images = [...document.querySelectorAll("img")].filter(
-      (img) =>
-        img.src && !img.closest("#pp-gallery-modal") && img.naturalWidth > 150
+      img => img.src && !img.closest("#pp-gallery-modal") && img.naturalWidth > 150
     );
   }
 
   function show() {
     const img = images[index];
-    const modalImg = document.getElementById("pp-modal-img");
-
-    // reset animation
     modalImg.classList.remove("pp-animate");
-
-    // change content
     modalImg.src = img.src;
-    document.getElementById("pp-caption").innerHTML = img.alt || "";
-
-    // force reflow to restart animation
+    caption.innerHTML = img.alt || "";
+    zoomResult.style.backgroundImage = `url('${img.src}')`;
     void modalImg.offsetWidth;
-
-    // start animation
     modalImg.classList.add("pp-animate");
   }
 
   function openModal() {
     if (!images.length) return;
     show();
-    document.getElementById("pp-gallery-modal").style.display = "block";
+    modal.style.display = "block";
   }
 
   function closeModal() {
     stopAuto();
-    document.getElementById("pp-gallery-modal").style.display = "none";
+    modal.style.display = "none";
+    lens.style.display = zoomResult.style.display = "none";
   }
 
   function next(manual = true) {
@@ -198,14 +213,47 @@
     autoBtn.classList.remove("running");
   }
 
-  /* ---------------- DRAGGABLE BUTTON ---------------- */
+  /* ---------------- AMAZON ZOOM LOGIC ---------------- */
+  const modal = document.getElementById("pp-gallery-modal");
+  const modalImg = document.getElementById("pp-modal-img");
+  const lens = document.getElementById("pp-zoom-lens");
+  const zoomResult = document.getElementById("pp-zoom-result");
+  const caption = document.getElementById("pp-caption");
+
+  const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+  if (!isTouch) {
+    modalImg.addEventListener("mouseenter", () => {
+      lens.style.display = zoomResult.style.display = "block";
+    });
+
+    modalImg.addEventListener("mouseleave", () => {
+      lens.style.display = zoomResult.style.display = "none";
+    });
+
+    modalImg.addEventListener("mousemove", moveLens);
+  }
+
+  function moveLens(e) {
+    const r = modalImg.getBoundingClientRect();
+    const s = lens.offsetWidth / 2;
+
+    let x = e.clientX - r.left - s;
+    let y = e.clientY - r.top - s;
+
+    x = Math.max(0, Math.min(x, r.width - lens.offsetWidth));
+    y = Math.max(0, Math.min(y, r.height - lens.offsetHeight));
+
+    lens.style.left = r.left + x + "px";
+    lens.style.top = r.top + y + "px";
+
+    zoomResult.style.backgroundPosition =
+      (x / r.width) * 100 + "% " + (y / r.height) * 100 + "%";
+  }
+
+  /* ---------------- DRAG BUTTON ---------------- */
   const btn = document.getElementById("pp-open-gallery-btn");
-  let dragging = false,
-    moved = false,
-    sx = 0,
-    sy = 0,
-    bx = 0,
-    by = 0;
+  let dragging = false, moved = false, sx, sy, bx, by;
 
   function startDrag(x, y) {
     dragging = true;
@@ -213,65 +261,37 @@
     const r = btn.getBoundingClientRect();
     btn.style.left = r.left + "px";
     btn.style.top = r.top + "px";
-    btn.style.right = "auto";
-    btn.style.bottom = "auto";
-    bx = r.left;
-    by = r.top;
-    sx = x;
-    sy = y;
+    btn.style.right = btn.style.bottom = "auto";
+    bx = r.left; by = r.top;
+    sx = x; sy = y;
     btn.classList.add("dragging");
   }
 
-  btn.addEventListener("mousedown", (e) => startDrag(e.clientX, e.clientY));
-  btn.addEventListener(
-    "touchstart",
-    (e) => {
-      const t = e.touches[0];
-      startDrag(t.clientX, t.clientY);
-    },
-    { passive: true }
+  btn.onmousedown = e => startDrag(e.clientX, e.clientY);
+  document.onmousemove = e => dragging && (
+    moved = true,
+    btn.style.left = bx + e.clientX - sx + "px",
+    btn.style.top = by + e.clientY - sy + "px"
   );
+  document.onmouseup = () => dragging = false;
 
-  document.addEventListener("mousemove", (e) => {
-    if (!dragging) return;
-    moved = true;
-    btn.style.left = bx + (e.clientX - sx) + "px";
-    btn.style.top = by + (e.clientY - sy) + "px";
-  });
-
-  document.addEventListener(
-    "touchmove",
-    (e) => {
-      if (!dragging) return;
-      const t = e.touches[0];
-      moved = true;
-      btn.style.left = bx + (t.clientX - sx) + "px";
-      btn.style.top = by + (t.clientY - sy) + "px";
-    },
-    { passive: true }
-  );
-
-  document.addEventListener("mouseup", () => (dragging = false));
-  document.addEventListener("touchend", () => (dragging = false));
-
-  btn.addEventListener("click", () => {
+  btn.onclick = () => {
     if (moved) return;
     collectImages();
     index = 0;
     openModal();
-  });
+  };
 
   /* ---------------- EVENTS ---------------- */
   document.getElementById("pp-close").onclick = closeModal;
   document.getElementById("pp-next").onclick = () => next(true);
   document.getElementById("pp-prev").onclick = () => prev(true);
-
   const autoBtn = document.getElementById("pp-auto");
-  autoBtn.onclick = () => (autoplay ? stopAuto() : startAuto());
+  autoBtn.onclick = () => autoplay ? stopAuto() : startAuto();
 
-  document.addEventListener("keydown", (e) => {
+  document.onkeydown = e => {
     if (e.key === "Escape") closeModal();
     if (e.key === "ArrowRight") next(true);
     if (e.key === "ArrowLeft") prev(true);
-  });
+  };
 })();
