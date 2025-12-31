@@ -8,7 +8,7 @@
   "use strict";
 
   /* ---------- CONFIG ---------- */
-  const HOME_URL = "/";              // Change if needed
+  const HOME_URL = "https://www.learnwithchampak.live";              // Change if needed
   const TAG_TEXT = "🏠 Home";
 
   /* ---------- CREATE TAG ---------- */
