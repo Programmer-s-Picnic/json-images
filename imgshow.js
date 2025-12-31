@@ -1,6 +1,6 @@
 /* ==========================================================
-   Programmer’s Picnic — Draggable Image Gallery
-   Plug-and-Play JS File
+   Programmer’s Picnic — Draggable Image Gallery v3
+   Amazon-Level Zoom • Desktop + Mobile
    Author: Champak Roy
    ========================================================== */
 
@@ -9,269 +9,198 @@
 
   /* ---------------- CONFIG ---------------- */
   const AUTOPLAY_INTERVAL = 3000;
+  let ZOOM_LEVEL = 2;
 
   /* ---------------- STYLES ---------------- */
   const style = document.createElement("style");
   style.textContent = `
   #pp-open-gallery-btn{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#ff9933;
-    color:#fff;
-    padding:12px 18px;
-    border-radius:8px;
-    font-size:15px;
-    cursor:grab;
-    z-index:99999;
-    box-shadow:0 4px 10px rgba(0,0,0,.3);
+    position:fixed;bottom:20px;right:20px;
+    background:#ff9933;color:#fff;
+    padding:12px 18px;border-radius:8px;
+    font-size:15px;cursor:grab;
+    z-index:99999;box-shadow:0 4px 10px rgba(0,0,0,.3);
     user-select:none;
   }
-  #pp-open-gallery-btn.dragging{cursor:grabbing;opacity:.9}
-
   #pp-gallery-modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.92);
-    z-index:100000;
+    display:none;position:fixed;inset:0;
+    background:rgba(0,0,0,.94);z-index:100000;
   }
 
-  #pp-gallery-modal img{
+  /* ---------- AMAZON LAYOUT ---------- */
+  #pp-stage{
+    display:flex;gap:30px;
+    align-items:center;justify-content:center;
+    height:100%;
+    padding:80px 60px 60px;
+  }
+
+  #pp-left{
     position:relative;
-    z-index:1;
-    max-width:92%;
-    max-height:85vh;
-    display:block;
-    margin:70px auto 10px;
+  }
+
+  #pp-left img{
+    max-height:80vh;max-width:42vw;
+    border-radius:12px;
+    transition:.35s;
+  }
+
+  #pp-right{
+    width:420px;height:420px;
+    border-radius:14px;
+    border:2px solid #ffb74d;
+    background-repeat:no-repeat;
+    background-size:200%;
+    display:none;
+    box-shadow:0 12px 30px rgba(0,0,0,.45);
+  }
+
+  #pp-zoom-lens{
+    position:absolute;
+    width:140px;height:140px;
+    border:2px solid #ffb74d;
+    background:rgba(255,255,255,.15);
+    display:none;pointer-events:none;
     border-radius:10px;
   }
 
-  .pp-nav-btn,
-  #pp-close,
-  #pp-auto{
-    position:fixed;
-    z-index:100001;
-    color:white;
-    cursor:pointer;
-    user-select:none;
+  /* ---------- CONTROLS ---------- */
+  .pp-nav{position:fixed;top:50%;font-size:42px;color:#fff;cursor:pointer;z-index:100001}
+  #pp-prev{left:20px} #pp-next{right:20px}
+  #pp-close{position:fixed;top:20px;right:25px;font-size:42px;color:#fff;cursor:pointer}
+  #pp-auto{position:fixed;top:22px;left:25px;font-size:26px;color:#fff;cursor:pointer}
+
+  #pp-zoom-ui{
+    position:fixed;bottom:26px;left:50%;
+    transform:translateX(-50%);
+    background:#111;border-radius:12px;
+    padding:8px 14px;color:#ffd7a3;
+    display:flex;gap:10px;align-items:center;
+    z-index:100002;
   }
 
-  .pp-nav-btn{
-    top:50%;
-    transform:translateY(-50%);
-    font-size:42px;
-    padding:12px;
+  #pp-zoom-ui input{width:120px}
+
+  /* ---------- MOBILE ---------- */
+  @media(max-width:900px){
+    #pp-stage{flex-direction:column;padding:80px 20px}
+    #pp-left img{max-width:92vw}
+    #pp-right{display:none !important}
+    #pp-zoom-ui{display:none}
   }
-  #pp-prev{left:18px}
-  #pp-next{right:18px}
-
-  #pp-close{
-    top:18px;
-    right:22px;
-    font-size:42px;
-  }
-
-  #pp-auto{
-    top:22px;
-    left:25px;
-    font-size:28px;
-    opacity:.85;
-  }
-  #pp-auto.running{color:#ffcc80}
-
-  #pp-caption{
-    text-align:center;
-    color:#eee;
-    font-size:14px;
-  }
-
-  #pp-brand{
-    position:fixed;
-    bottom:18px;
-    width:100%;
-    text-align:center;
-    font-size:13px;
-    color:#ffd7a3;
-    opacity:.85;
-    z-index:100001;
-  }
-    
-  /* ---------- SLIDE / FADE ANIMATION ---------- */
-#pp-gallery-modal img{
-  opacity: 0;
-  transform: translateX(20px) scale(0.98);
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
-}
-
-#pp-gallery-modal img.pp-animate{
-  opacity: 1;
-  transform: translateX(0) scale(1);
-}
-
   `;
   document.head.appendChild(style);
 
   /* ---------------- HTML ---------------- */
-  const wrap = document.createElement("div");
-  wrap.innerHTML = `
+  document.body.insertAdjacentHTML("beforeend", `
     <div id="pp-open-gallery-btn">📷 View Images</div>
 
     <div id="pp-gallery-modal">
       <span id="pp-close">&times;</span>
       <span id="pp-auto">▶</span>
-      <span id="pp-prev" class="pp-nav-btn">&#10094;</span>
-      <span id="pp-next" class="pp-nav-btn">&#10095;</span>
+      <span id="pp-prev" class="pp-nav">&#10094;</span>
+      <span id="pp-next" class="pp-nav">&#10095;</span>
 
-      <img id="pp-modal-img"/>
-      <div id="pp-caption"></div>
-      <div id="pp-brand">Programmer’s Picnic • Learn with Champak</div>
-    </div>`;
-  document.body.appendChild(wrap);
+      <div id="pp-stage">
+        <div id="pp-left">
+          <img id="pp-img">
+          <div id="pp-zoom-lens"></div>
+        </div>
+        <div id="pp-right"></div>
+      </div>
+
+      <div id="pp-zoom-ui">
+        🔍 Zoom
+        <input type="range" min="1.5" max="3" step="0.1" value="2">
+      </div>
+    </div>
+  `);
 
   /* ---------------- LOGIC ---------------- */
-  let images = [],
-    index = 0,
-    autoplay = null;
+  let imgs = [], index = 0, autoplay = null;
+  const modal = document.getElementById("pp-gallery-modal");
+  const img = document.getElementById("pp-img");
+  const lens = document.getElementById("pp-zoom-lens");
+  const zoomBox = document.getElementById("pp-right");
+  const zoomSlider = document.querySelector("#pp-zoom-ui input");
 
-  function collectImages() {
-    images = [...document.querySelectorAll("img")].filter(
-      (img) =>
-        img.src && !img.closest("#pp-gallery-modal") && img.naturalWidth > 150
-    );
+  const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+  function collect() {
+    imgs = [...document.querySelectorAll("img")]
+      .filter(i => i.src && !i.closest("#pp-gallery-modal") && i.naturalWidth > 200);
   }
 
   function show() {
-    const img = images[index];
-    const modalImg = document.getElementById("pp-modal-img");
-
-    // reset animation
-    modalImg.classList.remove("pp-animate");
-
-    // change content
-    modalImg.src = img.src;
-    document.getElementById("pp-caption").innerHTML = img.alt || "";
-
-    // force reflow to restart animation
-    void modalImg.offsetWidth;
-
-    // start animation
-    modalImg.classList.add("pp-animate");
+    img.src = imgs[index].src;
+    zoomBox.style.backgroundImage = `url('${img.src}')`;
+    zoomBox.style.backgroundSize = `${ZOOM_LEVEL * 100}%`;
   }
 
-  function openModal() {
-    if (!images.length) return;
-    show();
-    document.getElementById("pp-gallery-modal").style.display = "block";
+  function open() {
+    show(); modal.style.display = "block";
   }
 
-  function closeModal() {
+  function close() {
     stopAuto();
-    document.getElementById("pp-gallery-modal").style.display = "none";
+    modal.style.display = "none";
+    lens.style.display = zoomBox.style.display = "none";
   }
 
-  function next(manual = true) {
-    if (manual) stopAuto();
-    index = (index + 1) % images.length;
-    show();
+  function next(m=true){ if(m)stopAuto(); index=(index+1)%imgs.length; show(); }
+  function prev(m=true){ if(m)stopAuto(); index=(index-1+imgs.length)%imgs.length; show(); }
+
+  function startAuto(){
+    autoplay=setInterval(()=>next(false),AUTOPLAY_INTERVAL);
+    autoBtn.textContent="⏸";
+  }
+  function stopAuto(){
+    clearInterval(autoplay); autoplay=null;
+    autoBtn.textContent="▶";
   }
 
-  function prev(manual = true) {
-    if (manual) stopAuto();
-    index = (index - 1 + images.length) % images.length;
-    show();
+  /* ---------- DESKTOP ZOOM ---------- */
+  if(!isTouch){
+    img.onmouseenter=()=>{lens.style.display=zoomBox.style.display="block"};
+    img.onmouseleave=()=>{lens.style.display=zoomBox.style.display="none"};
+    img.onmousemove=e=>{
+      const r=img.getBoundingClientRect(), s=lens.offsetWidth/2;
+      let x=e.clientX-r.left-s, y=e.clientY-r.top-s;
+      x=Math.max(0,Math.min(x,r.width-lens.offsetWidth));
+      y=Math.max(0,Math.min(y,r.height-lens.offsetHeight));
+      lens.style.left=x+"px"; lens.style.top=y+"px";
+      zoomBox.style.backgroundPosition=
+        (x/r.width*100)+"% "+(y/r.height*100)+"%";
+    };
   }
 
-  function startAuto() {
-    if (autoplay) return;
-    autoplay = setInterval(() => next(false), AUTOPLAY_INTERVAL);
-    autoBtn.textContent = "⏸";
-    autoBtn.classList.add("running");
+  zoomSlider.oninput=e=>{
+    ZOOM_LEVEL=e.target.value;
+    zoomBox.style.backgroundSize=`${ZOOM_LEVEL*100}%`;
+  };
+
+  /* ---------- MOBILE DOUBLE TAP ---------- */
+  if(isTouch){
+    let zoomed=false;
+    img.ontouchstart=e=>{
+      if(!zoomed){
+        zoomed=true;
+        img.style.transform="scale(2)";
+      }else{
+        zoomed=false;
+        img.style.transform="scale(1)";
+      }
+    };
   }
 
-  function stopAuto() {
-    clearInterval(autoplay);
-    autoplay = null;
-    autoBtn.textContent = "▶";
-    autoBtn.classList.remove("running");
-  }
+  /* ---------- EVENTS ---------- */
+  const autoBtn=document.getElementById("pp-auto");
+  document.getElementById("pp-open-gallery-btn").onclick=()=>{
+    collect(); index=0; open();
+  };
+  document.getElementById("pp-close").onclick=close;
+  document.getElementById("pp-next").onclick=()=>next(true);
+  document.getElementById("pp-prev").onclick=()=>prev(true);
+  autoBtn.onclick=()=>autoplay?stopAuto():startAuto();
 
-  /* ---------------- DRAGGABLE BUTTON ---------------- */
-  const btn = document.getElementById("pp-open-gallery-btn");
-  let dragging = false,
-    moved = false,
-    sx = 0,
-    sy = 0,
-    bx = 0,
-    by = 0;
-
-  function startDrag(x, y) {
-    dragging = true;
-    moved = false;
-    const r = btn.getBoundingClientRect();
-    btn.style.left = r.left + "px";
-    btn.style.top = r.top + "px";
-    btn.style.right = "auto";
-    btn.style.bottom = "auto";
-    bx = r.left;
-    by = r.top;
-    sx = x;
-    sy = y;
-    btn.classList.add("dragging");
-  }
-
-  btn.addEventListener("mousedown", (e) => startDrag(e.clientX, e.clientY));
-  btn.addEventListener(
-    "touchstart",
-    (e) => {
-      const t = e.touches[0];
-      startDrag(t.clientX, t.clientY);
-    },
-    { passive: true }
-  );
-
-  document.addEventListener("mousemove", (e) => {
-    if (!dragging) return;
-    moved = true;
-    btn.style.left = bx + (e.clientX - sx) + "px";
-    btn.style.top = by + (e.clientY - sy) + "px";
-  });
-
-  document.addEventListener(
-    "touchmove",
-    (e) => {
-      if (!dragging) return;
-      const t = e.touches[0];
-      moved = true;
-      btn.style.left = bx + (t.clientX - sx) + "px";
-      btn.style.top = by + (t.clientY - sy) + "px";
-    },
-    { passive: true }
-  );
-
-  document.addEventListener("mouseup", () => (dragging = false));
-  document.addEventListener("touchend", () => (dragging = false));
-
-  btn.addEventListener("click", () => {
-    if (moved) return;
-    collectImages();
-    index = 0;
-    openModal();
-  });
-
-  /* ---------------- EVENTS ---------------- */
-  document.getElementById("pp-close").onclick = closeModal;
-  document.getElementById("pp-next").onclick = () => next(true);
-  document.getElementById("pp-prev").onclick = () => prev(true);
-
-  const autoBtn = document.getElementById("pp-auto");
-  autoBtn.onclick = () => (autoplay ? stopAuto() : startAuto());
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-    if (e.key === "ArrowRight") next(true);
-    if (e.key === "ArrowLeft") prev(true);
-  });
 })();
