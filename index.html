@@ -125,6 +125,12 @@ body{
   font-weight:700;
 }
 
+.festival{
+  background:linear-gradient(135deg,#fde68a,#fbbf24);
+  color:#000;
+  font-weight:700;
+}
+
 /* ===== MONTH LINKS ===== */
 .month-links{
   margin-top:14px;
@@ -134,17 +140,45 @@ body{
   justify-content:center;
 }
 
-.month-links a{
-  text-decoration:none;
+.month-links button{
   padding:6px 12px;
   border-radius:12px;
   font-size:13px;
   background:rgba(251,191,36,.25);
   color:#fde68a;
+  border:none;
+  cursor:pointer;
 }
-.month-links a:hover{
+.month-links button:hover{
   background:linear-gradient(135deg,#ff9933,#fbbf24);
   color:#000;
+}
+
+/* ===== MODAL ===== */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+.modal-content{
+  background:#020617;
+  padding:22px;
+  border-radius:18px;
+  max-width:420px;
+  width:92%;
+}
+.modal h3{
+  margin-top:0;
+  color:#fde68a;
+}
+.close{
+  float:right;
+  cursor:pointer;
+  font-size:18px;
 }
 
 /* ===== QR ===== */
@@ -206,29 +240,31 @@ canvas{
     <b>joy in teaching.</b>
   </div>
 
-  <!-- Avatar -->
   <div class="avatar">
-    <img src="https://cdn.pixabay.com/photo/2023/01/31/09/12/teacher-7756745_1280.png"
-         alt="Programmer Teacher">
+    <img src="https://cdn.pixabay.com/photo/2023/01/31/09/12/teacher-7756745_1280.png">
   </div>
 
-  <!-- Calendar -->
+  <!-- January Calendar -->
   <div class="calendar">
     <h3>🗓️ January <span id="calYear"></span></h3>
     <div class="cal-grid" id="janCal"></div>
 
     <div class="month-links">
-      <a href="#feb">Feb</a><a href="#mar">Mar</a><a href="#apr">Apr</a>
-      <a href="#may">May</a><a href="#jun">Jun</a><a href="#jul">Jul</a>
-      <a href="#aug">Aug</a><a href="#sep">Sep</a><a href="#oct">Oct</a>
-      <a href="#nov">Nov</a><a href="#dec">Dec</a>
+      <button onclick="openMonth(1)">Feb</button>
+      <button onclick="openMonth(2)">Mar</button>
+      <button onclick="openMonth(3)">Apr</button>
+      <button onclick="openMonth(4)">May</button>
+      <button onclick="openMonth(5)">Jun</button>
+      <button onclick="openMonth(6)">Jul</button>
+      <button onclick="openMonth(7)">Aug</button>
+      <button onclick="openMonth(8)">Sep</button>
+      <button onclick="openMonth(9)">Oct</button>
+      <button onclick="openMonth(10)">Nov</button>
+      <button onclick="openMonth(11)">Dec</button>
     </div>
   </div>
 
-  <!-- QR -->
-  <div class="qr">
-    <img id="qrImg" alt="QR Code">
-  </div>
+  <div class="qr"><img id="qrImg"></div>
 
   <div class="controls">
     <button class="btn" onclick="toggleMusic()">🎵 Music</button>
@@ -238,9 +274,17 @@ canvas{
   <div class="footer">✨ Programmer’s Picnic ✨</div>
 </div>
 
-<!-- MUSIC -->
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="modal.style.display='none'">✖</span>
+    <h3 id="modalTitle"></h3>
+    <div class="cal-grid" id="modalCal"></div>
+  </div>
+</div>
+
 <audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_946b64f05c.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_946b64f05c.mp3">
 </audio>
 
 <script>
@@ -250,7 +294,6 @@ for(let i=0;i<80;i++){
   s.className="star";
   s.style.left=Math.random()*100+"vw";
   s.style.top=Math.random()*100+"vh";
-  s.style.animationDelay=Math.random()*3+"s";
   document.body.appendChild(s);
 }
 
@@ -258,8 +301,8 @@ for(let i=0;i<80;i++){
 const target=new Date("Jan 1, 2026 00:00:00").getTime();
 setInterval(()=>{
   const d=target-Date.now();
-  if(d<=0){countdown.innerHTML="🎆 Welcome 2026 🎆";return;}
-  countdown.innerHTML=`⏳ ${Math.floor(d/36e5)}h ${Math.floor(d%36e5/6e4)}m ${Math.floor(d%6e4/1e3)}s`;
+  countdown.innerHTML=d<=0?"🎆 Welcome 2026 🎆":
+    `⏳ ${Math.floor(d/36e5)}h ${Math.floor(d%36e5/6e4)}m ${Math.floor(d%6e4/1e3)}s`;
 },1000);
 
 /* Music */
@@ -275,25 +318,47 @@ function share(){
 /* QR */
 qrImg.src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(location.href)}`;
 
-/* Calendar */
+/* Festivals (example – expandable) */
+const festivals={
+  0:{1:"New Year"},
+  2:{8:"Holi"},
+  7:{15:"Independence Day"},
+  9:{2:"Gandhi Jayanti"},
+  10:{12:"Diwali"},
+  11:{25:"Christmas"}
+};
+
+/* January calendar */
 const year=new Date().getFullYear();
 calYear.textContent=year;
-const cal=janCal;
-["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
-  const h=document.createElement("div");
-  h.textContent=d;
-  h.className="cal-head";
-  cal.appendChild(h);
-});
-const firstDay=new Date(year,0,1).getDay();
-const totalDays=new Date(year,1,0).getDate();
-for(let i=0;i<firstDay;i++)cal.appendChild(document.createElement("div"));
-const today=new Date();
-for(let d=1;d<=totalDays;d++){
-  const c=document.createElement("div");
-  c.textContent=d;
-  if(d===today.getDate() && today.getMonth()===0)c.classList.add("today");
-  cal.appendChild(c);
+buildCalendar(0,janCal);
+
+/* Modal calendar */
+function openMonth(m){
+  modal.style.display="flex";
+  modalTitle.textContent=new Date(year,m).toLocaleString("default",{month:"long"});
+  modalCal.innerHTML="";
+  buildCalendar(m,modalCal);
+}
+
+function buildCalendar(month,el){
+  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
+    const h=document.createElement("div");
+    h.textContent=d;
+    h.className="cal-head";
+    el.appendChild(h);
+  });
+  const first=new Date(year,month,1).getDay();
+  const total=new Date(year,month+1,0).getDate();
+  for(let i=0;i<first;i++)el.appendChild(document.createElement("div"));
+  const today=new Date();
+  for(let d=1;d<=total;d++){
+    const c=document.createElement("div");
+    c.textContent=d;
+    if(festivals[month]?.[d])c.classList.add("festival");
+    if(d===today.getDate() && today.getMonth()===month)c.classList.add("today");
+    el.appendChild(c);
+  }
 }
 
 /* Fireworks */
@@ -308,7 +373,7 @@ function draw(){
     o.y+=o.vy;
     if(o.y<c.height*.35){
       for(let a=0;a<28;a++)
-        o.p.push({x:o.x,y:o.y,vx:Math.cos(a)*4,vy:Math.sin(a)*4,l:60});
+        o.p.push({x:o.x,y:o.y,vx:Math.cos(a)*4,vy:Math.sin(a)*4});
       f.splice(i,1);
     }
   });
