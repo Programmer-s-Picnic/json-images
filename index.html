@@ -11,6 +11,7 @@
   --saffron:#ff9933;
   --bg1:#020617;
   --bg2:#0f172a;
+  --birthday:#60a5fa;
 }
 
 *{box-sizing:border-box}
@@ -23,24 +24,11 @@ body{
     linear-gradient(135deg,var(--bg1),var(--bg2));
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
   color:#fff;
-  overflow-x:hidden;
 }
-
-/* ===== STARS ===== */
-.star{
-  position:absolute;
-  width:2px;height:2px;
-  background:#fff;
-  border-radius:50%;
-  animation:twinkle 3s infinite;
-}
-@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
 
 /* ===== CARD ===== */
 .card{
-  position:relative;
-  z-index:10;
-  max-width:460px;
+  max-width:480px;
   margin:40px auto;
   padding:36px 34px;
   border-radius:24px;
@@ -50,54 +38,57 @@ body{
   box-shadow:0 25px 60px rgba(0,0,0,.55);
 }
 
+/* ===== HEADER ===== */
 .year{
-  font-size:70px;
+  font-size:68px;
   font-weight:800;
-  letter-spacing:4px;
   color:var(--gold);
   text-shadow:0 0 30px rgba(251,191,36,.9);
 }
-
 .title{
   font-size:30px;
   background:linear-gradient(90deg,#fff,var(--gold));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
-
-.countdown{
-  margin:14px 0;
-  font-size:18px;
-  color:#fde68a;
-}
-
 .msg{
+  margin-top:12px;
   font-size:17px;
-  line-height:1.7;
   color:#e5e7eb;
-}
-
-/* ===== AVATAR ===== */
-.avatar img{
-  width:120px;
-  border-radius:18px;
-  margin:18px auto 10px;
-  display:block;
-  box-shadow:0 10px 25px rgba(0,0,0,.4);
 }
 
 /* ===== CALENDAR ===== */
 .calendar{
-  margin-top:22px;
+  margin-top:26px;
   padding:18px;
   border-radius:18px;
   background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.05));
 }
 
-.calendar h3{
-  margin:0 0 10px;
+.cal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.cal-header button{
+  background:rgba(251,191,36,.25);
+  border:none;
   color:#fde68a;
-  font-size:20px;
+  font-size:16px;
+  padding:6px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.cal-header button:hover{
+  background:linear-gradient(135deg,#ff9933,#fbbf24);
+  color:#000;
+}
+
+.cal-title{
+  font-size:18px;
+  color:#fde68a;
 }
 
 .cal-grid{
@@ -109,9 +100,9 @@ body{
 
 .cal-grid div{
   padding:8px 0;
-  text-align:center;
   border-radius:10px;
   background:rgba(0,0,0,.25);
+  position:relative;
 }
 
 .cal-head{
@@ -125,267 +116,152 @@ body{
   font-weight:700;
 }
 
+/* ===== FESTIVAL ===== */
 .festival{
   background:linear-gradient(135deg,#fde68a,#fbbf24);
   color:#000;
   font-weight:700;
 }
 
-/* ===== MONTH LINKS ===== */
-.month-links{
-  margin-top:14px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  justify-content:center;
+/* ===== BIRTHDAY ===== */
+.birthday{
+  background:linear-gradient(135deg,#60a5fa,#2563eb);
+  color:#fff;
+  font-weight:700;
 }
 
-.month-links button{
-  padding:6px 12px;
-  border-radius:12px;
-  font-size:13px;
-  background:rgba(251,191,36,.25);
-  color:#fde68a;
-  border:none;
-  cursor:pointer;
-}
-.month-links button:hover{
-  background:linear-gradient(135deg,#ff9933,#fbbf24);
-  color:#000;
-}
-
-/* ===== MODAL ===== */
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:1000;
-}
-.modal-content{
+/* ===== TOOLTIP ===== */
+.tooltip::after{
+  content:attr(data-tip);
+  position:absolute;
+  bottom:115%;
+  left:50%;
+  transform:translateX(-50%);
   background:#020617;
-  padding:22px;
-  border-radius:18px;
-  max-width:420px;
-  width:92%;
-}
-.modal h3{
-  margin-top:0;
   color:#fde68a;
+  padding:6px 10px;
+  font-size:12px;
+  border-radius:8px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+  box-shadow:0 10px 20px rgba(0,0,0,.5);
 }
-.close{
-  float:right;
-  cursor:pointer;
-  font-size:18px;
-}
-
-/* ===== QR ===== */
-.qr img{
-  width:110px;
-  background:#fff;
-  padding:6px;
-  border-radius:14px;
-  margin-top:14px;
-}
-
-/* ===== BUTTONS ===== */
-.controls{
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  margin-top:18px;
-}
-
-.btn{
-  padding:12px 16px;
-  border-radius:14px;
-  background:linear-gradient(135deg,var(--saffron),var(--gold));
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
-  border:none;
+.tooltip:hover::after{
+  opacity:1;
 }
 
 /* ===== FOOTER ===== */
 .footer{
-  margin-top:14px;
+  margin-top:18px;
   font-size:13px;
   color:#facc15;
-}
-
-/* ===== CANVAS ===== */
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:1;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="fw"></canvas>
-
 <div class="card">
   <div class="year">2026</div>
   <div class="title">Happy New Year 🎉</div>
 
-  <div class="countdown" id="countdown"></div>
-
   <div class="msg">
-    May this year bring<br>
-    <b>clarity in code</b>, <b>peace in mind</b>, and<br>
-    <b>joy in teaching.</b>
+    Infinite calendar for planning, festivals, and milestones.
   </div>
 
-  <div class="avatar">
-    <img src="https://cdn.pixabay.com/photo/2023/01/31/09/12/teacher-7756745_1280.png">
-  </div>
-
-  <!-- January Calendar -->
+  <!-- Infinite Calendar -->
   <div class="calendar">
-    <h3>🗓️ January <span id="calYear"></span></h3>
-    <div class="cal-grid" id="janCal"></div>
-
-    <div class="month-links">
-      <button onclick="openMonth(1)">Feb</button>
-      <button onclick="openMonth(2)">Mar</button>
-      <button onclick="openMonth(3)">Apr</button>
-      <button onclick="openMonth(4)">May</button>
-      <button onclick="openMonth(5)">Jun</button>
-      <button onclick="openMonth(6)">Jul</button>
-      <button onclick="openMonth(7)">Aug</button>
-      <button onclick="openMonth(8)">Sep</button>
-      <button onclick="openMonth(9)">Oct</button>
-      <button onclick="openMonth(10)">Nov</button>
-      <button onclick="openMonth(11)">Dec</button>
+    <div class="cal-header">
+      <button onclick="moveMonth(-1)">⬅</button>
+      <div class="cal-title" id="calTitle"></div>
+      <button onclick="moveMonth(1)">➡</button>
     </div>
-  </div>
 
-  <div class="qr"><img id="qrImg"></div>
-
-  <div class="controls">
-    <button class="btn" onclick="toggleMusic()">🎵 Music</button>
-    <button class="btn" onclick="share()">📲 WhatsApp</button>
+    <div class="cal-grid" id="calendarGrid"></div>
   </div>
 
   <div class="footer">✨ Programmer’s Picnic ✨</div>
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <span class="close" onclick="modal.style.display='none'">✖</span>
-    <h3 id="modalTitle"></h3>
-    <div class="cal-grid" id="modalCal"></div>
-  </div>
-</div>
-
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_946b64f05c.mp3">
-</audio>
-
 <script>
-/* Stars */
-for(let i=0;i<80;i++){
-  const s=document.createElement("div");
-  s.className="star";
-  s.style.left=Math.random()*100+"vw";
-  s.style.top=Math.random()*100+"vh";
-  document.body.appendChild(s);
-}
-
-/* Countdown */
-const target=new Date("Jan 1, 2026 00:00:00").getTime();
-setInterval(()=>{
-  const d=target-Date.now();
-  countdown.innerHTML=d<=0?"🎆 Welcome 2026 🎆":
-    `⏳ ${Math.floor(d/36e5)}h ${Math.floor(d%36e5/6e4)}m ${Math.floor(d%6e4/1e3)}s`;
-},1000);
-
-/* Music */
-const music=document.getElementById("music");
-let playing=false;
-function toggleMusic(){playing?music.pause():music.play();playing=!playing}
-
-/* Share */
-function share(){
-  open(`https://wa.me/?text=${encodeURIComponent("🎉 Happy New Year 2026 ✨ "+location.href)}`,"_blank");
-}
-
-/* QR */
-qrImg.src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(location.href)}`;
-
-/* Festivals (example – expandable) */
+/* ===== FESTIVALS (EXTENDABLE) ===== */
 const festivals={
-  0:{1:"New Year"},
-  2:{8:"Holi"},
-  7:{15:"Independence Day"},
-  9:{2:"Gandhi Jayanti"},
-  10:{12:"Diwali"},
-  11:{25:"Christmas"}
+  "1-1":"New Year",
+  "3-8":"Holi",
+  "8-15":"Independence Day 🇮🇳",
+  "10-2":"Gandhi Jayanti",
+  "11-12":"Diwali",
+  "12-25":"Christmas 🎄"
 };
 
-/* January calendar */
-const year=new Date().getFullYear();
-calYear.textContent=year;
-buildCalendar(0,janCal);
+/* Birthday */
+const birthdayKey="1-16";
+const birthdayText="🎂 Champak Roy’s Birthday";
 
-/* Modal calendar */
-function openMonth(m){
-  modal.style.display="flex";
-  modalTitle.textContent=new Date(year,m).toLocaleString("default",{month:"long"});
-  modalCal.innerHTML="";
-  buildCalendar(m,modalCal);
-}
+/* Current view */
+let current=new Date();
 
-function buildCalendar(month,el){
+/* Build calendar */
+function renderCalendar(){
+  const grid=document.getElementById("calendarGrid");
+  const title=document.getElementById("calTitle");
+  grid.innerHTML="";
+
+  const year=current.getFullYear();
+  const month=current.getMonth();
+  title.textContent=current.toLocaleString("default",{month:"long",year:"numeric"});
+
   ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
     const h=document.createElement("div");
     h.textContent=d;
     h.className="cal-head";
-    el.appendChild(h);
+    grid.appendChild(h);
   });
+
   const first=new Date(year,month,1).getDay();
   const total=new Date(year,month+1,0).getDate();
-  for(let i=0;i<first;i++)el.appendChild(document.createElement("div"));
+  for(let i=0;i<first;i++)grid.appendChild(document.createElement("div"));
+
   const today=new Date();
+
   for(let d=1;d<=total;d++){
-    const c=document.createElement("div");
-    c.textContent=d;
-    if(festivals[month]?.[d])c.classList.add("festival");
-    if(d===today.getDate() && today.getMonth()===month)c.classList.add("today");
-    el.appendChild(c);
+    const cell=document.createElement("div");
+    cell.textContent=d;
+
+    const key=`${month+1}-${d}`;
+
+    if(festivals[key]){
+      cell.classList.add("festival","tooltip");
+      cell.dataset.tip=festivals[key];
+    }
+
+    if(key===birthdayKey){
+      cell.classList.add("birthday","tooltip");
+      cell.dataset.tip=birthdayText;
+    }
+
+    if(
+      d===today.getDate() &&
+      month===today.getMonth() &&
+      year===today.getFullYear()
+    ){
+      cell.classList.add("today");
+    }
+
+    grid.appendChild(cell);
   }
 }
 
-/* Fireworks */
-const c=document.getElementById("fw"),x=c.getContext("2d");
-function resize(){c.width=innerWidth;c.height=innerHeight}
-resize();addEventListener("resize",resize);
-let f=[];
-setInterval(()=>f.push({x:Math.random()*c.width,y:c.height,vy:-7,p:[]}),900);
-function draw(){
-  x.clearRect(0,0,c.width,c.height);
-  f.forEach((o,i)=>{
-    o.y+=o.vy;
-    if(o.y<c.height*.35){
-      for(let a=0;a<28;a++)
-        o.p.push({x:o.x,y:o.y,vx:Math.cos(a)*4,vy:Math.sin(a)*4});
-      f.splice(i,1);
-    }
-  });
-  f.forEach(o=>x.fillRect(o.x,o.y,3,3));
-  f.flatMap(o=>o.p||[]).forEach(p=>{
-    p.x+=p.vx;p.y+=p.vy;
-    x.fillStyle="rgba(251,191,36,.8)";
-    x.fillRect(p.x,p.y,2,2);
-  });
-  requestAnimationFrame(draw);
+/* Move month infinitely */
+function moveMonth(step){
+  current.setMonth(current.getMonth()+step);
+  renderCalendar();
 }
-draw();
+
+/* Init */
+renderCalendar();
 </script>
 
 </body>
