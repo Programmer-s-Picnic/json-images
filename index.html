@@ -26,22 +26,22 @@ body{
   overflow:hidden;
 }
 
-/* ===== STARS ===== */
+/* Stars */
 .star{
   position:absolute;
   width:2px;height:2px;
   background:#fff;border-radius:50%;
-  animation:twinkle 3s infinite ease-in-out;
+  animation:twinkle 3s infinite;
 }
 @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
 
-/* ===== CARD ===== */
+/* Card */
 .card{
   position:absolute;
   inset:0;
   margin:auto;
   max-width:460px;
-  padding:38px 34px;
+  padding:36px 34px;
   border-radius:24px;
   text-align:center;
   background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
@@ -60,7 +60,6 @@ body{
 
 .title{
   font-size:30px;
-  margin-top:6px;
   background:linear-gradient(90deg,#fff,var(--gold));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -78,84 +77,24 @@ body{
   color:#e5e7eb;
 }
 
-/* ===== CHAMPAK ROY STYLE COMIC ===== */
-.avatar{
-  margin:22px auto 10px;
-  width:110px;height:150px;
-  position:relative;
+/* Real caricature image */
+.avatar img{
+  width:120px;
+  border-radius:18px;
+  margin:18px auto 10px;
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
+  display:block;
 }
 
-/* Head */
-.head{
-  width:90px;height:90px;
-  background:radial-gradient(circle,#ffe4c4,#facc15);
-  border-radius:50%;
-  margin:auto;
-  position:relative;
-}
-
-/* Eyes */
-.head:before{
-  content:"";
-  position:absolute;
-  top:34px;left:22px;
-  width:10px;height:10px;
-  background:#000;border-radius:50%;
-  box-shadow:36px 0 0 #000;
-}
-
-/* Smile */
-.head:after{
-  content:"";
-  position:absolute;
-  bottom:22px;left:26px;
-  width:38px;height:8px;
-  border-radius:20px;
-  border-bottom:3px solid #000;
-}
-
-/* Tilak */
-.tilak{
-  position:absolute;
-  top:12px;left:50%;
-  transform:translateX(-50%);
-  width:6px;height:16px;
-  background:var(--saffron);
-  border-radius:4px;
-}
-
-/* Body */
-.body{
-  width:110px;height:60px;
-  background:linear-gradient(135deg,#ffedd5,#ff9933);
-  border-radius:0 0 18px 18px;
-  margin:auto;
-  margin-top:-8px;
-  position:relative;
-}
-
-/* Laptop */
-.laptop{
-  position:absolute;
-  bottom:6px;left:50%;
-  transform:translateX(-50%);
-  width:60px;height:14px;
-  background:#1f2937;
-  border-radius:4px;
-}
-
-/* ===== QR ===== */
-.qr{
-  margin-top:16px;
-}
+/* QR */
 .qr img{
-  width:110px;height:110px;
-  border-radius:14px;
+  width:110px;
   background:#fff;
   padding:6px;
+  border-radius:14px;
 }
 
-/* ===== BUTTONS ===== */
+/* Buttons */
 .controls{
   display:flex;
   justify-content:center;
@@ -171,7 +110,6 @@ body{
   font-weight:600;
   cursor:pointer;
   border:none;
-  box-shadow:0 10px 25px rgba(0,0,0,.35);
 }
 
 .footer{
@@ -180,7 +118,7 @@ body{
   color:#facc15;
 }
 
-/* ===== CANVAS ===== */
+/* Canvas */
 canvas{
   position:absolute;
   inset:0;
@@ -193,7 +131,6 @@ canvas{
 
 <canvas id="fw"></canvas>
 
-<!-- CARD -->
 <div class="card">
   <div class="year">2026</div>
   <div class="title">Happy New Year 🎉</div>
@@ -202,25 +139,18 @@ canvas{
 
   <div class="msg">
     May this year bring<br>
-    <b>clean code</b>, <b>clear mind</b>, and<br>
-    <b>peace beyond bugs.</b>
+    <b>clarity in code</b>, <b>peace in mind</b>, and<br>
+    <b>joy in teaching.</b>
   </div>
 
-  <!-- Comic Champak Roy -->
+  <!-- REAL ILLUSTRATED CARICATURE -->
   <div class="avatar">
-    <div class="head">
-      <div class="tilak"></div>
-    </div>
-    <div class="body">
-      <div class="laptop"></div>
-    </div>
+    <img src="https://cdn.pixabay.com/photo/2023/01/31/09/12/teacher-7756745_1280.png"
+         alt="Programmer Teacher Illustration">
   </div>
 
   <!-- QR -->
   <div class="qr">
-    <div style="font-size:13px;color:#fde68a;margin-bottom:6px;">
-      📷 Scan to Share
-    </div>
     <img id="qrImg" alt="QR Code">
   </div>
 
@@ -234,14 +164,14 @@ canvas{
   </div>
 </div>
 
-<!-- MUSIC -->
+<!-- 🎶 REAL MUSIC (ROYALTY FREE) -->
 <audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/12/27/audio_49f76fbd30.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_946b64f05c.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* STARS */
-for(let i=0;i<90;i++){
+/* Stars */
+for(let i=0;i<80;i++){
   const s=document.createElement("div");
   s.className="star";
   s.style.left=Math.random()*100+"vw";
@@ -250,54 +180,49 @@ for(let i=0;i<90;i++){
   document.body.appendChild(s);
 }
 
-/* COUNTDOWN */
+/* Countdown */
 const target=new Date("Jan 1, 2026 00:00:00").getTime();
 setInterval(()=>{
   const d=target-Date.now();
   if(d<=0){countdown.innerHTML="🎆 Welcome 2026 🎆";return;}
-  const h=Math.floor(d/36e5);
-  const m=Math.floor(d%36e5/6e4);
-  const s=Math.floor(d%6e4/1e3);
-  countdown.innerHTML=`⏳ ${h}h ${m}m ${s}s`;
+  countdown.innerHTML=`⏳ ${Math.floor(d/36e5)}h ${Math.floor(d%36e5/6e4)}m ${Math.floor(d%6e4/1e3)}s`;
 },1000);
 
-/* MUSIC */
+/* Music */
 const music=document.getElementById("music");
 let playing=false;
 function toggleMusic(){playing?music.pause():music.play();playing=!playing}
 
-/* SHARE */
+/* Share */
 function share(){
-  const t="🎉 Happy New Year 2026! May your code compile and dreams execute ✨";
-  open(`https://wa.me/?text=${encodeURIComponent(t+" "+location.href)}`,"_blank");
+  open(`https://wa.me/?text=${encodeURIComponent("🎉 Happy New Year 2026 ✨ "+location.href)}`,"_blank");
 }
 
 /* QR */
-const qr=document.getElementById("qrImg");
-qr.src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(location.href)}`;
+qrImg.src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(location.href)}`;
 
-/* FIREWORKS */
+/* Fireworks */
 const c=document.getElementById("fw"),x=c.getContext("2d");
 function resize(){c.width=innerWidth;c.height=innerHeight}
 resize();addEventListener("resize",resize);
-let p=[];
-setInterval(()=>p.push({x:Math.random()*c.width,y:c.height,vy:-7,pts:[]}),900);
+let f=[];
+setInterval(()=>f.push({x:Math.random()*c.width,y:c.height,vy:-7,p:[]}),900);
 
 function draw(){
   x.clearRect(0,0,c.width,c.height);
-  p.forEach((f,i)=>{
-    f.y+=f.vy;
-    if(f.y<c.height*.35){
+  f.forEach((o,i)=>{
+    o.y+=o.vy;
+    if(o.y<c.height*.35){
       for(let a=0;a<28;a++)
-        f.pts.push({x:f.x,y:f.y,vx:Math.cos(a)*4,vy:Math.sin(a)*4,l:60});
-      p.splice(i,1);
+        o.p.push({x:o.x,y:o.y,vx:Math.cos(a)*4,vy:Math.sin(a)*4,l:60});
+      f.splice(i,1);
     }
   });
-  p.forEach(f=>x.fillRect(f.x,f.y,3,3));
-  p.flatMap(f=>f.pts||[]).forEach(o=>{
-    o.x+=o.vx;o.y+=o.vy;o.l--;
+  f.forEach(o=>x.fillRect(o.x,o.y,3,3));
+  f.flatMap(o=>o.p||[]).forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.l--;
     x.fillStyle="rgba(251,191,36,.8)";
-    x.fillRect(o.x,o.y,2,2);
+    x.fillRect(p.x,p.y,2,2);
   });
   requestAnimationFrame(draw);
 }
