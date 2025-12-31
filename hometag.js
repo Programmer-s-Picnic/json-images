@@ -23,7 +23,7 @@
   style.textContent = `
     #pp-home-tag{
       position: fixed;
-      right: 18px;
+      left: 18px;
       bottom: 18px;
       background: linear-gradient(135deg, #ff9933, #ffb347);
       color: #fff;
