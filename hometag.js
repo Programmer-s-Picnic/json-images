@@ -48,7 +48,7 @@
       #pp-home-tag{
         font-size: 13px;
         padding: 9px 14px;
-        right: 12px;
+        left: 12px;
         bottom: 12px;
       }
     }
