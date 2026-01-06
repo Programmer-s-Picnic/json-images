@@ -1,16 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <img src="desktop.png" />
-    <img src="mobile.png" />
-    <img src="tablet.png" />
-    BiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuitBiscuit
-    Biscuit Biscuit Biscuit Biscuit Biscuit Biscuit
-    <script src="imgshow.js"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year 🎆</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --gold:#fbbf24;
+  --saffron:#ff9933;
+  --bg1:#020617;
+  --bg2:#0f172a;
+  --birthday:#60a5fa;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top,#1e293b,var(--bg1)),
+    linear-gradient(135deg,var(--bg1),var(--bg2));
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color:#fff;
+}
+
+/* ===== CARD ===== */
+.card{
+  max-width:480px;
+  margin:40px auto;
+  padding:36px 34px;
+  border-radius:24px;
+  text-align:center;
+  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
+  backdrop-filter:blur(14px);
+  box-shadow:0 25px 60px rgba(0,0,0,.55);
+}
+
+/* ===== HEADER ===== */
+.year{
+  font-size:68px;
+  font-weight:800;
+  color:var(--gold);
+  text-shadow:0 0 30px rgba(251,191,36,.9);
+}
+.title{
+  font-size:30px;
+  background:linear-gradient(90deg,#fff,var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.msg{
+  margin-top:12px;
+  font-size:17px;
+  color:#e5e7eb;
+}
+
+/* ===== CALENDAR ===== */
+.calendar{
+  margin-top:26px;
+  padding:18px;
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.05));
+}
+
+.cal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.cal-header button{
+  background:rgba(251,191,36,.25);
+  border:none;
+  color:#fde68a;
+  font-size:16px;
+  padding:6px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.cal-header button:hover{
+  background:linear-gradient(135deg,#ff9933,#fbbf24);
+  color:#000;
+}
+
+.cal-title{
+  font-size:18px;
+  color:#fde68a;
+}
+
+.cal-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+  font-size:14px;
+}
+
+.cal-grid div{
+  padding:8px 0;
+  border-radius:10px;
+  background:rgba(0,0,0,.25);
+  position:relative;
+}
+
+.cal-head{
+  background:rgba(251,191,36,.25);
+  font-weight:600;
+}
+
+.today{
+  background:linear-gradient(135deg,#ff9933,#fbbf24);
+  color:#000;
+  font-weight:700;
+}
+
+/* ===== FESTIVAL ===== */
+.festival{
+  background:linear-gradient(135deg,#fde68a,#fbbf24);
+  color:#000;
+  font-weight:700;
+}
+
+/* ===== BIRTHDAY ===== */
+.birthday{
+  background:linear-gradient(135deg,#60a5fa,#2563eb);
+  color:#fff;
+  font-weight:700;
+}
+
+/* ===== TOOLTIP ===== */
+.tooltip::after{
+  content:attr(data-tip);
+  position:absolute;
+  bottom:115%;
+  left:50%;
+  transform:translateX(-50%);
+  background:#020617;
+  color:#fde68a;
+  padding:6px 10px;
+  font-size:12px;
+  border-radius:8px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+  box-shadow:0 10px 20px rgba(0,0,0,.5);
+}
+.tooltip:hover::after{
+  opacity:1;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  margin-top:18px;
+  font-size:13px;
+  color:#facc15;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="year">2026</div>
+  <div class="title">Happy New Year 🎉</div>
+
+  <div class="msg">
+    Infinite calendar for planning, festivals, and milestones.
+  </div>
+
+  <!-- Infinite Calendar -->
+  <div class="calendar">
+    <div class="cal-header">
+      <button onclick="moveMonth(-1)">⬅</button>
+      <div class="cal-title" id="calTitle"></div>
+      <button onclick="moveMonth(1)">➡</button>
+    </div>
+
+    <div class="cal-grid" id="calendarGrid"></div>
+  </div>
+
+  <div class="footer">✨ Programmer’s Picnic ✨</div>
+</div>
+
+<script>
+/* ===== FESTIVALS (EXTENDABLE) ===== */
+const festivals={
+  "1-1":"New Year",
+  "3-8":"Holi",
+  "8-15":"Independence Day 🇮🇳",
+  "10-2":"Gandhi Jayanti",
+  "11-12":"Diwali",
+  "12-25":"Christmas 🎄"
+};
+
+/* Birthday */
+const birthdayKey="1-16";
+const birthdayText="🎂 Champak Roy’s Birthday";
+
+/* Current view */
+let current=new Date();
+
+/* Build calendar */
+function renderCalendar(){
+  const grid=document.getElementById("calendarGrid");
+  const title=document.getElementById("calTitle");
+  grid.innerHTML="";
+
+  const year=current.getFullYear();
+  const month=current.getMonth();
+  title.textContent=current.toLocaleString("default",{month:"long",year:"numeric"});
+
+  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
+    const h=document.createElement("div");
+    h.textContent=d;
+    h.className="cal-head";
+    grid.appendChild(h);
+  });
+
+  const first=new Date(year,month,1).getDay();
+  const total=new Date(year,month+1,0).getDate();
+  for(let i=0;i<first;i++)grid.appendChild(document.createElement("div"));
+
+  const today=new Date();
+
+  for(let d=1;d<=total;d++){
+    const cell=document.createElement("div");
+    cell.textContent=d;
+
+    const key=`${month+1}-${d}`;
+
+    if(festivals[key]){
+      cell.classList.add("festival","tooltip");
+      cell.dataset.tip=festivals[key];
+    }
+
+    if(key===birthdayKey){
+      cell.classList.add("birthday","tooltip");
+      cell.dataset.tip=birthdayText;
+    }
+
+    if(
+      d===today.getDate() &&
+      month===today.getMonth() &&
+      year===today.getFullYear()
+    ){
+      cell.classList.add("today");
+    }
+
+    grid.appendChild(cell);
+  }
+}
+
+/* Move month infinitely */
+function moveMonth(step){
+  current.setMonth(current.getMonth()+step);
+  renderCalendar();
+}
+
+/* Init */
+renderCalendar();
+</script>
+
+</body>
 </html>
