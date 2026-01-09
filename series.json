@@ -81,5 +81,166 @@
       { "name": "n", "label": "n", "type": "int", "min": 1, "max": 100000, "step": 1, "default": 10 }
     ],
     "code": "terms=[]\nfor i in range(1, n+1):\n    terms.append(i if i%2==1 else -i)\nprint('Terms:', *terms)\nprint('Sum:', sum(terms))\n"
+  },
+  
+  {
+    "id": "ap",
+    "title": "Arithmetic Progression (AP)",
+    "category": "Basic Series",
+    "description": "Print an arithmetic progression and compute its sum.",
+    "formula": "a, a+d, a+2d, ... (n terms);  Sum = n/2 × [2a + (n−1)d]",
+    "preview_terms": "a, a+d, a+2d, …",
+    "defaults": { "n": 5, "a": 1, "d": 2 },
+    "params": [
+      { "name": "n", "label": "Number of terms (n)", "type": "int", "default": 5 },
+      { "name": "a", "label": "First term (a)", "type": "int", "default": 1 },
+      { "name": "d", "label": "Common difference (d)", "type": "int", "default": 2 }
+    ],
+    "code": "terms=[]\nfor i in range(n):\n    terms.append(a+i*d)\nprint('Terms:', *terms)\nprint('Sum:', sum(terms))\n"
+  },
+
+  {
+    "id": "gp",
+    "title": "Geometric Progression (GP)",
+    "category": "Basic Series",
+    "description": "Print a geometric progression and compute its sum.",
+    "formula": "a, ar, ar², ... (n terms)",
+    "preview_terms": "a, ar, ar², …",
+    "defaults": { "n": 5, "a": 2, "r": 3 },
+    "params": [
+      { "name": "n", "label": "Number of terms (n)", "type": "int", "default": 5 },
+      { "name": "a", "label": "First term (a)", "type": "int", "default": 2 },
+      { "name": "r", "label": "Common ratio (r)", "type": "int", "default": 3 }
+    ],
+    "code": "terms=[]\nval=a\nfor _ in range(n):\n    terms.append(val)\n    val*=r\nprint('Terms:', *terms)\nprint('Sum:', sum(terms))\n"
+  },
+
+  {
+    "id": "natural",
+    "title": "Natural Numbers Series",
+    "category": "Basic Series",
+    "description": "Print natural numbers from 1 to n and compute the sum.",
+    "formula": "1 + 2 + 3 + ... + n",
+    "preview_terms": "1, 2, 3, …",
+    "defaults": { "n": 10 },
+    "params": [
+      { "name": "n", "label": "n", "type": "int", "default": 10 }
+    ],
+    "code": "terms=list(range(1,n+1))\nprint('Terms:', *terms)\nprint('Sum:', sum(terms))\n"
+  },
+
+  {
+    "id": "even",
+    "title": "Even Numbers Series",
+    "category": "Number Series",
+    "description": "Print first n even numbers and compute the sum.",
+    "formula": "2 + 4 + 6 + ...",
+    "preview_terms": "2, 4, 6, …",
+    "defaults": { "n": 10 },
+    "params": [
+      { "name": "n", "label": "Number of terms (n)", "type": "int", "default": 10 }
+    ],
+    "code": "terms=[2*i for i in range(1,n+1)]\nprint('Even numbers:', *terms)\nprint('Sum:', sum(terms))\n"
+  },
+
+  {
+    "id": "odd",
+    "title": "Odd Numbers Series",
+    "category": "Number Series",
+    "description": "Print first n odd numbers and compute the sum.",
+    "formula": "1 + 3 + 5 + ...",
+    "preview_terms": "1, 3, 5, …",
+    "defaults": { "n": 10 },
+    "params": [
+      { "name": "n", "label": "Number of terms (n)", "type": "int", "default": 10 }
+    ],
+    "code": "terms=[2*i-1 for i in range(1,n+1)]\nprint('Odd numbers:', *terms)\nprint('Sum:', sum(terms))\n"
+  },
+
+  {
+    "id": "squares",
+    "title": "Squares Series",
+    "category": "Power Series",
+    "description": "Print squares of first n numbers and compute the sum.",
+    "formula": "1² + 2² + 3² + ...",
+    "preview_terms": "1², 2², 3², …",
+    "defaults": { "n": 7 },
+    "params": [
+      { "name": "n", "label": "n", "type": "int", "default": 7 }
+    ],
+    "code": "terms=[i*i for i in range(1,n+1)]\nprint('Squares:', *terms)\nprint('Sum:', sum(terms))\n"
+  },
+
+  {
+    "id": "cubes",
+    "title": "Cubes Series",
+    "category": "Power Series",
+    "description": "Print cubes of first n numbers and compute the sum.",
+    "formula": "1³ + 2³ + 3³ + ...",
+    "preview_terms": "1³, 2³, 3³, …",
+    "defaults": { "n": 6 },
+    "params": [
+      { "name": "n", "label": "n", "type": "int", "default": 6 }
+    ],
+    "code": "terms=[i**3 for i in range(1,n+1)]\nprint('Cubes:', *terms)\nprint('Sum:', sum(terms))\n"
+  },
+
+  {
+    "id": "fibonacci",
+    "title": "Fibonacci Series",
+    "category": "Classic Series",
+    "description": "Print Fibonacci series and compute the sum.",
+    "formula": "0, 1, 1, 2, 3, 5, ...",
+    "preview_terms": "0, 1, 1, 2, …",
+    "defaults": { "n": 10 },
+    "params": [
+      { "name": "n", "label": "Number of terms (n)", "type": "int", "default": 10 }
+    ],
+    "code": "a,b=0,1\nterms=[]\nfor _ in range(n):\n    terms.append(a)\n    a,b=b,a+b\nprint('Fibonacci:', *terms)\nprint('Sum:', sum(terms))\n"
+  },
+
+  {
+    "id": "harmonic",
+    "title": "Harmonic Series",
+    "category": "Fraction Series",
+    "description": "Print harmonic series and compute approximate sum.",
+    "formula": "1 + 1/2 + 1/3 + ... + 1/n",
+    "preview_terms": "1, 1/2, 1/3, …",
+    "defaults": { "n": 5, "precision": 5 },
+    "params": [
+      { "name": "n", "label": "n", "type": "int", "default": 5 },
+      { "name": "precision", "label": "Decimal precision", "type": "int", "default": 5 }
+    ],
+    "code": "terms=[]\nfor i in range(1,n+1):\n    terms.append(1/i)\nfor i,t in enumerate(terms,1):\n    print(f'1/{i} = {t:.{precision}f}')\nprint('Sum:', round(sum(terms), precision))\n"
+  },
+
+  {
+    "id": "alternating",
+    "title": "Alternating Series",
+    "category": "Alternating Series",
+    "description": "Print alternating series and compute sum.",
+    "formula": "1 - 2 + 3 - 4 + ...",
+    "preview_terms": "+1, −2, +3, −4, …",
+    "defaults": { "n": 10 },
+    "params": [
+      { "name": "n", "label": "n", "type": "int", "default": 10 }
+    ],
+    "code": "terms=[]\nfor i in range(1,n+1):\n    terms.append(i if i%2 else -i)\nprint('Terms:', *terms)\nprint('Sum:', sum(terms))\n"
+  },
+
+  {
+    "id": "factorial_sum",
+    "title": "Factorial Series Sum",
+    "category": "Advanced Series",
+    "description": "Print factorials up to n and compute their sum.",
+    "formula": "1! + 2! + 3! + ... + n!",
+    "preview_terms": "1!, 2!, 3!, …",
+    "defaults": { "n": 6 },
+    "params": [
+      { "name": "n", "label": "n", "type": "int", "default": 6 }
+    ],
+    "code": "fact=1\nterms=[]\nfor i in range(1,n+1):\n    fact*=i\n    terms.append(fact)\nprint('Factorials:', *terms)\nprint('Sum:', sum(terms))\n"
   }
+
+
 ]
