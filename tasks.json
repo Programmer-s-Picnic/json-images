@@ -1,0 +1,275 @@
+{
+  "version": 2,
+  "title": "Monthly Master Calendar",
+  "tasks": [
+    {
+      "title": "7 PM Classes",
+      "timeSlot": "7:00 PM",
+      "notes": "Core teaching activity. Everything else is derived from this.",
+      "weeks": [
+        {
+          "weekNo": 1,
+          "title": "Week 1 – Re-engagement & Basics",
+          "topics": "Restart learning habit\nVery short lessons (5–7 lines)\nDaily 1 question challenge\nPolls YES/NO, A/B\nPersonal DM to inactive students\nWeekend recap",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 2,
+          "title": "Week 2 – Consistency & Patterns",
+          "topics": "Pattern programs\nLoops + if/else\n2 small assignments\nOne doubt-clearing class\nMid-week feedback poll",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 3,
+          "title": "Week 3 – Mini Project & Confidence",
+          "topics": "Mini project walkthrough\nDebugging mindset\nExplain code verbally\nStudent spotlight\nTestimonial collection",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 4,
+          "title": "Week 4 – Revision & Next Month",
+          "topics": "Full revision\nMega practice set\nBest doubts\nNext month preview\nEarly-bird announcement",
+          "link": "",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "title": "Book Schedule",
+      "notes": "Book created from classes + videos.",
+      "weeks": [
+        {
+          "weekNo": 1,
+          "topics": "Decide book title\nTable of contents\nChapter outline\nLearning objectives",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 2,
+          "topics": "Write Chapters 1–2\nAdd examples\nAdd exercises",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 3,
+          "topics": "Write Chapters 3–4\nAssignments\nCommon mistakes section",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 4,
+          "topics": "Editing\nFormatting\nCover idea\nPDF export plan",
+          "link": "",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "title": "Video",
+      "notes": "Videos derived from 7 PM classes.",
+      "weeks": [
+        {
+          "weekNo": 1,
+          "topics": "2 shorts: motivation + basics\n1 long: restarting coding journey",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 2,
+          "topics": "2 shorts: patterns\n1 long: loop logic explained",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 3,
+          "topics": "2 shorts: debugging tips\n1 long: mini project build",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 4,
+          "topics": "2 shorts: revision\n1 long: next month roadmap",
+          "link": "",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "title": "LinkedIn Post",
+      "weeks": [
+        {
+          "weekNo": 1,
+          "topics": "Why learners lose momentum\nPoll: biggest struggle\nShort lesson post",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 2,
+          "topics": "Pattern explanation\nStudent progress story",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 3,
+          "topics": "Mini project insight\nTestimonial post",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 4,
+          "topics": "Month recap\nNext month announcement",
+          "link": "",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "title": "Twitter / X",
+      "weeks": [
+        {
+          "weekNo": 1,
+          "topics": "Daily tips\nThread: restarting coding",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 2,
+          "topics": "Pattern tips\nThread: loop mistakes",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 3,
+          "topics": "Debugging tips\nThread: think like a programmer",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 4,
+          "topics": "Revision tips\nThread: learning roadmap",
+          "link": "",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "title": "Facebook",
+      "weeks": [
+        {
+          "weekNo": 1,
+          "topics": "Class highlight\nLesson screenshot",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 2,
+          "topics": "Blog share\nVideo share",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 3,
+          "topics": "Testimonial\nBatch promotion",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 4,
+          "topics": "Month recap\nRegistration reminder",
+          "link": "",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "title": "WhatsApp Status",
+      "weeks": [
+        {
+          "weekNo": 1,
+          "topics": "Daily lesson topic\nYES/NO polls",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 2,
+          "topics": "Code snippets\nStudent wins",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 3,
+          "topics": "Testimonials\nSeat availability",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 4,
+          "topics": "Month summary\nFinal reminder",
+          "link": "",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "title": "Marketing for Next Month 7 PM Classes",
+      "weeks": [
+        {
+          "weekNo": 1,
+          "topics": "Finalize syllabus\nCollect testimonials",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 2,
+          "topics": "Poster\nPromo messages\nInvite video",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 3,
+          "topics": "Soft launch\nPersonal follow-ups",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 4,
+          "topics": "Final push\nClose registrations\nOnboarding",
+          "link": "",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "title": "Health Hazards",
+      "weeks": [
+        {
+          "weekNo": 1,
+          "topics": "Sleep\nScreen time\nPosture",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 2,
+          "topics": "Sugar\nEye strain\nBreathing",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 3,
+          "topics": "Stress\nBack pain\nWalking",
+          "link": "",
+          "status": "todo"
+        },
+        {
+          "weekNo": 4,
+          "topics": "Monthly recap\n7-day challenge",
+          "link": "",
+          "status": "todo"
+        }
+      ]
+    }
+  ]
+}
