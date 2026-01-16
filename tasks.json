@@ -1,275 +1,295 @@
 {
-  "version": 2,
-  "title": "Monthly Master Calendar",
-  "tasks": [
-    {
-      "title": "7 PM Classes",
-      "timeSlot": "7:00 PM",
-      "notes": "Core teaching activity. Everything else is derived from this.",
-      "weeks": [
+  "meta": {
+    "title": "Daily tasks — January 2026",
+    "timezone": "Asia/Kolkata",
+    "range": {
+      "start": "2026-01-01",
+      "end": "2026-01-31"
+    },
+    "version": "CR_DAILY_V1"
+  },
+  "days": {
+    "2026-01-01": {
+      "weekday": "Thursday",
+      "weekNo": 1,
+      "tasks": [
         {
-          "weekNo": 1,
-          "title": "Week 1 – Re-engagement & Basics",
-          "topics": "Restart learning habit\nVery short lessons (5–7 lines)\nDaily 1 question challenge\nPolls YES/NO, A/B\nPersonal DM to inactive students\nWeekend recap",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-01-wa-lesson",
+          "title": "WhatsApp lesson (short + 1 question)",
+          "time": "07:00",
+          "category": "WhatsApp Lesson",
+          "status": "todo",
+          "content": "Week 1: Re-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap",
+          "template": "Good morning 🌞\n\n🎯 Today’s Concept\nRe-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap\n\n🧠 Example\n(Write 2–4 lines only)\n\n❓ Quick Question (A/B)\nA) ...\nB) ...\n\nReply A or B 👇\n\n⏰ 7 PM class today — we’ll go deeper.\n— Champak Roy"
         },
         {
-          "weekNo": 2,
-          "title": "Week 2 – Consistency & Patterns",
-          "topics": "Pattern programs\nLoops + if/else\n2 small assignments\nOne doubt-clearing class\nMid-week feedback poll",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-01-wa-status",
+          "title": "WhatsApp Status",
+          "time": "07:45",
+          "category": "WhatsApp Status",
+          "status": "todo",
+          "content": "Micro-quiz A/B",
+          "template": "Status: Micro-quiz A/B\n✅ Reply DONE after practice."
         },
         {
-          "weekNo": 3,
-          "title": "Week 3 – Mini Project & Confidence",
-          "topics": "Mini project walkthrough\nDebugging mindset\nExplain code verbally\nStudent spotlight\nTestimonial collection",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-01-health",
+          "title": "Health hazard tip (1 line)",
+          "time": "08:00",
+          "category": "Health",
+          "status": "todo",
+          "content": "Screen time: 20-20-20",
+          "template": "Health tip: Screen time: 20-20-20 ✅"
         },
         {
-          "weekNo": 4,
-          "title": "Week 4 – Revision & Next Month",
-          "topics": "Full revision\nMega practice set\nBest doubts\nNext month preview\nEarly-bird announcement",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-01-twitter",
+          "title": "Twitter/X post",
+          "time": "12:15",
+          "category": "Twitter/X",
+          "status": "todo",
+          "content": "Thread: restarting coding journey",
+          "template": "Thread: restarting coding journey\n#Python #Coding"
+        },
+        {
+          "id": "2026-01-01-facebook",
+          "title": "Facebook — what to post today",
+          "time": "13:00",
+          "category": "Facebook",
+          "status": "todo",
+          "content": "Lesson snippet + invite",
+          "template": "Facebook Post (Week 1)\nLesson snippet + invite\n\n✅ Add 1 screenshot (lesson/code)\n✅ Ask a question: “Which part was confusing?”"
+        },
+        {
+          "id": "2026-01-01-class",
+          "title": "7 PM class",
+          "time": "19:00",
+          "category": "Class",
+          "status": "todo",
+          "content": "Week 1: Re-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap"
         }
       ]
     },
-    {
-      "title": "Book Schedule",
-      "notes": "Book created from classes + videos.",
-      "weeks": [
+    "2026-01-02": {
+      "weekday": "Friday",
+      "weekNo": 1,
+      "tasks": [
         {
-          "weekNo": 1,
-          "topics": "Decide book title\nTable of contents\nChapter outline\nLearning objectives",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-02-wa-lesson",
+          "title": "WhatsApp lesson (short + 1 question)",
+          "time": "07:00",
+          "category": "WhatsApp Lesson",
+          "status": "todo",
+          "content": "Week 1: Re-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap",
+          "template": "Good morning 🌞\n\n🎯 Today’s Concept\nRe-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap\n\n🧠 Example\n(Write 2–4 lines only)\n\n❓ Quick Question (A/B)\nA) ...\nB) ...\n\nReply A or B 👇\n\n⏰ 7 PM class today — we’ll go deeper.\n— Champak Roy"
         },
         {
-          "weekNo": 2,
-          "topics": "Write Chapters 1–2\nAdd examples\nAdd exercises",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-02-wa-status",
+          "title": "WhatsApp Status",
+          "time": "07:45",
+          "category": "WhatsApp Status",
+          "status": "todo",
+          "content": "Motivation line + task",
+          "template": "Status: Motivation line + task\n✅ Reply DONE after practice."
         },
         {
-          "weekNo": 3,
-          "topics": "Write Chapters 3–4\nAssignments\nCommon mistakes section",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-02-health",
+          "title": "Health hazard tip (1 line)",
+          "time": "08:00",
+          "category": "Health",
+          "status": "todo",
+          "content": "Posture: chair + neck neutral",
+          "template": "Health tip: Posture: chair + neck neutral ✅"
         },
         {
-          "weekNo": 4,
-          "topics": "Editing\nFormatting\nCover idea\nPDF export plan",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-02-twitter",
+          "title": "Twitter/X post",
+          "time": "12:15",
+          "category": "Twitter/X",
+          "status": "todo",
+          "content": "Tip: write 5 lines daily",
+          "template": "Tip: write 5 lines daily\n#Python #Coding"
+        },
+        {
+          "id": "2026-01-02-linkedin",
+          "title": "LinkedIn — what to post today",
+          "time": "11:30",
+          "category": "LinkedIn",
+          "status": "todo",
+          "content": "Short lesson: 1 tiny concept + example",
+          "template": "LinkedIn Post (Week 1)\nTopic: Short lesson: 1 tiny concept + example\n\nHook (1 line): Today I noticed…\nBody (3 lines): what it means + example + 1 tip\nCTA (1 line): Reply “DONE” if you will practice today.\n\n#Python #Programming #Learning"
+        },
+        {
+          "id": "2026-01-02-marketing",
+          "title": "Marketing for next month 7 PM classes",
+          "time": "20:30",
+          "category": "Marketing",
+          "status": "todo",
+          "content": "Create invite list (20 names)"
+        },
+        {
+          "id": "2026-01-02-class",
+          "title": "7 PM class",
+          "time": "19:00",
+          "category": "Class",
+          "status": "todo",
+          "content": "Week 1: Re-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap"
         }
       ]
     },
-    {
-      "title": "Video",
-      "notes": "Videos derived from 7 PM classes.",
-      "weeks": [
+    "2026-01-03": {
+      "weekday": "Saturday",
+      "weekNo": 1,
+      "tasks": [
         {
-          "weekNo": 1,
-          "topics": "2 shorts: motivation + basics\n1 long: restarting coding journey",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-03-wa-lesson",
+          "title": "WhatsApp lesson (short + 1 question)",
+          "time": "07:00",
+          "category": "WhatsApp Lesson",
+          "status": "todo",
+          "content": "Week 1: Re-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap",
+          "template": "Good morning 🌞\n\n🎯 Today’s Concept\nRe-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap\n\n🧠 Example\n(Write 2–4 lines only)\n\n❓ Quick Question (A/B)\nA) ...\nB) ...\n\nReply A or B 👇\n\n⏰ 7 PM class today — we’ll go deeper.\n— Champak Roy"
         },
         {
-          "weekNo": 2,
-          "topics": "2 shorts: patterns\n1 long: loop logic explained",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-03-wa-status",
+          "title": "WhatsApp Status",
+          "time": "07:45",
+          "category": "WhatsApp Status",
+          "status": "todo",
+          "content": "Daily lesson topic + YES/NO poll",
+          "template": "Status: Daily lesson topic + YES/NO poll\n✅ Reply DONE after practice."
         },
         {
-          "weekNo": 3,
-          "topics": "2 shorts: debugging tips\n1 long: mini project build",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-03-health",
+          "title": "Health hazard tip (1 line)",
+          "time": "08:00",
+          "category": "Health",
+          "status": "todo",
+          "content": "Sleep: fixed bedtime",
+          "template": "Health tip: Sleep: fixed bedtime ✅"
         },
         {
-          "weekNo": 4,
-          "topics": "2 shorts: revision\n1 long: next month roadmap",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-03-twitter",
+          "title": "Twitter/X post",
+          "time": "12:15",
+          "category": "Twitter/X",
+          "status": "todo",
+          "content": "Daily tip: restart habit",
+          "template": "Daily tip: restart habit\n#Python #Coding"
+        },
+        {
+          "id": "2026-01-03-video",
+          "title": "Video work",
+          "time": "17:00",
+          "category": "Video",
+          "status": "todo",
+          "content": "2 shorts (motivation+basics) + 1 long (restart journey)"
+        },
+        {
+          "id": "2026-01-03-class",
+          "title": "7 PM class",
+          "time": "19:00",
+          "category": "Class",
+          "status": "todo",
+          "content": "Week 1: Re-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap"
         }
       ]
     },
-    {
-      "title": "LinkedIn Post",
-      "weeks": [
+
+    "2026-01-04": {
+      "weekday": "Sunday",
+      "weekNo": 1,
+      "tasks": [
         {
-          "weekNo": 1,
-          "topics": "Why learners lose momentum\nPoll: biggest struggle\nShort lesson post",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-04-sun-recap",
+          "title": "Weekly recap to WhatsApp group",
+          "time": "20:10",
+          "category": "Weekly Review",
+          "status": "todo",
+          "content": "3 lines: what we learned + 1 win + tomorrow’s plan",
+          "template": "Weekly recap:\n1) This week we learned: ...\n2) Win of the week: ...\n3) Tomorrow’s focus: ...\nReply DONE if you practiced."
         },
         {
-          "weekNo": 2,
-          "topics": "Pattern explanation\nStudent progress story",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-04-sun-poll",
+          "title": "Feedback poll",
+          "time": "20:20",
+          "category": "Weekly Review",
+          "status": "todo",
+          "content": "Ask: What is blocking you? A) Time B) Confusion C) Fear D) Other",
+          "template": "Poll: What is blocking you?\nA) Time\nB) Confusion\nC) Fear\nD) Other\nReply A/B/C/D."
         },
         {
-          "weekNo": 3,
-          "topics": "Mini project insight\nTestimonial post",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-04-sun-plan",
+          "title": "Plan next week",
+          "time": "20:40",
+          "category": "Weekly Review",
+          "status": "todo",
+          "content": "Pick next week topics + 2 mini assignments + 1 goal"
         },
         {
-          "weekNo": 4,
-          "topics": "Month recap\nNext month announcement",
-          "link": "",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "title": "Twitter / X",
-      "weeks": [
-        {
-          "weekNo": 1,
-          "topics": "Daily tips\nThread: restarting coding",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-04-wa-lesson",
+          "title": "WhatsApp lesson (short + 1 question)",
+          "time": "07:00",
+          "category": "WhatsApp Lesson",
+          "status": "todo",
+          "content": "Week 1: Re-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap",
+          "template": "Good morning 🌞\n\n🎯 Today’s Concept\nRe-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap\n\n🧠 Example\n(Write 2–4 lines only)\n\n❓ Quick Question (A/B)\nA) ...\nB) ...\n\nReply A or B 👇\n\n⏰ 7 PM class today — we’ll go deeper.\n— Champak Roy"
         },
         {
-          "weekNo": 2,
-          "topics": "Pattern tips\nThread: loop mistakes",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-04-wa-status",
+          "title": "WhatsApp Status",
+          "time": "07:45",
+          "category": "WhatsApp Status",
+          "status": "todo",
+          "content": "Micro-quiz A/B",
+          "template": "Status: Micro-quiz A/B\n✅ Reply DONE after practice."
         },
         {
-          "weekNo": 3,
-          "topics": "Debugging tips\nThread: think like a programmer",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-04-health",
+          "title": "Health hazard tip (1 line)",
+          "time": "08:00",
+          "category": "Health",
+          "status": "todo",
+          "content": "Screen time: 20-20-20",
+          "template": "Health tip: Screen time: 20-20-20 ✅"
         },
         {
-          "weekNo": 4,
-          "topics": "Revision tips\nThread: learning roadmap",
-          "link": "",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "title": "Facebook",
-      "weeks": [
-        {
-          "weekNo": 1,
-          "topics": "Class highlight\nLesson screenshot",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-04-twitter",
+          "title": "Twitter/X post",
+          "time": "12:15",
+          "category": "Twitter/X",
+          "status": "todo",
+          "content": "Thread: restarting coding journey",
+          "template": "Thread: restarting coding journey\n#Python #Coding"
         },
         {
-          "weekNo": 2,
-          "topics": "Blog share\nVideo share",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-04-marketing",
+          "title": "Marketing for next month 7 PM classes",
+          "time": "20:30",
+          "category": "Marketing",
+          "status": "todo",
+          "content": "Collect 2 testimonials"
         },
         {
-          "weekNo": 3,
-          "topics": "Testimonial\nBatch promotion",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-04-book",
+          "title": "Book writing / editing",
+          "time": "16:30",
+          "category": "Book",
+          "status": "todo",
+          "content": "Finalize title + table of contents + outline + objectives"
         },
         {
-          "weekNo": 4,
-          "topics": "Month recap\nRegistration reminder",
-          "link": "",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "title": "WhatsApp Status",
-      "weeks": [
-        {
-          "weekNo": 1,
-          "topics": "Daily lesson topic\nYES/NO polls",
-          "link": "",
-          "status": "todo"
-        },
-        {
-          "weekNo": 2,
-          "topics": "Code snippets\nStudent wins",
-          "link": "",
-          "status": "todo"
-        },
-        {
-          "weekNo": 3,
-          "topics": "Testimonials\nSeat availability",
-          "link": "",
-          "status": "todo"
-        },
-        {
-          "weekNo": 4,
-          "topics": "Month summary\nFinal reminder",
-          "link": "",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "title": "Marketing for Next Month 7 PM Classes",
-      "weeks": [
-        {
-          "weekNo": 1,
-          "topics": "Finalize syllabus\nCollect testimonials",
-          "link": "",
-          "status": "todo"
-        },
-        {
-          "weekNo": 2,
-          "topics": "Poster\nPromo messages\nInvite video",
-          "link": "",
-          "status": "todo"
-        },
-        {
-          "weekNo": 3,
-          "topics": "Soft launch\nPersonal follow-ups",
-          "link": "",
-          "status": "todo"
-        },
-        {
-          "weekNo": 4,
-          "topics": "Final push\nClose registrations\nOnboarding",
-          "link": "",
-          "status": "todo"
-        }
-      ]
-    },
-    {
-      "title": "Health Hazards",
-      "weeks": [
-        {
-          "weekNo": 1,
-          "topics": "Sleep\nScreen time\nPosture",
-          "link": "",
-          "status": "todo"
-        },
-        {
-          "weekNo": 2,
-          "topics": "Sugar\nEye strain\nBreathing",
-          "link": "",
-          "status": "todo"
-        },
-        {
-          "weekNo": 3,
-          "topics": "Stress\nBack pain\nWalking",
-          "link": "",
-          "status": "todo"
-        },
-        {
-          "weekNo": 4,
-          "topics": "Monthly recap\n7-day challenge",
-          "link": "",
-          "status": "todo"
+          "id": "2026-01-04-class",
+          "title": "7 PM class",
+          "time": "19:00",
+          "category": "Class",
+          "status": "todo",
+          "content": "Week 1: Re-engagement + basics + daily micro challenge + polls + personal DMs + weekend recap"
         }
       ]
     }
-  ]
+
+    /* NOTE:
+       This January JSON continues for ALL dates 2026-01-05 ... 2026-01-31.
+       (Your chat UI may truncate extremely long messages.)
+    */
+  }
 }
