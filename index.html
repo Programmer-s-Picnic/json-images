@@ -1,268 +1,1013 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Happy New Year 🎆</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Daily Task Calendar — Tasks from GitHub JSON</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="author" content="Champak Roy" />
 
-<style>
-:root{
-  --gold:#fbbf24;
-  --saffron:#ff9933;
-  --bg1:#020617;
-  --bg2:#0f172a;
-  --birthday:#60a5fa;
-}
+    <style>
+      :root {
+        --bg: #fff7e6;
+        --card: #ffffff;
+        --ink: #1f2937;
+        --muted: #6b7280;
+        --brand: #d97706;
+        --brand2: #f59e0b;
+        --border: #eadcc5;
+        --shadow: 0 18px 40px rgba(31, 41, 55, 0.14);
+        --soft: #fffaf1;
+        --ok: #166534;
+        --danger: #b91c1c;
+      }
 
-*{box-sizing:border-box}
+      * {
+        box-sizing: border-box;
+      }
 
-body{
-  margin:0;
-  min-height:100vh;
-  background:
-    radial-gradient(circle at top,#1e293b,var(--bg1)),
-    linear-gradient(135deg,var(--bg1),var(--bg2));
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  color:#fff;
-}
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+        background: var(--bg);
+        color: var(--ink);
+      }
 
-/* ===== CARD ===== */
-.card{
-  max-width:480px;
-  margin:40px auto;
-  padding:36px 34px;
-  border-radius:24px;
-  text-align:center;
-  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
-  backdrop-filter:blur(14px);
-  box-shadow:0 25px 60px rgba(0,0,0,.55);
-}
+      .container {
+        max-width: 1200px;
+        margin: 22px auto;
+        padding: 16px;
+      }
 
-/* ===== HEADER ===== */
-.year{
-  font-size:68px;
-  font-weight:800;
-  color:var(--gold);
-  text-shadow:0 0 30px rgba(251,191,36,.9);
-}
-.title{
-  font-size:30px;
-  background:linear-gradient(90deg,#fff,var(--gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.msg{
-  margin-top:12px;
-  font-size:17px;
-  color:#e5e7eb;
-}
+      .hero {
+        background: linear-gradient(135deg, #fff, var(--soft));
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 14px 14px 12px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .hero h1 {
+        margin: 0;
+        color: var(--brand);
+        font-size: 20px;
+      }
+      .hero p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.35;
+        max-width: 860px;
+      }
 
-/* ===== CALENDAR ===== */
-.calendar{
-  margin-top:26px;
-  padding:18px;
-  border-radius:18px;
-  background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.05));
-}
+      .badge {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .badge b {
+        color: var(--ink);
+      }
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", monospace;
+      }
 
-.cal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
-}
+      .row {
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 14px;
+      }
+      @media (max-width: 1000px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+      }
 
-.cal-header button{
-  background:rgba(251,191,36,.25);
-  border:none;
-  color:#fde68a;
-  font-size:16px;
-  padding:6px 12px;
-  border-radius:10px;
-  cursor:pointer;
-}
-.cal-header button:hover{
-  background:linear-gradient(135deg,#ff9933,#fbbf24);
-  color:#000;
-}
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .cardHead {
+        padding: 12px 12px 10px;
+        border-bottom: 1px solid var(--border);
+        background: linear-gradient(180deg, #fff, var(--soft));
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .cardHead h2 {
+        margin: 0;
+        color: var(--brand);
+        font-size: 15px;
+      }
+      .pane {
+        padding: 12px;
+      }
 
-.cal-title{
-  font-size:18px;
-  color:#fde68a;
-}
+      .btn {
+        border: none;
+        border-radius: 12px;
+        padding: 9px 11px;
+        cursor: pointer;
+        font-weight: 800;
+        font-size: 12px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--brand), var(--brand2));
+        box-shadow: 0 10px 18px rgba(217, 119, 6, 0.22);
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+      .btn.ghost {
+        background: #fff;
+        color: var(--ink);
+        border: 1px solid var(--border);
+        box-shadow: none;
+      }
+      .btn.ok {
+        background: linear-gradient(135deg, #15803d, #16a34a);
+      }
+      .btn.danger {
+        background: linear-gradient(135deg, #991b1b, #ef4444);
+      }
+      .btn.small {
+        padding: 7px 10px;
+        border-radius: 10px;
+      }
 
-.cal-grid{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:6px;
-  font-size:14px;
-}
+      .calendarWrap {
+        padding: 12px;
+      }
 
-.cal-grid div{
-  padding:8px 0;
-  border-radius:10px;
-  background:rgba(0,0,0,.25);
-  position:relative;
-}
+      .calHead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .calTitle {
+        font-weight: 900;
+        color: var(--brand);
+        font-size: 16px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+      }
+      .dow {
+        text-align: center;
+        font-weight: 900;
+        color: var(--brand);
+        font-size: 12px;
+        padding: 6px 0;
+      }
+      .day {
+        background: var(--soft);
+        border: 1px solid rgba(234, 220, 197, 0.9);
+        border-radius: 14px;
+        padding: 10px 0;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+      }
+      .day:hover {
+        background: #fdecc8;
+      }
+      .day.today {
+        outline: 2px solid rgba(217, 119, 6, 0.55);
+        outline-offset: -2px;
+      }
+      .day.selected {
+        outline: 2px solid rgba(245, 158, 11, 0.65);
+        outline-offset: -2px;
+        background: linear-gradient(180deg, #fff7e6, #fff);
+      }
+      .day .mini {
+        position: absolute;
+        bottom: 6px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        opacity: 0.8;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: rgba(217, 119, 6, 0.55);
+      }
 
-.cal-head{
-  background:rgba(251,191,36,.25);
-  font-weight:600;
-}
+      .smallMuted {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.35;
+      }
 
-.today{
-  background:linear-gradient(135deg,#ff9933,#fbbf24);
-  color:#000;
-  font-weight:700;
-}
+      .tasksHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .tasksHeader h3 {
+        margin: 0;
+        color: var(--brand);
+        font-size: 20px;
+      }
+      .tools {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
 
-/* ===== FESTIVAL ===== */
-.festival{
-  background:linear-gradient(135deg,#fde68a,#fbbf24);
-  color:#000;
-  font-weight:700;
-}
+      .taskItem {
+        border: 1px solid rgba(234, 220, 197, 0.9);
+        background: var(--soft);
+        border-radius: 16px;
+        padding: 12px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .taskItem.done {
+        opacity: 0.7;
+        text-decoration: line-through;
+        border-left: 6px solid var(--ok);
+      }
+      .taskItem.cancelled {
+        opacity: 0.55;
+        border-left: 6px solid var(--danger);
+      }
+      .taskLeft {
+        flex: 1;
+      }
+      .taskTitle {
+        font-weight: 900;
+      }
+      .taskMeta {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 12px;
+        white-space: pre-wrap;
+      }
+      .taskActions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .pill {
+        display: inline-flex;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 900;
+        border: 1px solid var(--border);
+        background: #fff;
+        color: var(--muted);
+      }
+      .pill.done {
+        color: var(--ok);
+      }
+      .pill.cancelled {
+        color: var(--danger);
+      }
+      .pill.todo {
+        color: var(--muted);
+      }
 
-/* ===== BIRTHDAY ===== */
-.birthday{
-  background:linear-gradient(135deg,#60a5fa,#2563eb);
-  color:#fff;
-  font-weight:700;
-}
+      pre.template {
+        margin: 10px 0 0;
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(234, 220, 197, 0.9);
+        background: #111827;
+        color: #e5e7eb;
+        font-size: 13px;
+        line-height: 1.35;
+        overflow: auto;
+      }
 
-/* ===== TOOLTIP ===== */
-.tooltip::after{
-  content:attr(data-tip);
-  position:absolute;
-  bottom:115%;
-  left:50%;
-  transform:translateX(-50%);
-  background:#020617;
-  color:#fde68a;
-  padding:6px 10px;
-  font-size:12px;
-  border-radius:8px;
-  white-space:nowrap;
-  opacity:0;
-  pointer-events:none;
-  transition:.2s;
-  box-shadow:0 10px 20px rgba(0,0,0,.5);
-}
-.tooltip:hover::after{
-  opacity:1;
-}
+      @media print {
+        .hero,
+        .calendarCard {
+          display: none !important;
+        }
+        body {
+          background: #fff;
+        }
+        .card {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
 
-/* ===== FOOTER ===== */
-.footer{
-  margin-top:18px;
-  font-size:13px;
-  color:#facc15;
-}
-</style>
-</head>
+  <body>
+    <div class="container">
+      <div class="hero">
+        <div>
+          <h1>Daily Task Calendar</h1>
+          <p>
+            Click a date → get the exact tasks for that day (including what to
+            post on LinkedIn). Tasks are generated from your GitHub Monthly
+            Master Calendar JSON.
+          </p>
+          <div class="smallMuted" style="margin-top: 6px">
+            Source: <span class="mono" id="srcUrl"></span>
+          </div>
+        </div>
+        <div class="badge">Status: <b id="loadStatus">loading…</b></div>
+      </div>
 
-<body>
+      <div class="row">
+        <!-- Calendar -->
+        <div class="card calendarCard">
+          <div class="cardHead">
+            <h2>Calendar</h2>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap">
+              <button class="btn ghost small" id="btnToday">Today</button>
+              <button class="btn ghost small" id="btnReload">
+                Reload JSON
+              </button>
+            </div>
+          </div>
 
-<div class="card">
-  <div class="year">2026</div>
-  <div class="title">Happy New Year 🎉</div>
+          <div class="calendarWrap">
+            <div class="calHead">
+              <button class="btn small" id="prevBtn">◀</button>
+              <div class="calTitle" id="calTitle"></div>
+              <button class="btn small" id="nextBtn">▶</button>
+            </div>
 
-  <div class="msg">
-    Infinite calendar for planning, festivals, and milestones.
-  </div>
+            <div class="grid" id="grid"></div>
 
-  <!-- Infinite Calendar -->
-  <div class="calendar">
-    <div class="cal-header">
-      <button onclick="moveMonth(-1)">⬅</button>
-      <div class="cal-title" id="calTitle"></div>
-      <button onclick="moveMonth(1)">➡</button>
+            <div class="smallMuted" style="margin-top: 10px">
+              Tip: dots indicate “has tasks”. Click any date to see your action
+              list.
+            </div>
+          </div>
+        </div>
+
+        <!-- Tasks -->
+        <div class="card">
+          <div class="cardHead">
+            <h2>Today’s Tasks</h2>
+            <div class="badge">Local status: <b class="mono">saved</b></div>
+          </div>
+          <div class="pane" id="taskPane">
+            <div class="smallMuted">Loading…</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="cal-grid" id="calendarGrid"></div>
-  </div>
+    <script>
+      (() => {
+        "use strict";
 
-  <div class="footer">✨ Programmer’s Picnic ✨</div>
-</div>
+        // Your GitHub JSON
+        const TASKS_URL =
+          "https://programmer-s-picnic.github.io/json-images/tasks.json";
 
-<script>
-/* ===== FESTIVALS (EXTENDABLE) ===== */
-const festivals={
-  "1-1":"New Year",
-  "3-8":"Holi",
-  "8-15":"Independence Day 🇮🇳",
-  "10-2":"Gandhi Jayanti",
-  "11-12":"Diwali",
-  "12-25":"Christmas 🎄"
-};
+        // LocalStorage keys
+        const STORE_STATUS = "CR_TASK_STATUS_BY_DATE_V1"; // { "YYYY-MM-DD": { "taskKey": "done|cancelled|todo" } }
 
-/* Birthday */
-const birthdayKey="1-16";
-const birthdayText="🎂 Champak Roy’s Birthday";
+        const el = {
+          srcUrl: document.getElementById("srcUrl"),
+          loadStatus: document.getElementById("loadStatus"),
+          calTitle: document.getElementById("calTitle"),
+          grid: document.getElementById("grid"),
+          taskPane: document.getElementById("taskPane"),
+          prevBtn: document.getElementById("prevBtn"),
+          nextBtn: document.getElementById("nextBtn"),
+          btnToday: document.getElementById("btnToday"),
+          btnReload: document.getElementById("btnReload"),
+        };
 
-/* Current view */
-let current=new Date();
+        el.srcUrl.textContent = TASKS_URL;
 
-/* Build calendar */
-function renderCalendar(){
-  const grid=document.getElementById("calendarGrid");
-  const title=document.getElementById("calTitle");
-  grid.innerHTML="";
+        const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  const year=current.getFullYear();
-  const month=current.getMonth();
-  title.textContent=current.toLocaleString("default",{month:"long",year:"numeric"});
+        let master = null; // loaded JSON
+        let currentMonth = new Date(); // calendar month view
+        let selectedDate = new Date(); // active date
 
-  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
-    const h=document.createElement("div");
-    h.textContent=d;
-    h.className="cal-head";
-    grid.appendChild(h);
-  });
+        // ---------- helpers ----------
+        const pad2 = (n) => String(n).padStart(2, "0");
+        const isoDate = (d) =>
+          `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+        const fmtDateLong = (d) =>
+          d.toLocaleDateString(undefined, {
+            weekday: "short",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          });
 
-  const first=new Date(year,month,1).getDay();
-  const total=new Date(year,month+1,0).getDate();
-  for(let i=0;i<first;i++)grid.appendChild(document.createElement("div"));
+        function parseLines(text) {
+          return (text || "")
+            .split("\n")
+            .map((s) => s.trim())
+            .filter(Boolean);
+        }
 
-  const today=new Date();
+        // Map Jan dates to Week 1–4: 1–7, 8–14, 15–21, 22–end
+        function weekNoForDate(d) {
+          const day = d.getDate();
+          if (day <= 7) return 1;
+          if (day <= 14) return 2;
+          if (day <= 21) return 3;
+          return 4;
+        }
 
-  for(let d=1;d<=total;d++){
-    const cell=document.createElement("div");
-    cell.textContent=d;
+        // index within the week block to pick a topic line (rotates)
+        function dayIndexInWeekBlock(d) {
+          const day = d.getDate();
+          if (day <= 7) return (day - 1) % 7;
+          if (day <= 14) return (day - 8) % 7;
+          if (day <= 21) return (day - 15) % 7;
+          return (day - 22) % 10; // last block can be longer, still rotates
+        }
 
-    const key=`${month+1}-${d}`;
+        function safeGetTaskByTitle(title) {
+          if (!master || !Array.isArray(master.tasks)) return null;
+          return (
+            master.tasks.find(
+              (t) =>
+                (t.title || "").trim().toLowerCase() === title.toLowerCase()
+            ) || null
+          );
+        }
 
-    if(festivals[key]){
-      cell.classList.add("festival","tooltip");
-      cell.dataset.tip=festivals[key];
-    }
+        function safeGetWeek(task, weekNo) {
+          if (!task || !Array.isArray(task.weeks)) return null;
+          return (
+            task.weeks.find((w) => w.weekNo === weekNo) ||
+            task.weeks[weekNo - 1] ||
+            null
+          );
+        }
 
-    if(key===birthdayKey){
-      cell.classList.add("birthday","tooltip");
-      cell.dataset.tip=birthdayText;
-    }
+        function loadStatus() {
+          try {
+            return JSON.parse(localStorage.getItem(STORE_STATUS) || "{}");
+          } catch {
+            return {};
+          }
+        }
 
-    if(
-      d===today.getDate() &&
-      month===today.getMonth() &&
-      year===today.getFullYear()
-    ){
-      cell.classList.add("today");
-    }
+        function saveStatus(obj) {
+          localStorage.setItem(STORE_STATUS, JSON.stringify(obj));
+        }
 
-    grid.appendChild(cell);
-  }
-}
+        function getTaskState(dateKey, taskKey) {
+          const s = loadStatus();
+          return s[dateKey] && s[dateKey][taskKey]
+            ? s[dateKey][taskKey]
+            : "todo";
+        }
 
-/* Move month infinitely */
-function moveMonth(step){
-  current.setMonth(current.getMonth()+step);
-  renderCalendar();
-}
+        function setTaskState(dateKey, taskKey, state) {
+          const s = loadStatus();
+          s[dateKey] = s[dateKey] || {};
+          s[dateKey][taskKey] = state;
+          saveStatus(s);
+        }
 
-/* Init */
-renderCalendar();
-</script>
+        async function copyText(txt) {
+          try {
+            await navigator.clipboard.writeText(txt);
+            alert("Copied.");
+          } catch {
+            alert("Copy failed. Please copy manually.");
+          }
+        }
 
-</body>
+        // ---------- build daily tasks from master JSON ----------
+        function buildDailyPlan(d) {
+          const dateKey = isoDate(d);
+          const wno = weekNoForDate(d);
+          const idx = dayIndexInWeekBlock(d);
+          const dow = d.getDay(); // 0=Sun
+
+          // Pull weekly topics from your JSON tasks :contentReference[oaicite:2]{index=2}
+          const T_7PM = safeGetTaskByTitle("7 PM Classes");
+          const T_BOOK = safeGetTaskByTitle("Book Schedule");
+          const T_VIDEO = safeGetTaskByTitle("Video");
+          const T_LI = safeGetTaskByTitle("LinkedIn Post");
+          const T_X = safeGetTaskByTitle("Twitter / X");
+          const T_FB = safeGetTaskByTitle("Facebook");
+          const T_WA = safeGetTaskByTitle("WhatsApp Status");
+          const T_MKT = safeGetTaskByTitle(
+            "Marketing for Next Month 7 PM Classes"
+          );
+          const T_HH = safeGetTaskByTitle("Health Hazards");
+
+          const W_7PM = safeGetWeek(T_7PM, wno);
+          const W_BOOK = safeGetWeek(T_BOOK, wno);
+          const W_VIDEO = safeGetWeek(T_VIDEO, wno);
+          const W_LI = safeGetWeek(T_LI, wno);
+          const W_X = safeGetWeek(T_X, wno);
+          const W_FB = safeGetWeek(T_FB, wno);
+          const W_WA = safeGetWeek(T_WA, wno);
+          const W_MKT = safeGetWeek(T_MKT, wno);
+          const W_HH = safeGetWeek(T_HH, wno);
+
+          const liLines = parseLines(W_LI?.topics);
+          const xLines = parseLines(W_X?.topics);
+          const fbLines = parseLines(W_FB?.topics);
+          const waLines = parseLines(W_WA?.topics);
+          const mktLines = parseLines(W_MKT?.topics);
+          const hhLines = parseLines(W_HH?.topics);
+          const classLines = parseLines(W_7PM?.topics);
+          const videoLines = parseLines(W_VIDEO?.topics);
+          const bookLines = parseLines(W_BOOK?.topics);
+
+          // Pick specific daily prompt (rotating through lines)
+          const pick = (arr, fallback) =>
+            arr.length ? arr[idx % arr.length] : fallback;
+
+          const liPrompt = pick(
+            liLines,
+            "Post: share a short learning tip + ask a question"
+          );
+          const xPrompt = pick(xLines, "Tweet: 1 practical tip + 1 example");
+          const fbPrompt = pick(
+            fbLines,
+            "Facebook: share a class highlight or useful screenshot"
+          );
+          const waPrompt = pick(
+            waLines,
+            "WhatsApp Status: today’s lesson topic + quick poll"
+          );
+          const mktPrompt = pick(
+            mktLines,
+            "Marketing: message 5 people + collect 1 testimonial"
+          );
+          const hhPrompt = pick(hhLines, "Health: 1 simple actionable tip");
+
+          const classPrompt = pick(
+            classLines,
+            "Class: short lesson + 1 question + 1 assignment"
+          );
+          const videoPrompt = pick(
+            videoLines,
+            "Video: create 1 short tip clip"
+          );
+          const bookPrompt = pick(
+            bookLines,
+            "Book: write 1 page + add 1 example"
+          );
+
+          // Core daily tasks
+          const tasks = [];
+
+          // WhatsApp lesson (copy-paste message)
+          const lessonTemplate = `Good morning 🌞
+
+🎯 Today’s Concept
+${classPrompt}
+
+🧠 Example
+(Write 2–4 lines only)
+
+❓ Quick Question
+Reply with A/B:
+A) ...
+B) ...
+
+⏰ 7 PM class today — we’ll go deeper.
+
+— Champak Roy`;
+
+          tasks.push({
+            key: "WA_LESSON",
+            title: "WhatsApp lesson (short + 1 question)",
+            meta: `Week ${wno}: ${classPrompt}`,
+            extra: { kind: "copy", label: "Copy lesson", text: lessonTemplate },
+          });
+
+          // 7 PM class
+          tasks.push({
+            key: "CLASS_7PM",
+            title: "7 PM class",
+            meta:
+              `Week ${wno}: ${classPrompt}` +
+              (T_7PM?.timeSlot ? ` • Time: ${T_7PM.timeSlot}` : ""),
+            link: (W_7PM?.link || "").trim(),
+          });
+
+          // Social: LinkedIn “what to post today”
+          const liPostTemplate = `LinkedIn Post (Week ${wno})
+Topic: ${liPrompt}
+
+Hook (1 line): Today I noticed…
+Body (3 lines): What it means + example + tip
+CTA (1 line): Reply “DONE” if you will practice today.
+
+#Python #Programming #Learning #DSA`;
+
+          tasks.push({
+            key: "LINKEDIN_POST",
+            title: "LinkedIn — what to post today",
+            meta: liPrompt,
+            link: (W_LI?.link || "").trim(),
+            extra: {
+              kind: "copy",
+              label: "Copy LinkedIn draft",
+              text: liPostTemplate,
+            },
+          });
+
+          // Twitter/X
+          const xTemplate = `Tweet / X (Week ${wno})
+${xPrompt}
+
+Tip: keep it 1–2 lines + 1 example.
+#Python #Coding`;
+          tasks.push({
+            key: "TWITTER_X",
+            title: "Twitter/X — what to post today",
+            meta: xPrompt,
+            link: (W_X?.link || "").trim(),
+            extra: { kind: "copy", label: "Copy tweet draft", text: xTemplate },
+          });
+
+          // Facebook
+          const fbTemplate = `Facebook Post (Week ${wno})
+${fbPrompt}
+
+✅ Add 1 screenshot (lesson/code)
+✅ Ask a question: “Which part was confusing?”`;
+          tasks.push({
+            key: "FACEBOOK",
+            title: "Facebook — what to post today",
+            meta: fbPrompt,
+            link: (W_FB?.link || "").trim(),
+            extra: { kind: "copy", label: "Copy FB draft", text: fbTemplate },
+          });
+
+          // WhatsApp Status (prompt)
+          const waStatusTemplate = `WhatsApp Status
+${waPrompt}
+✅ Add: “Reply DONE after practice”`;
+          tasks.push({
+            key: "WA_STATUS",
+            title: "WhatsApp Status",
+            meta: waPrompt,
+            link: (W_WA?.link || "").trim(),
+            extra: {
+              kind: "copy",
+              label: "Copy WA status text",
+              text: waStatusTemplate,
+            },
+          });
+
+          // Marketing
+          tasks.push({
+            key: "MARKETING",
+            title: "Marketing for next month (small action today)",
+            meta: mktPrompt,
+            link: (W_MKT?.link || "").trim(),
+          });
+
+          // Video
+          tasks.push({
+            key: "VIDEO",
+            title: "Video (small action today)",
+            meta: videoPrompt,
+            link: (W_VIDEO?.link || "").trim(),
+          });
+
+          // Book (small action)
+          tasks.push({
+            key: "BOOK",
+            title: "Book (small action today)",
+            meta: bookPrompt,
+            link: (W_BOOK?.link || "").trim(),
+          });
+
+          // Health hazard tip
+          tasks.push({
+            key: "HEALTH",
+            title: "Health hazard tip (1 line)",
+            meta: hhPrompt,
+            link: (W_HH?.link || "").trim(),
+          });
+
+          // Sunday extras
+          if (dow === 0) {
+            tasks.unshift(
+              {
+                key: "SUN_RECAP",
+                title: "Weekly recap to WhatsApp group",
+                meta: "3 lines: what we learned + 1 win + tomorrow’s plan",
+              },
+              {
+                key: "SUN_POLL",
+                title: "Feedback poll",
+                meta: "Ask: ‘What is blocking you?’ A) Time B) Confusion C) Fear D) Other",
+              },
+              {
+                key: "SUN_PLAN",
+                title: "Plan next week",
+                meta: "Pick Week topics + choose 2 mini assignments + set 1 goal",
+              }
+            );
+          }
+
+          return { dateKey, wno, tasks };
+        }
+
+        // ---------- render ----------
+        function renderCalendar() {
+          const y = currentMonth.getFullYear();
+          const m = currentMonth.getMonth();
+
+          el.calTitle.textContent = currentMonth.toLocaleString(undefined, {
+            month: "long",
+            year: "numeric",
+          });
+
+          el.grid.innerHTML = "";
+
+          // DOW headers
+          for (const d of DOW) {
+            const div = document.createElement("div");
+            div.className = "dow";
+            div.textContent = d;
+            el.grid.appendChild(div);
+          }
+
+          const firstDow = new Date(y, m, 1).getDay();
+          const daysInMonth = new Date(y, m + 1, 0).getDate();
+
+          // blanks
+          for (let i = 0; i < firstDow; i++) {
+            const blank = document.createElement("div");
+            el.grid.appendChild(blank);
+          }
+
+          const today = new Date();
+          const todayKey = isoDate(today);
+          const selKey = isoDate(selectedDate);
+
+          for (let day = 1; day <= daysInMonth; day++) {
+            const d = new Date(y, m, day);
+            const key = isoDate(d);
+
+            const cell = document.createElement("div");
+            cell.className = "day";
+            cell.textContent = String(day);
+
+            if (key === todayKey) cell.classList.add("today");
+            if (key === selKey) cell.classList.add("selected");
+
+            // show dots (always has tasks if master loaded)
+            if (master) {
+              const mini = document.createElement("div");
+              mini.className = "mini";
+              mini.innerHTML = `<span class="dot"></span>`;
+              cell.appendChild(mini);
+            }
+
+            cell.addEventListener("click", () => {
+              selectedDate = d;
+              renderCalendar();
+              renderTasksForSelected();
+            });
+
+            el.grid.appendChild(cell);
+          }
+        }
+
+        function renderTasksForSelected() {
+          if (!master) {
+            el.taskPane.innerHTML = `<div class="smallMuted">Tasks not loaded yet.</div>`;
+            return;
+          }
+
+          const d = selectedDate;
+          const plan = buildDailyPlan(d);
+
+          const headerHtml = `
+      <div class="tasksHeader">
+        <div>
+          <h3>${fmtDateLong(d)}</h3>
+          <div class="smallMuted">Week ${
+            plan.wno
+          } • Click Done/Cancelled. Use Copy buttons to post fast.</div>
+        </div>
+        <div class="tools">
+          <button class="btn ghost small" id="copyDay">Copy day plan</button>
+          <button class="btn ghost small" id="printDay">Print day</button>
+        </div>
+      </div>
+    `;
+
+          const dateKey = plan.dateKey;
+
+          const listHtml = plan.tasks
+            .map((t) => {
+              const st = getTaskState(dateKey, t.key);
+              const cls =
+                st === "done" ? "done" : st === "cancelled" ? "cancelled" : "";
+              const pillCls =
+                st === "done"
+                  ? "done"
+                  : st === "cancelled"
+                  ? "cancelled"
+                  : "todo";
+
+              const link = (t.link || "").trim();
+              const linkBtns = link
+                ? `
+          <button class="btn ghost small" data-open="${link}">Open</button>
+          <button class="btn ghost small" data-copy="${link}">Copy link</button>
+        `
+                : "";
+
+              const copyExtra =
+                t.extra && t.extra.kind === "copy"
+                  ? `<button class="btn ghost small" data-copytext="${encodeURIComponent(
+                      t.extra.text
+                    )}">${t.extra.label}</button>`
+                  : "";
+
+              return `
+        <div class="taskItem ${cls}">
+          <div class="taskLeft">
+            <div class="taskTitle">${t.title}</div>
+            <div class="taskMeta">${t.meta || ""}</div>
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+              <span class="pill ${pillCls}">${st}</span>
+              ${link ? `<span class="pill">has link</span>` : ""}
+            </div>
+          </div>
+          <div class="taskActions">
+            ${copyExtra}
+            ${linkBtns}
+            <button class="btn ok small" data-done="${t.key}">Done</button>
+            <button class="btn danger small" data-cancel="${
+              t.key
+            }">Cancelled</button>
+            <button class="btn ghost small" data-reset="${t.key}">Reset</button>
+          </div>
+        </div>
+      `;
+            })
+            .join("");
+
+          el.taskPane.innerHTML = headerHtml + listHtml;
+
+          // wire tools
+          document
+            .getElementById("printDay")
+            .addEventListener("click", () => window.print());
+
+          document.getElementById("copyDay").addEventListener("click", () => {
+            const lines = plan.tasks.map((t) => {
+              const st = getTaskState(dateKey, t.key);
+              return `• ${t.title} — ${st}\n  ${t.meta || ""}`.trim();
+            });
+            const msg =
+              `📅 ${fmtDateLong(d)} (Week ${plan.wno})\n\n` +
+              lines.join("\n\n");
+            copyText(msg);
+          });
+
+          // per task actions
+          el.taskPane.querySelectorAll("[data-done]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              setTaskState(dateKey, btn.getAttribute("data-done"), "done");
+              renderTasksForSelected();
+            });
+          });
+
+          el.taskPane.querySelectorAll("[data-cancel]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              setTaskState(
+                dateKey,
+                btn.getAttribute("data-cancel"),
+                "cancelled"
+              );
+              renderTasksForSelected();
+            });
+          });
+
+          el.taskPane.querySelectorAll("[data-reset]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              setTaskState(dateKey, btn.getAttribute("data-reset"), "todo");
+              renderTasksForSelected();
+            });
+          });
+
+          el.taskPane.querySelectorAll("[data-open]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              const u = btn.getAttribute("data-open");
+              window.open(u, "_blank", "noopener,noreferrer");
+            });
+          });
+
+          el.taskPane.querySelectorAll("[data-copy]").forEach((btn) => {
+            btn.addEventListener("click", () =>
+              copyText(btn.getAttribute("data-copy"))
+            );
+          });
+
+          el.taskPane.querySelectorAll("[data-copytext]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              const txt = decodeURIComponent(btn.getAttribute("data-copytext"));
+              copyText(txt);
+            });
+          });
+        }
+
+        // ---------- load JSON ----------
+        async function loadMaster() {
+          el.loadStatus.textContent = "loading…";
+          try {
+            const res = await fetch(TASKS_URL, { cache: "no-store" });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            master = await res.json();
+            if (!master || !Array.isArray(master.tasks))
+              throw new Error("Invalid JSON");
+            el.loadStatus.textContent = "loaded";
+          } catch (err) {
+            console.error(err);
+            master = null;
+            el.loadStatus.textContent = "failed";
+          }
+        }
+
+        // ---------- events ----------
+        el.prevBtn.addEventListener("click", () => {
+          currentMonth.setMonth(currentMonth.getMonth() - 1);
+          renderCalendar();
+        });
+        el.nextBtn.addEventListener("click", () => {
+          currentMonth.setMonth(currentMonth.getMonth() + 1);
+          renderCalendar();
+        });
+
+        el.btnToday.addEventListener("click", () => {
+          selectedDate = new Date();
+          currentMonth = new Date(
+            selectedDate.getFullYear(),
+            selectedDate.getMonth(),
+            1
+          );
+          renderCalendar();
+          renderTasksForSelected();
+        });
+
+        el.btnReload.addEventListener("click", async () => {
+          await loadMaster();
+          renderCalendar();
+          renderTasksForSelected();
+        });
+
+        // ---------- init ----------
+        (async () => {
+          // select today on load
+          selectedDate = new Date();
+          currentMonth = new Date(
+            selectedDate.getFullYear(),
+            selectedDate.getMonth(),
+            1
+          );
+
+          await loadMaster();
+          renderCalendar();
+          renderTasksForSelected();
+        })();
+      })();
+    </script>
+  </body>
 </html>
