@@ -1,17 +1,8 @@
 {
-  "updated": "2026-01-29",
-  "sourceName": "Nokia Jobs (manual list)",
-  "sourceUrl": "https://jobs.nokia.com/en/sites/CX_1/jobs?keyword=NIFN2026&location=India&locationId=300000000471745&locationLevel=country&mode=location",
-  "jobs": [
+  "links": [
     {
-      "id": "26691",
-      "title": "Senior Technical Specialist",
-      "company": "Nokia",
-      "location": "India",
-      "tags": ["NIFN2026", "CX_1"],
-      "posted": "2026-01-10",
-      "applyUrl": "https://jobs.nokia.com/en/sites/CX_1/job/26691/",
-      "note": "Example link format"
+      "title": "Nokia — NIFN2026 search (India)",
+      "url": "https://jobs.nokia.com/en/sites/CX_1/jobs?keyword=NIFN2026&location=India&locationId=300000000471745&locationLevel=country&mode=location"
     }
   ]
 }
