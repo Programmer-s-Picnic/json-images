@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "schema": "ppx.chat.v1",
+    "title": "Champak & Riya — Demo Chat",
+    "timezone": "Asia/Kolkata",
+    "created_at": "2026-02-08T19:30:00+05:30"
+  },
+  "participants": [
+    {
+      "id": "u1",
+      "name": "Champak",
+      "avatar": "https://programmer-s-picnic.github.io/json-images//pics/Python-Starter%20Club.png"
+    },
+    {
+      "id": "u2",
+      "name": "Riya",
+      "avatar": "https://i.pravatar.cc/150?img=47"
+    }
+  ],
+  "chat": {
+    "id": "c1",
+    "type": "direct",
+    "theme": {
+      "bg": "#fff7e6",
+      "brand": "#d97706"
+    }
+  },
+  "messages": [
+    {
+      "id": "m001",
+      "from": "u2",
+      "type": "text",
+      "text": "Namaste! 🙏 Ready for today's 7PM Python basics?",
+      "ts": "2026-02-08T19:00:05+05:30",
+      "status": "read"
+    },
+    {
+      "id": "m002",
+      "from": "u1",
+      "type": "text",
+      "text": "Yes! We’ll start with VS Code setup, then variables + input/output.",
+      "ts": "2026-02-08T19:00:22+05:30",
+      "status": "read"
+    },
+    {
+      "id": "m003",
+      "from": "u2",
+      "type": "text",
+      "text": "Awesome. Can you also share a mini task for students?",
+      "ts": "2026-02-08T19:01:10+05:30",
+      "status": "read"
+    },
+    {
+      "id": "m004",
+      "from": "u1",
+      "type": "text",
+      "text": "Task: Make a program that asks name + age and prints a greeting.",
+      "ts": "2026-02-08T19:01:36+05:30",
+      "status": "delivered"
+    },
+    {
+      "id": "m005",
+      "from": "u1",
+      "type": "image",
+      "text": "Batch poster",
+      "media": {
+        "url": "https://programmer-s-picnic.github.io/json-images//pics/Python-Starter%20Club.png",
+        "caption": "Python Starter Club — 7PM"
+      },
+      "ts": "2026-02-08T19:02:10+05:30",
+      "status": "sent"
+    },
+    {
+      "id": "m006",
+      "from": "u2",
+      "type": "text",
+      "text": "Nice! I’ll forward this to WhatsApp groups. ✅",
+      "ts": "2026-02-08T19:02:49+05:30",
+      "status": "sent"
+    },
+    {
+      "id": "m007",
+      "from": "u2",
+      "type": "text",
+      "text": "One more thing—can we store chat as JSON and render like WhatsApp?",
+      "ts": "2026-02-08T19:03:20+05:30",
+      "status": "sent"
+    },
+    {
+      "id": "m008",
+      "from": "u1",
+      "type": "text",
+      "text": "Yes. That’s exactly what this demo does. We can reuse it in Flutter/React/RN/Python.",
+      "ts": "2026-02-08T19:03:45+05:30",
+      "status": "sent"
+    }
+  ]
+}
