@@ -1,0 +1,162 @@
+/* =========================================================
+   Programmer’s Picnic – Python Starter Landing
+   Namespace: pp_x_
+   ========================================================= */
+
+/* ---------- GLOBAL LANDING OVERRIDES (BLOGGER SAFE) ---------- */
+
+body.pp_x_landing header,
+body.pp_x_landing footer,
+body.pp_x_landing .sidebar,
+body.pp_x_landing #navbar-iframe,
+body.pp_x_landing .header,
+body.pp_x_landing .footer,
+body.pp_x_landing .page-footer {
+  display: none !important;
+}
+
+html, body {
+  height: 100% !important;
+}
+
+body.pp_x_landing,
+body.pp_x_landing .content,
+body.pp_x_landing .content-outer,
+body.pp_x_landing .content-inner,
+body.pp_x_landing .post,
+body.pp_x_landing .post-body,
+body.pp_x_landing .post-body-container,
+body.pp_x_landing .widget-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+/* ---------- FULLSCREEN WRAPPER ---------- */
+
+.pp_x_wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fffaf2;
+  z-index: 9999;
+}
+
+/* ---------- SKELETON LOADER ---------- */
+
+.pp_x_skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    #fff7ed 30%,
+    #fde68a 50%,
+    #fff7ed 70%
+  );
+  background-size: 400% 100%;
+  animation: pp_x_shimmer 1.2s infinite;
+  z-index: 2;
+  transition: opacity .35s ease;
+}
+
+@keyframes pp_x_shimmer {
+  from { background-position: 100% 0; }
+  to   { background-position: -100% 0; }
+}
+
+.pp_x_skeleton::after {
+  content: "Loading Punya Yatra";
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: system-ui, sans-serif;
+  color: #92400e;
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+/* ---------- IFRAME ---------- */
+
+.pp_x_iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: transparent;
+}
+
+/* ---------- OPTIONAL UTILITIES ---------- */
+
+.pp_x_hidden { display: none !important; }
+.pp_x_visible { display: block !important; }
+.pp_x_no_scroll { overflow: hidden !important; }
+
+ 
+    .pp_x_links{
+      width: min(96%, 980px);
+      margin: 18px auto;
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(135deg,#fff4dc,#ffe8b5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    .pp_x_links h3{
+      margin: 0 0 12px 0;
+      color:#92400e;
+      font-size: 18px;
+    }
+    .pp_x_btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .pp_x_btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(146,64,14,0.18);
+      background: #ffffff;
+      color:#1f2937;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+    }
+    .pp_x_btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.10);
+    }
+    .pp_x_icon{
+      width:34px;height:34px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg,#fff7ed,#fde68a);
+      color:#92400e;
+      font-size: 18px;
+      flex: 0 0 auto;
+    }
+    .pp_x_sub{
+      display:block;
+      font-size:12px;
+      font-weight:600;
+      color:#6b7280;
+      margin-top:2px;
+      line-height:1.2;
+    }
+    @media (max-width:520px){
+      .pp_x_btn{ width:100%; justify-content:flex-start; }
+    }
+   
+ 
