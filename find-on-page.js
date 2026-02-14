@@ -8,7 +8,7 @@
    (3) Remember collapsed / expanded state
 
    PATCH:
-   (4) Floating movable "Guided Start / WhatsApp" pills (per-page position)
+    
 */
 
 (function () {
@@ -556,7 +556,7 @@
     if (!box.classList.contains("collapsed")) input.focus();
 
     /* =========================================================
-       (4) FLOATING MOVABLE "Guided Start / WhatsApp" PILLS
+       (4) FLOATING MOVABLE " WhatsApp" PILLS
        ========================================================= */
 
     (function initFloatingPills() {
@@ -606,13 +606,7 @@
       wrap.style.top = "110px";
       wrap.style.right = "18px";
 
-      // Guided Start link: (1) if you have #guided-start, it'll scroll to it
-      // else it will just go to top safely.
-      // const guided = document.createElement("a");
-      // guided.className = "ppPill";
-      // guided.href = "#guided-start";
-      // guided.innerHTML = `<span class="ppIcon">${svgCompass()}</span><span>Guided Start</span>`;
-
+      
       // WhatsApp link
       const wa = document.createElement("a");
       wa.className = "ppPill";
@@ -625,7 +619,7 @@
         <span>WhatsApp</span>
       `;
 
-      // wrap.appendChild(guided);
+       
       wrap.appendChild(wa);
       document.body.appendChild(wrap);
 
@@ -714,7 +708,7 @@
         }
       }
 
-      guided.addEventListener("click", cancelClickIfDragged);
+       
       wa.addEventListener("click", cancelClickIfDragged);
 
       wrap.addEventListener("pointerdown", startDrag);
