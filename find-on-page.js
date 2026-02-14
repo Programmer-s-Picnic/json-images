@@ -3,12 +3,10 @@
    Light Saffron Theme
    Stable Next / Prev + Drag to Move (Option 1)
 
-   Added:
-   (2) Per-page position key (URL-based)
-   (3) Remember collapsed / expanded state
-
-   PATCH:
-    
+   Includes:
+   - Per-page position key (URL-based)
+   - Remember collapsed / expanded state
+   - Movable floating pills: WhatsApp, Call Me, Email (Guided Start removed)
 */
 
 (function () {
@@ -20,15 +18,21 @@
   // Prevent double-init
   if (document.getElementById(SEARCH_BOX_ID)) return;
 
-  // (2) Per-page key (pathname + query, excludes hash so anchors don't create new keys)
+  // Per-page key (pathname + query, excludes hash so anchors don't create new keys)
   const PAGE_KEY = `${location.origin}${location.pathname}${location.search}`;
   const STORAGE_KEY = `pageSearchBoxState::${PAGE_KEY}`;
 
   function initPageSearch() {
     /* ---------- CONFIG ---------- */
     const IGNORE_TAGS = new Set([
-      "SCRIPT", "STYLE", "NOSCRIPT", "IFRAME",
-      "TEXTAREA", "INPUT", "SELECT", "BUTTON"
+      "SCRIPT",
+      "STYLE",
+      "NOSCRIPT",
+      "IFRAME",
+      "TEXTAREA",
+      "INPUT",
+      "SELECT",
+      "BUTTON",
     ]);
 
     let matches = [];
@@ -152,7 +156,7 @@
           text-overflow: ellipsis;
         }
 
-        /* (3) Collapsed state */
+        /* Collapsed state */
         #${SEARCH_BOX_ID}.collapsed{
           width: 220px;
           padding: 10px;
@@ -184,7 +188,8 @@
         }
 
         /* ==============================
-           (4) FLOATING PILLS (Movable)
+           FLOATING PILLS (Movable)
+           WhatsApp / Call / Email
            ============================== */
 
         #ppFloatingPills{
@@ -337,7 +342,7 @@
 
     /* ---------- CLEAR ---------- */
     function clearHighlights() {
-      document.querySelectorAll("span.pageSearchHit").forEach(span => {
+      document.querySelectorAll("span.pageSearchHit").forEach((span) => {
         const parent = span.parentNode;
         while (span.firstChild) parent.insertBefore(span.firstChild, span);
         parent.removeChild(span);
@@ -364,17 +369,13 @@
       if (!query) return;
 
       const q = query.toLowerCase();
-      const walker = document.createTreeWalker(
-        document.body,
-        NodeFilter.SHOW_TEXT,
-        {
-          acceptNode(node) {
-            return shouldSkipTextNode(node)
-              ? NodeFilter.FILTER_REJECT
-              : NodeFilter.FILTER_ACCEPT;
-          }
-        }
-      );
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          return shouldSkipTextNode(node)
+            ? NodeFilter.FILTER_REJECT
+            : NodeFilter.FILTER_ACCEPT;
+        },
+      });
 
       const nodesToProcess = [];
       let node;
@@ -382,9 +383,8 @@
         if (node.nodeValue.toLowerCase().includes(q)) nodesToProcess.push(node);
       }
 
-      nodesToProcess.forEach(originalNode => {
+      nodesToProcess.forEach((originalNode) => {
         if (!originalNode.parentNode) return;
-
         let textNode = originalNode;
 
         while (textNode && textNode.parentNode) {
@@ -417,7 +417,7 @@
       if (i < 0) i = matches.length - 1;
       if (i >= matches.length) i = 0;
 
-      matches.forEach(m => m.classList.remove("pageSearchActive"));
+      matches.forEach((m) => m.classList.remove("pageSearchActive"));
       matches[i].classList.add("pageSearchActive");
 
       matches[i].scrollIntoView({ behavior: "smooth", block: "center" });
@@ -425,7 +425,7 @@
       countEl.textContent = `${i + 1} / ${matches.length}`;
     }
 
-    /* ---------- COLLAPSE / EXPAND (3) ---------- */
+    /* ---------- COLLAPSE / EXPAND ---------- */
     function setCollapsed(collapsed) {
       box.classList.toggle("collapsed", collapsed);
       toggleBtn.textContent = collapsed ? "▸" : "▾";
@@ -440,7 +440,7 @@
       if (box.classList.contains("collapsed")) setCollapsed(false);
     });
 
-    box.addEventListener("click", e => {
+    box.addEventListener("click", (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
       const act = btn.dataset.act;
@@ -454,9 +454,7 @@
         input.focus();
       }
 
-      if (act === "toggle") {
-        setCollapsed(!box.classList.contains("collapsed"));
-      }
+      if (act === "toggle") setCollapsed(!box.classList.contains("collapsed"));
 
       if (act === "close") {
         input.value = "";
@@ -469,7 +467,7 @@
       setCollapsed(!box.classList.contains("collapsed"));
     });
 
-    input.addEventListener("keydown", e => {
+    input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
         if (e.shiftKey) gotoMatch(activeIndex - 1);
@@ -482,10 +480,12 @@
       }
     });
 
-    /* ---------- DRAG TO MOVE (OPTION 1) ---------- */
+    /* ---------- DRAG TO MOVE (search box) ---------- */
     let isDragging = false;
-    let startX = 0, startY = 0;
-    let boxX = 0, boxY = 0;
+    let startX = 0,
+      startY = 0;
+    let boxX = 0,
+      boxY = 0;
 
     function dragStart(x, y) {
       const rect = box.getBoundingClientRect();
@@ -521,25 +521,33 @@
       writeState({ left: rect.left, top: rect.top });
     }
 
-    box.addEventListener("mousedown", e => {
+    box.addEventListener("mousedown", (e) => {
       if (e.target.closest("input,button,.content")) return;
       dragStart(e.clientX, e.clientY);
     });
 
-    document.addEventListener("mousemove", e => dragMove(e.clientX, e.clientY));
+    document.addEventListener("mousemove", (e) => dragMove(e.clientX, e.clientY));
     document.addEventListener("mouseup", dragEnd);
 
-    box.addEventListener("touchstart", e => {
-      if (e.target.closest("input,button,.content")) return;
-      const t = e.touches[0];
-      dragStart(t.clientX, t.clientY);
-    }, { passive: true });
+    box.addEventListener(
+      "touchstart",
+      (e) => {
+        if (e.target.closest("input,button,.content")) return;
+        const t = e.touches[0];
+        dragStart(t.clientX, t.clientY);
+      },
+      { passive: true }
+    );
 
-    document.addEventListener("touchmove", e => {
-      if (!isDragging) return;
-      const t = e.touches[0];
-      dragMove(t.clientX, t.clientY);
-    }, { passive: true });
+    document.addEventListener(
+      "touchmove",
+      (e) => {
+        if (!isDragging) return;
+        const t = e.touches[0];
+        dragMove(t.clientX, t.clientY);
+      },
+      { passive: true }
+    );
 
     document.addEventListener("touchend", dragEnd);
 
@@ -547,7 +555,6 @@
       const s = readState();
       if (!s || typeof s.left !== "number" || typeof s.top !== "number") return;
       applyState();
-      // also keep floating pills on-screen
       if (window.PP__FloatingPills && window.PP__FloatingPills._reclamp) {
         window.PP__FloatingPills._reclamp();
       }
@@ -556,13 +563,17 @@
     if (!box.classList.contains("collapsed")) input.focus();
 
     /* =========================================================
-       (4) FLOATING MOVABLE " WhatsApp" PILLS
+       FLOATING MOVABLE "WhatsApp / Call / Email" PILLS
        ========================================================= */
 
     (function initFloatingPills() {
       const PILL_ID = "ppFloatingPills";
       const PILL_STORE = `ppFloatingPillsState::${PAGE_KEY}`;
       if (document.getElementById(PILL_ID)) return;
+
+      const WHATSAPP_NUMBER = "919335874326";
+      const CALL_NUMBER = "919335874326";
+      const EMAIL = "champaksworld@gmail.com";
 
       function pillRead() {
         try {
@@ -576,17 +587,9 @@
       function pillWrite(patch) {
         const prev = pillRead() || {};
         const next = { ...prev, ...patch };
-        try { localStorage.setItem(PILL_STORE, JSON.stringify(next)); } catch {}
-      }
-
-      function svgCompass() {
-        return `
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z" stroke="#b45309" stroke-width="1.8"/>
-            <path d="M14.8 9.2 13 13l-3.8 1.8L11 11l3.8-1.8Z" fill="#d97706"/>
-            <path d="M12 6v1.6" stroke="#b45309" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        `;
+        try {
+          localStorage.setItem(PILL_STORE, JSON.stringify(next));
+        } catch {}
       }
 
       function svgChat() {
@@ -599,28 +602,70 @@
         `;
       }
 
+      function svgPhone() {
+        return `
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7.2 3.8h2.2c.7 0 1.3.4 1.5 1l.8 2.1c.2.6 0 1.3-.5 1.7l-1.3 1.1a12.8 12.8 0 0 0 5.1 5.1l1.1-1.3c.4-.5 1.1-.7 1.7-.5l2.1.8c.6.2 1 0.8 1 1.5v2.2c0 .9-.7 1.7-1.6 1.7C11.2 21.1 2.9 12.8 2.9 5.4c0-.9.7-1.6 1.7-1.6h2.6Z"
+              stroke="#6b7280" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        `;
+      }
+
+      function svgMail() {
+        return `
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4.5 7.5h15v9a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-9Z"
+              stroke="#6b7280" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="m5.2 8.2 6.2 5a1 1 0 0 0 1.2 0l6.2-5"
+              stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        `;
+      }
+
+      function makePill(label, href, iconSvg, iconStyle) {
+        const a = document.createElement("a");
+        a.className = "ppPill";
+        a.href = href;
+        a.innerHTML = `<span class="ppIcon" style="${iconStyle || ""}">${iconSvg}</span><span>${label}</span>`;
+        return a;
+      }
+
       const wrap = document.createElement("div");
       wrap.id = PILL_ID;
-
-      // defaults
       wrap.style.top = "110px";
       wrap.style.right = "18px";
 
-      
-      // WhatsApp link
-      const wa = document.createElement("a");
-      wa.className = "ppPill";
-      const waMsg = encodeURIComponent("Namaste 🙏 I want a Guided Start / demo.");
-      wa.href = `https://wa.me/919335874326?text=${waMsg}`;
+      const waMsg = encodeURIComponent("Namaste 🙏 I have a question / requirement.");
+      const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`;
+      const callHref = `tel:${CALL_NUMBER}`;
+      const mailHref = `mailto:${EMAIL}?subject=${encodeURIComponent("Request from Learning Sutras")}&body=${encodeURIComponent("Namaste 🙏\n\nI want help with:\n\n")}`;
+
+      const wa = makePill(
+        "WhatsApp",
+        waHref,
+        svgChat(),
+        "background: rgba(34,197,94,0.10); border-color: rgba(34,197,94,0.20)"
+      );
       wa.target = "_blank";
       wa.rel = "noopener";
-      wa.innerHTML = `
-        <span class="ppIcon" style="background: rgba(34,197,94,0.10); border-color: rgba(34,197,94,0.20)">${svgChat()}</span>
-        <span>WhatsApp</span>
-      `;
 
-       
+      const call = makePill(
+        "Call me",
+        callHref,
+        svgPhone(),
+        "background: rgba(59,130,246,0.10); border-color: rgba(59,130,246,0.18)"
+      );
+
+      const mail = makePill(
+        "Email",
+        mailHref,
+        svgMail(),
+        "background: rgba(168,85,247,0.10); border-color: rgba(168,85,247,0.18)"
+      );
+
       wrap.appendChild(wa);
+      wrap.appendChild(call);
+      wrap.appendChild(mail);
       document.body.appendChild(wrap);
 
       // restore position
@@ -633,8 +678,10 @@
 
       // drag logic (pointer)
       let dragging = false;
-      let startPX = 0, startPY = 0;
-      let origL = 0, origT = 0;
+      let startPX = 0,
+        startPY = 0;
+      let origL = 0,
+        origT = 0;
       let moved = 0;
 
       function getRect() {
@@ -642,11 +689,9 @@
       }
 
       function startDrag(ev) {
-        // only primary click
         if (ev.button !== undefined && ev.button !== 0) return;
 
         const rect = getRect();
-        // switch to left/top for drag
         wrap.style.left = rect.left + "px";
         wrap.style.top = rect.top + "px";
         wrap.style.right = "auto";
@@ -661,7 +706,9 @@
         origL = rect.left;
         origT = rect.top;
 
-        try { wrap.setPointerCapture(ev.pointerId); } catch {}
+        try {
+          wrap.setPointerCapture(ev.pointerId);
+        } catch {}
         ev.preventDefault();
       }
 
@@ -696,11 +743,12 @@
 
         setTimeout(() => (wrap.dataset.dragged = "0"), 80);
 
-        try { wrap.releasePointerCapture(ev.pointerId); } catch {}
+        try {
+          wrap.releasePointerCapture(ev.pointerId);
+        } catch {}
         ev.preventDefault();
       }
 
-      // prevent accidental click after drag
       function cancelClickIfDragged(e) {
         if (wrap.dataset.dragged === "1") {
           e.preventDefault();
@@ -708,14 +756,14 @@
         }
       }
 
-       
       wa.addEventListener("click", cancelClickIfDragged);
+      call.addEventListener("click", cancelClickIfDragged);
+      mail.addEventListener("click", cancelClickIfDragged);
 
       wrap.addEventListener("pointerdown", startDrag);
       window.addEventListener("pointermove", moveDrag, { passive: false });
       window.addEventListener("pointerup", endDrag, { passive: false });
 
-      // re-clamp helper for resize
       function reclamp() {
         const rect = getRect();
         const maxLeft = Math.max(8, window.innerWidth - rect.width - 8);
@@ -728,7 +776,6 @@
         pillWrite({ left: Math.round(left), top: Math.round(top) });
       }
 
-      // expose small hook used by pageSearch resize listener
       window.PP__FloatingPills = window.PP__FloatingPills || {};
       window.PP__FloatingPills._reclamp = reclamp;
     })();
