@@ -608,10 +608,10 @@
 
       // Guided Start link: (1) if you have #guided-start, it'll scroll to it
       // else it will just go to top safely.
-      const guided = document.createElement("a");
-      guided.className = "ppPill";
-      guided.href = "#guided-start";
-      guided.innerHTML = `<span class="ppIcon">${svgCompass()}</span><span>Guided Start</span>`;
+      // const guided = document.createElement("a");
+      // guided.className = "ppPill";
+      // guided.href = "#guided-start";
+      // guided.innerHTML = `<span class="ppIcon">${svgCompass()}</span><span>Guided Start</span>`;
 
       // WhatsApp link
       const wa = document.createElement("a");
@@ -625,7 +625,7 @@
         <span>WhatsApp</span>
       `;
 
-      wrap.appendChild(guided);
+      // wrap.appendChild(guided);
       wrap.appendChild(wa);
       document.body.appendChild(wrap);
 
