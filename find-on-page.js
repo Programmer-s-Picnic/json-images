@@ -6,6 +6,9 @@
    Added:
    (2) Per-page position key (URL-based)
    (3) Remember collapsed / expanded state
+
+   PATCH:
+   (4) Floating movable "Guided Start / WhatsApp" pills (per-page position)
 */
 
 (function () {
@@ -179,6 +182,78 @@
             width: calc(100% - 20px);
           }
         }
+
+        /* ==============================
+           (4) FLOATING PILLS (Movable)
+           ============================== */
+
+        #ppFloatingPills{
+          position: fixed;
+          top: 110px;
+          right: 18px;
+          z-index: 999998; /* below page search */
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: none;
+        }
+
+        #ppFloatingPills.ppDrag{
+          opacity: .96;
+          cursor: grabbing;
+        }
+
+        #ppFloatingPills .ppPill{
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 18px;
+          border-radius: 999px;
+          border: 1px solid rgba(15, 23, 42, 0.10);
+          background: rgba(255,255,255,0.92);
+          backdrop-filter: blur(10px) saturate(120%);
+          box-shadow:
+            0 18px 40px rgba(8, 36, 64, 0.10),
+            inset 0 1px 0 rgba(255,255,255,0.6);
+          font-family: "Segoe UI", system-ui, sans-serif;
+          font-weight: 800;
+          color: #111827;
+          text-decoration: none;
+          cursor: pointer;
+          min-width: 200px;
+          justify-content: center;
+          transition: transform .12s ease, box-shadow .12s ease;
+        }
+
+        #ppFloatingPills .ppPill:hover{
+          transform: translateY(-1px);
+          box-shadow:
+            0 22px 46px rgba(8, 36, 64, 0.12),
+            inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+
+        #ppFloatingPills .ppPill:active{
+          transform: translateY(0) scale(.99);
+        }
+
+        #ppFloatingPills .ppIcon{
+          width: 28px;
+          height: 28px;
+          border-radius: 999px;
+          display: grid;
+          place-items: center;
+          background: rgba(245, 158, 11, 0.12);
+          border: 1px solid rgba(217, 119, 6, 0.18);
+          flex: 0 0 auto;
+        }
+
+        #ppFloatingPills .ppIcon svg{ width: 18px; height: 18px; }
+
+        @media (max-width:520px){
+          #ppFloatingPills .ppPill{ min-width: 170px; padding: 12px 14px; }
+        }
       `;
       document.head.appendChild(style);
     }
@@ -245,7 +320,6 @@
 
       // restore position
       if (typeof s.left === "number" && typeof s.top === "number") {
-        // keep box on-screen
         const rect = box.getBoundingClientRect();
         const maxLeft = Math.max(0, window.innerWidth - rect.width);
         const maxTop = Math.max(0, window.innerHeight - rect.height);
@@ -319,7 +393,6 @@
           const startIndex = lower.indexOf(q);
           if (startIndex === -1) break;
 
-          // split into [before][match][after]
           const before = textNode.splitText(startIndex);
           const after = before.splitText(query.length);
 
@@ -330,7 +403,7 @@
           before.parentNode.replaceChild(span, before);
           matches.push(span);
 
-          textNode = after; // continue search in remaining text
+          textNode = after;
         }
       });
 
@@ -364,7 +437,6 @@
     input.addEventListener("input", () => highlight(input.value.trim()));
 
     input.addEventListener("focus", () => {
-      // If user taps into input somehow, ensure expanded
       if (box.classList.contains("collapsed")) setCollapsed(false);
     });
 
@@ -389,13 +461,10 @@
       if (act === "close") {
         input.value = "";
         clearHighlights();
-        // keep state saved (position+collapsed) unless you want to remove it:
-        // localStorage.removeItem(STORAGE_KEY);
         box.remove();
       }
     });
 
-    // Tap title area to expand/collapse (nice on mobile)
     box.querySelector(".title").addEventListener("click", () => {
       setCollapsed(!box.classList.contains("collapsed"));
     });
@@ -435,7 +504,6 @@
       const nextLeft = boxX + (x - startX);
       const nextTop = boxY + (y - startY);
 
-      // keep visible while dragging
       const rect = box.getBoundingClientRect();
       const maxLeft = Math.max(0, window.innerWidth - rect.width);
       const maxTop = Math.max(0, window.innerHeight - rect.height);
@@ -449,12 +517,10 @@
       isDragging = false;
       box.classList.remove("dragging");
 
-      // Save position (2) per-page
       const rect = box.getBoundingClientRect();
       writeState({ left: rect.left, top: rect.top });
     }
 
-    // Only drag when starting on the panel background (not input/buttons/content)
     box.addEventListener("mousedown", e => {
       if (e.target.closest("input,button,.content")) return;
       dragStart(e.clientX, e.clientY);
@@ -477,15 +543,201 @@
 
     document.addEventListener("touchend", dragEnd);
 
-    // Update clamp on resize (keeps box on-screen)
     window.addEventListener("resize", () => {
       const s = readState();
       if (!s || typeof s.left !== "number" || typeof s.top !== "number") return;
       applyState();
+      // also keep floating pills on-screen
+      if (window.PP__FloatingPills && window.PP__FloatingPills._reclamp) {
+        window.PP__FloatingPills._reclamp();
+      }
     });
 
-    // Start focused if expanded
     if (!box.classList.contains("collapsed")) input.focus();
+
+    /* =========================================================
+       (4) FLOATING MOVABLE "Guided Start / WhatsApp" PILLS
+       ========================================================= */
+
+    (function initFloatingPills() {
+      const PILL_ID = "ppFloatingPills";
+      const PILL_STORE = `ppFloatingPillsState::${PAGE_KEY}`;
+      if (document.getElementById(PILL_ID)) return;
+
+      function pillRead() {
+        try {
+          const raw = localStorage.getItem(PILL_STORE);
+          return raw ? JSON.parse(raw) : null;
+        } catch {
+          return null;
+        }
+      }
+
+      function pillWrite(patch) {
+        const prev = pillRead() || {};
+        const next = { ...prev, ...patch };
+        try { localStorage.setItem(PILL_STORE, JSON.stringify(next)); } catch {}
+      }
+
+      function svgCompass() {
+        return `
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z" stroke="#b45309" stroke-width="1.8"/>
+            <path d="M14.8 9.2 13 13l-3.8 1.8L11 11l3.8-1.8Z" fill="#d97706"/>
+            <path d="M12 6v1.6" stroke="#b45309" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        `;
+      }
+
+      function svgChat() {
+        return `
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7.5 18.2 4 20V6.8A3.8 3.8 0 0 1 7.8 3h8.4A3.8 3.8 0 0 1 20 6.8v6.6a3.8 3.8 0 0 1-3.8 3.8H7.5Z"
+              stroke="#6b7280" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M7.6 9.2h8.8M7.6 12.2h6.2" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        `;
+      }
+
+      const wrap = document.createElement("div");
+      wrap.id = PILL_ID;
+
+      // defaults
+      wrap.style.top = "110px";
+      wrap.style.right = "18px";
+
+      // Guided Start link: (1) if you have #guided-start, it'll scroll to it
+      // else it will just go to top safely.
+      const guided = document.createElement("a");
+      guided.className = "ppPill";
+      guided.href = "#guided-start";
+      guided.innerHTML = `<span class="ppIcon">${svgCompass()}</span><span>Guided Start</span>`;
+
+      // WhatsApp link
+      const wa = document.createElement("a");
+      wa.className = "ppPill";
+      const waMsg = encodeURIComponent("Namaste 🙏 I want a Guided Start / demo.");
+      wa.href = `https://wa.me/919335874326?text=${waMsg}`;
+      wa.target = "_blank";
+      wa.rel = "noopener";
+      wa.innerHTML = `
+        <span class="ppIcon" style="background: rgba(34,197,94,0.10); border-color: rgba(34,197,94,0.20)">${svgChat()}</span>
+        <span>WhatsApp</span>
+      `;
+
+      wrap.appendChild(guided);
+      wrap.appendChild(wa);
+      document.body.appendChild(wrap);
+
+      // restore position
+      const saved = pillRead();
+      if (saved && typeof saved.left === "number" && typeof saved.top === "number") {
+        wrap.style.left = saved.left + "px";
+        wrap.style.top = saved.top + "px";
+        wrap.style.right = "auto";
+      }
+
+      // drag logic (pointer)
+      let dragging = false;
+      let startPX = 0, startPY = 0;
+      let origL = 0, origT = 0;
+      let moved = 0;
+
+      function getRect() {
+        return wrap.getBoundingClientRect();
+      }
+
+      function startDrag(ev) {
+        // only primary click
+        if (ev.button !== undefined && ev.button !== 0) return;
+
+        const rect = getRect();
+        // switch to left/top for drag
+        wrap.style.left = rect.left + "px";
+        wrap.style.top = rect.top + "px";
+        wrap.style.right = "auto";
+
+        dragging = true;
+        moved = 0;
+        wrap.classList.add("ppDrag");
+        wrap.dataset.dragged = "0";
+
+        startPX = ev.clientX;
+        startPY = ev.clientY;
+        origL = rect.left;
+        origT = rect.top;
+
+        try { wrap.setPointerCapture(ev.pointerId); } catch {}
+        ev.preventDefault();
+      }
+
+      function moveDrag(ev) {
+        if (!dragging) return;
+
+        const dx = ev.clientX - startPX;
+        const dy = ev.clientY - startPY;
+        moved = Math.max(moved, Math.abs(dx) + Math.abs(dy));
+
+        const rect = getRect();
+        const maxLeft = Math.max(8, window.innerWidth - rect.width - 8);
+        const maxTop = Math.max(8, window.innerHeight - rect.height - 8);
+
+        const nextLeft = clamp(origL + dx, 8, maxLeft);
+        const nextTop = clamp(origT + dy, 8, maxTop);
+
+        wrap.style.left = nextLeft + "px";
+        wrap.style.top = nextTop + "px";
+
+        if (moved > 8) wrap.dataset.dragged = "1";
+        ev.preventDefault();
+      }
+
+      function endDrag(ev) {
+        if (!dragging) return;
+        dragging = false;
+        wrap.classList.remove("ppDrag");
+
+        const rect = getRect();
+        pillWrite({ left: Math.round(rect.left), top: Math.round(rect.top) });
+
+        setTimeout(() => (wrap.dataset.dragged = "0"), 80);
+
+        try { wrap.releasePointerCapture(ev.pointerId); } catch {}
+        ev.preventDefault();
+      }
+
+      // prevent accidental click after drag
+      function cancelClickIfDragged(e) {
+        if (wrap.dataset.dragged === "1") {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+
+      guided.addEventListener("click", cancelClickIfDragged);
+      wa.addEventListener("click", cancelClickIfDragged);
+
+      wrap.addEventListener("pointerdown", startDrag);
+      window.addEventListener("pointermove", moveDrag, { passive: false });
+      window.addEventListener("pointerup", endDrag, { passive: false });
+
+      // re-clamp helper for resize
+      function reclamp() {
+        const rect = getRect();
+        const maxLeft = Math.max(8, window.innerWidth - rect.width - 8);
+        const maxTop = Math.max(8, window.innerHeight - rect.height - 8);
+        const left = clamp(rect.left, 8, maxLeft);
+        const top = clamp(rect.top, 8, maxTop);
+        wrap.style.left = left + "px";
+        wrap.style.top = top + "px";
+        wrap.style.right = "auto";
+        pillWrite({ left: Math.round(left), top: Math.round(top) });
+      }
+
+      // expose small hook used by pageSearch resize listener
+      window.PP__FloatingPills = window.PP__FloatingPills || {};
+      window.PP__FloatingPills._reclamp = reclamp;
+    })();
   }
 
   /* ---------- SAFE INIT ---------- */
