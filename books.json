@@ -1,0 +1,21 @@
+{
+  "books":[
+    {
+  "sno":1,
+  "name":"The Recursion Sutras: Data Structures using Recursion. No Iterative Loops.",
+  "author":"Champak Roy",
+  "price":299,
+  "link":"https://www.amazon.in/Recursion-Sutras-Structures-Recursion-Iterative-ebook/dp/B079QJLD73",
+      "isbn-13":"978-1980250265"
+    }
+    ,
+    {
+  "sno":2,
+  "name":"Object Oriented Programing in Java?: Explaining and Illustrating Object Oriented Programming in Java.",
+  "author":"Champak Roy",
+  "price":399,
+  "link":"https://www.amazon.in/Object-Oriented-Programing-Java-Illustrating-ebook/dp/B07SRQ8JJ5?ref_=ast_author_mpb",
+      "isbn-13":"978-1072916376"
+    }
+  ]
+}
