@@ -6,7 +6,8 @@
   "author":"Champak Roy",
   "price":299,
   "link":"https://www.amazon.in/Recursion-Sutras-Structures-Recursion-Iterative-ebook/dp/B079QJLD73",
-      "isbn-13":"978-1980250265"
+      "isbn-13":"978-1980250265",
+      "cover-image":"https://m.media-amazon.com/images/I/61kq1P5YYrL._SL1360_.jpg"
     }
     ,
     {
@@ -15,7 +16,8 @@
   "author":"Champak Roy",
   "price":399,
   "link":"https://www.amazon.in/Object-Oriented-Programing-Java-Illustrating-ebook/dp/B07SRQ8JJ5?ref_=ast_author_mpb",
-      "isbn-13":"978-1072916376"
+      "isbn-13":"978-1072916376",
+      "cover-image":"https://m.media-amazon.com/images/I/71IhjIt5BwL._SL1500_.jpg"
     }
   ]
 }
