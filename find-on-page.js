@@ -6,7 +6,8 @@
    Includes:
    - Per-page position key (URL-based)
    - Remember collapsed / expanded state
-   - Movable floating pills: WhatsApp, Call Me, Email (Guided Start removed)
+   - Movable floating pills: WhatsApp, Call Me, Email
+   - Read Full Page option using Speech Synthesis
 */
 
 (function () {
@@ -37,6 +38,8 @@
 
     let matches = [];
     let activeIndex = -1;
+    let isReading = false;
+    let currentUtterance = null;
 
     /* ---------- STYLES ---------- */
     if (!document.getElementById(STYLE_ID)) {
@@ -59,7 +62,7 @@
           font-family: "Segoe UI", system-ui, sans-serif;
           cursor: grab;
           user-select: none;
-          touch-action: none; /* helps drag on touch */
+          touch-action: none;
         }
 
         #${SEARCH_BOX_ID}.dragging{
@@ -107,12 +110,15 @@
           color: #6b4308;
           user-select: none;
           margin-top: 8px;
+          gap: 8px;
+          flex-wrap: wrap;
         }
 
         #${SEARCH_BOX_ID} .btns{
           display:flex;
           gap:6px;
           align-items:center;
+          flex-wrap: wrap;
         }
 
         #${SEARCH_BOX_ID} button{
@@ -156,6 +162,11 @@
           text-overflow: ellipsis;
         }
 
+        #${SEARCH_BOX_ID} .readBtn.reading{
+          background: linear-gradient(to bottom,#ffe1cc,#ffb88a);
+          border-color: rgba(200,90,40,.45);
+        }
+
         /* Collapsed state */
         #${SEARCH_BOX_ID}.collapsed{
           width: 220px;
@@ -196,7 +207,7 @@
           position: fixed;
           top: 110px;
           right: 18px;
-          z-index: 999998; /* below page search */
+          z-index: 999998;
           display: flex;
           flex-direction: column;
           gap: 12px;
@@ -280,6 +291,7 @@
             <button data-act="prev" title="Previous (Shift+Enter)">◀</button>
             <button data-act="next" title="Next (Enter)">▶</button>
             <button data-act="clear" title="Clear (Esc)">Clear</button>
+            <button class="readBtn" data-act="read" title="Read the full page">🔊 Read Page</button>
           </div>
           <div id="pageSearchCount">0 / 0</div>
         </div>
@@ -290,6 +302,7 @@
     const input = box.querySelector("input");
     const countEl = box.querySelector("#pageSearchCount");
     const toggleBtn = box.querySelector('button[data-act="toggle"]');
+    const readBtn = box.querySelector('button[data-act="read"]');
 
     /* ---------- STATE (position + collapsed) ---------- */
     function clamp(n, min, max) {
@@ -317,13 +330,11 @@
       const s = readState();
       if (!s) return;
 
-      // restore collapsed
       if (typeof s.collapsed === "boolean") {
         box.classList.toggle("collapsed", s.collapsed);
         toggleBtn.textContent = s.collapsed ? "▸" : "▾";
       }
 
-      // restore position
       if (typeof s.left === "number" && typeof s.top === "number") {
         const rect = box.getBoundingClientRect();
         const maxLeft = Math.max(0, window.innerWidth - rect.width);
@@ -359,6 +370,7 @@
       const p = node.parentElement;
       if (!p) return true;
       if (p.closest(`#${SEARCH_BOX_ID}`)) return true;
+      if (p.closest("#ppFloatingPills")) return true;
       if (IGNORE_TAGS.has(p.tagName)) return true;
       if (!node.nodeValue || !node.nodeValue.trim()) return true;
       return false;
@@ -425,6 +437,98 @@
       countEl.textContent = `${i + 1} / ${matches.length}`;
     }
 
+    /* ---------- READ FULL PAGE ---------- */
+    function getPageTextForReading() {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          return shouldSkipTextNode(node)
+            ? NodeFilter.FILTER_REJECT
+            : NodeFilter.FILTER_ACCEPT;
+        },
+      });
+
+      const parts = [];
+      let node;
+      while ((node = walker.nextNode())) {
+        const text = (node.nodeValue || "").replace(/\s+/g, " ").trim();
+        if (text) parts.push(text);
+      }
+
+      return parts.join(". ");
+    }
+
+    function updateReadButton() {
+      if (!readBtn) return;
+      if (isReading) {
+        readBtn.textContent = "⏹ Stop";
+        readBtn.classList.add("reading");
+        readBtn.title = "Stop reading";
+      } else {
+        readBtn.textContent = "🔊 Read Page";
+        readBtn.classList.remove("reading");
+        readBtn.title = "Read the full page";
+      }
+    }
+
+    function stopReading() {
+      try {
+        window.speechSynthesis.cancel();
+      } catch {}
+      isReading = false;
+      currentUtterance = null;
+      updateReadButton();
+    }
+
+    function startReading() {
+      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+        alert("Text-to-speech is not supported in this browser.");
+        return;
+      }
+
+      const text = getPageTextForReading();
+      if (!text) {
+        alert("No readable text found on this page.");
+        return;
+      }
+
+      stopReading();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      utterance.lang = document.documentElement.lang || "en-IN";
+
+      utterance.onstart = function () {
+        isReading = true;
+        currentUtterance = utterance;
+        updateReadButton();
+      };
+
+      utterance.onend = function () {
+        isReading = false;
+        currentUtterance = null;
+        updateReadButton();
+      };
+
+      utterance.onerror = function () {
+        isReading = false;
+        currentUtterance = null;
+        updateReadButton();
+      };
+
+      currentUtterance = utterance;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function toggleReadPage() {
+      if (isReading || window.speechSynthesis.speaking) {
+        stopReading();
+      } else {
+        startReading();
+      }
+    }
+
     /* ---------- COLLAPSE / EXPAND ---------- */
     function setCollapsed(collapsed) {
       box.classList.toggle("collapsed", collapsed);
@@ -454,9 +558,14 @@
         input.focus();
       }
 
+      if (act === "read") {
+        toggleReadPage();
+      }
+
       if (act === "toggle") setCollapsed(!box.classList.contains("collapsed"));
 
       if (act === "close") {
+        stopReading();
         input.value = "";
         clearHighlights();
         box.remove();
@@ -561,6 +670,7 @@
     });
 
     if (!box.classList.contains("collapsed")) input.focus();
+    updateReadButton();
 
     /* =========================================================
        FLOATING MOVABLE "WhatsApp / Call / Email" PILLS
@@ -668,7 +778,6 @@
       wrap.appendChild(mail);
       document.body.appendChild(wrap);
 
-      // restore position
       const saved = pillRead();
       if (saved && typeof saved.left === "number" && typeof saved.top === "number") {
         wrap.style.left = saved.left + "px";
@@ -676,7 +785,6 @@
         wrap.style.right = "auto";
       }
 
-      // drag logic (pointer)
       let dragging = false;
       let startPX = 0,
         startPY = 0;
