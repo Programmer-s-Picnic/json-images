@@ -440,7 +440,7 @@
       <div class="pp-wrap">
         <div class="pp-head">
           <div>
-            <h2 class="pp-title">Computers Section</h2>
+            <h2 class="pp-title">Computers Section on Amazon</h2>
             <p class="pp-subtitle">
               A non-gaming computers section with randomly selected product ideas for laptops, desktops,
               monitors, storage, accessories, printers, and more.
