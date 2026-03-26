@@ -7,7 +7,7 @@
    - Per-page position key (URL-based)
    - Remember collapsed / expanded state
    - Movable floating pills: WhatsApp, Call Me, Email
-   - Read Full Page option using Speech Synthesis
+   - Read Full Page option with Read / Pause / Resume / Stop
 */
 
 (function () {
@@ -38,7 +38,8 @@
 
     let matches = [];
     let activeIndex = -1;
-    let isReading = false;
+
+    let readStateMode = "idle"; // idle | speaking | paused
     let currentUtterance = null;
 
     /* ---------- STYLES ---------- */
@@ -51,7 +52,7 @@
           top: 14px;
           right: 14px;
           z-index: 999999;
-          width: 350px;
+          width: 390px;
           background: linear-gradient(145deg,#fffaf2,#fff1d6);
           backdrop-filter: blur(8px);
           border-radius: 16px;
@@ -143,6 +144,12 @@
           transform: translateY(0);
         }
 
+        #${SEARCH_BOX_ID} button[disabled]{
+          opacity:.55;
+          cursor:not-allowed;
+          transform:none;
+        }
+
         #${SEARCH_BOX_ID} .mini{
           padding: 5px 9px;
           border-radius: 10px;
@@ -162,9 +169,27 @@
           text-overflow: ellipsis;
         }
 
-        #${SEARCH_BOX_ID} .readBtn.reading{
+        #${SEARCH_BOX_ID} .readPrimary.reading{
+          background: linear-gradient(to bottom,#dff7df,#bce9bc);
+          border-color: rgba(34,120,34,.35);
+        }
+
+        #${SEARCH_BOX_ID} .readPause.paused{
+          background: linear-gradient(to bottom,#fff0c9,#ffd97d);
+          border-color: rgba(200,140,40,.45);
+        }
+
+        #${SEARCH_BOX_ID} .readStop.stopActive{
           background: linear-gradient(to bottom,#ffe1cc,#ffb88a);
           border-color: rgba(200,90,40,.45);
+        }
+
+        #${SEARCH_BOX_ID} .readStatus{
+          margin-top: 7px;
+          font-size: 11px;
+          color: #7a520a;
+          min-height: 16px;
+          user-select: none;
         }
 
         /* Collapsed state */
@@ -291,10 +316,13 @@
             <button data-act="prev" title="Previous (Shift+Enter)">◀</button>
             <button data-act="next" title="Next (Enter)">▶</button>
             <button data-act="clear" title="Clear (Esc)">Clear</button>
-            <button class="readBtn" data-act="read" title="Read the full page">🔊 Read Page</button>
+            <button class="readPrimary" data-act="read" title="Read the full page">🔊 Read</button>
+            <button class="readPause" data-act="pause" title="Pause reading">⏸ Pause</button>
+            <button class="readStop" data-act="stop" title="Stop reading">⏹ Stop</button>
           </div>
           <div id="pageSearchCount">0 / 0</div>
         </div>
+        <div class="readStatus" id="pageReadStatus">Reader: idle</div>
       </div>
     `;
     document.body.appendChild(box);
@@ -303,6 +331,9 @@
     const countEl = box.querySelector("#pageSearchCount");
     const toggleBtn = box.querySelector('button[data-act="toggle"]');
     const readBtn = box.querySelector('button[data-act="read"]');
+    const pauseBtn = box.querySelector('button[data-act="pause"]');
+    const stopBtn = box.querySelector('button[data-act="stop"]');
+    const readStatusEl = box.querySelector("#pageReadStatus");
 
     /* ---------- STATE (position + collapsed) ---------- */
     function clamp(n, min, max) {
@@ -457,37 +488,78 @@
       return parts.join(". ");
     }
 
-    function updateReadButton() {
-      if (!readBtn) return;
-      if (isReading) {
-        readBtn.textContent = "⏹ Stop";
-        readBtn.classList.add("reading");
-        readBtn.title = "Stop reading";
-      } else {
-        readBtn.textContent = "🔊 Read Page";
-        readBtn.classList.remove("reading");
-        readBtn.title = "Read the full page";
+    function updateReadUI() {
+      const ttsSupported =
+        "speechSynthesis" in window &&
+        typeof window.speechSynthesis !== "undefined" &&
+        typeof SpeechSynthesisUtterance !== "undefined";
+
+      if (!ttsSupported) {
+        readBtn.disabled = true;
+        pauseBtn.disabled = true;
+        stopBtn.disabled = true;
+        readStatusEl.textContent = "Reader: not supported in this browser";
+        return;
       }
+
+      readBtn.classList.remove("reading");
+      pauseBtn.classList.remove("paused");
+      stopBtn.classList.remove("stopActive");
+
+      if (readStateMode === "idle") {
+        readBtn.textContent = "🔊 Read";
+        readBtn.title = "Read the full page";
+        readBtn.disabled = false;
+        pauseBtn.textContent = "⏸ Pause";
+        pauseBtn.disabled = true;
+        stopBtn.disabled = true;
+        readStatusEl.textContent = "Reader: idle";
+      } else if (readStateMode === "speaking") {
+        readBtn.textContent = "🔊 Reading";
+        readBtn.title = "Reading in progress";
+        readBtn.disabled = true;
+        readBtn.classList.add("reading");
+        pauseBtn.textContent = "⏸ Pause";
+        pauseBtn.disabled = false;
+        stopBtn.disabled = false;
+        stopBtn.classList.add("stopActive");
+        readStatusEl.textContent = "Reader: speaking";
+      } else if (readStateMode === "paused") {
+        readBtn.textContent = "▶ Resume";
+        readBtn.title = "Resume reading";
+        readBtn.disabled = false;
+        pauseBtn.textContent = "⏸ Paused";
+        pauseBtn.disabled = true;
+        pauseBtn.classList.add("paused");
+        stopBtn.disabled = false;
+        stopBtn.classList.add("stopActive");
+        readStatusEl.textContent = "Reader: paused";
+      }
+    }
+
+    function setReadMode(mode) {
+      readStateMode = mode;
+      updateReadUI();
     }
 
     function stopReading() {
       try {
         window.speechSynthesis.cancel();
       } catch {}
-      isReading = false;
       currentUtterance = null;
-      updateReadButton();
+      setReadMode("idle");
     }
 
     function startReading() {
       if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
-        alert("Text-to-speech is not supported in this browser.");
+        setReadMode("idle");
         return;
       }
 
       const text = getPageTextForReading();
       if (!text) {
         alert("No readable text found on this page.");
+        setReadMode("idle");
         return;
       }
 
@@ -500,32 +572,43 @@
       utterance.lang = document.documentElement.lang || "en-IN";
 
       utterance.onstart = function () {
-        isReading = true;
         currentUtterance = utterance;
-        updateReadButton();
+        setReadMode("speaking");
       };
 
       utterance.onend = function () {
-        isReading = false;
         currentUtterance = null;
-        updateReadButton();
+        setReadMode("idle");
       };
 
       utterance.onerror = function () {
-        isReading = false;
         currentUtterance = null;
-        updateReadButton();
+        setReadMode("idle");
       };
 
       currentUtterance = utterance;
       window.speechSynthesis.speak(utterance);
     }
 
-    function toggleReadPage() {
-      if (isReading || window.speechSynthesis.speaking) {
-        stopReading();
-      } else {
-        startReading();
+    function pauseReading() {
+      if (!("speechSynthesis" in window)) return;
+      if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+        try {
+          window.speechSynthesis.pause();
+          setReadMode("paused");
+        } catch {}
+      }
+    }
+
+    function resumeReading() {
+      if (!("speechSynthesis" in window)) return;
+      if (window.speechSynthesis.paused) {
+        try {
+          window.speechSynthesis.resume();
+          setReadMode("speaking");
+        } catch {}
+      } else if (readStateMode === "paused") {
+        setReadMode("speaking");
       }
     }
 
@@ -559,7 +642,16 @@
       }
 
       if (act === "read") {
-        toggleReadPage();
+        if (readStateMode === "paused") resumeReading();
+        else if (readStateMode === "idle") startReading();
+      }
+
+      if (act === "pause") {
+        pauseReading();
+      }
+
+      if (act === "stop") {
+        stopReading();
       }
 
       if (act === "toggle") setCollapsed(!box.classList.contains("collapsed"));
@@ -670,7 +762,7 @@
     });
 
     if (!box.classList.contains("collapsed")) input.focus();
-    updateReadButton();
+    updateReadUI();
 
     /* =========================================================
        FLOATING MOVABLE "WhatsApp / Call / Email" PILLS
@@ -778,6 +870,7 @@
       wrap.appendChild(mail);
       document.body.appendChild(wrap);
 
+      // restore position
       const saved = pillRead();
       if (saved && typeof saved.left === "number" && typeof saved.top === "number") {
         wrap.style.left = saved.left + "px";
@@ -785,6 +878,7 @@
         wrap.style.right = "auto";
       }
 
+      // drag logic (pointer)
       let dragging = false;
       let startPX = 0,
         startPY = 0;
