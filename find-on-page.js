@@ -1,13 +1,13 @@
 /* page-search-auto-saffron.js
    Auto-visible text search (CASE-INSENSITIVE, NO REGEX)
    Light Saffron Theme
-   Stable Next / Prev + Drag to Move (Option 1)
+   Stable Next / Prev + Drag to Move
 
    Includes:
    - Per-page position key (URL-based)
    - Remember collapsed / expanded state
    - Movable floating pills: WhatsApp, Call Me, Email
-   - Read Full Page option with Read / Pause / Resume / Stop
+   - Read Full Page option with chunked Speech Synthesis
 */
 
 (function () {
@@ -16,15 +16,12 @@
   const SEARCH_BOX_ID = "pageSearchBox";
   const STYLE_ID = "pageSearchBoxStyle";
 
-  // Prevent double-init
   if (document.getElementById(SEARCH_BOX_ID)) return;
 
-  // Per-page key (pathname + query, excludes hash so anchors don't create new keys)
   const PAGE_KEY = `${location.origin}${location.pathname}${location.search}`;
   const STORAGE_KEY = `pageSearchBoxState::${PAGE_KEY}`;
 
   function initPageSearch() {
-    /* ---------- CONFIG ---------- */
     const IGNORE_TAGS = new Set([
       "SCRIPT",
       "STYLE",
@@ -39,10 +36,12 @@
     let matches = [];
     let activeIndex = -1;
 
-    let readStateMode = "idle"; // idle | speaking | paused
+    let readMode = "idle"; // idle | speaking | paused
+    let speechChunks = [];
+    let speechIndex = 0;
     let currentUtterance = null;
+    let selectedVoice = null;
 
-    /* ---------- STYLES ---------- */
     if (!document.getElementById(STYLE_ID)) {
       const style = document.createElement("style");
       style.id = STYLE_ID;
@@ -192,7 +191,6 @@
           user-select: none;
         }
 
-        /* Collapsed state */
         #${SEARCH_BOX_ID}.collapsed{
           width: 220px;
           padding: 10px;
@@ -222,11 +220,6 @@
             width: calc(100% - 20px);
           }
         }
-
-        /* ==============================
-           FLOATING PILLS (Movable)
-           WhatsApp / Call / Email
-           ============================== */
 
         #ppFloatingPills{
           position: fixed;
@@ -299,7 +292,6 @@
       document.head.appendChild(style);
     }
 
-    /* ---------- UI ---------- */
     const box = document.createElement("div");
     box.id = SEARCH_BOX_ID;
     box.innerHTML = `
@@ -335,12 +327,11 @@
     const stopBtn = box.querySelector('button[data-act="stop"]');
     const readStatusEl = box.querySelector("#pageReadStatus");
 
-    /* ---------- STATE (position + collapsed) ---------- */
     function clamp(n, min, max) {
       return Math.max(min, Math.min(max, n));
     }
 
-    function readState() {
+    function readStateStore() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         return raw ? JSON.parse(raw) : null;
@@ -350,7 +341,7 @@
     }
 
     function writeState(patch) {
-      const prev = readState() || {};
+      const prev = readStateStore() || {};
       const next = { ...prev, ...patch };
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
@@ -358,7 +349,7 @@
     }
 
     function applyState() {
-      const s = readState();
+      const s = readStateStore();
       if (!s) return;
 
       if (typeof s.collapsed === "boolean") {
@@ -371,18 +362,14 @@
         const maxLeft = Math.max(0, window.innerWidth - rect.width);
         const maxTop = Math.max(0, window.innerHeight - rect.height);
 
-        const left = clamp(s.left, 0, maxLeft);
-        const top = clamp(s.top, 0, maxTop);
-
-        box.style.left = left + "px";
-        box.style.top = top + "px";
+        box.style.left = clamp(s.left, 0, maxLeft) + "px";
+        box.style.top = clamp(s.top, 0, maxTop) + "px";
         box.style.right = "auto";
       }
     }
 
     applyState();
 
-    /* ---------- CLEAR ---------- */
     function clearHighlights() {
       document.querySelectorAll("span.pageSearchHit").forEach((span) => {
         const parent = span.parentNode;
@@ -396,7 +383,6 @@
       countEl.textContent = "0 / 0";
     }
 
-    /* ---------- HIGHLIGHT (NO REGEX) ---------- */
     function shouldSkipTextNode(node) {
       const p = node.parentElement;
       if (!p) return true;
@@ -453,7 +439,6 @@
       if (matches.length) gotoMatch(0);
     }
 
-    /* ---------- NAV ---------- */
     function gotoMatch(i) {
       if (!matches.length) return;
 
@@ -462,13 +447,12 @@
 
       matches.forEach((m) => m.classList.remove("pageSearchActive"));
       matches[i].classList.add("pageSearchActive");
-
       matches[i].scrollIntoView({ behavior: "smooth", block: "center" });
+
       activeIndex = i;
       countEl.textContent = `${i + 1} / ${matches.length}`;
     }
 
-    /* ---------- READ FULL PAGE ---------- */
     function getPageTextForReading() {
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
         acceptNode(node) {
@@ -488,13 +472,76 @@
       return parts.join(". ");
     }
 
+    function splitIntoSpeechChunks(text, maxLen = 180) {
+      const cleaned = text.replace(/\s+/g, " ").trim();
+      if (!cleaned) return [];
+
+      const sentences = cleaned.split(/(?<=[.!?।])\s+/);
+      const chunks = [];
+      let current = "";
+
+      for (const sentenceRaw of sentences) {
+        const sentence = sentenceRaw.trim();
+        if (!sentence) continue;
+
+        if (sentence.length <= maxLen) {
+          if (!current) {
+            current = sentence;
+          } else if ((current + " " + sentence).length <= maxLen) {
+            current += " " + sentence;
+          } else {
+            chunks.push(current);
+            current = sentence;
+          }
+        } else {
+          if (current) {
+            chunks.push(current);
+            current = "";
+          }
+
+          const words = sentence.split(" ");
+          let part = "";
+
+          for (const word of words) {
+            if (!part) {
+              part = word;
+            } else if ((part + " " + word).length <= maxLen) {
+              part += " " + word;
+            } else {
+              chunks.push(part);
+              part = word;
+            }
+          }
+
+          if (part) chunks.push(part);
+        }
+      }
+
+      if (current) chunks.push(current);
+      return chunks;
+    }
+
+    function getBestVoice() {
+      const synth = window.speechSynthesis;
+      const voices = synth.getVoices ? synth.getVoices() : [];
+      if (!voices || !voices.length) return null;
+
+      const langPrefs = ["en-IN", "hi-IN", "en-GB", "en-US", "en"];
+      for (const lang of langPrefs) {
+        const v = voices.find((x) => (x.lang || "").toLowerCase() === lang.toLowerCase());
+        if (v) return v;
+      }
+
+      return voices[0] || null;
+    }
+
     function updateReadUI() {
-      const ttsSupported =
+      const supported =
         "speechSynthesis" in window &&
         typeof window.speechSynthesis !== "undefined" &&
         typeof SpeechSynthesisUtterance !== "undefined";
 
-      if (!ttsSupported) {
+      if (!supported) {
         readBtn.disabled = true;
         pauseBtn.disabled = true;
         stopBtn.disabled = true;
@@ -506,70 +553,66 @@
       pauseBtn.classList.remove("paused");
       stopBtn.classList.remove("stopActive");
 
-      if (readStateMode === "idle") {
+      if (readMode === "idle") {
         readBtn.textContent = "🔊 Read";
-        readBtn.title = "Read the full page";
         readBtn.disabled = false;
         pauseBtn.textContent = "⏸ Pause";
         pauseBtn.disabled = true;
         stopBtn.disabled = true;
         readStatusEl.textContent = "Reader: idle";
-      } else if (readStateMode === "speaking") {
+      } else if (readMode === "speaking") {
         readBtn.textContent = "🔊 Reading";
-        readBtn.title = "Reading in progress";
         readBtn.disabled = true;
         readBtn.classList.add("reading");
         pauseBtn.textContent = "⏸ Pause";
         pauseBtn.disabled = false;
         stopBtn.disabled = false;
         stopBtn.classList.add("stopActive");
-        readStatusEl.textContent = "Reader: speaking";
-      } else if (readStateMode === "paused") {
+        readStatusEl.textContent = `Reader: speaking (${speechIndex + 1} / ${speechChunks.length})`;
+      } else if (readMode === "paused") {
         readBtn.textContent = "▶ Resume";
-        readBtn.title = "Resume reading";
         readBtn.disabled = false;
         pauseBtn.textContent = "⏸ Paused";
         pauseBtn.disabled = true;
         pauseBtn.classList.add("paused");
         stopBtn.disabled = false;
         stopBtn.classList.add("stopActive");
-        readStatusEl.textContent = "Reader: paused";
+        readStatusEl.textContent = `Reader: paused (${speechIndex + 1} / ${speechChunks.length})`;
       }
     }
 
     function setReadMode(mode) {
-      readStateMode = mode;
+      readMode = mode;
       updateReadUI();
+    }
+
+    function resetSpeechState() {
+      speechChunks = [];
+      speechIndex = 0;
+      currentUtterance = null;
     }
 
     function stopReading() {
       try {
         window.speechSynthesis.cancel();
       } catch {}
-      currentUtterance = null;
+      resetSpeechState();
       setReadMode("idle");
     }
 
-    function startReading() {
-      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
-        setReadMode("idle");
+    function speakCurrentChunk() {
+      if (!speechChunks.length || speechIndex >= speechChunks.length) {
+        stopReading();
         return;
       }
 
-      const text = getPageTextForReading();
-      if (!text) {
-        alert("No readable text found on this page.");
-        setReadMode("idle");
-        return;
-      }
-
-      stopReading();
-
+      const text = speechChunks[speechIndex];
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.rate = 1;
       utterance.pitch = 1;
       utterance.volume = 1;
-      utterance.lang = document.documentElement.lang || "en-IN";
+      utterance.lang = (selectedVoice && selectedVoice.lang) || document.documentElement.lang || "en-IN";
+      if (selectedVoice) utterance.voice = selectedVoice;
 
       utterance.onstart = function () {
         currentUtterance = utterance;
@@ -577,17 +620,54 @@
       };
 
       utterance.onend = function () {
-        currentUtterance = null;
-        setReadMode("idle");
+        if (readMode === "paused") return;
+        speechIndex += 1;
+        if (speechIndex < speechChunks.length) {
+          setTimeout(speakCurrentChunk, 40);
+        } else {
+          stopReading();
+        }
       };
 
       utterance.onerror = function () {
-        currentUtterance = null;
-        setReadMode("idle");
+        speechIndex += 1;
+        if (speechIndex < speechChunks.length) {
+          setTimeout(speakCurrentChunk, 40);
+        } else {
+          stopReading();
+        }
       };
 
       currentUtterance = utterance;
       window.speechSynthesis.speak(utterance);
+    }
+
+    function startReading() {
+      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+        updateReadUI();
+        return;
+      }
+
+      const text = getPageTextForReading();
+      if (!text) {
+        alert("No readable text found on this page.");
+        return;
+      }
+
+      selectedVoice = getBestVoice();
+      speechChunks = splitIntoSpeechChunks(text, 180);
+      speechIndex = 0;
+
+      if (!speechChunks.length) {
+        alert("No readable text found on this page.");
+        return;
+      }
+
+      try {
+        window.speechSynthesis.cancel();
+      } catch {}
+
+      speakCurrentChunk();
     }
 
     function pauseReading() {
@@ -602,25 +682,27 @@
 
     function resumeReading() {
       if (!("speechSynthesis" in window)) return;
+
       if (window.speechSynthesis.paused) {
         try {
           window.speechSynthesis.resume();
           setReadMode("speaking");
+          return;
         } catch {}
-      } else if (readStateMode === "paused") {
-        setReadMode("speaking");
+      }
+
+      if (readMode === "paused") {
+        speakCurrentChunk();
       }
     }
 
-    /* ---------- COLLAPSE / EXPAND ---------- */
-    function setCollapsed(collapsed) {
-      box.classList.toggle("collapsed", collapsed);
-      toggleBtn.textContent = collapsed ? "▸" : "▾";
-      writeState({ collapsed });
-      if (!collapsed) setTimeout(() => input && input.focus(), 0);
+    if ("speechSynthesis" in window && typeof window.speechSynthesis.onvoiceschanged !== "undefined") {
+      window.speechSynthesis.onvoiceschanged = function () {
+        selectedVoice = getBestVoice();
+      };
     }
+    selectedVoice = getBestVoice();
 
-    /* ---------- EVENTS ---------- */
     input.addEventListener("input", () => highlight(input.value.trim()));
 
     input.addEventListener("focus", () => {
@@ -642,17 +724,12 @@
       }
 
       if (act === "read") {
-        if (readStateMode === "paused") resumeReading();
-        else if (readStateMode === "idle") startReading();
+        if (readMode === "paused") resumeReading();
+        else if (readMode === "idle") startReading();
       }
 
-      if (act === "pause") {
-        pauseReading();
-      }
-
-      if (act === "stop") {
-        stopReading();
-      }
+      if (act === "pause") pauseReading();
+      if (act === "stop") stopReading();
 
       if (act === "toggle") setCollapsed(!box.classList.contains("collapsed"));
 
@@ -663,6 +740,13 @@
         box.remove();
       }
     });
+
+    function setCollapsed(collapsed) {
+      box.classList.toggle("collapsed", collapsed);
+      toggleBtn.textContent = collapsed ? "▸" : "▾";
+      writeState({ collapsed });
+      if (!collapsed) setTimeout(() => input && input.focus(), 0);
+    }
 
     box.querySelector(".title").addEventListener("click", () => {
       setCollapsed(!box.classList.contains("collapsed"));
@@ -681,12 +765,9 @@
       }
     });
 
-    /* ---------- DRAG TO MOVE (search box) ---------- */
     let isDragging = false;
-    let startX = 0,
-      startY = 0;
-    let boxX = 0,
-      boxY = 0;
+    let startX = 0, startY = 0;
+    let boxX = 0, boxY = 0;
 
     function dragStart(x, y) {
       const rect = box.getBoundingClientRect();
@@ -730,30 +811,22 @@
     document.addEventListener("mousemove", (e) => dragMove(e.clientX, e.clientY));
     document.addEventListener("mouseup", dragEnd);
 
-    box.addEventListener(
-      "touchstart",
-      (e) => {
-        if (e.target.closest("input,button,.content")) return;
-        const t = e.touches[0];
-        dragStart(t.clientX, t.clientY);
-      },
-      { passive: true }
-    );
+    box.addEventListener("touchstart", (e) => {
+      if (e.target.closest("input,button,.content")) return;
+      const t = e.touches[0];
+      dragStart(t.clientX, t.clientY);
+    }, { passive: true });
 
-    document.addEventListener(
-      "touchmove",
-      (e) => {
-        if (!isDragging) return;
-        const t = e.touches[0];
-        dragMove(t.clientX, t.clientY);
-      },
-      { passive: true }
-    );
+    document.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      const t = e.touches[0];
+      dragMove(t.clientX, t.clientY);
+    }, { passive: true });
 
     document.addEventListener("touchend", dragEnd);
 
     window.addEventListener("resize", () => {
-      const s = readState();
+      const s = readStateStore();
       if (!s || typeof s.left !== "number" || typeof s.top !== "number") return;
       applyState();
       if (window.PP__FloatingPills && window.PP__FloatingPills._reclamp) {
@@ -763,10 +836,6 @@
 
     if (!box.classList.contains("collapsed")) input.focus();
     updateReadUI();
-
-    /* =========================================================
-       FLOATING MOVABLE "WhatsApp / Call / Email" PILLS
-       ========================================================= */
 
     (function initFloatingPills() {
       const PILL_ID = "ppFloatingPills";
@@ -870,7 +939,6 @@
       wrap.appendChild(mail);
       document.body.appendChild(wrap);
 
-      // restore position
       const saved = pillRead();
       if (saved && typeof saved.left === "number" && typeof saved.top === "number") {
         wrap.style.left = saved.left + "px";
@@ -878,12 +946,9 @@
         wrap.style.right = "auto";
       }
 
-      // drag logic (pointer)
       let dragging = false;
-      let startPX = 0,
-        startPY = 0;
-      let origL = 0,
-        origT = 0;
+      let startPX = 0, startPY = 0;
+      let origL = 0, origT = 0;
       let moved = 0;
 
       function getRect() {
@@ -908,9 +973,7 @@
         origL = rect.left;
         origT = rect.top;
 
-        try {
-          wrap.setPointerCapture(ev.pointerId);
-        } catch {}
+        try { wrap.setPointerCapture(ev.pointerId); } catch {}
         ev.preventDefault();
       }
 
@@ -925,11 +988,8 @@
         const maxLeft = Math.max(8, window.innerWidth - rect.width - 8);
         const maxTop = Math.max(8, window.innerHeight - rect.height - 8);
 
-        const nextLeft = clamp(origL + dx, 8, maxLeft);
-        const nextTop = clamp(origT + dy, 8, maxTop);
-
-        wrap.style.left = nextLeft + "px";
-        wrap.style.top = nextTop + "px";
+        wrap.style.left = clamp(origL + dx, 8, maxLeft) + "px";
+        wrap.style.top = clamp(origT + dy, 8, maxTop) + "px";
 
         if (moved > 8) wrap.dataset.dragged = "1";
         ev.preventDefault();
@@ -945,9 +1005,7 @@
 
         setTimeout(() => (wrap.dataset.dragged = "0"), 80);
 
-        try {
-          wrap.releasePointerCapture(ev.pointerId);
-        } catch {}
+        try { wrap.releasePointerCapture(ev.pointerId); } catch {}
         ev.preventDefault();
       }
 
@@ -983,7 +1041,6 @@
     })();
   }
 
-  /* ---------- SAFE INIT ---------- */
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initPageSearch);
   } else {
