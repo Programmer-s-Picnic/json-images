@@ -7,7 +7,9 @@
    - Per-page position key (URL-based)
    - Remember collapsed / expanded state
    - Movable floating pills: WhatsApp, Call Me, Email
-   - Read Full Page option with chunked Speech Synthesis
+   - Read MAIN ARTICLE / MAIN CONTENT only
+   - Highlights the word currently being spoken
+   - Read / Pause / Resume / Stop
 */
 
 (function () {
@@ -31,6 +33,10 @@
       "INPUT",
       "SELECT",
       "BUTTON",
+      "SVG",
+      "CANVAS",
+      "AUDIO",
+      "VIDEO",
     ]);
 
     let matches = [];
@@ -41,6 +47,11 @@
     let speechIndex = 0;
     let currentUtterance = null;
     let selectedVoice = null;
+    let currentReadRoot = null;
+    let currentWordSpan = null;
+    let wordNodes = []; // [{span, text}]
+    let globalWordCursor = 0;
+    let isPreparingReader = false;
 
     if (!document.getElementById(STYLE_ID)) {
       const style = document.createElement("style");
@@ -51,7 +62,7 @@
           top: 14px;
           right: 14px;
           z-index: 999999;
-          width: 390px;
+          width: 410px;
           background: linear-gradient(145deg,#fffaf2,#fff1d6);
           backdrop-filter: blur(8px);
           border-radius: 16px;
@@ -189,6 +200,7 @@
           color: #7a520a;
           min-height: 16px;
           user-select: none;
+          line-height: 1.45;
         }
 
         #${SEARCH_BOX_ID}.collapsed{
@@ -208,6 +220,17 @@
         .pageSearchActive{
           background: linear-gradient(to bottom,#ffd36a,#ffbf3a);
           outline: 2px solid rgba(200,120,20,.5);
+        }
+
+        .ppReaderWord{
+          transition: background .12s ease, box-shadow .12s ease;
+          border-radius: 4px;
+        }
+
+        .ppReaderWord.ppReaderActiveWord{
+          background: linear-gradient(to bottom,#ffd36a,#ffbf3a);
+          box-shadow: 0 0 0 2px rgba(200,120,20,.28);
+          color: inherit;
         }
 
         @media (max-width:480px){
@@ -308,7 +331,7 @@
             <button data-act="prev" title="Previous (Shift+Enter)">◀</button>
             <button data-act="next" title="Next (Enter)">▶</button>
             <button data-act="clear" title="Clear (Esc)">Clear</button>
-            <button class="readPrimary" data-act="read" title="Read the full page">🔊 Read</button>
+            <button class="readPrimary" data-act="read" title="Read main article / main content only">🔊 Read Main</button>
             <button class="readPause" data-act="pause" title="Pause reading">⏸ Pause</button>
             <button class="readStop" data-act="stop" title="Stop reading">⏹ Stop</button>
           </div>
@@ -373,6 +396,7 @@
     function clearHighlights() {
       document.querySelectorAll("span.pageSearchHit").forEach((span) => {
         const parent = span.parentNode;
+        if (!parent) return;
         while (span.firstChild) parent.insertBefore(span.firstChild, span);
         parent.removeChild(span);
         parent.normalize();
@@ -409,7 +433,7 @@
       const nodesToProcess = [];
       let node;
       while ((node = walker.nextNode())) {
-        if (node.nodeValue.toLowerCase().includes(q)) nodesToProcess.push(node);
+        if ((node.nodeValue || "").toLowerCase().includes(q)) nodesToProcess.push(node);
       }
 
       nodesToProcess.forEach((originalNode) => {
@@ -453,8 +477,111 @@
       countEl.textContent = `${i + 1} / ${matches.length}`;
     }
 
-    function getPageTextForReading() {
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    function getVisibleTextLength(el) {
+      if (!el || !(el instanceof Element)) return 0;
+      const style = window.getComputedStyle(el);
+      if (
+        style.display === "none" ||
+        style.visibility === "hidden" ||
+        style.opacity === "0"
+      ) return 0;
+
+      const rect = el.getBoundingClientRect();
+      if (rect.width < 20 || rect.height < 20) return 0;
+
+      const text = (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
+      return text.length;
+    }
+
+    function isBadReadContainer(el) {
+      if (!el || !(el instanceof Element)) return true;
+      if (el.closest(`#${SEARCH_BOX_ID}`)) return true;
+      if (el.closest("#ppFloatingPills")) return true;
+      const tag = el.tagName;
+      if (IGNORE_TAGS.has(tag)) return true;
+      if (
+        ["HEADER", "FOOTER", "NAV", "ASIDE", "FORM", "DIALOG"].includes(tag)
+      ) return true;
+      return false;
+    }
+
+    function findMainReadRoot() {
+      const explicitCandidates = [
+        document.querySelector("main"),
+        document.querySelector('[role="main"]'),
+        document.querySelector("article"),
+        document.querySelector(".post-body"),
+        document.querySelector(".entry-content"),
+        document.querySelector(".post-content"),
+        document.querySelector(".article-content"),
+        document.querySelector(".content"),
+        document.querySelector("#content"),
+      ].filter(Boolean);
+
+      let best = null;
+      let bestScore = 0;
+
+      for (const el of explicitCandidates) {
+        if (isBadReadContainer(el)) continue;
+        const score = getVisibleTextLength(el);
+        if (score > bestScore) {
+          best = el;
+          bestScore = score;
+        }
+      }
+
+      if (best && bestScore > 250) return best;
+
+      const all = Array.from(document.body.querySelectorAll("main, article, section, div"));
+      for (const el of all) {
+        if (isBadReadContainer(el)) continue;
+        const textLen = getVisibleTextLength(el);
+        if (textLen < 250) continue;
+
+        const rect = el.getBoundingClientRect();
+        const areaScore = rect.width * rect.height;
+        const score = textLen + Math.min(areaScore / 80, 2000);
+
+        if (score > bestScore) {
+          best = el;
+          bestScore = score;
+        }
+      }
+
+      return best || document.body;
+    }
+
+    function cleanupReaderHighlightOnly() {
+      if (currentWordSpan) {
+        currentWordSpan.classList.remove("ppReaderActiveWord");
+        currentWordSpan = null;
+      }
+    }
+
+    function unwrapReaderWordSpans() {
+      const spans = document.querySelectorAll(".ppReaderWord");
+      spans.forEach((span) => {
+        const parent = span.parentNode;
+        if (!parent) return;
+        const textNode = document.createTextNode(span.textContent || "");
+        parent.replaceChild(textNode, span);
+        parent.normalize();
+      });
+      wordNodes = [];
+      currentWordSpan = null;
+      currentReadRoot = null;
+    }
+
+    function cleanupReaderMarkup() {
+      cleanupReaderHighlightOnly();
+      unwrapReaderWordSpans();
+    }
+
+    function prepareWordLevelMarkup(root) {
+      cleanupReaderMarkup();
+      if (!root) return [];
+
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
         acceptNode(node) {
           return shouldSkipTextNode(node)
             ? NodeFilter.FILTER_REJECT
@@ -462,62 +589,91 @@
         },
       });
 
-      const parts = [];
+      const textNodes = [];
       let node;
       while ((node = walker.nextNode())) {
-        const text = (node.nodeValue || "").replace(/\s+/g, " ").trim();
-        if (text) parts.push(text);
+        if ((node.nodeValue || "").trim()) textNodes.push(node);
       }
 
-      return parts.join(". ");
+      const allWordNodes = [];
+
+      textNodes.forEach((textNode) => {
+        const text = textNode.nodeValue || "";
+        const frag = document.createDocumentFragment();
+
+        const tokens = text.match(/\S+|\s+/g) || [text];
+
+        for (const token of tokens) {
+          if (/^\s+$/.test(token)) {
+            frag.appendChild(document.createTextNode(token));
+          } else {
+            const span = document.createElement("span");
+            span.className = "ppReaderWord";
+            span.textContent = token;
+            frag.appendChild(span);
+            allWordNodes.push({
+              span,
+              text: token,
+            });
+          }
+        }
+
+        if (textNode.parentNode) {
+          textNode.parentNode.replaceChild(frag, textNode);
+        }
+      });
+
+      currentReadRoot = root;
+      wordNodes = allWordNodes;
+      return allWordNodes;
     }
 
-    function splitIntoSpeechChunks(text, maxLen = 180) {
-      const cleaned = text.replace(/\s+/g, " ").trim();
-      if (!cleaned) return [];
+    function getMainContentWords() {
+      const root = findMainReadRoot();
+      const words = prepareWordLevelMarkup(root);
 
-      const sentences = cleaned.split(/(?<=[.!?।])\s+/);
+      return {
+        root,
+        words,
+      };
+    }
+
+    function splitWordsIntoChunks(wordList, maxChars = 180) {
       const chunks = [];
-      let current = "";
+      let currentWords = [];
+      let currentLen = 0;
+      let startWordIndex = 0;
 
-      for (const sentenceRaw of sentences) {
-        const sentence = sentenceRaw.trim();
-        if (!sentence) continue;
+      for (let i = 0; i < wordList.length; i++) {
+        const w = wordList[i].text;
+        const extra = currentWords.length ? 1 : 0;
+        const proposed = currentLen + extra + w.length;
 
-        if (sentence.length <= maxLen) {
-          if (!current) {
-            current = sentence;
-          } else if ((current + " " + sentence).length <= maxLen) {
-            current += " " + sentence;
-          } else {
-            chunks.push(current);
-            current = sentence;
-          }
+        if (currentWords.length && proposed > maxChars) {
+          chunks.push({
+            text: currentWords.map((x) => x.text).join(" "),
+            startWordIndex,
+            endWordIndex: startWordIndex + currentWords.length - 1,
+            words: currentWords.slice(),
+          });
+          currentWords = [wordList[i]];
+          currentLen = w.length;
+          startWordIndex = i;
         } else {
-          if (current) {
-            chunks.push(current);
-            current = "";
-          }
-
-          const words = sentence.split(" ");
-          let part = "";
-
-          for (const word of words) {
-            if (!part) {
-              part = word;
-            } else if ((part + " " + word).length <= maxLen) {
-              part += " " + word;
-            } else {
-              chunks.push(part);
-              part = word;
-            }
-          }
-
-          if (part) chunks.push(part);
+          currentWords.push(wordList[i]);
+          currentLen = proposed;
         }
       }
 
-      if (current) chunks.push(current);
+      if (currentWords.length) {
+        chunks.push({
+          text: currentWords.map((x) => x.text).join(" "),
+          startWordIndex,
+          endWordIndex: startWordIndex + currentWords.length - 1,
+          words: currentWords.slice(),
+        });
+      }
+
       return chunks;
     }
 
@@ -526,13 +682,31 @@
       const voices = synth.getVoices ? synth.getVoices() : [];
       if (!voices || !voices.length) return null;
 
-      const langPrefs = ["en-IN", "hi-IN", "en-GB", "en-US", "en"];
+      const langPrefs = ["en-IN", "en-GB", "en-US", "en"];
       for (const lang of langPrefs) {
         const v = voices.find((x) => (x.lang || "").toLowerCase() === lang.toLowerCase());
         if (v) return v;
       }
 
       return voices[0] || null;
+    }
+
+    function highlightSpokenWord(globalIndex, doScroll) {
+      cleanupReaderHighlightOnly();
+
+      const item = wordNodes[globalIndex];
+      if (!item || !item.span) return;
+
+      currentWordSpan = item.span;
+      currentWordSpan.classList.add("ppReaderActiveWord");
+
+      if (doScroll) {
+        currentWordSpan.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "nearest",
+        });
+      }
     }
 
     function updateReadUI() {
@@ -554,7 +728,7 @@
       stopBtn.classList.remove("stopActive");
 
       if (readMode === "idle") {
-        readBtn.textContent = "🔊 Read";
+        readBtn.textContent = "🔊 Read Main";
         readBtn.disabled = false;
         pauseBtn.textContent = "⏸ Pause";
         pauseBtn.disabled = true;
@@ -568,7 +742,7 @@
         pauseBtn.disabled = false;
         stopBtn.disabled = false;
         stopBtn.classList.add("stopActive");
-        readStatusEl.textContent = `Reader: speaking (${speechIndex + 1} / ${speechChunks.length})`;
+        readStatusEl.textContent = `Reader: main content only • chunk ${Math.min(speechIndex + 1, speechChunks.length)} / ${speechChunks.length}`;
       } else if (readMode === "paused") {
         readBtn.textContent = "▶ Resume";
         readBtn.disabled = false;
@@ -577,7 +751,7 @@
         pauseBtn.classList.add("paused");
         stopBtn.disabled = false;
         stopBtn.classList.add("stopActive");
-        readStatusEl.textContent = `Reader: paused (${speechIndex + 1} / ${speechChunks.length})`;
+        readStatusEl.textContent = `Reader: paused • chunk ${Math.min(speechIndex + 1, speechChunks.length)} / ${speechChunks.length}`;
       }
     }
 
@@ -590,6 +764,7 @@
       speechChunks = [];
       speechIndex = 0;
       currentUtterance = null;
+      globalWordCursor = 0;
     }
 
     function stopReading() {
@@ -597,7 +772,19 @@
         window.speechSynthesis.cancel();
       } catch {}
       resetSpeechState();
+      cleanupReaderMarkup();
       setReadMode("idle");
+    }
+
+    function getWordIndexFromCharIndex(chunkWords, charIndex) {
+      let running = 0;
+      for (let i = 0; i < chunkWords.length; i++) {
+        const len = chunkWords[i].text.length;
+        const end = running + len;
+        if (charIndex < end) return i;
+        running = end + 1;
+      }
+      return Math.max(0, chunkWords.length - 1);
     }
 
     function speakCurrentChunk() {
@@ -606,8 +793,8 @@
         return;
       }
 
-      const text = speechChunks[speechIndex];
-      const utterance = new SpeechSynthesisUtterance(text);
+      const chunk = speechChunks[speechIndex];
+      const utterance = new SpeechSynthesisUtterance(chunk.text);
       utterance.rate = 1;
       utterance.pitch = 1;
       utterance.volume = 1;
@@ -616,7 +803,17 @@
 
       utterance.onstart = function () {
         currentUtterance = utterance;
+        globalWordCursor = chunk.startWordIndex;
+        highlightSpokenWord(globalWordCursor, true);
         setReadMode("speaking");
+      };
+
+      utterance.onboundary = function (event) {
+        if (typeof event.charIndex !== "number") return;
+        const localWordIndex = getWordIndexFromCharIndex(chunk.words, event.charIndex);
+        const globalIndex = chunk.startWordIndex + localWordIndex;
+        globalWordCursor = globalIndex;
+        highlightSpokenWord(globalIndex, false);
       };
 
       utterance.onend = function () {
@@ -643,31 +840,42 @@
     }
 
     function startReading() {
-      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
-        updateReadUI();
-        return;
-      }
-
-      const text = getPageTextForReading();
-      if (!text) {
-        alert("No readable text found on this page.");
-        return;
-      }
-
-      selectedVoice = getBestVoice();
-      speechChunks = splitIntoSpeechChunks(text, 180);
-      speechIndex = 0;
-
-      if (!speechChunks.length) {
-        alert("No readable text found on this page.");
-        return;
-      }
+      if (isPreparingReader) return;
+      isPreparingReader = true;
 
       try {
-        window.speechSynthesis.cancel();
-      } catch {}
+        if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+          updateReadUI();
+          return;
+        }
 
-      speakCurrentChunk();
+        try {
+          window.speechSynthesis.cancel();
+        } catch {}
+
+        cleanupReaderMarkup();
+        resetSpeechState();
+
+        const prepared = getMainContentWords();
+        selectedVoice = getBestVoice();
+
+        if (!prepared.words.length) {
+          alert("No readable main content found on this page.");
+          return;
+        }
+
+        speechChunks = splitWordsIntoChunks(prepared.words, 180);
+        speechIndex = 0;
+
+        if (!speechChunks.length) {
+          alert("No readable main content found on this page.");
+          return;
+        }
+
+        speakCurrentChunk();
+      } finally {
+        isPreparingReader = false;
+      }
     }
 
     function pauseReading() {
