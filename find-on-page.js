@@ -24,12 +24,14 @@
       autoCreateControls: true,
       controlsContainerId: "pp-auto-speak-controls-v3",
       skipHiddenScroll: true,
+      skipHiddenItems: true,
       readSpeak0First: true,
       addTitleButton: true,
       titleSelector: "[data-pp-speak-title]",
       miniModeDefault: false,
       draggable: true,
-      log: false
+      log: false,
+      storageKey: "PPSpeakV3State"
     },
 
     init(userOptions) {
@@ -49,6 +51,7 @@
         };
       }
 
+      this.restorePanelState();
       this.updateUI();
       this.log("Initialized with " + this.items.length + " items.");
       return this;
@@ -60,12 +63,77 @@
       }
     },
 
+    getStorage() {
+      try {
+        const raw = localStorage.getItem(this.options.storageKey);
+        return raw ? JSON.parse(raw) : {};
+      } catch (err) {
+        return {};
+      }
+    },
+
+    saveStorage(nextState) {
+      try {
+        const prev = this.getStorage();
+        const merged = Object.assign({}, prev, nextState || {});
+        localStorage.setItem(this.options.storageKey, JSON.stringify(merged));
+      } catch (err) {
+        this.log("Could not save localStorage state.");
+      }
+    },
+
+    restorePanelState() {
+      const panel = document.getElementById(this.options.controlsContainerId);
+      if (!panel) return;
+
+      const state = this.getStorage();
+
+      if (typeof state.left === "number" && typeof state.top === "number") {
+        panel.style.right = "auto";
+        panel.style.bottom = "auto";
+        panel.style.left = state.left + "px";
+        panel.style.top = state.top + "px";
+      }
+
+      if (typeof state.collapsed === "boolean") {
+        this.toggleMiniMode(state.collapsed);
+      } else if (this.options.miniModeDefault) {
+        this.toggleMiniMode(true);
+      }
+
+      if (typeof state.rate === "number") {
+        this.options.rate = state.rate;
+        const rateEl = document.getElementById("pp-speak-rate");
+        if (rateEl) rateEl.value = String(state.rate);
+      }
+
+      if (typeof state.voiceName === "string") {
+        this.options.voiceName = state.voiceName;
+        const voiceEl = document.getElementById("pp-speak-voice");
+        if (voiceEl) voiceEl.value = state.voiceName;
+      }
+    },
+
     collectItems() {
       const found = Array.from(document.querySelectorAll(this.options.selector));
 
       found.sort((a, b) => this.extractNumber(a.id) - this.extractNumber(b.id));
 
-      this.items = found.map((el, index) => ({
+      let filtered = found;
+
+      if (this.options.skipHiddenItems) {
+        filtered = found.filter(el => !this.isHidden(el));
+      }
+
+      if (this.options.readSpeak0First) {
+        const speak0Index = filtered.findIndex(el => el.id === "speak0");
+        if (speak0Index > 0) {
+          const speak0 = filtered.splice(speak0Index, 1)[0];
+          filtered.unshift(speak0);
+        }
+      }
+
+      this.items = filtered.map((el, index) => ({
         index,
         id: el.id,
         el,
@@ -107,6 +175,7 @@
       return (
         style.display === "none" ||
         style.visibility === "hidden" ||
+        style.opacity === "0" ||
         el.hidden === true
       );
     },
@@ -118,11 +187,11 @@
       style.id = "pp-auto-speak-v3-style";
       style.textContent = `
         .${this.options.activeClass} {
-          outline: 3px solid rgba(217,119,6,.32);
-          background: rgba(245,158,11,.12) !important;
-          border-radius: 14px;
-          transition: background .25s ease, outline .25s ease, transform .25s ease;
-          box-shadow: 0 10px 24px rgba(217,119,6,.12);
+          outline: 3px solid rgba(217,119,6,.28);
+          background: linear-gradient(135deg, rgba(245,158,11,.10), rgba(217,119,6,.06)) !important;
+          border-radius: 16px;
+          transition: background .25s ease, outline .25s ease, transform .25s ease, box-shadow .25s ease;
+          box-shadow: 0 12px 30px rgba(217,119,6,.16);
         }
 
         .pp-speak-title-btn {
@@ -138,28 +207,33 @@
           font-weight: 800;
           font-size: 14px;
           cursor: pointer;
-          box-shadow: 0 10px 24px rgba(217,119,6,.22);
+          box-shadow: 0 12px 28px rgba(217,119,6,.22);
           vertical-align: middle;
+          transition: transform .2s ease, box-shadow .2s ease;
         }
 
         .pp-speak-title-btn:hover {
           transform: translateY(-1px);
+          box-shadow: 0 16px 34px rgba(217,119,6,.28);
         }
 
         .pp-speak-panel {
           position: fixed;
           right: 16px;
           bottom: 16px;
-          width: min(380px, calc(100vw - 24px));
+          width: min(400px, calc(100vw - 24px));
           z-index: 99999;
           font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
           color: #172033;
-          background: rgba(255, 248, 235, .98);
-          border: 1px solid rgba(217,119,6,.18);
-          border-radius: 22px;
-          box-shadow: 0 20px 60px rgba(15,23,42,.16);
+          background:
+            linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,248,235,.96));
+          border: 1px solid rgba(217,119,6,.16);
+          border-radius: 24px;
+          box-shadow:
+            0 24px 70px rgba(15,23,42,.18),
+            0 8px 20px rgba(217,119,6,.10);
           overflow: hidden;
-          backdrop-filter: blur(12px);
+          backdrop-filter: blur(14px);
           user-select: none;
         }
 
@@ -174,17 +248,17 @@
         .pp-speak-panel .pp-speak-mini-row {
           display: none;
           grid-template-columns: auto 1fr auto;
-          gap: 8px;
+          gap: 10px;
           align-items: center;
-          padding: 10px 12px 12px;
+          padding: 12px;
           border-top: 1px solid rgba(217,119,6,.12);
-          background: rgba(255,255,255,.75);
+          background: rgba(255,255,255,.78);
         }
 
         .pp-speak-panel .pp-speak-mini-row button {
           border: none;
           cursor: pointer;
-          border-radius: 12px;
+          border-radius: 14px;
           padding: 10px 12px;
           font-weight: 800;
         }
@@ -205,9 +279,11 @@
         }
 
         .pp-speak-head {
-          padding: 14px 14px 10px;
-          background: linear-gradient(135deg, rgba(217,119,6,.12), rgba(245,158,11,.12));
-          border-bottom: 1px solid rgba(217,119,6,.12);
+          padding: 14px 14px 12px;
+          background:
+            radial-gradient(circle at top left, rgba(245,158,11,.20), transparent 45%),
+            linear-gradient(135deg, rgba(217,119,6,.14), rgba(245,158,11,.10));
+          border-bottom: 1px solid rgba(217,119,6,.10);
           cursor: grab;
         }
 
@@ -219,7 +295,7 @@
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
-          gap: 10px;
+          gap: 12px;
         }
 
         .pp-speak-kicker {
@@ -229,7 +305,7 @@
           letter-spacing: .12em;
           text-transform: uppercase;
           color: #b45309;
-          background: rgba(255,255,255,.72);
+          background: rgba(255,255,255,.76);
           border: 1px solid rgba(217,119,6,.12);
           border-radius: 999px;
           padding: 6px 10px;
@@ -238,8 +314,9 @@
 
         .pp-speak-title {
           margin: 0;
-          font-size: 18px;
+          font-size: 19px;
           line-height: 1.2;
+          font-weight: 900;
         }
 
         .pp-speak-sub {
@@ -256,21 +333,29 @@
         }
 
         .pp-speak-icon-btn {
-          width: 38px;
-          height: 38px;
-          border-radius: 12px;
-          border: 1px solid rgba(217,119,6,.16);
-          background: rgba(255,255,255,.82);
+          width: 40px;
+          height: 40px;
+          border-radius: 14px;
+          border: 1px solid rgba(217,119,6,.14);
+          background: rgba(255,255,255,.88);
           color: #b45309;
           font-size: 16px;
-          font-weight: 800;
+          font-weight: 900;
           cursor: pointer;
+          box-shadow: 0 6px 16px rgba(217,119,6,.08);
+          transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+        }
+
+        .pp-speak-icon-btn:hover {
+          transform: translateY(-1px);
+          background: #fff;
+          box-shadow: 0 10px 20px rgba(217,119,6,.14);
         }
 
         .pp-speak-body {
-          padding: 12px 14px 14px;
+          padding: 14px;
           display: grid;
-          gap: 10px;
+          gap: 12px;
         }
 
         .pp-speak-row {
@@ -281,7 +366,7 @@
         .pp-speak-label {
           font-size: 12px;
           color: #6b7280;
-          font-weight: 700;
+          font-weight: 800;
         }
 
         .pp-speak-grid2 {
@@ -292,14 +377,21 @@
 
         .pp-speak-select,
         .pp-speak-btn {
-          border-radius: 12px;
-          border: 1px solid rgba(217,119,6,.16);
-          background: #fff;
+          border-radius: 14px;
+          border: 1px solid rgba(217,119,6,.14);
+          background: rgba(255,255,255,.96);
           color: #172033;
           font-size: 14px;
-          padding: 11px 12px;
+          padding: 12px 12px;
           width: 100%;
           box-sizing: border-box;
+          outline: none;
+        }
+
+        .pp-speak-select:focus,
+        .pp-speak-btn:focus,
+        .pp-speak-icon-btn:focus {
+          box-shadow: 0 0 0 3px rgba(245,158,11,.18);
         }
 
         .pp-speak-btn {
@@ -308,13 +400,19 @@
           background: linear-gradient(135deg, #d97706, #f59e0b);
           color: #fff;
           border: none;
-          box-shadow: 0 10px 24px rgba(217,119,6,.22);
+          box-shadow: 0 12px 26px rgba(217,119,6,.18);
+          transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+        }
+
+        .pp-speak-btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 16px 30px rgba(217,119,6,.22);
         }
 
         .pp-speak-btn.secondary {
-          background: #fff;
+          background: rgba(255,255,255,.96);
           color: #b45309;
-          border: 1px solid rgba(217,119,6,.16);
+          border: 1px solid rgba(217,119,6,.14);
           box-shadow: none;
         }
 
@@ -332,16 +430,16 @@
 
         .pp-speak-meta {
           display: grid;
-          gap: 6px;
-          background: rgba(255,255,255,.75);
-          border: 1px solid rgba(217,119,6,.12);
-          border-radius: 14px;
-          padding: 10px 12px;
+          gap: 8px;
+          background: rgba(255,255,255,.78);
+          border: 1px solid rgba(217,119,6,.10);
+          border-radius: 16px;
+          padding: 12px;
         }
 
         .pp-speak-progress {
-          height: 8px;
-          background: rgba(217,119,6,.1);
+          height: 9px;
+          background: rgba(217,119,6,.10);
           border-radius: 999px;
           overflow: hidden;
         }
@@ -351,6 +449,7 @@
           width: 0%;
           background: linear-gradient(135deg, #d97706, #f59e0b);
           transition: width .3s ease;
+          border-radius: 999px;
         }
 
         .pp-speak-status,
@@ -366,6 +465,7 @@
             left: 10px;
             bottom: 10px;
             width: auto;
+            max-width: none;
           }
 
           .pp-speak-grid2,
@@ -400,7 +500,7 @@
               </p>
             </div>
             <div class="pp-speak-head-actions">
-              <button type="button" class="pp-speak-icon-btn" id="pp-speak-mini-toggle" title="Mini mode">—</button>
+              <button type="button" class="pp-speak-icon-btn" id="pp-speak-mini-toggle" title="Collapse or expand">▾</button>
               <button type="button" class="pp-speak-icon-btn" id="pp-speak-reset-pos" title="Reset position">⌂</button>
             </div>
           </div>
@@ -470,6 +570,10 @@
         const idx = parseInt(select.value, 10) || 0;
         this.options.rate = parseFloat(document.getElementById("pp-speak-rate").value) || 1;
         this.options.voiceName = document.getElementById("pp-speak-voice").value || "";
+        this.saveStorage({
+          rate: this.options.rate,
+          voiceName: this.options.voiceName
+        });
         this.start(idx);
       });
 
@@ -487,10 +591,12 @@
 
       panel.querySelector("#pp-speak-rate").addEventListener("change", (e) => {
         this.options.rate = parseFloat(e.target.value) || 1;
+        this.saveStorage({ rate: this.options.rate });
       });
 
       panel.querySelector("#pp-speak-voice").addEventListener("change", (e) => {
         this.options.voiceName = e.target.value || "";
+        this.saveStorage({ voiceName: this.options.voiceName });
       });
 
       panel.querySelector("#pp-speak-mini-toggle").addEventListener("click", () => {
@@ -516,7 +622,9 @@
       });
 
       this.refreshStartDropdown();
-      if (this.options.draggable) this.enableDragging(panel, panel.querySelector("#pp-speak-drag-handle"));
+      if (this.options.draggable) {
+        this.enableDragging(panel, panel.querySelector("#pp-speak-drag-handle"));
+      }
     },
 
     enableDragging(panel, handle) {
@@ -559,8 +667,8 @@
         let newLeft = startLeft + dx;
         let newTop = startTop + dy;
 
-        const maxLeft = window.innerWidth - panel.offsetWidth;
-        const maxTop = window.innerHeight - panel.offsetHeight;
+        const maxLeft = Math.max(0, window.innerWidth - panel.offsetWidth);
+        const maxTop = Math.max(0, window.innerHeight - panel.offsetHeight);
 
         newLeft = Math.max(0, Math.min(maxLeft, newLeft));
         newTop = Math.max(0, Math.min(maxTop, newTop));
@@ -570,9 +678,15 @@
       };
 
       const onPointerUp = () => {
+        if (!isDragging) return;
         isDragging = false;
+
         document.removeEventListener("pointermove", onPointerMove);
         document.removeEventListener("pointerup", onPointerUp);
+
+        const left = parseFloat(panel.style.left) || 0;
+        const top = parseFloat(panel.style.top) || 0;
+        this.saveStorage({ left, top });
       };
 
       handle.addEventListener("pointerdown", onPointerDown);
@@ -581,10 +695,16 @@
     resetPanelPosition() {
       const panel = document.getElementById(this.options.controlsContainerId);
       if (!panel) return;
+
       panel.style.left = "";
       panel.style.top = "";
       panel.style.right = "16px";
       panel.style.bottom = "16px";
+
+      this.saveStorage({
+        left: null,
+        top: null
+      });
     },
 
     toggleMiniMode(forceValue) {
@@ -598,7 +718,12 @@
       panel.classList.toggle("mini", makeMini);
 
       const btn = document.getElementById("pp-speak-mini-toggle");
-      if (btn) btn.textContent = makeMini ? "□" : "—";
+      if (btn) {
+        btn.textContent = makeMini ? "▸" : "▾";
+        btn.title = makeMini ? "Expand panel" : "Collapse panel";
+      }
+
+      this.saveStorage({ collapsed: makeMini });
     },
 
     attachTitleButton() {
@@ -636,7 +761,7 @@
       const select = document.getElementById("pp-speak-voice");
       if (!select) return;
 
-      const current = select.value || "";
+      const current = this.options.voiceName || select.value || "";
       select.innerHTML =
         `<option value="">Default voice</option>` +
         voices.map(v => {
@@ -645,7 +770,9 @@
           return `<option value="${value}">${label}</option>`;
         }).join("");
 
-      if (current) select.value = current;
+      if (current) {
+        select.value = current;
+      }
     },
 
     getVoice() {
@@ -711,7 +838,8 @@
         return;
       }
 
-      if (!this.items.length) this.collectItems();
+      this.collectItems();
+
       if (!this.items.length) {
         this.setStatus("No speak paragraphs found.");
         return;
@@ -721,6 +849,7 @@
       this.running = true;
       this.paused = false;
       this.speaking = false;
+      this.activeUtterance = null;
 
       this.currentIndex = typeof startAt === "number"
         ? Math.max(0, Math.min(startAt, this.items.length - 1))
@@ -749,6 +878,7 @@
       this.setCurrent("No paragraph selected.");
       this.updateProgress();
       this.updatePauseButton();
+      this.updateMiniPlayButton();
       this.updateMiniText("Ready", "Tap play to begin narration.");
     },
 
@@ -818,6 +948,12 @@
         return;
       }
 
+      if (this.options.skipHiddenItems && this.isHidden(item.el)) {
+        this.currentIndex += 1;
+        this.speakCurrent();
+        return;
+      }
+
       item.text = this.getSpeakText(item.el);
 
       if (!item.text) {
@@ -869,7 +1005,6 @@
         }, this.options.pauseBetween);
       };
 
-      speechSynthesis.cancel();
       speechSynthesis.speak(utterance);
     },
 
