@@ -118,7 +118,7 @@
       style.id = "pp-auto-speak-v3-style";
       style.textContent = `
         .${this.options.activeClass} {
-          outline: 3px solid rgba(217,119,6,.32);
+          outline: 3px solid rgba(217,119,6,.30);
           background: rgba(245,158,11,.12) !important;
           border-radius: 14px;
           transition: background .25s ease, outline .25s ease, transform .25s ease;
@@ -140,27 +140,38 @@
           cursor: pointer;
           box-shadow: 0 10px 24px rgba(217,119,6,.22);
           vertical-align: middle;
+          transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
         }
 
         .pp-speak-title-btn:hover {
           transform: translateY(-1px);
+          box-shadow: 0 14px 32px rgba(217,119,6,.26);
         }
 
         .pp-speak-panel {
           position: fixed;
           right: 16px;
           bottom: 16px;
-          width: min(380px, calc(100vw - 24px));
+          width: min(400px, calc(100vw - 24px));
           z-index: 99999;
           font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
           color: #172033;
-          background: rgba(255, 248, 235, .98);
+          background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,248,235,.97));
           border: 1px solid rgba(217,119,6,.18);
-          border-radius: 22px;
-          box-shadow: 0 20px 60px rgba(15,23,42,.16);
+          border-radius: 24px;
+          box-shadow: 0 24px 70px rgba(15,23,42,.18);
           overflow: hidden;
-          backdrop-filter: blur(12px);
+          backdrop-filter: blur(14px);
           user-select: none;
+          transition: width .22s ease, box-shadow .22s ease, transform .22s ease;
+        }
+
+        .pp-speak-panel:hover {
+          box-shadow: 0 28px 80px rgba(15,23,42,.20);
+        }
+
+        .pp-speak-panel.mini {
+          width: min(320px, calc(100vw - 24px));
         }
 
         .pp-speak-panel.mini .pp-speak-body {
@@ -174,17 +185,17 @@
         .pp-speak-panel .pp-speak-mini-row {
           display: none;
           grid-template-columns: auto 1fr auto;
-          gap: 8px;
+          gap: 10px;
           align-items: center;
-          padding: 10px 12px 12px;
-          border-top: 1px solid rgba(217,119,6,.12);
-          background: rgba(255,255,255,.75);
+          padding: 12px 14px 14px;
+          border-top: 1px solid rgba(217,119,6,.10);
+          background: rgba(255,255,255,.78);
         }
 
         .pp-speak-panel .pp-speak-mini-row button {
           border: none;
           cursor: pointer;
-          border-radius: 12px;
+          border-radius: 14px;
           padding: 10px 12px;
           font-weight: 800;
         }
@@ -198,15 +209,18 @@
         .pp-speak-mini-main strong {
           display: block;
           color: #172033;
-          margin-bottom: 2px;
+          margin-bottom: 3px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          font-size: 14px;
         }
 
         .pp-speak-head {
           padding: 14px 14px 10px;
-          background: linear-gradient(135deg, rgba(217,119,6,.12), rgba(245,158,11,.12));
+          background:
+            radial-gradient(circle at top right, rgba(245,158,11,.22), transparent 35%),
+            linear-gradient(135deg, rgba(217,119,6,.13), rgba(245,158,11,.09));
           border-bottom: 1px solid rgba(217,119,6,.12);
           cursor: grab;
         }
@@ -216,10 +230,10 @@
         }
 
         .pp-speak-topline {
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 10px;
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 12px;
+          align-items: start;
         }
 
         .pp-speak-kicker {
@@ -229,48 +243,62 @@
           letter-spacing: .12em;
           text-transform: uppercase;
           color: #b45309;
-          background: rgba(255,255,255,.72);
+          background: rgba(255,255,255,.78);
           border: 1px solid rgba(217,119,6,.12);
           border-radius: 999px;
           padding: 6px 10px;
           margin-bottom: 8px;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
         }
 
         .pp-speak-title {
           margin: 0;
-          font-size: 18px;
+          font-size: 19px;
           line-height: 1.2;
+          font-weight: 850;
+          letter-spacing: -.01em;
         }
 
         .pp-speak-sub {
           margin: 6px 0 0;
           font-size: 13px;
           color: #6b7280;
-          line-height: 1.5;
+          line-height: 1.55;
+          max-width: 28ch;
         }
 
         .pp-speak-head-actions {
           display: flex;
           gap: 8px;
           flex-shrink: 0;
+          align-items: center;
         }
 
         .pp-speak-icon-btn {
-          width: 38px;
-          height: 38px;
-          border-radius: 12px;
-          border: 1px solid rgba(217,119,6,.16);
-          background: rgba(255,255,255,.82);
+          width: 40px;
+          height: 40px;
+          border-radius: 13px;
+          border: 1px solid rgba(217,119,6,.14);
+          background: rgba(255,255,255,.88);
           color: #b45309;
           font-size: 16px;
           font-weight: 800;
           cursor: pointer;
+          transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
+          box-shadow: 0 6px 16px rgba(15,23,42,.06);
+        }
+
+        .pp-speak-icon-btn:hover {
+          transform: translateY(-1px);
+          background: #fff;
+          box-shadow: 0 10px 24px rgba(15,23,42,.10);
         }
 
         .pp-speak-body {
-          padding: 12px 14px 14px;
+          padding: 14px;
           display: grid;
-          gap: 10px;
+          gap: 12px;
+          background: linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.06));
         }
 
         .pp-speak-row {
@@ -281,7 +309,8 @@
         .pp-speak-label {
           font-size: 12px;
           color: #6b7280;
-          font-weight: 700;
+          font-weight: 800;
+          letter-spacing: .01em;
         }
 
         .pp-speak-grid2 {
@@ -292,14 +321,21 @@
 
         .pp-speak-select,
         .pp-speak-btn {
-          border-radius: 12px;
-          border: 1px solid rgba(217,119,6,.16);
-          background: #fff;
+          border-radius: 14px;
+          border: 1px solid rgba(217,119,6,.14);
+          background: rgba(255,255,255,.95);
           color: #172033;
           font-size: 14px;
-          padding: 11px 12px;
+          padding: 12px 13px;
           width: 100%;
           box-sizing: border-box;
+          outline: none;
+        }
+
+        .pp-speak-select:focus,
+        .pp-speak-btn:focus,
+        .pp-speak-icon-btn:focus {
+          box-shadow: 0 0 0 3px rgba(245,158,11,.18);
         }
 
         .pp-speak-btn {
@@ -309,13 +345,23 @@
           color: #fff;
           border: none;
           box-shadow: 0 10px 24px rgba(217,119,6,.22);
+          transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
+        }
+
+        .pp-speak-btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 14px 30px rgba(217,119,6,.26);
         }
 
         .pp-speak-btn.secondary {
-          background: #fff;
+          background: rgba(255,255,255,.96);
           color: #b45309;
-          border: 1px solid rgba(217,119,6,.16);
+          border: 1px solid rgba(217,119,6,.14);
           box-shadow: none;
+        }
+
+        .pp-speak-btn.secondary:hover {
+          background: #fffaf2;
         }
 
         .pp-speak-actions {
@@ -332,16 +378,17 @@
 
         .pp-speak-meta {
           display: grid;
-          gap: 6px;
-          background: rgba(255,255,255,.75);
-          border: 1px solid rgba(217,119,6,.12);
-          border-radius: 14px;
-          padding: 10px 12px;
+          gap: 8px;
+          background: rgba(255,255,255,.80);
+          border: 1px solid rgba(217,119,6,.10);
+          border-radius: 16px;
+          padding: 12px 12px;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.85);
         }
 
         .pp-speak-progress {
-          height: 8px;
-          background: rgba(217,119,6,.1);
+          height: 9px;
+          background: rgba(217,119,6,.10);
           border-radius: 999px;
           overflow: hidden;
         }
@@ -357,7 +404,32 @@
         .pp-speak-current {
           font-size: 13px;
           color: #4b5563;
-          line-height: 1.45;
+          line-height: 1.5;
+        }
+
+        .pp-speak-status {
+          font-weight: 700;
+        }
+
+        .pp-speak-current {
+          color: #374151;
+        }
+
+        .pp-hamburger {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .pp-hamburger svg {
+          width: 18px;
+          height: 18px;
+          display: block;
+        }
+
+        .pp-speak-panel.mini .pp-speak-head {
+          padding-bottom: 12px;
         }
 
         @media (max-width: 640px) {
@@ -365,7 +437,7 @@
             right: 10px;
             left: 10px;
             bottom: 10px;
-            width: auto;
+            width: auto !important;
           }
 
           .pp-speak-grid2,
@@ -377,6 +449,10 @@
           .pp-speak-title-btn {
             margin-left: 0;
             margin-top: 10px;
+          }
+
+          .pp-speak-sub {
+            max-width: none;
           }
         }
       `;
@@ -393,15 +469,25 @@
         <div class="pp-speak-head" id="pp-speak-drag-handle">
           <div class="pp-speak-topline">
             <div>
-              <div class="pp-speak-kicker">Auto Narration V3</div>
+              <div class="pp-speak-kicker">Auto Narration V4</div>
               <h3 class="pp-speak-title">Speak and Scroll Player</h3>
               <p class="pp-speak-sub">
-                Reads <strong>speak0</strong>, <strong>speak1</strong>, <strong>speak2</strong> and more, while moving through the page.
+                Reads <strong>speak0</strong>, <strong>speak1</strong>, <strong>speak2</strong> and more while moving through the page.
               </p>
             </div>
+
             <div class="pp-speak-head-actions">
-              <button type="button" class="pp-speak-icon-btn" id="pp-speak-mini-toggle" title="Mini mode">—</button>
-              <button type="button" class="pp-speak-icon-btn" id="pp-speak-reset-pos" title="Reset position">⌂</button>
+              <button type="button" class="pp-speak-icon-btn" id="pp-speak-mini-toggle" title="Collapse / expand panel" aria-label="Collapse or expand panel">
+                <span class="pp-hamburger" id="pp-speak-mini-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <line x1="4" y1="7" x2="20" y2="7"></line>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="17" x2="20" y2="17"></line>
+                  </svg>
+                </span>
+              </button>
+
+              <button type="button" class="pp-speak-icon-btn" id="pp-speak-reset-pos" title="Reset position" aria-label="Reset position">⌂</button>
             </div>
           </div>
         </div>
@@ -516,7 +602,10 @@
       });
 
       this.refreshStartDropdown();
-      if (this.options.draggable) this.enableDragging(panel, panel.querySelector("#pp-speak-drag-handle"));
+      this.updateMiniToggleIcon();
+      if (this.options.draggable) {
+        this.enableDragging(panel, panel.querySelector("#pp-speak-drag-handle"));
+      }
     },
 
     enableDragging(panel, handle) {
@@ -596,9 +685,36 @@
         : !panel.classList.contains("mini");
 
       panel.classList.toggle("mini", makeMini);
+      this.updateMiniToggleIcon();
+    },
 
+    updateMiniToggleIcon() {
+      const panel = document.getElementById(this.options.controlsContainerId);
+      const iconWrap = document.getElementById("pp-speak-mini-icon");
       const btn = document.getElementById("pp-speak-mini-toggle");
-      if (btn) btn.textContent = makeMini ? "□" : "—";
+      if (!panel || !iconWrap || !btn) return;
+
+      const isMini = panel.classList.contains("mini");
+
+      if (isMini) {
+        iconWrap.innerHTML = `
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="20" y2="17"></line>
+          </svg>
+        `;
+        btn.title = "Expand panel";
+        btn.setAttribute("aria-label", "Expand panel");
+      } else {
+        iconWrap.innerHTML = `
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        `;
+        btn.title = "Collapse panel";
+        btn.setAttribute("aria-label", "Collapse panel");
+      }
     },
 
     attachTitleButton() {
@@ -639,7 +755,7 @@
       const current = select.value || "";
       select.innerHTML =
         `<option value="">Default voice</option>` +
-        voices.map(v => {
+        voices.map((v) => {
           const value = this.escapeHtml(v.name);
           const label = this.escapeHtml(v.name + (v.lang ? " (" + v.lang + ")" : ""));
           return `<option value="${value}">${label}</option>`;
@@ -653,10 +769,10 @@
       if (!voices.length) return null;
 
       if (this.options.voiceName) {
-        const exact = voices.find(v => v.name === this.options.voiceName);
+        const exact = voices.find((v) => v.name === this.options.voiceName);
         if (exact) return exact;
 
-        const partial = voices.find(v =>
+        const partial = voices.find((v) =>
           v.name.toLowerCase().includes(this.options.voiceName.toLowerCase())
         );
         if (partial) return partial;
@@ -666,7 +782,7 @@
     },
 
     clearActive() {
-      this.items.forEach(item => {
+      this.items.forEach((item) => {
         if (item.el) item.el.classList.remove(this.options.activeClass);
         if (item.scrollTarget && item.scrollTarget !== item.el) {
           item.scrollTarget.classList.remove(this.options.activeClass);
@@ -730,7 +846,7 @@
     },
 
     startFromId(id) {
-      const index = this.items.findIndex(item => item.id === id);
+      const index = this.items.findIndex((item) => item.id === id);
       if (index >= 0) this.start(index);
     },
 
@@ -749,6 +865,7 @@
       this.setCurrent("No paragraph selected.");
       this.updateProgress();
       this.updatePauseButton();
+      this.updateMiniPlayButton();
       this.updateMiniText("Ready", "Tap play to begin narration.");
     },
 
@@ -878,6 +995,7 @@
       this.updateProgress();
       this.updatePauseButton();
       this.updateMiniPlayButton();
+      this.updateMiniToggleIcon();
     },
 
     updateStartAtDropdownValue() {
