@@ -29,7 +29,12 @@
       titleSelector: "[data-pp-speak-title]",
       miniModeDefault: false,
       draggable: true,
-      log: false
+      log: false,
+
+      whatsappEnabled: true,
+      whatsappNumber: "919335874326",
+      whatsappLabel: "💬 Contact Champak Roy on WhatsApp",
+      whatsappMessage: "Hi Champak Roy, I am interested in your course."
     },
 
     init(userOptions) {
@@ -109,6 +114,20 @@
       );
     },
 
+    getWhatsAppUrl() {
+      const number = String(this.options.whatsappNumber || "").replace(/[^\d]/g, "");
+      const message = encodeURIComponent(this.options.whatsappMessage || "");
+      return message
+        ? "https://wa.me/" + number + "?text=" + message
+        : "https://wa.me/" + number;
+    },
+
+    openWhatsApp() {
+      const url = this.getWhatsAppUrl();
+      if (!url) return;
+      window.open(url, "_blank", "noopener");
+    },
+
     injectStyle() {
       if (document.getElementById("pp-auto-speak-v4-style")) return;
 
@@ -178,7 +197,7 @@
 
         .pp-speak-panel .pp-speak-mini-row {
           display: none;
-          grid-template-columns: auto auto 1fr auto;
+          grid-template-columns: auto auto 1fr auto auto;
           gap: 8px;
           align-items: center;
           padding: 8px;
@@ -342,6 +361,79 @@
           box-shadow: none;
         }
 
+        .pp-speak-btn.pp-whatsapp-btn {
+          position: relative;
+          overflow: hidden;
+          background: linear-gradient(135deg, #25D366, #128C7E);
+          color: #ffffff;
+          box-shadow:
+            0 14px 30px rgba(18, 140, 126, .28),
+            0 8px 18px rgba(37, 211, 102, .18);
+          animation: ppWhatsappFloat 2.7s ease-in-out infinite;
+        }
+
+        .pp-speak-btn.pp-whatsapp-btn:hover {
+          transform: translateY(-2px) scale(1.01);
+        }
+
+        .pp-speak-btn.pp-whatsapp-btn::before {
+          content: "";
+          position: absolute;
+          top: -120%;
+          left: -40%;
+          width: 42%;
+          height: 320%;
+          transform: rotate(24deg);
+          background: linear-gradient(
+            90deg,
+            rgba(255,255,255,0) 0%,
+            rgba(255,255,255,.18) 45%,
+            rgba(255,255,255,.42) 50%,
+            rgba(255,255,255,.18) 55%,
+            rgba(255,255,255,0) 100%
+          );
+          animation: ppWhatsappShine 3.2s linear infinite;
+          pointer-events: none;
+        }
+
+        .pp-whatsapp-mini {
+          background: linear-gradient(135deg, #25D366, #128C7E);
+          color: #fff;
+          border: none;
+          box-shadow: 0 10px 20px rgba(18,140,126,.22);
+          animation: ppWhatsappFloat 2.7s ease-in-out infinite;
+        }
+
+        @keyframes ppWhatsappFloat {
+          0% {
+            transform: translateY(0px);
+            box-shadow:
+              0 14px 30px rgba(18, 140, 126, .24),
+              0 8px 18px rgba(37, 211, 102, .14);
+          }
+          50% {
+            transform: translateY(-6px);
+            box-shadow:
+              0 20px 34px rgba(18, 140, 126, .30),
+              0 12px 24px rgba(37, 211, 102, .18);
+          }
+          100% {
+            transform: translateY(0px);
+            box-shadow:
+              0 14px 30px rgba(18, 140, 126, .24),
+              0 8px 18px rgba(37, 211, 102, .14);
+          }
+        }
+
+        @keyframes ppWhatsappShine {
+          0% {
+            left: -55%;
+          }
+          100% {
+            left: 125%;
+          }
+        }
+
         .pp-speak-actions {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -394,6 +486,18 @@
           display: block;
         }
 
+        @media (prefers-reduced-motion: reduce) {
+          .pp-speak-btn.pp-whatsapp-btn,
+          .pp-whatsapp-mini,
+          .pp-speak-btn.pp-whatsapp-btn::before {
+            animation: none !important;
+          }
+
+          .${this.options.activeClass} {
+            transition: none;
+          }
+        }
+
         @media (max-width: 640px) {
           .pp-speak-panel {
             right: 10px;
@@ -425,6 +529,34 @@
 
     createControls() {
       if (document.getElementById(this.options.controlsContainerId)) return;
+
+      const whatsappBodyRow = this.options.whatsappEnabled
+        ? `
+          <div class="pp-speak-row">
+            <button
+              type="button"
+              class="pp-speak-btn pp-whatsapp-btn"
+              id="pp-whatsapp-contact"
+              aria-label="Contact Champak Roy on WhatsApp"
+              title="Contact Champak Roy on WhatsApp"
+            >
+              ${this.escapeHtml(this.options.whatsappLabel)}
+            </button>
+          </div>
+        `
+        : "";
+
+      const whatsappMiniButton = this.options.whatsappEnabled
+        ? `
+          <button
+            type="button"
+            class="pp-speak-icon-btn pp-whatsapp-mini"
+            id="pp-speak-mini-whatsapp"
+            title="WhatsApp"
+            aria-label="WhatsApp"
+          >💬</button>
+        `
+        : "";
 
       const panel = document.createElement("div");
       panel.id = this.options.controlsContainerId;
@@ -512,6 +644,8 @@
               <div class="pp-speak-progress-bar" id="pp-speak-progress-bar"></div>
             </div>
           </div>
+
+          ${whatsappBodyRow}
         </div>
 
         <div class="pp-speak-mini-row">
@@ -522,6 +656,7 @@
             <span id="pp-speak-mini-text">Tap play.</span>
           </div>
           <button type="button" class="pp-speak-icon-btn" id="pp-speak-mini-next" title="Next">⏭</button>
+          ${whatsappMiniButton}
         </div>
       `;
 
@@ -582,6 +717,16 @@
       panel.querySelector("#pp-speak-mini-next").addEventListener("click", () => {
         this.next();
       });
+
+      const whatsappBtn = panel.querySelector("#pp-whatsapp-contact");
+      if (whatsappBtn) {
+        whatsappBtn.addEventListener("click", () => this.openWhatsApp());
+      }
+
+      const whatsappMiniBtn = panel.querySelector("#pp-speak-mini-whatsapp");
+      if (whatsappMiniBtn) {
+        whatsappMiniBtn.addEventListener("click", () => this.openWhatsApp());
+      }
 
       this.refreshStartDropdown();
       this.updateMiniToggleIcon();
@@ -1064,6 +1209,7 @@
         },
         toggleMiniMode: (value) => this.toggleMiniMode(value),
         resetPanelPosition: () => this.resetPanelPosition(),
+        openWhatsApp: () => this.openWhatsApp(),
         getItems: () => this.items.slice()
       };
     }
