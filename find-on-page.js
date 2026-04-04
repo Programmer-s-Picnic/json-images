@@ -1,4 +1,4 @@
-<script>
+ 
 (function () {
   "use strict";
 
@@ -1676,4 +1676,4 @@
     boot();
   }
 })();
-</script>
+ 
