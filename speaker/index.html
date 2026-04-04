@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programmer's Picnic — Talking Avatar V3</title>
+    <meta name="theme-color" content="#d97706" />
+    
+    
+<style>
+  :root{
+    --bg:#fff8ef;
+    --panel:#ffffff;
+    --panel2:#fff4e4;
+    --ink:#1f2937;
+    --muted:#6b7280;
+    --brand:#d97706;
+    --brand2:#f59e0b;
+    --line:#ead7c4;
+    --shadow:0 18px 45px rgba(15,23,42,.12);
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:
+      radial-gradient(circle at top right, rgba(245,158,11,.14), transparent 24%),
+      linear-gradient(180deg, #fff8ef 0%, #fffaf5 100%);
+    color:var(--ink);
+  }
+
+  .wrap{
+    max-width:1150px;
+    margin:0 auto;
+    padding:24px;
+  }
+
+  .hero{
+    background:linear-gradient(135deg, rgba(217,119,6,.10), rgba(245,158,11,.08));
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:28px;
+    box-shadow:var(--shadow);
+  }
+
+  .kicker{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid rgba(217,119,6,.18);
+    color:#b45309;
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+
+  h1{
+    margin:14px 0 10px;
+    font-size:clamp(28px,4vw,48px);
+    line-height:1.08;
+  }
+
+  .lead{
+    margin:0;
+    max-width:760px;
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.7;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:24px;
+    margin-top:24px;
+    align-items:start;
+  }
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:20px;
+    box-shadow:var(--shadow);
+  }
+
+  .card h2{
+    margin:0 0 10px;
+    font-size:22px;
+  }
+
+  .speak-block{
+    margin:14px 0;
+    padding:16px 18px;
+    background:var(--panel2);
+    border:1px solid var(--line);
+    border-radius:18px;
+    transition:all .25s ease;
+    line-height:1.7;
+  }
+
+  .pp-speaking-active{
+    outline:3px solid rgba(217,119,6,.25);
+    background:rgba(245,158,11,.14);
+    box-shadow:0 14px 30px rgba(217,119,6,.12);
+    transform:translateY(-1px);
+  }
+
+  .controls{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:16px;
+  }
+
+  button{
+    border:none;
+    border-radius:14px;
+    padding:12px 14px;
+    font-weight:800;
+    cursor:pointer;
+    font-size:14px;
+  }
+
+  .btn-primary{
+    background:linear-gradient(135deg,var(--brand),var(--brand2));
+    color:#fff;
+    box-shadow:0 12px 24px rgba(217,119,6,.22);
+  }
+
+  .btn-secondary{
+    background:#fff;
+    color:#b45309;
+    border:1px solid rgba(217,119,6,.18);
+  }
+
+  .status{
+    margin-top:14px;
+    padding:14px 16px;
+    border-radius:16px;
+    background:#fff;
+    border:1px solid var(--line);
+    color:#4b5563;
+    font-weight:700;
+    line-height:1.6;
+  }
+
+  .avatar-shell{
+    position:sticky;
+    top:20px;
+  }
+
+  .avatar-card{
+    position:relative;
+    overflow:hidden;
+    min-height:620px;
+    background:
+      radial-gradient(circle at 50% 12%, rgba(255,255,255,.95), rgba(255,244,228,.97) 55%, rgba(255,236,205,.99) 100%);
+    border:1px solid var(--line);
+    border-radius:30px;
+    box-shadow:var(--shadow);
+    padding:22px;
+  }
+
+  .avatar-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:12px;
+  }
+
+  .avatar-top h3{
+    margin:0;
+    font-size:22px;
+  }
+
+  .avatar-top p{
+    margin:4px 0 0;
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  .live-dot{
+    width:13px;
+    height:13px;
+    border-radius:999px;
+    background:#d1d5db;
+    transition:all .25s ease;
+    flex:0 0 auto;
+  }
+
+  .live-dot.speaking{
+    background:#f59e0b;
+    animation:dotPulse 1s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse{
+    0%{ box-shadow:0 0 0 0 rgba(245,158,11,.35); }
+    70%{ box-shadow:0 0 0 14px rgba(245,158,11,0); }
+    100%{ box-shadow:0 0 0 0 rgba(245,158,11,0); }
+  }
+
+  .avatar-stage{
+    position:relative;
+    height:390px;
+    display:grid;
+    place-items:center;
+    margin-top:10px;
+  }
+
+  .avatar-glow{
+    position:absolute;
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(245,158,11,.24), rgba(245,158,11,.08) 58%, transparent 74%);
+    filter:blur(10px);
+    opacity:.7;
+    transition:all .3s ease;
+  }
+
+  .avatar-card.is-speaking .avatar-glow{
+    opacity:1;
+    animation:glowPulse 1.05s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse{
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.08); }
+    100%{ transform:scale(1); }
+  }
+
+  .photo-wrap{
+    position:relative;
+    width:min(320px, 78vw);
+    aspect-ratio:1/1;
+    border-radius:50%;
+    padding:10px;
+    background:linear-gradient(135deg, rgba(255,255,255,.95), rgba(255,244,228,.95));
+    box-shadow:
+      0 18px 40px rgba(15,23,42,.16),
+      inset 0 4px 12px rgba(255,255,255,.55);
+    animation:floaty 4s ease-in-out infinite;
+  }
+
+  @keyframes floaty{
+    0%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+    100%{ transform:translateY(0); }
+  }
+
+  .photo-ring{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    padding:10px;
+    background:conic-gradient(
+      from 0deg,
+      rgba(217,119,6,.85),
+      rgba(245,158,11,.95),
+      rgba(217,119,6,.75),
+      rgba(245,158,11,.95),
+      rgba(217,119,6,.85)
+    );
+    -webkit-mask:
+      radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
+            mask:
+      radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
+    opacity:.9;
+  }
+
+  .avatar-card.is-speaking .photo-ring{
+    animation:ringSpin 3.2s linear infinite;
+  }
+
+  @keyframes ringSpin{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+  }
+
+  .photo-inner{
+    position:absolute;
+    inset:12px;
+    border-radius:50%;
+    overflow:hidden;
+    background:#f3f4f6;
+    border:6px solid rgba(255,255,255,.85);
+  }
+
+  .photo-inner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 28%;
+    display:block;
+    transform:scale(1.05);
+    transition:transform .25s ease, filter .25s ease;
+    filter:saturate(1.03) contrast(1.02);
+  }
+
+  .avatar-card.is-speaking .photo-inner img{
+    transform:scale(1.09);
+  }
+
+  .blink-strip{
+    position:absolute;
+    left:13%;
+    right:13%;
+    top:34%;
+    height:7%;
+    background:linear-gradient(180deg, rgba(255,214,176,.95), rgba(237,184,132,.96));
+    border-radius:999px;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .avatar-card.is-speaking .blink-strip,
+  .avatar-card.is-idle .blink-strip,
+  .avatar-card.is-paused .blink-strip{
+    animation:photoBlink 5s infinite;
+  }
+
+  @keyframes photoBlink{
+    0%, 45%, 47%, 100%{ opacity:0; transform:scaleY(0.2); }
+    46%{ opacity:.92; transform:scaleY(1); }
+  }
+
+  .mouth-zone{
+    position:absolute;
+    left:50%;
+    bottom:11%;
+    transform:translateX(-50%);
+    width:34%;
+    height:13%;
+    display:grid;
+    place-items:center;
+    z-index:5;
+    pointer-events:none;
+  }
+
+  .mouth-bar{
+    width:68%;
+    height:12px;
+    border-radius:999px;
+    background:linear-gradient(180deg, #5a1f0f, #7c2d12);
+    box-shadow:
+      0 6px 14px rgba(0,0,0,.18),
+      inset 0 -3px 0 rgba(255,255,255,.08);
+    opacity:.95;
+    transition:all .16s ease;
+  }
+
+  .avatar-card.is-speaking .mouth-bar{
+    animation:talkBar .16s ease-in-out infinite alternate;
+  }
+
+  .avatar-card.is-paused .mouth-bar,
+  .avatar-card.is-idle .mouth-bar{
+    height:8px;
+    width:48%;
+  }
+
+  @keyframes talkBar{
+    0%{
+      height:12px;
+      width:60%;
+      border-radius:999px;
+    }
+    100%{
+      height:32px;
+      width:75%;
+      border-radius:18px;
+    }
+  }
+
+  .avatar-base{
+    margin-top:4px;
+    display:grid;
+    place-items:center;
+  }
+
+  .shoulder-band{
+    width:min(340px, 84vw);
+    height:80px;
+    border-radius:999px 999px 28px 28px;
+    background:linear-gradient(180deg, #d97706, #b45309);
+    box-shadow:
+      0 16px 28px rgba(180,83,9,.18),
+      inset 0 10px 20px rgba(255,255,255,.12);
+    margin-top:-46px;
+  }
+
+  .avatar-caption{
+    margin-top:18px;
+    padding:16px 18px;
+    border-radius:18px;
+    background:#fff;
+    border:1px solid var(--line);
+    color:#4b5563;
+    line-height:1.6;
+    min-height:90px;
+    font-size:15px;
+  }
+
+  .avatar-caption strong{
+    display:block;
+    color:#1f2937;
+    margin-bottom:4px;
+    font-size:17px;
+  }
+
+  .wave{
+    display:flex;
+    align-items:flex-end;
+    gap:6px;
+    height:42px;
+    margin-top:16px;
+  }
+
+  .wave span{
+    display:block;
+    width:9px;
+    height:10px;
+    background:linear-gradient(180deg,var(--brand2),var(--brand));
+    border-radius:999px;
+    opacity:.45;
+    transform-origin:bottom center;
+  }
+
+  .avatar-card.is-speaking .wave span{
+    opacity:1;
+    animation:waveBounce 1s ease-in-out infinite;
+  }
+
+  .avatar-card.is-speaking .wave span:nth-child(2){ animation-delay:.1s; }
+  .avatar-card.is-speaking .wave span:nth-child(3){ animation-delay:.2s; }
+  .avatar-card.is-speaking .wave span:nth-child(4){ animation-delay:.3s; }
+  .avatar-card.is-speaking .wave span:nth-child(5){ animation-delay:.4s; }
+
+  @keyframes waveBounce{
+    0%,100%{ transform:scaleY(.5); }
+    50%{ transform:scaleY(2.8); }
+  }
+
+  .small-note{
+    margin-top:14px;
+    color:#6b7280;
+    font-size:13px;
+    line-height:1.6;
+  }
+
+  code{
+    background:#fff;
+    border:1px solid var(--line);
+    padding:2px 7px;
+    border-radius:8px;
+  }
+
+  @media (max-width:900px){
+    .grid{ grid-template-columns:1fr; }
+    .avatar-shell{ position:relative; top:auto; }
+    .controls{ grid-template-columns:1fr 1fr; }
+    .avatar-card{ min-height:auto; }
+  }
+
+  @media (max-width:560px){
+    .controls{ grid-template-columns:1fr; }
+    .avatar-stage{ height:330px; }
+    .shoulder-band{
+      height:68px;
+      margin-top:-30px;
+      width:min(300px, 82vw);
+    }
+    .mouth-zone{
+      bottom:10%;
+      width:38%;
+    }
+    .mouth-bar{
+      width:70%;
+    }
+  }
+</style>
+
+
+
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="hero">
+        <span class="kicker">Programmer's Picnic</span>
+        <h1>Talking Avatar V3 — Photo Based</h1>
+        <p class="lead">
+          This version uses your photo. Save your image as
+          <code>champak.jpg</code> in the same folder as this file. When
+          narration starts, the photo gets a speaking glow, blinking overlay,
+          moving mouth bar, and voice waveform.
+        </p>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <h2>Demo Speak Paragraphs</h2>
+
+          <div class="speak-block" id="speak0">
+            Welcome to Programmer's Picnic. This is a photo based speaking
+            avatar demo. When the narration starts, the speaking layer becomes
+            active and gives the impression of a live presenter.
+          </div>
+
+          <div class="speak-block" id="speak1">
+            This version is much closer to a real teaching assistant on the
+            page. It uses your actual image, a glow effect, animated waveform,
+            blink effect, and a mouth bar that grows while speech is active.
+          </div>
+
+          <div class="speak-block" id="speak2">
+            Next, we can merge this directly into your PPSpeak V4 player,
+            connect it with your floating controls, and then fine tune the
+            placement of the mouth bar for your photo.
+          </div>
+
+          <div class="controls">
+            <button class="btn-primary" id="startBtn">Start</button>
+            <button class="btn-secondary" id="pauseBtn">Pause</button>
+            <button class="btn-secondary" id="nextBtn">Next</button>
+            <button class="btn-secondary" id="stopBtn">Stop</button>
+          </div>
+
+          <div class="status" id="statusBox">Ready.</div>
+
+          <div class="small-note">
+            Put your uploaded image in the same folder and name it
+            <code>champak.jpg</code>. If the mouth bar looks slightly high or
+            low for a different photo crop, adjust
+            <code>.mouth-zone { bottom: 17%; }</code>.
+          </div>
+        </div>
+
+        <div class="avatar-shell">
+          <div class="avatar-card is-idle" id="avatarCard">
+            <div class="avatar-top">
+              <div>
+                <h3>Champak Speaking Avatar</h3>
+                <p>Photo based demo narrator</p>
+              </div>
+              <div class="live-dot" id="liveDot"></div>
+            </div>
+
+            <div class="avatar-stage">
+              <div class="avatar-glow"></div>
+
+              <div class="photo-wrap">
+                <div class="photo-ring"></div>
+
+                <div class="photo-inner">
+                  <img src="champak.jpg" alt="Photo based avatar" />
+                </div>
+
+                <div class="blink-strip"></div>
+
+                <div class="mouth-zone">
+                  <div class="mouth-bar"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="avatar-base">
+              <div class="shoulder-band"></div>
+            </div>
+
+            <div class="avatar-caption" id="avatarCaption">
+              <strong>Status</strong>
+              Waiting to start narration.
+            </div>
+
+            <div class="wave" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      (() => {
+        "use strict";
+
+        const blocks = Array.from(document.querySelectorAll('[id^="speak"]'));
+        const avatarCard = document.getElementById("avatarCard");
+        const liveDot = document.getElementById("liveDot");
+        const statusBox = document.getElementById("statusBox");
+        const avatarCaption = document.getElementById("avatarCaption");
+        const pauseBtn = document.getElementById("pauseBtn");
+
+        let currentIndex = 0;
+        let running = false;
+        let paused = false;
+
+        function setStatus(text) {
+          statusBox.textContent = text;
+        }
+
+        function setAvatarText(title, text) {
+          avatarCaption.innerHTML =
+            "<strong>" + escapeHtml(title) + "</strong>" + escapeHtml(text);
+        }
+
+        function escapeHtml(str) {
+          return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+        }
+
+        function clearActive() {
+          blocks.forEach((el) => el.classList.remove("pp-speaking-active"));
+        }
+
+        function setAvatarMode(mode) {
+          avatarCard.classList.remove("is-idle", "is-speaking", "is-paused");
+          avatarCard.classList.add(mode);
+
+          if (mode === "is-speaking") {
+            liveDot.classList.add("speaking");
+          } else {
+            liveDot.classList.remove("speaking");
+          }
+        }
+
+        function speakIndex(index) {
+          if (!("speechSynthesis" in window)) {
+            setStatus("Speech synthesis is not supported in this browser.");
+            setAvatarText(
+              "Status",
+              "Speech synthesis is not supported in this browser.",
+            );
+            return;
+          }
+
+          if (index < 0 || index >= blocks.length) {
+            running = false;
+            paused = false;
+            setAvatarMode("is-idle");
+            setStatus("Completed.");
+            setAvatarText("Completed", "Narration finished.");
+            pauseBtn.textContent = "Pause";
+            return;
+          }
+
+          currentIndex = index;
+          const el = blocks[currentIndex];
+          const text = (el.textContent || "").trim();
+
+          clearActive();
+          el.classList.add("pp-speaking-active");
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.rate = 1;
+          utterance.pitch = 1;
+
+          setStatus("Speaking " + el.id + "...");
+          setAvatarText(el.id, text);
+          setAvatarMode("is-speaking");
+
+          utterance.onend = () => {
+            if (!running || paused) return;
+            setTimeout(() => {
+              if (!running || paused) return;
+              speakIndex(currentIndex + 1);
+            }, 220);
+          };
+
+          utterance.onerror = () => {
+            if (!running) return;
+            speakIndex(currentIndex + 1);
+          };
+
+          window.speechSynthesis.cancel();
+          setTimeout(() => {
+            if (!running) return;
+            window.speechSynthesis.speak(utterance);
+          }, 80);
+        }
+
+        document.getElementById("startBtn").addEventListener("click", () => {
+          running = true;
+          paused = false;
+          pauseBtn.textContent = "Pause";
+          speakIndex(currentIndex);
+        });
+
+        pauseBtn.addEventListener("click", () => {
+          if (!running) return;
+
+          if (!paused) {
+            paused = true;
+            window.speechSynthesis.pause();
+            setStatus("Paused.");
+            setAvatarText("Paused", "Narration is paused.");
+            setAvatarMode("is-paused");
+            pauseBtn.textContent = "Resume";
+          } else {
+            paused = false;
+            window.speechSynthesis.resume();
+            setStatus("Resumed.");
+            setAvatarText("Resumed", "Narration has resumed.");
+            setAvatarMode("is-speaking");
+            pauseBtn.textContent = "Pause";
+          }
+        });
+
+        document.getElementById("nextBtn").addEventListener("click", () => {
+          if (!blocks.length) return;
+          running = true;
+          paused = false;
+          pauseBtn.textContent = "Pause";
+          window.speechSynthesis.cancel();
+          currentIndex = Math.min(currentIndex + 1, blocks.length - 1);
+          speakIndex(currentIndex);
+        });
+
+        document.getElementById("stopBtn").addEventListener("click", () => {
+          running = false;
+          paused = false;
+          window.speechSynthesis.cancel();
+          clearActive();
+          setAvatarMode("is-idle");
+          setStatus("Stopped.");
+          setAvatarText("Status", "Waiting to start narration.");
+          pauseBtn.textContent = "Pause";
+        });
+
+        setAvatarText("Status", "Waiting to start narration.");
+      })();
+    </script>
+  </body>
+</html>
