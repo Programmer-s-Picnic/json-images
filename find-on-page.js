@@ -37,7 +37,7 @@
       whatsappLabel: "💬 Contact Champak Roy on WhatsApp",
       whatsappMessage: "Hi Champak Roy, I am interested in your course.",
 
-      avatarName: "Champak AI",
+      avatarName: "Champak Roy",
       avatarSubtitle: "Live speaking guide",
 
       storageKeyPosition: "ppSpeakPanelPositionV5",
