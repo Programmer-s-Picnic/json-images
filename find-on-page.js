@@ -30,7 +30,7 @@
     avatarName: "Champak Roy",
     avatarSubtitle: "Live speaking guide",
     avatarUseImage: true,
-    avatarImage: "mee.jpg",
+    avatarImage: "https://programmer-s-picnic.github.io/json-images/mee.jpg",
     avatarImageAlt: "Champak Roy",
     avatarBlinkEnabled: true,
 
