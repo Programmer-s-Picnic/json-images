@@ -1,125 +1,60 @@
- 
 (function () {
   "use strict";
 
-  const PPSpeakV5 = {
-    items: [],
-    currentIndex: 0,
-    running: false,
-    paused: false,
-    speaking: false,
-    activeUtterance: null,
-    dragged: false,
+  const PPSpeakDefaults = {
+    selector: '[id^="speak"]',
+    activeClass: "pp-speaking-active",
+    scrollBehavior: "smooth",
+    scrollBlock: "center",
+    pauseBetween: 700,
+    rate: 1,
+    pitch: 1,
+    volume: 1,
+    voiceName: "",
+    autoInjectStyle: true,
+    autoCreateControls: true,
+    controlsContainerId: "pp-auto-speak-controls-v6",
+    skipHiddenScroll: true,
+    readSpeak0First: true,
+    addTitleButton: true,
+    titleSelector: "[data-pp-speak-title]",
+    miniModeDefault: false,
+    draggable: true,
+    log: false,
 
-    options: {
-      selector: '[id^="speak"]',
-      activeClass: "pp-speaking-active",
-      scrollBehavior: "smooth",
-      scrollBlock: "center",
-      pauseBetween: 700,
-      rate: 1,
-      pitch: 1,
-      volume: 1,
-      voiceName: "",
-      autoInjectStyle: true,
-      autoCreateControls: true,
-      controlsContainerId: "pp-auto-speak-controls-v5",
-      skipHiddenScroll: true,
-      readSpeak0First: true,
-      addTitleButton: true,
-      titleSelector: "[data-pp-speak-title]",
-      miniModeDefault: false,
-      draggable: true,
-      log: false,
+    whatsappEnabled: true,
+    whatsappNumber: "919335874326",
+    whatsappLabel: "💬 Contact Champak Roy on WhatsApp",
+    whatsappMessage: "Hi Champak Roy, I am interested in your course.",
 
-      whatsappEnabled: true,
-      whatsappNumber: "919335874326",
-      whatsappLabel: "💬 Contact Champak Roy on WhatsApp",
-      whatsappMessage: "Hi Champak Roy, I am interested in your course.",
+    avatarName: "Champak Roy",
+    avatarSubtitle: "Live speaking guide",
 
-      avatarName: "Champak Roy",
-      avatarSubtitle: "Live speaking guide",
+    storageKeyPosition: "ppSpeakPanelPositionV6",
+    storageKeyMiniMode: "ppSpeakMiniModeV6",
+    storageKeyRate: "ppSpeakRateV6",
+    storageKeyPitch: "ppSpeakPitchV6",
+    storageKeyVoice: "ppSpeakVoiceV6"
+  };
 
-      storageKeyPosition: "ppSpeakPanelPositionV5",
-      storageKeyMiniMode: "ppSpeakMiniModeV5",
-      storageKeyRate: "ppSpeakRateV5",
-      storageKeyPitch: "ppSpeakPitchV5",
-      storageKeyVoice: "ppSpeakVoiceV5"
-    },
-
-    init(userOptions) {
-      this.options = Object.assign({}, this.options, userOptions || {});
-      this.collectItems();
-
-      if (this.options.autoInjectStyle) this.injectStyle();
-      if (this.options.autoCreateControls) this.createControls();
-      if (this.options.addTitleButton) this.attachTitleButton();
-
-      this.bindGlobalAPI();
-      this.restorePreferences();
-      this.loadVoices();
-
-      if ("speechSynthesis" in window) {
-        window.speechSynthesis.onvoiceschanged = () => {
-          this.loadVoices();
-        };
-      }
-
-      this.restoreMiniMode();
-      this.restorePanelPosition();
-      this.updateUI();
-
-      window.addEventListener("resize", () => {
-        this.restorePanelPosition();
-      });
-
-      return this;
-    },
-
-    log(message) {
-      if (this.options.log) {
-        console.log("[PPSpeakV5]", message);
-      }
-    },
-
-    collectItems() {
-      const found = Array.from(document.querySelectorAll(this.options.selector));
-      found.sort((a, b) => this.extractNumber(a.id) - this.extractNumber(b.id));
-
-      this.items = found.map((el, index) => ({
-        index,
-        id: el.id,
-        el,
-        text: this.getSpeakText(el),
-        scrollTarget: this.getScrollTarget(el)
-      }));
-
-      this.items.forEach((item, i) => (item.index = i));
-    },
-
+  const PPSpeakUtils = {
     extractNumber(id) {
-      const match = String(id).match(/(\d+)/);
+      const match = String(id || "").match(/(\d+)/);
       return match ? parseInt(match[1], 10) : Number.MAX_SAFE_INTEGER;
     },
 
-    getSpeakText(el) {
-      if (!el) return "";
-      const dataText = el.getAttribute("data-speak-text");
-      if (dataText && dataText.trim()) return dataText.trim();
-      return (el.textContent || "").trim();
+    truncate(text, max) {
+      const str = String(text || "");
+      return str.length > max ? str.slice(0, max - 1) + "…" : str;
     },
 
-    getScrollTarget(el) {
-      const selector = el.getAttribute("data-scroll-target");
-      if (selector) {
-        try {
-          const target = document.querySelector(selector);
-          if (target) return target;
-        } catch (err) {
-          this.log("Invalid data-scroll-target for #" + el.id);
-        }
-      }
-      return el;
+    escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     },
 
     isHidden(el) {
@@ -130,30 +65,49 @@
         style.visibility === "hidden" ||
         el.hidden === true
       );
-    },
+    }
+  };
 
-    getWhatsAppUrl() {
-      const number = String(this.options.whatsappNumber || "").replace(/[^\d]/g, "");
-      const message = encodeURIComponent(this.options.whatsappMessage || "");
-      if (!number) return "";
-      return message
-        ? "https://wa.me/" + number + "?text=" + message
-        : "https://wa.me/" + number;
-    },
+  class PPSpeakPluginManager {
+    constructor(engine) {
+      this.engine = engine;
+      this.plugins = [];
+    }
 
-    openWhatsApp() {
-      const url = this.getWhatsAppUrl();
-      if (!url) return;
-      window.open(url, "_blank", "noopener");
-    },
+    register(plugin) {
+      if (!plugin || typeof plugin !== "object") return;
+      this.plugins.push(plugin);
+    }
+
+    call(hookName, ...args) {
+      this.plugins.forEach((plugin) => {
+        if (typeof plugin[hookName] === "function") {
+          try {
+            plugin[hookName](this.engine, ...args);
+          } catch (err) {
+            this.engine.log(`Plugin hook failed: ${hookName}`);
+          }
+        }
+      });
+    }
+  }
+
+  class PPSpeakUI {
+    constructor(engine) {
+      this.engine = engine;
+    }
+
+    get panel() {
+      return document.getElementById(this.engine.options.controlsContainerId);
+    }
 
     injectStyle() {
-      if (document.getElementById("pp-auto-speak-v5-style")) return;
+      if (document.getElementById("pp-auto-speak-v6-style")) return;
 
       const style = document.createElement("style");
-      style.id = "pp-auto-speak-v5-style";
+      style.id = "pp-auto-speak-v6-style";
       style.textContent = `
-        .${this.options.activeClass} {
+        .${this.engine.options.activeClass} {
           outline: 3px solid rgba(217,119,6,.28);
           background: rgba(245,158,11,.12) !important;
           border-radius: 14px;
@@ -453,14 +407,8 @@
         }
 
         @keyframes ppTalkMouth {
-          0% {
-            height: 5px;
-            top: 38px;
-          }
-          100% {
-            height: 14px;
-            top: 32px;
-          }
+          0% { height: 5px; top: 38px; }
+          100% { height: 14px; top: 32px; }
         }
 
         .pp-speak-avatar-meta {
@@ -707,7 +655,7 @@
             animation: none !important;
           }
 
-          .${this.options.activeClass} {
+          .${this.engine.options.activeClass} {
             transition: none;
           }
         }
@@ -757,14 +705,16 @@
         }
       `;
       document.head.appendChild(style);
-    },
+    }
 
-    createControls() {
-      if (document.getElementById(this.options.controlsContainerId)) return;
+    renderPanel() {
+      if (this.panel) return;
 
-      const whatsappBodyRow = this.options.whatsappEnabled
+      const opts = this.engine.options;
+
+      const whatsappBodyRow = opts.whatsappEnabled
         ? `
-          <div class="pp-speak-row">
+          <div class="pp-speak-row" data-plugin="whatsapp-body">
             <button
               type="button"
               class="pp-speak-btn pp-whatsapp-btn"
@@ -772,13 +722,13 @@
               aria-label="Contact Champak Roy on WhatsApp"
               title="Contact Champak Roy on WhatsApp"
             >
-              ${this.escapeHtml(this.options.whatsappLabel)}
+              ${PPSpeakUtils.escapeHtml(opts.whatsappLabel)}
             </button>
           </div>
         `
         : "";
 
-      const whatsappMiniButton = this.options.whatsappEnabled
+      const whatsappMiniButton = opts.whatsappEnabled
         ? `
           <button
             type="button"
@@ -791,13 +741,13 @@
         : "";
 
       const panel = document.createElement("div");
-      panel.id = this.options.controlsContainerId;
+      panel.id = opts.controlsContainerId;
       panel.className = "pp-speak-panel";
       panel.innerHTML = `
         <div class="pp-speak-head" id="pp-speak-drag-handle">
           <div class="pp-speak-topline">
             <div>
-              <div class="pp-speak-kicker">Auto Narration V5 Premium</div>
+              <div class="pp-speak-kicker">Auto Narration V6 Premium</div>
               <h3 class="pp-speak-title">Speak Player</h3>
               <p class="pp-speak-sub">Reads speak paragraphs, scrolls, highlights, and shows a live talking avatar.</p>
             </div>
@@ -833,8 +783,8 @@
             </div>
 
             <div class="pp-speak-avatar-meta">
-              <div class="pp-speak-avatar-name">${this.escapeHtml(this.options.avatarName)}</div>
-              <p class="pp-speak-avatar-role">${this.escapeHtml(this.options.avatarSubtitle)}</p>
+              <div class="pp-speak-avatar-name">${PPSpeakUtils.escapeHtml(opts.avatarName)}</div>
+              <p class="pp-speak-avatar-role">${PPSpeakUtils.escapeHtml(opts.avatarSubtitle)}</p>
               <div class="pp-speak-avatar-caption" id="pp-speak-avatar-caption">Waiting to start narration.</div>
               <div class="pp-speak-wave" aria-hidden="true">
                 <span></span><span></span><span></span><span></span><span></span>
@@ -914,84 +864,810 @@
       `;
 
       document.body.appendChild(panel);
+      this.bindPanelEvents();
+      this.engine.plugins.call("afterPanelRender", panel);
+    }
+
+    bindPanelEvents() {
+      const panel = this.panel;
+      if (!panel) return;
 
       panel.querySelector("#pp-speak-start").addEventListener("click", () => {
         const select = document.getElementById("pp-speak-start-at");
         const idx = parseInt(select.value, 10) || 0;
-        this.options.rate = parseFloat(document.getElementById("pp-speak-rate").value) || 1;
-        this.options.pitch = parseFloat(document.getElementById("pp-speak-pitch").value) || 1;
-        this.options.voiceName = document.getElementById("pp-speak-voice").value || "";
-        this.savePreferences();
-        this.start(idx);
+
+        this.engine.options.rate =
+          parseFloat(document.getElementById("pp-speak-rate").value) || 1;
+        this.engine.options.pitch =
+          parseFloat(document.getElementById("pp-speak-pitch").value) || 1;
+        this.engine.options.voiceName =
+          document.getElementById("pp-speak-voice").value || "";
+
+        this.engine.savePreferences();
+        this.engine.start(idx);
       });
 
       panel.querySelector("#pp-speak-pause").addEventListener("click", () => {
-        if (this.paused) this.resume();
-        else this.pause();
+        if (this.engine.state.paused) this.engine.resume();
+        else this.engine.pause();
       });
 
-      panel.querySelector("#pp-speak-stop").addEventListener("click", () => this.stop());
-      panel.querySelector("#pp-speak-prev").addEventListener("click", () => this.previous());
-      panel.querySelector("#pp-speak-next").addEventListener("click", () => this.next());
+      panel.querySelector("#pp-speak-stop").addEventListener("click", () => this.engine.stop());
+      panel.querySelector("#pp-speak-prev").addEventListener("click", () => this.engine.previous());
+      panel.querySelector("#pp-speak-next").addEventListener("click", () => this.engine.next());
 
       panel.querySelector("#pp-speak-rate").addEventListener("change", (e) => {
-        this.options.rate = parseFloat(e.target.value) || 1;
-        this.savePreferences();
+        this.engine.options.rate = parseFloat(e.target.value) || 1;
+        this.engine.savePreferences();
       });
 
       panel.querySelector("#pp-speak-pitch").addEventListener("change", (e) => {
-        this.options.pitch = parseFloat(e.target.value) || 1;
-        this.savePreferences();
+        this.engine.options.pitch = parseFloat(e.target.value) || 1;
+        this.engine.savePreferences();
       });
 
       panel.querySelector("#pp-speak-voice").addEventListener("change", (e) => {
-        this.options.voiceName = e.target.value || "";
-        this.savePreferences();
+        this.engine.options.voiceName = e.target.value || "";
+        this.engine.savePreferences();
       });
 
       panel.querySelector("#pp-speak-mini-toggle").addEventListener("click", () => {
-        this.toggleMiniMode();
+        this.engine.toggleMiniMode();
       });
 
       panel.querySelector("#pp-speak-mini-toggle-2").addEventListener("click", () => {
-        this.toggleMiniMode(false);
+        this.engine.toggleMiniMode(false);
       });
 
       panel.querySelector("#pp-speak-reset-pos").addEventListener("click", () => {
-        this.resetPanelPosition();
+        this.engine.resetPanelPosition();
       });
 
       panel.querySelector("#pp-speak-mini-play").addEventListener("click", () => {
-        if (!this.running) {
-          this.start(this.currentIndex || 0);
-        } else if (this.paused) {
-          this.resume();
+        if (!this.engine.state.running) {
+          this.engine.start(this.engine.state.currentIndex || 0);
+        } else if (this.engine.state.paused) {
+          this.engine.resume();
         } else {
-          this.pause();
+          this.engine.pause();
         }
       });
 
       panel.querySelector("#pp-speak-mini-next").addEventListener("click", () => {
-        this.next();
+        this.engine.next();
       });
 
       const whatsappBtn = panel.querySelector("#pp-whatsapp-contact");
       if (whatsappBtn) {
-        whatsappBtn.addEventListener("click", () => this.openWhatsApp());
+        whatsappBtn.addEventListener("click", () => this.engine.openWhatsApp());
       }
 
       const whatsappMiniBtn = panel.querySelector("#pp-speak-mini-whatsapp");
       if (whatsappMiniBtn) {
-        whatsappMiniBtn.addEventListener("click", () => this.openWhatsApp());
+        whatsappMiniBtn.addEventListener("click", () => this.engine.openWhatsApp());
       }
 
-      this.refreshStartDropdown();
+      if (this.engine.options.draggable) {
+        this.engine.enableDragging(panel, panel.querySelector("#pp-speak-drag-handle"));
+      }
+    }
+
+    refreshStartDropdown() {
+      const select = document.getElementById("pp-speak-start-at");
+      if (!select) return;
+
+      select.innerHTML = this.engine.items
+        .map((item, i) => {
+          const label = item.id + (item.id === "speak0" ? " — Introduction" : "");
+          return `<option value="${i}">${PPSpeakUtils.escapeHtml(label)}</option>`;
+        })
+        .join("");
+    }
+
+    updateVoiceOptions() {
+      if (!("speechSynthesis" in window)) return;
+
+      const select = document.getElementById("pp-speak-voice");
+      if (!select) return;
+
+      const voices = window.speechSynthesis.getVoices() || [];
+      const current = this.engine.options.voiceName || "";
+
+      select.innerHTML =
+        `<option value="">Default</option>` +
+        voices
+          .map((v) => {
+            const value = PPSpeakUtils.escapeHtml(v.name);
+            const label = PPSpeakUtils.escapeHtml(
+              v.name + (v.lang ? " (" + v.lang + ")" : "")
+            );
+            return `<option value="${value}">${label}</option>`;
+          })
+          .join("");
+
+      if (current) select.value = current;
+
+      const rateEl = document.getElementById("pp-speak-rate");
+      const pitchEl = document.getElementById("pp-speak-pitch");
+      if (rateEl) rateEl.value = String(this.engine.options.rate);
+      if (pitchEl) pitchEl.value = String(this.engine.options.pitch);
+    }
+
+    setStatus(text) {
+      const el = document.getElementById("pp-speak-status");
+      if (el) el.textContent = text;
+    }
+
+    setCurrent(text) {
+      const el = document.getElementById("pp-speak-current");
+      if (el) el.textContent = text;
+    }
+
+    setAvatarCaption(text) {
+      const el = document.getElementById("pp-speak-avatar-caption");
+      if (el) el.textContent = text;
+    }
+
+    activateAvatarSpeaking() {
+      const panel = this.panel;
+      if (!panel) return;
+      panel.classList.add("is-speaking");
+      panel.classList.remove("is-paused");
+    }
+
+    activateAvatarPaused() {
+      const panel = this.panel;
+      if (!panel) return;
+      panel.classList.remove("is-speaking");
+      panel.classList.add("is-paused");
+    }
+
+    activateAvatarIdle() {
+      const panel = this.panel;
+      if (!panel) return;
+      panel.classList.remove("is-speaking", "is-paused");
+    }
+
+    updatePauseButton() {
+      const btn = document.getElementById("pp-speak-pause");
+      if (!btn) return;
+      btn.textContent = this.engine.state.paused ? "Resume" : "Pause";
+    }
+
+    updateMiniPlayButton() {
+      const btn = document.getElementById("pp-speak-mini-play");
+      if (!btn) return;
+
+      if (!this.engine.state.running) {
+        btn.textContent = "▶";
+        btn.title = "Start";
+      } else if (this.engine.state.paused) {
+        btn.textContent = "▶";
+        btn.title = "Resume";
+      } else {
+        btn.textContent = "⏸";
+        btn.title = "Pause";
+      }
+    }
+
+    updateMiniText(title, text) {
+      const titleEl = document.getElementById("pp-speak-mini-title");
+      const textEl = document.getElementById("pp-speak-mini-text");
+      if (titleEl) titleEl.textContent = title;
+      if (textEl) textEl.textContent = text;
+    }
+
+    updateProgress() {
+      const bar = document.getElementById("pp-speak-progress-bar");
+      if (!bar || !this.engine.items.length) {
+        if (bar) bar.style.width = "0%";
+        return;
+      }
+
+      const value = this.engine.state.running
+        ? ((this.engine.state.currentIndex + 1) / this.engine.items.length) * 100
+        : 0;
+
+      bar.style.width = Math.max(0, Math.min(100, value)) + "%";
+    }
+
+    updateStartAtDropdownValue() {
+      const select = document.getElementById("pp-speak-start-at");
+      if (select) select.value = String(this.engine.state.currentIndex);
+    }
+
+    updateMiniToggleIcon() {
+      const panel = this.panel;
+      const iconWrap = document.getElementById("pp-speak-mini-icon");
+      const btn = document.getElementById("pp-speak-mini-toggle");
+
+      if (!panel || !iconWrap || !btn) return;
+
+      const isMini = panel.classList.contains("mini");
+
+      if (isMini) {
+        iconWrap.innerHTML = `
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="20" y2="17"></line>
+          </svg>
+        `;
+        btn.title = "Expand panel";
+        btn.setAttribute("aria-label", "Expand panel");
+      } else {
+        iconWrap.innerHTML = `
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        `;
+        btn.title = "Collapse panel";
+        btn.setAttribute("aria-label", "Collapse panel");
+      }
+    }
+
+    restoreMiniMode() {
+      const panel = this.panel;
+      if (!panel) return;
+
+      try {
+        const raw = localStorage.getItem(this.engine.options.storageKeyMiniMode);
+        if (raw === "1") {
+          panel.classList.add("mini");
+        } else if (raw === "0") {
+          panel.classList.remove("mini");
+        } else if (this.engine.options.miniModeDefault) {
+          panel.classList.add("mini");
+        }
+      } catch (err) {
+        if (this.engine.options.miniModeDefault) {
+          panel.classList.add("mini");
+        }
+      }
+
       this.updateMiniToggleIcon();
+    }
 
-      if (this.options.draggable) {
-        this.enableDragging(panel, panel.querySelector("#pp-speak-drag-handle"));
+    toggleMiniMode(forceValue) {
+      const panel = this.panel;
+      if (!panel) return;
+
+      const makeMini =
+        typeof forceValue === "boolean"
+          ? forceValue
+          : !panel.classList.contains("mini");
+
+      panel.classList.toggle("mini", makeMini);
+      this.engine.saveMiniMode(makeMini);
+      this.updateMiniToggleIcon();
+    }
+
+    attachTitleButton() {
+      const titleEl = document.querySelector(this.engine.options.titleSelector);
+      if (!titleEl) return;
+      if (titleEl.parentNode && titleEl.parentNode.querySelector(".pp-speak-title-btn")) return;
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pp-speak-title-btn";
+      btn.innerHTML = "🔊 Start narration";
+      btn.addEventListener("click", () => {
+        if (this.engine.options.readSpeak0First) {
+          this.engine.startFromId("speak0");
+        } else {
+          this.engine.start(0);
+        }
+      });
+
+      titleEl.insertAdjacentElement("afterend", btn);
+    }
+
+    updateUI() {
+      this.refreshStartDropdown();
+      this.updateProgress();
+      this.updatePauseButton();
+      this.updateMiniPlayButton();
+      this.updateMiniToggleIcon();
+      this.updateStartAtDropdownValue();
+      this.setAvatarCaption("Waiting to start narration.");
+    }
+  }
+
+  class PPSpeakCore {
+    constructor(userOptions) {
+      this.options = Object.assign({}, PPSpeakDefaults, userOptions || {});
+      this.items = [];
+      this.state = {
+        currentIndex: 0,
+        running: false,
+        paused: false,
+        speaking: false,
+        activeUtterance: null,
+        dragged: false
+      };
+      this.ui = new PPSpeakUI(this);
+      this.plugins = new PPSpeakPluginManager(this);
+      this.boundVoicesChanged = null;
+      this.boundResize = null;
+    }
+
+    log(message) {
+      if (this.options.log) {
+        console.log("[PPSpeakV6]", message);
       }
-    },
+    }
+
+    init() {
+      this.registerDefaultPlugins();
+      this.collectItems();
+
+      if (this.options.autoInjectStyle) this.ui.injectStyle();
+      if (this.options.autoCreateControls) this.ui.renderPanel();
+      if (this.options.addTitleButton) this.ui.attachTitleButton();
+
+      this.bindGlobalAPI();
+      this.restorePreferences();
+      this.loadVoices();
+
+      if ("speechSynthesis" in window) {
+        this.boundVoicesChanged = () => this.loadVoices();
+        if (typeof window.speechSynthesis.addEventListener === "function") {
+          window.speechSynthesis.addEventListener("voiceschanged", this.boundVoicesChanged);
+        } else {
+          window.speechSynthesis.onvoiceschanged = this.boundVoicesChanged;
+        }
+      }
+
+      this.ui.restoreMiniMode();
+      this.restorePanelPosition();
+      this.ui.updateUI();
+
+      this.boundResize = () => this.restorePanelPosition();
+      window.addEventListener("resize", this.boundResize);
+
+      this.plugins.call("afterInit");
+      return this;
+    }
+
+    registerDefaultPlugins() {
+      this.plugins.register(new PPSpeakWhatsAppPlugin());
+      this.plugins.register(new PPSpeakAvatarPlugin());
+      this.plugins.register(new PPSpeakTitleButtonPlugin());
+    }
+
+    collectItems() {
+      const found = Array.from(document.querySelectorAll(this.options.selector));
+      found.sort((a, b) => PPSpeakUtils.extractNumber(a.id) - PPSpeakUtils.extractNumber(b.id));
+
+      this.items = found.map((el, index) => ({
+        index,
+        id: el.id,
+        el,
+        text: this.getSpeakText(el),
+        scrollTarget: this.getScrollTarget(el)
+      }));
+
+      this.items.forEach((item, i) => {
+        item.index = i;
+      });
+    }
+
+    getSpeakText(el) {
+      if (!el) return "";
+      const dataText = el.getAttribute("data-speak-text");
+      if (dataText && dataText.trim()) return dataText.trim();
+      return (el.textContent || "").trim();
+    }
+
+    getScrollTarget(el) {
+      const selector = el.getAttribute("data-scroll-target");
+      if (selector) {
+        try {
+          const target = document.querySelector(selector);
+          if (target) return target;
+        } catch (err) {
+          this.log("Invalid data-scroll-target for #" + el.id);
+        }
+      }
+      return el;
+    }
+
+    getVoice() {
+      const voices = ("speechSynthesis" in window) ? speechSynthesis.getVoices() : [];
+      if (!voices.length) return null;
+
+      if (this.options.voiceName) {
+        const exact = voices.find((v) => v.name === this.options.voiceName);
+        if (exact) return exact;
+
+        const partial = voices.find((v) =>
+          v.name.toLowerCase().includes(this.options.voiceName.toLowerCase())
+        );
+        if (partial) return partial;
+      }
+
+      return voices[0] || null;
+    }
+
+    loadVoices() {
+      this.ui.updateVoiceOptions();
+    }
+
+    clearActive() {
+      this.items.forEach((item) => {
+        if (item.el) item.el.classList.remove(this.options.activeClass);
+        if (item.scrollTarget && item.scrollTarget !== item.el) {
+          item.scrollTarget.classList.remove(this.options.activeClass);
+        }
+      });
+    }
+
+    highlight(item) {
+      this.clearActive();
+      if (!item) return;
+
+      if (item.el && !PPSpeakUtils.isHidden(item.el)) {
+        item.el.classList.add(this.options.activeClass);
+      }
+
+      if (
+        item.scrollTarget &&
+        item.scrollTarget !== item.el &&
+        !PPSpeakUtils.isHidden(item.scrollTarget)
+      ) {
+        item.scrollTarget.classList.add(this.options.activeClass);
+      }
+    }
+
+    scrollToItem(item) {
+      if (!item || !item.scrollTarget) return;
+      if (this.options.skipHiddenScroll && PPSpeakUtils.isHidden(item.scrollTarget)) return;
+
+      try {
+        item.scrollTarget.scrollIntoView({
+          behavior: this.options.scrollBehavior,
+          block: this.options.scrollBlock
+        });
+      } catch (err) {
+        this.log("Scroll failed for " + item.id);
+      }
+    }
+
+    start(startAt) {
+      if (!("speechSynthesis" in window)) {
+        this.ui.setStatus("Speech synthesis is not supported in this browser.");
+        this.ui.setAvatarCaption("Speech synthesis is not supported in this browser.");
+        return;
+      }
+
+      if (!this.items.length) this.collectItems();
+      if (!this.items.length) {
+        this.ui.setStatus("No speak paragraphs found.");
+        this.ui.setAvatarCaption("No speak paragraphs were found.");
+        return;
+      }
+
+      speechSynthesis.cancel();
+
+      this.state.running = true;
+      this.state.paused = false;
+      this.state.speaking = false;
+      this.state.activeUtterance = null;
+
+      if (typeof startAt === "number") {
+        this.state.currentIndex = Math.max(0, Math.min(startAt, this.items.length - 1));
+      } else if (this.options.readSpeak0First) {
+        const speak0Index = this.items.findIndex((item) => item.id === "speak0");
+        this.state.currentIndex = speak0Index >= 0 ? speak0Index : 0;
+      } else {
+        this.state.currentIndex = 0;
+      }
+
+      this.plugins.call("onStart", this.state.currentIndex);
+      this.speakCurrent();
+    }
+
+    startFromId(id) {
+      const index = this.items.findIndex((item) => item.id === id);
+      if (index >= 0) this.start(index);
+    }
+
+    stop() {
+      this.state.running = false;
+      this.state.paused = false;
+      this.state.speaking = false;
+      this.state.activeUtterance = null;
+      this.state.currentIndex = 0;
+
+      this.clearActive();
+
+      if ("speechSynthesis" in window) {
+        speechSynthesis.cancel();
+      }
+
+      this.ui.activateAvatarIdle();
+      this.ui.setAvatarCaption("Waiting to start narration.");
+      this.ui.setStatus("Stopped.");
+      this.ui.setCurrent("No paragraph selected.");
+      this.ui.updateProgress();
+      this.ui.updatePauseButton();
+      this.ui.updateMiniPlayButton();
+      this.ui.updateMiniText("Ready", "Tap play.");
+      this.ui.updateStartAtDropdownValue();
+
+      this.plugins.call("onStop");
+    }
+
+    pause() {
+      if (!this.state.running || this.state.paused) return;
+      this.state.paused = true;
+
+      if ("speechSynthesis" in window) {
+        try {
+          speechSynthesis.pause();
+        } catch (err) {
+          this.log("Pause not supported cleanly.");
+        }
+      }
+
+      this.ui.activateAvatarPaused();
+      this.ui.setAvatarCaption("Narration is paused.");
+      this.ui.setStatus("Paused.");
+      this.ui.updatePauseButton();
+      this.ui.updateMiniPlayButton();
+
+      this.plugins.call("onPause");
+    }
+
+    resume() {
+      if (!this.state.running || !this.state.paused) return;
+      this.state.paused = false;
+
+      if ("speechSynthesis" in window) {
+        try {
+          speechSynthesis.resume();
+        } catch (err) {
+          this.log("Resume failed, restarting current paragraph.");
+          this.speakCurrent();
+          return;
+        }
+      }
+
+      this.ui.activateAvatarSpeaking();
+      this.ui.setAvatarCaption("Narration has resumed.");
+      this.ui.setStatus("Resumed.");
+      this.ui.updatePauseButton();
+      this.ui.updateMiniPlayButton();
+
+      this.plugins.call("onResume");
+    }
+
+    next() {
+      if (!this.items.length) return;
+
+      if (!this.state.running) {
+        const nextIndex = Math.min(this.state.currentIndex + 1, this.items.length - 1);
+        this.start(nextIndex);
+        return;
+      }
+
+      speechSynthesis.cancel();
+      this.state.currentIndex = Math.min(this.state.currentIndex + 1, this.items.length - 1);
+      this.plugins.call("onNext", this.state.currentIndex);
+      this.speakCurrent();
+    }
+
+    previous() {
+      if (!this.items.length) return;
+
+      if (!this.state.running) {
+        const prevIndex = Math.max(this.state.currentIndex - 1, 0);
+        this.start(prevIndex);
+        return;
+      }
+
+      speechSynthesis.cancel();
+      this.state.currentIndex = Math.max(this.state.currentIndex - 1, 0);
+      this.plugins.call("onPrevious", this.state.currentIndex);
+      this.speakCurrent();
+    }
+
+    speakCurrent() {
+      if (!this.state.running) return;
+
+      if (this.state.currentIndex >= this.items.length) {
+        this.state.running = false;
+        this.state.paused = false;
+        this.state.speaking = false;
+        this.state.activeUtterance = null;
+
+        this.clearActive();
+        this.ui.activateAvatarIdle();
+        this.ui.setAvatarCaption("Narration finished.");
+        this.ui.setStatus("Completed.");
+        this.ui.setCurrent("Narration finished.");
+        this.ui.updateProgress();
+        this.ui.updatePauseButton();
+        this.ui.updateMiniPlayButton();
+        this.ui.updateMiniText("Completed", "Narration finished.");
+        this.state.currentIndex = 0;
+        this.ui.updateStartAtDropdownValue();
+
+        this.plugins.call("onComplete");
+        return;
+      }
+
+      const item = this.items[this.state.currentIndex];
+      if (!item) {
+        this.stop();
+        return;
+      }
+
+      item.text = this.getSpeakText(item.el);
+
+      if (!item.text) {
+        this.state.currentIndex += 1;
+        this.speakCurrent();
+        return;
+      }
+
+      this.highlight(item);
+      this.scrollToItem(item);
+      this.ui.activateAvatarSpeaking();
+      this.ui.setAvatarCaption(PPSpeakUtils.truncate(item.text, 110));
+      this.ui.setStatus("Speaking " + item.id + "...");
+      this.ui.setCurrent(item.id + ": " + PPSpeakUtils.truncate(item.text, 120));
+      this.ui.updateProgress();
+      this.ui.updateStartAtDropdownValue();
+      this.ui.updatePauseButton();
+      this.ui.updateMiniPlayButton();
+      this.ui.updateMiniText(item.id, PPSpeakUtils.truncate(item.text, 40));
+
+      const utterance = new SpeechSynthesisUtterance(item.text);
+      utterance.rate = this.options.rate;
+      utterance.pitch = this.options.pitch;
+      utterance.volume = this.options.volume;
+
+      const voice = this.getVoice();
+      if (voice) utterance.voice = voice;
+
+      this.state.activeUtterance = utterance;
+      this.state.speaking = true;
+
+      this.plugins.call("beforeSpeak", item, utterance);
+
+      utterance.onend = () => {
+        if (!this.state.running) return;
+        this.state.speaking = false;
+        this.plugins.call("afterSpeak", item);
+
+        setTimeout(() => {
+          if (!this.state.running || this.state.paused) return;
+          this.state.currentIndex += 1;
+          this.speakCurrent();
+        }, this.options.pauseBetween);
+      };
+
+      utterance.onerror = () => {
+        if (!this.state.running) return;
+        this.state.speaking = false;
+        this.plugins.call("onSpeakError", item);
+
+        setTimeout(() => {
+          if (!this.state.running) return;
+          this.state.currentIndex += 1;
+          this.speakCurrent();
+        }, this.options.pauseBetween);
+      };
+
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
+    }
+
+    getWhatsAppUrl() {
+      const number = String(this.options.whatsappNumber || "").replace(/[^\d]/g, "");
+      const message = encodeURIComponent(this.options.whatsappMessage || "");
+      if (!number) return "";
+      return message
+        ? "https://wa.me/" + number + "?text=" + message
+        : "https://wa.me/" + number;
+    }
+
+    openWhatsApp() {
+      const url = this.getWhatsAppUrl();
+      if (!url) return;
+      window.open(url, "_blank", "noopener");
+      this.plugins.call("onOpenWhatsApp", url);
+    }
+
+    savePanelPosition() {
+      const panel = document.getElementById(this.options.controlsContainerId);
+      if (!panel) return;
+
+      const rect = panel.getBoundingClientRect();
+      const data = { left: rect.left, top: rect.top };
+
+      try {
+        localStorage.setItem(this.options.storageKeyPosition, JSON.stringify(data));
+      } catch (err) {
+        this.log("Could not save panel position.");
+      }
+    }
+
+    restorePanelPosition() {
+      const panel = document.getElementById(this.options.controlsContainerId);
+      if (!panel) return;
+
+      try {
+        const raw = localStorage.getItem(this.options.storageKeyPosition);
+        if (!raw) return;
+
+        const data = JSON.parse(raw);
+        if (!data || typeof data.left !== "number" || typeof data.top !== "number") return;
+
+        const maxLeft = Math.max(0, window.innerWidth - panel.offsetWidth);
+        const maxTop = Math.max(0, window.innerHeight - panel.offsetHeight);
+
+        panel.style.right = "auto";
+        panel.style.bottom = "auto";
+        panel.style.left = Math.max(0, Math.min(maxLeft, data.left)) + "px";
+        panel.style.top = Math.max(0, Math.min(maxTop, data.top)) + "px";
+      } catch (err) {
+        this.log("Could not restore panel position.");
+      }
+    }
+
+    resetPanelPosition() {
+      const panel = document.getElementById(this.options.controlsContainerId);
+      if (!panel) return;
+
+      panel.style.left = "";
+      panel.style.top = "";
+      panel.style.right = "14px";
+      panel.style.bottom = "14px";
+
+      try {
+        localStorage.removeItem(this.options.storageKeyPosition);
+      } catch (err) {
+        this.log("Could not clear saved panel position.");
+      }
+    }
+
+    saveMiniMode(isMini) {
+      try {
+        localStorage.setItem(this.options.storageKeyMiniMode, isMini ? "1" : "0");
+      } catch (err) {
+        this.log("Could not save mini mode.");
+      }
+    }
+
+    toggleMiniMode(forceValue) {
+      this.ui.toggleMiniMode(forceValue);
+    }
+
+    restorePreferences() {
+      try {
+        const savedRate = localStorage.getItem(this.options.storageKeyRate);
+        const savedPitch = localStorage.getItem(this.options.storageKeyPitch);
+        const savedVoice = localStorage.getItem(this.options.storageKeyVoice);
+
+        if (savedRate) this.options.rate = parseFloat(savedRate) || this.options.rate;
+        if (savedPitch) this.options.pitch = parseFloat(savedPitch) || this.options.pitch;
+        if (savedVoice !== null) this.options.voiceName = savedVoice;
+      } catch (err) {
+        this.log("Could not restore preferences.");
+      }
+    }
+
+    savePreferences() {
+      try {
+        localStorage.setItem(this.options.storageKeyRate, String(this.options.rate));
+        localStorage.setItem(this.options.storageKeyPitch, String(this.options.pitch));
+        localStorage.setItem(this.options.storageKeyVoice, String(this.options.voiceName || ""));
+      } catch (err) {
+        this.log("Could not save preferences.");
+      }
+    }
 
     enableDragging(panel, handle) {
       if (!panel || !handle) return;
@@ -1005,7 +1681,7 @@
       const onPointerDown = (e) => {
         if (e.target.closest("button, select, option, input")) return;
 
-        this.dragged = false;
+        this.state.dragged = false;
         isDragging = true;
 
         const rect = panel.getBoundingClientRect();
@@ -1030,7 +1706,7 @@
         const dy = e.clientY - startY;
 
         if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
-          this.dragged = true;
+          this.state.dragged = true;
         }
 
         let newLeft = startLeft + dx;
@@ -1057,593 +1733,22 @@
       };
 
       handle.addEventListener("pointerdown", onPointerDown);
-    },
-
-    savePanelPosition() {
-      const panel = document.getElementById(this.options.controlsContainerId);
-      if (!panel) return;
-
-      const rect = panel.getBoundingClientRect();
-      const data = {
-        left: rect.left,
-        top: rect.top
-      };
-
-      try {
-        localStorage.setItem(this.options.storageKeyPosition, JSON.stringify(data));
-      } catch (err) {
-        this.log("Could not save panel position.");
-      }
-    },
-
-    restorePanelPosition() {
-      const panel = document.getElementById(this.options.controlsContainerId);
-      if (!panel) return;
-
-      try {
-        const raw = localStorage.getItem(this.options.storageKeyPosition);
-        if (!raw) return;
-
-        const data = JSON.parse(raw);
-        if (!data || typeof data.left !== "number" || typeof data.top !== "number") return;
-
-        const maxLeft = Math.max(0, window.innerWidth - panel.offsetWidth);
-        const maxTop = Math.max(0, window.innerHeight - panel.offsetHeight);
-
-        panel.style.right = "auto";
-        panel.style.bottom = "auto";
-        panel.style.left = Math.max(0, Math.min(maxLeft, data.left)) + "px";
-        panel.style.top = Math.max(0, Math.min(maxTop, data.top)) + "px";
-      } catch (err) {
-        this.log("Could not restore panel position.");
-      }
-    },
-
-    resetPanelPosition() {
-      const panel = document.getElementById(this.options.controlsContainerId);
-      if (!panel) return;
-
-      panel.style.left = "";
-      panel.style.top = "";
-      panel.style.right = "14px";
-      panel.style.bottom = "14px";
-
-      try {
-        localStorage.removeItem(this.options.storageKeyPosition);
-      } catch (err) {
-        this.log("Could not clear saved panel position.");
-      }
-    },
-
-    saveMiniMode(isMini) {
-      try {
-        localStorage.setItem(this.options.storageKeyMiniMode, isMini ? "1" : "0");
-      } catch (err) {
-        this.log("Could not save mini mode.");
-      }
-    },
-
-    restoreMiniMode() {
-      const panel = document.getElementById(this.options.controlsContainerId);
-      if (!panel) return;
-
-      try {
-        const raw = localStorage.getItem(this.options.storageKeyMiniMode);
-        if (raw === "1") {
-          panel.classList.add("mini");
-        } else if (raw === "0") {
-          panel.classList.remove("mini");
-        } else if (this.options.miniModeDefault) {
-          panel.classList.add("mini");
-        }
-      } catch (err) {
-        if (this.options.miniModeDefault) {
-          panel.classList.add("mini");
-        }
-      }
-
-      this.updateMiniToggleIcon();
-    },
-
-    toggleMiniMode(forceValue) {
-      const panel = document.getElementById(this.options.controlsContainerId);
-      if (!panel) return;
-
-      const makeMini =
-        typeof forceValue === "boolean"
-          ? forceValue
-          : !panel.classList.contains("mini");
-
-      panel.classList.toggle("mini", makeMini);
-      this.saveMiniMode(makeMini);
-      this.updateMiniToggleIcon();
-    },
-
-    restorePreferences() {
-      try {
-        const savedRate = localStorage.getItem(this.options.storageKeyRate);
-        const savedPitch = localStorage.getItem(this.options.storageKeyPitch);
-        const savedVoice = localStorage.getItem(this.options.storageKeyVoice);
-
-        if (savedRate) this.options.rate = parseFloat(savedRate) || this.options.rate;
-        if (savedPitch) this.options.pitch = parseFloat(savedPitch) || this.options.pitch;
-        if (savedVoice !== null) this.options.voiceName = savedVoice;
-      } catch (err) {
-        this.log("Could not restore preferences.");
-      }
-    },
-
-    savePreferences() {
-      try {
-        localStorage.setItem(this.options.storageKeyRate, String(this.options.rate));
-        localStorage.setItem(this.options.storageKeyPitch, String(this.options.pitch));
-        localStorage.setItem(this.options.storageKeyVoice, String(this.options.voiceName || ""));
-      } catch (err) {
-        this.log("Could not save preferences.");
-      }
-    },
-
-    updateMiniToggleIcon() {
-      const panel = document.getElementById(this.options.controlsContainerId);
-      const iconWrap = document.getElementById("pp-speak-mini-icon");
-      const btn = document.getElementById("pp-speak-mini-toggle");
-      if (!panel || !iconWrap || !btn) return;
-
-      const isMini = panel.classList.contains("mini");
-
-      if (isMini) {
-        iconWrap.innerHTML = `
-          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-            <line x1="4" y1="7" x2="20" y2="7"></line>
-            <line x1="4" y1="12" x2="20" y2="12"></line>
-            <line x1="4" y1="17" x2="20" y2="17"></line>
-          </svg>
-        `;
-        btn.title = "Expand panel";
-        btn.setAttribute("aria-label", "Expand panel");
-      } else {
-        iconWrap.innerHTML = `
-          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        `;
-        btn.title = "Collapse panel";
-        btn.setAttribute("aria-label", "Collapse panel");
-      }
-    },
-
-    attachTitleButton() {
-      const titleEl = document.querySelector(this.options.titleSelector);
-      if (!titleEl) return;
-      if (titleEl.parentNode.querySelector(".pp-speak-title-btn")) return;
-
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "pp-speak-title-btn";
-      btn.innerHTML = "🔊 Start narration";
-      btn.addEventListener("click", () => {
-        if (this.options.readSpeak0First) {
-          this.startFromId("speak0");
-        } else {
-          this.start(0);
-        }
-      });
-
-      titleEl.insertAdjacentElement("afterend", btn);
-    },
-
-    refreshStartDropdown() {
-      const select = document.getElementById("pp-speak-start-at");
-      if (!select) return;
-
-      select.innerHTML = this.items
-        .map((item, i) => {
-          const label = item.id + (item.id === "speak0" ? " — Introduction" : "");
-          return `<option value="${i}">${this.escapeHtml(label)}</option>`;
-        })
-        .join("");
-    },
-
-    loadVoices() {
-      if (!("speechSynthesis" in window)) return;
-      const voices = window.speechSynthesis.getVoices() || [];
-      const select = document.getElementById("pp-speak-voice");
-      if (!select) return;
-
-      const current = this.options.voiceName || "";
-      select.innerHTML =
-        `<option value="">Default</option>` +
-        voices.map((v) => {
-          const value = this.escapeHtml(v.name);
-          const label = this.escapeHtml(v.name + (v.lang ? " (" + v.lang + ")" : ""));
-          return `<option value="${value}">${label}</option>`;
-        }).join("");
-
-      if (current) {
-        select.value = current;
-      }
-
-      const rateEl = document.getElementById("pp-speak-rate");
-      const pitchEl = document.getElementById("pp-speak-pitch");
-      if (rateEl) rateEl.value = String(this.options.rate);
-      if (pitchEl) pitchEl.value = String(this.options.pitch);
-    },
-
-    getVoice() {
-      const voices = ("speechSynthesis" in window) ? speechSynthesis.getVoices() : [];
-      if (!voices.length) return null;
-
-      if (this.options.voiceName) {
-        const exact = voices.find((v) => v.name === this.options.voiceName);
-        if (exact) return exact;
-
-        const partial = voices.find((v) =>
-          v.name.toLowerCase().includes(this.options.voiceName.toLowerCase())
-        );
-        if (partial) return partial;
-      }
-
-      return voices[0] || null;
-    },
-
-    clearActive() {
-      this.items.forEach((item) => {
-        if (item.el) item.el.classList.remove(this.options.activeClass);
-        if (item.scrollTarget && item.scrollTarget !== item.el) {
-          item.scrollTarget.classList.remove(this.options.activeClass);
-        }
-      });
-    },
-
-    highlight(item) {
-      this.clearActive();
-      if (!item) return;
-
-      if (item.el && !this.isHidden(item.el)) {
-        item.el.classList.add(this.options.activeClass);
-      }
-
-      if (item.scrollTarget && item.scrollTarget !== item.el && !this.isHidden(item.scrollTarget)) {
-        item.scrollTarget.classList.add(this.options.activeClass);
-      }
-    },
-
-    scrollToItem(item) {
-      if (!item || !item.scrollTarget) return;
-      if (this.options.skipHiddenScroll && this.isHidden(item.scrollTarget)) return;
-
-      try {
-        item.scrollTarget.scrollIntoView({
-          behavior: this.options.scrollBehavior,
-          block: this.options.scrollBlock
-        });
-      } catch (err) {
-        this.log("Scroll failed for " + item.id);
-      }
-    },
-
-    activateAvatarSpeaking() {
-      const panel = document.getElementById(this.options.controlsContainerId);
-      if (!panel) return;
-      panel.classList.add("is-speaking");
-      panel.classList.remove("is-paused");
-    },
-
-    activateAvatarPaused() {
-      const panel = document.getElementById(this.options.controlsContainerId);
-      if (!panel) return;
-      panel.classList.remove("is-speaking");
-      panel.classList.add("is-paused");
-    },
-
-    activateAvatarIdle() {
-      const panel = document.getElementById(this.options.controlsContainerId);
-      if (!panel) return;
-      panel.classList.remove("is-speaking", "is-paused");
-    },
-
-    setAvatarCaption(text) {
-      const el = document.getElementById("pp-speak-avatar-caption");
-      if (el) el.textContent = text;
-    },
-
-    start(startAt) {
-      if (!("speechSynthesis" in window)) {
-        this.setStatus("Speech synthesis is not supported in this browser.");
-        this.setAvatarCaption("Speech synthesis is not supported in this browser.");
-        return;
-      }
-
-      if (!this.items.length) this.collectItems();
-      if (!this.items.length) {
-        this.setStatus("No speak paragraphs found.");
-        this.setAvatarCaption("No speak paragraphs were found.");
-        return;
-      }
-
-      speechSynthesis.cancel();
-      this.running = true;
-      this.paused = false;
-      this.speaking = false;
-
-      if (typeof startAt === "number") {
-        this.currentIndex = Math.max(0, Math.min(startAt, this.items.length - 1));
-      } else if (this.options.readSpeak0First) {
-        const speak0Index = this.items.findIndex(item => item.id === "speak0");
-        this.currentIndex = speak0Index >= 0 ? speak0Index : 0;
-      } else {
-        this.currentIndex = 0;
-      }
-
-      this.speakCurrent();
-    },
-
-    startFromId(id) {
-      const index = this.items.findIndex((item) => item.id === id);
-      if (index >= 0) this.start(index);
-    },
-
-    stop() {
-      this.running = false;
-      this.paused = false;
-      this.speaking = false;
-      this.activeUtterance = null;
-      this.currentIndex = 0;
-      this.clearActive();
-
-      if ("speechSynthesis" in window) {
-        speechSynthesis.cancel();
-      }
-
-      this.activateAvatarIdle();
-      this.setAvatarCaption("Waiting to start narration.");
-      this.setStatus("Stopped.");
-      this.setCurrent("No paragraph selected.");
-      this.updateProgress();
-      this.updatePauseButton();
-      this.updateMiniPlayButton();
-      this.updateMiniText("Ready", "Tap play.");
-      this.updateStartAtDropdownValue();
-    },
-
-    pause() {
-      if (!this.running || this.paused) return;
-      this.paused = true;
-
-      if ("speechSynthesis" in window) {
-        try {
-          speechSynthesis.pause();
-        } catch (err) {
-          this.log("Pause not supported cleanly.");
-        }
-      }
-
-      this.activateAvatarPaused();
-      this.setAvatarCaption("Narration is paused.");
-      this.setStatus("Paused.");
-      this.updatePauseButton();
-      this.updateMiniPlayButton();
-    },
-
-    resume() {
-      if (!this.running || !this.paused) return;
-      this.paused = false;
-
-      if ("speechSynthesis" in window) {
-        try {
-          speechSynthesis.resume();
-        } catch (err) {
-          this.log("Resume failed, restarting current paragraph.");
-          this.speakCurrent();
-          return;
-        }
-      }
-
-      this.activateAvatarSpeaking();
-      this.setAvatarCaption("Narration has resumed.");
-      this.setStatus("Resumed.");
-      this.updatePauseButton();
-      this.updateMiniPlayButton();
-    },
-
-    next() {
-      if (!this.items.length) return;
-
-      if (!this.running) {
-        const nextIndex = Math.min(this.currentIndex + 1, this.items.length - 1);
-        this.start(nextIndex);
-        return;
-      }
-
-      speechSynthesis.cancel();
-      this.currentIndex = Math.min(this.currentIndex + 1, this.items.length - 1);
-      this.speakCurrent();
-    },
-
-    previous() {
-      if (!this.items.length) return;
-
-      if (!this.running) {
-        const prevIndex = Math.max(this.currentIndex - 1, 0);
-        this.start(prevIndex);
-        return;
-      }
-
-      speechSynthesis.cancel();
-      this.currentIndex = Math.max(this.currentIndex - 1, 0);
-      this.speakCurrent();
-    },
-
-    speakCurrent() {
-      if (!this.running) return;
-
-      if (this.currentIndex >= this.items.length) {
-        this.running = false;
-        this.paused = false;
-        this.speaking = false;
-        this.activeUtterance = null;
-        this.clearActive();
-        this.activateAvatarIdle();
-        this.setAvatarCaption("Narration finished.");
-        this.setStatus("Completed.");
-        this.setCurrent("Narration finished.");
-        this.updateProgress();
-        this.updatePauseButton();
-        this.updateMiniPlayButton();
-        this.updateMiniText("Completed", "Narration finished.");
-        this.currentIndex = 0;
-        this.updateStartAtDropdownValue();
-        return;
-      }
-
-      const item = this.items[this.currentIndex];
-      if (!item) {
-        this.stop();
-        return;
-      }
-
-      item.text = this.getSpeakText(item.el);
-
-      if (!item.text) {
-        this.currentIndex += 1;
-        this.speakCurrent();
-        return;
-      }
-
-      this.highlight(item);
-      this.scrollToItem(item);
-      this.activateAvatarSpeaking();
-      this.setAvatarCaption(this.truncate(item.text, 110));
-      this.setStatus("Speaking " + item.id + "...");
-      this.setCurrent(item.id + ": " + this.truncate(item.text, 120));
-      this.updateProgress();
-      this.updateStartAtDropdownValue();
-      this.updatePauseButton();
-      this.updateMiniPlayButton();
-      this.updateMiniText(item.id, this.truncate(item.text, 40));
-
-      const utterance = new SpeechSynthesisUtterance(item.text);
-      utterance.rate = this.options.rate;
-      utterance.pitch = this.options.pitch;
-      utterance.volume = this.options.volume;
-
-      const voice = this.getVoice();
-      if (voice) utterance.voice = voice;
-
-      this.activeUtterance = utterance;
-      this.speaking = true;
-
-      utterance.onend = () => {
-        if (!this.running) return;
-        this.speaking = false;
-
-        setTimeout(() => {
-          if (!this.running || this.paused) return;
-          this.currentIndex += 1;
-          this.speakCurrent();
-        }, this.options.pauseBetween);
-      };
-
-      utterance.onerror = () => {
-        if (!this.running) return;
-        this.speaking = false;
-
-        setTimeout(() => {
-          if (!this.running) return;
-          this.currentIndex += 1;
-          this.speakCurrent();
-        }, this.options.pauseBetween);
-      };
-
-      speechSynthesis.cancel();
-      speechSynthesis.speak(utterance);
-    },
-
-    updateUI() {
-      this.refreshStartDropdown();
-      this.updateProgress();
-      this.updatePauseButton();
-      this.updateMiniPlayButton();
-      this.updateMiniToggleIcon();
-      this.updateStartAtDropdownValue();
-      this.setAvatarCaption("Waiting to start narration.");
-    },
-
-    updateStartAtDropdownValue() {
-      const select = document.getElementById("pp-speak-start-at");
-      if (select) select.value = String(this.currentIndex);
-    },
-
-    updatePauseButton() {
-      const btn = document.getElementById("pp-speak-pause");
-      if (!btn) return;
-      btn.textContent = this.paused ? "Resume" : "Pause";
-    },
-
-    updateMiniPlayButton() {
-      const btn = document.getElementById("pp-speak-mini-play");
-      if (!btn) return;
-
-      if (!this.running) {
-        btn.textContent = "▶";
-        btn.title = "Start";
-      } else if (this.paused) {
-        btn.textContent = "▶";
-        btn.title = "Resume";
-      } else {
-        btn.textContent = "⏸";
-        btn.title = "Pause";
-      }
-    },
-
-    updateMiniText(title, text) {
-      const titleEl = document.getElementById("pp-speak-mini-title");
-      const textEl = document.getElementById("pp-speak-mini-text");
-      if (titleEl) titleEl.textContent = title;
-      if (textEl) textEl.textContent = text;
-    },
-
-    updateProgress() {
-      const bar = document.getElementById("pp-speak-progress-bar");
-      if (!bar || !this.items.length) {
-        if (bar) bar.style.width = "0%";
-        return;
-      }
-
-      const value = this.running
-        ? ((this.currentIndex + 1) / this.items.length) * 100
-        : 0;
-
-      bar.style.width = Math.max(0, Math.min(100, value)) + "%";
-    },
-
-    setStatus(text) {
-      const el = document.getElementById("pp-speak-status");
-      if (el) el.textContent = text;
-    },
-
-    setCurrent(text) {
-      const el = document.getElementById("pp-speak-current");
-      if (el) el.textContent = text;
-    },
-
-    truncate(text, max) {
-      const str = String(text || "");
-      return str.length > max ? str.slice(0, max - 1) + "…" : str;
-    },
-
-    escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    },
+    }
+
+    refresh() {
+      this.collectItems();
+      this.ui.refreshStartDropdown();
+      this.ui.updateStartAtDropdownValue();
+    }
 
     bindGlobalAPI() {
-      window.PPSpeakV5 = {
-        init: (options) => this.init(options),
+      const api = {
+        init: (options) => {
+          if (options && typeof options === "object") {
+            this.options = Object.assign({}, this.options, options);
+          }
+          return this.init();
+        },
         start: (index) => this.start(index),
         startFromId: (id) => this.startFromId(id),
         stop: () => this.stop(),
@@ -1651,23 +1756,74 @@
         resume: () => this.resume(),
         next: () => this.next(),
         previous: () => this.previous(),
-        refresh: () => {
-          this.collectItems();
-          this.refreshStartDropdown();
-          this.updateStartAtDropdownValue();
-        },
+        refresh: () => this.refresh(),
         toggleMiniMode: (value) => this.toggleMiniMode(value),
         resetPanelPosition: () => this.resetPanelPosition(),
         openWhatsApp: () => this.openWhatsApp(),
-        getItems: () => this.items.slice()
+        getItems: () => this.items.slice(),
+        getState: () => Object.assign({}, this.state),
+        registerPlugin: (plugin) => this.plugins.register(plugin)
       };
 
-      window.PPSpeakV3 = window.PPSpeakV5;
+      window.PPSpeakV6 = api;
+      window.PPSpeakV5 = api;
+      window.PPSpeakV3 = api;
     }
-  };
+  }
+
+  class PPSpeakWhatsAppPlugin {
+    afterPanelRender(engine) {
+      const bodyBtn = document.getElementById("pp-whatsapp-contact");
+      const miniBtn = document.getElementById("pp-speak-mini-whatsapp");
+
+      if (bodyBtn) {
+        bodyBtn.dataset.pluginBound = "1";
+      }
+      if (miniBtn) {
+        miniBtn.dataset.pluginBound = "1";
+      }
+    }
+  }
+
+  class PPSpeakAvatarPlugin {
+    onStart(engine) {
+      engine.ui.setAvatarCaption("Starting narration.");
+    }
+
+    onPause(engine) {
+      engine.ui.activateAvatarPaused();
+    }
+
+    onResume(engine) {
+      engine.ui.activateAvatarSpeaking();
+    }
+
+    onStop(engine) {
+      engine.ui.activateAvatarIdle();
+    }
+
+    onComplete(engine) {
+      engine.ui.activateAvatarIdle();
+      engine.ui.setAvatarCaption("Narration finished.");
+    }
+
+    beforeSpeak(engine, item) {
+      engine.ui.activateAvatarSpeaking();
+      engine.ui.setAvatarCaption(PPSpeakUtils.truncate(item.text, 110));
+    }
+  }
+
+  class PPSpeakTitleButtonPlugin {
+    afterInit(engine) {
+      if (engine.options.addTitleButton) {
+        engine.ui.attachTitleButton();
+      }
+    }
+  }
 
   function boot() {
-    PPSpeakV5.init();
+    const app = new PPSpeakCore();
+    app.init();
   }
 
   if (document.readyState === "loading") {
@@ -1676,4 +1832,3 @@
     boot();
   }
 })();
- 
