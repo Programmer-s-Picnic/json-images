@@ -398,7 +398,7 @@
       p.innerHTML = `
         <div class="pp-v833-topbar">
           <div class="pp-v833-topbar-left">
-            <div class="pp-v833-chip">PPSpeak V8.3.3</div>
+            <div class="pp-v833-chip">PPSpeak  </div>
           </div>
           <div class="pp-v833-topbar-actions">
             <button id="pp-drag" class="pp-v833-icon-btn pp-v833-drag-btn" title="Drag panel">⠿</button>
