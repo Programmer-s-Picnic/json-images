@@ -11,12 +11,12 @@
     pitch: 1,
     volume: 1,
     voiceName: "",
-    controlsContainerId: "pp-auto-speak-controls-v9-ultra",
+    controlsContainerId: "pp-auto-speak-controls-v9-ultra-fix",
     readSpeak0First: true,
     titleSelector: "[data-pp-speak-title]",
     addTitleButton: true,
     autoScrollOffset: 0,
-    skipHidden: true,
+    skipHidden: false,
     autoRefreshOnMutation: true,
 
     avatarName: "Champak Roy",
@@ -27,12 +27,12 @@
     whatsappLabel: "💬 Contact Champak Roy on WhatsApp",
     whatsappMessage: "Hi Champak Roy, I am interested in your course.",
 
-    storageMiniKey: "pp_v9_ultra_mini",
-    storagePositionKey: "pp_v9_ultra_position",
-    storageRateKey: "pp_v9_ultra_rate",
-    storagePitchKey: "pp_v9_ultra_pitch",
-    storageVoiceKey: "pp_v9_ultra_voice",
-    storageThemeKey: "pp_v9_ultra_theme"
+    storageMiniKey: "pp_v9_ultra_fix_mini",
+    storagePositionKey: "pp_v9_ultra_fix_position",
+    storageRateKey: "pp_v9_ultra_fix_rate",
+    storagePitchKey: "pp_v9_ultra_fix_pitch",
+    storageVoiceKey: "pp_v9_ultra_fix_voice",
+    storageThemeKey: "pp_v9_ultra_fix_theme"
   };
 
   const U = {
@@ -48,21 +48,15 @@
       return (el.textContent || "").trim().replace(/\s+/g, " ");
     },
 
-    isHidden(el) {
+    isActuallyHidden(el) {
       if (!el) return true;
       const cs = window.getComputedStyle(el);
-      return (
-        cs.display === "none" ||
-        cs.visibility === "hidden" ||
-        cs.opacity === "0" ||
-        el.hidden ||
-        el.offsetParent === null
-      );
+      return cs.display === "none" || cs.visibility === "hidden" || el.hidden;
     },
 
     isValidSpeakNode(el, skipHidden) {
       if (!el || !el.id || !/^speak\d+$/i.test(el.id)) return false;
-      if (skipHidden && U.isHidden(el)) return false;
+      if (skipHidden && U.isActuallyHidden(el)) return false;
       return U.getSpeakText(el).length > 0;
     },
 
@@ -83,10 +77,6 @@
 
     clamp(n, min, max) {
       return Math.max(min, Math.min(max, n));
-    },
-
-    raf(fn) {
-      return window.requestAnimationFrame(fn);
     }
   };
 
@@ -98,6 +88,9 @@
       this.panel = null;
       this.dragHandle = null;
       this.mutationObserver = null;
+      this.isProgrammaticDomChange = false;
+      this.pendingNextTimer = null;
+      this.refreshDebounce = null;
 
       this.state = {
         i: 0,
@@ -108,8 +101,7 @@
         dragging: false,
         dragOffsetX: 0,
         dragOffsetY: 0,
-        theme: "light",
-        waveTick: 0
+        theme: "light"
       };
 
       this.boundMouseMove = null;
@@ -119,8 +111,6 @@
       this.boundVoicesChanged = null;
       this.boundResize = null;
       this.boundVisibility = null;
-      this.pendingNextTimer = null;
-      this.refreshDebounce = null;
     }
 
     init(userOptions = {}) {
@@ -163,18 +153,16 @@
           transition:all .18s ease;
         }
 
-        .pp-v9u-panel{
+        .pp-v9uf-panel{
           --pp-bg:#fff8ef;
           --pp-bg2:#fff3df;
           --pp-text:#1f2937;
           --pp-muted:#6b7280;
-          --pp-line:#f59e0b;
           --pp-btn:#ffffff;
           --pp-brand:#d97706;
           --pp-brand2:#f59e0b;
           --pp-chip-bg:#ffedd5;
           --pp-shadow:0 16px 38px rgba(0,0,0,.18);
-          --pp-good:#16a34a;
           position:fixed;
           right:16px;
           bottom:16px;
@@ -191,12 +179,11 @@
           backdrop-filter:blur(10px);
         }
 
-        .pp-v9u-panel.pp-dark{
+        .pp-v9uf-panel.pp-dark{
           --pp-bg:#111827;
           --pp-bg2:#0f172a;
           --pp-text:#f8fafc;
           --pp-muted:#cbd5e1;
-          --pp-line:#334155;
           --pp-btn:#1e293b;
           --pp-brand:#f59e0b;
           --pp-brand2:#fb923c;
@@ -204,14 +191,14 @@
           --pp-shadow:0 16px 38px rgba(0,0,0,.34);
         }
 
-        .pp-v9u-panel.pp-mini{
+        .pp-v9uf-panel.pp-mini{
           width:auto;
           min-width:240px;
           padding:10px;
           border-radius:999px;
         }
 
-        .pp-v9u-topbar{
+        .pp-v9uf-topbar{
           display:flex;
           justify-content:space-between;
           align-items:center;
@@ -219,14 +206,14 @@
           margin-bottom:10px;
         }
 
-        .pp-v9u-topbar-left{
+        .pp-v9uf-topbar-left{
           display:flex;
           align-items:center;
           gap:8px;
           min-width:0;
         }
 
-        .pp-v9u-chip{
+        .pp-v9uf-chip{
           font-size:11px;
           font-weight:800;
           color:var(--pp-brand);
@@ -238,13 +225,13 @@
           letter-spacing:.4px;
         }
 
-        .pp-v9u-topbar-actions{
+        .pp-v9uf-topbar-actions{
           display:flex;
           gap:6px;
           flex-shrink:0;
         }
 
-        .pp-v9u-icon-btn{
+        .pp-v9uf-icon-btn{
           width:34px;
           height:34px;
           border:none;
@@ -256,30 +243,30 @@
           box-shadow:0 2px 10px rgba(0,0,0,0.08);
         }
 
-        .pp-v9u-drag-btn{
+        .pp-v9uf-drag-btn{
           cursor:grab;
           touch-action:none;
         }
 
-        .pp-v9u-main{
+        .pp-v9uf-main{
           display:block;
         }
 
-        .pp-v9u-panel.pp-mini .pp-v9u-main{
+        .pp-v9uf-panel.pp-mini .pp-v9uf-main{
           display:none;
         }
 
-        .pp-v9u-mini-bar{
+        .pp-v9uf-mini-bar{
           display:none;
           align-items:center;
           gap:8px;
         }
 
-        .pp-v9u-panel.pp-mini .pp-v9u-mini-bar{
+        .pp-v9uf-panel.pp-mini .pp-v9uf-mini-bar{
           display:flex;
         }
 
-        .pp-v9u-mini-title{
+        .pp-v9uf-mini-title{
           min-width:0;
           flex:1;
           font-size:12px;
@@ -289,14 +276,14 @@
           text-overflow:ellipsis;
         }
 
-        .pp-v9u-avatar-row{
+        .pp-v9uf-avatar-row{
           display:flex;
           gap:12px;
           align-items:center;
           margin-bottom:12px;
         }
 
-        .pp-v9u-avatar-wrap{
+        .pp-v9uf-avatar-wrap{
           position:relative;
           width:76px;
           height:76px;
@@ -304,7 +291,7 @@
           flex-shrink:0;
         }
 
-        .pp-v9u-avatar-glow{
+        .pp-v9uf-avatar-glow{
           position:absolute;
           inset:-8px;
           border-radius:50%;
@@ -315,18 +302,18 @@
           pointer-events:none;
         }
 
-        .pp-v9u-panel.pp-speaking .pp-v9u-avatar-glow{
+        .pp-v9uf-panel.pp-speaking .pp-v9uf-avatar-glow{
           opacity:1;
-          animation:ppV9UGlow .85s ease-in-out infinite;
+          animation:ppV9UFGlow .85s ease-in-out infinite;
         }
 
-        @keyframes ppV9UGlow{
+        @keyframes ppV9UFGlow{
           0%{ transform:scale(1); }
           50%{ transform:scale(1.18); }
           100%{ transform:scale(1); }
         }
 
-        .pp-v9u-avatar-img{
+        .pp-v9uf-avatar-img{
           position:relative;
           z-index:1;
           width:76px;
@@ -339,21 +326,21 @@
           transition:transform .12s ease;
         }
 
-        .pp-v9u-panel.pp-dark .pp-v9u-avatar-img{
+        .pp-v9uf-panel.pp-dark .pp-v9uf-avatar-img{
           border-color:#1f2937;
         }
 
-        .pp-v9u-panel.pp-speaking .pp-v9u-avatar-img{
-          animation:ppV9UBreath .8s ease-in-out infinite;
+        .pp-v9uf-panel.pp-speaking .pp-v9uf-avatar-img{
+          animation:ppV9UFBreath .8s ease-in-out infinite;
         }
 
-        @keyframes ppV9UBreath{
+        @keyframes ppV9UFBreath{
           0%{ transform:scale(1); }
           50%{ transform:scale(1.06); }
           100%{ transform:scale(1); }
         }
 
-        .pp-v9u-mouth{
+        .pp-v9uf-mouth{
           position:absolute;
           left:50%;
           bottom:13px;
@@ -367,41 +354,41 @@
           box-shadow:0 1px 0 rgba(255,255,255,.15) inset;
         }
 
-        .pp-v9u-panel.pp-speaking .pp-v9u-mouth{
-          animation:ppV9UMouth .22s ease-in-out infinite alternate;
+        .pp-v9uf-panel.pp-speaking .pp-v9uf-mouth{
+          animation:ppV9UFMouth .22s ease-in-out infinite alternate;
         }
 
-        @keyframes ppV9UMouth{
+        @keyframes ppV9UFMouth{
           from{ height:5px; width:16px; border-radius:0 0 14px 14px; }
           to{ height:12px; width:20px; border-radius:0 0 20px 20px; }
         }
 
-        .pp-v9u-avatar-text{
+        .pp-v9uf-avatar-text{
           min-width:0;
           flex:1;
         }
 
-        .pp-v9u-avatar-name{
+        .pp-v9uf-avatar-name{
           font-weight:800;
           font-size:20px;
           color:var(--pp-text);
           margin:0 0 3px;
         }
 
-        .pp-v9u-avatar-sub{
+        .pp-v9uf-avatar-sub{
           font-size:13px;
           color:var(--pp-muted);
           margin:0 0 6px;
         }
 
-        .pp-v9u-caption{
+        .pp-v9uf-caption{
           font-size:12px;
           color:var(--pp-muted);
           margin-top:4px;
           line-height:1.45;
         }
 
-        .pp-v9u-wave{
+        .pp-v9uf-wave{
           display:flex;
           align-items:flex-end;
           gap:3px;
@@ -409,28 +396,27 @@
           margin-top:8px;
         }
 
-        .pp-v9u-wave span{
+        .pp-v9uf-wave span{
           width:5px;
           height:6px;
           border-radius:999px;
           background:linear-gradient(180deg,var(--pp-brand2),var(--pp-brand));
           opacity:.9;
-          transform-origin:bottom center;
         }
 
-        .pp-v9u-panel.pp-speaking .pp-v9u-wave span:nth-child(1){ animation:ppV9UWave .55s infinite ease-in-out; }
-        .pp-v9u-panel.pp-speaking .pp-v9u-wave span:nth-child(2){ animation:ppV9UWave .42s infinite ease-in-out .04s; }
-        .pp-v9u-panel.pp-speaking .pp-v9u-wave span:nth-child(3){ animation:ppV9UWave .50s infinite ease-in-out .08s; }
-        .pp-v9u-panel.pp-speaking .pp-v9u-wave span:nth-child(4){ animation:ppV9UWave .38s infinite ease-in-out .03s; }
-        .pp-v9u-panel.pp-speaking .pp-v9u-wave span:nth-child(5){ animation:ppV9UWave .47s infinite ease-in-out .07s; }
+        .pp-v9uf-panel.pp-speaking .pp-v9uf-wave span:nth-child(1){ animation:ppV9UFWave .55s infinite ease-in-out; }
+        .pp-v9uf-panel.pp-speaking .pp-v9uf-wave span:nth-child(2){ animation:ppV9UFWave .42s infinite ease-in-out .04s; }
+        .pp-v9uf-panel.pp-speaking .pp-v9uf-wave span:nth-child(3){ animation:ppV9UFWave .50s infinite ease-in-out .08s; }
+        .pp-v9uf-panel.pp-speaking .pp-v9uf-wave span:nth-child(4){ animation:ppV9UFWave .38s infinite ease-in-out .03s; }
+        .pp-v9uf-panel.pp-speaking .pp-v9uf-wave span:nth-child(5){ animation:ppV9UFWave .47s infinite ease-in-out .07s; }
 
-        @keyframes ppV9UWave{
+        @keyframes ppV9UFWave{
           0%{ height:6px; opacity:.55; }
           50%{ height:24px; opacity:1; }
           100%{ height:8px; opacity:.6; }
         }
 
-        .pp-v9u-label{
+        .pp-v9uf-label{
           display:block;
           font-size:12px;
           font-weight:800;
@@ -438,8 +424,8 @@
           color:var(--pp-muted);
         }
 
-        .pp-v9u-select,
-        .pp-v9u-range{
+        .pp-v9uf-select,
+        .pp-v9uf-range{
           width:100%;
           padding:10px;
           border-radius:10px;
@@ -449,7 +435,7 @@
           color:var(--pp-text);
         }
 
-        .pp-v9u-range-wrap{
+        .pp-v9uf-range-wrap{
           display:grid;
           grid-template-columns:1fr auto;
           gap:8px;
@@ -457,7 +443,7 @@
           margin-bottom:6px;
         }
 
-        .pp-v9u-range-value{
+        .pp-v9uf-range-value{
           font-size:12px;
           font-weight:800;
           color:var(--pp-brand);
@@ -465,14 +451,14 @@
           text-align:right;
         }
 
-        .pp-v9u-buttons{
+        .pp-v9uf-buttons{
           display:grid;
           grid-template-columns:1fr 1fr;
           gap:8px;
           margin-top:8px;
         }
 
-        .pp-v9u-btn{
+        .pp-v9uf-btn{
           padding:11px 10px;
           border-radius:12px;
           font-weight:800;
@@ -482,31 +468,31 @@
           color:var(--pp-brand);
         }
 
-        .pp-v9u-btn-primary{
+        .pp-v9uf-btn-primary{
           border:none;
           background:linear-gradient(135deg,var(--pp-brand),var(--pp-brand2));
           color:#fff;
         }
 
-        .pp-v9u-btn-wa{
+        .pp-v9uf-btn-wa{
           border:none;
           background:linear-gradient(135deg,#25D366,#128C7E);
           color:#fff;
           grid-column:1 / -1;
         }
 
-        .pp-v9u-btn-wide{
+        .pp-v9uf-btn-wide{
           grid-column:1 / -1;
         }
 
-        .pp-v9u-status{
+        .pp-v9uf-status{
           margin-top:12px;
           font-size:12px;
           color:var(--pp-muted);
           line-height:1.5;
         }
 
-        .pp-v9u-progress{
+        .pp-v9uf-progress{
           margin-top:10px;
           height:10px;
           background:rgba(148,163,184,.20);
@@ -514,7 +500,7 @@
           overflow:hidden;
         }
 
-        .pp-v9u-progress-bar{
+        .pp-v9uf-progress-bar{
           height:100%;
           width:0%;
           background:linear-gradient(90deg,var(--pp-brand),var(--pp-brand2));
@@ -523,7 +509,7 @@
         }
 
         @media (max-width:640px){
-          .pp-v9u-panel{
+          .pp-v9uf-panel{
             right:10px !important;
             left:10px !important;
             width:auto !important;
@@ -556,6 +542,7 @@
 
     refreshSpeakItems(silent = false) {
       const currentId = this.items[this.state.i] ? this.items[this.state.i].id : null;
+
       this.collectSpeakItems();
 
       if (currentId) {
@@ -567,8 +554,10 @@
         this.state.i = Math.max(0, this.items.length - 1);
       }
 
-      this.updateStartDropdown();
-      this.updateProgress();
+      this.withDomMute(() => {
+        this.updateStartDropdown();
+        this.updateProgress();
+      });
 
       if (!silent) {
         this.setStatus(`Detected ${this.items.length} speak tag(s).`);
@@ -583,82 +572,82 @@
       }
 
       const titleBtn = this.o.addTitleButton
-        ? `<button id="pp-title" class="pp-v9u-btn pp-v9u-btn-wide">Read title</button>`
+        ? `<button id="pp-title" class="pp-v9uf-btn pp-v9uf-btn-wide">Read title</button>`
         : "";
 
       const p = document.createElement("div");
       p.id = this.o.controlsContainerId;
-      p.className = "pp-v9u-panel";
+      p.className = "pp-v9uf-panel";
 
       p.innerHTML = `
-        <div class="pp-v9u-topbar">
-          <div class="pp-v9u-topbar-left">
-            <div class="pp-v9u-chip">PPSPEAK V2 ULTRA</div>
+        <div class="pp-v9uf-topbar">
+          <div class="pp-v9uf-topbar-left">
+            <div class="pp-v9uf-chip">PPSPEAK V2 ULTRA</div>
           </div>
-          <div class="pp-v9u-topbar-actions">
-            <button id="pp-theme" class="pp-v9u-icon-btn" title="Theme">◐</button>
-            <button id="pp-drag" class="pp-v9u-icon-btn pp-v9u-drag-btn" title="Drag panel">⠿</button>
-            <button id="pp-toggle" class="pp-v9u-icon-btn" title="Minimize / Restore">—</button>
+          <div class="pp-v9uf-topbar-actions">
+            <button id="pp-theme" class="pp-v9uf-icon-btn" title="Theme">◐</button>
+            <button id="pp-drag" class="pp-v9uf-icon-btn pp-v9uf-drag-btn" title="Drag panel">⠿</button>
+            <button id="pp-toggle" class="pp-v9uf-icon-btn" title="Minimize / Restore">—</button>
           </div>
         </div>
 
-        <div class="pp-v9u-mini-bar">
-          <button id="pp-mini-restore" class="pp-v9u-icon-btn" title="Restore">☰</button>
-          <div class="pp-v9u-mini-title" id="pp-mini-title">Ready</div>
-          <button id="pp-mini-next" class="pp-v9u-icon-btn" title="Next">⏭</button>
+        <div class="pp-v9uf-mini-bar">
+          <button id="pp-mini-restore" class="pp-v9uf-icon-btn" title="Restore">☰</button>
+          <div class="pp-v9uf-mini-title" id="pp-mini-title">Ready</div>
+          <button id="pp-mini-next" class="pp-v9uf-icon-btn" title="Next">⏭</button>
         </div>
 
-        <div class="pp-v9u-main">
-          <div class="pp-v9u-avatar-row">
-            <div class="pp-v9u-avatar-wrap">
-              <div class="pp-v9u-avatar-glow"></div>
-              <img class="pp-v9u-avatar-img" src="${this.o.avatarImage}" alt="Avatar" />
-              <div class="pp-v9u-mouth"></div>
+        <div class="pp-v9uf-main">
+          <div class="pp-v9uf-avatar-row">
+            <div class="pp-v9uf-avatar-wrap">
+              <div class="pp-v9uf-avatar-glow"></div>
+              <img class="pp-v9uf-avatar-img" src="${this.o.avatarImage}" alt="Avatar" />
+              <div class="pp-v9uf-mouth"></div>
             </div>
-            <div class="pp-v9u-avatar-text">
-              <div class="pp-v9u-avatar-name">${this.o.avatarName}</div>
-              <div class="pp-v9u-avatar-sub">${this.o.avatarSubtitle}</div>
-              <div id="pp-caption" class="pp-v9u-caption">Waiting to start narration.</div>
-              <div class="pp-v9u-wave" aria-hidden="true">
+            <div class="pp-v9uf-avatar-text">
+              <div class="pp-v9uf-avatar-name">${this.o.avatarName}</div>
+              <div class="pp-v9uf-avatar-sub">${this.o.avatarSubtitle}</div>
+              <div id="pp-caption" class="pp-v9uf-caption">Waiting to start narration.</div>
+              <div class="pp-v9uf-wave" aria-hidden="true">
                 <span></span><span></span><span></span><span></span><span></span>
               </div>
             </div>
           </div>
 
-          <label for="pp-start-from" class="pp-v9u-label">Start from</label>
-          <select id="pp-start-from" class="pp-v9u-select"></select>
+          <label for="pp-start-from" class="pp-v9uf-label">Start from</label>
+          <select id="pp-start-from" class="pp-v9uf-select"></select>
 
-          <label for="pp-voice" class="pp-v9u-label">Voice</label>
-          <select id="pp-voice" class="pp-v9u-select"></select>
+          <label for="pp-voice" class="pp-v9uf-label">Voice</label>
+          <select id="pp-voice" class="pp-v9uf-select"></select>
 
-          <label class="pp-v9u-label">Rate</label>
-          <div class="pp-v9u-range-wrap">
-            <input id="pp-rate" type="range" min="0.7" max="2" step="0.01" class="pp-v9u-range" />
-            <div id="pp-rate-value" class="pp-v9u-range-value">1.00x</div>
+          <label class="pp-v9uf-label">Rate</label>
+          <div class="pp-v9uf-range-wrap">
+            <input id="pp-rate" type="range" min="0.7" max="2" step="0.01" class="pp-v9uf-range" />
+            <div id="pp-rate-value" class="pp-v9uf-range-value">1.00x</div>
           </div>
 
-          <label class="pp-v9u-label">Pitch</label>
-          <div class="pp-v9u-range-wrap">
-            <input id="pp-pitch" type="range" min="0.5" max="2" step="0.01" class="pp-v9u-range" />
-            <div id="pp-pitch-value" class="pp-v9u-range-value">1.00</div>
+          <label class="pp-v9uf-label">Pitch</label>
+          <div class="pp-v9uf-range-wrap">
+            <input id="pp-pitch" type="range" min="0.5" max="2" step="0.01" class="pp-v9uf-range" />
+            <div id="pp-pitch-value" class="pp-v9uf-range-value">1.00</div>
           </div>
 
-          <div class="pp-v9u-buttons">
+          <div class="pp-v9uf-buttons">
             ${titleBtn}
-            <button id="pp-start" class="pp-v9u-btn pp-v9u-btn-primary">Start</button>
-            <button id="pp-pause" class="pp-v9u-btn">Pause</button>
-            <button id="pp-prev" class="pp-v9u-btn">Prev</button>
-            <button id="pp-next" class="pp-v9u-btn">Next</button>
-            <button id="pp-stop" class="pp-v9u-btn">Stop</button>
-            <button id="pp-refresh" class="pp-v9u-btn">Refresh</button>
-            <button id="pp-wa" class="pp-v9u-btn pp-v9u-btn-wa">${this.o.whatsappLabel}</button>
+            <button id="pp-start" class="pp-v9uf-btn pp-v9uf-btn-primary">Start</button>
+            <button id="pp-pause" class="pp-v9uf-btn">Pause</button>
+            <button id="pp-prev" class="pp-v9uf-btn">Prev</button>
+            <button id="pp-next" class="pp-v9uf-btn">Next</button>
+            <button id="pp-stop" class="pp-v9uf-btn">Stop</button>
+            <button id="pp-refresh" class="pp-v9uf-btn">Refresh</button>
+            <button id="pp-wa" class="pp-v9uf-btn pp-v9uf-btn-wa">${this.o.whatsappLabel}</button>
           </div>
 
-          <div class="pp-v9u-progress">
-            <div id="pp-progress-bar" class="pp-v9u-progress-bar"></div>
+          <div class="pp-v9uf-progress">
+            <div id="pp-progress-bar" class="pp-v9uf-progress-bar"></div>
           </div>
 
-          <div id="pp-status" class="pp-v9u-status">Detected ${this.items.length} speak tag(s).</div>
+          <div id="pp-status" class="pp-v9uf-status">Detected ${this.items.length} speak tag(s).</div>
         </div>
       `;
 
@@ -666,13 +655,27 @@
       this.panel = p;
       this.dragHandle = this.panel.querySelector("#pp-drag");
       this.applyTheme();
-      this.updateStartDropdown();
-      this.populateVoiceDropdown();
-      this.syncRangeUI();
+      this.withDomMute(() => {
+        this.updateStartDropdown();
+        this.populateVoiceDropdown();
+        this.syncRangeUI();
+      });
     }
 
     q(sel) {
       return this.panel ? this.panel.querySelector(sel) : null;
+    }
+
+    withDomMute(fn) {
+      this.isProgrammaticDomChange = true;
+      try {
+        fn();
+      } finally {
+        clearTimeout(this._domMuteTimer);
+        this._domMuteTimer = setTimeout(() => {
+          this.isProgrammaticDomChange = false;
+        }, 60);
+      }
     }
 
     bindVoices() {
@@ -680,16 +683,28 @@
       this.voiceCache = speechSynthesis.getVoices() || [];
       this.boundVoicesChanged = () => {
         this.voiceCache = speechSynthesis.getVoices() || [];
-        this.populateVoiceDropdown();
+        this.withDomMute(() => this.populateVoiceDropdown());
       };
       speechSynthesis.addEventListener("voiceschanged", this.boundVoicesChanged);
+    }
+
+    getVoices() {
+      const voices = this.voiceCache.length ? this.voiceCache : (speechSynthesis.getVoices() || []);
+      return voices.slice().sort((a, b) => {
+        const aScore = /en/i.test(a.lang || "") ? 0 : 1;
+        const bScore = /en/i.test(b.lang || "") ? 0 : 1;
+        if (aScore !== bScore) return aScore - bScore;
+        return String(a.name).localeCompare(String(b.name));
+      });
     }
 
     populateVoiceDropdown() {
       const select = this.q("#pp-voice");
       if (!select) return;
 
+      const currentValue = select.value;
       const voices = this.getVoices();
+
       select.innerHTML = "";
 
       const autoOpt = document.createElement("option");
@@ -704,23 +719,14 @@
         select.appendChild(opt);
       });
 
-      select.value = this.o.voiceName || "";
-    }
-
-    getVoices() {
-      const voices = this.voiceCache.length ? this.voiceCache : (speechSynthesis.getVoices() || []);
-      return voices.slice().sort((a, b) => {
-        const aScore = /en/i.test(a.lang || "") ? 0 : 1;
-        const bScore = /en/i.test(b.lang || "") ? 0 : 1;
-        if (aScore !== bScore) return aScore - bScore;
-        return String(a.name).localeCompare(String(b.name));
-      });
+      select.value = this.o.voiceName || currentValue || "";
     }
 
     updateStartDropdown() {
       const select = this.q("#pp-start-from");
       if (!select) return;
 
+      const currentValue = String(this.state.i);
       select.innerHTML = "";
 
       if (!this.items.length) {
@@ -728,17 +734,16 @@
         opt.value = "0";
         opt.textContent = "No speak tags found";
         select.appendChild(opt);
-        return;
+      } else {
+        this.items.forEach((el, idx) => {
+          const opt = document.createElement("option");
+          opt.value = String(idx);
+          opt.textContent = `${el.id} — ${U.getSpeakText(el).slice(0, 48)}`;
+          select.appendChild(opt);
+        });
+
+        select.value = currentValue;
       }
-
-      this.items.forEach((el, idx) => {
-        const opt = document.createElement("option");
-        opt.value = String(idx);
-        opt.textContent = `${el.id} — ${U.getSpeakText(el).slice(0, 48)}`;
-        select.appendChild(opt);
-      });
-
-      select.value = String(this.state.i);
 
       const miniTitle = this.q("#pp-mini-title");
       if (miniTitle) {
@@ -843,7 +848,6 @@
       document.addEventListener("visibilitychange", this.boundVisibility);
 
       document.addEventListener("keydown", (e) => {
-        if (!this.panel) return;
         if (e.altKey && e.key === "s") {
           e.preventDefault();
           if (this.state.running && !this.state.paused) this.pause();
@@ -865,11 +869,51 @@
     startMutationWatch() {
       if (!this.o.autoRefreshOnMutation || !("MutationObserver" in window)) return;
 
-      this.mutationObserver = new MutationObserver(() => {
+      this.mutationObserver = new MutationObserver((mutations) => {
+        if (this.isProgrammaticDomChange) return;
+
+        let shouldRefresh = false;
+
+        for (const m of mutations) {
+          if (m.type === "childList") {
+            shouldRefresh = true;
+            break;
+          }
+
+          if (m.type === "characterData") {
+            const parent = m.target && m.target.parentElement;
+            if (parent && parent.closest && parent.closest(this.o.selector)) {
+              shouldRefresh = true;
+              break;
+            }
+          }
+
+          if (m.type === "attributes") {
+            const target = m.target;
+            if (target === this.panel || (this.panel && this.panel.contains(target))) {
+              continue;
+            }
+
+            if (
+              target &&
+              target.matches &&
+              (
+                target.matches(this.o.selector) ||
+                target.closest(this.o.selector)
+              )
+            ) {
+              shouldRefresh = true;
+              break;
+            }
+          }
+        }
+
+        if (!shouldRefresh) return;
+
         clearTimeout(this.refreshDebounce);
         this.refreshDebounce = setTimeout(() => {
           this.refreshSpeakItems(true);
-        }, 220);
+        }, 180);
       });
 
       this.mutationObserver.observe(document.body, {
@@ -877,7 +921,7 @@
         subtree: true,
         characterData: true,
         attributes: true,
-        attributeFilter: ["id", "data-speak-text", "style", "class", "hidden"]
+        attributeFilter: ["id", "data-speak-text", "hidden", "style", "class"]
       });
     }
 
@@ -1018,12 +1062,16 @@
     }
 
     clearActive() {
-      this.items.forEach(el => el.classList.remove(this.o.activeClass));
+      this.withDomMute(() => {
+        this.items.forEach(el => el.classList.remove(this.o.activeClass));
+      });
     }
 
     markActive(el) {
-      this.clearActive();
-      if (el) el.classList.add(this.o.activeClass);
+      this.withDomMute(() => {
+        this.items.forEach(node => node.classList.remove(this.o.activeClass));
+        if (el) el.classList.add(this.o.activeClass);
+      });
     }
 
     getVoice() {
@@ -1047,10 +1095,16 @@
 
     scrollToElement(el) {
       if (!el) return;
+
       const rect = el.getBoundingClientRect();
-      const top = rect.top + window.scrollY - this.o.autoScrollOffset - (window.innerHeight * 0.24);
+      const currentTop = window.scrollY || window.pageYOffset || 0;
+      const targetTop = rect.top + currentTop - this.o.autoScrollOffset - (window.innerHeight * 0.24);
+      const finalTop = Math.max(0, targetTop);
+
+      if (Math.abs(finalTop - currentTop) < 8) return;
+
       window.scrollTo({
-        top: Math.max(0, top),
+        top: finalTop,
         behavior: this.o.scrollBehavior
       });
     }
@@ -1077,7 +1131,10 @@
         return;
       }
 
-      const pct = ((this.state.i + (this.state.running ? 1 : 0)) / this.items.length) * 100;
+      const pct = this.state.running
+        ? ((this.state.i + 1) / this.items.length) * 100
+        : (this.state.i / this.items.length) * 100;
+
       bar.style.width = `${U.clamp(pct, 0, 100)}%`;
     }
 
@@ -1121,6 +1178,8 @@
 
     speakIndex(index) {
       if (!this.items.length) {
+        this.state.running = false;
+        this.state.paused = false;
         this.setStatus("No valid speak tags found.");
         this.setCaption("Add elements like speak0, speak1, speak2.");
         this.setSpeakingUI(false);
@@ -1158,8 +1217,10 @@
       this.setSpeakingUI(true);
       this.setStatus(`Speaking ${el.id} (${index + 1}/${this.items.length})`);
       this.setCaption(text.slice(0, 120));
-      this.updateStartDropdown();
-      this.updateProgress();
+      this.withDomMute(() => {
+        this.updateStartDropdown();
+        this.updateProgress();
+      });
       this.setPauseButtonLabel("Pause");
 
       const utterance = new SpeechSynthesisUtterance(text);
@@ -1189,6 +1250,8 @@
       this.refreshSpeakItems(true);
 
       if (!this.items.length) {
+        this.state.running = false;
+        this.state.paused = false;
         this.setStatus("No valid speak tags found.");
         this.setCaption("Add elements like speak0, speak1, speak2.");
         this.setSpeakingUI(false);
@@ -1253,8 +1316,10 @@
       this.state.paused = false;
       this.state.utterance = null;
       this.clearActive();
-      this.updateStartDropdown();
-      this.updateProgress();
+      this.withDomMute(() => {
+        this.updateStartDropdown();
+        this.updateProgress();
+      });
       this.setStatus(`Detected ${this.items.length} speak tag(s).`);
       this.setCaption("Waiting to start narration.");
       this.setPauseButtonLabel("Pause");
@@ -1262,10 +1327,12 @@
     }
 
     update() {
-      this.updateStartDropdown();
-      this.populateVoiceDropdown();
-      this.syncRangeUI();
-      this.updateProgress();
+      this.withDomMute(() => {
+        this.updateStartDropdown();
+        this.populateVoiceDropdown();
+        this.syncRangeUI();
+        this.updateProgress();
+      });
       this.setPauseButtonLabel("Pause");
       this.setSpeakingUI(false);
       this.setStatus(`Detected ${this.items.length} speak tag(s).`);
@@ -1276,7 +1343,9 @@
   function boot() {
     const app = new App();
 
+    window.PPSpeakV2UltraFix = app;
     window.PPSpeakV2Ultra = app;
+    window.PPSpeakV9UltraFix = app;
     window.PPSpeakV9Ultra = app;
     window.PPSpeakUltra = app;
     window.PPSpeakV834 = app;
