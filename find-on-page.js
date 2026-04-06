@@ -6,44 +6,63 @@
     activeClass: "pp-speaking-active",
     scrollBehavior: "smooth",
     scrollBlock: "center",
-    pauseBetween: 700,
-    rate: 1,
+    pauseBetween: 180,
+    rate: 1.12,
     pitch: 1,
     volume: 1,
     voiceName: "",
-    controlsContainerId: "pp-auto-speak-controls-v8-3-4",
+    controlsContainerId: "pp-auto-speak-controls-v9-ultra",
     readSpeak0First: true,
     titleSelector: "[data-pp-speak-title]",
     addTitleButton: true,
+    autoScrollOffset: 0,
+    skipHidden: true,
+    autoRefreshOnMutation: true,
 
     avatarName: "Champak Roy",
-    avatarSubtitle: "Live speaking guide",
+    avatarSubtitle: "Ultra live speaking guide",
     avatarImage: "https://programmer-s-picnic.github.io/json-images/mee.jpg",
 
     whatsappNumber: "919335874326",
     whatsappLabel: "💬 Contact Champak Roy on WhatsApp",
     whatsappMessage: "Hi Champak Roy, I am interested in your course.",
 
-    storageMiniKey: "pp_v834_mini",
-    storagePositionKey: "pp_v834_position"
+    storageMiniKey: "pp_v9_ultra_mini",
+    storagePositionKey: "pp_v9_ultra_position",
+    storageRateKey: "pp_v9_ultra_rate",
+    storagePitchKey: "pp_v9_ultra_pitch",
+    storageVoiceKey: "pp_v9_ultra_voice",
+    storageThemeKey: "pp_v9_ultra_theme"
   };
 
   const U = {
     getNumericSpeakIndex(id) {
-      const match = String(id || "").match(/^speak(\d+)$/i);
-      return match ? parseInt(match[1], 10) : Number.MAX_SAFE_INTEGER;
+      const m = String(id || "").match(/^speak(\d+)$/i);
+      return m ? parseInt(m[1], 10) : Number.MAX_SAFE_INTEGER;
     },
 
     getSpeakText(el) {
       if (!el) return "";
       const dataSpeak = el.getAttribute("data-speak-text");
-      if (dataSpeak && dataSpeak.trim()) return dataSpeak.trim();
-      return (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (dataSpeak && dataSpeak.trim()) return dataSpeak.trim().replace(/\s+/g, " ");
+      return (el.textContent || "").trim().replace(/\s+/g, " ");
     },
 
-    isValidSpeakNode(el) {
-      if (!el) return false;
-      if (!el.id || !/^speak\d+$/i.test(el.id)) return false;
+    isHidden(el) {
+      if (!el) return true;
+      const cs = window.getComputedStyle(el);
+      return (
+        cs.display === "none" ||
+        cs.visibility === "hidden" ||
+        cs.opacity === "0" ||
+        el.hidden ||
+        el.offsetParent === null
+      );
+    },
+
+    isValidSpeakNode(el, skipHidden) {
+      if (!el || !el.id || !/^speak\d+$/i.test(el.id)) return false;
+      if (skipHidden && U.isHidden(el)) return false;
       return U.getSpeakText(el).length > 0;
     },
 
@@ -60,6 +79,14 @@
       } catch {
         return fallback;
       }
+    },
+
+    clamp(n, min, max) {
+      return Math.max(min, Math.min(max, n));
+    },
+
+    raf(fn) {
+      return window.requestAnimationFrame(fn);
     }
   };
 
@@ -67,6 +94,11 @@
     constructor() {
       this.o = { ...cfg };
       this.items = [];
+      this.voiceCache = [];
+      this.panel = null;
+      this.dragHandle = null;
+      this.mutationObserver = null;
+
       this.state = {
         i: 0,
         running: false,
@@ -75,22 +107,35 @@
         mini: false,
         dragging: false,
         dragOffsetX: 0,
-        dragOffsetY: 0
+        dragOffsetY: 0,
+        theme: "light",
+        waveTick: 0
       };
-
-      this.panel = null;
-      this.dragHandle = null;
-      this.voiceCache = [];
 
       this.boundMouseMove = null;
       this.boundMouseUp = null;
       this.boundTouchMove = null;
       this.boundTouchEnd = null;
       this.boundVoicesChanged = null;
+      this.boundResize = null;
+      this.boundVisibility = null;
+      this.pendingNextTimer = null;
+      this.refreshDebounce = null;
     }
 
     init(userOptions = {}) {
       this.o = { ...this.o, ...userOptions };
+
+      const savedRate = U.load(this.o.storageRateKey, null);
+      const savedPitch = U.load(this.o.storagePitchKey, null);
+      const savedVoice = U.load(this.o.storageVoiceKey, null);
+      const savedTheme = U.load(this.o.storageThemeKey, "light");
+
+      if (typeof savedRate === "number") this.o.rate = savedRate;
+      if (typeof savedPitch === "number") this.o.pitch = savedPitch;
+      if (typeof savedVoice === "string") this.o.voiceName = savedVoice;
+      if (typeof savedTheme === "string") this.state.theme = savedTheme;
+
       this.collectSpeakItems();
       this.injectStyle();
       this.render();
@@ -98,6 +143,7 @@
       this.restorePosition();
       this.bindVoices();
       this.bind();
+      this.startMutationWatch();
       this.update();
       return this;
     }
@@ -111,35 +157,61 @@
       style.textContent = `
         .${this.o.activeClass}{
           outline:3px solid rgba(217,119,6,.28);
-          background:rgba(245,158,11,.12)!important;
-          border-radius:14px;
+          background:rgba(245,158,11,.10)!important;
+          border-radius:16px;
           box-shadow:0 10px 24px rgba(217,119,6,.12);
-          transition:all .25s ease;
+          transition:all .18s ease;
         }
 
-        .pp-v834-panel{
+        .pp-v9u-panel{
+          --pp-bg:#fff8ef;
+          --pp-bg2:#fff3df;
+          --pp-text:#1f2937;
+          --pp-muted:#6b7280;
+          --pp-line:#f59e0b;
+          --pp-btn:#ffffff;
+          --pp-brand:#d97706;
+          --pp-brand2:#f59e0b;
+          --pp-chip-bg:#ffedd5;
+          --pp-shadow:0 16px 38px rgba(0,0,0,.18);
+          --pp-good:#16a34a;
           position:fixed;
           right:16px;
           bottom:16px;
-          width:320px;
+          width:350px;
           max-width:calc(100vw - 20px);
           z-index:99999;
-          background:#fff8ef;
-          border:1px solid #f59e0b;
-          border-radius:16px;
+          background:linear-gradient(180deg,var(--pp-bg),var(--pp-bg2));
+          color:var(--pp-text);
+          border:1px solid rgba(245,158,11,.8);
+          border-radius:18px;
           padding:14px;
-          box-shadow:0 12px 30px rgba(0,0,0,0.18);
+          box-shadow:var(--pp-shadow);
           font-family:Arial,sans-serif;
+          backdrop-filter:blur(10px);
         }
 
-        .pp-v834-panel.pp-mini{
+        .pp-v9u-panel.pp-dark{
+          --pp-bg:#111827;
+          --pp-bg2:#0f172a;
+          --pp-text:#f8fafc;
+          --pp-muted:#cbd5e1;
+          --pp-line:#334155;
+          --pp-btn:#1e293b;
+          --pp-brand:#f59e0b;
+          --pp-brand2:#fb923c;
+          --pp-chip-bg:#1f2937;
+          --pp-shadow:0 16px 38px rgba(0,0,0,.34);
+        }
+
+        .pp-v9u-panel.pp-mini{
           width:auto;
-          min-width:220px;
+          min-width:240px;
           padding:10px;
           border-radius:999px;
         }
 
-        .pp-v834-topbar{
+        .pp-v9u-topbar{
           display:flex;
           justify-content:space-between;
           align-items:center;
@@ -147,217 +219,311 @@
           margin-bottom:10px;
         }
 
-        .pp-v834-topbar-left{
+        .pp-v9u-topbar-left{
           display:flex;
           align-items:center;
           gap:8px;
           min-width:0;
         }
 
-        .pp-v834-chip{
+        .pp-v9u-chip{
           font-size:11px;
-          font-weight:700;
-          color:#92400e;
-          background:#ffedd5;
-          border:1px solid #fdba74;
-          padding:5px 8px;
+          font-weight:800;
+          color:var(--pp-brand);
+          background:var(--pp-chip-bg);
+          border:1px solid rgba(245,158,11,.45);
+          padding:6px 9px;
           border-radius:999px;
           white-space:nowrap;
+          letter-spacing:.4px;
         }
 
-        .pp-v834-topbar-actions{
+        .pp-v9u-topbar-actions{
           display:flex;
           gap:6px;
           flex-shrink:0;
         }
 
-        .pp-v834-icon-btn{
+        .pp-v9u-icon-btn{
           width:34px;
           height:34px;
           border:none;
           border-radius:10px;
-          background:#fff;
-          color:#b45309;
-          font-weight:700;
+          background:var(--pp-btn);
+          color:var(--pp-brand);
+          font-weight:800;
           cursor:pointer;
           box-shadow:0 2px 10px rgba(0,0,0,0.08);
         }
 
-        .pp-v834-drag-btn{
+        .pp-v9u-drag-btn{
           cursor:grab;
           touch-action:none;
         }
 
-        .pp-v834-drag-btn:active{
-          cursor:grabbing;
-        }
-
-        .pp-v834-main{
+        .pp-v9u-main{
           display:block;
         }
 
-        .pp-v834-panel.pp-mini .pp-v834-main{
+        .pp-v9u-panel.pp-mini .pp-v9u-main{
           display:none;
         }
 
-        .pp-v834-mini-bar{
+        .pp-v9u-mini-bar{
           display:none;
           align-items:center;
           gap:8px;
         }
 
-        .pp-v834-panel.pp-mini .pp-v834-mini-bar{
+        .pp-v9u-panel.pp-mini .pp-v9u-mini-bar{
           display:flex;
         }
 
-        .pp-v834-mini-title{
+        .pp-v9u-mini-title{
           min-width:0;
           flex:1;
           font-size:12px;
-          color:#4b5563;
+          color:var(--pp-muted);
           white-space:nowrap;
           overflow:hidden;
           text-overflow:ellipsis;
         }
 
-        .pp-v834-avatar-row{
+        .pp-v9u-avatar-row{
           display:flex;
           gap:12px;
           align-items:center;
           margin-bottom:12px;
         }
 
-        .pp-v834-avatar-wrap{
+        .pp-v9u-avatar-wrap{
           position:relative;
-          width:72px;
-          height:72px;
+          width:76px;
+          height:76px;
           border-radius:50%;
           flex-shrink:0;
         }
 
-        .pp-v834-avatar-glow{
+        .pp-v9u-avatar-glow{
           position:absolute;
           inset:-8px;
           border-radius:50%;
-          background:radial-gradient(circle, rgba(245,158,11,.45), rgba(245,158,11,.12) 45%, transparent 72%);
-          opacity:.35;
+          background:radial-gradient(circle, rgba(245,158,11,.55), rgba(245,158,11,.15) 45%, transparent 72%);
+          opacity:.3;
           transform:scale(1);
-          transition:opacity .2s ease;
+          transition:opacity .16s ease;
           pointer-events:none;
         }
 
-        .pp-v834-panel.pp-speaking .pp-v834-avatar-glow{
+        .pp-v9u-panel.pp-speaking .pp-v9u-avatar-glow{
           opacity:1;
-          animation:ppV834Glow 1.2s ease-in-out infinite;
+          animation:ppV9UGlow .85s ease-in-out infinite;
         }
 
-        @keyframes ppV834Glow{
-          0%{ transform:scale(1); filter:blur(0px); }
-          50%{ transform:scale(1.16); filter:blur(1px); }
-          100%{ transform:scale(1); filter:blur(0px); }
-        }
-
-        .pp-v834-avatar-img{
-          position:relative;
-          z-index:1;
-          width:72px;
-          height:72px;
-          border-radius:50%;
-          object-fit:cover;
-          border:3px solid #fff;
-          box-shadow:0 0 0 4px rgba(245,158,11,.18), 0 8px 18px rgba(0,0,0,.14);
-          transition:transform .2s ease, box-shadow .2s ease;
-          display:block;
-        }
-
-        .pp-v834-panel.pp-speaking .pp-v834-avatar-img{
-          animation:ppV834Breath 1.2s ease-in-out infinite;
-          box-shadow:0 0 0 4px rgba(245,158,11,.28), 0 0 22px rgba(245,158,11,.42), 0 8px 18px rgba(0,0,0,.14);
-        }
-
-        @keyframes ppV834Breath{
+        @keyframes ppV9UGlow{
           0%{ transform:scale(1); }
-          50%{ transform:scale(1.05); }
+          50%{ transform:scale(1.18); }
           100%{ transform:scale(1); }
         }
 
-        .pp-v834-avatar-text{
+        .pp-v9u-avatar-img{
+          position:relative;
+          z-index:1;
+          width:76px;
+          height:76px;
+          border-radius:50%;
+          object-fit:cover;
+          border:3px solid #fff;
+          box-shadow:0 0 0 4px rgba(245,158,11,.18), 0 10px 20px rgba(0,0,0,.16);
+          display:block;
+          transition:transform .12s ease;
+        }
+
+        .pp-v9u-panel.pp-dark .pp-v9u-avatar-img{
+          border-color:#1f2937;
+        }
+
+        .pp-v9u-panel.pp-speaking .pp-v9u-avatar-img{
+          animation:ppV9UBreath .8s ease-in-out infinite;
+        }
+
+        @keyframes ppV9UBreath{
+          0%{ transform:scale(1); }
+          50%{ transform:scale(1.06); }
+          100%{ transform:scale(1); }
+        }
+
+        .pp-v9u-mouth{
+          position:absolute;
+          left:50%;
+          bottom:13px;
+          width:18px;
+          height:6px;
+          transform:translateX(-50%);
+          background:#7c2d12;
+          border-radius:0 0 18px 18px;
+          z-index:2;
+          opacity:.95;
+          box-shadow:0 1px 0 rgba(255,255,255,.15) inset;
+        }
+
+        .pp-v9u-panel.pp-speaking .pp-v9u-mouth{
+          animation:ppV9UMouth .22s ease-in-out infinite alternate;
+        }
+
+        @keyframes ppV9UMouth{
+          from{ height:5px; width:16px; border-radius:0 0 14px 14px; }
+          to{ height:12px; width:20px; border-radius:0 0 20px 20px; }
+        }
+
+        .pp-v9u-avatar-text{
           min-width:0;
           flex:1;
         }
 
-        .pp-v834-avatar-name{
-          font-weight:700;
+        .pp-v9u-avatar-name{
+          font-weight:800;
           font-size:20px;
-          color:#1f2937;
+          color:var(--pp-text);
           margin:0 0 3px;
         }
 
-        .pp-v834-avatar-sub{
+        .pp-v9u-avatar-sub{
           font-size:13px;
-          color:#6b7280;
-          margin:0 0 4px;
+          color:var(--pp-muted);
+          margin:0 0 6px;
         }
 
-        .pp-v834-caption{
+        .pp-v9u-caption{
           font-size:12px;
-          color:#4b5563;
+          color:var(--pp-muted);
           margin-top:4px;
+          line-height:1.45;
         }
 
-        .pp-v834-label{
+        .pp-v9u-wave{
+          display:flex;
+          align-items:flex-end;
+          gap:3px;
+          height:24px;
+          margin-top:8px;
+        }
+
+        .pp-v9u-wave span{
+          width:5px;
+          height:6px;
+          border-radius:999px;
+          background:linear-gradient(180deg,var(--pp-brand2),var(--pp-brand));
+          opacity:.9;
+          transform-origin:bottom center;
+        }
+
+        .pp-v9u-panel.pp-speaking .pp-v9u-wave span:nth-child(1){ animation:ppV9UWave .55s infinite ease-in-out; }
+        .pp-v9u-panel.pp-speaking .pp-v9u-wave span:nth-child(2){ animation:ppV9UWave .42s infinite ease-in-out .04s; }
+        .pp-v9u-panel.pp-speaking .pp-v9u-wave span:nth-child(3){ animation:ppV9UWave .50s infinite ease-in-out .08s; }
+        .pp-v9u-panel.pp-speaking .pp-v9u-wave span:nth-child(4){ animation:ppV9UWave .38s infinite ease-in-out .03s; }
+        .pp-v9u-panel.pp-speaking .pp-v9u-wave span:nth-child(5){ animation:ppV9UWave .47s infinite ease-in-out .07s; }
+
+        @keyframes ppV9UWave{
+          0%{ height:6px; opacity:.55; }
+          50%{ height:24px; opacity:1; }
+          100%{ height:8px; opacity:.6; }
+        }
+
+        .pp-v9u-label{
           display:block;
           font-size:12px;
-          font-weight:700;
-          margin-bottom:6px;
-          color:#6b7280;
+          font-weight:800;
+          margin:10px 0 6px;
+          color:var(--pp-muted);
         }
 
-        .pp-v834-select{
+        .pp-v9u-select,
+        .pp-v9u-range{
           width:100%;
           padding:10px;
           border-radius:10px;
-          border:1px solid #e5c38a;
-          margin-bottom:10px;
-          background:#fff;
+          border:1px solid rgba(245,158,11,.35);
+          margin-bottom:8px;
+          background:var(--pp-btn);
+          color:var(--pp-text);
         }
 
-        .pp-v834-buttons{
+        .pp-v9u-range-wrap{
           display:grid;
-          grid-template-columns:1fr;
+          grid-template-columns:1fr auto;
           gap:8px;
+          align-items:center;
+          margin-bottom:6px;
         }
 
-        .pp-v834-btn{
-          padding:12px;
+        .pp-v9u-range-value{
+          font-size:12px;
+          font-weight:800;
+          color:var(--pp-brand);
+          min-width:42px;
+          text-align:right;
+        }
+
+        .pp-v9u-buttons{
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:8px;
+          margin-top:8px;
+        }
+
+        .pp-v9u-btn{
+          padding:11px 10px;
           border-radius:12px;
-          font-weight:700;
+          font-weight:800;
           cursor:pointer;
-          border:1px solid #e5c38a;
-          background:#fff;
-          color:#b45309;
+          border:1px solid rgba(245,158,11,.35);
+          background:var(--pp-btn);
+          color:var(--pp-brand);
         }
 
-        .pp-v834-btn-primary{
+        .pp-v9u-btn-primary{
           border:none;
-          background:linear-gradient(135deg,#d97706,#f59e0b);
+          background:linear-gradient(135deg,var(--pp-brand),var(--pp-brand2));
           color:#fff;
         }
 
-        .pp-v834-btn-wa{
+        .pp-v9u-btn-wa{
           border:none;
           background:linear-gradient(135deg,#25D366,#128C7E);
           color:#fff;
+          grid-column:1 / -1;
         }
 
-        .pp-v834-status{
+        .pp-v9u-btn-wide{
+          grid-column:1 / -1;
+        }
+
+        .pp-v9u-status{
           margin-top:12px;
           font-size:12px;
-          color:#4b5563;
+          color:var(--pp-muted);
+          line-height:1.5;
+        }
+
+        .pp-v9u-progress{
+          margin-top:10px;
+          height:10px;
+          background:rgba(148,163,184,.20);
+          border-radius:999px;
+          overflow:hidden;
+        }
+
+        .pp-v9u-progress-bar{
+          height:100%;
+          width:0%;
+          background:linear-gradient(90deg,var(--pp-brand),var(--pp-brand2));
+          border-radius:999px;
+          transition:width .16s ease;
         }
 
         @media (max-width:640px){
-          .pp-v834-panel{
+          .pp-v9u-panel{
             right:10px !important;
             left:10px !important;
             width:auto !important;
@@ -374,26 +540,39 @@
       const raw = Array.from(document.querySelectorAll(this.o.selector));
 
       this.items = raw
-        .filter(U.isValidSpeakNode)
+        .filter(el => U.isValidSpeakNode(el, this.o.skipHidden))
         .sort((a, b) => U.getNumericSpeakIndex(a.id) - U.getNumericSpeakIndex(b.id));
 
       if (this.o.readSpeak0First) {
-        const idx = this.items.findIndex(el => String(el.id).toLowerCase() === "speak0");
-        if (idx > 0) {
-          const [speak0] = this.items.splice(idx, 1);
-          this.items.unshift(speak0);
+        const i0 = this.items.findIndex(el => String(el.id).toLowerCase() === "speak0");
+        if (i0 > 0) {
+          const [node] = this.items.splice(i0, 1);
+          this.items.unshift(node);
         }
       }
 
       return this.items;
     }
 
-    refreshSpeakItems() {
+    refreshSpeakItems(silent = false) {
+      const currentId = this.items[this.state.i] ? this.items[this.state.i].id : null;
       this.collectSpeakItems();
+
+      if (currentId) {
+        const newIndex = this.items.findIndex(el => el.id === currentId);
+        if (newIndex >= 0) this.state.i = newIndex;
+      }
+
       if (this.state.i >= this.items.length) {
         this.state.i = Math.max(0, this.items.length - 1);
       }
+
       this.updateStartDropdown();
+      this.updateProgress();
+
+      if (!silent) {
+        this.setStatus(`Detected ${this.items.length} speak tag(s).`);
+      }
     }
 
     render() {
@@ -404,69 +583,96 @@
       }
 
       const titleBtn = this.o.addTitleButton
-        ? `<button id="pp-title" class="pp-v834-btn">Read page title</button>`
+        ? `<button id="pp-title" class="pp-v9u-btn pp-v9u-btn-wide">Read title</button>`
         : "";
 
       const p = document.createElement("div");
       p.id = this.o.controlsContainerId;
-      p.className = "pp-v834-panel";
+      p.className = "pp-v9u-panel";
 
       p.innerHTML = `
-        <div class="pp-v834-topbar">
-          <div class="pp-v834-topbar-left">
-            <div class="pp-v834-chip">PPSpeak</div>
+        <div class="pp-v9u-topbar">
+          <div class="pp-v9u-topbar-left">
+            <div class="pp-v9u-chip">PPSPEAK V2 ULTRA</div>
           </div>
-          <div class="pp-v834-topbar-actions">
-            <button id="pp-drag" class="pp-v834-icon-btn pp-v834-drag-btn" title="Drag panel">⠿</button>
-            <button id="pp-toggle" class="pp-v834-icon-btn" title="Minimize / Restore">—</button>
+          <div class="pp-v9u-topbar-actions">
+            <button id="pp-theme" class="pp-v9u-icon-btn" title="Theme">◐</button>
+            <button id="pp-drag" class="pp-v9u-icon-btn pp-v9u-drag-btn" title="Drag panel">⠿</button>
+            <button id="pp-toggle" class="pp-v9u-icon-btn" title="Minimize / Restore">—</button>
           </div>
         </div>
 
-        <div class="pp-v834-mini-bar">
-          <button id="pp-mini-restore" class="pp-v834-icon-btn" title="Restore">☰</button>
-          <div class="pp-v834-mini-title" id="pp-mini-title">Ready</div>
-          <button id="pp-mini-next" class="pp-v834-icon-btn" title="Next">⏭</button>
+        <div class="pp-v9u-mini-bar">
+          <button id="pp-mini-restore" class="pp-v9u-icon-btn" title="Restore">☰</button>
+          <div class="pp-v9u-mini-title" id="pp-mini-title">Ready</div>
+          <button id="pp-mini-next" class="pp-v9u-icon-btn" title="Next">⏭</button>
         </div>
 
-        <div class="pp-v834-main">
-          <div class="pp-v834-avatar-row">
-            <div class="pp-v834-avatar-wrap">
-              <div class="pp-v834-avatar-glow"></div>
-              <img class="pp-v834-avatar-img" src="${this.o.avatarImage}" alt="Avatar" />
+        <div class="pp-v9u-main">
+          <div class="pp-v9u-avatar-row">
+            <div class="pp-v9u-avatar-wrap">
+              <div class="pp-v9u-avatar-glow"></div>
+              <img class="pp-v9u-avatar-img" src="${this.o.avatarImage}" alt="Avatar" />
+              <div class="pp-v9u-mouth"></div>
             </div>
-            <div class="pp-v834-avatar-text">
-              <div class="pp-v834-avatar-name">${this.o.avatarName}</div>
-              <div class="pp-v834-avatar-sub">${this.o.avatarSubtitle}</div>
-              <div id="pp-caption" class="pp-v834-caption">Waiting to start narration.</div>
+            <div class="pp-v9u-avatar-text">
+              <div class="pp-v9u-avatar-name">${this.o.avatarName}</div>
+              <div class="pp-v9u-avatar-sub">${this.o.avatarSubtitle}</div>
+              <div id="pp-caption" class="pp-v9u-caption">Waiting to start narration.</div>
+              <div class="pp-v9u-wave" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
             </div>
           </div>
 
-          <label for="pp-start-from" class="pp-v834-label">Start from</label>
-          <select id="pp-start-from" class="pp-v834-select"></select>
+          <label for="pp-start-from" class="pp-v9u-label">Start from</label>
+          <select id="pp-start-from" class="pp-v9u-select"></select>
 
-          <div class="pp-v834-buttons">
+          <label for="pp-voice" class="pp-v9u-label">Voice</label>
+          <select id="pp-voice" class="pp-v9u-select"></select>
+
+          <label class="pp-v9u-label">Rate</label>
+          <div class="pp-v9u-range-wrap">
+            <input id="pp-rate" type="range" min="0.7" max="2" step="0.01" class="pp-v9u-range" />
+            <div id="pp-rate-value" class="pp-v9u-range-value">1.00x</div>
+          </div>
+
+          <label class="pp-v9u-label">Pitch</label>
+          <div class="pp-v9u-range-wrap">
+            <input id="pp-pitch" type="range" min="0.5" max="2" step="0.01" class="pp-v9u-range" />
+            <div id="pp-pitch-value" class="pp-v9u-range-value">1.00</div>
+          </div>
+
+          <div class="pp-v9u-buttons">
             ${titleBtn}
-            <button id="pp-start" class="pp-v834-btn pp-v834-btn-primary">Start</button>
-            <button id="pp-prev" class="pp-v834-btn">Prev</button>
-            <button id="pp-next" class="pp-v834-btn">Next</button>
-            <button id="pp-pause" class="pp-v834-btn">Pause</button>
-            <button id="pp-stop" class="pp-v834-btn">Stop</button>
-            <button id="pp-refresh" class="pp-v834-btn">Refresh speak tags</button>
-            <button id="pp-wa" class="pp-v834-btn pp-v834-btn-wa">${this.o.whatsappLabel}</button>
+            <button id="pp-start" class="pp-v9u-btn pp-v9u-btn-primary">Start</button>
+            <button id="pp-pause" class="pp-v9u-btn">Pause</button>
+            <button id="pp-prev" class="pp-v9u-btn">Prev</button>
+            <button id="pp-next" class="pp-v9u-btn">Next</button>
+            <button id="pp-stop" class="pp-v9u-btn">Stop</button>
+            <button id="pp-refresh" class="pp-v9u-btn">Refresh</button>
+            <button id="pp-wa" class="pp-v9u-btn pp-v9u-btn-wa">${this.o.whatsappLabel}</button>
           </div>
 
-          <div id="pp-status" class="pp-v834-status">Detected ${this.items.length} speak tag(s).</div>
+          <div class="pp-v9u-progress">
+            <div id="pp-progress-bar" class="pp-v9u-progress-bar"></div>
+          </div>
+
+          <div id="pp-status" class="pp-v9u-status">Detected ${this.items.length} speak tag(s).</div>
         </div>
       `;
 
       document.body.appendChild(p);
       this.panel = p;
       this.dragHandle = this.panel.querySelector("#pp-drag");
+      this.applyTheme();
       this.updateStartDropdown();
+      this.populateVoiceDropdown();
+      this.syncRangeUI();
     }
 
-    q(selector) {
-      return this.panel ? this.panel.querySelector(selector) : null;
+    q(sel) {
+      return this.panel ? this.panel.querySelector(sel) : null;
     }
 
     bindVoices() {
@@ -474,8 +680,41 @@
       this.voiceCache = speechSynthesis.getVoices() || [];
       this.boundVoicesChanged = () => {
         this.voiceCache = speechSynthesis.getVoices() || [];
+        this.populateVoiceDropdown();
       };
       speechSynthesis.addEventListener("voiceschanged", this.boundVoicesChanged);
+    }
+
+    populateVoiceDropdown() {
+      const select = this.q("#pp-voice");
+      if (!select) return;
+
+      const voices = this.getVoices();
+      select.innerHTML = "";
+
+      const autoOpt = document.createElement("option");
+      autoOpt.value = "";
+      autoOpt.textContent = "Auto select";
+      select.appendChild(autoOpt);
+
+      voices.forEach(v => {
+        const opt = document.createElement("option");
+        opt.value = v.name;
+        opt.textContent = `${v.name} (${v.lang})`;
+        select.appendChild(opt);
+      });
+
+      select.value = this.o.voiceName || "";
+    }
+
+    getVoices() {
+      const voices = this.voiceCache.length ? this.voiceCache : (speechSynthesis.getVoices() || []);
+      return voices.slice().sort((a, b) => {
+        const aScore = /en/i.test(a.lang || "") ? 0 : 1;
+        const bScore = /en/i.test(b.lang || "") ? 0 : 1;
+        if (aScore !== bScore) return aScore - bScore;
+        return String(a.name).localeCompare(String(b.name));
+      });
     }
 
     updateStartDropdown() {
@@ -495,7 +734,7 @@
       this.items.forEach((el, idx) => {
         const opt = document.createElement("option");
         opt.value = String(idx);
-        opt.textContent = `${el.id} — ${U.getSpeakText(el).slice(0, 40)}`;
+        opt.textContent = `${el.id} — ${U.getSpeakText(el).slice(0, 48)}`;
         select.appendChild(opt);
       });
 
@@ -504,34 +743,47 @@
       const miniTitle = this.q("#pp-mini-title");
       if (miniTitle) {
         miniTitle.textContent = this.items[this.state.i]
-          ? this.items[this.state.i].id
+          ? `${this.items[this.state.i].id}`
           : "Ready";
       }
+    }
+
+    syncRangeUI() {
+      const rate = this.q("#pp-rate");
+      const pitch = this.q("#pp-pitch");
+      const rateValue = this.q("#pp-rate-value");
+      const pitchValue = this.q("#pp-pitch-value");
+
+      if (rate) rate.value = String(this.o.rate);
+      if (pitch) pitch.value = String(this.o.pitch);
+      if (rateValue) rateValue.textContent = `${Number(this.o.rate).toFixed(2)}x`;
+      if (pitchValue) pitchValue.textContent = Number(this.o.pitch).toFixed(2);
     }
 
     bind() {
       if (!this.panel) return;
 
       this.q("#pp-title")?.addEventListener("click", () => this.readTitle());
+      this.q("#pp-theme")?.addEventListener("click", () => this.toggleTheme());
 
       this.q("#pp-start")?.addEventListener("click", () => {
-        this.refreshSpeakItems();
+        this.refreshSpeakItems(true);
         const selected = parseInt(this.q("#pp-start-from")?.value || "0", 10) || 0;
         this.start(selected);
       });
 
       this.q("#pp-prev")?.addEventListener("click", () => {
-        this.refreshSpeakItems();
+        this.refreshSpeakItems(true);
         this.previous();
       });
 
       this.q("#pp-next")?.addEventListener("click", () => {
-        this.refreshSpeakItems();
+        this.refreshSpeakItems(true);
         this.next();
       });
 
       this.q("#pp-mini-next")?.addEventListener("click", () => {
-        this.refreshSpeakItems();
+        this.refreshSpeakItems(true);
         this.next();
       });
 
@@ -544,7 +796,6 @@
 
       this.q("#pp-refresh")?.addEventListener("click", () => {
         this.refreshSpeakItems();
-        this.setStatus(`Detected ${this.items.length} speak tag(s).`);
       });
 
       this.q("#pp-wa")?.addEventListener("click", () => {
@@ -555,15 +806,86 @@
       this.q("#pp-toggle")?.addEventListener("click", () => this.toggleMini());
       this.q("#pp-mini-restore")?.addEventListener("click", () => this.toggleMini(false));
 
+      this.q("#pp-voice")?.addEventListener("change", (e) => {
+        this.o.voiceName = e.target.value || "";
+        U.save(this.o.storageVoiceKey, this.o.voiceName);
+      });
+
+      this.q("#pp-rate")?.addEventListener("input", (e) => {
+        this.o.rate = U.clamp(parseFloat(e.target.value || "1"), 0.7, 2);
+        U.save(this.o.storageRateKey, this.o.rate);
+        this.syncRangeUI();
+      });
+
+      this.q("#pp-pitch")?.addEventListener("input", (e) => {
+        this.o.pitch = U.clamp(parseFloat(e.target.value || "1"), 0.5, 2);
+        U.save(this.o.storagePitchKey, this.o.pitch);
+        this.syncRangeUI();
+      });
+
       this.enableDragging();
+
+      this.boundResize = () => {
+        if (window.innerWidth <= 640 && this.panel) {
+          this.panel.style.left = "";
+          this.panel.style.top = "";
+          this.panel.style.right = "10px";
+          this.panel.style.bottom = "10px";
+        }
+      };
+      window.addEventListener("resize", this.boundResize);
+
+      this.boundVisibility = () => {
+        if (document.hidden && this.state.running && !this.state.paused) {
+          this.pause();
+        }
+      };
+      document.addEventListener("visibilitychange", this.boundVisibility);
+
+      document.addEventListener("keydown", (e) => {
+        if (!this.panel) return;
+        if (e.altKey && e.key === "s") {
+          e.preventDefault();
+          if (this.state.running && !this.state.paused) this.pause();
+          else if (this.state.running && this.state.paused) this.resume();
+          else this.start(this.state.i || 0);
+        } else if (e.altKey && e.key === "ArrowRight") {
+          e.preventDefault();
+          this.next();
+        } else if (e.altKey && e.key === "ArrowLeft") {
+          e.preventDefault();
+          this.previous();
+        } else if (e.altKey && e.key === "x") {
+          e.preventDefault();
+          this.stop();
+        }
+      });
+    }
+
+    startMutationWatch() {
+      if (!this.o.autoRefreshOnMutation || !("MutationObserver" in window)) return;
+
+      this.mutationObserver = new MutationObserver(() => {
+        clearTimeout(this.refreshDebounce);
+        this.refreshDebounce = setTimeout(() => {
+          this.refreshSpeakItems(true);
+        }, 220);
+      });
+
+      this.mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+        attributes: true,
+        attributeFilter: ["id", "data-speak-text", "style", "class", "hidden"]
+      });
     }
 
     enableDragging() {
       if (!this.dragHandle || !this.panel) return;
 
       const moveTo = (clientX, clientY) => {
-        if (!this.state.dragging) return;
-        if (window.innerWidth <= 640) return;
+        if (!this.state.dragging || window.innerWidth <= 640) return;
 
         const x = clientX - this.state.dragOffsetX;
         const y = clientY - this.state.dragOffsetY;
@@ -597,17 +919,13 @@
         document.addEventListener("mouseup", this.boundMouseUp, { once: true });
       });
 
-      this.dragHandle.addEventListener(
-        "touchstart",
-        (e) => {
-          if (window.innerWidth <= 640) return;
-          if (!e.touches || !e.touches[0]) return;
-          this.startDragging(e.touches[0].clientX, e.touches[0].clientY);
-          document.addEventListener("touchmove", this.boundTouchMove, { passive: false });
-          document.addEventListener("touchend", this.boundTouchEnd, { once: true });
-        },
-        { passive: true }
-      );
+      this.dragHandle.addEventListener("touchstart", (e) => {
+        if (window.innerWidth <= 640) return;
+        if (!e.touches || !e.touches[0]) return;
+        this.startDragging(e.touches[0].clientX, e.touches[0].clientY);
+        document.addEventListener("touchmove", this.boundTouchMove, { passive: false });
+        document.addEventListener("touchend", this.boundTouchEnd, { once: true });
+      }, { passive: true });
     }
 
     startDragging(clientX, clientY) {
@@ -615,13 +933,13 @@
       this.state.dragging = true;
       this.state.dragOffsetX = clientX - rect.left;
       this.state.dragOffsetY = clientY - rect.top;
-      this.dragHandle.style.cursor = "grabbing";
+      if (this.dragHandle) this.dragHandle.style.cursor = "grabbing";
     }
 
     stopDragging() {
       if (!this.state.dragging) return;
       this.state.dragging = false;
-      this.dragHandle.style.cursor = "grab";
+      if (this.dragHandle) this.dragHandle.style.cursor = "grab";
       document.removeEventListener("mousemove", this.boundMouseMove);
       document.removeEventListener("touchmove", this.boundTouchMove);
       this.savePosition();
@@ -630,10 +948,7 @@
     savePosition() {
       if (!this.panel || window.innerWidth <= 640) return;
       const rect = this.panel.getBoundingClientRect();
-      U.save(this.o.storagePositionKey, {
-        left: rect.left,
-        top: rect.top
-      });
+      U.save(this.o.storagePositionKey, { left: rect.left, top: rect.top });
     }
 
     restorePosition() {
@@ -667,6 +982,17 @@
       this.toggleMini(!!saved);
     }
 
+    applyTheme() {
+      if (!this.panel) return;
+      this.panel.classList.toggle("pp-dark", this.state.theme === "dark");
+      U.save(this.o.storageThemeKey, this.state.theme);
+    }
+
+    toggleTheme() {
+      this.state.theme = this.state.theme === "dark" ? "light" : "dark";
+      this.applyTheme();
+    }
+
     setSpeakingUI(isSpeaking) {
       if (!this.panel) return;
       this.panel.classList.toggle("pp-speaking", !!isSpeaking);
@@ -678,10 +1004,12 @@
     }
 
     setCaption(text) {
+      const t = text || "Ready";
       const el = this.q("#pp-caption");
-      if (el) el.textContent = text;
+      if (el) el.textContent = t;
+
       const miniTitle = this.q("#pp-mini-title");
-      if (miniTitle) miniTitle.textContent = text || "Ready";
+      if (miniTitle) miniTitle.textContent = t;
     }
 
     setPauseButtonLabel(text) {
@@ -699,8 +1027,7 @@
     }
 
     getVoice() {
-      if (!("speechSynthesis" in window)) return null;
-      const voices = this.voiceCache.length ? this.voiceCache : (speechSynthesis.getVoices() || []);
+      const voices = this.getVoices();
       if (!voices.length) return null;
 
       if (this.o.voiceName) {
@@ -708,8 +1035,50 @@
         if (exact) return exact;
       }
 
-      const english = voices.find(v => /en/i.test(v.lang || ""));
-      return english || voices[0] || null;
+      return (
+        voices.find(v => /en-IN/i.test(v.lang || "")) ||
+        voices.find(v => /en-GB/i.test(v.lang || "")) ||
+        voices.find(v => /en-US/i.test(v.lang || "")) ||
+        voices.find(v => /en/i.test(v.lang || "")) ||
+        voices[0] ||
+        null
+      );
+    }
+
+    scrollToElement(el) {
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const top = rect.top + window.scrollY - this.o.autoScrollOffset - (window.innerHeight * 0.24);
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: this.o.scrollBehavior
+      });
+    }
+
+    cancelSpeech() {
+      clearTimeout(this.pendingNextTimer);
+      this.pendingNextTimer = null;
+      try { speechSynthesis.cancel(); } catch {}
+    }
+
+    queueNext(index) {
+      clearTimeout(this.pendingNextTimer);
+      this.pendingNextTimer = setTimeout(() => {
+        this.speakIndex(index);
+      }, this.o.pauseBetween);
+    }
+
+    updateProgress() {
+      const bar = this.q("#pp-progress-bar");
+      if (!bar) return;
+
+      if (!this.items.length) {
+        bar.style.width = "0%";
+        return;
+      }
+
+      const pct = ((this.state.i + (this.state.running ? 1 : 0)) / this.items.length) * 100;
+      bar.style.width = `${U.clamp(pct, 0, 100)}%`;
     }
 
     readTitle() {
@@ -721,14 +1090,13 @@
     speakRaw(text, statusText = "Speaking") {
       if (!text) return;
 
-      try { speechSynthesis.cancel(); } catch {}
-
+      this.cancelSpeech();
       this.state.running = false;
       this.state.paused = false;
       this.setPauseButtonLabel("Pause");
       this.setSpeakingUI(true);
       this.setStatus(statusText);
-      this.setCaption(text.slice(0, 110));
+      this.setCaption(text.slice(0, 120));
 
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.rate = this.o.rate;
@@ -745,7 +1113,7 @@
 
       utterance.onerror = () => {
         this.setSpeakingUI(false);
-        this.setStatus("Unable to speak title.");
+        this.setStatus("Unable to speak.");
       };
 
       speechSynthesis.speak(utterance);
@@ -754,21 +1122,24 @@
     speakIndex(index) {
       if (!this.items.length) {
         this.setStatus("No valid speak tags found.");
-        this.setCaption("No valid speak tags found.");
+        this.setCaption("Add elements like speak0, speak1, speak2.");
         this.setSpeakingUI(false);
+        this.updateProgress();
         return;
       }
 
-      if (index < 0) index = 0;
+      index = U.clamp(index, 0, this.items.length);
 
       if (index >= this.items.length) {
         this.state.running = false;
         this.state.paused = false;
+        this.state.utterance = null;
         this.setPauseButtonLabel("Pause");
         this.setStatus("Completed.");
         this.setCaption("Narration finished.");
         this.setSpeakingUI(false);
         this.clearActive();
+        this.updateProgress();
         return;
       }
 
@@ -777,23 +1148,18 @@
       const text = U.getSpeakText(el);
 
       if (!text) {
-        this.speakIndex(index + 1);
+        this.queueNext(index + 1);
         return;
       }
 
       this.markActive(el);
-
-      try {
-        el.scrollIntoView({
-          behavior: this.o.scrollBehavior,
-          block: this.o.scrollBlock
-        });
-      } catch {}
+      this.scrollToElement(el);
 
       this.setSpeakingUI(true);
-      this.setStatus(`Speaking ${el.id}`);
-      this.setCaption(text.slice(0, 110));
+      this.setStatus(`Speaking ${el.id} (${index + 1}/${this.items.length})`);
+      this.setCaption(text.slice(0, 120));
       this.updateStartDropdown();
+      this.updateProgress();
       this.setPauseButtonLabel("Pause");
 
       const utterance = new SpeechSynthesisUtterance(text);
@@ -808,19 +1174,19 @@
 
       utterance.onend = () => {
         if (!this.state.running || this.state.paused) return;
-        setTimeout(() => this.speakIndex(this.state.i + 1), this.o.pauseBetween);
+        this.queueNext(this.state.i + 1);
       };
 
       utterance.onerror = () => {
         if (!this.state.running) return;
-        setTimeout(() => this.speakIndex(this.state.i + 1), this.o.pauseBetween);
+        this.queueNext(this.state.i + 1);
       };
 
       speechSynthesis.speak(utterance);
     }
 
     start(index = 0) {
-      this.refreshSpeakItems();
+      this.refreshSpeakItems(true);
 
       if (!this.items.length) {
         this.setStatus("No valid speak tags found.");
@@ -829,7 +1195,7 @@
         return;
       }
 
-      try { speechSynthesis.cancel(); } catch {}
+      this.cancelSpeech();
       this.state.running = true;
       this.state.paused = false;
       this.setPauseButtonLabel("Pause");
@@ -839,7 +1205,7 @@
 
     next() {
       if (!this.items.length) return;
-      try { speechSynthesis.cancel(); } catch {}
+      this.cancelSpeech();
       this.state.running = true;
       this.state.paused = false;
       this.setPauseButtonLabel("Pause");
@@ -849,7 +1215,7 @@
 
     previous() {
       if (!this.items.length) return;
-      try { speechSynthesis.cancel(); } catch {}
+      this.cancelSpeech();
       this.state.running = true;
       this.state.paused = false;
       this.setPauseButtonLabel("Pause");
@@ -870,9 +1236,10 @@
     resume() {
       if (!this.state.running || !this.state.paused) return;
       this.state.paused = false;
+
       try {
         speechSynthesis.resume();
-        this.setStatus("Resumed.");
+        this.setStatus(`Resumed at ${this.items[this.state.i] ? this.items[this.state.i].id : "current item"}.`);
         this.setPauseButtonLabel("Pause");
         this.setSpeakingUI(true);
       } catch {
@@ -881,12 +1248,13 @@
     }
 
     stop() {
-      try { speechSynthesis.cancel(); } catch {}
+      this.cancelSpeech();
       this.state.running = false;
       this.state.paused = false;
       this.state.utterance = null;
       this.clearActive();
       this.updateStartDropdown();
+      this.updateProgress();
       this.setStatus(`Detected ${this.items.length} speak tag(s).`);
       this.setCaption("Waiting to start narration.");
       this.setPauseButtonLabel("Pause");
@@ -895,14 +1263,22 @@
 
     update() {
       this.updateStartDropdown();
+      this.populateVoiceDropdown();
+      this.syncRangeUI();
+      this.updateProgress();
       this.setPauseButtonLabel("Pause");
       this.setSpeakingUI(false);
+      this.setStatus(`Detected ${this.items.length} speak tag(s).`);
+      this.setCaption("Waiting to start narration.");
     }
   }
 
   function boot() {
     const app = new App();
 
+    window.PPSpeakV2Ultra = app;
+    window.PPSpeakV9Ultra = app;
+    window.PPSpeakUltra = app;
     window.PPSpeakV834 = app;
     window.PPSpeakV833 = app;
     window.PPSpeakV832 = app;
