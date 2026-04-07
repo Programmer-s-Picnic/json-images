@@ -348,7 +348,7 @@
   width:18px;
   height:6px;
   transform:translateX(-50%);
-  background:#7c2d12;
+  background:red;
   border-radius:0 0 18px 18px;
   z-index:2;
   opacity:.95;
