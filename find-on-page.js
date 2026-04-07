@@ -344,9 +344,9 @@
 .pp-v9uf-mouth{
   position:absolute;
   left:50%;
-  bottom:20px;
+  bottom:22px;
   width:18px;
-  height:6px;
+  height:4px;
   transform:translateX(-50%);
   background:rgba(198, 134, 102, 1);
   border-radius:0 0 18px 18px;
