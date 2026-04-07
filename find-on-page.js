@@ -348,7 +348,7 @@
   width:8px;
   height:4px;
   transform:translateX(-50%);
-  background:rgba(198, 134, 102, 0.4);
+  background:rgba(198, 134, 102, 0.1);
   border-radius:0 0 18px 18px;
   z-index:2;
   opacity:.95;
