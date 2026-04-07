@@ -10,8 +10,8 @@
   };
 
   const ppp_IMAGES = {
-    avatar: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...(replace with full base64)...",
-    qr: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...(replace with full base64)..."
+    avatar: "https://programmer-s-picnic.github.io/json-images/mee.jpg",
+    qr: "https://programmer-s-picnic.github.io/json-images/qr.jpg"
   };
 
   function ppp_createStyles() {
