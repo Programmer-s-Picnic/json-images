@@ -585,7 +585,7 @@
       p.innerHTML = `
         <div class="pp-v9uf-topbar">
           <div class="pp-v9uf-topbar-left">
-            <div class="pp-v9uf-chip">PPSPEAK V2 ULTRA</div>
+            <div class="pp-v9uf-chip">Champak Speak</div>
           </div>
           <div class="pp-v9uf-topbar-actions">
             <button id="pp-theme" class="pp-v9uf-icon-btn" title="Theme">◐</button>
