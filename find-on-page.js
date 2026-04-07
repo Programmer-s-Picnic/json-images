@@ -362,8 +362,8 @@
         }
 
         @keyframes ppV9UFMouth{
-          from{ height:5px; width:16px; border-radius:0 0 14px 14px; }
-          to{ height:12px; width:20px; border-radius:0 0 20px 20px; }
+          from{ height:4px; width:4px; border-radius:0 0 14px 14px; }
+          to{ height:6px; width:6px; border-radius:0 0 20px 20px; }
         }
 
         .pp-v9uf-avatar-text{
