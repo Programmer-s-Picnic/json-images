@@ -11,7 +11,7 @@
 
   const ppp_IMAGES = {
     avatar: "https://programmer-s-picnic.github.io/json-images/mee.jpg",
-    qr: "https://programmer-s-picnic.github.io/json-images/qr.jpg"
+    qr: "https://programmer-s-picnic.github.io/json-images/qr.jpeg"
   };
 
   function ppp_createStyles() {
