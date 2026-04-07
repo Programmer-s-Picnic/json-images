@@ -343,12 +343,12 @@
        
 .pp-v9uf-mouth{
   position:absolute;
-  left:50%;
+  left:52%;
   bottom:24px;
-  width:10px;
+  width:8px;
   height:4px;
   transform:translateX(-50%);
-  background:rgba(198, 134, 102, 1);
+  background:rgba(198, 134, 102, 0.4);
   border-radius:0 0 18px 18px;
   z-index:2;
   opacity:.95;
