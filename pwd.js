@@ -1,280 +1,331 @@
 (function () {
   "use strict";
 
-  const cfg = Object.assign(
-    {
-      password: "12345",
-      title: document.title || "Protected Page",
-      subtitle: "Enter password to continue",
-      placeholder: "Enter password",
-      buttonText: "Unlock",
-      cancelText: "Clear",
-      errorText: "Wrong password. Please try again.",
-      successText: "Access granted.",
-      storageKey: "ppp_pwd_access",
-      useSession: false,
-      blurPage: true,
-      autoFocus: true
-    },
-    window.pppPwdConfig || {}
-  );
+  /*
+    Programmer's Picnic password guard
+    ----------------------------------
+    How to use:
+    1. Include this file in any page:
+       <script src="https://programmer-s-picnic.github.io/json-images/pwd.js"></script>
 
-  const storage = cfg.useSession ? window.sessionStorage : window.localStorage;
+    2. Optional page-level configuration before loading pwd.js:
+       <script>
+         window.PP_PAGE_PASSWORD = "java123";
+       </script>
+       <script src="https://programmer-s-picnic.github.io/json-images/pwd.js"></script>
 
-  function hasAccess() {
-    try {
-      return storage.getItem(cfg.storageKey) === "ok";
-    } catch (e) {
-      return false;
-    }
-  }
+    3. Optional whitelist:
+       - add ?pp_unlock=java123 to URL
+       - or use localStorage saved session after successful login
 
-  function setAccess(value) {
-    try {
-      if (value) {
-        storage.setItem(cfg.storageKey, "ok");
-      } else {
-        storage.removeItem(cfg.storageKey);
-      }
-    } catch (e) {}
-  }
+    Notes:
+    - This is client-side protection only.
+    - Good for lightweight lesson gating on static pages.
+  */
 
-  function addStyles() {
-    if (document.getElementById("ppp-pwd-style")) return;
+  var DEFAULT_PASSWORD = "java123";
+  var STORAGE_PREFIX = "pp_page_pwd_ok::";
+  var ATTEMPT_KEY_PREFIX = "pp_page_pwd_attempts::";
+  var TITLE_PREFIX = "Protected Page";
+  var QUERY_KEY = "pp_unlock";
 
-    const style = document.createElement("style");
-    style.id = "ppp-pwd-style";
-    style.textContent = `
-      html.ppp-pwd-lock,
-      body.ppp-pwd-lock{
-        overflow:hidden !important;
-      }
+  var currentPageKey = location.origin + location.pathname;
+  var storageKey = STORAGE_PREFIX + currentPageKey;
+  var attemptKey = ATTEMPT_KEY_PREFIX + currentPageKey;
 
-      .ppp-pwd-blur > *:not(.ppp-pwd-overlay){
-        filter: blur(8px);
-        pointer-events:none !important;
-        user-select:none !important;
-      }
+  var config = window.PP_PAGE_PASSWORD_CONFIG || {};
+  var expectedPassword =
+    String(window.PP_PAGE_PASSWORD || config.password || DEFAULT_PASSWORD);
 
-      .ppp-pwd-overlay{
-        position:fixed;
-        inset:0;
-        z-index:2147483647;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        padding:20px;
-        background:linear-gradient(135deg, rgba(217,119,6,.92), rgba(245,158,11,.92));
-        backdrop-filter: blur(10px);
-      }
+  var pageTitle =
+    String(config.title || document.title || TITLE_PREFIX);
 
-      .ppp-pwd-card{
-        width:min(100%, 440px);
-        background:#fffdf8;
-        border:1px solid rgba(255,255,255,.55);
-        border-radius:22px;
-        box-shadow:0 24px 70px rgba(0,0,0,.24);
-        padding:24px;
-        color:#1f2937;
-        font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      }
+  var maxAttempts = Number(config.maxAttempts || 9999);
+  var rememberSuccess = config.rememberSuccess !== false;
+  var allowQueryUnlock = config.allowQueryUnlock !== false;
+  var blurBackground = config.blurBackground !== false;
+  var lockScroll = config.lockScroll !== false;
 
-      .ppp-pwd-badge{
-        display:inline-flex;
-        align-items:center;
-        gap:8px;
-        background:#fff1cc;
-        color:#9a5a05;
-        border:1px solid #efd393;
-        padding:7px 12px;
-        border-radius:999px;
-        font-size:13px;
-        font-weight:700;
-        margin-bottom:14px;
-      }
+  var styleId = "pp-pwd-style";
+  var rootAttr = "data-pp-pwd-ready";
+  var unlockedAttr = "data-pp-pwd-unlocked";
+  var overlayId = "pp-pwd-overlay";
 
-      .ppp-pwd-title{
-        margin:0 0 8px;
-        font-size:28px;
-        line-height:1.15;
-        color:#b45309;
-      }
+  function injectStyle() {
+    if (document.getElementById(styleId)) return;
 
-      .ppp-pwd-subtitle{
-        margin:0 0 18px;
-        color:#6b7280;
-        font-size:15px;
-        line-height:1.5;
-      }
-
-      .ppp-pwd-input{
-        width:100%;
-        padding:14px 15px;
-        border-radius:14px;
-        border:1px solid #ead7b0;
-        background:#fff;
-        color:#111827;
-        font-size:16px;
-        outline:none;
-        box-shadow: inset 0 1px 2px rgba(0,0,0,.03);
-      }
-
-      .ppp-pwd-input:focus{
-        border-color:#d97706;
-        box-shadow:0 0 0 4px rgba(217,119,6,.12);
-      }
-
-      .ppp-pwd-actions{
-        display:flex;
-        gap:10px;
-        margin-top:14px;
-        flex-wrap:wrap;
-      }
-
-      .ppp-pwd-btn{
-        appearance:none;
-        border:none;
-        border-radius:14px;
-        padding:12px 16px;
-        font-size:15px;
-        font-weight:700;
-        cursor:pointer;
-        transition:transform .15s ease, opacity .15s ease, background .15s ease;
-      }
-
-      .ppp-pwd-btn:hover{
-        transform:translateY(-1px);
-      }
-
-      .ppp-pwd-btn-primary{
-        background:#d97706;
-        color:#fff;
-      }
-
-      .ppp-pwd-btn-primary:hover{
-        background:#f59e0b;
-      }
-
-      .ppp-pwd-btn-secondary{
-        background:#fff7e8;
-        color:#a16207;
-        border:1px solid #efd393;
-      }
-
-      .ppp-pwd-msg{
-        min-height:22px;
-        margin-top:12px;
-        font-size:14px;
-        font-weight:700;
-      }
-
-      .ppp-pwd-msg-error{
-        color:#b91c1c;
-      }
-
-      .ppp-pwd-msg-success{
-        color:#166534;
-      }
-
-      .ppp-pwd-foot{
-        margin-top:14px;
-        color:#6b7280;
-        font-size:12px;
-      }
-    `;
+    var css = `
+html[${rootAttr}="1"]:not([${unlockedAttr}="1"]) body {
+  visibility: hidden !important;
+}
+#${overlayId} {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    radial-gradient(circle at top right, rgba(245,158,11,0.18), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(217,119,6,0.10), transparent 28%),
+    #fff8eb;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+#${overlayId} * { box-sizing: border-box; }
+#${overlayId}.pp-hidden { display: none !important; }
+#${overlayId} .pp-card {
+  width: min(100%, 460px);
+  background: #ffffff;
+  border: 1px solid #ead7b0;
+  border-radius: 20px;
+  box-shadow: 0 18px 48px rgba(217,119,6,0.14);
+  padding: 24px;
+}
+#${overlayId} .pp-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fff1cc;
+  border: 1px solid #efd393;
+  color: #8a5206;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+#${overlayId} h1 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: #d97706;
+}
+#${overlayId} p {
+  margin: 0 0 14px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+#${overlayId} .pp-row {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+#${overlayId} input[type="password"] {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 12px;
+  border: 1px solid #ead7b0;
+  outline: none;
+  font-size: 16px;
+  background: #fffdfa;
+  color: #1f2937;
+}
+#${overlayId} input[type="password"]:focus {
+  border-color: #d97706;
+  box-shadow: 0 0 0 4px rgba(217,119,6,0.10);
+}
+#${overlayId} .pp-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#${overlayId} button {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 15px;
+}
+#${overlayId} .pp-open {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(217,119,6,0.18);
+}
+#${overlayId} .pp-clear {
+  background: #fff;
+  color: #d97706;
+  border: 1px solid #ead7b0;
+}
+#${overlayId} .pp-msg {
+  min-height: 22px;
+  font-size: 14px;
+  font-weight: 600;
+}
+#${overlayId} .pp-msg.pp-error { color: #991b1b; }
+#${overlayId} .pp-msg.pp-ok { color: #166534; }
+#${overlayId} .pp-foot {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #6b7280;
+}
+html[${rootAttr}="1"]:not([${unlockedAttr}="1"]) {
+  overflow: hidden !important;
+}
+body.pp-pwd-blur > *:not(#${overlayId}) {
+  filter: blur(8px);
+  pointer-events: none !important;
+  user-select: none !important;
+}
+`;
+    var style = document.createElement("style");
+    style.id = styleId;
+    style.textContent = css;
     document.head.appendChild(style);
   }
 
+  function getAttempts() {
+    var v = localStorage.getItem(attemptKey);
+    return v ? Number(v) || 0 : 0;
+  }
+
+  function setAttempts(v) {
+    localStorage.setItem(attemptKey, String(v));
+  }
+
+  function markUnlocked() {
+    if (rememberSuccess) {
+      localStorage.setItem(storageKey, "1");
+    }
+    document.documentElement.setAttribute(unlockedAttr, "1");
+    if (blurBackground) {
+      document.body.classList.remove("pp-pwd-blur");
+    }
+    if (!lockScroll) {
+      document.documentElement.style.overflow = "";
+    }
+    var el = document.getElementById(overlayId);
+    if (el) el.classList.add("pp-hidden");
+    try {
+      document.body.style.visibility = "";
+    } catch (e) {}
+  }
+
+  function alreadyUnlocked() {
+    return localStorage.getItem(storageKey) === "1";
+  }
+
+  function unlockFromQuery() {
+    if (!allowQueryUnlock) return false;
+    try {
+      var qs = new URLSearchParams(location.search);
+      var val = qs.get(QUERY_KEY);
+      if (val && val === expectedPassword) {
+        if (rememberSuccess) localStorage.setItem(storageKey, "1");
+        return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+
+  function clearSavedAccess() {
+    localStorage.removeItem(storageKey);
+    localStorage.removeItem(attemptKey);
+  }
+
   function buildOverlay() {
-    const overlay = document.createElement("div");
-    overlay.className = "ppp-pwd-overlay";
+    if (document.getElementById(overlayId)) return;
+
+    var overlay = document.createElement("div");
+    overlay.id = overlayId;
     overlay.innerHTML = `
-      <div class="ppp-pwd-card" role="dialog" aria-modal="true" aria-labelledby="pppPwdTitle">
-        <div class="ppp-pwd-badge">🔒 Password Protected</div>
-        <h2 class="ppp-pwd-title" id="pppPwdTitle"></h2>
-        <p class="ppp-pwd-subtitle"></p>
-        <input class="ppp-pwd-input" type="password" autocomplete="current-password" />
-        <div class="ppp-pwd-actions">
-          <button class="ppp-pwd-btn ppp-pwd-btn-primary" type="button"></button>
-          <button class="ppp-pwd-btn ppp-pwd-btn-secondary" type="button"></button>
+      <div class="pp-card" role="dialog" aria-modal="true" aria-labelledby="pp-pwd-title">
+        <div class="pp-badge">Protected lesson</div>
+        <h1 id="pp-pwd-title">${escapeHtml(pageTitle)}</h1>
+        <p>This page is password protected. Enter the password to continue.</p>
+        <div class="pp-row">
+          <input id="pp-pwd-input" type="password" placeholder="Enter password" autocomplete="current-password" />
+          <div class="pp-actions">
+            <button type="button" class="pp-open" id="pp-pwd-submit">Open page</button>
+            <button type="button" class="pp-clear" id="pp-pwd-clear">Reset saved access</button>
+          </div>
+          <div class="pp-msg" id="pp-pwd-msg" aria-live="polite"></div>
         </div>
-        <div class="ppp-pwd-msg" aria-live="polite"></div>
-        <div class="ppp-pwd-foot">Powered by Programmer's Picnic password gate</div>
+        <div class="pp-foot">Protection is handled entirely by <code>pwd.js</code>.</div>
       </div>
     `;
+    document.body.appendChild(overlay);
 
-    const title = overlay.querySelector(".ppp-pwd-title");
-    const subtitle = overlay.querySelector(".ppp-pwd-subtitle");
-    const input = overlay.querySelector(".ppp-pwd-input");
-    const btnUnlock = overlay.querySelector(".ppp-pwd-btn-primary");
-    const btnClear = overlay.querySelector(".ppp-pwd-btn-secondary");
-    const msg = overlay.querySelector(".ppp-pwd-msg");
+    var input = document.getElementById("pp-pwd-input");
+    var submit = document.getElementById("pp-pwd-submit");
+    var clear = document.getElementById("pp-pwd-clear");
+    var msg = document.getElementById("pp-pwd-msg");
 
-    title.textContent = cfg.title;
-    subtitle.textContent = cfg.subtitle;
-    input.placeholder = cfg.placeholder;
-    btnUnlock.textContent = cfg.buttonText;
-    btnClear.textContent = cfg.cancelText;
-
-    function showMessage(text, ok) {
+    function setMsg(text, ok) {
       msg.textContent = text || "";
-      msg.className = "ppp-pwd-msg " + (ok ? "ppp-pwd-msg-success" : "ppp-pwd-msg-error");
+      msg.className = "pp-msg " + (ok ? "pp-ok" : "pp-error");
     }
 
-    function unlock() {
-      const value = input.value;
-      if (value === cfg.password) {
-        setAccess(true);
-        showMessage(cfg.successText, true);
-        setTimeout(removeOverlay, 250);
-      } else {
-        showMessage(cfg.errorText, false);
-        input.select();
+    function tryUnlock() {
+      var attempts = getAttempts();
+      if (attempts >= maxAttempts) {
+        setMsg("Too many incorrect attempts for this page.", false);
+        return;
       }
-    }
 
-    function clearInput() {
-      input.value = "";
-      showMessage("", false);
+      var val = String(input.value || "");
+      if (val === expectedPassword) {
+        setMsg("Password accepted. Opening page...", true);
+        setAttempts(0);
+        markUnlocked();
+        return;
+      }
+
+      attempts += 1;
+      setAttempts(attempts);
+      setMsg("Incorrect password. Please try again.", false);
+      input.select();
       input.focus();
     }
 
-    btnUnlock.addEventListener("click", unlock);
-    btnClear.addEventListener("click", clearInput);
+    submit.addEventListener("click", tryUnlock);
+    clear.addEventListener("click", function () {
+      clearSavedAccess();
+      setMsg("Saved access cleared for this page.", true);
+      input.focus();
+    });
     input.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") unlock();
-      if (e.key === "Escape") clearInput();
+      if (e.key === "Enter") {
+        e.preventDefault();
+        tryUnlock();
+      }
     });
 
-    if (cfg.autoFocus) {
-      setTimeout(() => input.focus(), 60);
-    }
-
-    return overlay;
+    setTimeout(function () {
+      input.focus();
+    }, 40);
   }
 
-  function removeOverlay() {
-    const overlay = document.querySelector(".ppp-pwd-overlay");
-    if (overlay) overlay.remove();
-    document.documentElement.classList.remove("ppp-pwd-lock");
-    document.body.classList.remove("ppp-pwd-lock");
-    document.body.classList.remove("ppp-pwd-blur");
-  }
-
-  function lockPage() {
-    addStyles();
-    document.documentElement.classList.add("ppp-pwd-lock");
-    document.body.classList.add("ppp-pwd-lock");
-    if (cfg.blurPage) document.body.classList.add("ppp-pwd-blur");
-
-    if (!document.querySelector(".ppp-pwd-overlay")) {
-      document.body.appendChild(buildOverlay());
-    }
+  function escapeHtml(s) {
+    return String(s)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
   }
 
   function init() {
-    if (hasAccess()) return;
-    lockPage();
+    document.documentElement.setAttribute(rootAttr, "1");
+    injectStyle();
+
+    if (unlockFromQuery() || alreadyUnlocked()) {
+      markUnlocked();
+      return;
+    }
+
+    if (blurBackground) {
+      document.body.classList.add("pp-pwd-blur");
+    }
+
+    if (!lockScroll) {
+      document.documentElement.style.overflow = "";
+    }
+
+    buildOverlay();
+    try {
+      document.body.style.visibility = "visible";
+    } catch (e) {}
   }
 
   if (document.readyState === "loading") {
@@ -282,24 +333,4 @@
   } else {
     init();
   }
-
-  window.pppPwd = {
-    lock: function () {
-      setAccess(false);
-      lockPage();
-    },
-    unlock: function (password) {
-      if (password === cfg.password) {
-        setAccess(true);
-        removeOverlay();
-        return true;
-      }
-      return false;
-    },
-    logout: function () {
-      setAccess(false);
-      lockPage();
-    },
-    hasAccess: hasAccess
-  };
 })();
