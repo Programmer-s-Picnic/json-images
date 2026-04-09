@@ -132,6 +132,7 @@
       this.restoreMiniState();
       this.restorePosition();
       this.bindVoices();
+      this.enforcePreferredVoice();
       this.bind();
       this.startMutationWatch();
       this.update();
@@ -532,7 +533,7 @@
       if (this.o.readSpeak0First) {
         const i0 = this.items.findIndex(el => String(el.id).toLowerCase() === "speak0");
         if (i0 > 0) {
-          const [node] = this.items.splice(i0, 1);
+          const node = this.items.splice(i0, 1)[0];
           this.items.unshift(node);
         }
       }
@@ -688,6 +689,7 @@
       this.voiceCache = speechSynthesis.getVoices() || [];
       this.boundVoicesChanged = () => {
         this.voiceCache = speechSynthesis.getVoices() || [];
+        this.enforcePreferredVoice();
         this.withDomMute(() => this.populateVoiceDropdown());
       };
       speechSynthesis.addEventListener("voiceschanged", this.boundVoicesChanged);
@@ -716,8 +718,10 @@
 
         let score = 0;
 
-        if (lang === "en_IN") score += 100;
-        else if (lang.startsWith("en_IN")) score += 95;
+        if (lang === "en_in") score += 100;
+        else if (lang.startsWith("en_in")) score += 95;
+        else if (lang === "en-in") score += 100;
+        else if (lang.startsWith("en-in")) score += 95;
         else if (lang.startsWith("en")) score += 40;
 
         if (name.includes("male")) score += 40;
@@ -745,13 +749,28 @@
         .map(v => ({ voice: v, score: scoreVoice(v) }))
         .sort((a, b) => b.score - a.score);
 
-      const best = ranked[0]?.voice || null;
+      const best = ranked[0] ? ranked[0].voice : null;
       if (!best) return null;
 
       const bestLang = String(best.lang || "").toLowerCase();
-      if (!bestLang.startsWith("en_IN")) return null;
+      if (!(bestLang.startsWith("en_in") || bestLang.startsWith("en-in"))) return null;
 
       return best;
+    }
+
+    enforcePreferredVoice() {
+      const preferred = this.getPreferredIndianMaleVoice();
+      if (!preferred) return false;
+
+      this.o.voiceName = preferred.name;
+      U.save(this.o.storageVoiceKey, preferred.name);
+
+      const select = this.q("#pp-voice");
+      if (select) {
+        select.value = preferred.name;
+      }
+
+      return true;
     }
 
     populateVoiceDropdown() {
@@ -766,7 +785,7 @@
 
       if (preferred) {
         this.o.voiceName = preferred.name;
-        U.save(this.o.storageVoiceKey, this.o.voiceName);
+        U.save(this.o.storageVoiceKey, preferred.name);
 
         const opt = document.createElement("option");
         opt.value = preferred.name;
@@ -774,6 +793,7 @@
         select.appendChild(opt);
         select.value = preferred.name;
 
+        select.disabled = true;
         select.style.display = "none";
         if (label) label.style.display = "none";
       } else {
@@ -791,6 +811,7 @@
           select.appendChild(opt);
         });
 
+        select.disabled = false;
         select.style.display = "";
         const hasSaved = voices.some(v => v.name === this.o.voiceName);
         select.value = hasSaved ? this.o.voiceName : "";
@@ -890,10 +911,12 @@
         const preferred = this.getPreferredIndianMaleVoice();
         if (preferred) {
           this.o.voiceName = preferred.name;
+          U.save(this.o.storageVoiceKey, preferred.name);
+          if (e && e.target) e.target.value = preferred.name;
         } else {
           this.o.voiceName = e.target.value || "";
+          U.save(this.o.storageVoiceKey, this.o.voiceName);
         }
-        U.save(this.o.storageVoiceKey, this.o.voiceName);
       });
 
       this.q("#pp-rate")?.addEventListener("input", (e) => {
@@ -1164,7 +1187,13 @@
       if (!voices.length) return null;
 
       const preferred = this.getPreferredIndianMaleVoice();
-      if (preferred) return preferred;
+      if (preferred) {
+        if (this.o.voiceName !== preferred.name) {
+          this.o.voiceName = preferred.name;
+          U.save(this.o.storageVoiceKey, preferred.name);
+        }
+        return preferred;
+      }
 
       if (this.o.voiceName) {
         const exact = voices.find(v => v.name === this.o.voiceName);
@@ -1173,6 +1202,7 @@
 
       return (
         voices.find(v => /en_IN/i.test(v.lang || "")) ||
+        voices.find(v => /en-IN/i.test(v.lang || "")) ||
         voices.find(v => /en-GB/i.test(v.lang || "")) ||
         voices.find(v => /en-US/i.test(v.lang || "")) ||
         voices.find(v => /en/i.test(v.lang || "")) ||
@@ -1236,6 +1266,7 @@
     speakRaw(text, statusText = "Speaking") {
       if (!text) return;
 
+      this.enforcePreferredVoice();
       this.cancelSpeech();
       this.state.running = false;
       this.state.paused = false;
@@ -1281,6 +1312,7 @@
         return;
       }
 
+      this.enforcePreferredVoice();
       index = Math.max(0, index);
 
       if (index >= this.items.length) {
@@ -1342,6 +1374,7 @@
 
     start(index = 0) {
       this.refreshSpeakItems(true);
+      this.enforcePreferredVoice();
 
       if (!this.items.length) {
         this.state.running = false;
@@ -1362,6 +1395,7 @@
 
     next() {
       if (!this.items.length) return;
+      this.enforcePreferredVoice();
       this.cancelSpeech();
       this.state.running = true;
       this.state.paused = false;
@@ -1374,6 +1408,7 @@
 
     previous() {
       if (!this.items.length) return;
+      this.enforcePreferredVoice();
       this.cancelSpeech();
       this.state.running = true;
       this.state.paused = false;
@@ -1396,6 +1431,7 @@
 
     resume() {
       if (!this.state.running || !this.state.paused) return;
+      this.enforcePreferredVoice();
       this.state.paused = false;
 
       try {
@@ -1414,6 +1450,7 @@
       this.state.paused = false;
       this.state.utterance = null;
       this.clearActive();
+      this.enforcePreferredVoice();
       this.withDomMute(() => {
         this.updateStartDropdown();
         this.updateProgress();
@@ -1432,6 +1469,7 @@
     }
 
     update() {
+      this.enforcePreferredVoice();
       this.withDomMute(() => {
         this.updateStartDropdown();
         this.populateVoiceDropdown();
