@@ -1,6 +1,6 @@
  (function () {
   "use strict";
-
+alert("Started");
   /*
     Programmer's Picnic Password Guard
     ----------------------------------
