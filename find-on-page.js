@@ -77,7 +77,7 @@
 
     clamp(n, min, max) {
       return Math.max(min, Math.min(max, n));
-  a  }
+    }
   };
 
   class App {
@@ -340,22 +340,19 @@
           100%{ transform:scale(1); }
         }
 
-       
-.pp-v9uf-mouth{
-  position:absolute;
-  left:53%;
-  bottom:24px;
-  width:4px;
-  height:4px;
-  transform:translateX(-50%);
-  background:rgba(198, 134, 102, 0.05);
-  border-radius:0 0 18px 18px;
-  z-index:2;
-  opacity:.95;
-  box-shadow:0 1px 0 rgba(255,255,255,.15) inset;
-}
-
-
+        .pp-v9uf-mouth{
+          position:absolute;
+          left:53%;
+          bottom:24px;
+          width:4px;
+          height:4px;
+          transform:translateX(-50%);
+          background:rgba(198, 134, 102, 0.05);
+          border-radius:0 0 18px 18px;
+          z-index:2;
+          opacity:.95;
+          box-shadow:0 1px 0 rgba(255,255,255,.15) inset;
+        }
 
         .pp-v9uf-panel.pp-speaking .pp-v9uf-mouth{
           animation:ppV9UFMouth .22s ease-in-out infinite alternate;
