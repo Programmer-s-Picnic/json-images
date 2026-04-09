@@ -560,7 +560,12 @@
       });
 
       if (!silent) {
-        this.setStatus(`Detected ${this.items.length} speak tag(s).`);
+        const preferred = this.getPreferredIndianMaleVoice();
+        this.setStatus(
+          preferred
+            ? `Detected ${this.items.length} speak tag(s). Using ${preferred.name}.`
+            : `Detected ${this.items.length} speak tag(s). Preferred English Indian male voice not found.`
+        );
       }
     }
 
@@ -617,7 +622,7 @@
           <label for="pp-start-from" class="pp-v9uf-label">Start from</label>
           <select id="pp-start-from" class="pp-v9uf-select"></select>
 
-          <label for="pp-voice" class="pp-v9uf-label">Voice</label>
+          <label for="pp-voice" id="pp-voice-label" class="pp-v9uf-label">Voice</label>
           <select id="pp-voice" class="pp-v9uf-select"></select>
 
           <label class="pp-v9uf-label">Rate</label>
@@ -689,37 +694,107 @@
     }
 
     getVoices() {
-      const voices = this.voiceCache.length ? this.voiceCache : (speechSynthesis.getVoices() || []);
+      const voices = this.voiceCache.length
+        ? this.voiceCache
+        : (speechSynthesis.getVoices() || []);
+
       return voices.slice().sort((a, b) => {
-        const aScore = /en/i.test(a.lang || "") ? 0 : 1;
-        const bScore = /en/i.test(b.lang || "") ? 0 : 1;
+        const aScore = /en-IN/i.test(a.lang || "") ? 0 : /en/i.test(a.lang || "") ? 1 : 2;
+        const bScore = /en-IN/i.test(b.lang || "") ? 0 : /en/i.test(b.lang || "") ? 1 : 2;
         if (aScore !== bScore) return aScore - bScore;
         return String(a.name).localeCompare(String(b.name));
       });
     }
 
+    getPreferredIndianMaleVoice() {
+      const voices = this.getVoices();
+      if (!voices.length) return null;
+
+      const scoreVoice = (v) => {
+        const name = String(v.name || "").toLowerCase();
+        const lang = String(v.lang || "").toLowerCase();
+
+        let score = 0;
+
+        if (lang === "en-in") score += 100;
+        else if (lang.startsWith("en-in")) score += 95;
+        else if (lang.startsWith("en")) score += 40;
+
+        if (name.includes("male")) score += 40;
+        if (name.includes("man")) score += 25;
+        if (name.includes("india")) score += 20;
+        if (name.includes("indian")) score += 20;
+
+        if (name.includes("rahul")) score += 30;
+        if (name.includes("aditya")) score += 25;
+        if (name.includes("arjun")) score += 25;
+        if (name.includes("rishi")) score += 25;
+        if (name.includes("prabhat")) score += 25;
+
+        if (name.includes("female")) score -= 40;
+        if (name.includes("woman")) score -= 25;
+        if (name.includes("zira")) score -= 20;
+        if (name.includes("susan")) score -= 20;
+        if (name.includes("hazel")) score -= 20;
+        if (name.includes("heera")) score -= 20;
+
+        return score;
+      };
+
+      const ranked = voices
+        .map(v => ({ voice: v, score: scoreVoice(v) }))
+        .sort((a, b) => b.score - a.score);
+
+      const best = ranked[0]?.voice || null;
+      if (!best) return null;
+
+      const bestLang = String(best.lang || "").toLowerCase();
+      if (!bestLang.startsWith("en-in")) return null;
+
+      return best;
+    }
+
     populateVoiceDropdown() {
       const select = this.q("#pp-voice");
+      const label = this.q("#pp-voice-label");
       if (!select) return;
 
-      const currentValue = select.value;
       const voices = this.getVoices();
+      const preferred = this.getPreferredIndianMaleVoice();
 
       select.innerHTML = "";
 
-      const autoOpt = document.createElement("option");
-      autoOpt.value = "";
-      autoOpt.textContent = "Auto select";
-      select.appendChild(autoOpt);
+      if (preferred) {
+        this.o.voiceName = preferred.name;
+        U.save(this.o.storageVoiceKey, this.o.voiceName);
 
-      voices.forEach(v => {
         const opt = document.createElement("option");
-        opt.value = v.name;
-        opt.textContent = `${v.name} (${v.lang})`;
+        opt.value = preferred.name;
+        opt.textContent = `${preferred.name} (${preferred.lang})`;
         select.appendChild(opt);
-      });
+        select.value = preferred.name;
 
-      select.value = this.o.voiceName || currentValue || "";
+        select.style.display = "none";
+        if (label) label.style.display = "none";
+      } else {
+        if (label) label.style.display = "";
+
+        const autoOpt = document.createElement("option");
+        autoOpt.value = "";
+        autoOpt.textContent = "Select a voice";
+        select.appendChild(autoOpt);
+
+        voices.forEach(v => {
+          const opt = document.createElement("option");
+          opt.value = v.name;
+          opt.textContent = `${v.name} (${v.lang})`;
+          select.appendChild(opt);
+        });
+
+        select.style.display = "";
+        const hasSaved = voices.some(v => v.name === this.o.voiceName);
+        select.value = hasSaved ? this.o.voiceName : "";
+      }
     }
 
     updateStartDropdown() {
@@ -812,7 +887,12 @@
       this.q("#pp-mini-restore")?.addEventListener("click", () => this.toggleMini(false));
 
       this.q("#pp-voice")?.addEventListener("change", (e) => {
-        this.o.voiceName = e.target.value || "";
+        const preferred = this.getPreferredIndianMaleVoice();
+        if (preferred) {
+          this.o.voiceName = preferred.name;
+        } else {
+          this.o.voiceName = e.target.value || "";
+        }
         U.save(this.o.storageVoiceKey, this.o.voiceName);
       });
 
@@ -831,11 +911,15 @@
       this.enableDragging();
 
       this.boundResize = () => {
-        if (window.innerWidth <= 640 && this.panel) {
+        if (!this.panel) return;
+
+        if (window.innerWidth <= 640) {
           this.panel.style.left = "";
           this.panel.style.top = "";
           this.panel.style.right = "10px";
           this.panel.style.bottom = "10px";
+        } else if (this.panel.style.right === "10px" && this.panel.style.bottom === "10px") {
+          this.restorePosition();
         }
       };
       window.addEventListener("resize", this.boundResize);
@@ -951,6 +1035,7 @@
 
       this.boundTouchMove = (e) => {
         if (!e.touches || !e.touches[0]) return;
+        e.preventDefault();
         moveTo(e.touches[0].clientX, e.touches[0].clientY);
       };
 
@@ -1078,6 +1163,9 @@
       const voices = this.getVoices();
       if (!voices.length) return null;
 
+      const preferred = this.getPreferredIndianMaleVoice();
+      if (preferred) return preferred;
+
       if (this.o.voiceName) {
         const exact = voices.find(v => v.name === this.o.voiceName);
         if (exact) return exact;
@@ -1139,6 +1227,7 @@
     }
 
     readTitle() {
+      this.clearActive();
       const titleEl = document.querySelector(this.o.titleSelector);
       const text = U.getSpeakText(titleEl) || document.title || "Untitled page";
       this.speakRaw(text, "Reading title");
@@ -1165,7 +1254,12 @@
 
       utterance.onend = () => {
         this.setSpeakingUI(false);
-        this.setStatus(`Detected ${this.items.length} speak tag(s).`);
+        const preferred = this.getPreferredIndianMaleVoice();
+        this.setStatus(
+          preferred
+            ? `Detected ${this.items.length} speak tag(s). Using ${preferred.name}.`
+            : `Detected ${this.items.length} speak tag(s). Preferred English Indian male voice not found.`
+        );
       };
 
       utterance.onerror = () => {
@@ -1187,7 +1281,7 @@
         return;
       }
 
-      index = U.clamp(index, 0, this.items.length);
+      index = Math.max(0, index);
 
       if (index >= this.items.length) {
         this.state.running = false;
@@ -1273,7 +1367,9 @@
       this.state.paused = false;
       this.setPauseButtonLabel("Pause");
       this.setSpeakingUI(true);
-      this.speakIndex(Math.min(this.state.i + 1, this.items.length - 1));
+      setTimeout(() => {
+        this.speakIndex(Math.min(this.state.i + 1, this.items.length - 1));
+      }, 40);
     }
 
     previous() {
@@ -1283,7 +1379,9 @@
       this.state.paused = false;
       this.setPauseButtonLabel("Pause");
       this.setSpeakingUI(true);
-      this.speakIndex(Math.max(this.state.i - 1, 0));
+      setTimeout(() => {
+        this.speakIndex(Math.max(this.state.i - 1, 0));
+      }, 40);
     }
 
     pause() {
@@ -1320,7 +1418,14 @@
         this.updateStartDropdown();
         this.updateProgress();
       });
-      this.setStatus(`Detected ${this.items.length} speak tag(s).`);
+
+      const preferred = this.getPreferredIndianMaleVoice();
+      this.setStatus(
+        preferred
+          ? `Detected ${this.items.length} speak tag(s). Using ${preferred.name}.`
+          : `Detected ${this.items.length} speak tag(s). Preferred English Indian male voice not found.`
+      );
+
       this.setCaption("Waiting to start narration.");
       this.setPauseButtonLabel("Pause");
       this.setSpeakingUI(false);
@@ -1335,7 +1440,14 @@
       });
       this.setPauseButtonLabel("Pause");
       this.setSpeakingUI(false);
-      this.setStatus(`Detected ${this.items.length} speak tag(s).`);
+
+      const preferred = this.getPreferredIndianMaleVoice();
+      this.setStatus(
+        preferred
+          ? `Detected ${this.items.length} speak tag(s). Using ${preferred.name}.`
+          : `Detected ${this.items.length} speak tag(s). Preferred English Indian male voice not found.`
+      );
+
       this.setCaption("Waiting to start narration.");
     }
   }
