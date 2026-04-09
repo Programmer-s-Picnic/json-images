@@ -1,6 +1,7 @@
- (function () {
+(function () {
   "use strict";
-alert("Started");
+ // alert("Started");
+
   /*
     Programmer's Picnic Password Guard
     ----------------------------------
@@ -58,12 +59,14 @@ alert("Started");
     if (document.getElementById(styleId)) return;
 
     var css = `
-html[${rootAttr}="1"]:not([${unlockedAttr}="1"]) body {
-  visibility: hidden !important;
-}
-
 html[${rootAttr}="1"][${scrollLockAttr}="1"]:not([${unlockedAttr}="1"]) {
   overflow: hidden !important;
+}
+
+/* Biggest bug fixed here:
+   Hide page content, but DO NOT hide the overlay itself. */
+html[${rootAttr}="1"]:not([${unlockedAttr}="1"]) body > *:not(#${overlayId}) {
+  visibility: hidden !important;
 }
 
 #${overlayId} {
@@ -307,22 +310,12 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
     document.documentElement.setAttribute(scrollLockAttr, CONFIG.lockScroll ? "1" : "0");
   }
 
-  function setBodyVisible() {
-    try {
-      document.body.style.visibility = "visible";
-    } catch (e) {}
-  }
-
   function markUnlocked() {
     document.documentElement.setAttribute(unlockedAttr, "1");
     document.body.classList.remove(bodyBlurClass);
 
     var el = document.getElementById(overlayId);
     if (el) el.classList.add("pp-hidden");
-
-    try {
-      document.body.style.visibility = "";
-    } catch (e) {}
   }
 
   async function sha256Hex(text) {
@@ -506,7 +499,6 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
     }
 
     buildOverlay();
-    setBodyVisible();
   }
 
   if (!window.crypto || !window.crypto.subtle || !window.TextEncoder) {
@@ -533,6 +525,6 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
     clearSavedAccess: clearSavedAccess,
     getTodayISODateInTimezone: getTodayISODateInTimezone,
     sha256Hex: sha256Hex,
-    version: "3.0.0"
+    version: "3.0.1"
   };
 })();
