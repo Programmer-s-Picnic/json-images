@@ -699,8 +699,8 @@
         : (speechSynthesis.getVoices() || []);
 
       return voices.slice().sort((a, b) => {
-        const aScore = /en-IN/i.test(a.lang || "") ? 0 : /en/i.test(a.lang || "") ? 1 : 2;
-        const bScore = /en-IN/i.test(b.lang || "") ? 0 : /en/i.test(b.lang || "") ? 1 : 2;
+        const aScore = /en_IN/i.test(a.lang || "") ? 0 : /en/i.test(a.lang || "") ? 1 : 2;
+        const bScore = /en_IN/i.test(b.lang || "") ? 0 : /en/i.test(b.lang || "") ? 1 : 2;
         if (aScore !== bScore) return aScore - bScore;
         return String(a.name).localeCompare(String(b.name));
       });
@@ -716,8 +716,8 @@
 
         let score = 0;
 
-        if (lang === "en-in") score += 100;
-        else if (lang.startsWith("en-in")) score += 95;
+        if (lang === "en_IN") score += 100;
+        else if (lang.startsWith("en_IN")) score += 95;
         else if (lang.startsWith("en")) score += 40;
 
         if (name.includes("male")) score += 40;
@@ -749,7 +749,7 @@
       if (!best) return null;
 
       const bestLang = String(best.lang || "").toLowerCase();
-      if (!bestLang.startsWith("en-in")) return null;
+      if (!bestLang.startsWith("en_IN")) return null;
 
       return best;
     }
@@ -1172,7 +1172,7 @@
       }
 
       return (
-        voices.find(v => /en-IN/i.test(v.lang || "")) ||
+        voices.find(v => /en_IN/i.test(v.lang || "")) ||
         voices.find(v => /en-GB/i.test(v.lang || "")) ||
         voices.find(v => /en-US/i.test(v.lang || "")) ||
         voices.find(v => /en/i.test(v.lang || "")) ||
