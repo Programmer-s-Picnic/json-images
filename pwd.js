@@ -12,12 +12,12 @@
     - This file stores the SHA-256 password hash internally
     - User enters the plain password
     - This script hashes it and compares
-    - If correct, the page opens for the current load only
+    - If correct, access is remembered for the current date
+    - Access is stored per URL (origin + pathname)
+    - When the date changes, password is asked again
 
     Important:
     - No page-level config required
-    - No date logic
-    - No saved daily confirmation
     - Still client-side only
   */
 
@@ -40,7 +40,8 @@
   var bodyBlurClass = "pp-pwd-blur";
 
   var currentPageKey = location.origin + location.pathname;
-  var attemptKey = "pp_page_pwd_v4::attempts::" + currentPageKey;
+  var attemptKey = "pp_page_pwd_v5::attempts::" + currentPageKey;
+  var unlockKey = "pp_page_pwd_v5::unlock::" + currentPageKey;
 
   function escapeHtml(s) {
     return String(s)
@@ -49,6 +50,51 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
+  }
+
+  function getTodayKey() {
+    var d = new Date();
+    var y = d.getFullYear();
+    var m = String(d.getMonth() + 1).padStart(2, "0");
+    var day = String(d.getDate()).padStart(2, "0");
+    return y + "-" + m + "-" + day;
+  }
+
+  function getStoredUnlock() {
+    try {
+      var raw = localStorage.getItem(unlockKey);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setStoredUnlock() {
+    try {
+      localStorage.setItem(
+        unlockKey,
+        JSON.stringify({
+          date: getTodayKey(),
+          page: currentPageKey,
+          ok: true
+        })
+      );
+    } catch (e) {}
+  }
+
+  function clearStoredUnlock() {
+    try {
+      localStorage.removeItem(unlockKey);
+    } catch (e) {}
+  }
+
+  function hasValidUnlockForToday() {
+    var saved = getStoredUnlock();
+    if (!saved) return false;
+    return saved.ok === true &&
+           saved.page === currentPageKey &&
+           saved.date === getTodayKey();
   }
 
   function injectStyle() {
@@ -313,7 +359,7 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
           '<div class="pp-msg" id="pp-pwd-msg" aria-live="polite"></div>' +
         '</div>' +
         '<div class="pp-meta" id="pp-pwd-meta"></div>' +
-        '<div class="pp-foot">This page opens only after correct password verification.</div>' +
+        '<div class="pp-foot">This page opens after correct password verification and remains open for this URL for today.</div>' +
       '</div>';
 
     document.body.appendChild(overlay);
@@ -331,7 +377,8 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
 
     function renderMeta() {
       meta.textContent =
-        "Attempts used: " + getAttempts() + "/" + Number(CONFIG.maxAttempts || 0);
+        "Attempts used: " + getAttempts() + "/" + Number(CONFIG.maxAttempts || 0) +
+        " • Access date: " + getTodayKey();
     }
 
     async function tryUnlock() {
@@ -360,6 +407,7 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
 
         if (PASSWORD_HASH && candidateHash === PASSWORD_HASH) {
           clearAttempts();
+          setStoredUnlock();
           setMsg("Password accepted. Opening page...", true);
           markUnlocked();
           return;
@@ -402,6 +450,13 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
     applyRootState();
     injectStyle();
 
+    if (hasValidUnlockForToday()) {
+      markUnlocked();
+      return;
+    }
+
+    clearStoredUnlock();
+
     if (CONFIG.blurBackground) {
       document.body.classList.add(bodyBlurClass);
     }
@@ -431,7 +486,9 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
 
   window.PP_PWD = {
     clearAttempts: clearAttempts,
+    clearStoredUnlock: clearStoredUnlock,
+    hasValidUnlockForToday: hasValidUnlockForToday,
     sha256Hex: sha256Hex,
-    version: "4.0.0"
+    version: "5.0.0"
   };
 })();
