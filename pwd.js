@@ -1,6 +1,6 @@
 (function () {
   "use strict";
- // alert("Started");
+  // alert("Started");
 
   /*
     Programmer's Picnic Password Guard
@@ -12,12 +12,12 @@
     - This file stores the SHA-256 password hash internally
     - User enters the plain password
     - This script hashes it and compares
-    - On success, access is remembered only for today's date
-    - If the date changes, password is asked again
+    - If correct, the page opens for the current load only
 
     Important:
     - No page-level config required
-    - No daily HTML edits required
+    - No date logic
+    - No saved daily confirmation
     - Still client-side only
   */
 
@@ -29,10 +29,7 @@
     introText: "This page is password protected. Enter the password to continue.",
     maxAttempts: 10,
     blurBackground: true,
-    lockScroll: true,
-    showResetButton: true,
-    timezone: "Asia/Kolkata",
-    storageNamespace: "pp_page_pwd_v3"
+    lockScroll: true
   };
 
   var styleId = "pp-pwd-style";
@@ -43,8 +40,7 @@
   var bodyBlurClass = "pp-pwd-blur";
 
   var currentPageKey = location.origin + location.pathname;
-  var unlockKey = CONFIG.storageNamespace + "::unlock::" + currentPageKey;
-  var attemptKey = CONFIG.storageNamespace + "::attempts::" + currentPageKey;
+  var attemptKey = "pp_page_pwd_v4::attempts::" + currentPageKey;
 
   function escapeHtml(s) {
     return String(s)
@@ -63,8 +59,7 @@ html[${rootAttr}="1"][${scrollLockAttr}="1"]:not([${unlockedAttr}="1"]) {
   overflow: hidden !important;
 }
 
-/* Biggest bug fixed here:
-   Hide page content, but DO NOT hide the overlay itself. */
+/* Hide page content, but NOT the overlay */
 html[${rootAttr}="1"]:not([${unlockedAttr}="1"]) body > *:not(#${overlayId}) {
   visibility: hidden !important;
 }
@@ -170,12 +165,6 @@ html[${rootAttr}="1"]:not([${unlockedAttr}="1"]) body > *:not(#${overlayId}) {
   box-shadow: 0 10px 22px rgba(217,119,6,0.18);
 }
 
-#${overlayId} .pp-clear {
-  background: #fff;
-  color: #d97706;
-  border: 1px solid #ead7b0;
-}
-
 #${overlayId} .pp-msg {
   min-height: 22px;
   font-size: 14px;
@@ -226,36 +215,6 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
     document.head.appendChild(style);
   }
 
-  function getTodayISODateInTimezone() {
-    try {
-      var fmt = new Intl.DateTimeFormat("en-CA", {
-        timeZone: CONFIG.timezone,
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-      });
-
-      var parts = fmt.formatToParts(new Date());
-      var y = "";
-      var m = "";
-      var d = "";
-
-      for (var i = 0; i < parts.length; i++) {
-        if (parts[i].type === "year") y = parts[i].value;
-        if (parts[i].type === "month") m = parts[i].value;
-        if (parts[i].type === "day") d = parts[i].value;
-      }
-
-      return y + "-" + m + "-" + d;
-    } catch (e) {
-      var now = new Date();
-      var yyyy = now.getUTCFullYear();
-      var mm = String(now.getUTCMonth() + 1).padStart(2, "0");
-      var dd = String(now.getUTCDate()).padStart(2, "0");
-      return yyyy + "-" + mm + "-" + dd;
-    }
-  }
-
   function getAttempts() {
     try {
       var v = localStorage.getItem(attemptKey);
@@ -271,38 +230,10 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
     } catch (e) {}
   }
 
-  function clearSavedAccess() {
+  function clearAttempts() {
     try {
-      localStorage.removeItem(unlockKey);
       localStorage.removeItem(attemptKey);
     } catch (e) {}
-  }
-
-  function saveTodayConfirmation() {
-    try {
-      localStorage.setItem(
-        unlockKey,
-        JSON.stringify({
-          ok: 1,
-          date: getTodayISODateInTimezone(),
-          ts: Date.now()
-        })
-      );
-    } catch (e) {}
-  }
-
-  function isTodayConfirmed() {
-    try {
-      var raw = localStorage.getItem(unlockKey);
-      if (!raw) return false;
-
-      var data = JSON.parse(raw);
-      if (!data || data.ok !== 1) return false;
-
-      return String(data.date || "") === getTodayISODateInTimezone();
-    } catch (e) {
-      return false;
-    }
   }
 
   function applyRootState() {
@@ -378,14 +309,11 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
           '<input id="pp-pwd-input" type="password" placeholder="Enter password" autocomplete="current-password" />' +
           '<div class="pp-actions">' +
             '<button type="button" class="pp-open" id="pp-pwd-submit">Open page</button>' +
-            (CONFIG.showResetButton
-              ? '<button type="button" class="pp-clear" id="pp-pwd-clear">Reset saved access</button>'
-              : '') +
           '</div>' +
           '<div class="pp-msg" id="pp-pwd-msg" aria-live="polite"></div>' +
         '</div>' +
         '<div class="pp-meta" id="pp-pwd-meta"></div>' +
-        '<div class="pp-foot">Password access is remembered only for the current date.</div>' +
+        '<div class="pp-foot">This page opens only after correct password verification.</div>' +
       '</div>';
 
     document.body.appendChild(overlay);
@@ -393,7 +321,6 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
     var card = overlay.querySelector(".pp-card");
     var input = document.getElementById("pp-pwd-input");
     var submit = document.getElementById("pp-pwd-submit");
-    var clear = document.getElementById("pp-pwd-clear");
     var msg = document.getElementById("pp-pwd-msg");
     var meta = document.getElementById("pp-pwd-meta");
 
@@ -404,9 +331,7 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
 
     function renderMeta() {
       meta.textContent =
-        "Today: " + getTodayISODateInTimezone() +
-        " • Timezone: " + CONFIG.timezone +
-        " • Attempts used: " + getAttempts() + "/" + Number(CONFIG.maxAttempts || 0);
+        "Attempts used: " + getAttempts() + "/" + Number(CONFIG.maxAttempts || 0);
     }
 
     async function tryUnlock() {
@@ -428,15 +353,13 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
       }
 
       submit.disabled = true;
-      if (clear) clear.disabled = true;
       setMsg("Checking password...", true);
 
       try {
         var candidateHash = await sha256Hex(val);
 
         if (PASSWORD_HASH && candidateHash === PASSWORD_HASH) {
-          setAttempts(0);
-          saveTodayConfirmation();
+          clearAttempts();
           setMsg("Password accepted. Opening page...", true);
           markUnlocked();
           return;
@@ -453,22 +376,12 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
         renderMeta();
       } finally {
         submit.disabled = false;
-        if (clear) clear.disabled = false;
       }
     }
 
     submit.addEventListener("click", function () {
       tryUnlock();
     });
-
-    if (clear) {
-      clear.addEventListener("click", function () {
-        clearSavedAccess();
-        setMsg("Saved access cleared for this page.", true);
-        input.focus();
-        renderMeta();
-      });
-    }
 
     input.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
@@ -488,11 +401,6 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
   function init() {
     applyRootState();
     injectStyle();
-
-    if (isTodayConfirmed()) {
-      markUnlocked();
-      return;
-    }
 
     if (CONFIG.blurBackground) {
       document.body.classList.add(bodyBlurClass);
@@ -522,9 +430,8 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
   }
 
   window.PP_PWD = {
-    clearSavedAccess: clearSavedAccess,
-    getTodayISODateInTimezone: getTodayISODateInTimezone,
+    clearAttempts: clearAttempts,
     sha256Hex: sha256Hex,
-    version: "3.0.1"
+    version: "4.0.0"
   };
 })();
