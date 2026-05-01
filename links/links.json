@@ -2,47 +2,44 @@
   "items": [
     {
       "title": "SQL Editor",
-      "description": "Write SQL Queries, run online, share, debug and optimize.No installation required, plenty of inbuilt examples.You can load CSV, JSON and more, also send data to json, CSV and more",
+      "description": "Write, run, debug, optimize and share SQL queries online. No installation required. Includes built-in examples and supports loading/exporting CSV, JSON and more.",
       "type": "editor",
-      "tags": ["SQL", "Sqlite", "Structured Query Language", ""],
+      "tags": ["SQL", "SQLite", "Database", "Query Editor", "No Installation"],
       "url": "https://editor.learnwithchampak.live/sql/premium/"
     },
-
     {
-      "title": "Javascript Editor",
-      "description": "Write Javascript, run online, share, debug and optimize.",
+      "title": "JavaScript Editor",
+      "description": "Write, run, debug, optimize and share JavaScript code online without installing anything.",
       "type": "editor",
-      "tags": ["Javascript", "Editor", "Share", "No Installation"],
+      "tags": ["JavaScript", "Editor", "Share", "Debug", "No Installation"],
       "url": "https://editor.learnwithchampak.live/java-script/editor/"
     },
-
     {
-      "title": "Web Based Python Editor",
-      "description": "Write Python Code on Mobile, and computers,run and share without installing anything.",
+      "title": "Web-Based Python Editor",
+      "description": "Write, run and share Python code from mobile or desktop without installation.",
       "type": "editor",
-      "tags": ["Python", "Editor", "Share", "No Installation"],
+      "tags": ["Python", "Editor", "Share", "Mobile Friendly", "No Installation"],
       "url": "https://editor.learnwithchampak.live/python-starter/editor/super/?tmode=1"
     },
-
     {
       "title": "Dataset Cleaning to Linear Regression",
-      "description": "Clean incomplete, duplicate and bad data, then apply linear regression using NumPy.",
+      "description": "Learn how to clean incomplete, duplicate and incorrect data, then apply linear regression using NumPy.",
       "type": "lesson",
-      "tags": ["Python", "Pandas", "NumPy", "Regression"],
+      "tags": ["Python", "Pandas", "NumPy", "Data Cleaning", "Regression"],
       "url": "https://aiml.learnwithchampak.live/code/pandas/cleaning/"
     },
     {
       "title": "AI-ML Course Map",
-      "description": "Complete AI-ML course navigation with weekly lessons, tests and projects.",
-      "type": "project",
-      "tags": ["AI", "ML", "Course", "Python"],
+      "description": "Explore the complete AI-ML course roadmap with weekly lessons, tests, projects and revision plans.",
+      "type": "course",
+      "tags": ["AI", "ML", "Course", "Python", "Roadmap"],
       "url": "https://aiml.learnwithchampak.live/coursemap/"
     },
     {
       "title": "Flutter Command Line Guide",
-      "description": "Useful command line references for Flutter app development.",
+      "description": "A practical command-line reference for Flutter and Dart app development.",
       "type": "note",
-      "tags": ["Flutter", "Dart", "CLI"],
+      "tags": ["Flutter", "Dart", "CLI", "Commands", "App Development"],
       "url": "https://dsa.learnwithchampak.live/flutter/commandline/"
     }
   ]
