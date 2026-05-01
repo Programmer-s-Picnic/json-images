@@ -22,6 +22,13 @@
       "url": "https://editor.learnwithchampak.live/python-starter/editor/super/?tmode=1"
     },
     {
+      "title": "API Playground",
+      "description": "Test, explore and interact with APIs directly from your browser. Send requests, inspect responses and experiment without setup.",
+      "type": "tool",
+      "tags": ["API", "REST", "Testing", "JSON", "Developer Tool"],
+      "url": "https://editor.learnwithchampak.live/api/"
+    },
+    {
       "title": "Dataset Cleaning to Linear Regression",
       "description": "Learn how to clean incomplete, duplicate and incorrect data, then apply linear regression using NumPy.",
       "type": "lesson",
