@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "title": "Dataset Cleaning to Linear Regression",
+      "description": "Clean incomplete, duplicate and bad data, then apply linear regression using NumPy.",
+      "type": "lesson",
+      "tags": ["Python", "Pandas", "NumPy", "Regression"],
+      "url": "https://aiml.learnwithchampak.live/code/pandas/cleaning/"
+    },
+    {
+      "title": "AI-ML Course Map",
+      "description": "Complete AI-ML course navigation with weekly lessons, tests and projects.",
+      "type": "project",
+      "tags": ["AI", "ML", "Course", "Python"],
+      "url": "https://aiml.learnwithchampak.live/coursemap/"
+    },
+    {
+      "title": "Flutter Command Line Guide",
+      "description": "Useful command line references for Flutter app development.",
+      "type": "note",
+      "tags": ["Flutter", "Dart", "CLI"],
+      "url": "https://dsa.learnwithchampak.live/flutter/commandline/"
+    }
+  ]
+}
