@@ -1,6 +1,14 @@
 {
   "items": [
-        {
+    {
+      "title": "SQL Editor",
+      "description": "Write SQL Queries, run online, share, debug and optimize.No installation required, plenty of inbuilt examples.",
+      "type": "editor",
+      "tags": ["SQL", "Sqlite", "Structured Query Language", ""],
+      "url": "https://editor.learnwithchampak.live/sql/premium/"
+    },
+
+    {
       "title": "Javascript Editor",
       "description": "Write Javascript, run online, share, debug and optimize.",
       "type": "editor",
