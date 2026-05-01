@@ -2,7 +2,7 @@
   "items": [
     {
       "title": "SQL Editor",
-      "description": "Write SQL Queries, run online, share, debug and optimize.No installation required, plenty of inbuilt examples.",
+      "description": "Write SQL Queries, run online, share, debug and optimize.No installation required, plenty of inbuilt examples.You can load CSV, JSON and more, also send data to json, CSV and more",
       "type": "editor",
       "tags": ["SQL", "Sqlite", "Structured Query Language", ""],
       "url": "https://editor.learnwithchampak.live/sql/premium/"
