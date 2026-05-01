@@ -22,31 +22,115 @@
       "url": "https://editor.learnwithchampak.live/python-starter/editor/super/?tmode=1"
     },
     {
+      "title": "HTML Editor",
+      "description": "Write and preview HTML code live in your browser with instant rendering support.",
+      "type": "editor",
+      "tags": ["HTML", "Frontend", "Editor", "Live Preview"],
+      "url": "https://editor.learnwithchampak.live/samples/html/editor/"
+    },
+    {
+      "title": "JSON Editor",
+      "description": "Create, edit and validate JSON data easily in a browser-based editor.",
+      "type": "editor",
+      "tags": ["JSON", "Editor", "Data", "Validation"],
+      "url": "https://editor.learnwithchampak.live/samples/html/editor/json/"
+    },
+    {
       "title": "API Playground",
-      "description": "Test, explore and interact with APIs directly from your browser. Send requests, inspect responses and experiment without setup.",
+      "description": "Test, explore and interact with APIs directly from your browser.",
       "type": "tool",
-      "tags": ["API", "REST", "Testing", "JSON", "Developer Tool"],
+      "tags": ["API", "REST", "Testing", "JSON"],
       "url": "https://editor.learnwithchampak.live/api/"
     },
     {
+      "title": "Face AI Demo",
+      "description": "Experiment with face detection and AI-based image processing directly in your browser.",
+      "type": "tool",
+      "tags": ["AI", "Face Detection", "Computer Vision"],
+      "url": "https://editor.learnwithchampak.live/samples/face/"
+    },
+    {
+      "title": "Whiteboard Tool",
+      "description": "Collaborative whiteboard for drawing and teaching concepts live.",
+      "type": "tool",
+      "tags": ["Whiteboard", "Teaching", "Collaboration"],
+      "url": "https://editor.learnwithchampak.live/whiteboard/"
+    },
+    {
+      "title": "Room Board",
+      "description": "Interactive shared room for collaboration and live sessions.",
+      "type": "tool",
+      "tags": ["Collaboration", "Room", "Live"],
+      "url": "https://editor.learnwithchampak.live/room/"
+    },
+    {
+      "title": "Zoom Meeting Access",
+      "description": "Join live classes, doubt sessions and weekly discussions.",
+      "type": "link",
+      "tags": ["Zoom", "Live Class"],
+      "url": "https://www.learnwithchampak.live/p/champak.html#timing"
+    },
+    {
       "title": "Dataset Cleaning to Linear Regression",
-      "description": "Learn how to clean incomplete, duplicate and incorrect data, then apply linear regression using NumPy.",
+      "description": "Clean messy data and apply linear regression using NumPy.",
       "type": "lesson",
-      "tags": ["Python", "Pandas", "NumPy", "Data Cleaning", "Regression"],
+      "tags": ["Python", "Pandas", "NumPy", "Regression"],
       "url": "https://aiml.learnwithchampak.live/code/pandas/cleaning/"
     },
     {
       "title": "AI-ML Course Map",
-      "description": "Explore the complete AI-ML course roadmap with weekly lessons, tests, projects and revision plans.",
+      "description": "Complete AI-ML roadmap with lessons, tests and projects.",
       "type": "course",
-      "tags": ["AI", "ML", "Course", "Python", "Roadmap"],
+      "tags": ["AI", "ML", "Course"],
       "url": "https://aiml.learnwithchampak.live/coursemap/"
     },
     {
+      "title": "AI-ML Terms",
+      "description": "Important AI and ML terms explained simply.",
+      "type": "lesson",
+      "tags": ["AI", "ML", "Glossary"],
+      "url": "https://aiml.learnwithchampak.live/lessons/terms/"
+    },
+    {
+      "title": "AI-ML Statistics",
+      "description": "Statistics concepts for AI and ML with examples.",
+      "type": "lesson",
+      "tags": ["Statistics", "AI", "ML"],
+      "url": "https://aiml.learnwithchampak.live/lessons/stats/"
+    },
+    {
+      "title": "Finance Demo Dataset",
+      "description": "Sample dataset for practice in analysis and ML.",
+      "type": "dataset",
+      "tags": ["Dataset", "CSV", "Finance"],
+      "url": "https://aiml.learnwithchampak.live/course/datasets/finance_demo.csv"
+    },
+    {
+      "title": "Main Website",
+      "description": "Official Learn With Champak platform.",
+      "type": "platform",
+      "tags": ["Website", "Learning"],
+      "url": "https://www.learnwithchampak.live/"
+    },
+    {
+      "title": "Editor Hub",
+      "description": "Central hub for all coding editors and tools.",
+      "type": "platform",
+      "tags": ["Editors", "Tools"],
+      "url": "https://editor.learnwithchampak.live/"
+    },
+    {
+      "title": "AI-ML Portal",
+      "description": "Dedicated AI and Machine Learning learning portal.",
+      "type": "platform",
+      "tags": ["AI", "ML"],
+      "url": "https://aiml.learnwithchampak.live/"
+    },
+    {
       "title": "Flutter Command Line Guide",
-      "description": "A practical command-line reference for Flutter and Dart app development.",
+      "description": "Command-line reference for Flutter and Dart.",
       "type": "note",
-      "tags": ["Flutter", "Dart", "CLI", "Commands", "App Development"],
+      "tags": ["Flutter", "Dart", "CLI"],
       "url": "https://dsa.learnwithchampak.live/flutter/commandline/"
     }
   ]
