@@ -1,12 +1,19 @@
 {
   "items": [
-
- {
-      "title": "Dataset Cleaning to Linear Regression",
-      "description": "Clean incomplete, duplicate and bad data, then apply linear regression using NumPy.",
+        {
+      "title": "Javascript Editor",
+      "description": "Write Javascript, run online, share, debug and optimize.",
       "type": "editor",
-      "tags": ["Python", "Pandas", "NumPy", "Regression"],
-      "url": "https://aiml.learnwithchampak.live/code/pandas/cleaning/"
+      "tags": ["Javascript", "Editor", "Share", "No Installation"],
+      "url": "https://editor.learnwithchampak.live/java-script/editor/"
+    },
+
+    {
+      "title": "Web Based Python Editor",
+      "description": "Write Python Code on Mobile, and computers,run and share without installing anything.",
+      "type": "editor",
+      "tags": ["Python", "Editor", "Share", "No Installation"],
+      "url": "https://editor.learnwithchampak.live/python-starter/editor/super/?tmode=1"
     },
 
     {
