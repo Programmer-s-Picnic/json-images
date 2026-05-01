@@ -1,5 +1,14 @@
 {
   "items": [
+
+ {
+      "title": "Dataset Cleaning to Linear Regression",
+      "description": "Clean incomplete, duplicate and bad data, then apply linear regression using NumPy.",
+      "type": "editor",
+      "tags": ["Python", "Pandas", "NumPy", "Regression"],
+      "url": "https://aiml.learnwithchampak.live/code/pandas/cleaning/"
+    },
+
     {
       "title": "Dataset Cleaning to Linear Regression",
       "description": "Clean incomplete, duplicate and bad data, then apply linear regression using NumPy.",
