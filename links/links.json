@@ -105,6 +105,15 @@
       "tags": ["Dataset", "CSV", "Finance"],
       "url": "https://aiml.learnwithchampak.live/course/datasets/finance_demo.csv"
     },
+ {
+      "title": "Google Search Console",
+      "description": "Submitting website to Google Search Console.",
+      "type": "platform",
+      "tags": ["seo", "Google", "Google Search Console"],
+      "url": "https://www.learnwithchampak.live/2026/05/submitting-website-to-google-search.html"
+    },
+
+    
     {
       "title": "Main Website",
       "description": "Official Learn With Champak platform.",
