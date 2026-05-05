@@ -76,6 +76,12 @@
       "type": "lesson",
       "tags": ["Python", "Pandas", "NumPy", "Regression"],
       "url": "https://aiml.learnwithchampak.live/code/pandas/cleaning/"
+    }, {
+      "title": "Hollywood Film Dataset Analysis",
+      "description": "Learn how to use a Hollywood-style movie dataset to analyze film success using Python, Pandas, visualization, and basic machine learning.",
+      "type": "lesson",
+      "tags": ["Dataset", "Hollywood-Movies", "Explore", "Hits & Flops"],
+      "url": "https://aiml.learnwithchampak.live/datasets/"
     },
     {
       "title": "AI-ML Course Map",
