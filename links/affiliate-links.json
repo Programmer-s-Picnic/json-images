@@ -149,46 +149,91 @@
       "buttonText": "View SSDs",
       "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
     },
-
-    
     {
-      "id": "amazon-python-books",
-      "title": "Python Programming Books",
+      "id": "amazon-wireless-keyboard-mouse",
+      "title": "Wireless Keyboard & Mouse for Online Classes",
       "provider": "Amazon India",
-      "category": "Books",
-      "icon": "📘",
-      "description": "Beginner-friendly Python books for students starting programming from zero.",
+      "category": "Teaching Setup",
+      "icon": "🖱️",
+      "description": "I use wireless keyboard and mouse setups for online classes, coding sessions, typing, and daily computer work. They help keep the desk clean and comfortable during long teaching hours.",
       "benefits": [
-        "Good for beginners",
-        "Useful for practice and revision",
-        "Helpful alongside online classes"
+        "Useful for online classes and teaching",
+        "Comfortable for long typing sessions",
+        "Reduces cable clutter on the desk",
+        "Helpful for coding and productivity work",
+        "Wireless convenience for clean setups"
       ],
-      "url": "https://www.amazon.in/s?k=python+programming+books+for+beginners&tag=vsj04-21",
-      "buttonText": "View Python Books",
+      "url": "https://www.amazon.in/s?k=wireless+keyboard+mouse+combo&tag=vsj04-21",
+      "buttonText": "View Wireless Combos",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "book-recursion-sutras-ebook",
+      "title": "The Recursion Sutras - Kindle Edition",
+      "provider": "Amazon India",
+      "category": "Books by Champak Roy",
+      "icon": "📘",
+      "description": "A programming book on recursion, data structures, and converting recursive thinking into iterative programming ideas.",
+      "benefits": [
+        "Useful for recursion practice",
+        "Helpful for data structures learners",
+        "Good for students preparing for programming interviews",
+        "Kindle edition for quick digital reading"
+      ],
+      "url": "https://www.amazon.in/Recursion-Sutras-Structures-Recursion-Iterative-ebook/dp/B079QJLD73/?tag=vsj04-21",
+      "buttonText": "View Kindle Book",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "book-recursion-sutras-paperback",
+      "title": "The Recursion Sutras - Paperback",
+      "provider": "Amazon India",
+      "category": "Books by Champak Roy",
+      "icon": "📗",
+      "description": "Paperback edition of The Recursion Sutras for learners who prefer studying recursion and programming concepts from a physical book.",
+      "benefits": [
+        "Useful for offline study",
+        "Good for classroom and self-study use",
+        "Helpful for recursion, data structures, and algorithm thinking",
+        "Paperback format for note-taking and revision"
+      ],
+      "url": "https://www.amazon.in/Recursion-Sutras-Structures-Recursion-Programming/dp/198025026X/?tag=vsj04-21",
+      "buttonText": "View Paperback",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "book-oop-java-ebook",
+      "title": "How to Think Object Oriented Programming in Java - Kindle Edition",
+      "provider": "Amazon India",
+      "category": "Books by Champak Roy",
+      "icon": "☕",
+      "description": "A Java and object-oriented programming book focused on understanding OOP concepts with clear examples and illustrations.",
+      "benefits": [
+        "Useful for Java beginners",
+        "Helps explain object-oriented thinking",
+        "Good for students learning classes and objects",
+        "Kindle edition for digital reading"
+      ],
+      "url": "https://www.amazon.in/Object-Oriented-Programing-Java-Illustrating-ebook/dp/B07SRQ8JJ5/?tag=vsj04-21",
+      "buttonText": "View Kindle Book",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "book-oop-java-paperback",
+      "title": "How to Think Object Oriented Programming in Java - Paperback",
+      "provider": "Amazon India",
+      "category": "Books by Champak Roy",
+      "icon": "📙",
+      "description": "Paperback edition for learning object-oriented programming in Java through concepts, examples, and structured explanations.",
+      "benefits": [
+        "Useful for Java classroom learning",
+        "Good for OOP concept revision",
+        "Helpful for understanding classes, objects, and methods",
+        "Paperback format for regular study"
+      ],
+      "url": "https://www.amazon.in/How-Object-Oriented-Programing-Illustrating/dp/1072916371/?tag=vsj04-21",
+      "buttonText": "View Paperback",
       "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
     }
-
-,  
-
-
-{
-  "id": "amazon-wireless-keyboard-mouse",
-  "title": "Wireless Keyboard & Mouse for Online Classes",
-  "provider": "Amazon India",
-  "category": "Teaching Setup",
-  "icon": "🖱️",
-  "description": "I use wireless keyboard and mouse setups for online classes, coding sessions, typing, and daily computer work. They help keep the desk clean and comfortable during long teaching hours.",
-  "benefits": [
-    "Useful for online classes and teaching",
-    "Comfortable for long typing sessions",
-    "Reduces cable clutter on the desk",
-    "Helpful for coding and productivity work",
-    "Wireless convenience for clean setups"
-  ],
-  "url": "https://www.amazon.in/s?k=wireless+keyboard+mouse+combo&tag=vsj04-21",
-  "buttonText": "View Wireless Combos",
-  "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
-}
-
   ]
 }
