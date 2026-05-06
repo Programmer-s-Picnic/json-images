@@ -2,177 +2,188 @@
   "items": [
     {
       "title": "SQL Editor",
-      "description": "Write, run, debug, optimize and share SQL queries online. No installation required. Includes built-in examples and supports loading/exporting CSV, JSON and more.",
+      "description": "Write, run, debug, optimize and share SQL queries online. No installation required. Includes built-in examples and supports CSV and JSON workflows.",
       "type": "editor",
-      "tags": ["SQL", "SQLite", "Database", "Query Editor", "No Installation"],
+      "tags": ["SQL", "SQLite", "Database", "Query Editor", "CSV", "JSON"],
       "url": "https://editor.learnwithchampak.live/sql/premium/"
     },
     {
       "title": "JavaScript Editor",
-      "description": "Write, run, debug, optimize and share JavaScript code online without installing anything.",
+      "description": "Write, run, debug and share JavaScript code online without installing anything.",
       "type": "editor",
-      "tags": ["JavaScript", "Editor", "Share", "Debug", "No Installation"],
+      "tags": [
+        "JavaScript",
+        "Code Editor",
+        "Debugging",
+        "Share",
+        "No Installation"
+      ],
       "url": "https://editor.learnwithchampak.live/java-script/editor/"
     },
     {
       "title": "Web-Based Python Editor",
-      "description": "Write, run and share Python code from mobile or desktop without installation.",
+      "description": "Write, run and share Python code from mobile or desktop. Beginner friendly and no installation required.",
       "type": "editor",
       "tags": [
         "Python",
-        "Editor",
-        "Share",
+        "Code Editor",
         "Mobile Friendly",
+        "Share",
         "No Installation"
       ],
       "url": "https://editor.learnwithchampak.live/python-starter/editor/super/?tmode=1"
     },
     {
       "title": "HTML Editor",
-      "description": "Write and preview HTML code live in your browser with instant rendering support.",
+      "description": "Write HTML code and preview the output instantly in your browser.",
       "type": "editor",
-      "tags": ["HTML", "Frontend", "Editor", "Live Preview"],
+      "tags": ["HTML", "Frontend", "Live Preview", "Web Design"],
       "url": "https://editor.learnwithchampak.live/samples/html/editor/"
     },
     {
       "title": "JSON Editor",
-      "description": "Create, edit and validate JSON data easily in a browser-based editor.",
+      "description": "Create, edit, format and validate JSON data easily in the browser.",
       "type": "editor",
-      "tags": ["JSON", "Editor", "Data", "Validation"],
+      "tags": ["JSON", "Data", "Validation", "Formatter", "Editor"],
       "url": "https://editor.learnwithchampak.live/samples/html/editor/json/"
     },
     {
       "title": "API Playground",
-      "description": "Test, explore and interact with APIs directly from your browser.",
+      "description": "Test REST APIs, inspect responses and practice JSON-based API workflows directly from the browser.",
       "type": "tool",
-      "tags": ["API", "REST", "Testing", "JSON"],
+      "tags": ["API", "REST", "Testing", "JSON", "Developer Tool"],
       "url": "https://editor.learnwithchampak.live/api/"
     },
     {
       "title": "Face AI Demo",
-      "description": "Experiment with face detection and AI-based image processing directly in your browser.",
+      "description": "Experiment with face detection and basic computer vision directly in the browser.",
       "type": "tool",
-      "tags": ["AI", "Face Detection", "Computer Vision"],
+      "tags": ["AI", "Face Detection", "Computer Vision", "Image Processing"],
       "url": "https://editor.learnwithchampak.live/samples/face/"
     },
     {
       "title": "Whiteboard Tool",
-      "description": "Collaborative whiteboard for drawing and teaching concepts live.",
+      "description": "A simple online whiteboard for teaching, drawing, writing and explaining concepts live.",
       "type": "tool",
-      "tags": ["Whiteboard", "Teaching", "Collaboration"],
+      "tags": ["Whiteboard", "Teaching", "Drawing", "Online Board"],
       "url": "https://editor.learnwithchampak.live/whiteboard/"
     },
     {
       "title": "Room Board",
-      "description": "Interactive shared room for collaboration and live sessions.",
+      "description": "Interactive shared room for collaboration, live practice and classroom activities.",
       "type": "tool",
-      "tags": ["Collaboration", "Room", "Live"],
+      "tags": ["Collaboration", "Room", "Live Class", "Teaching"],
       "url": "https://editor.learnwithchampak.live/room/"
     },
     {
       "title": "Zoom Meeting Access",
-      "description": "Join live classes, doubt sessions and weekly discussions.",
+      "description": "Join live classes, doubt sessions and weekly learning discussions.",
       "type": "link",
-      "tags": ["Zoom", "Live Class"],
+      "tags": ["Zoom", "Live Class", "Doubt Session", "Meeting"],
       "url": "https://www.learnwithchampak.live/p/champak.html#timing"
     },
     {
       "title": "Dataset Cleaning to Linear Regression",
-      "description": "Clean messy data and apply linear regression using NumPy.",
+      "description": "Learn how to clean messy data and apply linear regression using Python, Pandas and NumPy.",
       "type": "lesson",
-      "tags": ["Python", "Pandas", "NumPy", "Regression"],
+      "tags": ["Python", "Pandas", "NumPy", "Data Cleaning", "Regression"],
       "url": "https://aiml.learnwithchampak.live/code/pandas/cleaning/"
     },
     {
       "title": "Hollywood Film Dataset Analysis",
-      "description": "Learn how to use a Hollywood-style movie dataset to analyze film success using Python, Pandas, visualization, and basic machine learning.",
+      "description": "Analyze a movie dataset using Python, Pandas, visualization and basic machine learning ideas.",
       "type": "lesson",
-      "tags": ["Dataset", "Hollywood-Movies", "Explore", "Hits & Flops"],
+      "tags": [
+        "Dataset",
+        "Movies",
+        "Pandas",
+        "Visualization",
+        "Machine Learning"
+      ],
       "url": "https://aiml.learnwithchampak.live/datasets/"
     },
     {
       "title": "AI-ML Course Map",
-      "description": "Complete AI-ML roadmap with lessons, tests and projects.",
+      "description": "A complete AI-ML roadmap with lessons, tests, practice activities and projects.",
       "type": "course",
-      "tags": ["AI", "ML", "Course"],
+      "tags": ["AI", "ML", "Course Map", "Roadmap", "Projects"],
       "url": "https://aiml.learnwithchampak.live/coursemap/"
     },
     {
       "title": "AI-ML Terms",
-      "description": "Important AI and ML terms explained simply.",
+      "description": "Important AI and machine learning terms explained in a simple beginner-friendly way.",
       "type": "lesson",
-      "tags": ["AI", "ML", "Glossary"],
+      "tags": ["AI", "ML", "Glossary", "Beginner Friendly"],
       "url": "https://aiml.learnwithchampak.live/lessons/terms/"
     },
     {
       "title": "AI-ML Statistics",
-      "description": "Statistics concepts for AI and ML with examples.",
+      "description": "Learn the statistics concepts needed for AI and machine learning with examples.",
       "type": "lesson",
-      "tags": ["Statistics", "AI", "ML"],
+      "tags": ["Statistics", "AI", "ML", "Data Science"],
       "url": "https://aiml.learnwithchampak.live/lessons/stats/"
     },
     {
       "title": "Finance Demo Dataset",
-      "description": "Sample dataset for practice in analysis and ML.",
+      "description": "A sample finance dataset for practicing data analysis and machine learning.",
       "type": "dataset",
-      "tags": ["Dataset", "CSV", "Finance"],
+      "tags": ["Dataset", "CSV", "Finance", "Practice Data"],
       "url": "https://aiml.learnwithchampak.live/course/datasets/finance_demo.csv"
     },
     {
-      "title": "Google Search Console",
-      "description": "Submitting website to Google Search Console.",
-      "type": "platform",
-      "tags": ["seo", "Google", "Google Search Console"],
+      "title": "Google Search Console Guide",
+      "description": "Learn how to submit a website to Google Search Console and improve website visibility.",
+      "type": "lesson",
+      "tags": ["SEO", "Google", "Search Console", "Website Submission"],
       "url": "https://www.learnwithchampak.live/2026/05/submitting-website-to-google-search.html"
     },
-
     {
       "title": "Main Website",
-      "description": "Official Learn With Champak platform.",
+      "description": "Official Learn With Champak learning platform.",
       "type": "platform",
-      "tags": ["Website", "Learning"],
+      "tags": ["Website", "Learning Platform", "Courses"],
       "url": "https://www.learnwithchampak.live/"
     },
     {
       "title": "Editor Hub",
-      "description": "Central hub for all coding editors and tools.",
+      "description": "Central hub for all coding editors, tools and browser-based practice utilities.",
       "type": "platform",
-      "tags": ["Editors", "Tools"],
+      "tags": ["Editors", "Tools", "Coding", "Practice"],
       "url": "https://editor.learnwithchampak.live/"
     },
     {
       "title": "AI-ML Portal",
-      "description": "Dedicated AI and Machine Learning learning portal.",
+      "description": "Dedicated learning portal for artificial intelligence and machine learning.",
       "type": "platform",
-      "tags": ["AI", "ML"],
+      "tags": ["AI", "ML", "Machine Learning", "Learning Portal"],
       "url": "https://aiml.learnwithchampak.live/"
     },
     {
       "title": "Flutter Command Line Guide",
-      "description": "Command-line reference for Flutter and Dart.",
+      "description": "Command-line reference for Flutter and Dart development.",
       "type": "note",
-      "tags": ["Flutter", "Dart", "CLI"],
+      "tags": ["Flutter", "Dart", "CLI", "Command Line"],
       "url": "https://dsa.learnwithchampak.live/flutter/commandline/"
     },
     {
-      "title": "Change Request",
-      "description": "Change Request.",
+      "title": "Change Request Tool",
+      "description": "Submit website change requests with URL, new content, notes and screenshots.",
       "type": "tool",
-      "tags": ["Change", "Repair", "Change Documents"],
+      "tags": ["Change Request", "Website Update", "Screenshot", "JSON"],
       "url": "https://editor.learnwithchampak.live/tools/changerequest/"
     },
     {
       "title": "Beginning NLP",
-      "description": "NLP = Natural Language Processing",
-      "type": "tool",
-      "tags": ["Change", "Repair", "Change Documents"],
+      "description": "Start learning Natural Language Processing from the basics with beginner-friendly examples.",
+      "type": "lesson",
+      "tags": ["NLP", "Natural Language Processing", "AI", "Text Processing"],
       "url": "https://aiml.learnwithchampak.live/nlp/begin/"
     },
     {
-      "title": "Finding your AI Module",
-      "description": "NLP = Natural Language Processing",
+      "title": "Find Your AI Module",
+      "description": "A beginner-friendly wizard that helps learners find the right AI-ML module for their task.",
       "type": "tool",
-      "tags": ["Change", "Repair", "Change Documents"],
+      "tags": ["AI", "ML", "Wizard", "Module Finder", "Beginner Friendly"],
       "url": "https://aiml.learnwithchampak.live/wizard/"
     }
   ]
