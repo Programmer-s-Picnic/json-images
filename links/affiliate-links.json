@@ -148,46 +148,40 @@
       "url": "https://www.amazon.in/s?k=external+ssd&tag=vsj04-21",
       "buttonText": "View SSDs",
       "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+
+    {
+      "id": "books-by-champak-roy",
+      "title": "Books by Champak Roy",
+      "provider": "Amazon India",
+      "category": "Books",
+      "icon": "📚",
+      "description": "Books authored by Champak Roy for students, beginners, programming learners, and AI/ML learners.",
+      "benefits": [
+        "Useful for self-study and revision",
+        "Helpful for students learning programming step by step",
+        "Good companion material for Programmers Picnic AI-ML Classes",
+        "Searches Amazon India for books by Champak Roy"
+      ],
+      "url": "https://www.amazon.com/stores/Champak-Roy/author/B07M6L4W28?ref=sr_ntt_srch_lnk_1&qid=1778048851&sr=8-1&shoppingPortalEnabled=true&tag=vsj04-21",
+      "buttonText": "View Books by Champak Roy",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-python-books",
+      "title": "Python Programming Books",
+      "provider": "Amazon India",
+      "category": "Books",
+      "icon": "📘",
+      "description": "Beginner-friendly Python books for students starting programming from zero.",
+      "benefits": [
+        "Good for beginners",
+        "Useful for practice and revision",
+        "Helpful alongside online classes"
+      ],
+      "url": "https://www.amazon.in/s?k=python+programming+books+for+beginners&tag=vsj04-21",
+      "buttonText": "View Python Books",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
     }
-
-,
-
-
-{
-  "id": "books-by-champak-roy",
-  "title": "Books by Champak Roy",
-  "provider": "Amazon India",
-  "category": "Books",
-  "icon": "📚",
-  "description": "Books authored by Champak Roy for students, beginners, programming learners, and AI/ML learners.",
-  "benefits": [
-    "Useful for self-study and revision",
-    "Helpful for students learning programming step by step",
-    "Good companion material for Programmers Picnic AI-ML Classes",
-    "Searches Amazon India for books by Champak Roy"
-  ],
-  "url": "https://www.amazon.in/s?k=Champak+Roy+books&tag=vsj04-21",
-  "buttonText": "View Books by Champak Roy",
-  "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
-},
-{
-  "id": "amazon-python-books",
-  "title": "Python Programming Books",
-  "provider": "Amazon India",
-  "category": "Books",
-  "icon": "📘",
-  "description": "Beginner-friendly Python books for students starting programming from zero.",
-  "benefits": [
-    "Good for beginners",
-    "Useful for practice and revision",
-    "Helpful alongside online classes"
-  ],
-  "url": "https://www.amazon.com/stores/Champak-Roy/author/B07M6L4W28?ref=sr_ntt_srch_lnk_1&qid=1778048851&sr=8-1&shoppingPortalEnabled=true&tag=vsj04-21",
-  "buttonText": "View Python Books",
-  "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
-}
-
-
-
   ]
 }
