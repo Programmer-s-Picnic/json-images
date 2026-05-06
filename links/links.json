@@ -18,7 +18,13 @@
       "title": "Web-Based Python Editor",
       "description": "Write, run and share Python code from mobile or desktop without installation.",
       "type": "editor",
-      "tags": ["Python", "Editor", "Share", "Mobile Friendly", "No Installation"],
+      "tags": [
+        "Python",
+        "Editor",
+        "Share",
+        "Mobile Friendly",
+        "No Installation"
+      ],
       "url": "https://editor.learnwithchampak.live/python-starter/editor/super/?tmode=1"
     },
     {
@@ -76,7 +82,8 @@
       "type": "lesson",
       "tags": ["Python", "Pandas", "NumPy", "Regression"],
       "url": "https://aiml.learnwithchampak.live/code/pandas/cleaning/"
-    }, {
+    },
+    {
       "title": "Hollywood Film Dataset Analysis",
       "description": "Learn how to use a Hollywood-style movie dataset to analyze film success using Python, Pandas, visualization, and basic machine learning.",
       "type": "lesson",
@@ -111,7 +118,7 @@
       "tags": ["Dataset", "CSV", "Finance"],
       "url": "https://aiml.learnwithchampak.live/course/datasets/finance_demo.csv"
     },
- {
+    {
       "title": "Google Search Console",
       "description": "Submitting website to Google Search Console.",
       "type": "platform",
@@ -119,7 +126,6 @@
       "url": "https://www.learnwithchampak.live/2026/05/submitting-website-to-google-search.html"
     },
 
-    
     {
       "title": "Main Website",
       "description": "Official Learn With Champak platform.",
@@ -147,15 +153,27 @@
       "type": "note",
       "tags": ["Flutter", "Dart", "CLI"],
       "url": "https://dsa.learnwithchampak.live/flutter/commandline/"
-    }
-,
+    },
     {
       "title": "Change Request",
       "description": "Change Request.",
       "type": "tool",
       "tags": ["Change", "Repair", "Change Documents"],
       "url": "https://editor.learnwithchampak.live/tools/changerequest/"
+    },
+    {
+      "title": "Beginning NLP",
+      "description": "NLP = Natural Language Processing",
+      "type": "tool",
+      "tags": ["Change", "Repair", "Change Documents"],
+      "url": "https://aiml.learnwithchampak.live/nlp/begin/"
+    },
+    {
+      "title": "Finding your AI Module",
+      "description": "NLP = Natural Language Processing",
+      "type": "tool",
+      "tags": ["Change", "Repair", "Change Documents"],
+      "url": "https://aiml.learnwithchampak.live/wizard/"
     }
-    
   ]
 }
