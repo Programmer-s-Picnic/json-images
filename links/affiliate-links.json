@@ -167,5 +167,28 @@
       "buttonText": "View Python Books",
       "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
     }
+
+,  
+
+
+{
+  "id": "amazon-wireless-keyboard-mouse",
+  "title": "Wireless Keyboard & Mouse for Online Classes",
+  "provider": "Amazon India",
+  "category": "Teaching Setup",
+  "icon": "🖱️",
+  "description": "I use wireless keyboard and mouse setups for online classes, coding sessions, typing, and daily computer work. They help keep the desk clean and comfortable during long teaching hours.",
+  "benefits": [
+    "Useful for online classes and teaching",
+    "Comfortable for long typing sessions",
+    "Reduces cable clutter on the desk",
+    "Helpful for coding and productivity work",
+    "Wireless convenience for clean setups"
+  ],
+  "url": "https://www.amazon.in/s?k=wireless+keyboard+mouse+combo&tag=vsj04-21",
+  "buttonText": "View Wireless Combos",
+  "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+}
+
   ]
 }
