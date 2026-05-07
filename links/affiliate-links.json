@@ -10,7 +10,7 @@
       "category": "Bank Account",
       "icon": "🏦",
       "description": "Open a Kotak811 account digitally. You may receive ₹50 after completing KYC and logging into the Kotak811 app. I may also receive ₹50 through this referral.",
-      "benefits": [
+      "benefits": ["#highlight",
         "₹50 for you after completing KYC and logging into the Kotak811 app",
         "₹50 referral reward for me",
         "Up to ₹6,000 cashback with 811 Super, as mentioned in the offer",
