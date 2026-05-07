@@ -234,33 +234,24 @@
       "url": "https://www.amazon.in/How-Object-Oriented-Programing-Illustrating/dp/1072916371/?tag=vsj04-21",
       "buttonText": "View Paperback",
       "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
-    }
-
-
-
-
-
-
-,
+    },
     {
-      "id": "Deals for Today",
-      "title": "Deals for Today",
+      "id": "amazon-deals-today",
+      "title": "Amazon Deals for Today",
       "provider": "Amazon India",
-      "category": "Deals for Today",
-      "icon": "📙",
-      "description": "Deals for Today",
+      "category": "Daily Deals",
+      "icon": "🔥",
+      "description": "Check today's Amazon deals, discounts, limited-time offers, gadgets, accessories, books, computer products, and useful tech items.",
       "benefits": [
-      ""
+        "Daily updated Amazon offers",
+        "Useful for gadgets and accessories",
+        "Good discounts on tech products",
+        "Useful for students and creators",
+        "Includes limited-time deals and price drops"
       ],
-      "url": "https://www.amazon.in/gp/goldbox?&linkCode=ll2&tag=vsj04-21&linkId=9b999e34bf052246c8b260e52ae4a6d4&ref_=as_li_ss_tl",
-      "buttonText": "View Deals",
+      "url": "https://www.amazon.in/gp/goldbox?linkCode=ll2&tag=vsj04-21&linkId=9b999e34bf052246c8b260e52ae4a6d4&ref_=as_li_ss_tl",
+      "buttonText": "View Today's Deals",
       "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
     }
-
-
-
-
   ]
 }
-
-
