@@ -226,6 +226,7 @@
       "icon": "📙",
       "description": "Paperback edition for learning object-oriented programming in Java through concepts, examples, and structured explanations.",
       "benefits": [
+        "#highlight",
         "Useful for Java classroom learning",
         "Good for OOP concept revision",
         "Helpful for understanding classes, objects, and methods",
@@ -243,6 +244,7 @@
       "icon": "🔥",
       "description": "Check today's Amazon deals, discounts, limited-time offers, gadgets, accessories, books, computer products, and useful tech items.",
       "benefits": [
+        "#highlight",
         "Daily updated Amazon offers",
         "Useful for gadgets and accessories",
         "Good discounts on tech products",
