@@ -180,6 +180,13 @@
       "url": "https://aiml.learnwithchampak.live/nlp/begin/"
     },
     {
+      "title": "Beginning NLP",
+      "description": "Start learning Natural Language Processing from the basics with beginner-friendly examples.",
+      "type": "lesson",
+      "tags": ["NLP", "Natural Language Processing", "AI", "Text Processing"],
+      "url": "https://aiml.learnwithchampak.live/nlp/0-10/"
+    },
+    {
       "title": "Find Your AI Module",
       "description": "A beginner-friendly wizard that helps learners find the right AI-ML module for their task.",
       "type": "tool",
@@ -214,7 +221,7 @@
       "url": "https://aiml.learnwithchampak.live/nlp/11-20/"
     },
     {
-      "title": "",
+      "title": "Chirpy  Jekyll",
       "description": "Chirpy-Jekyll",
       "type": "tool",
       "tags": [
