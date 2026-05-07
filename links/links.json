@@ -212,6 +212,20 @@
         "Lemmatization "
       ],
       "url": "https://aiml.learnwithchampak.live/nlp/11-20/"
+    },
+    {
+      "title": "",
+      "description": "Chirpy-Jekyll",
+      "type": "tool",
+      "tags": [
+        "Github Pages",
+        "Chirpy-Jekyll",
+        "Chirpy",
+        "Jekyll",
+        "Github",
+        "Website Hosting "
+      ],
+      "url": "https://editor.learnwithchampak.live/html/add/chirpy-jekyll/"
     }
   ]
 }
