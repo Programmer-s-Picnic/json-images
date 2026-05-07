@@ -1,12 +1,1200 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- <script src="pp-lock.js"></script> -->
-     <script src="https://programmer-s-picnic.github.io/json-images/find-on-page.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Champak's Market</title>
+
+    <style>
+      #pp-affiliate-app {
+        --blue: #2f80ed;
+        --blue2: #8fd3ff;
+        --blueDark: #1d5fbf;
+        --blueSoft: #eaf6ff;
+        --blueLight: #f4fbff;
+
+        --brown: #103a5c;
+        --text: #202020;
+        --muted: #666;
+
+        --card: #ffffff;
+        --border: #cfe9ff;
+
+        --shadow: 0 14px 38px rgba(22, 91, 145, 0.1);
+
+        font-family: Arial, sans-serif;
+
+        background:
+          radial-gradient(
+            circle at 10% 0%,
+            rgba(47, 128, 237, 0.13),
+            transparent 26%
+          ),
+          radial-gradient(
+            circle at 90% 10%,
+            rgba(143, 211, 255, 0.3),
+            transparent 28%
+          ),
+          linear-gradient(180deg, #f4fbff, #ffffff 45%);
+
+        color: var(--text);
+
+        min-height: 100vh;
+      }
+
+      #pp-affiliate-app * {
+        box-sizing: border-box;
+      }
+
+      .pp-wrap {
+        max-width: 1180px;
+        margin: auto;
+        padding: 18px;
+      }
+
+      /* HERO */
+
+      .pp-hero {
+        position: relative;
+        overflow: hidden;
+
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, 0.35),
+            transparent 35%
+          ),
+          linear-gradient(135deg, #2f80ed, #8fd3ff);
+
+        color: #fff;
+
+        padding: 42px 20px;
+
+        border-radius: 28px;
+
+        text-align: center;
+
+        margin-bottom: 20px;
+
+        box-shadow: 0 18px 42px rgba(47, 128, 237, 0.24);
+      }
+
+      .pp-hero::after {
+        content: "";
+        position: absolute;
+
+        width: 260px;
+        height: 260px;
+
+        border-radius: 50%;
+
+        background: rgba(255, 255, 255, 0.14);
+
+        right: -90px;
+        top: -90px;
+      }
+
+      .pp-brand-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        background: rgba(255, 255, 255, 0.22);
+
+        border: 1px solid rgba(255, 255, 255, 0.35);
+
+        padding: 8px 13px;
+
+        border-radius: 999px;
+
+        font-size: 13px;
+        font-weight: 800;
+
+        margin-bottom: 14px;
+
+        backdrop-filter: blur(8px);
+      }
+
+      .pp-hero h1 {
+        margin: 0;
+
+        font-size: clamp(30px, 5vw, 52px);
+
+        line-height: 1.05;
+
+        font-weight: 900;
+
+        letter-spacing: -1px;
+      }
+
+      .pp-hero p {
+        margin: 14px auto 0;
+
+        max-width: 780px;
+
+        font-size: 16px;
+
+        line-height: 1.7;
+      }
+
+      /* STATS */
+
+      .pp-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 12px;
+
+        margin: -10px auto 22px;
+
+        position: relative;
+        z-index: 2;
+      }
+
+      .pp-stat {
+        background: rgba(255, 255, 255, 0.92);
+
+        border: 1px solid var(--border);
+
+        border-radius: 18px;
+
+        padding: 14px;
+
+        text-align: center;
+
+        box-shadow: var(--shadow);
+      }
+
+      .pp-stat strong {
+        display: block;
+
+        color: var(--brown);
+
+        font-size: 22px;
+      }
+
+      .pp-stat span {
+        display: block;
+
+        margin-top: 4px;
+
+        color: var(--muted);
+
+        font-size: 12px;
+
+        font-weight: 700;
+      }
+
+      @media (max-width: 640px) {
+        .pp-stats {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* DISCLOSURE */
+
+      .pp-disclosure {
+        background: #fff;
+
+        border: 1px solid var(--border);
+
+        border-left: 7px solid var(--blue);
+
+        border-radius: 18px;
+
+        padding: 15px 16px;
+
+        margin-bottom: 18px;
+
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+
+        font-size: 14px;
+
+        line-height: 1.6;
+      }
+
+      /* SEARCH */
+
+      .pp-search-panel {
+        background: rgba(255, 255, 255, 0.92);
+
+        border: 1px solid var(--border);
+
+        border-radius: 24px;
+
+        padding: 16px;
+
+        margin-bottom: 18px;
+
+        box-shadow: var(--shadow);
+      }
+
+      .pp-search-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 12px;
+      }
+
+      .pp-search-title h2 {
+        margin: 0;
+
+        color: var(--brown);
+
+        font-size: 20px;
+      }
+
+      .pp-clear-btn {
+        border: 1px solid var(--border);
+
+        background: #f3fbff;
+
+        color: var(--brown);
+
+        border-radius: 999px;
+
+        padding: 9px 12px;
+
+        cursor: pointer;
+
+        font-weight: 800;
+      }
+
+      .pp-controls {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      @media (min-width: 760px) {
+        .pp-controls {
+          grid-template-columns: 1fr 230px;
+        }
+      }
+
+      .pp-search-wrap {
+        position: relative;
+      }
+
+      .pp-search-icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        font-size: 18px;
+      }
+
+      .pp-search,
+      .pp-select {
+        width: 100%;
+
+        border: 1px solid var(--border);
+
+        background: #fff;
+
+        border-radius: 16px;
+
+        padding: 14px;
+
+        font-size: 15px;
+
+        outline: none;
+      }
+
+      .pp-search {
+        padding-left: 44px;
+      }
+
+      .pp-search:focus,
+      .pp-select:focus {
+        border-color: var(--blue);
+
+        box-shadow: 0 0 0 4px rgba(47, 128, 237, 0.15);
+      }
+
+      /* RESULTS */
+
+      .pp-results-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 12px;
+
+        margin: 10px 2px 16px;
+
+        color: var(--muted);
+
+        font-size: 14px;
+      }
+
+      /* FEATURED CAROUSEL */
+
+      .pp-highlight-section {
+        margin: 0 0 22px;
+
+        background: linear-gradient(135deg, #f3fbff, #ffffff);
+
+        border: 1px solid var(--border);
+
+        border-radius: 24px;
+
+        padding: 16px;
+
+        box-shadow: var(--shadow);
+      }
+
+      .pp-highlight-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 14px;
+      }
+
+      .pp-highlight-head h2 {
+        margin: 0;
+
+        color: var(--brown);
+
+        font-size: 22px;
+
+        font-weight: 900;
+      }
+
+      .pp-carousel-btn {
+        border: none;
+
+        background: linear-gradient(135deg, var(--blue), var(--blue2));
+
+        color: #fff;
+
+        width: 38px;
+        height: 38px;
+
+        border-radius: 999px;
+
+        cursor: pointer;
+
+        font-size: 24px;
+
+        font-weight: 900;
+      }
+
+      .pp-highlight-carousel {
+        display: flex;
+
+        gap: 16px;
+
+        overflow-x: auto;
+
+        scroll-behavior: smooth;
+
+        padding: 4px 4px 10px;
+      }
+
+      .pp-highlight-carousel::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .pp-highlight-carousel::-webkit-scrollbar-thumb {
+        background: #cfe9ff;
+        border-radius: 999px;
+      }
+
+      .pp-highlight-carousel {
+        display: flex;
+        gap: 18px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 4px 0 10px;
+
+        scroll-snap-type: x mandatory;
+      }
+
+      .pp-highlight-carousel .pp-card {
+        min-width: 100%;
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
+
+        scroll-snap-align: start;
+      }
+
+      /* GRID */
+
+      .pp-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+
+        gap: 18px;
+      }
+
+      /* CARD */
+
+      .pp-card {
+        position: relative;
+        overflow: hidden;
+
+        background: var(--card);
+
+        border: 1px solid var(--border);
+
+        border-radius: 24px;
+
+        padding: 18px;
+
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+
+        display: flex;
+        flex-direction: column;
+
+        transition: 0.22s;
+      }
+
+      .pp-card::before {
+        content: "";
+
+        position: absolute;
+
+        inset: 0 0 auto 0;
+
+        height: 5px;
+
+        background: linear-gradient(90deg, var(--blue), var(--blue2));
+      }
+
+      .pp-card:hover {
+        transform: translateY(-5px);
+
+        border-color: #89c9f8;
+
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.12);
+      }
+
+      /* FEATURED */
+
+      .pp-highlight {
+        position: absolute;
+
+        top: 14px;
+        right: 14px;
+
+        background: linear-gradient(135deg, #ffb703, #ff6b00);
+
+        color: #fff;
+
+        font-size: 11px;
+
+        font-weight: 900;
+
+        padding: 6px 10px;
+
+        border-radius: 999px;
+
+        letter-spacing: 0.5px;
+
+        box-shadow: 0 8px 18px rgba(255, 107, 0, 0.25);
+
+        z-index: 5;
+      }
+
+      .pp-card-highlighted {
+        border: 2px solid #7cc7ff !important;
+
+        transform: scale(1.01);
+
+        box-shadow:
+          0 18px 42px rgba(47, 128, 237, 0.16),
+          0 0 0 4px rgba(143, 211, 255, 0.15);
+      }
+
+      .pp-card-highlighted::before {
+        height: 6px;
+
+        background: linear-gradient(90deg, #ffb703, #ff6b00);
+      }
+
+      /* TOP */
+
+      .pp-card-top {
+        display: flex;
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 10px;
+      }
+
+      .pp-icon {
+        width: 52px;
+        height: 52px;
+
+        border-radius: 17px;
+
+        background:
+          radial-gradient(circle at 30% 20%, #ffffff, transparent 30%),
+          var(--blueSoft);
+
+        display: grid;
+        place-items: center;
+
+        font-size: 27px;
+
+        border: 1px solid #cfe9ff;
+      }
+
+      .pp-tag {
+        display: inline-block;
+
+        background: var(--blueSoft);
+
+        color: #1d5fbf;
+
+        border: 1px solid #b7ddfb;
+
+        padding: 5px 10px;
+
+        border-radius: 999px;
+
+        font-size: 12px;
+
+        font-weight: 800;
+
+        margin-bottom: 6px;
+      }
+
+      .pp-title {
+        margin: 0;
+
+        color: var(--brown);
+
+        font-size: 20px;
+
+        line-height: 1.25;
+
+        font-weight: 900;
+      }
+
+      .pp-provider {
+        margin-top: 6px;
+
+        color: var(--muted);
+
+        font-size: 13px;
+
+        font-weight: 700;
+      }
+
+      .pp-desc {
+        color: #333;
+
+        font-size: 14.5px;
+
+        line-height: 1.65;
+
+        margin: 11px 0;
+      }
+
+      .pp-benefits {
+        margin: 8px 0 12px;
+
+        padding-left: 20px;
+
+        color: #333;
+
+        font-size: 14px;
+
+        line-height: 1.55;
+      }
+
+      .pp-benefits li {
+        margin: 5px 0;
+      }
+
+      .pp-spacer {
+        flex: 1;
+      }
+
+      /* BUTTON */
+
+      .pp-btn {
+        display: inline-block;
+        width: 100%;
+
+        text-align: center;
+
+        background: linear-gradient(135deg, var(--blue), #8fd3ff);
+
+        color: #fff !important;
+
+        text-decoration: none !important;
+
+        border-radius: 15px;
+
+        padding: 13px 14px;
+
+        font-weight: 900;
+
+        margin-top: 12px;
+
+        box-shadow: 0 8px 18px rgba(47, 128, 237, 0.24);
+
+        transition: 0.2s;
+      }
+
+      .pp-btn:hover {
+        background: linear-gradient(135deg, var(--blueDark), #2f80ed);
+
+        transform: translateY(-1px);
+      }
+
+      /* COPY */
+
+      .pp-copy-row {
+        display: flex;
+
+        gap: 8px;
+
+        margin-top: 10px;
+      }
+
+      .pp-copy-input {
+        flex: 1;
+
+        border: 1px solid var(--border);
+
+        border-radius: 13px;
+
+        padding: 10px;
+
+        font-size: 12px;
+
+        background: #f3fbff;
+      }
+
+      .pp-copy-btn {
+        border: none;
+
+        background: #2b2b2b;
+
+        color: #fff;
+
+        border-radius: 13px;
+
+        padding: 10px 12px;
+
+        cursor: pointer;
+
+        font-weight: 800;
+      }
+
+      .pp-mini {
+        font-size: 12px;
+
+        color: var(--muted);
+
+        line-height: 1.5;
+
+        margin-top: 10px;
+      }
+
+      .pp-empty,
+      .pp-loading,
+      .pp-error {
+        text-align: center;
+
+        padding: 30px 18px;
+
+        background: #fff;
+
+        border: 1px solid var(--border);
+
+        border-radius: 20px;
+
+        color: var(--muted);
+
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
+
+        line-height: 1.6;
+      }
+
+      .pp-footer {
+        text-align: center;
+
+        color: var(--muted);
+
+        font-size: 13px;
+
+        line-height: 1.6;
+
+        margin: 28px 0 10px;
+
+        padding: 18px;
+
+        border-top: 1px solid var(--border);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="pp-affiliate-app">
+      <div class="pp-wrap">
+        <section class="pp-hero">
+          <div class="pp-brand-pill">🛒 Programmers Picnic Picks</div>
+
+          <h1>Champak's Market</h1>
+
+          <p>
+            Useful tools, gadgets, books, apps, services, and learning resources
+            recommended by Programmers Picnic AI-ML Classes by Champak Roy.
+          </p>
+        </section>
+
+        <div class="pp-stats">
+          <div class="pp-stat">
+            <strong id="ppTotalCount">0</strong>
+            <span>Total Links</span>
+          </div>
+
+          <div class="pp-stat">
+            <strong id="ppCategoryCount">0</strong>
+            <span>Categories</span>
+          </div>
+
+          <div class="pp-stat">
+            <strong id="ppVisibleCount">0</strong>
+            <span>Showing Now</span>
+          </div>
+        </div>
+
+        <div class="pp-disclosure">
+          <strong>Disclosure:</strong>
+          Some links are affiliate/referral links. I may earn a commission at no
+          extra cost to you.
+        </div>
+
+        <div class="pp-search-panel">
+          <div class="pp-search-title">
+            <h2>Find a useful link</h2>
+
+            <button id="ppClearSearch" class="pp-clear-btn">
+              Clear Search
+            </button>
+          </div>
+
+          <div class="pp-controls">
+            <div class="pp-search-wrap">
+              <span class="pp-search-icon">🔎</span>
+
+              <input
+                id="ppSearch"
+                class="pp-search"
+                type="search"
+                placeholder="Search..."
+              />
+            </div>
+
+            <select id="ppCategory" class="pp-select">
+              <option value="all">All categories</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pp-results-line">
+          <span id="ppResultText">Loading...</span>
+          <span id="ppFilterText">All categories</span>
+        </div>
+
+        <!-- FEATURED -->
+
+        <div
+          id="ppHighlightSection"
+          class="pp-highlight-section"
+          style="display: none"
+        >
+          <div class="pp-highlight-head">
+            <h2>Featured Picks</h2>
+
+            <div>
+              <button id="ppPrevHighlight" class="pp-carousel-btn">‹</button>
+
+              <button id="ppNextHighlight" class="pp-carousel-btn">›</button>
+            </div>
+          </div>
+
+          <div id="ppHighlightCarousel" class="pp-highlight-carousel"></div>
+        </div>
+
+        <div id="ppStatus" class="pp-loading">Loading affiliate links...</div>
+
+        <div id="ppGrid" class="pp-grid"></div>
+
+        <div class="pp-footer">
+          © 2026 Programmers Picnic AI-ML Classes by Champak Roy
+          <br />
+          learnwithchampak.live
+        </div>
+      </div>
+
+      <script>
+        const JSON_URL =
+          "https://programmer-s-picnic.github.io/json-images/links/affiliate-links.json";
+
+        const ppGrid = document.getElementById("ppGrid");
+
+        const ppStatus = document.getElementById("ppStatus");
+
+        const ppSearch = document.getElementById("ppSearch");
+
+        const ppCategory = document.getElementById("ppCategory");
+
+        const ppClearSearch = document.getElementById("ppClearSearch");
+
+        const ppResultText = document.getElementById("ppResultText");
+
+        const ppFilterText = document.getElementById("ppFilterText");
+
+        const ppTotalCount = document.getElementById("ppTotalCount");
+
+        const ppCategoryCount = document.getElementById("ppCategoryCount");
+
+        const ppVisibleCount = document.getElementById("ppVisibleCount");
+
+        const ppHighlightSection =
+          document.getElementById("ppHighlightSection");
+
+        const ppHighlightCarousel = document.getElementById(
+          "ppHighlightCarousel",
+        );
+
+        const ppPrevHighlight = document.getElementById("ppPrevHighlight");
+
+        const ppNextHighlight = document.getElementById("ppNextHighlight");
+
+        let ppItems = [];
+
+        function safeText(value) {
+          return String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+        }
+
+        function createBenefitList(benefits) {
+          if (!Array.isArray(benefits) || !benefits.length) {
+            return "";
+          }
+
+          const cleaned = benefits.filter(
+            (item) => !String(item).toLowerCase().includes("#highlight"),
+          );
+
+          return `
+    <ul class="pp-benefits">
+      ${cleaned
+        .map(
+          (item) => `
+        <li>${safeText(item)}</li>
+      `,
+        )
+        .join("")}
+    </ul>
+  `;
+        }
+
+        function getCategories(items) {
+          return Array.from(
+            new Set(items.map((item) => item.category).filter(Boolean)),
+          ).sort();
+        }
+
+        function renderCategories(items) {
+          const categories = getCategories(items);
+
+          ppCategory.innerHTML = `<option value="all">All categories</option>`;
+
+          categories.forEach((cat) => {
+            const option = document.createElement("option");
+
+            option.value = cat;
+            option.textContent = cat;
+
+            ppCategory.appendChild(option);
+          });
+
+          ppCategoryCount.textContent = categories.length;
+        }
+
+        function createCard(item, isHighlighted) {
+          const card = document.createElement("article");
+
+          card.className = isHighlighted
+            ? "pp-card pp-card-highlighted"
+            : "pp-card";
+
+          const url = safeText(item.url);
+
+          const title = safeText(item.title);
+
+          const buttonText = safeText(item.buttonText || "Open");
+
+          const provider = item.provider
+            ? `<p class="pp-provider">${safeText(item.provider)}</p>`
+            : "";
+
+          card.innerHTML = `
+
+    ${
+      isHighlighted
+        ? `
+      <div class="pp-highlight">
+        ⭐ FEATURED
+      </div>
+    `
+        : ""
+    }
+
+    <div class="pp-card-top">
+
+      <div class="pp-icon">
+        ${safeText(item.icon || "🔗")}
+      </div>
+
+      <div>
+
+        <span class="pp-tag">
+          ${safeText(item.category || "Recommended")}
+        </span>
+
+        <h2 class="pp-title">
+          ${title}
+        </h2>
+
+        ${provider}
+
+      </div>
+
+    </div>
+
+    <p class="pp-desc">
+      ${safeText(item.description)}
+    </p>
+
+    ${createBenefitList(item.benefits)}
+
+    <div class="pp-spacer"></div>
+
+    <a
+      class="pp-btn"
+      href="${url}"
+      target="_blank"
+      rel="nofollow sponsored noopener"
+    >
+      ${buttonText}
+    </a>
+
+    <div class="pp-copy-row">
+
+      <input
+        class="pp-copy-input"
+        value="${url}"
+        readonly
+      />
+
+      <button
+        class="pp-copy-btn"
+        data-copy="${url}"
+      >
+        Copy
+      </button>
+
+    </div>
+
+    <p class="pp-mini">
+      ${safeText(item.disclaimer || "Affiliate/referral link.")}
+    </p>
+  `;
+
+          return card;
+        }
+
+        function renderItems() {
+          const searchTerm = ppSearch.value.toLowerCase().trim();
+
+          const selectedCategory = ppCategory.value;
+
+          const filtered = ppItems.filter((item) => {
+            const searchableText = [
+              item.title,
+              item.category,
+              item.description,
+              item.provider,
+              item.url,
+              item.buttonText,
+              item.disclaimer,
+              ...(item.benefits || []),
+            ]
+              .join(" ")
+              .toLowerCase();
+
+            const matchesSearch = searchableText.includes(searchTerm);
+
+            const matchesCategory =
+              selectedCategory === "all" || item.category === selectedCategory;
+
+            return matchesSearch && matchesCategory;
+          });
+
+          const highlightedItems = filtered
+            .filter((item) =>
+              (item.benefits || []).some((b) =>
+                String(b).toLowerCase().includes("#highlight"),
+              ),
+            )
+            .slice(0, 3);
+
+          /* FEATURED CAROUSEL */
+
+          ppHighlightCarousel.innerHTML = "";
+
+          if (highlightedItems.length > 0) {
+            ppHighlightSection.style.display = "block";
+
+            highlightedItems.forEach((item) => {
+              ppHighlightCarousel.appendChild(createCard(item, true));
+            });
+          } else {
+            ppHighlightSection.style.display = "none";
+          }
+
+          /* GRID */
+
+          ppGrid.innerHTML = "";
+
+          ppVisibleCount.textContent = filtered.length;
+
+          ppResultText.innerHTML = `<strong>${filtered.length}</strong> links found`;
+
+          ppFilterText.textContent =
+            selectedCategory === "all" ? "All categories" : selectedCategory;
+
+          if (filtered.length === 0) {
+            ppStatus.className = "pp-empty";
+
+            ppStatus.style.display = "block";
+
+            ppStatus.innerHTML = `
+      <strong>No links found.</strong>
+      Try another keyword.
+    `;
+
+            return;
+          }
+
+          ppStatus.style.display = "none";
+
+          filtered.forEach((item) => {
+            const isHighlighted = highlightedItems.includes(item);
+
+            ppGrid.appendChild(createCard(item, isHighlighted));
+          });
+        }
+
+        async function loadAffiliateLinks() {
+          try {
+            const response = await fetch(JSON_URL, {
+              cache: "no-store",
+            });
+
+            if (!response.ok) {
+              throw new Error("Could not load JSON");
+            }
+
+            const data = await response.json();
+
+            ppItems = Array.isArray(data.items) ? data.items : [];
+
+            ppTotalCount.textContent = ppItems.length;
+
+            renderCategories(ppItems);
+
+            renderItems();
+          } catch (error) {
+            ppStatus.className = "pp-error";
+
+            ppStatus.style.display = "block";
+
+            ppStatus.innerHTML = `
+      <strong>Could not load links.</strong>
+      Check JSON URL.
+    `;
+          }
+        }
+
+        document.addEventListener("click", async function (event) {
+          const button = event.target.closest(".pp-copy-btn");
+
+          if (!button) return;
+
+          const text = button.getAttribute("data-copy");
+
+          try {
+            await navigator.clipboard.writeText(text);
+
+            const oldText = button.textContent;
+
+            button.textContent = "Copied!";
+
+            setTimeout(() => {
+              button.textContent = oldText;
+            }, 1200);
+          } catch (error) {
+            alert("Copy failed. Please copy manually.");
+          }
+        });
+
+        ppClearSearch.addEventListener("click", function () {
+          ppSearch.value = "";
+          ppCategory.value = "all";
+
+          renderItems();
+
+          ppSearch.focus();
+        });
+
+        ppSearch.addEventListener("input", renderItems);
+
+        ppCategory.addEventListener("change", renderItems);
+
+        /* CAROUSEL */
+
+        ppPrevHighlight.addEventListener("click", function () {
+          ppHighlightCarousel.scrollBy({
+            left: -660,
+            behavior: "smooth",
+          });
+        });
+
+        ppNextHighlight.addEventListener("click", function () {
+          ppHighlightCarousel.scrollBy({
+            left: 660,
+            behavior: "smooth",
+          });
+        });
+
+        loadAffiliateLinks();
+      </script>
+    </div>
+  </body>
 </html>
