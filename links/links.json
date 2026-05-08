@@ -183,7 +183,13 @@
       "title": "NLP 0 to 10%",
       "description": "Start learning Natural Language Processing from the basics with beginner-friendly examples.",
       "type": "lesson",
-      "tags": ["NLP","NLP 1", "Natural Language Processing", "AI", "Text Processing"],
+      "tags": [
+        "NLP",
+        "NLP 1",
+        "Natural Language Processing",
+        "AI",
+        "Text Processing"
+      ],
       "url": "https://aiml.learnwithchampak.live/nlp/0-10/"
     },
     {
@@ -204,7 +210,7 @@
         "Module Finder",
         "Beginner Friendly"
       ],
-      "url":"https://www.learnwithchampak.live/2026/05/champaks-market.html"
+      "url": "https://www.learnwithchampak.live/2026/05/champaks-market.html"
     },
     {
       "title": "NLP 11 to 20%",
@@ -220,6 +226,22 @@
       ],
       "url": "https://aiml.learnwithchampak.live/nlp/11-20/"
     },
+
+    {
+      "title": "NLP 21 to 30%",
+      "description": "NLP 3",
+      "type": "tool",
+      "tags": [
+        "Natural Language Processing",
+        "NLP",
+        "Cleaning",
+        "Complete Text Cleaner",
+        "Stemming",
+        "Lemmatization "
+      ],
+      "url": "https://aiml.learnwithchampak.live/nlp/21-30/"
+    },
+
     {
       "title": "Chirpy  Jekyll",
       "description": "Chirpy-Jekyll",
@@ -238,14 +260,8 @@
       "title": "Matplotlib 3d",
       "description": "Matplotlib 3D",
       "type": "tool",
-      "tags": [
-        "3D",
-        "3 Dimension",
-        "Three Dimension"
-      ],
+      "tags": ["3D", "3 Dimension", "Three Dimension"],
       "url": "https://aiml.learnwithchampak.live/matplotlib/3d/"
     }
-
-    
   ]
 }
