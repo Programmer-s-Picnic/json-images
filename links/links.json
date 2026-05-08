@@ -1905,6 +1905,7 @@
       "description": "Learn how to deploy an Angular project on GitHub Pages from level 0 to deployed. Designed for Learn With Champak learners and Programmers Picnic practice.",
       "type": "lesson",
       "tags": [
+        "package.json",
         "Angular",
         "GitHub Pages",
         "Deployment",
