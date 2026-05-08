@@ -233,6 +233,19 @@
         "Website Hosting "
       ],
       "url": "https://editor.learnwithchampak.live/html/add/chirpy-jekyll/"
+    },
+    {
+      "title": "Matplotlib 3d",
+      "description": "Matplotlib 3D",
+      "type": "tool",
+      "tags": [
+        "3D",
+        "3 Dimension",
+        "Three Dimension"
+      ],
+      "url": "https://aiml.learnwithchampak.live/matplotlib/3d/"
     }
+
+    
   ]
 }
