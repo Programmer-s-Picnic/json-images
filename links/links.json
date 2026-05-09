@@ -2903,6 +2903,21 @@
       "priority": 3,
       "series": "Saturday Questions",
       "publishedDate": "21-02-2026"
+    },
+    {
+      "title": "Generative Image Maker",
+      "description": "Generative Image Maker",
+      "type": "tool",
+      "tags": [
+        "Generative Image Maker",
+        "Programmers Picnic",
+        "Champak Roy",
+        "Learn With Champak",
+        "learnwithchampak.live"
+      ],
+      "url": "https://editor.learnwithchampak.live/image%20generator/",
+      "slug": "saturday-questions-28-02-2026",
+      "topic": "Generative Image Maker"
     }
   ],
   "lastUpdated": "2026-05-09",
