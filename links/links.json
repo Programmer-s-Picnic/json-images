@@ -2918,6 +2918,21 @@
       "url": "https://aiml.learnwithchampak.live/images/image-generator/",
       "slug": "Generative AI",
       "topic": "Generative Image Maker"
+    },
+    {
+      "title": "Icon Maker",
+      "description": "Icon Image Maker",
+      "type": "tool",
+      "tags": [
+        "Icon Image Maker",
+        "Programmers Picnic",
+        "Champak Roy",
+        "Learn With Champak",
+        "learnwithchampak.live"
+      ],
+      "url": "https://aiml.learnwithchampak.live/images/image-generator/",
+      "slug": "Icon",
+      "topic": "Icon Image Maker"
     }
   ],
   "lastUpdated": "2026-05-09",
