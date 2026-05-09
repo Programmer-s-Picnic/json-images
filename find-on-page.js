@@ -261,6 +261,7 @@
           display:none;
           align-items:center;
           gap:8px;
+          width:100%;
         }
 
         .pp-v9uf-panel.pp-mini .pp-v9uf-mini-bar{
@@ -275,6 +276,10 @@
           white-space:nowrap;
           overflow:hidden;
           text-overflow:ellipsis;
+        }
+
+        #pp-mini-toggle{
+          flex-shrink:0;
         }
 
         .pp-v9uf-avatar-row{
@@ -602,6 +607,7 @@
           <button id="pp-mini-restore" class="pp-v9uf-icon-btn" title="Restore">☰</button>
           <div class="pp-v9uf-mini-title" id="pp-mini-title">Ready</div>
           <button id="pp-mini-next" class="pp-v9uf-icon-btn" title="Next">⏭</button>
+          <button id="pp-mini-toggle" class="pp-v9uf-icon-btn" title="Minimize / Restore">☰</button>
         </div>
 
         <div class="pp-v9uf-main">
@@ -907,6 +913,7 @@
 
       this.q("#pp-toggle")?.addEventListener("click", () => this.toggleMini());
       this.q("#pp-mini-restore")?.addEventListener("click", () => this.toggleMini(false));
+      this.q("#pp-mini-toggle")?.addEventListener("click", () => this.toggleMini(false));
 
       this.q("#pp-voice")?.addEventListener("change", (e) => {
         const preferred = this.getPreferredIndianMaleVoice();
@@ -1128,6 +1135,9 @@
 
       const toggleBtn = this.q("#pp-toggle");
       if (toggleBtn) toggleBtn.textContent = makeMini ? "☰" : "—";
+
+      const miniToggleBtn = this.q("#pp-mini-toggle");
+      if (miniToggleBtn) miniToggleBtn.textContent = makeMini ? "☰" : "—";
     }
 
     restoreMiniState() {
