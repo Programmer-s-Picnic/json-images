@@ -27,8 +27,8 @@
     whatsappLabel: "💬 Contact Champak Roy on WhatsApp",
     whatsappMessage: "Hi Champak Roy, I am interested in your course.",
 
-    storageMiniKey: "pp_v9_ultra_fix_mini",
-    storagePositionKey: "pp_v9_ultra_fix_position",
+    storageMiniKey: "pp_v9_ultra_fix_mini_center_v10",
+    storagePositionKey: "pp_v9_ultra_fix_position_center_v10",
     storageRateKey: "pp_v9_ultra_fix_rate",
     storagePitchKey: "pp_v9_ultra_fix_pitch",
     storageVoiceKey: "pp_v9_ultra_fix_voice",
@@ -165,8 +165,11 @@
           --pp-chip-bg:#ffedd5;
           --pp-shadow:0 16px 38px rgba(0,0,0,.18);
           position:fixed;
-          right:16px;
-          bottom:16px;
+          left:50%;
+          top:50%;
+          right:auto;
+          bottom:auto;
+          transform:translate(-50%,-50%);
           width:350px;
           max-width:calc(100vw - 20px);
           z-index:99999;
@@ -516,12 +519,13 @@
 
         @media (max-width:640px){
           .pp-v9uf-panel{
-            right:10px !important;
-            left:10px !important;
+            width:min(350px, calc(100vw - 20px)) !important;
+            max-width:calc(100vw - 20px) !important;
+          }
+
+          .pp-v9uf-panel.pp-mini{
             width:auto !important;
-            max-width:none !important;
-            bottom:10px !important;
-            top:auto !important;
+            max-width:calc(100vw - 20px) !important;
           }
         }
       `;
@@ -945,11 +949,8 @@
         if (!this.panel) return;
 
         if (window.innerWidth <= 640) {
-          this.panel.style.left = "";
-          this.panel.style.top = "";
-          this.panel.style.right = "10px";
-          this.panel.style.bottom = "10px";
-        } else if (this.panel.style.right === "10px" && this.panel.style.bottom === "10px") {
+          this.centerPanel();
+        } else {
           this.restorePosition();
         }
       };
@@ -1059,6 +1060,7 @@
         this.panel.style.top = finalY + "px";
         this.panel.style.right = "auto";
         this.panel.style.bottom = "auto";
+        this.panel.style.transform = "none";
       };
 
       this.boundMouseMove = (e) => moveTo(e.clientX, e.clientY);
@@ -1105,6 +1107,16 @@
       this.savePosition();
     }
 
+    centerPanel() {
+      if (!this.panel) return;
+
+      this.panel.style.left = "50%";
+      this.panel.style.top = "50%";
+      this.panel.style.right = "auto";
+      this.panel.style.bottom = "auto";
+      this.panel.style.transform = "translate(-50%, -50%)";
+    }
+
     savePosition() {
       if (!this.panel || window.innerWidth <= 640) return;
       const rect = this.panel.getBoundingClientRect();
@@ -1112,14 +1124,19 @@
     }
 
     restorePosition() {
-      if (!this.panel || window.innerWidth <= 640) return;
-      const pos = U.load(this.o.storagePositionKey, null);
-      if (!pos || typeof pos.left !== "number" || typeof pos.top !== "number") return;
+      if (!this.panel) return;
+      const pos = window.innerWidth > 640 ? U.load(this.o.storagePositionKey, null) : null;
+
+      if (!pos || typeof pos.left !== "number" || typeof pos.top !== "number") {
+        this.centerPanel();
+        return;
+      }
 
       this.panel.style.left = pos.left + "px";
       this.panel.style.top = pos.top + "px";
       this.panel.style.right = "auto";
       this.panel.style.bottom = "auto";
+      this.panel.style.transform = "none";
     }
 
     toggleMini(forceValue) {
@@ -1141,8 +1158,8 @@
     }
 
     restoreMiniState() {
-      const saved = U.load(this.o.storageMiniKey, false);
-      this.toggleMini(!!saved);
+      const saved = U.load(this.o.storageMiniKey, true);
+      this.toggleMini(saved !== false);
     }
 
     applyTheme() {
