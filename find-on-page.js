@@ -1,4 +1,4 @@
-(function () {
+ (function () {
   "use strict";
 
   const cfg = {
@@ -196,10 +196,15 @@
         }
 
         .pp-v9uf-panel.pp-mini{
-          width:auto;
-          min-width:240px;
-          padding:10px;
+          width:58px;
+          min-width:58px;
+          max-width:58px;
+          height:58px;
+          padding:8px;
           border-radius:999px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
         }
 
         .pp-v9uf-topbar{
@@ -269,6 +274,22 @@
 
         .pp-v9uf-panel.pp-mini .pp-v9uf-mini-bar{
           display:flex;
+          width:auto;
+          justify-content:center;
+        }
+
+        .pp-v9uf-panel.pp-mini .pp-v9uf-topbar,
+        .pp-v9uf-panel.pp-mini .pp-v9uf-mini-title,
+        .pp-v9uf-panel.pp-mini #pp-mini-next,
+        .pp-v9uf-panel.pp-mini #pp-mini-toggle{
+          display:none;
+        }
+
+        .pp-v9uf-panel.pp-mini #pp-mini-restore{
+          width:42px;
+          height:42px;
+          border-radius:999px;
+          font-size:20px;
         }
 
         .pp-v9uf-mini-title{
@@ -608,7 +629,7 @@
         </div>
 
         <div class="pp-v9uf-mini-bar">
-          <button id="pp-mini-restore" class="pp-v9uf-icon-btn" title="Restore">☰</button>
+          <button id="pp-mini-restore" class="pp-v9uf-icon-btn" title="Open Champak Speak">🔊</button>
           <div class="pp-v9uf-mini-title" id="pp-mini-title">Ready</div>
           <button id="pp-mini-next" class="pp-v9uf-icon-btn" title="Next">⏭</button>
           <button id="pp-mini-toggle" class="pp-v9uf-icon-btn" title="Minimize / Restore">☰</button>
@@ -1158,8 +1179,9 @@
     }
 
     restoreMiniState() {
-      const saved = U.load(this.o.storageMiniKey, true);
-      this.toggleMini(saved !== false);
+      /* Always start iconified on page load.
+         The user can expand it by clicking the round icon. */
+      this.toggleMini(true);
     }
 
     applyTheme() {
