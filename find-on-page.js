@@ -1,4 +1,4 @@
- (function () {
+(function () {
   "use strict";
 
   const cfg = {
@@ -196,15 +196,10 @@
         }
 
         .pp-v9uf-panel.pp-mini{
-          width:58px;
-          min-width:58px;
-          max-width:58px;
-          height:58px;
-          padding:8px;
+          width:auto;
+          min-width:240px;
+          padding:10px;
           border-radius:999px;
-          display:flex;
-          align-items:center;
-          justify-content:center;
         }
 
         .pp-v9uf-topbar{
@@ -252,6 +247,46 @@
           box-shadow:0 2px 10px rgba(0,0,0,0.08);
         }
 
+        .pp-v9uf-panel button,
+        .pp-v9uf-panel select,
+        .pp-v9uf-panel input[type="range"]{
+          outline:none;
+          transition:box-shadow .18s ease, transform .18s ease, border-color .18s ease, background .18s ease;
+        }
+
+        .pp-v9uf-panel button:focus-visible,
+        .pp-v9uf-panel select:focus-visible,
+        .pp-v9uf-panel input[type="range"]:focus-visible{
+          outline:4px solid rgba(245,158,11,.36);
+          outline-offset:3px;
+          box-shadow:0 0 0 7px rgba(245,158,11,.16), 0 10px 24px rgba(217,119,6,.20);
+          border-color:rgba(217,119,6,.95);
+          transform:translateY(-1px);
+        }
+
+        .pp-v9uf-panel button:focus-visible{
+          background:linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,237,213,.98));
+        }
+
+        .pp-v9uf-panel.pp-dark button:focus-visible{
+          background:linear-gradient(135deg, rgba(30,41,59,.98), rgba(67,56,202,.20));
+        }
+
+        .pp-v9uf-panel input[type="range"]:focus-visible{
+          transform:none;
+        }
+
+        .pp-v9uf-panel:focus-within{
+          box-shadow:0 0 0 5px rgba(245,158,11,.12), var(--pp-shadow);
+        }
+
+        .pp-v9uf-control-focus-ring{
+          position:absolute;
+          inset:-6px;
+          border-radius:inherit;
+          pointer-events:none;
+        }
+
         .pp-v9uf-drag-btn{
           cursor:grab;
           touch-action:none;
@@ -274,22 +309,6 @@
 
         .pp-v9uf-panel.pp-mini .pp-v9uf-mini-bar{
           display:flex;
-          width:auto;
-          justify-content:center;
-        }
-
-        .pp-v9uf-panel.pp-mini .pp-v9uf-topbar,
-        .pp-v9uf-panel.pp-mini .pp-v9uf-mini-title,
-        .pp-v9uf-panel.pp-mini #pp-mini-next,
-        .pp-v9uf-panel.pp-mini #pp-mini-toggle{
-          display:none;
-        }
-
-        .pp-v9uf-panel.pp-mini #pp-mini-restore{
-          width:42px;
-          height:42px;
-          border-radius:999px;
-          font-size:20px;
         }
 
         .pp-v9uf-mini-title{
@@ -608,7 +627,7 @@
       }
 
       const titleBtn = this.o.addTitleButton
-        ? `<button id="pp-title" class="pp-v9uf-btn pp-v9uf-btn-wide">Read title</button>`
+        ? `<button id="pp-title" class="pp-v9uf-btn pp-v9uf-btn-wide" aria-label="Read page title">Read title</button>`
         : "";
 
       const p = document.createElement("div");
@@ -622,17 +641,17 @@
             <div class="pp-v9uf-chip">Champak Speak</div>
           </div>
           <div class="pp-v9uf-topbar-actions">
-            <button id="pp-theme" class="pp-v9uf-icon-btn" title="Theme">◐</button>
-            <button id="pp-drag" class="pp-v9uf-icon-btn pp-v9uf-drag-btn" title="Drag panel">⠿</button>
-            <button id="pp-toggle" class="pp-v9uf-icon-btn" title="Minimize / Restore">—</button>
+            <button id="pp-theme" class="pp-v9uf-icon-btn" title="Theme" aria-label="Change theme">◐</button>
+            <button id="pp-drag" class="pp-v9uf-icon-btn pp-v9uf-drag-btn" title="Drag panel" aria-label="Drag speak panel">⠿</button>
+            <button id="pp-toggle" class="pp-v9uf-icon-btn" title="Minimize / Restore" aria-label="Minimize or restore speak panel">—</button>
           </div>
         </div>
 
         <div class="pp-v9uf-mini-bar">
-          <button id="pp-mini-restore" class="pp-v9uf-icon-btn" title="Open Champak Speak">🔊</button>
+          <button id="pp-mini-restore" class="pp-v9uf-icon-btn" title="Restore">☰</button>
           <div class="pp-v9uf-mini-title" id="pp-mini-title">Ready</div>
-          <button id="pp-mini-next" class="pp-v9uf-icon-btn" title="Next">⏭</button>
-          <button id="pp-mini-toggle" class="pp-v9uf-icon-btn" title="Minimize / Restore">☰</button>
+          <button id="pp-mini-next" class="pp-v9uf-icon-btn" title="Next" aria-label="Go to next speak section">⏭</button>
+          <button id="pp-mini-toggle" class="pp-v9uf-icon-btn" title="Minimize / Restore" aria-label="Minimize or restore speak panel">☰</button>
         </div>
 
         <div class="pp-v9uf-main">
@@ -672,13 +691,13 @@
 
           <div class="pp-v9uf-buttons">
             ${titleBtn}
-            <button id="pp-start" class="pp-v9uf-btn pp-v9uf-btn-primary">Start</button>
-            <button id="pp-pause" class="pp-v9uf-btn">Pause</button>
-            <button id="pp-prev" class="pp-v9uf-btn">Prev</button>
-            <button id="pp-next" class="pp-v9uf-btn">Next</button>
-            <button id="pp-stop" class="pp-v9uf-btn">Stop</button>
-            <button id="pp-refresh" class="pp-v9uf-btn">Refresh</button>
-            <button id="pp-wa" class="pp-v9uf-btn pp-v9uf-btn-wa">${this.o.whatsappLabel}</button>
+            <button id="pp-start" class="pp-v9uf-btn pp-v9uf-btn-primary" aria-label="Start narration">Start</button>
+            <button id="pp-pause" class="pp-v9uf-btn" aria-label="Pause or resume narration">Pause</button>
+            <button id="pp-prev" class="pp-v9uf-btn" aria-label="Previous speak section">Prev</button>
+            <button id="pp-next" class="pp-v9uf-btn" aria-label="Next speak section">Next</button>
+            <button id="pp-stop" class="pp-v9uf-btn" aria-label="Stop narration">Stop</button>
+            <button id="pp-refresh" class="pp-v9uf-btn" aria-label="Refresh speak tags">Refresh</button>
+            <button id="pp-wa" class="pp-v9uf-btn pp-v9uf-btn-wa" aria-label="Contact Champak Roy on WhatsApp">${this.o.whatsappLabel}</button>
           </div>
 
           <div class="pp-v9uf-progress">
@@ -1179,9 +1198,8 @@
     }
 
     restoreMiniState() {
-      /* Always start iconified on page load.
-         The user can expand it by clicking the round icon. */
-      this.toggleMini(true);
+      const saved = U.load(this.o.storageMiniKey, true);
+      this.toggleMini(saved !== false);
     }
 
     applyTheme() {
