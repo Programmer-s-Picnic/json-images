@@ -1,4 +1,4 @@
-(function () {
+ (function () {
   "use strict";
 
   const cfg = {
@@ -196,10 +196,15 @@
         }
 
         .pp-v9uf-panel.pp-mini{
-          width:auto;
-          min-width:240px;
-          padding:10px;
+          width:58px;
+          min-width:58px;
+          max-width:58px;
+          height:58px;
+          padding:8px;
           border-radius:999px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
         }
 
         .pp-v9uf-topbar{
@@ -269,7 +274,7 @@
         }
 
         .pp-v9uf-panel.pp-dark button:focus-visible{
-          background:linear-gradient(135deg, rgba(30,41,59,.98), rgba(67,56,202,.20));
+          background:linear-gradient(135deg, rgba(30,41,59,.98), rgba(251,146,60,.18));
         }
 
         .pp-v9uf-panel input[type="range"]:focus-visible{
@@ -278,13 +283,6 @@
 
         .pp-v9uf-panel:focus-within{
           box-shadow:0 0 0 5px rgba(245,158,11,.12), var(--pp-shadow);
-        }
-
-        .pp-v9uf-control-focus-ring{
-          position:absolute;
-          inset:-6px;
-          border-radius:inherit;
-          pointer-events:none;
         }
 
         .pp-v9uf-drag-btn{
@@ -309,6 +307,22 @@
 
         .pp-v9uf-panel.pp-mini .pp-v9uf-mini-bar{
           display:flex;
+          width:auto;
+          justify-content:center;
+        }
+
+        .pp-v9uf-panel.pp-mini .pp-v9uf-topbar,
+        .pp-v9uf-panel.pp-mini .pp-v9uf-mini-title,
+        .pp-v9uf-panel.pp-mini #pp-mini-next,
+        .pp-v9uf-panel.pp-mini #pp-mini-toggle{
+          display:none;
+        }
+
+        .pp-v9uf-panel.pp-mini #pp-mini-restore{
+          width:42px;
+          height:42px;
+          border-radius:999px;
+          font-size:20px;
         }
 
         .pp-v9uf-mini-title{
@@ -564,8 +578,10 @@
           }
 
           .pp-v9uf-panel.pp-mini{
-            width:auto !important;
-            max-width:calc(100vw - 20px) !important;
+            width:58px !important;
+            min-width:58px !important;
+            max-width:58px !important;
+            height:58px !important;
           }
         }
       `;
@@ -648,7 +664,7 @@
         </div>
 
         <div class="pp-v9uf-mini-bar">
-          <button id="pp-mini-restore" class="pp-v9uf-icon-btn" title="Restore">☰</button>
+          <button id="pp-mini-restore" class="pp-v9uf-icon-btn" title="Open Champak Speak" aria-label="Open Champak Speak">🔊</button>
           <div class="pp-v9uf-mini-title" id="pp-mini-title">Ready</div>
           <button id="pp-mini-next" class="pp-v9uf-icon-btn" title="Next" aria-label="Go to next speak section">⏭</button>
           <button id="pp-mini-toggle" class="pp-v9uf-icon-btn" title="Minimize / Restore" aria-label="Minimize or restore speak panel">☰</button>
@@ -1198,8 +1214,9 @@
     }
 
     restoreMiniState() {
-      const saved = U.load(this.o.storageMiniKey, true);
-      this.toggleMini(saved !== false);
+      /* Always start in the new compact round icon view on every page load.
+         The icon/full-view toggle still works after the page opens. */
+      this.toggleMini(true);
     }
 
     applyTheme() {
