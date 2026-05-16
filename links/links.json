@@ -5,7 +5,7 @@
   "website": "https://www.learnwithchampak.live/",
   "generatedFor": "Search and SEO optimized link index",
   "duplicatePolicy": "Only exact duplicate canonical URLs are removed. Original unique links are preserved.",
-  "totalItems": 64,
+  "totalItems": 65,
   "duplicatesRemoved": 0,
   "seoDefaults": {
     "defaultTitleSuffix": "Learn With Champak",
@@ -3595,11 +3595,67 @@
       "priority": 2,
       "searchText": "Spring Database SQLite | Spring Boot Database | lesson | Learn Spring database work with SQLite using beginner-friendly explanations, setup steps, database connection practice, and backend development workflow. | https://dsa.learnwithchampak.live/spring/database/sqlite | Spring | Spring Boot | SQLite | Database | SQL | Java | Backend | JDBC | Repository | Developer workflow | Coding lesson | Programmers Picnic | Champak Roy | Learn With Champak | learnwithchampak.live",
       "sortTitle": "spring database sqlite"
+    },
+    {
+      "title": "Saturday Questions 16-05-2026",
+      "description": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice. Learn problem solving step by step with Programmers Picnic by Champak Roy.",
+      "type": "practice",
+      "tags": [
+        "Saturday Questions",
+        "DSA",
+        "Data Structures",
+        "Algorithms",
+        "Python",
+        "Coding Practice",
+        "Problem Solving",
+        "Interview Practice",
+        "Beginner Friendly",
+        "Python DSA",
+        "Weekly Practice",
+        "Student Practice",
+        "Programmers Picnic",
+        "Champak Roy",
+        "Learn With Champak",
+        "learnwithchampak.live"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-16-05-2026.html",
+      "slug": "saturday-questions-16-05-2026",
+      "topic": "Saturday Questions Practice",
+      "level": "Beginner to Intermediate",
+      "seoTitle": "Saturday Questions 16-05-2026 - Python DSA Practice | Learn With Champak",
+      "metaDescription": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice from Programmers Picnic by Champak Roy.",
+      "canonicalUrl": "https://www.learnwithchampak.live/2026/05/saturday-questions-16-05-2026.html",
+      "searchKeywords": [
+        "Saturday Questions",
+        "DSA",
+        "Data Structures",
+        "Algorithms",
+        "Python",
+        "Coding Practice",
+        "Problem Solving",
+        "Interview Practice",
+        "Beginner Friendly",
+        "Python DSA",
+        "Programmers Picnic",
+        "Champak Roy",
+        "Learn With Champak",
+        "learnwithchampak.live",
+        "16-05-2026",
+        "Saturday Questions Practice",
+        "weekly practice",
+        "student practice",
+        "learn coding"
+      ],
+      "searchText": "Saturday Questions 16-05-2026 | Saturday Questions Practice | practice | 16-05-2026 | Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice. Learn problem solving step by step with Programmers Picnic by Champak Roy. | https://www.learnwithchampak.live/2026/05/saturday-questions-16-05-2026.html | Saturday Questions | DSA | Data Structures | Algorithms | Python | Coding Practice | Problem Solving | Interview Practice | Beginner Friendly | Python DSA | Programmers Picnic | Champak Roy | Learn With Champak | learnwithchampak.live | weekly practice | student practice | learn coding",
+      "sortTitle": "saturday questions 16-05-2026",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "16-05-2026"
     }
   ],
-  "lastUpdated": "2026-05-15",
+  "lastUpdated": "2026-05-16",
   "addedSeries": "Saturday Questions",
   "seriesCount": {
-    "Saturday Questions": 11
+    "Saturday Questions": 12
   }
 }
