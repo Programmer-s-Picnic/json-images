@@ -21,7 +21,7 @@
     - Still client-side only
   */
 
-  var PASSWORD_HASH = "e9075001c793307ebd747fe3b28ce114b9f4d7a8444bc0bdc831892a9b42e0a9";
+  var PASSWORD_HASH = "3711f3330dc2f1bdb4339b71518a4b8d0a9b8f6d9cc711ee4f0965ca5b8de536";
 
   var CONFIG = {
     titlePrefix: "Protected Page",
