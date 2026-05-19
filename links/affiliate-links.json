@@ -10,7 +10,8 @@
       "category": "Bank Account",
       "icon": "🏦",
       "description": "Open a Kotak811 account digitally. You may receive ₹50 after completing KYC and logging into the Kotak811 app. I may also receive ₹50 through this referral.",
-      "benefits": ["#highlight",
+      "benefits": [
+        "#highlight",
         "₹50 for you after completing KYC and logging into the Kotak811 app",
         "₹50 referral reward for me",
         "Up to ₹6,000 cashback with 811 Super, as mentioned in the offer",
@@ -253,6 +254,61 @@
       ],
       "url": "https://www.amazon.in/gp/goldbox?linkCode=ll2&tag=vsj04-21&linkId=9b999e34bf052246c8b260e52ae4a6d4&ref_=as_li_ss_tl",
       "buttonText": "View Today's Deals",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-air-coolers",
+      "title": "Air Coolers",
+      "provider": "Amazon India",
+      "category": "Home Cooling",
+      "icon": "🌬️",
+      "description": "Air coolers for home, office, study room, and online class setups during hot weather. Useful for budget-friendly cooling with lower electricity use compared to many air conditioners.",
+      "benefits": [
+        "Useful for study rooms and online class setups",
+        "Budget-friendly cooling option",
+        "Lower electricity use compared to many AC setups",
+        "Good for dry and hot weather",
+        "Compare tank capacity, airflow, noise level, and room size before buying"
+      ],
+      "url": "https://www.amazon.in/s?k=air+cooler&tag=vsj04-21",
+      "buttonText": "View Air Coolers",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-air-conditioners",
+      "title": "Air Conditioners",
+      "provider": "Amazon India",
+      "category": "Home Cooling",
+      "icon": "❄️",
+      "description": "Air conditioners for comfortable online classes, office work, study rooms, bedrooms, and long computer sessions in summer.",
+      "benefits": [
+        "Useful for long online classes and work sessions",
+        "Better comfort during very hot weather",
+        "Good for rooms where cooler performance is limited",
+        "Compare inverter AC, star rating, tonnage, and installation cost",
+        "Check room size and power consumption before buying"
+      ],
+      "url": "https://www.amazon.in/s?k=air+conditioner&tag=vsj04-21",
+      "buttonText": "View Air Conditioners",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-office-chair-headrest",
+      "title": "Office Chair with Head Rest",
+      "provider": "Amazon India",
+      "category": "Office Furniture",
+      "icon": "🪑",
+      "description": "Ergonomic office chairs with head rest for comfortable sitting during online classes, coding, teaching, meetings, and long computer sessions.",
+      "benefits": [
+        "#highlight",
+        "Supports neck and upper back",
+        "Improves posture during long working hours",
+        "Useful for online teaching and coding",
+        "Adjustable height and reclining options",
+        "Helps reduce fatigue during extended sitting"
+      ],
+      "url": "https://www.amazon.in/s?k=ergonomic+office+chair+with+head+rest&tag=vsj04-21",
+      "buttonText": "View Office Chairs",
       "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
     }
   ]
