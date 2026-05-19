@@ -11,7 +11,6 @@
       "icon": "🏦",
       "description": "Open a Kotak811 account digitally. You may receive ₹50 after completing KYC and logging into the Kotak811 app. I may also receive ₹50 through this referral.",
       "benefits": [
-        "#highlight",
         "₹50 for you after completing KYC and logging into the Kotak811 app",
         "₹50 referral reward for me",
         "Up to ₹6,000 cashback with 811 Super, as mentioned in the offer",
@@ -227,7 +226,6 @@
       "icon": "📙",
       "description": "Paperback edition for learning object-oriented programming in Java through concepts, examples, and structured explanations.",
       "benefits": [
-        "#highlight",
         "Useful for Java classroom learning",
         "Good for OOP concept revision",
         "Helpful for understanding classes, objects, and methods",
@@ -264,6 +262,7 @@
       "icon": "🌬️",
       "description": "Air coolers for home, office, study room, and online class setups during hot weather. Useful for budget-friendly cooling with lower electricity use compared to many air conditioners.",
       "benefits": [
+        "#highlight",
         "Useful for study rooms and online class setups",
         "Budget-friendly cooling option",
         "Lower electricity use compared to many AC setups",
@@ -282,6 +281,7 @@
       "icon": "❄️",
       "description": "Air conditioners for comfortable online classes, office work, study rooms, bedrooms, and long computer sessions in summer.",
       "benefits": [
+         
         "Useful for long online classes and work sessions",
         "Better comfort during very hot weather",
         "Good for rooms where cooler performance is limited",
