@@ -11,6 +11,7 @@
       "icon": "🏦",
       "description": "Open a Kotak811 account digitally. You may receive ₹50 after completing KYC and logging into the Kotak811 app. I may also receive ₹50 through this referral.",
       "benefits": [
+        "#highlight",
         "₹50 for you after completing KYC and logging into the Kotak811 app",
         "₹50 referral reward for me",
         "Up to ₹6,000 cashback with 811 Super, as mentioned in the offer",
@@ -226,6 +227,7 @@
       "icon": "📙",
       "description": "Paperback edition for learning object-oriented programming in Java through concepts, examples, and structured explanations.",
       "benefits": [
+        "#highlight",
         "Useful for Java classroom learning",
         "Good for OOP concept revision",
         "Helpful for understanding classes, objects, and methods",
@@ -262,7 +264,6 @@
       "icon": "🌬️",
       "description": "Air coolers for home, office, study room, and online class setups during hot weather. Useful for budget-friendly cooling with lower electricity use compared to many air conditioners.",
       "benefits": [
-        "#highlight",
         "Useful for study rooms and online class setups",
         "Budget-friendly cooling option",
         "Lower electricity use compared to many AC setups",
@@ -309,6 +310,96 @@
       "url": "https://www.amazon.in/s?k=ergonomic+office+chair+with+head+rest&tag=vsj04-21",
       "buttonText": "View Office Chairs",
       "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-water-purifier-ro-uv-uf",
+      "title": "RO UV UF Water Purifiers",
+      "provider": "Amazon India",
+      "category": "Home Essentials",
+      "icon": "💧",
+      "description": "Electric RO, UV, and UF water purifiers for homes, offices, classrooms, and small teaching centers. Useful where tap water quality needs extra filtration and safer drinking support.",
+      "benefits": [
+        "Comprehensive option for daily drinking water needs",
+        "Useful for homes, offices, and classrooms",
+        "Compare RO, UV, UF, TDS controller, tank capacity, and service cost",
+        "Good for areas with hard water or mixed water quality",
+        "Check installation, warranty, and filter replacement cost before buying"
+      ],
+      "url": "https://www.amazon.in/s?k=ro+uv+uf+water+purifier&tag=vsj04-21",
+      "buttonText": "View RO UV UF Purifiers",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Water purifier suitability depends on local water quality, TDS level, maintenance, and brand service availability."
+    },
+    {
+      "id": "amazon-non-electric-water-filter",
+      "title": "Non-Electric Water Filters",
+      "provider": "Amazon India",
+      "category": "Home Essentials",
+      "icon": "🚰",
+      "description": "Gravity-based and non-electric water filters for simple drinking water filtration without electricity. Useful for hostels, small rooms, backup use, and budget-conscious families.",
+      "benefits": [
+        "Works without electricity",
+        "Useful as a budget-friendly home or hostel option",
+        "Good backup during power cuts",
+        "Compare storage capacity, filter life, and cleaning process",
+        "Best for basic filtration; check suitability for your local water source"
+      ],
+      "url": "https://www.amazon.in/s?k=non+electric+water+filter&tag=vsj04-21",
+      "buttonText": "View Non-Electric Filters",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Non-electric filters may not be suitable for every water source; check product specifications carefully."
+    },
+    {
+      "id": "amazon-water-filter-candles-cartridges",
+      "title": "Water Filter Candles & Cartridges",
+      "provider": "Amazon India",
+      "category": "Home Essentials",
+      "icon": "🧪",
+      "description": "Replacement candles, cartridges, sediment filters, carbon filters, RO membranes, and purifier service parts for maintaining water purifiers and filters.",
+      "benefits": [
+        "Useful for regular purifier maintenance",
+        "Includes candles, cartridges, sediment filters, and RO membranes",
+        "Helps maintain water flow and filtration performance",
+        "Check compatibility with your purifier model before buying",
+        "Good for reducing recurring service delays"
+      ],
+      "url": "https://www.amazon.in/s?k=water+filter+candle+cartridge+ro+membrane&tag=vsj04-21",
+      "buttonText": "View Filter Parts",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Always check model compatibility, installation requirements, and replacement schedule."
+    },
+    {
+      "id": "amazon-copper-alkaline-water-purifier",
+      "title": "Copper & Alkaline Water Purifiers",
+      "provider": "Amazon India",
+      "category": "Home Essentials",
+      "icon": "🫗",
+      "description": "Copper, alkaline, and mineral-enhancing water purifier options for buyers who want filtration along with added taste or mineral-related features.",
+      "benefits": [
+        "Useful for people comparing advanced purifier features",
+        "Includes copper, alkaline, mineral, and taste-enhancing options",
+        "Good for modern kitchen and office setups",
+        "Compare TDS level, tank size, filter life, and maintenance cost",
+        "Read product claims carefully and verify service availability"
+      ],
+      "url": "https://www.amazon.in/s?k=copper+alkaline+water+purifier&tag=vsj04-21",
+      "buttonText": "View Copper & Alkaline Purifiers",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Product health or mineral claims should be checked carefully against specifications and local water quality needs."
+    },
+    {
+      "id": "amazon-water-purifier-accessories",
+      "title": "Water Purifier Accessories",
+      "provider": "Amazon India",
+      "category": "Home Essentials",
+      "icon": "🔧",
+      "description": "Accessories for water purifiers including tap connectors, pipes, pre-filters, stands, storage tank parts, valves, and installation support items.",
+      "benefits": [
+        "Useful for installation and maintenance",
+        "Includes pipes, connectors, taps, pre-filters, and valves",
+        "Helpful for repairing or upgrading purifier setups",
+        "Check size, fitting type, and purifier compatibility",
+        "Good for homes, offices, and small learning centers"
+      ],
+      "url": "https://www.amazon.in/s?k=water+purifier+accessories+pre+filter+pipe+connector&tag=vsj04-21",
+      "buttonText": "View Accessories",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Check compatibility and installation requirements before purchasing."
     }
   ]
 }
