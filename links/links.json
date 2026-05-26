@@ -5,7 +5,7 @@
   "website": "https://www.learnwithchampak.live/",
   "generatedFor": "Search and SEO optimized link index",
   "duplicatePolicy": "Only exact duplicate canonical URLs are removed. Original unique links are preserved.",
-  "totalItems": 83,
+  "totalItems": 84,
   "duplicatesRemoved": 0,
   "seoDefaults": {
     "defaultTitleSuffix": "Learn With Champak",
@@ -4516,6 +4516,60 @@
       "sortTitle": "java nested for loops",
       "priority": 2,
       "category": "Java"
+    },
+    {
+      "title": "Regression 0 to 10%",
+      "description": "Begin learning regression from 0 to 10% with beginner-friendly explanations of linear regression, curve fitting, statistics, interpretation, and Python implementation.",
+      "type": "lesson",
+      "tags": [
+        "Regression",
+        "Linear Regression",
+        "Curve Fitting",
+        "Statistics",
+        "Python",
+        "Machine Learning",
+        "AI",
+        "ML",
+        "Data Science",
+        "NumPy",
+        "AI course",
+        "Machine learning tutorial",
+        "Data analysis",
+        "Programmers Picnic",
+        "Champak Roy",
+        "Learn With Champak",
+        "learnwithchampak.live"
+      ],
+      "url": "https://aiml.learnwithchampak.live/regression/0-10",
+      "slug": "regression-0-to-10",
+      "topic": "Regression",
+      "level": "Beginner",
+      "seoTitle": "Regression 0 to 10% | Learn With Champak",
+      "metaDescription": "Begin learning regression from 0 to 10% with linear regression, curve fitting, statistics, interpretation, and Python implementation.",
+      "canonicalUrl": "https://aiml.learnwithchampak.live/regression/0-10",
+      "searchKeywords": [
+        "Regression",
+        "Linear Regression",
+        "Curve Fitting",
+        "Statistics",
+        "Python",
+        "Machine Learning",
+        "AI",
+        "ML",
+        "Data Science",
+        "NumPy",
+        "AI course",
+        "Machine learning tutorial",
+        "Data analysis",
+        "Programmers Picnic",
+        "Champak Roy",
+        "Learn With Champak",
+        "learnwithchampak.live"
+      ],
+      "searchText": "Regression 0 to 10% | Regression | lesson | Begin learning regression from 0 to 10% with beginner-friendly explanations of linear regression, curve fitting, statistics, interpretation, and Python implementation. | https://aiml.learnwithchampak.live/regression/0-10 | Regression | Linear Regression | Curve Fitting | Statistics | Python | Machine Learning | AI | ML | Data Science | NumPy | AI course | Machine learning tutorial | Data analysis | Programmers Picnic | Champak Roy | Learn With Champak | learnwithchampak.live",
+      "sortTitle": "regression 0 to 10%",
+      "priority": 2,
+      "category": "AI-ML"
     }
   ],
   "lastUpdated": "2026-05-26",
@@ -4549,24 +4603,10 @@
     }
   ],
   "lastAddSummary": {
-    "requested": 11,
-    "added": 8,
-    "skippedDuplicates": 3,
-    "addedUrls": [
-      "https://dsa.learnwithchampak.live/java/boolean/",
-      "https://dsa.learnwithchampak.live/java/arithmetic/",
-      "https://dsa.learnwithchampak.live/java/io",
-      "https://dsa.learnwithchampak.live/java/if-else-ternary-switch",
-      "https://dsa.learnwithchampak.live/java/loops/for",
-      "https://dsa.learnwithchampak.live/java/loops/while",
-      "https://dsa.learnwithchampak.live/java/loops/nested",
-      "https://dsa.learnwithchampak.live/java/loops/nested/for"
-    ],
-    "skippedDuplicateUrls": [
-      "https://dsa.learnwithchampak.live/java/scanner",
-      "https://dsa.learnwithchampak.live/java/ides",
-      "https://dsa.learnwithchampak.live/java/loops/for"
-    ],
-    "categoryAddedOrUpdated": "Java"
+    "requested": 1,
+    "added": 1,
+    "skippedDuplicates": 0,
+    "addedUrls": ["https://aiml.learnwithchampak.live/regression/0-10"],
+    "skippedDuplicateUrls": []
   }
 }
