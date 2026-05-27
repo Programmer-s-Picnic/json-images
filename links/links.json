@@ -1023,12 +1023,21 @@
       "priority": 2
     },
     {
-      "title": "Multilevel UI",
+      "title": "Multilevel Layout UI",
       "description": "Multilevel UI using Flex and Grid.",
       "type": "tool",
       "topic": "Flex, Grid",
       "tags": ["Flex, Grid", "Tool", "HTML"],
       "url": "https://dsa.learnwithchampak.live/html/pages/layouts/multilevel/",
+      "priority": 1
+    },
+    {
+      "title": "Layout UI",
+      "description": "UI using Flex and Grid.",
+      "type": "tool",
+      "topic": "Flex, Grid",
+      "tags": ["Flex, Grid", "Tool", "HTML"],
+      "url": "https://dsa.learnwithchampak.live/html/pages/layouts/",
       "priority": 1
     }
   ]
