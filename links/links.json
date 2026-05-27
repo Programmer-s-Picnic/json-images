@@ -1021,6 +1021,15 @@
       "tags": ["JSON", "API", "Dataset", "Tool", "HTML"],
       "url": "https://dsa.learnwithchampak.live/html/jsonui/",
       "priority": 2
+    },
+    {
+      "title": "Multilevel UI",
+      "description": "Multilevel UI using Flex and Grid.",
+      "type": "tool",
+      "topic": "Flex, Grid",
+      "tags": ["Flex, Grid", "Tool", "HTML"],
+      "url": "https://dsa.learnwithchampak.live/html/pages/layouts/multilevel/",
+      "priority": 1
     }
   ]
 }
