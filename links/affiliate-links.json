@@ -400,6 +400,708 @@
       "url": "https://www.amazon.in/s?k=water+purifier+accessories+pre+filter+pipe+connector&tag=vsj04-21",
       "buttonText": "View Accessories",
       "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Check compatibility and installation requirements before purchasing."
+    },
+    {
+      "id": "amazon-monthly-grocery-essentials",
+      "title": "Monthly Grocery Essentials",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🛒",
+      "description": "A practical monthly grocery basket for a Varanasi family including staples, kitchen basics, packaged foods, and regular household consumables.",
+      "benefits": [
+        "Useful for monthly household planning",
+        "Covers regular kitchen and grocery needs",
+        "Good for families, students, and working households",
+        "Compare pack size, brand, freshness, and delivery availability",
+        "Helpful for saving time on repeated purchases"
+      ],
+      "url": "https://www.amazon.in/s?k=monthly+grocery+essentials+family+staples&tag=vsj04-21",
+      "buttonText": "View Monthly Groceries",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Product availability, prices, and delivery depend on location and seller."
+    },
+    {
+      "id": "amazon-atta-flour",
+      "title": "Atta, Flour & Baking Basics",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🌾",
+      "description": "Wheat atta, multigrain atta, besan, maida, suji, rava, corn flour, and baking basics for everyday Indian cooking.",
+      "benefits": [
+        "Daily-use staple for roti, paratha, poori, pakora, and snacks",
+        "Useful for North Indian family kitchens",
+        "Compare freshness, grain type, pack size, and brand",
+        "Includes atta, besan, maida, suji, and related flours",
+        "Good for monthly ration planning"
+      ],
+      "url": "https://www.amazon.in/s?k=atta+besan+maida+suji+flour&tag=vsj04-21",
+      "buttonText": "View Flour & Atta",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-rice-poha-grains",
+      "title": "Rice, Poha & Grains",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🍚",
+      "description": "Rice, basmati rice, regular rice, poha, murmura, daliya, millets, and everyday grains for Indian meals and breakfast.",
+      "benefits": [
+        "Useful for daily meals and breakfast",
+        "Includes basmati, regular rice, poha, daliya, and millets",
+        "Good for families who cook at home regularly",
+        "Compare grain quality, aroma, age, and pack size",
+        "Helpful for monthly ration stocking"
+      ],
+      "url": "https://www.amazon.in/s?k=rice+basmati+poha+daliya+millets+grains&tag=vsj04-21",
+      "buttonText": "View Rice & Grains",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-dal-pulses",
+      "title": "Dal, Pulses & Legumes",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🥣",
+      "description": "Toor dal, masoor dal, moong dal, chana dal, urad dal, rajma, chole, matar, and other pulses for regular home cooking.",
+      "benefits": [
+        "Essential protein source for Indian families",
+        "Useful for dal, khichdi, chole, rajma, and snacks",
+        "Compare polish, quality, cooking time, and pack size",
+        "Good for vegetarian meal planning",
+        "Useful for monthly ration storage"
+      ],
+      "url": "https://www.amazon.in/s?k=dal+pulses+rajma+chole+moong+masoor+toor+chana+urad&tag=vsj04-21",
+      "buttonText": "View Dal & Pulses",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-cooking-oil-ghee",
+      "title": "Cooking Oil & Ghee",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🛢️",
+      "description": "Mustard oil, refined oil, sunflower oil, groundnut oil, rice bran oil, olive oil, and ghee for daily cooking.",
+      "benefits": [
+        "Essential for everyday Indian cooking",
+        "Includes mustard oil, refined oil, and ghee options",
+        "Useful for tadka, frying, sabzi, paratha, and snacks",
+        "Compare pack size, oil type, purity, and price per litre",
+        "Good for monthly kitchen budgeting"
+      ],
+      "url": "https://www.amazon.in/s?k=mustard+oil+refined+oil+sunflower+oil+ghee&tag=vsj04-21",
+      "buttonText": "View Oils & Ghee",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-salt-sugar-jaggery",
+      "title": "Salt, Sugar & Jaggery",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🧂",
+      "description": "Iodized salt, rock salt, black salt, sugar, mishri, jaggery, and basic sweetening essentials for Indian kitchens.",
+      "benefits": [
+        "Daily-use kitchen basics",
+        "Useful for cooking, tea, sweets, chutneys, and fasting food",
+        "Includes salt, sugar, jaggery, and related basics",
+        "Compare pack size and freshness",
+        "Helpful for monthly ration planning"
+      ],
+      "url": "https://www.amazon.in/s?k=salt+sugar+jaggery+mishri+black+salt+rock+salt&tag=vsj04-21",
+      "buttonText": "View Salt & Sugar",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-spices-masala",
+      "title": "Spices & Masala",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🌶️",
+      "description": "Haldi, mirch, dhania, jeera, garam masala, sabzi masala, chaat masala, hing, kasuri methi, and whole spices.",
+      "benefits": [
+        "Essential for Indian cooking",
+        "Includes powder spices, whole spices, and blended masalas",
+        "Useful for sabzi, dal, curry, snacks, and chaat",
+        "Compare aroma, freshness, pack size, and brand",
+        "Good for regular home kitchens"
+      ],
+      "url": "https://www.amazon.in/s?k=haldi+mirch+dhania+jeera+garam+masala+hing+whole+spices&tag=vsj04-21",
+      "buttonText": "View Spices",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-tea-coffee-beverages",
+      "title": "Tea, Coffee & Beverages",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "☕",
+      "description": "Tea, coffee, green tea, milk powder, health drinks, sharbat, squash, and regular home beverage essentials.",
+      "benefits": [
+        "Useful for daily family tea and coffee needs",
+        "Good for guests, office work, and study sessions",
+        "Includes tea, coffee, milk powder, and beverages",
+        "Compare pack size, taste, and brand preference",
+        "Good for monthly home stocking"
+      ],
+      "url": "https://www.amazon.in/s?k=tea+coffee+milk+powder+beverages+squash+sharbat&tag=vsj04-21",
+      "buttonText": "View Tea & Beverages",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-breakfast-foods",
+      "title": "Breakfast Foods",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🥣",
+      "description": "Corn flakes, oats, muesli, daliya, poha, vermicelli, instant breakfast mixes, spreads, and breakfast staples.",
+      "benefits": [
+        "Useful for quick family breakfasts",
+        "Good for students and working people",
+        "Includes oats, poha, cereals, vermicelli, and mixes",
+        "Compare sugar content, ingredients, and pack size",
+        "Helpful for busy mornings"
+      ],
+      "url": "https://www.amazon.in/s?k=breakfast+foods+oats+corn+flakes+muesli+poha+vermicelli&tag=vsj04-21",
+      "buttonText": "View Breakfast Items",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-snacks-biscuits-namkeen",
+      "title": "Snacks, Biscuits & Namkeen",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🍪",
+      "description": "Biscuits, cookies, namkeen, chips, makhana, roasted snacks, crackers, and light snacks for family tea time.",
+      "benefits": [
+        "Useful for tea time and guests",
+        "Good for family snacking and travel",
+        "Includes biscuits, namkeen, chips, crackers, and roasted snacks",
+        "Compare pack size, freshness, and ingredients",
+        "Helpful for monthly pantry stocking"
+      ],
+      "url": "https://www.amazon.in/s?k=biscuits+cookies+namkeen+chips+makhana+roasted+snacks&tag=vsj04-21",
+      "buttonText": "View Snacks",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-noodles-pasta-ready-food",
+      "title": "Noodles, Pasta & Ready-to-Cook Food",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🍜",
+      "description": "Noodles, pasta, vermicelli, soups, ready-to-cook mixes, instant meals, and quick cooking options for busy days.",
+      "benefits": [
+        "Useful for quick meals and snacks",
+        "Good for students and working families",
+        "Includes noodles, pasta, soups, and instant mixes",
+        "Compare ingredients, quantity, and preparation time",
+        "Helpful as emergency pantry stock"
+      ],
+      "url": "https://www.amazon.in/s?k=noodles+pasta+soup+ready+to+cook+instant+meals&tag=vsj04-21",
+      "buttonText": "View Ready Foods",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-pickles-papad-chutney",
+      "title": "Pickles, Papad & Chutney",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🥒",
+      "description": "Pickles, papad, chutney, sauces, ketchup, spreads, and meal accompaniments for everyday Indian food.",
+      "benefits": [
+        "Useful with roti, paratha, dal-rice, and snacks",
+        "Good for family meals and guests",
+        "Includes pickles, papad, chutney, sauces, and ketchup",
+        "Compare taste, spice level, ingredients, and pack size",
+        "Adds variety to daily meals"
+      ],
+      "url": "https://www.amazon.in/s?k=pickle+papad+chutney+ketchup+sauces+spreads&tag=vsj04-21",
+      "buttonText": "View Pickles & Papad",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-dry-fruits-nuts-seeds",
+      "title": "Dry Fruits, Nuts & Seeds",
+      "provider": "Amazon India",
+      "category": "Grocery Essentials",
+      "icon": "🥜",
+      "description": "Almonds, cashews, raisins, dates, walnuts, pistachios, peanuts, makhana, and seeds for family snacks and cooking.",
+      "benefits": [
+        "Useful for snacks, sweets, breakfast, and guests",
+        "Includes almonds, cashews, raisins, dates, and seeds",
+        "Good for festivals and family storage",
+        "Compare freshness, origin, size, and pack quality",
+        "Useful in sweets, kheer, and daily snacks"
+      ],
+      "url": "https://www.amazon.in/s?k=dry+fruits+nuts+seeds+almonds+cashews+raisins+dates+makhana&tag=vsj04-21",
+      "buttonText": "View Dry Fruits",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-baby-food-care",
+      "title": "Baby Food & Baby Care",
+      "provider": "Amazon India",
+      "category": "Family Care",
+      "icon": "🍼",
+      "description": "Baby food, diapers, wipes, baby soap, baby shampoo, baby oil, feeding bottles, and family baby care essentials.",
+      "benefits": [
+        "Useful for families with infants and toddlers",
+        "Includes diapers, wipes, baby care, and feeding essentials",
+        "Compare age suitability, size, and skin sensitivity",
+        "Helpful for monthly baby care planning",
+        "Check product labels and pediatric advice where needed"
+      ],
+      "url": "https://www.amazon.in/s?k=baby+diapers+wipes+baby+food+baby+care+essentials&tag=vsj04-21",
+      "buttonText": "View Baby Essentials",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Check suitability and labels carefully for babies and young children."
+    },
+    {
+      "id": "amazon-personal-care-family",
+      "title": "Family Personal Care",
+      "provider": "Amazon India",
+      "category": "Family Care",
+      "icon": "🧴",
+      "description": "Soap, shampoo, toothpaste, toothbrushes, handwash, face wash, body lotion, hair oil, deodorant, and daily grooming essentials.",
+      "benefits": [
+        "Daily-use personal care items for the whole family",
+        "Useful for bathroom and travel kits",
+        "Includes soap, shampoo, toothpaste, handwash, lotion, and hair oil",
+        "Compare skin type, fragrance, pack size, and brand",
+        "Helpful for monthly household stocking"
+      ],
+      "url": "https://www.amazon.in/s?k=family+personal+care+soap+shampoo+toothpaste+handwash+lotion+hair+oil&tag=vsj04-21",
+      "buttonText": "View Personal Care",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-feminine-hygiene",
+      "title": "Feminine Hygiene Essentials",
+      "provider": "Amazon India",
+      "category": "Family Care",
+      "icon": "🌸",
+      "description": "Sanitary pads, panty liners, menstrual cups, period care products, and hygiene essentials for family monthly needs.",
+      "benefits": [
+        "Useful for regular monthly care",
+        "Includes sanitary pads, liners, and period hygiene options",
+        "Compare size, flow type, comfort, and pack quantity",
+        "Helpful for home and travel stocking",
+        "Choose products based on personal comfort and suitability"
+      ],
+      "url": "https://www.amazon.in/s?k=sanitary+pads+panty+liners+menstrual+cups+period+care&tag=vsj04-21",
+      "buttonText": "View Hygiene Essentials",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-first-aid-health-supplies",
+      "title": "First Aid & Health Supplies",
+      "provider": "Amazon India",
+      "category": "Family Care",
+      "icon": "🩹",
+      "description": "First aid kits, bandages, cotton, antiseptic supplies, thermometers, hot water bags, vapor steamers, and basic family care items.",
+      "benefits": [
+        "Useful for every family home",
+        "Good for minor cuts, travel, and emergency preparedness",
+        "Includes first aid kits, bandages, cotton, thermometers, and hot water bags",
+        "Compare kit contents and expiry dates where applicable",
+        "Keep basic supplies available at home"
+      ],
+      "url": "https://www.amazon.in/s?k=first+aid+kit+bandage+cotton+thermometer+hot+water+bag+vapor+steamer&tag=vsj04-21",
+      "buttonText": "View First Aid Supplies",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. For medical concerns, consult a qualified healthcare professional."
+    },
+    {
+      "id": "amazon-laundry-detergent",
+      "title": "Laundry Detergent & Fabric Care",
+      "provider": "Amazon India",
+      "category": "Cleaning Supplies",
+      "icon": "🧺",
+      "description": "Detergent powder, liquid detergent, fabric softener, stain remover, washing machine cleaner, and laundry care products.",
+      "benefits": [
+        "Essential for regular family laundry",
+        "Includes detergent, fabric conditioner, stain remover, and machine cleaner",
+        "Useful for hand wash and washing machine use",
+        "Compare fragrance, skin suitability, and pack size",
+        "Good for monthly household stocking"
+      ],
+      "url": "https://www.amazon.in/s?k=laundry+detergent+powder+liquid+fabric+softener+stain+remover+washing+machine+cleaner&tag=vsj04-21",
+      "buttonText": "View Laundry Items",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-dishwash-cleaning",
+      "title": "Dishwash & Kitchen Cleaning",
+      "provider": "Amazon India",
+      "category": "Cleaning Supplies",
+      "icon": "🍽️",
+      "description": "Dishwash bars, dishwash liquids, scrub pads, steel scrubbers, kitchen cleaners, sink cleaners, and grease-removal products.",
+      "benefits": [
+        "Daily-use kitchen cleaning essentials",
+        "Includes dishwash liquid, bars, scrub pads, and kitchen cleaner",
+        "Useful for utensils, sink, stove, and countertops",
+        "Compare quantity, fragrance, and grease-cutting ability",
+        "Helpful for regular kitchen hygiene"
+      ],
+      "url": "https://www.amazon.in/s?k=dishwash+liquid+bar+scrub+pads+kitchen+cleaner+sink+cleaner&tag=vsj04-21",
+      "buttonText": "View Dishwash Items",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-floor-bathroom-cleaners",
+      "title": "Floor & Bathroom Cleaners",
+      "provider": "Amazon India",
+      "category": "Cleaning Supplies",
+      "icon": "🧽",
+      "description": "Floor cleaners, bathroom cleaners, toilet cleaners, disinfectant liquids, phenyl, tile cleaners, and surface cleaning products.",
+      "benefits": [
+        "Useful for daily home cleaning",
+        "Includes floor, bathroom, toilet, tile, and surface cleaners",
+        "Good for family hygiene and regular maintenance",
+        "Compare fragrance, disinfecting claims, and pack size",
+        "Helpful for monsoon and dust-prone seasons"
+      ],
+      "url": "https://www.amazon.in/s?k=floor+cleaner+bathroom+cleaner+toilet+cleaner+phenyl+disinfectant+tile+cleaner&tag=vsj04-21",
+      "buttonText": "View Cleaners",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Use cleaning products safely and follow label instructions."
+    },
+    {
+      "id": "amazon-mops-brooms-dusters",
+      "title": "Mops, Brooms & Dusters",
+      "provider": "Amazon India",
+      "category": "Cleaning Supplies",
+      "icon": "🧹",
+      "description": "Brooms, pocha mops, spin mops, dusters, microfiber cloths, toilet brushes, and daily home cleaning tools.",
+      "benefits": [
+        "Essential for daily sweeping, mopping, and dusting",
+        "Useful for homes in dusty city conditions",
+        "Includes brooms, mops, dusters, cloths, and toilet brushes",
+        "Compare handle quality, refill availability, and storage size",
+        "Good for family homes and small offices"
+      ],
+      "url": "https://www.amazon.in/s?k=broom+mop+spin+mop+duster+microfiber+cloth+toilet+brush&tag=vsj04-21",
+      "buttonText": "View Cleaning Tools",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-garbage-bags-waste",
+      "title": "Garbage Bags & Waste Management",
+      "provider": "Amazon India",
+      "category": "Cleaning Supplies",
+      "icon": "🗑️",
+      "description": "Garbage bags, dustbins, wet-dry waste bins, compost bags, bin liners, and household waste management items.",
+      "benefits": [
+        "Useful for kitchen, bathroom, office, and bedroom bins",
+        "Helps keep waste disposal cleaner and organized",
+        "Includes garbage bags, dustbins, and bin liners",
+        "Compare size, thickness, quantity, and fragrance",
+        "Good for daily household hygiene"
+      ],
+      "url": "https://www.amazon.in/s?k=garbage+bags+dustbin+bin+liners+wet+dry+waste+bin&tag=vsj04-21",
+      "buttonText": "View Waste Essentials",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-tissue-paper-napkins",
+      "title": "Tissues, Napkins & Paper Products",
+      "provider": "Amazon India",
+      "category": "Household Essentials",
+      "icon": "🧻",
+      "description": "Toilet paper, tissue boxes, kitchen rolls, paper napkins, wet wipes, and disposable paper products for family use.",
+      "benefits": [
+        "Useful for kitchen, dining, bathroom, and travel",
+        "Includes tissues, napkins, toilet paper, and kitchen rolls",
+        "Good for guests and daily family hygiene",
+        "Compare sheet count, softness, and pack size",
+        "Helpful for monthly household stocking"
+      ],
+      "url": "https://www.amazon.in/s?k=tissue+paper+toilet+paper+kitchen+roll+paper+napkins+wet+wipes&tag=vsj04-21",
+      "buttonText": "View Paper Products",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-mosquito-repellent",
+      "title": "Mosquito Repellent & Pest Control",
+      "provider": "Amazon India",
+      "category": "Household Essentials",
+      "icon": "🦟",
+      "description": "Mosquito repellents, vaporizers, coils, mosquito nets, insect sprays, cockroach traps, and pest control products for Indian homes.",
+      "benefits": [
+        "Important for evenings, monsoon, and mosquito-prone areas",
+        "Includes vaporizer refills, sprays, nets, and pest-control items",
+        "Useful for bedrooms, balconies, and study rooms",
+        "Compare safety instructions, fragrance, and room coverage",
+        "Helpful for families with children and elders when used carefully"
+      ],
+      "url": "https://www.amazon.in/s?k=mosquito+repellent+vaporizer+refill+mosquito+net+insect+spray+cockroach+trap&tag=vsj04-21",
+      "buttonText": "View Repellents",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Use repellents and pest-control products according to label instructions."
+    },
+    {
+      "id": "amazon-kitchen-storage-containers",
+      "title": "Kitchen Storage Containers",
+      "provider": "Amazon India",
+      "category": "Kitchen Essentials",
+      "icon": "🫙",
+      "description": "Airtight containers, jars, masala boxes, dal-rice storage boxes, fridge containers, and kitchen organization items.",
+      "benefits": [
+        "Useful for storing atta, rice, dal, spices, snacks, and leftovers",
+        "Helps keep the kitchen organized",
+        "Includes airtight containers, jars, and masala boxes",
+        "Compare material, capacity, sealing quality, and stackability",
+        "Good for monthly ration storage"
+      ],
+      "url": "https://www.amazon.in/s?k=kitchen+storage+containers+airtight+jars+masala+box+rice+dal+container&tag=vsj04-21",
+      "buttonText": "View Storage Items",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-cookware-utensils",
+      "title": "Cookware & Utensils",
+      "provider": "Amazon India",
+      "category": "Kitchen Essentials",
+      "icon": "🍳",
+      "description": "Kadhai, tawa, fry pan, pressure cooker, saucepan, cooker accessories, ladles, knives, chopping boards, and everyday cooking utensils.",
+      "benefits": [
+        "Essential for daily Indian cooking",
+        "Includes kadhai, tawa, pans, cooker, knives, and utensils",
+        "Useful for family kitchens and new home setups",
+        "Compare material, induction compatibility, size, and durability",
+        "Good for replacing old cookware"
+      ],
+      "url": "https://www.amazon.in/s?k=kadhai+tawa+fry+pan+pressure+cooker+utensils+knife+chopping+board&tag=vsj04-21",
+      "buttonText": "View Cookware",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-kitchen-appliances",
+      "title": "Kitchen Appliances",
+      "provider": "Amazon India",
+      "category": "Kitchen Essentials",
+      "icon": "🔌",
+      "description": "Mixer grinder, induction cooktop, electric kettle, toaster, sandwich maker, rice cooker, hand blender, and small kitchen appliances.",
+      "benefits": [
+        "Useful for faster daily cooking",
+        "Includes mixer, kettle, induction, toaster, and blender options",
+        "Good for homes, hostels, and small offices",
+        "Compare wattage, warranty, jar quality, and service availability",
+        "Helpful for tea, breakfast, chutney, masala, and quick meals"
+      ],
+      "url": "https://www.amazon.in/s?k=mixer+grinder+induction+cooktop+electric+kettle+toaster+hand+blender+rice+cooker&tag=vsj04-21",
+      "buttonText": "View Kitchen Appliances",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-dining-serveware",
+      "title": "Dining & Serveware",
+      "provider": "Amazon India",
+      "category": "Kitchen Essentials",
+      "icon": "🍽️",
+      "description": "Dinner sets, plates, bowls, glasses, cups, serving bowls, trays, spoons, tiffin boxes, lunch boxes, and water bottles.",
+      "benefits": [
+        "Useful for daily meals and guests",
+        "Includes dinner sets, bowls, glasses, trays, lunch boxes, and bottles",
+        "Good for family kitchens and student setups",
+        "Compare material, durability, capacity, and microwave safety",
+        "Helpful for office, school, and travel"
+      ],
+      "url": "https://www.amazon.in/s?k=dinner+set+plates+bowls+glasses+cups+lunch+box+water+bottle+serving+tray&tag=vsj04-21",
+      "buttonText": "View Dining Items",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-puja-essentials",
+      "title": "Puja & Festival Essentials",
+      "provider": "Amazon India",
+      "category": "Varanasi Household",
+      "icon": "🪔",
+      "description": "Diyas, agarbatti, dhoop, camphor, cotton wicks, puja thali, bells, copper lota, kalash, incense holders, and regular puja items.",
+      "benefits": [
+        "Useful for daily puja and festivals",
+        "Good for Varanasi homes and traditional family routines",
+        "Includes diya, agarbatti, dhoop, camphor, wicks, and puja thali",
+        "Helpful for guests, festivals, and temple visits",
+        "Compare material, fragrance, quantity, and safety"
+      ],
+      "url": "https://www.amazon.in/s?k=puja+items+diya+agarbatti+dhoop+camphor+cotton+wicks+puja+thali+copper+lota&tag=vsj04-21",
+      "buttonText": "View Puja Essentials",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Use lamps, incense, and camphor safely."
+    },
+    {
+      "id": "amazon-bedding-linen",
+      "title": "Bedsheets, Pillows & Bedding",
+      "provider": "Amazon India",
+      "category": "Household Essentials",
+      "icon": "🛏️",
+      "description": "Bedsheets, pillow covers, pillows, mattresses, mattress protectors, blankets, dohars, quilts, and seasonal bedding.",
+      "benefits": [
+        "Useful for bedrooms, guests, and family comfort",
+        "Includes bedsheets, pillows, blankets, quilts, and mattress protectors",
+        "Good for summer, winter, and guest rooms",
+        "Compare fabric, size, thread count, and washability",
+        "Helpful for complete home setup"
+      ],
+      "url": "https://www.amazon.in/s?k=bedsheet+pillow+blanket+quilt+mattress+protector+dohar&tag=vsj04-21",
+      "buttonText": "View Bedding",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-bathroom-essentials",
+      "title": "Bathroom Essentials",
+      "provider": "Amazon India",
+      "category": "Household Essentials",
+      "icon": "🚿",
+      "description": "Buckets, mugs, bathroom mats, shower curtains, towel racks, soap holders, toilet brushes, bathroom shelves, and bath accessories.",
+      "benefits": [
+        "Useful for every bathroom setup",
+        "Includes buckets, mugs, mats, shelves, and holders",
+        "Good for new homes, rented rooms, and family houses",
+        "Compare size, material, grip, and rust resistance",
+        "Helpful for bathroom organization and safety"
+      ],
+      "url": "https://www.amazon.in/s?k=bathroom+bucket+mug+mat+shower+curtain+towel+rack+soap+holder+shelf&tag=vsj04-21",
+      "buttonText": "View Bathroom Items",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-towels-napkins",
+      "title": "Towels & Napkins",
+      "provider": "Amazon India",
+      "category": "Household Essentials",
+      "icon": "🧺",
+      "description": "Bath towels, hand towels, face towels, kitchen towels, napkins, microfiber towels, and towel sets for family use.",
+      "benefits": [
+        "Useful for bath, kitchen, travel, and guests",
+        "Includes towel sets, hand towels, face towels, and kitchen napkins",
+        "Compare absorbency, fabric, GSM, size, and drying speed",
+        "Good for family and guest stocking",
+        "Helpful for daily hygiene"
+      ],
+      "url": "https://www.amazon.in/s?k=bath+towel+hand+towel+face+towel+kitchen+towel+microfiber+towel+set&tag=vsj04-21",
+      "buttonText": "View Towels",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-home-organization",
+      "title": "Home Organization",
+      "provider": "Amazon India",
+      "category": "Household Essentials",
+      "icon": "📦",
+      "description": "Storage boxes, wardrobes, cloth organizers, shoe racks, hooks, hangers, drawer organizers, laundry baskets, and space-saving home organizers.",
+      "benefits": [
+        "Useful for keeping homes clean and organized",
+        "Includes shoe racks, storage boxes, hangers, hooks, and organizers",
+        "Good for small rooms and family houses",
+        "Compare size, material, load capacity, and assembly needs",
+        "Helpful for clothes, shoes, toys, documents, and pantry items"
+      ],
+      "url": "https://www.amazon.in/s?k=home+organization+storage+box+shoe+rack+hangers+hooks+laundry+basket+drawer+organizer&tag=vsj04-21",
+      "buttonText": "View Organizers",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-lighting-electrical",
+      "title": "Lighting & Electrical Essentials",
+      "provider": "Amazon India",
+      "category": "Household Essentials",
+      "icon": "💡",
+      "description": "LED bulbs, tube lights, extension boards, surge protectors, batteries, torches, emergency lights, wires, plugs, and home electrical basics.",
+      "benefits": [
+        "Useful for power cuts and daily home use",
+        "Includes LED bulbs, extension boards, torches, and emergency lights",
+        "Good for study rooms, kitchens, and bedrooms",
+        "Compare wattage, safety rating, cable length, and warranty",
+        "Helpful for Varanasi homes during outages and seasonal needs"
+      ],
+      "url": "https://www.amazon.in/s?k=LED+bulb+extension+board+surge+protector+battery+torch+emergency+light&tag=vsj04-21",
+      "buttonText": "View Electrical Items",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Use electrical items safely and follow product instructions."
+    },
+    {
+      "id": "amazon-rainy-season-essentials",
+      "title": "Rainy Season Essentials",
+      "provider": "Amazon India",
+      "category": "Varanasi Household",
+      "icon": "☔",
+      "description": "Umbrellas, raincoats, waterproof bags, shoe covers, anti-skid mats, mosquito control, and monsoon home essentials.",
+      "benefits": [
+        "Useful during Varanasi monsoon season",
+        "Includes umbrella, raincoat, waterproof covers, and anti-skid items",
+        "Good for students, office-goers, and family travel",
+        "Helpful for protecting bags, shoes, and electronics",
+        "Compare durability, size, waterproofing, and portability"
+      ],
+      "url": "https://www.amazon.in/s?k=umbrella+raincoat+waterproof+bag+shoe+cover+anti+skid+mat+monsoon+essentials&tag=vsj04-21",
+      "buttonText": "View Monsoon Essentials",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-winter-essentials",
+      "title": "Winter Essentials",
+      "provider": "Amazon India",
+      "category": "Varanasi Household",
+      "icon": "🧣",
+      "description": "Blankets, room heaters, thermal wear, socks, caps, gloves, quilts, hot water bags, and winter comfort items for family homes.",
+      "benefits": [
+        "Useful during North Indian winter",
+        "Includes blankets, heaters, thermals, caps, gloves, and hot water bags",
+        "Good for elders, children, and family bedrooms",
+        "Compare safety features, fabric, size, and power consumption",
+        "Helpful for seasonal household planning"
+      ],
+      "url": "https://www.amazon.in/s?k=winter+essentials+blanket+room+heater+thermal+wear+socks+cap+gloves+hot+water+bag&tag=vsj04-21",
+      "buttonText": "View Winter Essentials",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Use heaters and electrical items safely."
+    },
+    {
+      "id": "amazon-stationery-school-office",
+      "title": "Stationery, School & Office Supplies",
+      "provider": "Amazon India",
+      "category": "Family Education",
+      "icon": "✏️",
+      "description": "Notebooks, pens, pencils, files, folders, printer paper, markers, whiteboards, calculators, and school-office supplies.",
+      "benefits": [
+        "Useful for students, teachers, and office work",
+        "Includes notebooks, pens, files, paper, whiteboards, and markers",
+        "Good for online classes and homework",
+        "Compare quantity, paper quality, and pack value",
+        "Helpful for monthly education and office needs"
+      ],
+      "url": "https://www.amazon.in/s?k=stationery+notebooks+pens+pencils+files+printer+paper+whiteboard+markers+school+office+supplies&tag=vsj04-21",
+      "buttonText": "View Stationery",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-reusable-shopping-bags",
+      "title": "Reusable Bags & Shopping Helpers",
+      "provider": "Amazon India",
+      "category": "Household Essentials",
+      "icon": "🛍️",
+      "description": "Reusable shopping bags, cloth bags, grocery bags, vegetable bags, trolley bags, and storage bags for regular bazaar and supermarket visits.",
+      "benefits": [
+        "Useful for Varanasi market and grocery shopping",
+        "Includes cloth bags, foldable bags, and storage bags",
+        "Good for vegetables, fruits, groceries, and travel",
+        "Reusable option for regular household shopping",
+        "Compare size, load capacity, and washability"
+      ],
+      "url": "https://www.amazon.in/s?k=reusable+shopping+bags+cloth+grocery+bags+vegetable+bags+trolley+bag&tag=vsj04-21",
+      "buttonText": "View Shopping Bags",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-home-security-safety",
+      "title": "Home Safety & Security",
+      "provider": "Amazon India",
+      "category": "Household Essentials",
+      "icon": "🔒",
+      "description": "Door locks, padlocks, door stoppers, safety latches, CCTV cameras, smart doorbells, fire extinguishers, and basic home safety items.",
+      "benefits": [
+        "Useful for homes, shops, offices, and rented rooms",
+        "Includes locks, latches, CCTV, doorbells, and safety devices",
+        "Good for family safety and monitoring",
+        "Compare material, compatibility, warranty, and installation needs",
+        "Helpful for household peace of mind"
+      ],
+      "url": "https://www.amazon.in/s?k=door+lock+padlock+safety+latch+CCTV+camera+smart+doorbell+fire+extinguisher&tag=vsj04-21",
+      "buttonText": "View Safety Items",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Install and use security products responsibly."
     }
   ]
 }
