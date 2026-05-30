@@ -801,6 +801,23 @@
       "publishedDate": "23-05-2026"
     },
     {
+      "title": "Saturday Questions 30-05-2026",
+      "description": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Data Structures"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-30-05-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "30-05-2026"
+    },
+    {
       "title": "Authorised AI-ML Access",
       "description": "Authorised access area for Learn With Champak AI-ML resources, guided learning, protected lessons, and student practice materials.",
       "type": "platform",
