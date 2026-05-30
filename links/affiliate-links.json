@@ -169,6 +169,438 @@
       "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
     },
     {
+      "id": "amazon-desktop-computers",
+      "title": "Desktop Computers",
+      "provider": "Amazon India",
+      "category": "Computers",
+      "icon": "🖥️",
+      "description": "Desktop computer options for coding classes, office work, school projects, online teaching, browsing, accounting, and daily productivity.",
+      "benefits": [
+        "Useful for fixed study and office setups",
+        "Good for coding, teaching, documents, and video classes",
+        "Often easier to upgrade than laptops",
+        "Compare processor, RAM, SSD, monitor bundle, and warranty",
+        "Check Wi-Fi, Bluetooth, keyboard, mouse, and operating system before buying"
+      ],
+      "url": "https://www.amazon.in/s?k=desktop+computer+for+office+coding+students&tag=vsj04-21",
+      "buttonText": "View Desktop Computers",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-mini-pc",
+      "title": "Mini PC",
+      "provider": "Amazon India",
+      "category": "Computers",
+      "icon": "🧊",
+      "description": "Compact mini PCs for online classes, coding practice, office work, digital signage, home study desks, and low-space computer setups.",
+      "benefits": [
+        "Compact and clean desk setup",
+        "Useful for students, teachers, offices, and home labs",
+        "Good when paired with an existing monitor, keyboard, and mouse",
+        "Compare RAM, SSD, processor generation, ports, and cooling",
+        "Check operating system and upgrade options before buying"
+      ],
+      "url": "https://www.amazon.in/s?k=mini+pc+windows+office+coding&tag=vsj04-21",
+      "buttonText": "View Mini PCs",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-all-in-one-computers",
+      "title": "All-in-One Computers",
+      "provider": "Amazon India",
+      "category": "Computers",
+      "icon": "🖥️",
+      "description": "All-in-one desktop computers with monitor and CPU integrated into one unit for cleaner office, classroom, and home study setups.",
+      "benefits": [
+        "Clean setup with fewer cables",
+        "Useful for reception desks, homes, and learning centers",
+        "Good for browsing, documents, video calls, and teaching",
+        "Compare screen size, processor, RAM, SSD, webcam, and speakers",
+        "Check keyboard, mouse, operating system, and service support"
+      ],
+      "url": "https://www.amazon.in/s?k=all+in+one+desktop+computer&tag=vsj04-21",
+      "buttonText": "View All-in-One PCs",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-computer-monitors",
+      "title": "Computer Monitors",
+      "provider": "Amazon India",
+      "category": "Computer Peripherals",
+      "icon": "🖥️",
+      "description": "Monitors for coding, online teaching, office work, dual-screen setups, video editing, and comfortable long computer sessions.",
+      "benefits": [
+        "Useful for larger coding and teaching workspace",
+        "Good for dual monitor productivity",
+        "Helpful for reducing laptop-screen strain",
+        "Compare size, resolution, refresh rate, panel type, and eye-care features",
+        "Check HDMI, DisplayPort, VGA, USB-C, and speaker support"
+      ],
+      "url": "https://www.amazon.in/s?k=computer+monitor+for+coding+office&tag=vsj04-21",
+      "buttonText": "View Monitors",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-printers-scanners",
+      "title": "Printers & Scanners",
+      "provider": "Amazon India",
+      "category": "Computer Peripherals",
+      "icon": "🖨️",
+      "description": "Printers, scanners, and all-in-one printer options for worksheets, notes, invoices, assignments, lesson material, and home-office documents.",
+      "benefits": [
+        "Useful for teachers, students, offices, and homes",
+        "Good for printing notes, forms, invoices, and assignments",
+        "Includes ink tank, laser, color, and all-in-one options",
+        "Compare print cost, ink price, Wi-Fi support, duplex printing, and scan quality",
+        "Check warranty and cartridge or ink availability"
+      ],
+      "url": "https://www.amazon.in/s?k=printer+scanner+all+in+one+ink+tank+laser&tag=vsj04-21",
+      "buttonText": "View Printers & Scanners",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-printer-ink-toner",
+      "title": "Printer Ink, Toner & Paper",
+      "provider": "Amazon India",
+      "category": "Computer Peripherals",
+      "icon": "🧾",
+      "description": "Printer ink bottles, cartridges, toner, A4 paper, photo paper, labels, and regular printing supplies for home and office use.",
+      "benefits": [
+        "Useful for regular printer maintenance",
+        "Includes ink, toner, cartridges, and paper supplies",
+        "Good for schools, coaching centers, and offices",
+        "Check printer model compatibility before buying",
+        "Compare page yield, original vs compatible supplies, and cost per page"
+      ],
+      "url": "https://www.amazon.in/s?k=printer+ink+toner+A4+paper+cartridge&tag=vsj04-21",
+      "buttonText": "View Printing Supplies",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Always check printer model compatibility before purchasing."
+    },
+    {
+      "id": "amazon-ups-for-computer",
+      "title": "UPS for Computer",
+      "provider": "Amazon India",
+      "category": "Computer Peripherals",
+      "icon": "🔋",
+      "description": "UPS backup options for desktop computers, Wi-Fi routers, monitors, and important work during short power cuts and voltage fluctuations.",
+      "benefits": [
+        "Useful during power cuts and voltage fluctuations",
+        "Helps protect desktop computers and routers",
+        "Good for online classes and office work continuity",
+        "Compare VA rating, backup time, battery type, and load capacity",
+        "Check whether it supports your CPU, monitor, and router together"
+      ],
+      "url": "https://www.amazon.in/s?k=computer+ups+for+desktop+router&tag=vsj04-21",
+      "buttonText": "View Computer UPS",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Choose capacity according to your connected load."
+    },
+    {
+      "id": "amazon-wifi-router",
+      "title": "Wi-Fi Routers",
+      "provider": "Amazon India",
+      "category": "Networking",
+      "icon": "📡",
+      "description": "Wi-Fi routers for online classes, home internet, office networks, smart TVs, mobile devices, and stable computer connectivity.",
+      "benefits": [
+        "Useful for online classes and work-from-home setups",
+        "Good for homes, offices, and learning centers",
+        "Compare dual-band, Wi-Fi 6, coverage, antennas, and speed",
+        "Check compatibility with your internet service provider",
+        "Helpful for stable video calls and screen sharing"
+      ],
+      "url": "https://www.amazon.in/s?k=wifi+router+dual+band+wifi+6&tag=vsj04-21",
+      "buttonText": "View Wi-Fi Routers",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-wifi-extender-mesh",
+      "title": "Wi-Fi Extenders & Mesh Systems",
+      "provider": "Amazon India",
+      "category": "Networking",
+      "icon": "🛰️",
+      "description": "Wi-Fi extenders, repeaters, and mesh systems for improving internet coverage in larger homes, classrooms, offices, and multi-room setups.",
+      "benefits": [
+        "Useful for weak Wi-Fi areas",
+        "Good for larger homes and offices",
+        "Helps online classes run more smoothly in distant rooms",
+        "Compare range, speed, mesh support, and setup process",
+        "Check compatibility with your existing router"
+      ],
+      "url": "https://www.amazon.in/s?k=wifi+extender+mesh+wifi+system&tag=vsj04-21",
+      "buttonText": "View Wi-Fi Extenders",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-networking-cables-adapters",
+      "title": "Ethernet Cables & Network Adapters",
+      "provider": "Amazon India",
+      "category": "Networking",
+      "icon": "🔌",
+      "description": "LAN cables, Ethernet adapters, USB Wi-Fi adapters, RJ45 connectors, and networking accessories for stable wired and wireless connections.",
+      "benefits": [
+        "Useful for stable internet during online classes",
+        "Includes LAN cables, USB Wi-Fi adapters, and connectors",
+        "Good for desktops, laptops, smart TVs, and routers",
+        "Compare cable category, length, adapter speed, and connector quality",
+        "Helpful when Wi-Fi is unstable or weak"
+      ],
+      "url": "https://www.amazon.in/s?k=ethernet+cable+lan+cable+usb+wifi+adapter+rj45&tag=vsj04-21",
+      "buttonText": "View Networking Accessories",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-usb-hub-docking-station",
+      "title": "USB Hubs & Docking Stations",
+      "provider": "Amazon India",
+      "category": "Computer Peripherals",
+      "icon": "🔗",
+      "description": "USB hubs and docking stations for connecting keyboard, mouse, monitor, pen drive, card reader, Ethernet, and other devices to laptops and desktops.",
+      "benefits": [
+        "Useful for laptops with limited ports",
+        "Good for teaching, coding, and office desks",
+        "Connects multiple devices from one place",
+        "Compare USB-A, USB-C, HDMI, Ethernet, card reader, and charging support",
+        "Check compatibility with Windows, macOS, Linux, and your laptop port"
+      ],
+      "url": "https://www.amazon.in/s?k=usb+c+hub+docking+station+hdmi+ethernet&tag=vsj04-21",
+      "buttonText": "View Hubs & Docks",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-laptop-stands-cooling-pads",
+      "title": "Laptop Stands & Cooling Pads",
+      "provider": "Amazon India",
+      "category": "Computer Peripherals",
+      "icon": "💻",
+      "description": "Laptop stands, risers, cooling pads, and ergonomic accessories for better posture, airflow, desk comfort, and long teaching or coding sessions.",
+      "benefits": [
+        "Improves laptop height and desk comfort",
+        "Useful for online teaching and coding",
+        "Cooling pads may help with heat during long sessions",
+        "Compare height adjustment, material, fan noise, and portability",
+        "Pair with external keyboard and mouse for better ergonomics"
+      ],
+      "url": "https://www.amazon.in/s?k=laptop+stand+cooling+pad+ergonomic&tag=vsj04-21",
+      "buttonText": "View Stands & Cooling Pads",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-headphones-headsets",
+      "title": "Headphones & Headsets",
+      "provider": "Amazon India",
+      "category": "Recording Setup",
+      "icon": "🎧",
+      "description": "Headphones and headsets for online classes, meetings, coding focus, YouTube recording, language practice, and video conferencing.",
+      "benefits": [
+        "Useful for online classes and meetings",
+        "Good for focused coding and recording",
+        "Headsets with microphones improve call convenience",
+        "Compare wired, wireless, noise cancellation, mic quality, and comfort",
+        "Check battery life and device compatibility"
+      ],
+      "url": "https://www.amazon.in/s?k=headphones+headset+with+mic+online+classes&tag=vsj04-21",
+      "buttonText": "View Headphones",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-computer-speakers",
+      "title": "Computer Speakers",
+      "provider": "Amazon India",
+      "category": "Computer Peripherals",
+      "icon": "🔊",
+      "description": "Computer speakers and soundbars for desktop setups, online classes, video lessons, music, presentations, and small classroom audio.",
+      "benefits": [
+        "Useful for desktops and classroom setups",
+        "Good for video lessons and presentations",
+        "Helpful when laptop speakers are weak",
+        "Compare USB power, Bluetooth, AUX, wattage, and size",
+        "Check desk space and sound clarity before buying"
+      ],
+      "url": "https://www.amazon.in/s?k=computer+speakers+usb+soundbar+desktop&tag=vsj04-21",
+      "buttonText": "View Speakers",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-pendrive-memory-card",
+      "title": "Pen Drives & Memory Cards",
+      "provider": "Amazon India",
+      "category": "Storage",
+      "icon": "💽",
+      "description": "USB pen drives, memory cards, card readers, and portable storage options for notes, videos, backups, class material, and file transfer.",
+      "benefits": [
+        "Useful for quick file transfer",
+        "Good for class material and backups",
+        "Includes pen drives, SD cards, microSD cards, and card readers",
+        "Compare capacity, speed, USB version, and brand warranty",
+        "Helpful for photos, videos, projects, and documents"
+      ],
+      "url": "https://www.amazon.in/s?k=pen+drive+memory+card+card+reader+usb+3.0&tag=vsj04-21",
+      "buttonText": "View Portable Storage",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-external-hard-drive",
+      "title": "External Hard Drives",
+      "provider": "Amazon India",
+      "category": "Storage",
+      "icon": "🗄️",
+      "description": "External hard drives for large backups, recorded classes, video archives, photos, documents, and offline storage.",
+      "benefits": [
+        "Useful for large backups and video storage",
+        "Good for teachers and content creators",
+        "Usually offers more capacity per rupee than SSDs",
+        "Compare capacity, speed, warranty, and portability",
+        "Keep an additional backup for important files"
+      ],
+      "url": "https://www.amazon.in/s?k=external+hard+drive+1tb+2tb+backup&tag=vsj04-21",
+      "buttonText": "View External Hard Drives",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-hdmi-display-cables",
+      "title": "HDMI, VGA & Display Cables",
+      "provider": "Amazon India",
+      "category": "Computer Peripherals",
+      "icon": "🧵",
+      "description": "HDMI cables, VGA cables, DisplayPort cables, adapters, splitters, and display connectors for monitors, projectors, TVs, laptops, and desktops.",
+      "benefits": [
+        "Useful for connecting monitors, TVs, and projectors",
+        "Good for teaching, presentations, and dual screens",
+        "Includes HDMI, VGA, DisplayPort, and USB-C display adapters",
+        "Compare cable length, resolution support, and connector type",
+        "Check your laptop, monitor, and projector ports before buying"
+      ],
+      "url": "https://www.amazon.in/s?k=hdmi+cable+vga+cable+displayport+usb+c+adapter&tag=vsj04-21",
+      "buttonText": "View Display Cables",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases."
+    },
+    {
+      "id": "amazon-computer-cleaning-kit",
+      "title": "Computer Cleaning Kits",
+      "provider": "Amazon India",
+      "category": "Computer Peripherals",
+      "icon": "🧼",
+      "description": "Computer cleaning kits, screen cleaners, microfiber cloths, keyboard brushes, compressed air blowers, and dust-removal tools.",
+      "benefits": [
+        "Useful for laptops, monitors, keyboards, and phones",
+        "Helps keep teaching and office equipment clean",
+        "Includes screen cleaner, microfiber cloths, and brushes",
+        "Good for dusty environments and regular maintenance",
+        "Use cleaning liquids carefully and follow device instructions"
+      ],
+      "url": "https://www.amazon.in/s?k=computer+cleaning+kit+screen+cleaner+keyboard+brush&tag=vsj04-21",
+      "buttonText": "View Cleaning Kits",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Use only device-safe cleaning products."
+    },
+    {
+      "id": "amazon-antivirus-software",
+      "title": "Antivirus & Internet Security Software",
+      "provider": "Amazon India",
+      "category": "Software",
+      "icon": "🛡️",
+      "description": "Antivirus and internet security software options for Windows laptops, desktops, family computers, and office systems.",
+      "benefits": [
+        "Useful for safer browsing and daily computer use",
+        "Good for home, student, and office computers",
+        "Compare number of devices, license period, features, and renewal cost",
+        "Check whether the product is a genuine activation code or physical package",
+        "Always download software from the official vendor after purchase"
+      ],
+      "url": "https://www.amazon.in/s?k=antivirus+software+windows+internet+security&tag=vsj04-21",
+      "buttonText": "View Antivirus Software",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Verify seller, license terms, and activation process before buying."
+    },
+    {
+      "id": "amazon-office-software",
+      "title": "Office Software",
+      "provider": "Amazon India",
+      "category": "Software",
+      "icon": "📄",
+      "description": "Office software for documents, spreadsheets, presentations, school work, business letters, invoices, and teaching material.",
+      "benefits": [
+        "Useful for students, teachers, offices, and home work",
+        "Good for documents, spreadsheets, and presentations",
+        "Compare license type, number of users, subscription period, and platform support",
+        "Check whether it is for Windows, macOS, web, or mobile use",
+        "Verify activation and renewal terms before buying"
+      ],
+      "url": "https://www.amazon.in/s?k=office+software+for+windows+documents+spreadsheets+presentations&tag=vsj04-21",
+      "buttonText": "View Office Software",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Verify seller, license, activation, and renewal terms carefully."
+    },
+    {
+      "id": "amazon-windows-software",
+      "title": "Windows Software & Operating System",
+      "provider": "Amazon India",
+      "category": "Software",
+      "icon": "🪟",
+      "description": "Windows operating system and related software listings for new PC builds, desktop upgrades, and computer setup needs.",
+      "benefits": [
+        "Useful for new desktops and PC upgrades",
+        "Good for users building or repairing computers",
+        "Compare edition, license type, activation method, and device eligibility",
+        "Check whether it is retail, OEM, digital, or physical media",
+        "Buy only from reliable sellers and verify authenticity"
+      ],
+      "url": "https://www.amazon.in/s?k=windows+software+operating+system+license&tag=vsj04-21",
+      "buttonText": "View Windows Software",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Verify authenticity, license type, activation process, and seller before buying."
+    },
+    {
+      "id": "amazon-accounting-software",
+      "title": "Accounting & Billing Software",
+      "provider": "Amazon India",
+      "category": "Software",
+      "icon": "🧮",
+      "description": "Accounting, billing, GST, inventory, and business software options for shops, small businesses, offices, and learning purposes.",
+      "benefits": [
+        "Useful for shops, offices, and small businesses",
+        "Good for invoices, accounting, GST, and inventory workflows",
+        "Compare license period, support, updates, and number of users",
+        "Check whether the software supports Indian tax and billing needs",
+        "Verify activation, training, and renewal requirements before buying"
+      ],
+      "url": "https://www.amazon.in/s?k=accounting+software+billing+gst+inventory+software&tag=vsj04-21",
+      "buttonText": "View Accounting Software",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Verify tax suitability, license terms, support, and update policy before buying."
+    },
+    {
+      "id": "amazon-creative-software",
+      "title": "Creative & Design Software",
+      "provider": "Amazon India",
+      "category": "Software",
+      "icon": "🎨",
+      "description": "Creative software listings for photo editing, video editing, graphics, design, drawing, animation, and content creation work.",
+      "benefits": [
+        "Useful for YouTube, teaching material, thumbnails, and graphics",
+        "Good for photo editing, video editing, and design practice",
+        "Compare license type, platform support, subscription period, and system requirements",
+        "Check whether the product is an activation code, subscription, or physical package",
+        "Verify official activation and seller authenticity before buying"
+      ],
+      "url": "https://www.amazon.in/s?k=photo+editing+video+editing+graphics+design+software&tag=vsj04-21",
+      "buttonText": "View Creative Software",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Verify license terms, activation method, and system requirements before buying."
+    },
+    {
+      "id": "amazon-programming-software-tools",
+      "title": "Programming Software & Developer Tools",
+      "provider": "Amazon India",
+      "category": "Software",
+      "icon": "👨‍💻",
+      "description": "Programming software, developer books with software bundles, IDE-related tools, database tools, and learning resources for coding setups.",
+      "benefits": [
+        "Useful for coding learners and teachers",
+        "Good for software development and computer education setups",
+        "Compare platform support, license terms, and system requirements",
+        "Many developer tools are free; buy only when a paid license is truly needed",
+        "Verify authenticity and activation before purchase"
+      ],
+      "url": "https://www.amazon.in/s?k=programming+software+developer+tools+IDE+database+software&tag=vsj04-21",
+      "buttonText": "View Developer Software",
+      "disclaimer": "Amazon affiliate link. I may earn a commission from qualifying purchases. Many programming tools are free; verify whether a paid product is necessary before buying."
+    },
+    {
       "id": "book-recursion-sutras-ebook",
       "title": "The Recursion Sutras - Kindle Edition",
       "provider": "Amazon India",
