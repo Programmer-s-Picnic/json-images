@@ -1,0 +1,72 @@
+{
+  "websiteLinks": [
+    {
+      "title": "Search Page",
+      "subtitle": "Search Learn With Champak",
+      "url": "https://learnwithchampak.live",
+      "icon": "search"
+    },
+    {
+      "title": "Learn With Champak",
+      "subtitle": "Main learning website",
+      "url": "https://www.learnwithchampak.live/",
+      "icon": "language"
+    },
+    {
+      "title": "AI ML Classes",
+      "subtitle": "AI ML lessons and modules",
+      "url": "https://aiml.learnwithchampak.live/",
+      "icon": "psychology"
+    },
+    {
+      "title": "Python Editor",
+      "subtitle": "Practice Python online",
+      "url": "https://editor.learnwithchampak.live/python-starter/editor/super/?tmode=1",
+      "icon": "code"
+    },
+    {
+      "title": "Angular Lessons",
+      "subtitle": "Angular learning site",
+      "url": "https://angular.learnwithchampak.live/",
+      "icon": "web"
+    }
+  ],
+  "saturdayLinks": [
+    {
+      "title": "Saturday Questions 30-05-2026",
+      "subtitle": "Linked Lists Practice",
+      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-30-05-2026.html",
+      "icon": "quiz"
+    },
+    {
+      "title": "Saturday Questions 09-05-2026",
+      "subtitle": "Beginner DSA in Python",
+      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-09-05-2026.html",
+      "icon": "quiz"
+    },
+    {
+      "title": "Saturday Questions 02-05-2026",
+      "subtitle": "Weekly practice",
+      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-02-05-2026.html",
+      "icon": "calendar_month"
+    },
+    {
+      "title": "Saturday Questions 25-04-2026",
+      "subtitle": "Sorting trace and algorithm detection",
+      "url": "https://www.learnwithchampak.live/2026/04/saturday-questions-25-04-2026.html",
+      "icon": "sort"
+    },
+    {
+      "title": "Saturday Questions 11-04-2026",
+      "subtitle": "Weekly coding practice",
+      "url": "https://www.learnwithchampak.live/2026/04/saturday-questions-11-04-2026.html",
+      "icon": "code"
+    },
+    {
+      "title": "Saturday Questions 04-04-2026",
+      "subtitle": "Weekly coding practice",
+      "url": "https://www.learnwithchampak.live/2026/04/saturday-questions-04-04-2026.html",
+      "icon": "code"
+    }
+  ]
+}
