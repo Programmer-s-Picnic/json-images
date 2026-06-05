@@ -1083,6 +1083,24 @@
       "tags": ["HTML", "a tag", "Anchor", "Links", "Frontend"],
       "url": "https://dsa.learnwithchampak.live/html/a/",
       "priority": 2
+    },
+    {
+      "title": "Champak's Search Engine",
+      "description": "Search the Web.",
+      "type": "tool",
+      "topic": "Web Search",
+      "tags": ["Web Search", "Search", "Champak Search"],
+      "url": "https://search.learnwithchampak.live/?q=Hello",
+      "priority": 2
+    },
+    {
+      "title": "WebSocket",
+      "description": "WebSocket Client .",
+      "type": "tool",
+      "topic": "Websocket",
+      "tags": ["Web Socket", "Websocket", "Champak Websocket"],
+      "url": "https://dsa.learnwithchampak.live/websocket/",
+      "priority": 2
     }
   ],
   "totalItems": 100,
