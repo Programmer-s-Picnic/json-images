@@ -1101,18 +1101,33 @@
       "tags": ["Web Socket", "Websocket", "Champak Websocket"],
       "url": "https://dsa.learnwithchampak.live/websocket/",
       "priority": 2
+    },
+    {
+      "title": "Saturday Questions 06-06-2026",
+      "description": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Data Structures"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/06/saturday-questions-06-06-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "06-06-2026"
     }
   ],
-  "totalItems": 100,
+  "totalItems": 103,
   "lastAddSummary": {
-    "source": "links.txt",
-    "requested": 3,
-    "added": 3,
+    "source": "user",
+    "requested": 1,
+    "added": 1,
     "skippedDuplicates": 0,
     "addedUrls": [
-      "https://dsa.learnwithchampak.live/html/android/pin/",
-      "https://dsa.learnwithchampak.live/html/android/pin/lesson/",
-      "https://dsa.learnwithchampak.live/html/a/"
+      "https://www.learnwithchampak.live/2026/06/saturday-questions-06-06-2026.html"
     ],
     "skippedDuplicateUrls": []
   }
