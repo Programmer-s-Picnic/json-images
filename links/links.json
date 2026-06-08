@@ -1071,7 +1071,15 @@
       "description": "Learn Android-style PIN login flow with beginner-friendly HTML, JavaScript, input handling, validation, and lesson explanations.",
       "type": "lesson",
       "topic": "Android / WebView",
-      "tags": ["Android", "PIN", "Login", "HTML", "JavaScript"],
+      "tags": [
+        "Android",
+        "PIN",
+        "Login",
+        "HTML",
+        "JavaScript",
+        "PINS",
+        "Android Pin"
+      ],
       "url": "https://dsa.learnwithchampak.live/html/android/pin/lesson/",
       "priority": 2
     },
@@ -1103,32 +1111,58 @@
       "priority": 2
     },
     {
-      "title": "Saturday Questions 06-06-2026",
-      "description": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Data Structures"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/06/saturday-questions-06-06-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "06-06-2026"
+      "title": "Authorised AI-ML Lesson",
+      "description": "Lesson page for authorised Learn With Champak AI-ML resources, guided learning, protected practice, and student access workflow.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": ["AI-ML", "Access", "Authorised", "Lesson", "Guided Learning"],
+      "url": "https://aiml.learnwithchampak.live/authorised/lesson/",
+      "priority": 2
+    },
+    {
+      "title": "WebSocket Chat",
+      "description": "Practice a browser-based WebSocket chat system with beginner-friendly real-time communication and frontend networking examples.",
+      "type": "tool",
+      "topic": "Websocket",
+      "tags": ["WebSocket", "Chat", "Real Time", "JavaScript", "Frontend"],
+      "url": "https://dsa.learnwithchampak.live/websocket/chat/",
+      "priority": 2
+    },
+    {
+      "title": "WebSocket Tic Tac Toe",
+      "description": "Practice a real-time Tic Tac Toe game using WebSocket concepts, browser interaction, game state, and beginner-friendly JavaScript logic.",
+      "type": "tool",
+      "topic": "Websocket",
+      "tags": ["WebSocket", "Tic Tac Toe", "Game", "Real Time", "JavaScript"],
+      "url": "https://dsa.learnwithchampak.live/websocket/tictactoe/",
+      "priority": 2
+    },
+    {
+      "title": "WebSocket Chat Lesson",
+      "description": "Learn how a WebSocket chat system works with beginner-friendly explanations, frontend flow, real-time messages, and classroom practice.",
+      "type": "lesson",
+      "topic": "Websocket",
+      "tags": ["WebSocket", "Chat", "Lesson", "Real Time", "JavaScript"],
+      "url": "https://dsa.learnwithchampak.live/websocket/chat/lesson/",
+      "priority": 2
     }
   ],
-  "totalItems": 103,
+  "totalItems": 106,
   "lastAddSummary": {
     "source": "user",
-    "requested": 1,
-    "added": 1,
-    "skippedDuplicates": 0,
+    "requested": 7,
+    "added": 4,
+    "skippedDuplicates": 3,
     "addedUrls": [
-      "https://www.learnwithchampak.live/2026/06/saturday-questions-06-06-2026.html"
+      "https://aiml.learnwithchampak.live/authorised/lesson/",
+      "https://dsa.learnwithchampak.live/websocket/chat/",
+      "https://dsa.learnwithchampak.live/websocket/tictactoe/",
+      "https://dsa.learnwithchampak.live/websocket/chat/lesson/"
     ],
-    "skippedDuplicateUrls": []
+    "skippedDuplicateUrls": [
+      "https://aiml.learnwithchampak.live/authorised",
+      "https://dsa.learnwithchampak.live/html/android/pin/",
+      "https://dsa.learnwithchampak.live/websocket/"
+    ]
   }
 }
