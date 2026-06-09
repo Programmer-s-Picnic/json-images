@@ -1145,24 +1145,42 @@
       "tags": ["WebSocket", "Chat", "Lesson", "Real Time", "JavaScript"],
       "url": "https://dsa.learnwithchampak.live/websocket/chat/lesson/",
       "priority": 2
+    },
+    {
+      "title": "Python OOP Lesson",
+      "description": "Learn Object-Oriented Programming in Python with beginner-friendly explanations of classes, objects, methods, constructors, inheritance, and practical examples.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "OOP",
+        "Object-Oriented Programming",
+        "Classes",
+        "Objects"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/oops/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript Lesson",
+      "description": "Learn JavaScript from beginner level with variables, functions, events, DOM interaction, browser logic, and practical frontend examples.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": ["JavaScript", "Frontend", "DOM", "Functions", "Web Development"],
+      "url": "https://dsa.learnwithchampak.live/javascript/",
+      "priority": 2
     }
   ],
-  "totalItems": 106,
+  "totalItems": 108,
   "lastAddSummary": {
     "source": "user",
-    "requested": 7,
-    "added": 4,
-    "skippedDuplicates": 3,
+    "requested": 2,
+    "added": 2,
+    "skippedDuplicates": 0,
     "addedUrls": [
-      "https://aiml.learnwithchampak.live/authorised/lesson/",
-      "https://dsa.learnwithchampak.live/websocket/chat/",
-      "https://dsa.learnwithchampak.live/websocket/tictactoe/",
-      "https://dsa.learnwithchampak.live/websocket/chat/lesson/"
+      "https://dsa.learnwithchampak.live/python/oops/",
+      "https://dsa.learnwithchampak.live/javascript/"
     ],
-    "skippedDuplicateUrls": [
-      "https://aiml.learnwithchampak.live/authorised",
-      "https://dsa.learnwithchampak.live/html/android/pin/",
-      "https://dsa.learnwithchampak.live/websocket/"
-    ]
+    "skippedDuplicateUrls": []
   }
 }
