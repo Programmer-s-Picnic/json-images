@@ -1169,17 +1169,47 @@
       "tags": ["JavaScript", "Frontend", "DOM", "Functions", "Web Development"],
       "url": "https://dsa.learnwithchampak.live/javascript/",
       "priority": 2
+    },
+    {
+      "title": "Python Pandas Lesson",
+      "description": "Learn Pandas in Python with beginner-friendly explanations of DataFrames, data loading, cleaning, querying, analysis, and practical examples.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Pandas",
+        "DataFrame",
+        "Data Analysis",
+        "Data Cleaning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/pandas/",
+      "priority": 2
+    },
+    {
+      "title": "Python Magic Methods",
+      "description": "Learn Python OOP magic methods with beginner-friendly explanations of dunder methods, operator overloading, object behavior, and practical examples.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "OOP",
+        "Magic Methods",
+        "Dunder Methods",
+        "Object-Oriented Programming"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/oops/magicmethods/",
+      "priority": 2
     }
   ],
-  "totalItems": 108,
+  "totalItems": 110,
   "lastAddSummary": {
     "source": "user",
     "requested": 2,
     "added": 2,
     "skippedDuplicates": 0,
     "addedUrls": [
-      "https://dsa.learnwithchampak.live/python/oops/",
-      "https://dsa.learnwithchampak.live/javascript/"
+      "https://dsa.learnwithchampak.live/python/pandas/",
+      "https://dsa.learnwithchampak.live/python/oops/magicmethods/"
     ],
     "skippedDuplicateUrls": []
   }
