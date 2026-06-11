@@ -1171,46 +1171,44 @@
       "priority": 2
     },
     {
-      "title": "Python Pandas Lesson",
-      "description": "Learn Pandas in Python with beginner-friendly explanations of DataFrames, data loading, cleaning, querying, analysis, and practical examples.",
+      "title": "Python Pandas SQL Lesson",
+      "description": "Learn how to use SQL with Pandas in Python using beginner-friendly explanations, DataFrames, queries, filtering, joins, and practical data analysis examples.",
       "type": "lesson",
       "topic": "Python",
-      "tags": [
-        "Python",
-        "Pandas",
-        "DataFrame",
-        "Data Analysis",
-        "Data Cleaning"
-      ],
+      "tags": ["Python", "Pandas", "SQL", "DataFrame", "Data Analysis"],
+      "url": "https://dsa.learnwithchampak.live/python/pandas/sql/",
+      "priority": 2
+    },
+    {
+      "title": "Pandas",
+      "description": "Pandas learning resource.",
+      "type": "lesson",
+      "topic": "Learning Resource",
+      "tags": ["Learn With Champak"],
       "url": "https://dsa.learnwithchampak.live/python/pandas/",
       "priority": 2
     },
     {
-      "title": "Python Magic Methods",
-      "description": "Learn Python OOP magic methods with beginner-friendly explanations of dunder methods, operator overloading, object behavior, and practical examples.",
+      "title": "JavaScript Console Lesson",
+      "description": "Learn how to use the JavaScript console from beginner level with console.log, debugging, expressions, variables, errors, and browser practice examples.",
       "type": "lesson",
-      "topic": "Python",
-      "tags": [
-        "Python",
-        "OOP",
-        "Magic Methods",
-        "Dunder Methods",
-        "Object-Oriented Programming"
-      ],
-      "url": "https://dsa.learnwithchampak.live/python/oops/magicmethods/",
+      "topic": "JavaScript",
+      "tags": ["JavaScript", "Console", "Debugging", "Browser", "Frontend"],
+      "url": "https://dsa.learnwithchampak.live/javascript/console",
       "priority": 2
     }
   ],
-  "totalItems": 110,
+  "totalItems": 111,
   "lastAddSummary": {
     "source": "user",
-    "requested": 2,
-    "added": 2,
-    "skippedDuplicates": 0,
+    "requested": 4,
+    "added": 3,
+    "skippedDuplicates": 1,
     "addedUrls": [
+      "https://dsa.learnwithchampak.live/python/pandas/sql/",
       "https://dsa.learnwithchampak.live/python/pandas/",
-      "https://dsa.learnwithchampak.live/python/oops/magicmethods/"
+      "https://dsa.learnwithchampak.live/javascript/console"
     ],
-    "skippedDuplicateUrls": []
+    "skippedDuplicateUrls": ["https://dsa.learnwithchampak.live/javascript/"]
   }
 }
