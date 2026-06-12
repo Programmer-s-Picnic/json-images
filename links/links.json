@@ -1196,19 +1196,30 @@
       "tags": ["JavaScript", "Console", "Debugging", "Browser", "Frontend"],
       "url": "https://dsa.learnwithchampak.live/javascript/console",
       "priority": 2
+    },
+    {
+      "title": "Python Try Except Lesson",
+      "description": "Learn Python try, except, else, finally, error handling, common exceptions, and safe beginner-friendly programming patterns with practical examples.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Try Except",
+        "Exception Handling",
+        "Errors",
+        "Debugging"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/tryexcept/",
+      "priority": 2
     }
   ],
-  "totalItems": 111,
+  "totalItems": 112,
   "lastAddSummary": {
     "source": "user",
-    "requested": 4,
-    "added": 3,
-    "skippedDuplicates": 1,
-    "addedUrls": [
-      "https://dsa.learnwithchampak.live/python/pandas/sql/",
-      "https://dsa.learnwithchampak.live/python/pandas/",
-      "https://dsa.learnwithchampak.live/javascript/console"
-    ],
-    "skippedDuplicateUrls": ["https://dsa.learnwithchampak.live/javascript/"]
+    "requested": 1,
+    "added": 1,
+    "skippedDuplicates": 0,
+    "addedUrls": ["https://dsa.learnwithchampak.live/python/tryexcept/"],
+    "skippedDuplicateUrls": []
   }
 }
