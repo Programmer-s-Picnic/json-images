@@ -1181,10 +1181,10 @@
     },
     {
       "title": "Pandas",
-      "description": "Pandas learning resource.",
+      "description": "Learn Pandas in Python with beginner-friendly explanations of DataFrames, data loading, cleaning, querying, analysis, and practical examples.",
       "type": "lesson",
-      "topic": "Learning Resource",
-      "tags": ["Learn With Champak"],
+      "topic": "Python",
+      "tags": ["Python", "Pandas", "DataFrame", "Data Analysis", "Learning"],
       "url": "https://dsa.learnwithchampak.live/python/pandas/",
       "priority": 2
     },
@@ -1211,15 +1211,24 @@
       ],
       "url": "https://dsa.learnwithchampak.live/python/tryexcept/",
       "priority": 2
+    },
+    {
+      "title": "NumPy Arrays Lesson",
+      "description": "Learn NumPy arrays in Python with beginner-friendly explanations, indexing, slicing, shape, axis, and numerical thinking examples.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": ["Python", "NumPy", "Arrays", "Indexing", "Data Analysis"],
+      "url": "https://dsa.learnwithchampak.live/python/numpyarrays/",
+      "priority": 2
     }
   ],
-  "totalItems": 112,
+  "totalItems": 113,
   "lastAddSummary": {
     "source": "user",
-    "requested": 1,
+    "requested": 2,
     "added": 1,
-    "skippedDuplicates": 0,
-    "addedUrls": ["https://dsa.learnwithchampak.live/python/tryexcept/"],
-    "skippedDuplicateUrls": []
+    "skippedDuplicates": 1,
+    "addedUrls": ["https://dsa.learnwithchampak.live/python/numpyarrays/"],
+    "skippedDuplicateUrls": ["https://dsa.learnwithchampak.live/python/pandas/"]
   }
 }
