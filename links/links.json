@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "title": "AI-ML Course Map",                               
+      "title": "AI-ML Course Map",
       "description": "A complete AI-ML roadmap with lessons, tests, practice activities and projects.",
       "type": "course",
       "topic": "AI-ML",
@@ -6704,6 +6704,278 @@
       ],
       "url": "https://rudratour.in/varanasi/",
       "priority": 2
+    },
+    {
+      "title": "Saturday Questions 27 06 2026 Topic",
+      "description": "Practice Saturday Questions 27 06 2026 Topic with structured questions, beginner-friendly tasks, and guided programming activities.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "Saturday Questions",
+        "DSA",
+        "Practice",
+        "Programming",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/06/saturday-questions-27-06-2026-topic.html",
+      "priority": 2,
+      "lastmod": "2026-06-27T02:58:29Z"
+    },
+    {
+      "title": "The First Website",
+      "description": "Learn The First Website with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "Git / Web Hosting",
+      "tags": [
+        "Website",
+        "SEO",
+        "Search Console",
+        "Hosting",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/06/the-first-website.html",
+      "priority": 2,
+      "lastmod": "2026-06-23T15:40:08Z"
+    },
+    {
+      "title": "Saturday Questions 13 06 2026",
+      "description": "Practice Saturday Questions 13 06 2026 with structured questions, beginner-friendly tasks, and guided programming activities.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "Saturday Questions",
+        "DSA",
+        "Practice",
+        "Programming",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/06/saturday-questions-13-06-2026.html",
+      "priority": 2,
+      "lastmod": "2026-06-12T15:21:54Z"
+    },
+    {
+      "title": "Saturday Questions 06 06 2026",
+      "description": "Practice Saturday Questions 06 06 2026 with structured questions, beginner-friendly tasks, and guided programming activities.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "Saturday Questions",
+        "DSA",
+        "Practice",
+        "Programming",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/06/saturday-questions-06-06-2026.html",
+      "priority": 2,
+      "lastmod": "2026-06-06T05:29:04Z"
+    },
+    {
+      "title": "Make Your Own Chatbot From 0 To",
+      "description": "Learn Make Your Own Chatbot From 0 To with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "NLP",
+      "tags": [
+        "NLP",
+        "Chatbot",
+        "AI",
+        "Text Processing",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/05/make-your-own-chatbot-from-0-to.html",
+      "priority": 2,
+      "lastmod": "2026-05-21T02:14:12Z"
+    },
+    {
+      "title": "Government Services Dashboard Central",
+      "description": "Learn Government Services Dashboard Central with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "tool",
+      "topic": "Government Services",
+      "tags": [
+        "Government Services",
+        "Dashboard",
+        "India",
+        "Services",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/04/government-services-dashboard-central.html",
+      "priority": 2,
+      "lastmod": "2026-04-27T04:13:37Z"
+    },
+    {
+      "title": "Spring Boot Connecting With Sqlite",
+      "description": "Learn Spring Boot Connecting With Sqlite with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "SQL",
+      "tags": [
+        "SQL",
+        "Database",
+        "Queries",
+        "Learning",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/04/spring-boot-connecting-with-sqlite.html",
+      "priority": 2,
+      "lastmod": "2026-04-04T03:49:14Z"
+    },
+    {
+      "title": "Spring Connection With Mysql",
+      "description": "Learn Spring Connection With Mysql with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "SQL",
+      "tags": [
+        "SQL",
+        "Database",
+        "Queries",
+        "Learning",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/03/spring-connection-with-mysql.html",
+      "priority": 2,
+      "lastmod": "2026-03-27T07:26:57Z"
+    },
+    {
+      "title": "Starting Laravel",
+      "description": "Learn Starting Laravel with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "Laravel",
+      "tags": [
+        "Laravel",
+        "PHP",
+        "Web Development",
+        "Backend",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2025/08/starting-laravel.html",
+      "priority": 2,
+      "lastmod": "2026-07-03T07:33:54Z"
+    },
+    {
+      "title": "Sql Sequel Posts",
+      "description": "Learn Sql Sequel Posts with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "SQL",
+      "tags": [
+        "SQL",
+        "Database",
+        "Queries",
+        "Learning",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2023/01/sql-sequel-posts.html",
+      "priority": 2,
+      "lastmod": "2026-07-03T08:18:00Z"
+    },
+    {
+      "title": "Sql Questions On Northwind Database",
+      "description": "Practice Sql Questions On Northwind Database with structured questions, beginner-friendly tasks, and guided programming activities.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "Saturday Questions",
+        "DSA",
+        "Practice",
+        "Programming",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2022/05/sql-questions-on-northwind-database.html",
+      "priority": 2,
+      "lastmod": "2026-07-03T08:17:56Z"
+    },
+    {
+      "title": "Dml Triggers In Sql",
+      "description": "Learn Dml Triggers In Sql with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "SQL",
+      "tags": [
+        "SQL",
+        "Database",
+        "Queries",
+        "Learning",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2022/05/dml-triggers-in-sql.html",
+      "priority": 2,
+      "lastmod": "2026-07-03T08:17:53Z"
+    },
+    {
+      "title": "Joins In Sql",
+      "description": "Learn Joins In Sql with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "SQL",
+      "tags": [
+        "SQL",
+        "Database",
+        "Queries",
+        "Learning",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2022/05/joins-in-sql.html",
+      "priority": 2,
+      "lastmod": "2026-07-03T08:17:50Z"
+    },
+    {
+      "title": "Aggregate Queries In Sql",
+      "description": "Learn Aggregate Queries In Sql with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "SQL",
+      "tags": [
+        "SQL",
+        "Database",
+        "Queries",
+        "Learning",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2022/05/aggregate-queries-in-sql.html",
+      "priority": 2,
+      "lastmod": "2026-07-03T08:17:48Z"
+    },
+    {
+      "title": "Sql Basic Syllabus",
+      "description": "Learn Sql Basic Syllabus with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "SQL",
+      "tags": [
+        "SQL",
+        "Database",
+        "Queries",
+        "Learning",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2022/05/sql-basic-syllabus.html",
+      "priority": 2,
+      "lastmod": "2026-07-03T08:17:45Z"
+    },
+    {
+      "title": "Update Statement In Sql",
+      "description": "Learn Update Statement In Sql with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "SQL",
+      "tags": [
+        "SQL",
+        "Database",
+        "Queries",
+        "Learning",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2022/04/update-statement-in-sql.html",
+      "priority": 2,
+      "lastmod": "2026-07-03T08:17:43Z"
+    },
+    {
+      "title": "Delete Table In Sql 1",
+      "description": "Learn Delete Table In Sql 1 with beginner-friendly explanations, examples, and practical learning resources.",
+      "type": "lesson",
+      "topic": "SQL",
+      "tags": [
+        "SQL",
+        "Database",
+        "Queries",
+        "Learning",
+        "Learn With Champak"
+      ],
+      "url": "https://www.learnwithchampak.live/2022/04/delete-table-in-sql-1.html",
+      "priority": 2,
+      "lastmod": "2026-07-03T08:17:39Z"
     }
   ],
   "totalItems": 447,
