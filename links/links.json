@@ -1,186 +1,6 @@
 {
   "items": [
     {
-      "title": "SQL Editor",
-      "description": "Write, run, debug, optimize and share SQL queries online. No installation required. Includes built-in examples and supports CSV and JSON workflows.",
-      "type": "editor",
-      "topic": "Editors",
-      "tags": [
-        "SQL",
-        "JSON",
-        "Editor",
-        "Practice",
-        "SQLite"
-      ],
-      "url": "https://editor.learnwithchampak.live/sql/premium/",
-      "priority": 2
-    },
-    {
-      "title": "JavaScript Editor",
-      "description": "Write, run, debug and share JavaScript code online without installing anything.",
-      "type": "editor",
-      "topic": "Editors",
-      "tags": [
-        "JavaScript",
-        "Editor",
-        "Practice",
-        "Code Editor",
-        "Debugging"
-      ],
-      "url": "https://editor.learnwithchampak.live/java-script/editor/",
-      "priority": 2
-    },
-    {
-      "title": "Web-Based Python Editor",
-      "description": "Write, run and share Python code from mobile or desktop. Beginner friendly and no installation required.",
-      "type": "editor",
-      "topic": "Editors",
-      "tags": [
-        "Python",
-        "Editor",
-        "Practice",
-        "Code Editor",
-        "Mobile Friendly"
-      ],
-      "url": "https://editor.learnwithchampak.live/python-starter/editor/super/?tmode=1",
-      "priority": 2
-    },
-    {
-      "title": "HTML Editor",
-      "description": "Write HTML code and preview the output instantly in your browser.",
-      "type": "editor",
-      "topic": "Editors",
-      "tags": [
-        "HTML",
-        "Editor",
-        "Practice",
-        "Frontend",
-        "Live Preview"
-      ],
-      "url": "https://editor.learnwithchampak.live/samples/html/preview/",
-      "priority": 2
-    },
-    {
-      "title": "JSON Editor",
-      "description": "Create, edit, format and validate JSON data easily in the browser.",
-      "type": "editor",
-      "topic": "Editors",
-      "tags": [
-        "HTML",
-        "JSON",
-        "Editor",
-        "Practice",
-        "Data"
-      ],
-      "url": "https://editor.learnwithchampak.live/samples/html/editor/json/",
-      "priority": 2
-    },
-    {
-      "title": "API Playground",
-      "description": "Test REST APIs, inspect responses and practice JSON-based API workflows directly from the browser.",
-      "type": "tool",
-      "topic": "Data Tools",
-      "tags": [
-        "JSON",
-        "API",
-        "Dataset",
-        "Tool",
-        "REST"
-      ],
-      "url": "https://editor.learnwithchampak.live/api/",
-      "priority": 2
-    },
-    {
-      "title": "Face AI Demo",
-      "description": "Experiment with face detection and basic computer vision directly in the browser.",
-      "type": "tool",
-      "topic": "Image Tools",
-      "tags": [
-        "Image",
-        "Picture",
-        "Face AI",
-        "Computer Vision",
-        "AI"
-      ],
-      "url": "https://editor.learnwithchampak.live/samples/face/",
-      "priority": 2
-    },
-    {
-      "title": "Whiteboard Tool",
-      "description": "A simple online whiteboard for teaching, drawing, writing and explaining concepts live.",
-      "type": "tool",
-      "topic": "Teaching Tools",
-      "tags": [
-        "Teaching",
-        "Whiteboard",
-        "Live Class",
-        "Drawing",
-        "Online Board"
-      ],
-      "url": "https://editor.learnwithchampak.live/whiteboard/",
-      "priority": 2
-    },
-    {
-      "title": "Room Board",
-      "description": "Interactive shared room for collaboration, live practice and classroom activities.",
-      "type": "tool",
-      "topic": "Teaching Tools",
-      "tags": [
-        "Teaching",
-        "Whiteboard",
-        "Live Class",
-        "Collaboration",
-        "Room"
-      ],
-      "url": "https://editor.learnwithchampak.live/room/",
-      "priority": 2
-    },
-    {
-      "title": "Zoom Meeting Access",
-      "description": "Join live classes, doubt sessions and weekly learning discussions.",
-      "type": "link",
-      "topic": "Community",
-      "tags": [
-        "Join",
-        "WhatsApp",
-        "Zoom",
-        "Guided Learning",
-        "Live Class"
-      ],
-      "url": "https://www.learnwithchampak.live/p/champak.html#timing",
-      "priority": 3
-    },
-    {
-      "title": "Dataset Cleaning to Linear Regression",
-      "description": "Learn how to clean messy data and apply linear regression using Python, Pandas and NumPy.",
-      "type": "lesson",
-      "topic": "Data Tools",
-      "tags": [
-        "Python",
-        "Pandas",
-        "Data Cleaning",
-        "NumPy",
-        "Regression"
-      ],
-      "url": "https://aiml.learnwithchampak.live/code/pandas/cleaning/",
-      "priority": 2
-    },
-    {
-      "title": "Hollywood Film Dataset Analysis",
-      "description": "Analyze a movie dataset using Python, Pandas, visualization and basic machine learning ideas.",
-      "type": "lesson",
-      "topic": "Data Tools",
-      "tags": [
-        "JSON",
-        "API",
-        "Dataset",
-        "Tool",
-        "Movies"
-      ],
-      "url": "https://aiml.learnwithchampak.live/datasets/",
-      "priority": 2
-    },
-    {
       "title": "AI-ML Course Map",
       "description": "A complete AI-ML roadmap with lessons, tests, practice activities and projects.",
       "type": "course",
@@ -193,94 +13,6 @@
         "Roadmap"
       ],
       "url": "https://aiml.learnwithchampak.live/coursemap/",
-      "priority": 1
-    },
-    {
-      "title": "AI-ML Terms",
-      "description": "Important AI and machine learning terms explained in a simple beginner-friendly way.",
-      "type": "lesson",
-      "topic": "AI-ML",
-      "tags": [
-        "AI-ML",
-        "AI",
-        "ML",
-        "Glossary"
-      ],
-      "url": "https://aiml.learnwithchampak.live/lessons/terms/",
-      "priority": 2
-    },
-    {
-      "title": "AI-ML Statistics",
-      "description": "Learn the statistics concepts needed for AI and machine learning with examples.",
-      "type": "lesson",
-      "topic": "AI-ML",
-      "tags": [
-        "AI-ML",
-        "Statistics",
-        "AI",
-        "ML",
-        "Data Science"
-      ],
-      "url": "https://aiml.learnwithchampak.live/lessons/stats/",
-      "priority": 2
-    },
-    {
-      "title": "Finance Demo Dataset",
-      "description": "A sample finance dataset for practicing data analysis and machine learning.",
-      "type": "dataset",
-      "topic": "Data Tools",
-      "tags": [
-        "JSON",
-        "API",
-        "Dataset",
-        "Tool",
-        "CSV"
-      ],
-      "url": "https://aiml.learnwithchampak.live/course/datasets/finance_demo.csv",
-      "priority": 3
-    },
-    {
-      "title": "Google Search Console Guide",
-      "description": "Learn how to submit a website to Google Search Console and improve website visibility.",
-      "type": "lesson",
-      "topic": "Git / Web Hosting",
-      "tags": [
-        "SEO",
-        "Hosting",
-        "Google",
-        "Search Console",
-        "Website Submission"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/05/submitting-website-to-google-search.html",
-      "priority": 2
-    },
-    {
-      "title": "Main Website",
-      "description": "Official Learn With Champak learning platform.",
-      "type": "platform",
-      "topic": "AI-ML",
-      "tags": [
-        "AI-ML",
-        "Website",
-        "Learning Platform",
-        "Courses"
-      ],
-      "url": "https://www.learnwithchampak.live/",
-      "priority": 1
-    },
-    {
-      "title": "Editor Hub",
-      "description": "Central hub for all coding editors, tools and browser-based practice utilities.",
-      "type": "platform",
-      "topic": "Editors",
-      "tags": [
-        "Editor",
-        "Practice",
-        "Editors",
-        "Tools",
-        "Coding"
-      ],
-      "url": "https://editor.learnwithchampak.live/",
       "priority": 1
     },
     {
@@ -299,63 +31,760 @@
       "priority": 1
     },
     {
-      "title": "Flutter Command Line Guide",
-      "description": "Command-line reference for Flutter and Dart development.",
-      "type": "note",
+      "title": "Course",
+      "description": "Follow Course as a structured course resource with lessons, practice, and project-based learning.",
+      "type": "course",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Course",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/",
+      "priority": 1
+    },
+    {
+      "title": "Course Course Map",
+      "description": "Follow Course Course Map as a structured course resource with lessons, practice, and project-based learning.",
+      "type": "course",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Course"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/course-map.html",
+      "priority": 1
+    },
+    {
+      "title": "Course Projects",
+      "description": "Follow Course Projects as a structured course resource with lessons, practice, and project-based learning.",
+      "type": "course",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Projects",
+        "Course"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/projects/",
+      "priority": 1
+    },
+    {
+      "title": "Course Projects Ipl Dashboard",
+      "description": "Follow Course Projects Ipl Dashboard as a structured course resource with lessons, practice, and project-based learning.",
+      "type": "course",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Projects"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/projects/ipl-dashboard.html",
+      "priority": 1
+    },
+    {
+      "title": "Course Projects Risk Classifier",
+      "description": "Follow Course Projects Risk Classifier as a structured course resource with lessons, practice, and project-based learning.",
+      "type": "course",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Projects"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/projects/risk-classifier.html",
+      "priority": 1
+    },
+    {
+      "title": "Course Projects Sales Predictor",
+      "description": "Follow Course Projects Sales Predictor as a structured course resource with lessons, practice, and project-based learning.",
+      "type": "course",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Projects"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/projects/sales-predictor.html",
+      "priority": 1
+    },
+    {
+      "title": "Course Projects Weather Analyzer",
+      "description": "Follow Course Projects Weather Analyzer as a structured course resource with lessons, practice, and project-based learning.",
+      "type": "course",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Projects"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/projects/weather-analyzer.html",
+      "priority": 1
+    },
+    {
+      "title": "Course Scriptaadds",
+      "description": "Follow Course Scriptaadds as a structured course resource with lessons, practice, and project-based learning.",
+      "type": "course",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Course"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/scriptaadds.html",
+      "priority": 1
+    },
+    {
+      "title": "Main Website",
+      "description": "Official Learn With Champak learning platform.",
+      "type": "platform",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "Website",
+        "Learning Platform",
+        "Courses"
+      ],
+      "url": "https://www.learnwithchampak.live/",
+      "priority": 1
+    },
+    {
+      "title": "Angular Roadmap by Champak Roy",
+      "description": "Angular learning roadmap by Champak Roy for building a professional admin dashboard step by step.",
+      "type": "roadmap",
+      "topic": "Angular",
+      "tags": [
+        "Angular",
+        "Roadmap",
+        "Dashboard",
+        "Angular tutorial",
+        "Angular lesson"
+      ],
+      "url": "https://editor.learnwithchampak.live/html/angular/me/",
+      "priority": 1
+    },
+    {
+      "title": "Angular Student Version",
+      "description": "Student version of the Angular roadmap lesson with checks and structured learning sections.",
+      "type": "roadmap",
+      "topic": "Angular",
+      "tags": [
+        "Angular",
+        "Roadmap",
+        "Student Version",
+        "Checklist",
+        "Frontend"
+      ],
+      "url": "https://editor.learnwithchampak.live/html/angular/student/",
+      "priority": 1
+    },
+    {
+      "title": "Join Programmers Picnic",
+      "description": "Join the Learn With Champak guided learning system, classes, support, WhatsApp guidance, and student learning community.",
+      "type": "link",
+      "topic": "Community",
+      "tags": [
+        "Join",
+        "WhatsApp",
+        "Zoom",
+        "Guided Learning",
+        "Classes"
+      ],
+      "url": "https://www.learnwithchampak.live/p/champak.html#pp-join",
+      "priority": 1
+    },
+    {
+      "title": "Editor Hub",
+      "description": "Central hub for all coding editors, tools and browser-based practice utilities.",
+      "type": "platform",
+      "topic": "Editors",
+      "tags": [
+        "Editor",
+        "Practice",
+        "Editors",
+        "Tools",
+        "Coding"
+      ],
+      "url": "https://editor.learnwithchampak.live/",
+      "priority": 1
+    },
+    {
+      "title": "Course Pandas CSV",
+      "description": "Follow Course Pandas CSV as a structured course resource with lessons, practice, and project-based learning.",
+      "type": "course",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Pandas",
+        "AI",
+        "ML",
+        "CSV"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/pandas/csv/",
+      "priority": 1
+    },
+    {
+      "title": "Multilevel Layout UI",
+      "description": "Multilevel UI using Flex and Grid.",
+      "type": "tool",
       "topic": "Web Development",
       "tags": [
-        "HTML",
-        "CSS",
-        "Frontend",
-        "Flutter",
-        "Dart"
-      ],
-      "url": "https://dsa.learnwithchampak.live/flutter/commandline/",
-      "priority": 3
-    },
-    {
-      "title": "Change Request Tool",
-      "description": "Submit website change requests with URL, new content, notes and screenshots.",
-      "type": "tool",
-      "topic": "Data Tools",
-      "tags": [
-        "JSON",
-        "API",
-        "Dataset",
+        "Flex, Grid",
         "Tool",
-        "Change Request"
+        "HTML"
       ],
-      "url": "https://editor.learnwithchampak.live/tools/changerequest/",
-      "priority": 2
+      "url": "https://dsa.learnwithchampak.live/html/pages/layouts/multilevel/",
+      "priority": 1
     },
     {
-      "title": "Beginning NLP",
-      "description": "Start learning Natural Language Processing from the basics with beginner-friendly examples.",
-      "type": "lesson",
-      "topic": "NLP",
+      "title": "AI-ML Puzzle",
+      "description": "Practice AI-ML and coding thinking through beginner-friendly puzzles, problem solving activities, and interactive learning challenges.",
+      "type": "practice",
+      "topic": "AI-ML",
       "tags": [
-        "NLP",
-        "Text Processing",
-        "Natural Language Processing",
+        "AI-ML",
+        "Puzzle",
         "AI",
-        "NLP tutorial"
+        "ML",
+        "Problem Solving"
       ],
-      "url": "https://aiml.learnwithchampak.live/nlp/begin/",
+      "url": "https://aiml.learnwithchampak.live/puzzle/",
       "priority": 2
     },
     {
-      "title": "NLP 0 to 10%",
-      "description": "Start learning Natural Language Processing from the basics with beginner-friendly examples.",
+      "title": "AI-ML Statistics",
+      "description": "Learn the statistics concepts needed for AI and machine learning with examples.",
       "type": "lesson",
-      "topic": "NLP",
+      "topic": "AI-ML",
       "tags": [
-        "NLP",
-        "Text Processing",
-        "NLP 1",
-        "Natural Language Processing",
+        "AI-ML",
+        "Statistics",
+        "AI",
+        "ML",
+        "Data Science"
+      ],
+      "url": "https://aiml.learnwithchampak.live/lessons/stats/",
+      "priority": 2
+    },
+    {
+      "title": "AI-ML Terms",
+      "description": "Important AI and machine learning terms explained in a simple beginner-friendly way.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Glossary"
+      ],
+      "url": "https://aiml.learnwithchampak.live/lessons/terms/",
+      "priority": 2
+    },
+    {
+      "title": "Authorised AI-ML Access",
+      "description": "Authorised access area for Learn With Champak AI-ML resources, guided learning, protected lessons, and student practice materials.",
+      "type": "platform",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "Access",
+        "Authorised",
+        "Authorized",
         "AI"
       ],
-      "url": "https://aiml.learnwithchampak.live/nlp/0-10/",
+      "url": "https://aiml.learnwithchampak.live/authorised/",
+      "priority": 2
+    },
+    {
+      "title": "Authorised AI-ML Lesson",
+      "description": "Lesson page for authorised Learn With Champak AI-ML resources, guided learning, protected practice, and student access workflow.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "Access",
+        "Authorised",
+        "Lesson",
+        "Guided Learning"
+      ],
+      "url": "https://aiml.learnwithchampak.live/authorised/lesson/",
+      "priority": 2
+    },
+    {
+      "title": "Book",
+      "description": "Learn Book with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/book/",
+      "priority": 2
+    },
+    {
+      "title": "Classification Picture",
+      "description": "Learn Classification Picture with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Classification",
+        "Image"
+      ],
+      "url": "https://aiml.learnwithchampak.live/classification/picture/",
+      "priority": 2
+    },
+    {
+      "title": "Classification Picture CNN",
+      "description": "Learn Classification Picture CNN with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Classification",
+        "Image"
+      ],
+      "url": "https://aiml.learnwithchampak.live/classification/picture/cnn/",
+      "priority": 2
+    },
+    {
+      "title": "Classification Unsupervised",
+      "description": "Learn Classification Unsupervised with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Classification",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/classification/unsupervised/",
+      "priority": 2
+    },
+    {
+      "title": "Code 1",
+      "description": "Learn Code 1 with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/code/1/",
+      "priority": 2
+    },
+    {
+      "title": "Code MCP",
+      "description": "Learn Code MCP with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/code/mcp/",
+      "priority": 2
+    },
+    {
+      "title": "Code Picnic1",
+      "description": "Learn Code Picnic1 with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/code/picnic1/",
+      "priority": 2
+    },
+    {
+      "title": "Course Week01 Assignment",
+      "description": "Practice Course Week01 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week01/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week01 Lesson",
+      "description": "Learn Course Week01 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week01/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week02 Assignment",
+      "description": "Practice Course Week02 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week02/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week02 Lesson",
+      "description": "Learn Course Week02 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week02/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week03 Assignment",
+      "description": "Practice Course Week03 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week03/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week03 Lesson",
+      "description": "Learn Course Week03 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week03/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week04 Assignment",
+      "description": "Practice Course Week04 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week04/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week04 Lesson",
+      "description": "Learn Course Week04 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week04/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week05 Assignment",
+      "description": "Practice Course Week05 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week05/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week05 Lesson",
+      "description": "Learn Course Week05 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week05/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week06 Assignment",
+      "description": "Practice Course Week06 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week06/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week06 Lesson",
+      "description": "Learn Course Week06 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week06/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week07 Assignment",
+      "description": "Practice Course Week07 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week07/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week07 Lesson",
+      "description": "Learn Course Week07 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week07/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week08 Assignment",
+      "description": "Practice Course Week08 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week08/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week08 Lesson",
+      "description": "Learn Course Week08 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week08/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week09 Assignment",
+      "description": "Practice Course Week09 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week09/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week09 Lesson",
+      "description": "Learn Course Week09 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week09/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week10 Assignment",
+      "description": "Practice Course Week10 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week10/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week10 Lesson",
+      "description": "Learn Course Week10 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week10/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week11 Assignment",
+      "description": "Practice Course Week11 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week11/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week11 Lesson",
+      "description": "Learn Course Week11 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week11/lesson.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week12 Assignment",
+      "description": "Practice Course Week12 Assignment with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Assignment"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week12/assignment.html",
+      "priority": 2
+    },
+    {
+      "title": "Course Week12 Lesson",
+      "description": "Learn Course Week12 Lesson with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Lesson"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/week12/lesson.html",
       "priority": 2
     },
     {
@@ -374,63 +803,18 @@
       "priority": 2
     },
     {
-      "title": "Champak's Market",
-      "description": "Champak's Market.",
-      "type": "tool",
-      "topic": "Marketplace",
+      "title": "Lessons",
+      "description": "Learn Lessons with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
       "tags": [
-        "Marketplace",
-        "Affiliate",
-        "Learning Products",
-        "Computers",
-        "Peripherals"
+        "AI-ML",
+        "AI",
+        "ML",
+        "Lesson",
+        "Learn With Champak"
       ],
-      "url": "https://www.learnwithchampak.live/2026/05/champaks-market.html",
-      "priority": 2
-    },
-    {
-      "title": "NLP 11 to 20%",
-      "description": "NLP 2.",
-      "type": "tool",
-      "topic": "NLP",
-      "tags": [
-        "NLP",
-        "Text Processing",
-        "Natural Language Processing",
-        "Cleaning",
-        "Complete Text Cleaner"
-      ],
-      "url": "https://aiml.learnwithchampak.live/nlp/11-20/",
-      "priority": 2
-    },
-    {
-      "title": "NLP 21 to 30%",
-      "description": "NLP 3.",
-      "type": "tool",
-      "topic": "NLP",
-      "tags": [
-        "NLP",
-        "Text Processing",
-        "Natural Language Processing",
-        "Cleaning",
-        "Complete Text Cleaner"
-      ],
-      "url": "https://aiml.learnwithchampak.live/nlp/21-30/",
-      "priority": 2
-    },
-    {
-      "title": "Chirpy Jekyll",
-      "description": "Chirpy-Jekyll.",
-      "type": "tool",
-      "topic": "Git / Web Hosting",
-      "tags": [
-        "Jekyll",
-        "Hosting",
-        "Github Pages",
-        "Chirpy-Jekyll",
-        "Chirpy"
-      ],
-      "url": "https://editor.learnwithchampak.live/html/add/chirpy-jekyll/",
+      "url": "https://aiml.learnwithchampak.live/lessons/",
       "priority": 2
     },
     {
@@ -449,18 +833,237 @@
       "priority": 2
     },
     {
-      "title": "Angular Files and Folders",
-      "description": "Learn the important files and folders inside an Angular installation from beginner level to expert level.",
+      "title": "Matplotlib 3D 0",
+      "description": "Learn Matplotlib 3D 0 with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/matplotlib/3d/0/",
+      "priority": 2
+    },
+    {
+      "title": "Matplotlib 3D 1",
+      "description": "Learn Matplotlib 3D 1 with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/matplotlib/3d/1/",
+      "priority": 2
+    },
+    {
+      "title": "Publicmodule",
+      "description": "Learn Publicmodule with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/publicmodule/",
+      "priority": 2
+    },
+    {
+      "title": "Regression",
+      "description": "Learn Regression with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Regression",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/regression/",
+      "priority": 2
+    },
+    {
+      "title": "Regression 0 10",
+      "description": "Learn Regression 0 10 with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Regression",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/regression/0-10/",
+      "priority": 2
+    },
+    {
+      "title": "Regression Compare",
+      "description": "Learn Regression Compare with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Regression",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/regression/compare/",
+      "priority": 2
+    },
+    {
+      "title": "Regression Compare",
+      "description": "Learn Regression Compare with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Regression",
+        "HTML"
+      ],
+      "url": "https://aiml.learnwithchampak.live/regression/compare/test.html",
+      "priority": 2
+    },
+    {
+      "title": "Regression Multipleinputs",
+      "description": "Learn Regression Multipleinputs with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Regression",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/regression/multipleinputs/",
+      "priority": 2
+    },
+    {
+      "title": "Sarkar",
+      "description": "Learn Sarkar with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/sarkar.html",
+      "priority": 2
+    },
+    {
+      "title": "Search",
+      "description": "Learn Search with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "HTML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/search.html",
+      "priority": 2
+    },
+    {
+      "title": "Student",
+      "description": "Learn Student with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/student/",
+      "priority": 2
+    },
+    {
+      "title": "Teacher",
+      "description": "Learn Teacher with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/teacher/",
+      "priority": 2
+    },
+    {
+      "title": "Tools",
+      "description": "Use Tools as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "AI-ML",
+      "tags": [
+        "AI-ML",
+        "AI",
+        "ML",
+        "Learn With Champak"
+      ],
+      "url": "https://aiml.learnwithchampak.live/tools/",
+      "priority": 2
+    },
+    {
+      "title": "Android PIN Login Demo",
+      "description": "Practice an Android-style PIN login interface using beginner-friendly HTML, CSS, JavaScript, and web app interaction ideas.",
+      "type": "tool",
+      "topic": "Android / WebView",
+      "tags": [
+        "Android",
+        "PIN",
+        "Login",
+        "HTML",
+        "JavaScript"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/android/pin/",
+      "priority": 2
+    },
+    {
+      "title": "Android PIN Login Lesson",
+      "description": "Learn Android-style PIN login flow with beginner-friendly HTML, JavaScript, input handling, validation, and lesson explanations.",
+      "type": "lesson",
+      "topic": "Android / WebView",
+      "tags": [
+        "Android",
+        "PIN",
+        "Login",
+        "HTML",
+        "JavaScript"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/android/pin/lesson/",
+      "priority": 2
+    },
+    {
+      "title": "Angular Authentication",
+      "description": "Learn authentication in Angular with login flow, protected routes, guards, tokens, and beginner-friendly frontend security concepts.",
       "type": "lesson",
       "topic": "Angular",
       "tags": [
         "Angular",
-        "Files",
-        "Folders",
-        "Project Structure",
-        "Frontend"
+        "Authentication",
+        "Login",
+        "Protected Routes",
+        "Route Guards"
       ],
-      "url": "https://editor.learnwithchampak.live/html/angular/files/",
+      "url": "https://editor.learnwithchampak.live/html/angular/authentication/",
       "priority": 2
     },
     {
@@ -479,6 +1082,21 @@
       "priority": 2
     },
     {
+      "title": "Angular Data Binding",
+      "description": "Learn Angular data binding from beginner level with interpolation, property binding, event binding, two-way binding, and practical examples.",
+      "type": "lesson",
+      "topic": "Angular",
+      "tags": [
+        "Angular",
+        "Data Binding",
+        "Interpolation",
+        "Property Binding",
+        "Event Binding"
+      ],
+      "url": "https://editor.learnwithchampak.live/html/angular/databinding",
+      "priority": 2
+    },
+    {
       "title": "Angular DFD Lesson",
       "description": "Learn Angular data flow diagrams and application structure from level 0 to advanced understanding.",
       "type": "lesson",
@@ -491,6 +1109,21 @@
         "Architecture"
       ],
       "url": "https://editor.learnwithchampak.live/html/angular/dfd/",
+      "priority": 2
+    },
+    {
+      "title": "Angular Files and Folders",
+      "description": "Learn the important files and folders inside an Angular installation from beginner level to expert level.",
+      "type": "lesson",
+      "topic": "Angular",
+      "tags": [
+        "Angular",
+        "Files",
+        "Folders",
+        "Project Structure",
+        "Frontend"
+      ],
+      "url": "https://editor.learnwithchampak.live/html/angular/files/",
       "priority": 2
     },
     {
@@ -539,21 +1172,6 @@
       "priority": 2
     },
     {
-      "title": "Angular Roadmap by Champak Roy",
-      "description": "Angular learning roadmap by Champak Roy for building a professional admin dashboard step by step.",
-      "type": "roadmap",
-      "topic": "Angular",
-      "tags": [
-        "Angular",
-        "Roadmap",
-        "Dashboard",
-        "Angular tutorial",
-        "Angular lesson"
-      ],
-      "url": "https://editor.learnwithchampak.live/html/angular/me/",
-      "priority": 1
-    },
-    {
       "title": "Angular ng Commands",
       "description": "Introduction to ng, its importance, useful Angular commands and beginner-friendly examples.",
       "type": "lesson",
@@ -569,234 +1187,649 @@
       "priority": 2
     },
     {
-      "title": "Angular Student Version",
-      "description": "Student version of the Angular roadmap lesson with checks and structured learning sections.",
-      "type": "roadmap",
+      "title": "Angular Routing",
+      "description": "Learn Angular routing from beginner level with routes, navigation, router outlet, and practical single-page application structure.",
+      "type": "lesson",
       "topic": "Angular",
       "tags": [
         "Angular",
-        "Roadmap",
-        "Student Version",
-        "Checklist",
+        "Routing",
+        "Router",
+        "Frontend",
+        "TypeScript"
+      ],
+      "url": "https://editor.learnwithchampak.live/html/angular/routing/",
+      "priority": 2
+    },
+    {
+      "title": "Before Upper Bound",
+      "description": "Practice DSA thinking before upper-bound concepts with beginner-friendly explanations and step-by-step coding preparation.",
+      "type": "lesson",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Data Structures",
+        "Algorithms"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/pages/before-upper",
+      "priority": 2
+    },
+    {
+      "title": "Cart Page",
+      "description": "Practice cart-page logic and layout ideas with beginner-friendly web development and DSA-style thinking.",
+      "type": "lesson",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Data Structures",
+        "Algorithms"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/pages/cart",
+      "priority": 2
+    },
+    {
+      "title": "DSA Animation",
+      "description": "Learn DSA and frontend ideas through animation-based visual examples for clearer understanding and classroom practice.",
+      "type": "lesson",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Data Structures",
+        "Algorithms"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/pages/animation",
+      "priority": 2
+    },
+    {
+      "title": "API Playground",
+      "description": "Test REST APIs, inspect responses and practice JSON-based API workflows directly from the browser.",
+      "type": "tool",
+      "topic": "Data Tools",
+      "tags": [
+        "JSON",
+        "API",
+        "Dataset",
+        "Tool",
+        "REST"
+      ],
+      "url": "https://editor.learnwithchampak.live/api/",
+      "priority": 2
+    },
+    {
+      "title": "Change Request Tool",
+      "description": "Submit website change requests with URL, new content, notes and screenshots.",
+      "type": "tool",
+      "topic": "Data Tools",
+      "tags": [
+        "JSON",
+        "API",
+        "Dataset",
+        "Tool",
+        "Change Request"
+      ],
+      "url": "https://editor.learnwithchampak.live/tools/changerequest/",
+      "priority": 2
+    },
+    {
+      "title": "Dataset Cleaning to Linear Regression",
+      "description": "Learn how to clean messy data and apply linear regression using Python, Pandas and NumPy.",
+      "type": "lesson",
+      "topic": "Data Tools",
+      "tags": [
+        "Python",
+        "Pandas",
+        "Data Cleaning",
+        "NumPy",
+        "Regression"
+      ],
+      "url": "https://aiml.learnwithchampak.live/code/pandas/cleaning/",
+      "priority": 2
+    },
+    {
+      "title": "Hollywood Film Dataset Analysis",
+      "description": "Analyze a movie dataset using Python, Pandas, visualization and basic machine learning ideas.",
+      "type": "lesson",
+      "topic": "Data Tools",
+      "tags": [
+        "JSON",
+        "API",
+        "Dataset",
+        "Tool",
+        "Movies"
+      ],
+      "url": "https://aiml.learnwithchampak.live/datasets/",
+      "priority": 2
+    },
+    {
+      "title": "JSON UI Builder",
+      "description": "Build and practice JSON-driven user interface ideas with beginner-friendly HTML, JavaScript, and frontend examples.",
+      "type": "tool",
+      "topic": "Data Tools",
+      "tags": [
+        "JSON",
+        "API",
+        "Dataset",
+        "Tool",
+        "HTML"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/jsonui/",
+      "priority": 2
+    },
+    {
+      "title": "Pandas Projects",
+      "description": "Practice Pandas through guided data projects with cleaning, querying, analysis, presentation, and project-style learning.",
+      "type": "lesson",
+      "topic": "Data Tools",
+      "tags": [
+        "Python",
+        "Pandas",
+        "Projects",
+        "Data Analysis",
+        "Practice"
+      ],
+      "url": "https://aiml.learnwithchampak.live/code/pandas/projects/",
+      "priority": 2
+    },
+    {
+      "title": "Angular JSON Processing",
+      "description": "Learn JSON processing in Angular with beginner-friendly examples, data loading, parsing, displaying, and practical frontend workflow.",
+      "type": "lesson",
+      "topic": "Editors",
+      "tags": [
+        "HTML",
+        "JSON",
+        "Editor",
+        "Practice",
+        "Angular"
+      ],
+      "url": "https://editor.learnwithchampak.live/html/angular/json/",
+      "priority": 2
+    },
+    {
+      "title": "HTML Editor",
+      "description": "Write HTML code and preview the output instantly in your browser.",
+      "type": "editor",
+      "topic": "Editors",
+      "tags": [
+        "HTML",
+        "Editor",
+        "Practice",
+        "Frontend",
+        "Live Preview"
+      ],
+      "url": "https://editor.learnwithchampak.live/samples/html/preview/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript Editor",
+      "description": "Write, run, debug and share JavaScript code online without installing anything.",
+      "type": "editor",
+      "topic": "Editors",
+      "tags": [
+        "JavaScript",
+        "Editor",
+        "Practice",
+        "Code Editor",
+        "Debugging"
+      ],
+      "url": "https://editor.learnwithchampak.live/java-script/editor/",
+      "priority": 2
+    },
+    {
+      "title": "JSON Editor",
+      "description": "Create, edit, format and validate JSON data easily in the browser.",
+      "type": "editor",
+      "topic": "Editors",
+      "tags": [
+        "HTML",
+        "JSON",
+        "Editor",
+        "Practice",
+        "Data"
+      ],
+      "url": "https://editor.learnwithchampak.live/samples/html/editor/json/",
+      "priority": 2
+    },
+    {
+      "title": "SQL Editor",
+      "description": "Write, run, debug, optimize and share SQL queries online. No installation required. Includes built-in examples and supports CSV and JSON workflows.",
+      "type": "editor",
+      "topic": "Editors",
+      "tags": [
+        "SQL",
+        "JSON",
+        "Editor",
+        "Practice",
+        "SQLite"
+      ],
+      "url": "https://editor.learnwithchampak.live/sql/premium/",
+      "priority": 2
+    },
+    {
+      "title": "Web-Based Python Editor",
+      "description": "Write, run and share Python code from mobile or desktop. Beginner friendly and no installation required.",
+      "type": "editor",
+      "topic": "Editors",
+      "tags": [
+        "Python",
+        "Editor",
+        "Practice",
+        "Code Editor",
+        "Mobile Friendly"
+      ],
+      "url": "https://editor.learnwithchampak.live/python-starter/editor/super/?tmode=1",
+      "priority": 2
+    },
+    {
+      "title": "Chirpy Jekyll",
+      "description": "Chirpy-Jekyll.",
+      "type": "tool",
+      "topic": "Git / Web Hosting",
+      "tags": [
+        "Jekyll",
+        "Hosting",
+        "Github Pages",
+        "Chirpy-Jekyll",
+        "Chirpy"
+      ],
+      "url": "https://editor.learnwithchampak.live/html/add/chirpy-jekyll/",
+      "priority": 2
+    },
+    {
+      "title": "DNS Guide",
+      "description": "Learn DNS concepts for websites, domains, records, hosting, and beginner-friendly deployment workflow.",
+      "type": "lesson",
+      "topic": "Git / Web Hosting",
+      "tags": [
+        "DNS",
+        "Hosting",
+        "Domain",
+        "Website Hosting",
+        "Deployment"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/dns/",
+      "priority": 2
+    },
+    {
+      "title": "Git LFS Lesson",
+      "description": "Learn Git LFS for handling large files in GitHub repositories with beginner-friendly explanations, setup steps, and practical workflow guidance.",
+      "type": "lesson",
+      "topic": "Git / Web Hosting",
+      "tags": [
+        "Git LFS",
+        "GitHub",
+        "Hosting",
+        "Git",
+        "Large File Storage"
+      ],
+      "url": "https://editor.learnwithchampak.live/ides/github/lfs/",
+      "priority": 2
+    },
+    {
+      "title": "GitHub IDE",
+      "description": "Learn and practice GitHub IDE workflow for repositories, editing, version control, and beginner-friendly coding project management.",
+      "type": "lesson",
+      "topic": "Git / Web Hosting",
+      "tags": [
+        "GitHub",
+        "Hosting",
+        "Git",
+        "IDE",
+        "Online IDE"
+      ],
+      "url": "https://editor.learnwithchampak.live/ides/github/",
+      "priority": 2
+    },
+    {
+      "title": "Google Search Console Guide",
+      "description": "Learn how to submit a website to Google Search Console and improve website visibility.",
+      "type": "lesson",
+      "topic": "Git / Web Hosting",
+      "tags": [
+        "SEO",
+        "Hosting",
+        "Google",
+        "Search Console",
+        "Website Submission"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/05/submitting-website-to-google-search.html",
+      "priority": 2
+    },
+    {
+      "title": "Face AI Demo",
+      "description": "Experiment with face detection and basic computer vision directly in the browser.",
+      "type": "tool",
+      "topic": "Image Tools",
+      "tags": [
+        "Image",
+        "Picture",
+        "Face AI",
+        "Computer Vision",
+        "AI"
+      ],
+      "url": "https://editor.learnwithchampak.live/samples/face/",
+      "priority": 2
+    },
+    {
+      "title": "HTML Image Lessons",
+      "description": "Learn HTML image usage with img tags, paths, alt text, sizing, and beginner-friendly frontend examples.",
+      "type": "lesson",
+      "topic": "Image Tools",
+      "tags": [
+        "Image",
+        "Picture",
+        "HTML",
+        "img tag",
+        "Alt Text"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/img/",
+      "priority": 2
+    },
+    {
+      "title": "Image Magnifier Tool",
+      "description": "Use an image magnifier tool to zoom into images and practice image-processing ideas directly in the browser.",
+      "type": "tool",
+      "topic": "Image Tools",
+      "tags": [
+        "Image",
+        "Picture",
+        "Magnifier",
+        "Image Processing",
+        "Image Magnifier"
+      ],
+      "url": "https://editor.learnwithchampak.live/image%20processing/image-magnifier/",
+      "priority": 2
+    },
+    {
+      "title": "Java Arithmetic Operators",
+      "description": "Learn Java arithmetic operators, expressions, precedence, integer division, modulo, and beginner-friendly calculation examples.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Arithmetic",
+        "Operators",
+        "Expression",
+        "Precedence"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/arithmetic/",
+      "priority": 2
+    },
+    {
+      "title": "Java Boolean Logic",
+      "description": "Learn Java boolean values, true and false, logical operators, comparisons, and decision-making basics with beginner-friendly examples.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Boolean",
+        "true",
+        "false",
+        "Logical Operators"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/boolean/",
+      "priority": 2
+    },
+    {
+      "title": "Java For Loop",
+      "description": "Learn Java for loops with initialization, condition, update, counting patterns, and beginner-friendly loop practice examples.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Loops",
+        "For Loop",
+        "Iteration",
+        "Control Flow"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/loops/for",
+      "priority": 2
+    },
+    {
+      "title": "Java IDEs Setup",
+      "description": "Learn how to install and use Java IDEs such as Eclipse, NetBeans, VS Code, and IntelliJ IDEA with beginner-friendly setup guidance.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "IDE",
+        "Eclipse",
+        "NetBeans",
+        "VS Code"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/ides",
+      "priority": 2
+    },
+    {
+      "title": "Java If Else Ternary and Switch",
+      "description": "Learn Java decision-making with if, else, else-if, ternary operator, and switch statements through beginner-friendly examples.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "If Else",
+        "Switch",
+        "if else",
+        "Ternary Operator"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/if-else-ternary-switch",
+      "priority": 2
+    },
+    {
+      "title": "Java Input and Output",
+      "description": "Learn Java input and output basics with console printing, reading user input, and simple beginner-friendly practice examples.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Input",
+        "Output",
+        "I/O",
+        "Console"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/io",
+      "priority": 2
+    },
+    {
+      "title": "Java Nested For Loops",
+      "description": "Learn Java nested for loops with matrix-style thinking, rows and columns, pattern printing, and structured loop practice.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Loops",
+        "Nested For Loop",
+        "For Loop",
+        "Nested Loops"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/loops/nested/for",
+      "priority": 2
+    },
+    {
+      "title": "Java Nested Loops",
+      "description": "Learn Java nested loops with rows, columns, pattern printing, and beginner-friendly examples for repeated loops inside loops.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Loops",
+        "Nested Loops",
+        "Pattern Printing",
+        "Rows"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/loops/nested",
+      "priority": 2
+    },
+    {
+      "title": "Java Scanner Class",
+      "description": "Learn the Java Scanner class for input handling with beginner-friendly examples, syntax, practice code, and classroom-style explanation.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Scanner",
+        "Input",
+        "User Input",
+        "Java class"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/scanner",
+      "priority": 2
+    },
+    {
+      "title": "Java While Loop",
+      "description": "Learn Java while loops with conditions, counters, repeated execution, and beginner-friendly loop practice examples.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Loops",
+        "While Loop",
+        "Iteration",
+        "Control Flow"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/loops/while",
+      "priority": 2
+    },
+    {
+      "title": "Spring Boot E-Commerce App",
+      "description": "Build a Spring Boot e-commerce application with MySQL, Thymeleaf, template inheritance, page transactions, API transactions, checkpoints, JavaScript files, SEO tags, and an SEO image.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Spring Boot",
+        "Java",
+        "E-Commerce",
+        "MySQL",
+        "Thymeleaf"
+      ],
+      "url": "https://dsa.learnwithchampak.live/spring/e-commerce",
+      "priority": 2
+    },
+    {
+      "title": "Spring Database SQLite",
+      "description": "Learn Spring database work with SQLite using beginner-friendly explanations, setup steps, database connection practice, and backend development workflow.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Spring Boot",
+        "SQLite",
+        "Spring",
+        "Database",
+        "SQL"
+      ],
+      "url": "https://dsa.learnwithchampak.live/spring/database/sqlite",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript Console Lesson",
+      "description": "Learn how to use the JavaScript console from beginner level with console.log, debugging, expressions, variables, errors, and browser practice examples.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Console",
+        "Debugging",
+        "Browser",
         "Frontend"
       ],
-      "url": "https://editor.learnwithchampak.live/html/angular/student/",
-      "priority": 1
+      "url": "https://dsa.learnwithchampak.live/javascript/console",
+      "priority": 2
     },
     {
-      "title": "Saturday Questions 09-05-2026",
-      "description": "Weekly Saturday Questions practice set focused on Beginner DSA in Python.",
-      "type": "practice",
-      "topic": "DSA Practice",
+      "title": "JavaScript Lesson",
+      "description": "Learn JavaScript from beginner level with variables, functions, events, DOM interaction, browser logic, and practical frontend examples.",
+      "type": "lesson",
+      "topic": "JavaScript",
       "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Data Structures"
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
       ],
-      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-09-05-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "09-05-2026"
+      "url": "https://dsa.learnwithchampak.live/javascript/",
+      "priority": 2
     },
     {
-      "title": "Saturday Questions 02-05-2026",
-      "description": "Weekly Saturday Questions practice set focused on sorting trace and algorithm detection.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Sorting"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-02-05-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "02-05-2026"
-    },
-    {
-      "title": "Saturday Questions 25-04-2026",
-      "description": "Weekly Saturday Questions practice set focused on sorting trace and algorithm detection.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Sorting"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/04/saturday-questions-25-04-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "25-04-2026"
-    },
-    {
-      "title": "Saturday Questions 11-04-2026",
-      "description": "Weekly Saturday Questions practice set focused on dynamic programming practice for hiring preparation.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Dynamic Programming"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/04/saturday-questions-11-04-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "11-04-2026"
-    },
-    {
-      "title": "Saturday Questions 04-04-2026",
-      "description": "Weekly Saturday Questions practice set focused on sliding window algorithms and efficient O(n) thinking.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Sliding Window"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/04/saturday-questions-04-04-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "04-04-2026"
-    },
-    {
-      "title": "Saturday Questions 28-03-2026",
-      "description": "Weekly Saturday Questions practice set focused on sliding window algorithms and efficient O(n) thinking.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Sliding Window"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/03/saturday-questions-28-03-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "28-03-2026"
-    },
-    {
-      "title": "Saturday Questions 21-03-2026",
-      "description": "Weekly Saturday Questions practice set focused on sliding window algorithms and efficient O(n) thinking.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Sliding Window"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/03/saturday-questions-21-03-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "21-03-2026"
-    },
-    {
-      "title": "Saturday Questions 14-03-2026",
-      "description": "Weekly Saturday Questions practice set focused on sliding window algorithms and efficient O(n) thinking.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Sliding Window"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/03/saturday-questions-14-03-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "14-03-2026"
-    },
-    {
-      "title": "Saturday Questions 07-03-2026",
-      "description": "Weekly Saturday Questions practice set focused on hash maps practice for hiring preparation.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Hash Maps"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/03/saturday-questions-07-03-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "07-03-2026"
-    },
-    {
-      "title": "Saturday Questions 28-02-2026",
-      "description": "Weekly Saturday Questions practice set focused on stack data structure practice.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Stack"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/02/saturday-questions-28-02-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "28-02-2026"
-    },
-    {
-      "title": "Saturday Questions 21-02-2026",
-      "description": "Weekly Saturday Questions practice set focused on weekly coding practice.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Data Structures"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/02/saturday-questions-21-02-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "21-02-2026"
-    },
-    {
-      "title": "Generative Image Maker",
-      "description": "Generative Image Maker",
+      "title": "Champak's Market",
+      "description": "Champak's Market.",
       "type": "tool",
-      "topic": "Image Tools",
+      "topic": "Marketplace",
       "tags": [
-        "Image",
-        "Picture",
-        "Generator",
-        "Generative Image Maker"
+        "Marketplace",
+        "Affiliate",
+        "Learning Products",
+        "Computers",
+        "Peripherals"
       ],
-      "url": "https://aiml.learnwithchampak.live/images/image-generator/",
-      "priority": 3
+      "url": "https://www.learnwithchampak.live/2026/05/champaks-market.html",
+      "priority": 2
     },
     {
-      "title": "Icon Maker",
-      "description": "Icon Image Maker",
-      "type": "tool",
-      "topic": "Image Tools",
+      "title": "Beginning NLP",
+      "description": "Start learning Natural Language Processing from the basics with beginner-friendly examples.",
+      "type": "lesson",
+      "topic": "NLP",
       "tags": [
-        "Image",
-        "Picture",
-        "Icon",
-        "Icon Image Maker"
+        "NLP",
+        "Text Processing",
+        "Natural Language Processing",
+        "AI",
+        "NLP tutorial"
       ],
-      "url": "https://editor.learnwithchampak.live/image%20processing/icon/",
-      "priority": 3
+      "url": "https://aiml.learnwithchampak.live/nlp/begin/",
+      "priority": 2
+    },
+    {
+      "title": "NLP 0 to 10%",
+      "description": "Start learning Natural Language Processing from the basics with beginner-friendly examples.",
+      "type": "lesson",
+      "topic": "NLP",
+      "tags": [
+        "NLP",
+        "Text Processing",
+        "NLP 1",
+        "Natural Language Processing",
+        "AI"
+      ],
+      "url": "https://aiml.learnwithchampak.live/nlp/0-10/",
+      "priority": 2
+    },
+    {
+      "title": "NLP 11 to 20%",
+      "description": "NLP 2.",
+      "type": "tool",
+      "topic": "NLP",
+      "tags": [
+        "NLP",
+        "Text Processing",
+        "Natural Language Processing",
+        "Cleaning",
+        "Complete Text Cleaner"
+      ],
+      "url": "https://aiml.learnwithchampak.live/nlp/11-20/",
+      "priority": 2
+    },
+    {
+      "title": "NLP 21 to 30%",
+      "description": "NLP 3.",
+      "type": "tool",
+      "topic": "NLP",
+      "tags": [
+        "NLP",
+        "Text Processing",
+        "Natural Language Processing",
+        "Cleaning",
+        "Complete Text Cleaner"
+      ],
+      "url": "https://aiml.learnwithchampak.live/nlp/21-30/",
+      "priority": 2
     },
     {
       "title": "NLP 31 to 40%",
@@ -844,444 +1877,257 @@
       "priority": 2
     },
     {
-      "title": "Angular Routing",
-      "description": "Learn Angular routing from beginner level with routes, navigation, router outlet, and practical single-page application structure.",
+      "title": "NLP 61 70",
+      "description": "Learn NLP 61 70 with beginner-friendly explanations, examples, and practical exercises.",
       "type": "lesson",
-      "topic": "Angular",
+      "topic": "NLP",
       "tags": [
-        "Angular",
-        "Routing",
-        "Router",
-        "Frontend",
-        "TypeScript"
-      ],
-      "url": "https://editor.learnwithchampak.live/html/angular/routing/",
-      "priority": 2
-    },
-    {
-      "title": "Before Upper Bound",
-      "description": "Practice DSA thinking before upper-bound concepts with beginner-friendly explanations and step-by-step coding preparation.",
-      "type": "lesson",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Data Structures",
-        "Algorithms"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/before-upper",
-      "priority": 2
-    },
-    {
-      "title": "DSA Animation",
-      "description": "Learn DSA and frontend ideas through animation-based visual examples for clearer understanding and classroom practice.",
-      "type": "lesson",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Data Structures",
-        "Algorithms"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/animation",
-      "priority": 2
-    },
-    {
-      "title": "Cart Page",
-      "description": "Practice cart-page logic and layout ideas with beginner-friendly web development and DSA-style thinking.",
-      "type": "lesson",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Data Structures",
-        "Algorithms"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/cart",
-      "priority": 2
-    },
-    {
-      "title": "HTML Layouts",
-      "description": "Practice HTML layouts with structured page sections, responsive thinking, and beginner-friendly frontend examples.",
-      "type": "lesson",
-      "topic": "Web Development",
-      "tags": [
-        "HTML",
-        "CSS",
-        "Frontend",
-        "Layouts",
-        "DSA"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/layouts",
-      "priority": 2
-    },
-    {
-      "title": "Git LFS Lesson",
-      "description": "Learn Git LFS for handling large files in GitHub repositories with beginner-friendly explanations, setup steps, and practical workflow guidance.",
-      "type": "lesson",
-      "topic": "Git / Web Hosting",
-      "tags": [
-        "Git LFS",
-        "GitHub",
-        "Hosting",
-        "Git",
-        "Large File Storage"
-      ],
-      "url": "https://editor.learnwithchampak.live/ides/github/lfs/",
-      "priority": 2
-    },
-    {
-      "title": "GitHub IDE",
-      "description": "Learn and practice GitHub IDE workflow for repositories, editing, version control, and beginner-friendly coding project management.",
-      "type": "lesson",
-      "topic": "Git / Web Hosting",
-      "tags": [
-        "GitHub",
-        "Hosting",
-        "Git",
-        "IDE",
-        "Online IDE"
-      ],
-      "url": "https://editor.learnwithchampak.live/ides/github/",
-      "priority": 2
-    },
-    {
-      "title": "Spring Boot E-Commerce App",
-      "description": "Build a Spring Boot e-commerce application with MySQL, Thymeleaf, template inheritance, page transactions, API transactions, checkpoints, JavaScript files, SEO tags, and an SEO image.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Spring Boot",
-        "Java",
-        "E-Commerce",
-        "MySQL",
-        "Thymeleaf"
-      ],
-      "url": "https://dsa.learnwithchampak.live/spring/e-commerce",
-      "priority": 2
-    },
-    {
-      "title": "Spring Database SQLite",
-      "description": "Learn Spring database work with SQLite using beginner-friendly explanations, setup steps, database connection practice, and backend development workflow.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Spring Boot",
-        "SQLite",
-        "Spring",
-        "Database",
-        "SQL"
-      ],
-      "url": "https://dsa.learnwithchampak.live/spring/database/sqlite",
-      "priority": 2
-    },
-    {
-      "title": "Saturday Questions 16-05-2026",
-      "description": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice. Learn problem solving step by step with Programmers Picnic by Champak Roy.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Data Structures"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-16-05-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "16-05-2026"
-    },
-    {
-      "title": "Java IDEs Setup",
-      "description": "Learn how to install and use Java IDEs such as Eclipse, NetBeans, VS Code, and IntelliJ IDEA with beginner-friendly setup guidance.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "IDE",
-        "Eclipse",
-        "NetBeans",
-        "VS Code"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/ides",
-      "priority": 2
-    },
-    {
-      "title": "Java Scanner Class",
-      "description": "Learn the Java Scanner class for input handling with beginner-friendly examples, syntax, practice code, and classroom-style explanation.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "Scanner",
-        "Input",
-        "User Input",
-        "Java class"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/scanner",
-      "priority": 2
-    },
-    {
-      "title": "Angular Data Binding",
-      "description": "Learn Angular data binding from beginner level with interpolation, property binding, event binding, two-way binding, and practical examples.",
-      "type": "lesson",
-      "topic": "Angular",
-      "tags": [
-        "Angular",
-        "Data Binding",
-        "Interpolation",
-        "Property Binding",
-        "Event Binding"
-      ],
-      "url": "https://editor.learnwithchampak.live/html/angular/databinding",
-      "priority": 2
-    },
-    {
-      "title": "Image Magnifier Tool",
-      "description": "Use an image magnifier tool to zoom into images and practice image-processing ideas directly in the browser.",
-      "type": "tool",
-      "topic": "Image Tools",
-      "tags": [
-        "Image",
-        "Picture",
-        "Magnifier",
-        "Image Processing",
-        "Image Magnifier"
-      ],
-      "url": "https://editor.learnwithchampak.live/image%20processing/image-magnifier/",
-      "priority": 2
-    },
-    {
-      "title": "Saturday Questions 23-05-2026",
-      "description": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice. Learn problem solving step by step with Programmers Picnic by Champak Roy.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Data Structures"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-23-05-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "23-05-2026"
-    },
-    {
-      "title": "Saturday Questions 30-05-2026",
-      "description": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice.",
-      "type": "practice",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Saturday Questions",
-        "Data Structures"
-      ],
-      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-30-05-2026.html",
-      "priority": 3,
-      "series": "Saturday Questions",
-      "publishedDate": "30-05-2026"
-    },
-    {
-      "title": "Authorised AI-ML Access",
-      "description": "Authorised access area for Learn With Champak AI-ML resources, guided learning, protected lessons, and student practice materials.",
-      "type": "platform",
-      "topic": "AI-ML",
-      "tags": [
-        "AI-ML",
-        "Access",
-        "Authorised",
-        "Authorized",
-        "AI"
-      ],
-      "url": "https://aiml.learnwithchampak.live/authorised/",
-      "priority": 2
-    },
-    {
-      "title": "AI-ML Puzzle",
-      "description": "Practice AI-ML and coding thinking through beginner-friendly puzzles, problem solving activities, and interactive learning challenges.",
-      "type": "practice",
-      "topic": "AI-ML",
-      "tags": [
-        "AI-ML",
-        "Puzzle",
+        "NLP",
         "AI",
         "ML",
-        "Problem Solving"
+        "Learn With Champak"
       ],
-      "url": "https://aiml.learnwithchampak.live/puzzle/",
+      "url": "https://aiml.learnwithchampak.live/nlp/61-70/",
       "priority": 2
     },
     {
-      "title": "Angular JSON Processing",
-      "description": "Learn JSON processing in Angular with beginner-friendly examples, data loading, parsing, displaying, and practical frontend workflow.",
+      "title": "Code Pandas CSV",
+      "description": "Learn Code Pandas CSV with beginner-friendly explanations, examples, and practical exercises.",
       "type": "lesson",
-      "topic": "Editors",
+      "topic": "Python",
       "tags": [
-        "HTML",
-        "JSON",
-        "Editor",
-        "Practice",
-        "Angular"
+        "Python",
+        "Pandas",
+        "AI",
+        "ML",
+        "CSV"
       ],
-      "url": "https://editor.learnwithchampak.live/html/angular/json/",
+      "url": "https://aiml.learnwithchampak.live/code/pandas/csv/",
       "priority": 2
     },
     {
-      "title": "Angular Authentication",
-      "description": "Learn authentication in Angular with login flow, protected routes, guards, tokens, and beginner-friendly frontend security concepts.",
-      "type": "lesson",
-      "topic": "Angular",
+      "title": "Code Pandas Projects Project Difficult",
+      "description": "Practice Code Pandas Projects Project Difficult with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "Python",
       "tags": [
-        "Angular",
-        "Authentication",
-        "Login",
-        "Protected Routes",
-        "Route Guards"
+        "Python",
+        "Pandas",
+        "AI",
+        "ML",
+        "HTML"
       ],
-      "url": "https://editor.learnwithchampak.live/html/angular/authentication/",
+      "url": "https://aiml.learnwithchampak.live/code/pandas/projects/project_difficult.html",
       "priority": 2
     },
     {
-      "title": "Join Programmers Picnic",
-      "description": "Join the Learn With Champak guided learning system, classes, support, WhatsApp guidance, and student learning community.",
-      "type": "link",
-      "topic": "Community",
+      "title": "Code Pandas Projects Project Easy",
+      "description": "Practice Code Pandas Projects Project Easy with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "Python",
       "tags": [
-        "Join",
-        "WhatsApp",
-        "Zoom",
-        "Guided Learning",
-        "Classes"
+        "Python",
+        "Pandas",
+        "AI",
+        "ML",
+        "HTML"
       ],
-      "url": "https://www.learnwithchampak.live/p/champak.html#pp-join",
-      "priority": 1
-    },
-    {
-      "title": "Java Boolean Logic",
-      "description": "Learn Java boolean values, true and false, logical operators, comparisons, and decision-making basics with beginner-friendly examples.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "Boolean",
-        "true",
-        "false",
-        "Logical Operators"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/boolean/",
+      "url": "https://aiml.learnwithchampak.live/code/pandas/projects/project_easy.html",
       "priority": 2
     },
     {
-      "title": "Java Arithmetic Operators",
-      "description": "Learn Java arithmetic operators, expressions, precedence, integer division, modulo, and beginner-friendly calculation examples.",
-      "type": "lesson",
-      "topic": "Java / Spring",
+      "title": "Code Pandas Projects Project Moderate",
+      "description": "Practice Code Pandas Projects Project Moderate with beginner-friendly tasks, guided examples, and structured learning activities.",
+      "type": "practice",
+      "topic": "Python",
       "tags": [
-        "Java",
-        "Arithmetic",
-        "Operators",
-        "Expression",
-        "Precedence"
+        "Python",
+        "Pandas",
+        "AI",
+        "ML",
+        "HTML"
       ],
-      "url": "https://dsa.learnwithchampak.live/java/arithmetic/",
+      "url": "https://aiml.learnwithchampak.live/code/pandas/projects/project_moderate.html",
       "priority": 2
     },
     {
-      "title": "Java Input and Output",
-      "description": "Learn Java input and output basics with console printing, reading user input, and simple beginner-friendly practice examples.",
+      "title": "Code Pandas SQL",
+      "description": "Learn Code Pandas SQL with beginner-friendly explanations, examples, and practical exercises.",
       "type": "lesson",
-      "topic": "Java / Spring",
+      "topic": "Python",
       "tags": [
-        "Java",
-        "Input",
-        "Output",
-        "I/O",
-        "Console"
+        "Python",
+        "Pandas",
+        "SQL",
+        "AI",
+        "ML"
       ],
-      "url": "https://dsa.learnwithchampak.live/java/io",
+      "url": "https://aiml.learnwithchampak.live/code/pandas/sql/",
       "priority": 2
     },
     {
-      "title": "Java If Else Ternary and Switch",
-      "description": "Learn Java decision-making with if, else, else-if, ternary operator, and switch statements through beginner-friendly examples.",
+      "title": "NumPy Arrays Lesson",
+      "description": "Learn NumPy arrays in Python with beginner-friendly explanations, indexing, slicing, shape, axis, and numerical thinking examples.",
       "type": "lesson",
-      "topic": "Java / Spring",
+      "topic": "Python",
       "tags": [
-        "Java",
-        "If Else",
-        "Switch",
-        "if else",
-        "Ternary Operator"
+        "Python",
+        "NumPy",
+        "Arrays",
+        "Indexing",
+        "Data Analysis"
       ],
-      "url": "https://dsa.learnwithchampak.live/java/if-else-ternary-switch",
+      "url": "https://dsa.learnwithchampak.live/python/numpyarrays/",
       "priority": 2
     },
     {
-      "title": "Java For Loop",
-      "description": "Learn Java for loops with initialization, condition, update, counting patterns, and beginner-friendly loop practice examples.",
+      "title": "Pandas",
+      "description": "Learn Pandas in Python with beginner-friendly explanations of DataFrames, data loading, cleaning, querying, analysis, and practical examples.",
       "type": "lesson",
-      "topic": "Java / Spring",
+      "topic": "Python",
       "tags": [
-        "Java",
+        "Python",
+        "Pandas",
+        "DataFrame",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/pandas/",
+      "priority": 2
+    },
+    {
+      "title": "Python Logic Conditions Loops and Functions",
+      "description": "Learn Python logic, conditions, loops, functions, and collections with beginner-friendly explanations and structured practice examples.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Logic",
+        "Conditions",
         "Loops",
-        "For Loop",
-        "Iteration",
-        "Control Flow"
+        "Functions"
       ],
-      "url": "https://dsa.learnwithchampak.live/java/loops/for",
+      "url": "https://dsa.learnwithchampak.live/python/logic-conditions-loops-functions/",
       "priority": 2
     },
     {
-      "title": "Java While Loop",
-      "description": "Learn Java while loops with conditions, counters, repeated execution, and beginner-friendly loop practice examples.",
+      "title": "Python OOP Lesson",
+      "description": "Learn Object-Oriented Programming in Python with beginner-friendly explanations of classes, objects, methods, constructors, inheritance, and practical examples.",
       "type": "lesson",
-      "topic": "Java / Spring",
+      "topic": "Python",
       "tags": [
-        "Java",
-        "Loops",
-        "While Loop",
-        "Iteration",
-        "Control Flow"
+        "Python",
+        "OOP",
+        "Object-Oriented Programming",
+        "Classes",
+        "Objects"
       ],
-      "url": "https://dsa.learnwithchampak.live/java/loops/while",
+      "url": "https://dsa.learnwithchampak.live/python/oops/",
       "priority": 2
     },
     {
-      "title": "Java Nested Loops",
-      "description": "Learn Java nested loops with rows, columns, pattern printing, and beginner-friendly examples for repeated loops inside loops.",
+      "title": "Python Pandas SQL Lesson",
+      "description": "Learn how to use SQL with Pandas in Python using beginner-friendly explanations, DataFrames, queries, filtering, joins, and practical data analysis examples.",
       "type": "lesson",
-      "topic": "Java / Spring",
+      "topic": "Python",
       "tags": [
-        "Java",
-        "Loops",
-        "Nested Loops",
-        "Pattern Printing",
-        "Rows"
+        "Python",
+        "Pandas",
+        "SQL",
+        "DataFrame",
+        "Data Analysis"
       ],
-      "url": "https://dsa.learnwithchampak.live/java/loops/nested",
+      "url": "https://dsa.learnwithchampak.live/python/pandas/sql/",
       "priority": 2
     },
     {
-      "title": "Java Nested For Loops",
-      "description": "Learn Java nested for loops with matrix-style thinking, rows and columns, pattern printing, and structured loop practice.",
+      "title": "Python Try Except Lesson",
+      "description": "Learn Python try, except, else, finally, error handling, common exceptions, and safe beginner-friendly programming patterns with practical examples.",
       "type": "lesson",
-      "topic": "Java / Spring",
+      "topic": "Python",
       "tags": [
-        "Java",
-        "Loops",
-        "Nested For Loop",
-        "For Loop",
-        "Nested Loops"
+        "Python",
+        "Try Except",
+        "Exception Handling",
+        "Errors",
+        "Debugging"
       ],
-      "url": "https://dsa.learnwithchampak.live/java/loops/nested/for",
+      "url": "https://dsa.learnwithchampak.live/python/tryexcept/",
+      "priority": 2
+    },
+    {
+      "title": "Regression NumPy Polyfit",
+      "description": "Learn Regression NumPy Polyfit with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "NumPy",
+        "AI",
+        "ML",
+        "Regression"
+      ],
+      "url": "https://aiml.learnwithchampak.live/regression/np/polyfit/",
+      "priority": 2
+    },
+    {
+      "title": "React Files and Folders",
+      "description": "Learn the React project file structure with important files, folders, components, assets, package files, and beginner-friendly project organization.",
+      "type": "lesson",
+      "topic": "React",
+      "tags": [
+        "React",
+        "Files",
+        "Folders",
+        "Components",
+        "Project Structure"
+      ],
+      "url": "https://dsa.learnwithchampak.live/react/filesandfolders/",
+      "priority": 2
+    },
+    {
+      "title": "React Lesson",
+      "description": "Learn React from beginner level with components, pages, state, props, routing ideas, and practical frontend examples.",
+      "type": "lesson",
+      "topic": "React",
+      "tags": [
+        "React",
+        "JavaScript",
+        "Frontend",
+        "Components",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/react/",
+      "priority": 2
+    },
+    {
+      "title": "Room Board",
+      "description": "Interactive shared room for collaboration, live practice and classroom activities.",
+      "type": "tool",
+      "topic": "Teaching Tools",
+      "tags": [
+        "Teaching",
+        "Whiteboard",
+        "Live Class",
+        "Collaboration",
+        "Room"
+      ],
+      "url": "https://editor.learnwithchampak.live/room/",
+      "priority": 2
+    },
+    {
+      "title": "Whiteboard Tool",
+      "description": "A simple online whiteboard for teaching, drawing, writing and explaining concepts live.",
+      "type": "tool",
+      "topic": "Teaching Tools",
+      "tags": [
+        "Teaching",
+        "Whiteboard",
+        "Live Class",
+        "Drawing",
+        "Online Board"
+      ],
+      "url": "https://editor.learnwithchampak.live/whiteboard/",
       "priority": 2
     },
     {
@@ -1300,6 +2146,51 @@
       "priority": 2
     },
     {
+      "title": "HTML Anchor Tag Lesson",
+      "description": "Learn the HTML a tag from beginner level with links, href, targets, anchors, navigation, and practical webpage examples.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "a tag",
+        "Anchor",
+        "Links",
+        "Frontend"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/a/",
+      "priority": 2
+    },
+    {
+      "title": "HTML Animation Lesson",
+      "description": "Learn HTML, CSS, and JavaScript animation from beginner level with interactive examples, transitions, keyframes, and frontend practice.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "Animation",
+        "JavaScript",
+        "Frontend"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/animation/",
+      "priority": 2
+    },
+    {
+      "title": "HTML Layouts",
+      "description": "Practice HTML layouts with structured page sections, responsive thinking, and beginner-friendly frontend examples.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "Frontend",
+        "Layouts",
+        "DSA"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/pages/layouts",
+      "priority": 2
+    },
+    {
       "title": "HTML Logos Page",
       "description": "Practice logo layouts and visual branding ideas using beginner-friendly HTML and frontend design examples.",
       "type": "lesson",
@@ -1315,51 +2206,6 @@
       "priority": 2
     },
     {
-      "title": "Portfolio Page",
-      "description": "Practice building a portfolio page with beginner-friendly HTML layout, sections, styling, and frontend structure.",
-      "type": "lesson",
-      "topic": "Web Development",
-      "tags": [
-        "HTML",
-        "CSS",
-        "Frontend",
-        "Portfolio",
-        "Layouts"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/portfolio/",
-      "priority": 2
-    },
-    {
-      "title": "Speaker Page",
-      "description": "Practice a speaker page or text-to-speech style frontend interface with beginner-friendly HTML and JavaScript ideas.",
-      "type": "lesson",
-      "topic": "Web Development",
-      "tags": [
-        "HTML",
-        "CSS",
-        "Frontend",
-        "Speaker",
-        "Text to Speech"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/speaker/",
-      "priority": 2
-    },
-    {
-      "title": "HTML Image Lessons",
-      "description": "Learn HTML image usage with img tags, paths, alt text, sizing, and beginner-friendly frontend examples.",
-      "type": "lesson",
-      "topic": "Image Tools",
-      "tags": [
-        "Image",
-        "Picture",
-        "HTML",
-        "img tag",
-        "Alt Text"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/img/",
-      "priority": 2
-    },
-    {
       "title": "HTML Tables",
       "description": "Learn HTML tables with rows, columns, headings, structure, styling, and beginner-friendly practice examples.",
       "type": "lesson",
@@ -1372,21 +2218,6 @@
         "Rows"
       ],
       "url": "https://dsa.learnwithchampak.live/html/tables/",
-      "priority": 2
-    },
-    {
-      "title": "DNS Guide",
-      "description": "Learn DNS concepts for websites, domains, records, hosting, and beginner-friendly deployment workflow.",
-      "type": "lesson",
-      "topic": "Git / Web Hosting",
-      "tags": [
-        "DNS",
-        "Hosting",
-        "Domain",
-        "Website Hosting",
-        "Deployment"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/dns/",
       "priority": 2
     },
     {
@@ -1435,91 +2266,33 @@
       "priority": 2
     },
     {
-      "title": "JSON UI Builder",
-      "description": "Build and practice JSON-driven user interface ideas with beginner-friendly HTML, JavaScript, and frontend examples.",
-      "type": "tool",
-      "topic": "Data Tools",
-      "tags": [
-        "JSON",
-        "API",
-        "Dataset",
-        "Tool",
-        "HTML"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/jsonui/",
-      "priority": 2
-    },
-    {
-      "title": "Multilevel Layout UI",
-      "description": "Multilevel UI using Flex and Grid.",
-      "type": "tool",
-      "topic": "Flex, Grid",
-      "tags": [
-        "Flex, Grid",
-        "Tool",
-        "HTML"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/layouts/multilevel/",
-      "priority": 1
-    },
-    {
-      "title": "Layout UI",
-      "description": "UI using Flex and Grid.",
-      "type": "tool",
-      "topic": "Flex, Grid",
-      "tags": [
-        "Flex, Grid",
-        "Tool",
-        "HTML"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/layouts/",
-      "priority": 1
-    },
-    {
-      "title": "Android PIN Login Demo",
-      "description": "Practice an Android-style PIN login interface using beginner-friendly HTML, CSS, JavaScript, and web app interaction ideas.",
-      "type": "tool",
-      "topic": "Android / WebView",
-      "tags": [
-        "Android",
-        "PIN",
-        "Login",
-        "HTML",
-        "JavaScript"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/android/pin/",
-      "priority": 2
-    },
-    {
-      "title": "Android PIN Login Lesson",
-      "description": "Learn Android-style PIN login flow with beginner-friendly HTML, JavaScript, input handling, validation, and lesson explanations.",
-      "type": "lesson",
-      "topic": "Android / WebView",
-      "tags": [
-        "Android",
-        "PIN",
-        "Login",
-        "HTML",
-        "JavaScript",
-        "PINS",
-        "Android Pin"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/android/pin/lesson/",
-      "priority": 2
-    },
-    {
-      "title": "HTML Anchor Tag Lesson",
-      "description": "Learn the HTML a tag from beginner level with links, href, targets, anchors, navigation, and practical webpage examples.",
+      "title": "Portfolio Page",
+      "description": "Practice building a portfolio page with beginner-friendly HTML layout, sections, styling, and frontend structure.",
       "type": "lesson",
       "topic": "Web Development",
       "tags": [
         "HTML",
-        "a tag",
-        "Anchor",
-        "Links",
-        "Frontend"
+        "CSS",
+        "Frontend",
+        "Portfolio",
+        "Layouts"
       ],
-      "url": "https://dsa.learnwithchampak.live/html/a/",
+      "url": "https://dsa.learnwithchampak.live/html/pages/portfolio/",
+      "priority": 2
+    },
+    {
+      "title": "Speaker Page",
+      "description": "Practice a speaker page or text-to-speech style frontend interface with beginner-friendly HTML and JavaScript ideas.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "Frontend",
+        "Speaker",
+        "Text to Speech"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/pages/speaker/",
       "priority": 2
     },
     {
@@ -1549,21 +2322,6 @@
       "priority": 2
     },
     {
-      "title": "Authorised AI-ML Lesson",
-      "description": "Lesson page for authorised Learn With Champak AI-ML resources, guided learning, protected practice, and student access workflow.",
-      "type": "lesson",
-      "topic": "AI-ML",
-      "tags": [
-        "AI-ML",
-        "Access",
-        "Authorised",
-        "Lesson",
-        "Guided Learning"
-      ],
-      "url": "https://aiml.learnwithchampak.live/authorised/lesson/",
-      "priority": 2
-    },
-    {
       "title": "WebSocket Chat",
       "description": "Practice a browser-based WebSocket chat system with beginner-friendly real-time communication and frontend networking examples.",
       "type": "tool",
@@ -1576,21 +2334,6 @@
         "Frontend"
       ],
       "url": "https://dsa.learnwithchampak.live/websocket/chat/",
-      "priority": 2
-    },
-    {
-      "title": "WebSocket Tic Tac Toe",
-      "description": "Practice a real-time Tic Tac Toe game using WebSocket concepts, browser interaction, game state, and beginner-friendly JavaScript logic.",
-      "type": "tool",
-      "topic": "Websocket",
-      "tags": [
-        "WebSocket",
-        "Tic Tac Toe",
-        "Game",
-        "Real Time",
-        "JavaScript"
-      ],
-      "url": "https://dsa.learnwithchampak.live/websocket/tictactoe/",
       "priority": 2
     },
     {
@@ -1609,207 +2352,349 @@
       "priority": 2
     },
     {
-      "title": "Python OOP Lesson",
-      "description": "Learn Object-Oriented Programming in Python with beginner-friendly explanations of classes, objects, methods, constructors, inheritance, and practical examples.",
-      "type": "lesson",
-      "topic": "Python",
+      "title": "WebSocket Tic Tac Toe",
+      "description": "Practice a real-time Tic Tac Toe game using WebSocket concepts, browser interaction, game state, and beginner-friendly JavaScript logic.",
+      "type": "tool",
+      "topic": "Websocket",
       "tags": [
+        "WebSocket",
+        "Tic Tac Toe",
+        "Game",
+        "Real Time",
+        "JavaScript"
+      ],
+      "url": "https://dsa.learnwithchampak.live/websocket/tictactoe/",
+      "priority": 2
+    },
+    {
+      "title": "Zoom Meeting Access",
+      "description": "Join live classes, doubt sessions and weekly learning discussions.",
+      "type": "link",
+      "topic": "Community",
+      "tags": [
+        "Join",
+        "WhatsApp",
+        "Zoom",
+        "Guided Learning",
+        "Live Class"
+      ],
+      "url": "https://www.learnwithchampak.live/p/champak.html#timing",
+      "priority": 3
+    },
+    {
+      "title": "Saturday Questions 02-05-2026",
+      "description": "Weekly Saturday Questions practice set focused on sorting trace and algorithm detection.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
         "Python",
-        "OOP",
-        "Object-Oriented Programming",
-        "Classes",
-        "Objects"
+        "Practice",
+        "Saturday Questions",
+        "Sorting"
       ],
-      "url": "https://dsa.learnwithchampak.live/python/oops/",
-      "priority": 2
+      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-02-05-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "02-05-2026"
     },
     {
-      "title": "JavaScript Lesson",
-      "description": "Learn JavaScript from beginner level with variables, functions, events, DOM interaction, browser logic, and practical frontend examples.",
-      "type": "lesson",
-      "topic": "JavaScript",
+      "title": "Saturday Questions 04-04-2026",
+      "description": "Weekly Saturday Questions practice set focused on sliding window algorithms and efficient O(n) thinking.",
+      "type": "practice",
+      "topic": "DSA Practice",
       "tags": [
-        "JavaScript",
-        "Frontend",
-        "DOM",
-        "Functions",
-        "Web Development"
-      ],
-      "url": "https://dsa.learnwithchampak.live/javascript/",
-      "priority": 2
-    },
-    {
-      "title": "Python Pandas SQL Lesson",
-      "description": "Learn how to use SQL with Pandas in Python using beginner-friendly explanations, DataFrames, queries, filtering, joins, and practical data analysis examples.",
-      "type": "lesson",
-      "topic": "Python",
-      "tags": [
+        "DSA",
         "Python",
-        "Pandas",
-        "SQL",
-        "DataFrame",
-        "Data Analysis"
+        "Practice",
+        "Saturday Questions",
+        "Sliding Window"
       ],
-      "url": "https://dsa.learnwithchampak.live/python/pandas/sql/",
-      "priority": 2
+      "url": "https://www.learnwithchampak.live/2026/04/saturday-questions-04-04-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "04-04-2026"
     },
     {
-      "title": "Pandas",
-      "description": "Learn Pandas in Python with beginner-friendly explanations of DataFrames, data loading, cleaning, querying, analysis, and practical examples.",
-      "type": "lesson",
-      "topic": "Python",
+      "title": "Saturday Questions 07-03-2026",
+      "description": "Weekly Saturday Questions practice set focused on hash maps practice for hiring preparation.",
+      "type": "practice",
+      "topic": "DSA Practice",
       "tags": [
+        "DSA",
         "Python",
-        "Pandas",
-        "DataFrame",
-        "Data Analysis",
-        "Learning"
+        "Practice",
+        "Saturday Questions",
+        "Hash Maps"
       ],
-      "url": "https://dsa.learnwithchampak.live/python/pandas/",
-      "priority": 2
+      "url": "https://www.learnwithchampak.live/2026/03/saturday-questions-07-03-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "07-03-2026"
     },
     {
-      "title": "JavaScript Console Lesson",
-      "description": "Learn how to use the JavaScript console from beginner level with console.log, debugging, expressions, variables, errors, and browser practice examples.",
-      "type": "lesson",
-      "topic": "JavaScript",
+      "title": "Saturday Questions 09-05-2026",
+      "description": "Weekly Saturday Questions practice set focused on Beginner DSA in Python.",
+      "type": "practice",
+      "topic": "DSA Practice",
       "tags": [
-        "JavaScript",
-        "Console",
-        "Debugging",
-        "Browser",
-        "Frontend"
-      ],
-      "url": "https://dsa.learnwithchampak.live/javascript/console",
-      "priority": 2
-    },
-    {
-      "title": "Python Try Except Lesson",
-      "description": "Learn Python try, except, else, finally, error handling, common exceptions, and safe beginner-friendly programming patterns with practical examples.",
-      "type": "lesson",
-      "topic": "Python",
-      "tags": [
+        "DSA",
         "Python",
-        "Try Except",
-        "Exception Handling",
-        "Errors",
-        "Debugging"
+        "Practice",
+        "Saturday Questions",
+        "Data Structures"
       ],
-      "url": "https://dsa.learnwithchampak.live/python/tryexcept/",
-      "priority": 2
+      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-09-05-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "09-05-2026"
     },
     {
-      "title": "NumPy Arrays Lesson",
-      "description": "Learn NumPy arrays in Python with beginner-friendly explanations, indexing, slicing, shape, axis, and numerical thinking examples.",
-      "type": "lesson",
-      "topic": "Python",
+      "title": "Saturday Questions 11-04-2026",
+      "description": "Weekly Saturday Questions practice set focused on dynamic programming practice for hiring preparation.",
+      "type": "practice",
+      "topic": "DSA Practice",
       "tags": [
+        "DSA",
         "Python",
-        "NumPy",
-        "Arrays",
-        "Indexing",
-        "Data Analysis"
+        "Practice",
+        "Saturday Questions",
+        "Dynamic Programming"
       ],
-      "url": "https://dsa.learnwithchampak.live/python/numpyarrays/",
-      "priority": 2
+      "url": "https://www.learnwithchampak.live/2026/04/saturday-questions-11-04-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "11-04-2026"
     },
     {
-      "title": "HTML Animation Lesson",
-      "description": "Learn HTML, CSS, and JavaScript animation from beginner level with interactive examples, transitions, keyframes, and frontend practice.",
-      "type": "lesson",
+      "title": "Saturday Questions 14-03-2026",
+      "description": "Weekly Saturday Questions practice set focused on sliding window algorithms and efficient O(n) thinking.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Sliding Window"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/03/saturday-questions-14-03-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "14-03-2026"
+    },
+    {
+      "title": "Saturday Questions 16-05-2026",
+      "description": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice. Learn problem solving step by step with Programmers Picnic by Champak Roy.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Data Structures"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-16-05-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "16-05-2026"
+    },
+    {
+      "title": "Saturday Questions 21-02-2026",
+      "description": "Weekly Saturday Questions practice set focused on weekly coding practice.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Data Structures"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/02/saturday-questions-21-02-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "21-02-2026"
+    },
+    {
+      "title": "Saturday Questions 21-03-2026",
+      "description": "Weekly Saturday Questions practice set focused on sliding window algorithms and efficient O(n) thinking.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Sliding Window"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/03/saturday-questions-21-03-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "21-03-2026"
+    },
+    {
+      "title": "Saturday Questions 23-05-2026",
+      "description": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice. Learn problem solving step by step with Programmers Picnic by Champak Roy.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Data Structures"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-23-05-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "23-05-2026"
+    },
+    {
+      "title": "Saturday Questions 25-04-2026",
+      "description": "Weekly Saturday Questions practice set focused on sorting trace and algorithm detection.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Sorting"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/04/saturday-questions-25-04-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "25-04-2026"
+    },
+    {
+      "title": "Saturday Questions 28-02-2026",
+      "description": "Weekly Saturday Questions practice set focused on stack data structure practice.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Stack"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/02/saturday-questions-28-02-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "28-02-2026"
+    },
+    {
+      "title": "Saturday Questions 28-03-2026",
+      "description": "Weekly Saturday Questions practice set focused on sliding window algorithms and efficient O(n) thinking.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Sliding Window"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/03/saturday-questions-28-03-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "28-03-2026"
+    },
+    {
+      "title": "Saturday Questions 30-05-2026",
+      "description": "Weekly Saturday Questions practice set focused on beginner-friendly DSA and Python coding practice.",
+      "type": "practice",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Saturday Questions",
+        "Data Structures"
+      ],
+      "url": "https://www.learnwithchampak.live/2026/05/saturday-questions-30-05-2026.html",
+      "priority": 3,
+      "series": "Saturday Questions",
+      "publishedDate": "30-05-2026"
+    },
+    {
+      "title": "Finance Demo Dataset",
+      "description": "A sample finance dataset for practicing data analysis and machine learning.",
+      "type": "dataset",
+      "topic": "Data Tools",
+      "tags": [
+        "JSON",
+        "API",
+        "Dataset",
+        "Tool",
+        "CSV"
+      ],
+      "url": "https://aiml.learnwithchampak.live/course/datasets/finance_demo.csv",
+      "priority": 3
+    },
+    {
+      "title": "Generative Image Maker",
+      "description": "Generative Image Maker",
+      "type": "tool",
+      "topic": "Image Tools",
+      "tags": [
+        "Image",
+        "Picture",
+        "Generator",
+        "Generative Image Maker"
+      ],
+      "url": "https://aiml.learnwithchampak.live/images/image-generator/",
+      "priority": 3
+    },
+    {
+      "title": "Icon Maker",
+      "description": "Icon Image Maker",
+      "type": "tool",
+      "topic": "Image Tools",
+      "tags": [
+        "Image",
+        "Picture",
+        "Icon",
+        "Icon Image Maker"
+      ],
+      "url": "https://editor.learnwithchampak.live/image%20processing/icon/",
+      "priority": 3
+    },
+    {
+      "title": "Flutter Command Line Guide",
+      "description": "Command-line reference for Flutter and Dart development.",
+      "type": "note",
       "topic": "Web Development",
       "tags": [
         "HTML",
         "CSS",
-        "Animation",
-        "JavaScript",
-        "Frontend"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/animation/",
-      "priority": 2
-    },
-    {
-      "title": "Python Logic Conditions Loops and Functions",
-      "description": "Learn Python logic, conditions, loops, functions, and collections with beginner-friendly explanations and structured practice examples.",
-      "type": "lesson",
-      "topic": "Python",
-      "tags": [
-        "Python",
-        "Logic",
-        "Conditions",
-        "Loops",
-        "Functions"
-      ],
-      "url": "https://dsa.learnwithchampak.live/python/logic-conditions-loops-functions/",
-      "priority": 2
-    },
-    {
-      "title": "Pandas Projects",
-      "description": "Practice Pandas through guided data projects with cleaning, querying, analysis, presentation, and project-style learning.",
-      "type": "lesson",
-      "topic": "Data Tools",
-      "tags": [
-        "Python",
-        "Pandas",
-        "Projects",
-        "Data Analysis",
-        "Practice"
-      ],
-      "url": "https://aiml.learnwithchampak.live/code/pandas/projects/",
-      "priority": 2
-    },
-    {
-      "title": "React Lesson",
-      "description": "Learn React from beginner level with components, pages, state, props, routing ideas, and practical frontend examples.",
-      "type": "lesson",
-      "topic": "React",
-      "tags": [
-        "React",
-        "JavaScript",
         "Frontend",
-        "Components",
-        "Web Development"
+        "Flutter",
+        "Dart"
       ],
-      "url": "https://dsa.learnwithchampak.live/react/",
-      "priority": 2
-    },
-    {
-      "title": "React Files and Folders",
-      "description": "Learn the React project file structure with important files, folders, components, assets, package files, and beginner-friendly project organization.",
-      "type": "lesson",
-      "topic": "React",
-      "tags": [
-        "React",
-        "Files",
-        "Folders",
-        "Components",
-        "Project Structure"
-      ],
-      "url": "https://dsa.learnwithchampak.live/react/filesandfolders/",
-      "priority": 2
+      "url": "https://dsa.learnwithchampak.live/flutter/commandline/",
+      "priority": 3
     }
   ],
-  "totalItems": 118,
-  "lastAddSummary": {
-    "source": "user",
-    "requested": 7,
-    "added": 5,
-    "updatedExisting": 2,
-    "skippedDuplicates": 2,
-    "addedUrls": [
-      "https://dsa.learnwithchampak.live/html/animation/",
-      "https://dsa.learnwithchampak.live/python/logic-conditions-loops-functions/",
-      "https://aiml.learnwithchampak.live/code/pandas/projects/",
-      "https://dsa.learnwithchampak.live/react/",
-      "https://dsa.learnwithchampak.live/react/filesandfolders/"
-    ],
-    "updatedUrls": [
-      "https://dsa.learnwithchampak.live/python/pandas/",
-      "https://aiml.learnwithchampak.live/code/pandas/cleaning/"
-    ],
-    "skippedDuplicateUrls": [
-      "https://dsa.learnwithchampak.live/python/pandas/",
-      "https://aiml.learnwithchampak.live/code/pandas/cleaning/"
+  "totalItems": 178,
+  "lastRegenerateSummary": {
+    "source": "uploaded links.json + uploaded sitemap.xml",
+    "originalItems": 118,
+    "sitemapUrls": 80,
+    "addedFromSitemap": 61,
+    "duplicatesSkipped": 20,
+    "structure": [
+      "title",
+      "description",
+      "type",
+      "topic",
+      "tags",
+      "url",
+      "priority",
+      "series",
+      "publishedDate"
     ]
   }
 }
