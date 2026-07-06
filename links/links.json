@@ -2676,25 +2676,3547 @@
       ],
       "url": "https://dsa.learnwithchampak.live/flutter/commandline/",
       "priority": 3
+    },
+    {
+      "title": "DSA Portal",
+      "description": "Open DSA Portal as a Learn With Champak learning portal and resource hub.",
+      "type": "platform",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Python",
+        "Practice",
+        "Learning Portal"
+      ],
+      "url": "https://dsa.learnwithchampak.live/",
+      "priority": 1
+    },
+    {
+      "title": "0",
+      "description": "Learn 0 with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "DSA Practice",
+      "tags": [
+        "DSA",
+        "Beginner",
+        "Python",
+        "Practice",
+        "Algorithms"
+      ],
+      "url": "https://dsa.learnwithchampak.live/begin/0/",
+      "priority": 2
+    },
+    {
+      "title": "Flutter 1",
+      "description": "Learn Flutter 1 with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Mobile",
+        "Frontend"
+      ],
+      "url": "https://dsa.learnwithchampak.live/flutter/firebase/1/",
+      "priority": 2
+    },
+    {
+      "title": "HTML Html",
+      "description": "Learn HTML Html with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "Frontend",
+        "JavaScript",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/",
+      "priority": 2
+    },
+    {
+      "title": "HTML Createlemnt",
+      "description": "Learn HTML Createlemnt with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "Animation",
+        "JavaScript",
+        "Frontend"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/pages/animation/createlemnt.html",
+      "priority": 2
+    },
+    {
+      "title": "HTML Logo",
+      "description": "Learn HTML Logo with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "Frontend",
+        "JavaScript",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/pages/cart/logo.html",
+      "priority": 2
+    },
+    {
+      "title": "HTML 1Crore",
+      "description": "Learn HTML 1Crore with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "Frontend",
+        "JavaScript",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/pages/layouts/multilevel/1crore.html",
+      "priority": 2
+    },
+    {
+      "title": "HTML Sharing",
+      "description": "Learn HTML Sharing with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "Frontend",
+        "JavaScript",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/sharing/",
+      "priority": 2
+    },
+    {
+      "title": "HTML Timeout Interval",
+      "description": "Learn HTML Timeout Interval with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "Frontend",
+        "JavaScript",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/timeout-interval/",
+      "priority": 2
+    },
+    {
+      "title": "Java Java",
+      "description": "Learn Java Java with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Programming",
+        "Practice",
+        "OOP",
+        "Control Flow"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/",
+      "priority": 2
+    },
+    {
+      "title": "Java Keywords",
+      "description": "Learn Java Keywords with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Programming",
+        "Practice",
+        "OOP",
+        "Control Flow"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/keywords/",
+      "priority": 2
+    },
+    {
+      "title": "Java Terms",
+      "description": "Learn Java Terms with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Programming",
+        "Practice",
+        "OOP",
+        "Control Flow"
+      ],
+      "url": "https://dsa.learnwithchampak.live/java/terms/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 01 What Is Javascript",
+      "description": "Learn JavaScript 01 What Is Javascript with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/01-what-is-javascript/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 02 Variables Data Types",
+      "description": "Learn JavaScript 02 Variables Data Types with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/02-variables-data-types/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 03 Operators Conditions",
+      "description": "Learn JavaScript 03 Operators Conditions with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/03-operators-conditions/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 04 Loops Functions",
+      "description": "Learn JavaScript 04 Loops Functions with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/04-loops-functions/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 05 Arrays Array Methods",
+      "description": "Learn JavaScript 05 Arrays Array Methods with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/05-arrays-array-methods/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 06 Objects Destructuring",
+      "description": "Learn JavaScript 06 Objects Destructuring with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/06-objects-destructuring/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 07 Spread Rest",
+      "description": "Learn JavaScript 07 Spread Rest with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/07-spread-rest/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 08 Modules",
+      "description": "Learn JavaScript 08 Modules with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/08-modules/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 09 Promises Async Await",
+      "description": "Learn JavaScript 09 Promises Async Await with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/09-promises-async-await/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 10 Dom Events React Ready",
+      "description": "Learn JavaScript 10 Dom Events React Ready with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/10-dom-events-react-ready/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript 11 Mini Project",
+      "description": "Learn JavaScript 11 Mini Project with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/11-mini-project/",
+      "priority": 2
+    },
+    {
+      "title": "JavaScript Lessons",
+      "description": "Learn JavaScript Lessons with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Frontend",
+        "DOM",
+        "Functions",
+        "Web Development"
+      ],
+      "url": "https://dsa.learnwithchampak.live/javascript/lessons/",
+      "priority": 2
+    },
+    {
+      "title": "App.Component",
+      "description": "Build and study App.Component with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc-quiz-project/angular-version/src/app/app.component.html",
+      "priority": 2
+    },
+    {
+      "title": "Src",
+      "description": "Build and study Src with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc-quiz-project/angular-version/src/",
+      "priority": 2
+    },
+    {
+      "title": "Js Version",
+      "description": "Build and study Js Version with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc-quiz-project/js-version/",
+      "priority": 2
+    },
+    {
+      "title": "React Version",
+      "description": "Build and study React Version with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc-quiz-project/react-version/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Quiz Final Project",
+      "description": "Build and study KBC Quiz Final Project with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/final-project/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Quiz Project",
+      "description": "Build and study KBC Quiz Project with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 01.html",
+      "description": "Build and study KBC Project Milestone 01.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-01.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 02.html",
+      "description": "Build and study KBC Project Milestone 02.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-02.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 03.html",
+      "description": "Build and study KBC Project Milestone 03.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-03.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 04.html",
+      "description": "Build and study KBC Project Milestone 04.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-04.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 05.html",
+      "description": "Build and study KBC Project Milestone 05.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-05.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 06.html",
+      "description": "Build and study KBC Project Milestone 06.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-06.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 07.html",
+      "description": "Build and study KBC Project Milestone 07.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-07.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 08.html",
+      "description": "Build and study KBC Project Milestone 08.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-08.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 09.html",
+      "description": "Build and study KBC Project Milestone 09.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-09.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 10.html",
+      "description": "Build and study KBC Project Milestone 10.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-10.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 11.html",
+      "description": "Build and study KBC Project Milestone 11.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-11.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 12.html",
+      "description": "Build and study KBC Project Milestone 12.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-12.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 13.html",
+      "description": "Build and study KBC Project Milestone 13.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-13.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 14.html",
+      "description": "Build and study KBC Project Milestone 14.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-14.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 15.html",
+      "description": "Build and study KBC Project Milestone 15.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-15.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 16.html",
+      "description": "Build and study KBC Project Milestone 16.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-16.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 17.html",
+      "description": "Build and study KBC Project Milestone 17.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-17.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 18.html",
+      "description": "Build and study KBC Project Milestone 18.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-18.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 19.html",
+      "description": "Build and study KBC Project Milestone 19.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-19.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 20.html",
+      "description": "Build and study KBC Project Milestone 20.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-20.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 21.html",
+      "description": "Build and study KBC Project Milestone 21.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-21.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 22.html",
+      "description": "Build and study KBC Project Milestone 22.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-22.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 23.html",
+      "description": "Build and study KBC Project Milestone 23.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-23.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 24.html",
+      "description": "Build and study KBC Project Milestone 24.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-24.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 25.html",
+      "description": "Build and study KBC Project Milestone 25.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-25.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 26.html",
+      "description": "Build and study KBC Project Milestone 26.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-26.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 27.html",
+      "description": "Build and study KBC Project Milestone 27.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-27.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 28.html",
+      "description": "Build and study KBC Project Milestone 28.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-28.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 29.html",
+      "description": "Build and study KBC Project Milestone 29.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-29.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 30.html",
+      "description": "Build and study KBC Project Milestone 30.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-30.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 31.html",
+      "description": "Build and study KBC Project Milestone 31.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-31.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 32.html",
+      "description": "Build and study KBC Project Milestone 32.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-32.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 33.html",
+      "description": "Build and study KBC Project Milestone 33.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-33.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 34.html",
+      "description": "Build and study KBC Project Milestone 34.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-34.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 35.html",
+      "description": "Build and study KBC Project Milestone 35.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-35.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 36.html",
+      "description": "Build and study KBC Project Milestone 36.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-36.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 37.html",
+      "description": "Build and study KBC Project Milestone 37.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-37.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 38.html",
+      "description": "Build and study KBC Project Milestone 38.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-38.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 39.html",
+      "description": "Build and study KBC Project Milestone 39.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-39.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 40.html",
+      "description": "Build and study KBC Project Milestone 40.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-40.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 01 Code",
+      "description": "Build and study KBC Project Milestone 01 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-01/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 02 Code",
+      "description": "Build and study KBC Project Milestone 02 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-02/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 03 Code",
+      "description": "Build and study KBC Project Milestone 03 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-03/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 04 Code",
+      "description": "Build and study KBC Project Milestone 04 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-04/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 05 Code",
+      "description": "Build and study KBC Project Milestone 05 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-05/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 06 Code",
+      "description": "Build and study KBC Project Milestone 06 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-06/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 07 Code",
+      "description": "Build and study KBC Project Milestone 07 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-07/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 08 Code",
+      "description": "Build and study KBC Project Milestone 08 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-08/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 09 Code",
+      "description": "Build and study KBC Project Milestone 09 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-09/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 10 Code",
+      "description": "Build and study KBC Project Milestone 10 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-10/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 11 Code",
+      "description": "Build and study KBC Project Milestone 11 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-11/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 12 Code",
+      "description": "Build and study KBC Project Milestone 12 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-12/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 13 Code",
+      "description": "Build and study KBC Project Milestone 13 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-13/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 14 Code",
+      "description": "Build and study KBC Project Milestone 14 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-14/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 15 Code",
+      "description": "Build and study KBC Project Milestone 15 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-15/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 16 Code",
+      "description": "Build and study KBC Project Milestone 16 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-16/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 17 Code",
+      "description": "Build and study KBC Project Milestone 17 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-17/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 18 Code",
+      "description": "Build and study KBC Project Milestone 18 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-18/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 19 Code",
+      "description": "Build and study KBC Project Milestone 19 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-19/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 20 Code",
+      "description": "Build and study KBC Project Milestone 20 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-20/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 21 Code",
+      "description": "Build and study KBC Project Milestone 21 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-21/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 22 Code",
+      "description": "Build and study KBC Project Milestone 22 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-22/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 23 Code",
+      "description": "Build and study KBC Project Milestone 23 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-23/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 24 Code",
+      "description": "Build and study KBC Project Milestone 24 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-24/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 25 Code",
+      "description": "Build and study KBC Project Milestone 25 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-25/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 26 Code",
+      "description": "Build and study KBC Project Milestone 26 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-26/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 27 Code",
+      "description": "Build and study KBC Project Milestone 27 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-27/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 28 Code",
+      "description": "Build and study KBC Project Milestone 28 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-28/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 29 Code",
+      "description": "Build and study KBC Project Milestone 29 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-29/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 30 Code",
+      "description": "Build and study KBC Project Milestone 30 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-30/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 31 Code",
+      "description": "Build and study KBC Project Milestone 31 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-31/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 32 Code",
+      "description": "Build and study KBC Project Milestone 32 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-32/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 33 Code",
+      "description": "Build and study KBC Project Milestone 33 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-33/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 34 Code",
+      "description": "Build and study KBC Project Milestone 34 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-34/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 35 Code",
+      "description": "Build and study KBC Project Milestone 35 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-35/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 36 Code",
+      "description": "Build and study KBC Project Milestone 36 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-36/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 37 Code",
+      "description": "Build and study KBC Project Milestone 37 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-37/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 38 Code",
+      "description": "Build and study KBC Project Milestone 38 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-38/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 39 Code",
+      "description": "Build and study KBC Project Milestone 39 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-39/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 40 Code",
+      "description": "Build and study KBC Project Milestone 40 Code with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-40/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Quiz Project",
+      "description": "Build and study KBC Quiz Project with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/starter-code/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Quiz Project",
+      "description": "Build and study KBC Quiz Project with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/dashboard.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Quiz Project",
+      "description": "Build and study KBC Quiz Project with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/final-project/src/app/components/quiz/quiz.component.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 01.html",
+      "description": "Build and study KBC Project Milestone 01.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-01.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 02.html",
+      "description": "Build and study KBC Project Milestone 02.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-02.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 03.html",
+      "description": "Build and study KBC Project Milestone 03.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-03.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 04.html",
+      "description": "Build and study KBC Project Milestone 04.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-04.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 05.html",
+      "description": "Build and study KBC Project Milestone 05.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-05.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 06.html",
+      "description": "Build and study KBC Project Milestone 06.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-06.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 07.html",
+      "description": "Build and study KBC Project Milestone 07.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-07.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 08.html",
+      "description": "Build and study KBC Project Milestone 08.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-08.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 09.html",
+      "description": "Build and study KBC Project Milestone 09.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-09.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 10.html",
+      "description": "Build and study KBC Project Milestone 10.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-10.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 11.html",
+      "description": "Build and study KBC Project Milestone 11.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-11.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 12.html",
+      "description": "Build and study KBC Project Milestone 12.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-12.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 13.html",
+      "description": "Build and study KBC Project Milestone 13.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-13.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 14.html",
+      "description": "Build and study KBC Project Milestone 14.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-14.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 15.html",
+      "description": "Build and study KBC Project Milestone 15.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-15.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Quiz Project",
+      "description": "Build and study KBC Quiz Project with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/dashboard.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 01.html",
+      "description": "Build and study KBC Project Milestone 01.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-01.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 02.html",
+      "description": "Build and study KBC Project Milestone 02.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-02.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 03.html",
+      "description": "Build and study KBC Project Milestone 03.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-03.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 04.html",
+      "description": "Build and study KBC Project Milestone 04.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-04.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 05.html",
+      "description": "Build and study KBC Project Milestone 05.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-05.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 06.html",
+      "description": "Build and study KBC Project Milestone 06.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-06.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 07.html",
+      "description": "Build and study KBC Project Milestone 07.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-07.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 08.html",
+      "description": "Build and study KBC Project Milestone 08.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-08.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 09.html",
+      "description": "Build and study KBC Project Milestone 09.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-09.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 10.html",
+      "description": "Build and study KBC Project Milestone 10.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-10.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 11.html",
+      "description": "Build and study KBC Project Milestone 11.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-11.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 12.html",
+      "description": "Build and study KBC Project Milestone 12.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-12.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 13.html",
+      "description": "Build and study KBC Project Milestone 13.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-13.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 14.html",
+      "description": "Build and study KBC Project Milestone 14.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-14.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 15.html",
+      "description": "Build and study KBC Project Milestone 15.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-15.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Quiz Project",
+      "description": "Build and study KBC Quiz Project with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/dashboard.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Quiz Final Project",
+      "description": "Build and study KBC Quiz Final Project with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/final-project/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 01.html",
+      "description": "Build and study KBC Project Milestone 01.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-01.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 02.html",
+      "description": "Build and study KBC Project Milestone 02.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-02.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 03.html",
+      "description": "Build and study KBC Project Milestone 03.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-03.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 04.html",
+      "description": "Build and study KBC Project Milestone 04.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-04.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 05.html",
+      "description": "Build and study KBC Project Milestone 05.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-05.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 06.html",
+      "description": "Build and study KBC Project Milestone 06.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-06.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 07.html",
+      "description": "Build and study KBC Project Milestone 07.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-07.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 08.html",
+      "description": "Build and study KBC Project Milestone 08.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-08.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 09.html",
+      "description": "Build and study KBC Project Milestone 09.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-09.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 10.html",
+      "description": "Build and study KBC Project Milestone 10.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-10.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 11.html",
+      "description": "Build and study KBC Project Milestone 11.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-11.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 12.html",
+      "description": "Build and study KBC Project Milestone 12.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-12.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 13.html",
+      "description": "Build and study KBC Project Milestone 13.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-13.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 14.html",
+      "description": "Build and study KBC Project Milestone 14.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-14.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 15.html",
+      "description": "Build and study KBC Project Milestone 15.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-15.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Quiz Project",
+      "description": "Build and study KBC Quiz Project with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/dashboard.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Quiz Final Project",
+      "description": "Build and study KBC Quiz Final Project with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Quiz",
+        "Project",
+        "JavaScript",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/final-project/",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 01.html",
+      "description": "Build and study KBC Project Milestone 01.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-01.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 02.html",
+      "description": "Build and study KBC Project Milestone 02.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-02.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 03.html",
+      "description": "Build and study KBC Project Milestone 03.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-03.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 04.html",
+      "description": "Build and study KBC Project Milestone 04.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-04.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 05.html",
+      "description": "Build and study KBC Project Milestone 05.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-05.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 06.html",
+      "description": "Build and study KBC Project Milestone 06.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-06.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 07.html",
+      "description": "Build and study KBC Project Milestone 07.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-07.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 08.html",
+      "description": "Build and study KBC Project Milestone 08.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-08.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 09.html",
+      "description": "Build and study KBC Project Milestone 09.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-09.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 10.html",
+      "description": "Build and study KBC Project Milestone 10.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-10.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 11.html",
+      "description": "Build and study KBC Project Milestone 11.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-11.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 12.html",
+      "description": "Build and study KBC Project Milestone 12.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-12.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 13.html",
+      "description": "Build and study KBC Project Milestone 13.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-13.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 14.html",
+      "description": "Build and study KBC Project Milestone 14.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-14.html",
+      "priority": 2
+    },
+    {
+      "title": "KBC Project Milestone 15.html",
+      "description": "Build and study KBC Project Milestone 15.html with project-based lessons, working code, and step-by-step practice.",
+      "type": "project",
+      "topic": "Projects",
+      "tags": [
+        "KBC",
+        "Milestone",
+        "Project",
+        "Code",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-15.html",
+      "priority": 2
+    },
+    {
+      "title": "Python Collections",
+      "description": "Learn Python Collections with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/collections/",
+      "priority": 2
+    },
+    {
+      "title": "Python Conditions",
+      "description": "Learn Python Conditions with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/conditions/",
+      "priority": 2
+    },
+    {
+      "title": "Python Sorting",
+      "description": "Learn Python Sorting with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/list/sorting/",
+      "priority": 2
+    },
+    {
+      "title": "Python Loopswithrange",
+      "description": "Learn Python Loopswithrange with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/loopswithrange/",
+      "priority": 2
+    },
+    {
+      "title": "Python Magicmethods",
+      "description": "Learn Python Magicmethods with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/oops/magicmethods/",
+      "priority": 2
+    },
+    {
+      "title": "Python Bubble Sort",
+      "description": "Learn Python Bubble Sort with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/bubble-sort/",
+      "priority": 2
+    },
+    {
+      "title": "Python Test",
+      "description": "Learn Python Test with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/bubble-sort/test.html",
+      "priority": 2
+    },
+    {
+      "title": "Python Bucket Sort",
+      "description": "Learn Python Bucket Sort with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/bucket-sort/",
+      "priority": 2
+    },
+    {
+      "title": "Python Counting Sort",
+      "description": "Learn Python Counting Sort with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/counting-sort/",
+      "priority": 2
+    },
+    {
+      "title": "Python Heap Sort",
+      "description": "Learn Python Heap Sort with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/heap-sort/",
+      "priority": 2
+    },
+    {
+      "title": "Python Sorting",
+      "description": "Learn Python Sorting with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/",
+      "priority": 2
+    },
+    {
+      "title": "Python Insertion Sort",
+      "description": "Learn Python Insertion Sort with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/insertion-sort/",
+      "priority": 2
+    },
+    {
+      "title": "Python Merge Sort",
+      "description": "Learn Python Merge Sort with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/merge-sort/",
+      "priority": 2
+    },
+    {
+      "title": "Python Quick Sort",
+      "description": "Learn Python Quick Sort with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/quick-sort/",
+      "priority": 2
+    },
+    {
+      "title": "Python Radix Sort",
+      "description": "Learn Python Radix Sort with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/radix-sort/",
+      "priority": 2
+    },
+    {
+      "title": "Python Selection Sort",
+      "description": "Learn Python Selection Sort with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/selection-sort/",
+      "priority": 2
+    },
+    {
+      "title": "Python Tim Sort",
+      "description": "Learn Python Tim Sort with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/sorting/tim-sort/",
+      "priority": 2
+    },
+    {
+      "title": "Python Start",
+      "description": "Learn Python Start with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Python",
+        "Practice",
+        "Programming",
+        "Data Analysis",
+        "Learning"
+      ],
+      "url": "https://dsa.learnwithchampak.live/python/start/",
+      "priority": 2
+    },
+    {
+      "title": "Sitemap",
+      "description": "Learn Sitemap with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Learning Resource",
+      "tags": [
+        "Learn With Champak"
+      ],
+      "url": "https://dsa.learnwithchampak.live/sitemap.html",
+      "priority": 2
+    },
+    {
+      "title": "Detector",
+      "description": "Learn Detector with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Learning Resource",
+      "tags": [
+        "Learn With Champak"
+      ],
+      "url": "https://dsa.learnwithchampak.live/sorting/detector/",
+      "priority": 2
+    },
+    {
+      "title": "Identifier",
+      "description": "Learn Identifier with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Learning Resource",
+      "tags": [
+        "Learn With Champak"
+      ],
+      "url": "https://dsa.learnwithchampak.live/sorting/identifier/",
+      "priority": 2
+    },
+    {
+      "title": "View",
+      "description": "Learn View with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Spring Boot",
+        "Java",
+        "Database",
+        "Backend",
+        "SQL"
+      ],
+      "url": "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/cart/view.html",
+      "priority": 2
+    },
+    {
+      "title": "Form",
+      "description": "Learn Form with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Spring Boot",
+        "Java",
+        "Database",
+        "Backend",
+        "SQL"
+      ],
+      "url": "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/checkout/form.html",
+      "priority": 2
+    },
+    {
+      "title": "Success",
+      "description": "Learn Success with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Spring Boot",
+        "Java",
+        "Database",
+        "Backend",
+        "SQL"
+      ],
+      "url": "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/checkout/success.html",
+      "priority": 2
+    },
+    {
+      "title": "Home",
+      "description": "Learn Home with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Spring Boot",
+        "Java",
+        "Database",
+        "Backend",
+        "SQL"
+      ],
+      "url": "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/home.html",
+      "priority": 2
+    },
+    {
+      "title": "Base",
+      "description": "Learn Base with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Spring Boot",
+        "Java",
+        "Database",
+        "Backend",
+        "SQL"
+      ],
+      "url": "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/layout/base.html",
+      "priority": 2
+    },
+    {
+      "title": "List",
+      "description": "Learn List with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Java / Spring",
+      "tags": [
+        "Spring Boot",
+        "Java",
+        "Database",
+        "Backend",
+        "SQL"
+      ],
+      "url": "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/products/list.html",
+      "priority": 2
+    },
+    {
+      "title": "Sql",
+      "description": "Learn Sql with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Learning Resource",
+      "tags": [
+        "Learn With Champak"
+      ],
+      "url": "https://dsa.learnwithchampak.live/sql/",
+      "priority": 2
+    },
+    {
+      "title": "Videos",
+      "description": "Learn Videos with beginner-friendly explanations, examples, and practical exercises.",
+      "type": "lesson",
+      "topic": "Learning Resource",
+      "tags": [
+        "Learn With Champak"
+      ],
+      "url": "https://dsa.learnwithchampak.live/videos/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Calendar",
+      "description": "Use Visualizer Calendar as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/calendar/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Eclipses",
+      "description": "Use Visualizer Eclipses as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/eclipses/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Eyepower",
+      "description": "Use Visualizer Eyepower as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/eyepower/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Maths",
+      "description": "Use Visualizer Maths as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/maths/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Probability",
+      "description": "Use Visualizer Probability as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/maths/probability/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Minimum Spanning Tree",
+      "description": "Use Visualizer Minimum Spanning Tree as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/minimum-spanning-tree/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Patterns",
+      "description": "Use Visualizer Patterns as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/patterns/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Recursion",
+      "description": "Use Visualizer Recursion as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/recursion/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Searching",
+      "description": "Use Visualizer Searching as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/searching/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Shortest Path",
+      "description": "Use Visualizer Shortest Path as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/shortest-path/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Threads",
+      "description": "Use Visualizer Threads as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/threads/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Human",
+      "description": "Use Visualizer Human as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/videos/human/",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer One",
+      "description": "Use Visualizer One as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/videos/human/one.html",
+      "priority": 2
+    },
+    {
+      "title": "Visualizer Patterns",
+      "description": "Use Visualizer Patterns as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "DSA Visualizers",
+      "tags": [
+        "DSA",
+        "Visualizer",
+        "Algorithms",
+        "Animation",
+        "Practice"
+      ],
+      "url": "https://dsa.learnwithchampak.live/visualizers/videos/patterns/",
+      "priority": 2
+    },
+    {
+      "title": "WebSocket Snakesandladders",
+      "description": "Use WebSocket Snakesandladders as a practical browser-based tool for learning, testing, and classroom practice.",
+      "type": "tool",
+      "topic": "Websocket",
+      "tags": [
+        "WebSocket",
+        "Real Time",
+        "JavaScript",
+        "Game",
+        "Frontend"
+      ],
+      "url": "https://dsa.learnwithchampak.live/websocket/snakesandladders/",
+      "priority": 2
     }
   ],
-  "totalItems": 178,
-  "lastRegenerateSummary": {
-    "source": "uploaded links.json + uploaded sitemap.xml",
-    "originalItems": 118,
-    "sitemapUrls": 80,
-    "addedFromSitemap": 61,
-    "duplicatesSkipped": 20,
-    "structure": [
-      "title",
-      "description",
-      "type",
-      "topic",
-      "tags",
-      "url",
-      "priority",
-      "series",
-      "publishedDate"
+  "totalItems": 400,
+  "lastAddSummary": {
+    "source": "uploaded sitemap.xml + uploaded links.json",
+    "originalItems": 178,
+    "sitemapUrls": 269,
+    "addedFromSitemap": 222,
+    "skippedExistingUrls": 47,
+    "addedUrls": [
+      "https://dsa.learnwithchampak.live/",
+      "https://dsa.learnwithchampak.live/begin/0/",
+      "https://dsa.learnwithchampak.live/flutter/firebase/1/",
+      "https://dsa.learnwithchampak.live/html/",
+      "https://dsa.learnwithchampak.live/html/pages/animation/createlemnt.html",
+      "https://dsa.learnwithchampak.live/html/pages/cart/logo.html",
+      "https://dsa.learnwithchampak.live/html/pages/layouts/multilevel/1crore.html",
+      "https://dsa.learnwithchampak.live/html/sharing/",
+      "https://dsa.learnwithchampak.live/html/timeout-interval/",
+      "https://dsa.learnwithchampak.live/java/",
+      "https://dsa.learnwithchampak.live/java/keywords/",
+      "https://dsa.learnwithchampak.live/java/terms/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/01-what-is-javascript/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/02-variables-data-types/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/03-operators-conditions/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/04-loops-functions/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/05-arrays-array-methods/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/06-objects-destructuring/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/07-spread-rest/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/08-modules/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/09-promises-async-await/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/10-dom-events-react-ready/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/11-mini-project/",
+      "https://dsa.learnwithchampak.live/javascript/lessons/",
+      "https://dsa.learnwithchampak.live/projects/kbc-quiz-project/angular-version/src/app/app.component.html",
+      "https://dsa.learnwithchampak.live/projects/kbc-quiz-project/angular-version/src/",
+      "https://dsa.learnwithchampak.live/projects/kbc-quiz-project/js-version/",
+      "https://dsa.learnwithchampak.live/projects/kbc-quiz-project/react-version/",
+      "https://dsa.learnwithchampak.live/projects/kbc/final-project/",
+      "https://dsa.learnwithchampak.live/projects/kbc/",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-01.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-02.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-03.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-04.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-05.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-06.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-07.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-08.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-09.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-10.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-11.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-12.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-13.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-14.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-15.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-16.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-17.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-18.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-19.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-20.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-21.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-22.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-23.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-24.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-25.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-26.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-27.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-28.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-29.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-30.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-31.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-32.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-33.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-34.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-35.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-36.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-37.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-38.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-39.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/lessons/milestone-40.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-01/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-02/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-03/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-04/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-05/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-06/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-07/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-08/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-09/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-10/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-11/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-12/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-13/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-14/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-15/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-16/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-17/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-18/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-19/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-20/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-21/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-22/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-23/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-24/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-25/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-26/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-27/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-28/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-29/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-30/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-31/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-32/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-33/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-34/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-35/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-36/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-37/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-38/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-39/",
+      "https://dsa.learnwithchampak.live/projects/kbc/milestone-code/milestone-40/",
+      "https://dsa.learnwithchampak.live/projects/kbc/starter-code/",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/dashboard.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/final-project/src/app/components/quiz/quiz.component.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-01.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-02.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-03.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-04.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-05.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-06.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-07.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-08.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-09.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-10.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-11.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-12.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-13.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-14.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/angular/lessons/milestone-15.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/dashboard.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-01.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-02.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-03.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-04.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-05.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-06.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-07.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-08.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-09.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-10.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-11.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-12.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-13.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-14.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/flutter/lessons/milestone-15.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/dashboard.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/final-project/",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-01.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-02.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-03.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-04.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-05.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-06.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-07.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-08.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-09.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-10.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-11.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-12.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-13.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-14.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/html-js/lessons/milestone-15.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/dashboard.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/final-project/",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-01.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-02.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-03.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-04.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-05.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-06.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-07.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-08.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-09.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-10.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-11.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-12.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-13.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-14.html",
+      "https://dsa.learnwithchampak.live/projects/kbc/tracks/react/lessons/milestone-15.html",
+      "https://dsa.learnwithchampak.live/python/collections/",
+      "https://dsa.learnwithchampak.live/python/conditions/",
+      "https://dsa.learnwithchampak.live/python/list/sorting/",
+      "https://dsa.learnwithchampak.live/python/loopswithrange/",
+      "https://dsa.learnwithchampak.live/python/oops/magicmethods/",
+      "https://dsa.learnwithchampak.live/python/sorting/bubble-sort/",
+      "https://dsa.learnwithchampak.live/python/sorting/bubble-sort/test.html",
+      "https://dsa.learnwithchampak.live/python/sorting/bucket-sort/",
+      "https://dsa.learnwithchampak.live/python/sorting/counting-sort/",
+      "https://dsa.learnwithchampak.live/python/sorting/heap-sort/",
+      "https://dsa.learnwithchampak.live/python/sorting/",
+      "https://dsa.learnwithchampak.live/python/sorting/insertion-sort/",
+      "https://dsa.learnwithchampak.live/python/sorting/merge-sort/",
+      "https://dsa.learnwithchampak.live/python/sorting/quick-sort/",
+      "https://dsa.learnwithchampak.live/python/sorting/radix-sort/",
+      "https://dsa.learnwithchampak.live/python/sorting/selection-sort/",
+      "https://dsa.learnwithchampak.live/python/sorting/tim-sort/",
+      "https://dsa.learnwithchampak.live/python/start/",
+      "https://dsa.learnwithchampak.live/sitemap.html",
+      "https://dsa.learnwithchampak.live/sorting/detector/",
+      "https://dsa.learnwithchampak.live/sorting/identifier/",
+      "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/cart/view.html",
+      "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/checkout/form.html",
+      "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/checkout/success.html",
+      "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/home.html",
+      "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/layout/base.html",
+      "https://dsa.learnwithchampak.live/spring/e-commerce/spring-boot-reference/src/main/resources/templates/products/list.html",
+      "https://dsa.learnwithchampak.live/sql/",
+      "https://dsa.learnwithchampak.live/videos/",
+      "https://dsa.learnwithchampak.live/visualizers/calendar/",
+      "https://dsa.learnwithchampak.live/visualizers/eclipses/",
+      "https://dsa.learnwithchampak.live/visualizers/eyepower/",
+      "https://dsa.learnwithchampak.live/visualizers/maths/",
+      "https://dsa.learnwithchampak.live/visualizers/maths/probability/",
+      "https://dsa.learnwithchampak.live/visualizers/minimum-spanning-tree/",
+      "https://dsa.learnwithchampak.live/visualizers/patterns/",
+      "https://dsa.learnwithchampak.live/visualizers/recursion/",
+      "https://dsa.learnwithchampak.live/visualizers/searching/",
+      "https://dsa.learnwithchampak.live/visualizers/shortest-path/",
+      "https://dsa.learnwithchampak.live/visualizers/threads/",
+      "https://dsa.learnwithchampak.live/visualizers/videos/human/",
+      "https://dsa.learnwithchampak.live/visualizers/videos/human/one.html",
+      "https://dsa.learnwithchampak.live/visualizers/videos/patterns/",
+      "https://dsa.learnwithchampak.live/websocket/snakesandladders/"
     ]
   }
 }
