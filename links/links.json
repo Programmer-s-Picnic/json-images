@@ -6390,17 +6390,331 @@
       ],
       "url": "https://curesiahealth.com/officeonmap.html",
       "priority": 2
+    },
+    {
+      "title": "Rudra Tours",
+      "description": "Official Rudra Tours website for India tour packages from Varanasi, travel planning, pilgrimage tours, family tours, student tours and customized travel support.",
+      "type": "platform",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Varanasi",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/",
+      "priority": 1
+    },
+    {
+      "title": "Buddhist Circuit Tour",
+      "description": "Rudra Tours Buddhist Circuit travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Buddhist Circuit",
+        "India Tours",
+        "Pilgrimage",
+        "Religious Tour"
+      ],
+      "url": "https://rudratour.in/buddhistcircuit/",
+      "priority": 2
+    },
+    {
+      "title": "Char Dham Tour",
+      "description": "Rudra Tours Char Dham travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Char Dham",
+        "India Tours",
+        "Pilgrimage",
+        "Religious Tour"
+      ],
+      "url": "https://rudratour.in/chardham/",
+      "priority": 2
+    },
+    {
+      "title": "Conference Tours",
+      "description": "Rudra Tours Conference Tours travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Conference Tours",
+        "India Tours",
+        "Group Tour"
+      ],
+      "url": "https://rudratour.in/conferencetours/",
+      "priority": 2
+    },
+    {
+      "title": "Corporate Tours",
+      "description": "Rudra Tours Corporate Tours travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Corporate Tours",
+        "India Tours",
+        "Group Tour"
+      ],
+      "url": "https://rudratour.in/corporatetours/",
+      "priority": 2
+    },
+    {
+      "title": "Family Tours",
+      "description": "Rudra Tours Family Tours travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Family Tours",
+        "India Tours",
+        "Group Tour"
+      ],
+      "url": "https://rudratour.in/familytours/",
+      "priority": 2
+    },
+    {
+      "title": "Goa Tour Package",
+      "description": "Rudra Tours Goa travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Goa",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/goa/",
+      "priority": 2
+    },
+    {
+      "title": "Golden Triangle Tour",
+      "description": "Rudra Tours Golden Triangle travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Golden Triangle",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/goldentriangle/",
+      "priority": 2
+    },
+    {
+      "title": "Gujarat Tour Package",
+      "description": "Rudra Tours Gujarat travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Gujarat",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/gujarat/",
+      "priority": 2
+    },
+    {
+      "title": "Himachal Tour Package",
+      "description": "Rudra Tours Himachal travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Himachal",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/himachal/",
+      "priority": 2
+    },
+    {
+      "title": "Kashmir Tour Package",
+      "description": "Rudra Tours Kashmir travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Kashmir",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/kashmir/",
+      "priority": 2
+    },
+    {
+      "title": "Nepal Tour Package",
+      "description": "Rudra Tours Nepal travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Nepal",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/nepal/",
+      "priority": 2
+    },
+    {
+      "title": "North East Tour",
+      "description": "Rudra Tours North East travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "North East",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/northeast/",
+      "priority": 2
+    },
+    {
+      "title": "Pilgrimage Tours",
+      "description": "Rudra Tours Pilgrimage Tours travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Pilgrimage Tours",
+        "India Tours",
+        "Pilgrimage",
+        "Religious Tour"
+      ],
+      "url": "https://rudratour.in/pilgrimagetours/",
+      "priority": 2
+    },
+    {
+      "title": "Rajasthan Tour Package",
+      "description": "Rudra Tours Rajasthan travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Rajasthan",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/rajasthan/",
+      "priority": 2
+    },
+    {
+      "title": "Shirdi Sai Baba Shani Shingnapur Tour",
+      "description": "Rudra Tours Shirdi Sai Baba Shani Shingnapur travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Shirdi Sai Baba Shani Shingnapur",
+        "India Tours",
+        "Pilgrimage",
+        "Religious Tour"
+      ],
+      "url": "https://rudratour.in/shirdisaibabashanishingnapur/",
+      "priority": 2
+    },
+    {
+      "title": "Student Tours",
+      "description": "Rudra Tours Student Tours travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Student Tours",
+        "India Tours",
+        "Group Tour"
+      ],
+      "url": "https://rudratour.in/studenttours/",
+      "priority": 2
+    },
+    {
+      "title": "Uttaranchal Tour Package",
+      "description": "Rudra Tours Uttaranchal travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Uttaranchal",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/uttaranchal/",
+      "priority": 2
+    },
+    {
+      "title": "Vaishno Devi Tour",
+      "description": "Rudra Tours Vaishno Devi travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Vaishno Devi",
+        "India Tours",
+        "Pilgrimage",
+        "Religious Tour"
+      ],
+      "url": "https://rudratour.in/vaishnodevi/",
+      "priority": 2
+    },
+    {
+      "title": "Varanasi Tour Package",
+      "description": "Rudra Tours Varanasi travel package page with itinerary ideas, tour planning support, and India travel guidance from Varanasi.",
+      "type": "tour",
+      "topic": "Travel",
+      "tags": [
+        "Rudra Tours",
+        "Travel",
+        "Tour Packages",
+        "Varanasi",
+        "India Tours"
+      ],
+      "url": "https://rudratour.in/varanasi/",
+      "priority": 2
     }
   ],
-  "totalItems": 418,
+  "totalItems": 447,
   "lastAddSummary": {
-    "sourceSitemap": "sitemap(3).xml",
-    "sourceLinks": "links(4).json",
-    "sitemapUrlCount": 269,
-    "existingLinkCountBefore": 400,
-    "newLinksAdded": 18,
-    "totalItemsAfter": 418,
+    "sourceSitemap": "sitemap.xml",
+    "sourceLinks": "links.json",
+    "sitemapUrlCount": 20,
+    "existingLinkCountBefore": 427,
+    "newLinksAdded": 20,
+    "totalItemsAfter": 447,
     "addedAt": "2026-07-06",
-    "note": "URLs were compared exactly. Existing no-trailing-slash versions were preserved; sitemap trailing-slash versions were added as requested."
+    "note": "URLs were compared exactly against existing item.url values. New Rudra Tours sitemap links were added with Travel metadata."
   }
 }
