@@ -10,7 +10,7 @@
         "Course Map",
         "AI",
         "ML",
-        "Roadmap"      
+        "Roadmap"
       ],
       "url": "https://aiml.learnwithchampak.live/coursemap/",
       "priority": 1
@@ -6254,6 +6254,141 @@
         "Thymeleaf"
       ],
       "url": "https://dsa.learnwithchampak.live/spring/e-commerce/",
+      "priority": 2
+    },
+    {
+      "title": "Curesia Health",
+      "description": "Official Curesia Health website for mental health, counselling, testing, reviews, and contact information.",
+      "type": "platform",
+      "topic": "Curesia Health",
+      "tags": [
+        "Curesia Health",
+        "Mental Health",
+        "Counselling",
+        "Healthcare",
+        "Support"
+      ],
+      "url": "https://curesiahealth.com/",
+      "priority": 1
+    },
+    {
+      "title": "Blogs",
+      "description": "Read Curesia Health blogs, guidance articles, and mental health awareness resources.",
+      "type": "blog",
+      "topic": "Curesia Health",
+      "tags": [
+        "Curesia Health",
+        "Mental Health",
+        "Counselling",
+        "Blogs",
+        "Awareness"
+      ],
+      "url": "https://curesiahealth.com/blogs.html",
+      "priority": 2
+    },
+    {
+      "title": "Career Counseling",
+      "description": "Career counselling page for guidance, counselling support, and student or professional direction.",
+      "type": "service",
+      "topic": "Curesia Health",
+      "tags": [
+        "Curesia Health",
+        "Mental Health",
+        "Counselling",
+        "Career Counselling",
+        "Guidance"
+      ],
+      "url": "https://curesiahealth.com/careerCounseling.html",
+      "priority": 2
+    },
+    {
+      "title": "Career Counselling",
+      "description": "Career counselling page for guidance, counselling support, and student or professional direction.",
+      "type": "service",
+      "topic": "Curesia Health",
+      "tags": [
+        "Curesia Health",
+        "Mental Health",
+        "Counselling",
+        "Career Counselling",
+        "Guidance"
+      ],
+      "url": "https://curesiahealth.com/careerCounselling.html",
+      "priority": 2
+    },
+    {
+      "title": "Psycological Testing",
+      "description": "Psychological testing service information from Curesia Health.",
+      "type": "service",
+      "topic": "Curesia Health",
+      "tags": [
+        "Curesia Health",
+        "Mental Health",
+        "Counselling",
+        "Psychological Testing",
+        "Assessment"
+      ],
+      "url": "https://curesiahealth.com/psycologicalTesting.html",
+      "priority": 2
+    },
+    {
+      "title": "Review",
+      "description": "Curesia Health review page for visitor feedback and client experiences.",
+      "type": "link",
+      "topic": "Curesia Health",
+      "tags": [
+        "Curesia Health",
+        "Mental Health",
+        "Counselling",
+        "Reviews",
+        "Testimonials"
+      ],
+      "url": "https://curesiahealth.com/review.html",
+      "priority": 2
+    },
+    {
+      "title": "Testimonial",
+      "description": "Curesia Health testimonial page with client feedback and trust-building details.",
+      "type": "link",
+      "topic": "Curesia Health",
+      "tags": [
+        "Curesia Health",
+        "Mental Health",
+        "Counselling",
+        "Psychological Testing",
+        "Assessment"
+      ],
+      "url": "https://curesiahealth.com/testimonial.html",
+      "priority": 2
+    },
+    {
+      "title": "Contact",
+      "description": "Contact Curesia Health for appointments, counselling, testing, and support.",
+      "type": "link",
+      "topic": "Curesia Health",
+      "tags": [
+        "Curesia Health",
+        "Mental Health",
+        "Counselling",
+        "Contact",
+        "Location"
+      ],
+      "url": "https://curesiahealth.com/contact.html",
+      "priority": 2
+    },
+    {
+      "title": "Officeonmap",
+      "description": "Curesia Health office location map for visitors and appointment planning.",
+      "type": "link",
+      "topic": "Curesia Health",
+      "tags": [
+        "Curesia Health",
+        "Mental Health",
+        "Counselling",
+        "Contact",
+        "Location"
+      ],
+      "url": "https://curesiahealth.com/officeonmap.html",
       "priority": 2
     }
   ],
