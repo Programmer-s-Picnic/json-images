@@ -6976,17 +6976,141 @@
       "url": "https://www.learnwithchampak.live/2022/04/delete-table-in-sql-1.html",
       "priority": 2,
       "lastmod": "2026-07-03T08:17:39Z"
+    },
+    {
+      "title": "Punya Yatra",
+      "description": "Official Punya Yatra website for spiritual tours, rituals, kathas, yagyas, gallery, and contact information.",
+      "type": "platform",
+      "topic": "Punya Yatra",
+      "tags": [
+        "Punya Yatra",
+        "Spiritual Tours",
+        "Rituals",
+        "Yagya",
+        "Katha"
+      ],
+      "url": "https://punyayatra.in/",
+      "priority": 1,
+      "lastmod": "2026-06-09"
+    },
+    {
+      "title": "Punya Yatra Tours",
+      "description": "Explore Punya Yatra tour packages and spiritual travel services.",
+      "type": "service",
+      "topic": "Punya Yatra",
+      "tags": [
+        "Punya Yatra",
+        "Tours",
+        "Spiritual Travel",
+        "Pilgrimage",
+        "Varanasi"
+      ],
+      "url": "https://punyayatra.in/tours/",
+      "priority": 2,
+      "lastmod": "2026-06-09"
+    },
+    {
+      "title": "Punya Yatra Rituals",
+      "description": "Learn about ritual services offered through Punya Yatra.",
+      "type": "service",
+      "topic": "Punya Yatra",
+      "tags": [
+        "Punya Yatra",
+        "Rituals",
+        "Puja",
+        "Spiritual Services",
+        "Hindu Rituals"
+      ],
+      "url": "https://punyayatra.in/rituals/",
+      "priority": 2,
+      "lastmod": "2026-06-09"
+    },
+    {
+      "title": "Punya Yatra Kathas",
+      "description": "Explore katha services and devotional storytelling resources from Punya Yatra.",
+      "type": "service",
+      "topic": "Punya Yatra",
+      "tags": [
+        "Punya Yatra",
+        "Katha",
+        "Devotional",
+        "Spiritual Services",
+        "Bhagwat Katha"
+      ],
+      "url": "https://punyayatra.in/kathas/",
+      "priority": 2,
+      "lastmod": "2026-06-09"
+    },
+    {
+      "title": "Punya Yatra Yagyas",
+      "description": "Learn about yagya services and spiritual ceremonies offered by Punya Yatra.",
+      "type": "service",
+      "topic": "Punya Yatra",
+      "tags": [
+        "Punya Yatra",
+        "Yagya",
+        "Havan",
+        "Spiritual Services",
+        "Ceremony"
+      ],
+      "url": "https://punyayatra.in/yagyas/",
+      "priority": 2,
+      "lastmod": "2026-06-09"
+    },
+    {
+      "title": "Punya Yatra Gallery",
+      "description": "View the Punya Yatra gallery with photos and spiritual activity highlights.",
+      "type": "gallery",
+      "topic": "Punya Yatra",
+      "tags": [
+        "Punya Yatra",
+        "Gallery",
+        "Photos",
+        "Spiritual Tours",
+        "Events"
+      ],
+      "url": "https://punyayatra.in/gallery/",
+      "priority": 2,
+      "lastmod": "2026-06-09"
+    },
+    {
+      "title": "Contact Punya Yatra",
+      "description": "Contact Punya Yatra for tours, rituals, kathas, yagyas, and spiritual service enquiries.",
+      "type": "contact",
+      "topic": "Punya Yatra",
+      "tags": [
+        "Punya Yatra",
+        "Contact",
+        "Enquiry",
+        "Tours",
+        "Spiritual Services"
+      ],
+      "url": "https://punyayatra.in/contact/",
+      "priority": 2,
+      "lastmod": "2026-06-09"
+    },
+    {
+      "title": "Punya Yatra Sitemap",
+      "description": "Browse the Punya Yatra sitemap and site navigation links.",
+      "type": "sitemap",
+      "topic": "Punya Yatra",
+      "tags": [
+        "Punya Yatra",
+        "Sitemap",
+        "Navigation",
+        "Website",
+        "Links"
+      ],
+      "url": "https://punyayatra.in/sitemap/",
+      "priority": 3,
+      "lastmod": "2026-06-09"
     }
   ],
-  "totalItems": 447,
+  "totalItems": 472,
   "lastAddSummary": {
-    "sourceSitemap": "sitemap.xml",
-    "sourceLinks": "links.json",
-    "sitemapUrlCount": 20,
-    "existingLinkCountBefore": 427,
-    "newLinksAdded": 20,
-    "totalItemsAfter": 447,
-    "addedAt": "2026-07-06",
-    "note": "URLs were compared exactly against existing item.url values. New Rudra Tours sitemap links were added with Travel metadata."
+    "source": "sitemap.xml",
+    "addedCount": 8,
+    "skippedDuplicateCount": 0,
+    "topic": "Punya Yatra"
   }
 }
