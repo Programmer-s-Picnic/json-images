@@ -7104,13 +7104,307 @@
       "url": "https://punyayatra.in/sitemap/",
       "priority": 3,
       "lastmod": "2026-06-09"
+    },
+    {
+      "title": "TensorFlow Keras Pass Fail Classifier | Sigmoid Activation | Functional API in Python",
+      "description": "Watch TensorFlow Keras Pass Fail Classifier | Sigmoid Activation | Functional API in Python by Champak Roy. A beginner-friendly AI-ML and Python programming video lesson with practical examples.",
+      "type": "video",
+      "topic": "AI-ML",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "AI-ML",
+        "Machine Learning",
+        "Python",
+        "TensorFlow",
+        "Keras"
+      ],
+      "url": "https://www.youtube.com/watch?v=L-HEBCUb-eg",
+      "priority": 2
+    },
+    {
+      "title": "Python Decision Tree Classifier for Student Marks | Pass, Fail and Distinction using scikit-learn",
+      "description": "Watch Python Decision Tree Classifier for Student Marks | Pass, Fail and Distinction using scikit-learn by Champak Roy. A beginner-friendly AI-ML and Python programming video lesson with practical examples.",
+      "type": "video",
+      "topic": "AI-ML",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "AI-ML",
+        "Machine Learning",
+        "Python",
+        "Decision Tree"
+      ],
+      "url": "https://www.youtube.com/watch?v=oHhlVw3jqEg",
+      "priority": 2
+    },
+    {
+      "title": "Mean, Median and Mode in Python | Final ML Programming Preparation",
+      "description": "Watch Mean, Median and Mode in Python | Final ML Programming Preparation by Champak Roy. A beginner-friendly AI-ML and Python programming video lesson with practical examples.",
+      "type": "video",
+      "topic": "AI-ML",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "AI-ML",
+        "Machine Learning",
+        "Python",
+        "Mean",
+        "Median"
+      ],
+      "url": "https://www.youtube.com/watch?v=xRXmWa3dfGQ",
+      "priority": 2
+    },
+    {
+      "title": "Linear Regression and Coefficient of Correlation with Python",
+      "description": "Watch Linear Regression and Coefficient of Correlation with Python by Champak Roy. A beginner-friendly AI-ML and Python programming video lesson with practical examples.",
+      "type": "video",
+      "topic": "AI-ML",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "AI-ML",
+        "Machine Learning",
+        "Python",
+        "Linear Regression",
+        "Correlation"
+      ],
+      "url": "https://www.youtube.com/watch?v=MijKxI4-VLo",
+      "priority": 2
+    },
+    {
+      "title": "Quadratic Curve Fitting in Python | ML Preparation Lesson",
+      "description": "Watch Quadratic Curve Fitting in Python | ML Preparation Lesson by Champak Roy. A beginner-friendly AI-ML and Python programming video lesson with practical examples.",
+      "type": "video",
+      "topic": "AI-ML",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "AI-ML",
+        "Machine Learning",
+        "Python",
+        "Quadratic",
+        "Curve Fitting"
+      ],
+      "url": "https://www.youtube.com/watch?v=AQRzkbbnwJQ",
+      "priority": 2
+    },
+    {
+      "title": "Enhancing a Square Root Program Using Functions in Python",
+      "description": "Watch Enhancing a Square Root Program Using Functions in Python by Champak Roy. A beginner-friendly Python programming video lesson with practical code examples.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "Python",
+        "Programming",
+        "Practice"
+      ],
+      "url": "https://www.youtube.com/watch?v=rLX8BnYCkRk",
+      "priority": 2
+    },
+    {
+      "title": "List Comprehension in Python | Write Short and Clean Python Code",
+      "description": "Watch List Comprehension in Python | Write Short and Clean Python Code by Champak Roy. A beginner-friendly Python programming video lesson with practical code examples.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "Python",
+        "Programming",
+        "Practice",
+        "List Comprehension"
+      ],
+      "url": "https://www.youtube.com/watch?v=JqxFJdIEBl0",
+      "priority": 2
+    },
+    {
+      "title": "Binary Insertion Sort in Python | Remove and Add Method",
+      "description": "Watch Binary Insertion Sort in Python | Remove and Add Method by Champak Roy. A beginner-friendly DSA and Python practice video for coding confidence and placement preparation.",
+      "type": "video",
+      "topic": "DSA Practice",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "DSA",
+        "Algorithms",
+        "Python",
+        "Insertion Sort"
+      ],
+      "url": "https://www.youtube.com/watch?v=VHLnM6CqAxM",
+      "priority": 2
+    },
+    {
+      "title": "Python Spiral Board Pattern | Print 1 to 25, A to Z in Spiral Order",
+      "description": "Watch Python Spiral Board Pattern | Print 1 to 25, A to Z in Spiral Order by Champak Roy. A beginner-friendly Python programming video lesson with practical code examples.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "Python",
+        "Programming",
+        "Practice",
+        "Pattern Printing"
+      ],
+      "url": "https://www.youtube.com/watch?v=HqIAtTbzOXg",
+      "priority": 2
+    },
+    {
+      "title": "Python Pattern Printing: Box, Plus Sign and more using Loops and Conditions from 0 to Infinity",
+      "description": "Watch Python Pattern Printing: Box, Plus Sign and more using Loops and Conditions from 0 to Infinity by Champak Roy. A beginner-friendly Python programming video lesson with practical code examples.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "Python",
+        "Programming",
+        "Practice",
+        "Pattern Printing",
+        "OOP"
+      ],
+      "url": "https://www.youtube.com/watch?v=GlmZg64sebM",
+      "priority": 2
+    },
+    {
+      "title": "Object Oriented Programming in Python | Overloading + and - Operators",
+      "description": "Watch Object Oriented Programming in Python | Overloading + and - Operators by Champak Roy. A beginner-friendly Python programming video lesson with practical code examples.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "Python",
+        "Programming",
+        "Practice",
+        "OOP",
+        "Operator Overloading"
+      ],
+      "url": "https://www.youtube.com/watch?v=ZbKCGYt4GEY",
+      "priority": 2
+    },
+    {
+      "title": "Advanced Data Structures & Algorithms | Exam + Placement",
+      "description": "Watch Advanced Data Structures & Algorithms | Exam + Placement by Champak Roy. A beginner-friendly DSA and Python practice video for coding confidence and placement preparation.",
+      "type": "video",
+      "topic": "DSA Practice",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "DSA",
+        "Algorithms",
+        "Python"
+      ],
+      "url": "https://www.youtube.com/watch?v=7V1ckYVKbTU",
+      "priority": 2
+    },
+    {
+      "title": "DSA Day1 Introduction",
+      "description": "Watch DSA Day1 Introduction by Champak Roy. A beginner-friendly DSA and Python practice video for coding confidence and placement preparation.",
+      "type": "video",
+      "topic": "DSA Practice",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "DSA",
+        "Algorithms",
+        "Python"
+      ],
+      "url": "https://www.youtube.com/watch?v=5MZTDOTKwpc",
+      "priority": 2
+    },
+    {
+      "title": "Introduction to Champak’s World. Computer Programming by Champak Roy",
+      "description": "Watch Introduction to Champak’s World. Computer Programming by Champak Roy by Champak Roy. A beginner-friendly programming lesson for Python, AI-ML, DSA, and practical coding preparation.",
+      "type": "video",
+      "topic": "Programming",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "Programming",
+        "Learning",
+        "Computer Programming"
+      ],
+      "url": "https://www.youtube.com/watch?v=uhA9NsBg4g0",
+      "priority": 2
+    },
+    {
+      "title": "Part of a work through on Champak's World. Beginning Animation. Simple Translation",
+      "description": "Watch Part of a work through on Champak's World. Beginning Animation. Simple Translation by Champak Roy. A beginner-friendly programming lesson for Python, AI-ML, DSA, and practical coding preparation.",
+      "type": "video",
+      "topic": "Web Development",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "Animation",
+        "Programming",
+        "Learning"
+      ],
+      "url": "https://www.youtube.com/watch?v=qf5OY0VuGmE",
+      "priority": 2
+    },
+    {
+      "title": "Running a Python Program in Spyder",
+      "description": "Watch Running a Python Program in Spyder by Champak Roy. A beginner-friendly Python programming video lesson with practical code examples.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "Python",
+        "Programming",
+        "Practice",
+        "Spyder"
+      ],
+      "url": "https://www.youtube.com/watch?v=P4fotnYJ-NY",
+      "priority": 2
+    },
+    {
+      "title": "Count the number of letters in a word",
+      "description": "Watch Count the number of letters in a word by Champak Roy. A beginner-friendly Python programming video lesson with practical code examples.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "YouTube",
+        "Champak Roy",
+        "Programmer's Picnic",
+        "Python",
+        "Programming",
+        "Practice"
+      ],
+      "url": "https://www.youtube.com/watch?v=-IYBWCiuDjM",
+      "priority": 2
     }
   ],
-  "totalItems": 472,
+  "totalItems": 489,
   "lastAddSummary": {
-    "source": "sitemap.xml",
-    "addedCount": 8,
-    "skippedDuplicateCount": 0,
-    "topic": "Punya Yatra"
+    "date": "2026-07-14",
+    "added": 17,
+    "skippedMissingUrl": [
+      "Polynomial Regression in Python | Best Fit Model, R² Score and Prediction",
+      "Python Pattern Printing Using Loops | Alphabet Pyramid Program",
+      "Python Magic Methods Tutorial | Building a Currency Class in Python"
+    ],
+    "skippedDuplicates": [],
+    "source": "Manual YouTube URL list"
   }
 }
