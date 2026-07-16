@@ -7408,14 +7408,3574 @@
       ],
       "url": "https://champak.learnwithchampak.live/showhide.html",
       "priority": 2
+    },
+    {
+      "title": "Programmer-s-Picnic/learnwithchampak-pwa",
+      "description": "GitHub repository Programmer-s-Picnic/learnwithchampak-pwa for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/learnwithchampak-pwa",
+      "priority": 2,
+      "repository": {
+        "name": "learnwithchampak-pwa",
+        "full_name": "Programmer-s-Picnic/learnwithchampak-pwa",
+        "clone_url": "https://github.com/Programmer-s-Picnic/learnwithchampak-pwa.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/springsqlitedemo",
+      "description": "GitHub repository Programmer-s-Picnic/springsqlitedemo for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/springsqlitedemo",
+      "priority": 2,
+      "repository": {
+        "name": "springsqlitedemo",
+        "full_name": "Programmer-s-Picnic/springsqlitedemo",
+        "clone_url": "https://github.com/Programmer-s-Picnic/springsqlitedemo.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/aiml",
+      "description": "GitHub repository Programmer-s-Picnic/aiml for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/aiml",
+      "priority": 2,
+      "repository": {
+        "name": "aiml",
+        "full_name": "Programmer-s-Picnic/aiml",
+        "clone_url": "https://github.com/Programmer-s-Picnic/aiml.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/jscomplete",
+      "description": "GitHub repository Programmer-s-Picnic/jscomplete for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/jscomplete",
+      "priority": 2,
+      "repository": {
+        "name": "jscomplete",
+        "full_name": "Programmer-s-Picnic/jscomplete",
+        "clone_url": "https://github.com/Programmer-s-Picnic/jscomplete.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/search",
+      "description": "GitHub repository Programmer-s-Picnic/search for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/search",
+      "priority": 2,
+      "repository": {
+        "name": "search",
+        "full_name": "Programmer-s-Picnic/search",
+        "clone_url": "https://github.com/Programmer-s-Picnic/search.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/json-images",
+      "description": "GitHub repository Programmer-s-Picnic/json-images for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/json-images",
+      "priority": 2,
+      "repository": {
+        "name": "json-images",
+        "full_name": "Programmer-s-Picnic/json-images",
+        "clone_url": "https://github.com/Programmer-s-Picnic/json-images.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/pp-react",
+      "description": "GitHub repository Programmer-s-Picnic/pp-react for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/pp-react",
+      "priority": 2,
+      "repository": {
+        "name": "pp-react",
+        "full_name": "Programmer-s-Picnic/pp-react",
+        "clone_url": "https://github.com/Programmer-s-Picnic/pp-react.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/programmerspwa",
+      "description": "GitHub repository Programmer-s-Picnic/programmerspwa for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/programmerspwa",
+      "priority": 2,
+      "repository": {
+        "name": "programmerspwa",
+        "full_name": "Programmer-s-Picnic/programmerspwa",
+        "clone_url": "https://github.com/Programmer-s-Picnic/programmerspwa.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/dsa",
+      "description": "GitHub repository Programmer-s-Picnic/dsa for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/dsa",
+      "priority": 2,
+      "repository": {
+        "name": "dsa",
+        "full_name": "Programmer-s-Picnic/dsa",
+        "clone_url": "https://github.com/Programmer-s-Picnic/dsa.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/champak",
+      "description": "GitHub repository Programmer-s-Picnic/champak for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/champak",
+      "priority": 2,
+      "repository": {
+        "name": "champak",
+        "full_name": "Programmer-s-Picnic/champak",
+        "clone_url": "https://github.com/Programmer-s-Picnic/champak.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/angular",
+      "description": "GitHub repository Programmer-s-Picnic/angular for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/angular",
+      "priority": 2,
+      "repository": {
+        "name": "angular",
+        "full_name": "Programmer-s-Picnic/angular",
+        "clone_url": "https://github.com/Programmer-s-Picnic/angular.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/videos",
+      "description": "GitHub repository Programmer-s-Picnic/videos for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/videos",
+      "priority": 2,
+      "repository": {
+        "name": "videos",
+        "full_name": "Programmer-s-Picnic/videos",
+        "clone_url": "https://github.com/Programmer-s-Picnic/videos.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/Piyush-Web-Data-Analyzer",
+      "description": "GitHub repository Programmer-s-Picnic/Piyush-Web-Data-Analyzer for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/Piyush-Web-Data-Analyzer",
+      "priority": 2,
+      "repository": {
+        "name": "Piyush-Web-Data-Analyzer",
+        "full_name": "Programmer-s-Picnic/Piyush-Web-Data-Analyzer",
+        "clone_url": "https://github.com/Programmer-s-Picnic/Piyush-Web-Data-Analyzer.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/kbc-quiz",
+      "description": "GitHub repository Programmer-s-Picnic/kbc-quiz for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/kbc-quiz",
+      "priority": 2,
+      "repository": {
+        "name": "kbc-quiz",
+        "full_name": "Programmer-s-Picnic/kbc-quiz",
+        "clone_url": "https://github.com/Programmer-s-Picnic/kbc-quiz.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/tv",
+      "description": "GitHub repository Programmer-s-Picnic/tv for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/tv",
+      "priority": 2,
+      "repository": {
+        "name": "tv",
+        "full_name": "Programmer-s-Picnic/tv",
+        "clone_url": "https://github.com/Programmer-s-Picnic/tv.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/lesson-viewer",
+      "description": "GitHub repository Programmer-s-Picnic/lesson-viewer for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/lesson-viewer",
+      "priority": 2,
+      "repository": {
+        "name": "lesson-viewer",
+        "full_name": "Programmer-s-Picnic/lesson-viewer",
+        "clone_url": "https://github.com/Programmer-s-Picnic/lesson-viewer.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/server",
+      "description": "GitHub repository Programmer-s-Picnic/server for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/server",
+      "priority": 2,
+      "repository": {
+        "name": "server",
+        "full_name": "Programmer-s-Picnic/server",
+        "clone_url": "https://github.com/Programmer-s-Picnic/server.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/zoom-timing",
+      "description": "GitHub repository Programmer-s-Picnic/zoom-timing for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/zoom-timing",
+      "priority": 2,
+      "repository": {
+        "name": "zoom-timing",
+        "full_name": "Programmer-s-Picnic/zoom-timing",
+        "clone_url": "https://github.com/Programmer-s-Picnic/zoom-timing.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/Ashutosh-Web-Data-Analyzer",
+      "description": "GitHub repository Programmer-s-Picnic/Ashutosh-Web-Data-Analyzer for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/Ashutosh-Web-Data-Analyzer",
+      "priority": 2,
+      "repository": {
+        "name": "Ashutosh-Web-Data-Analyzer",
+        "full_name": "Programmer-s-Picnic/Ashutosh-Web-Data-Analyzer",
+        "clone_url": "https://github.com/Programmer-s-Picnic/Ashutosh-Web-Data-Analyzer.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/Web-Data-Analyzer",
+      "description": "GitHub repository Programmer-s-Picnic/Web-Data-Analyzer for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/Web-Data-Analyzer",
+      "priority": 2,
+      "repository": {
+        "name": "Web-Data-Analyzer",
+        "full_name": "Programmer-s-Picnic/Web-Data-Analyzer",
+        "clone_url": "https://github.com/Programmer-s-Picnic/Web-Data-Analyzer.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/chirpy-champak",
+      "description": "GitHub repository Programmer-s-Picnic/chirpy-champak for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/chirpy-champak",
+      "priority": 2,
+      "repository": {
+        "name": "chirpy-champak",
+        "full_name": "Programmer-s-Picnic/chirpy-champak",
+        "clone_url": "https://github.com/Programmer-s-Picnic/chirpy-champak.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/Face-Recognition-and-more",
+      "description": "GitHub repository Programmer-s-Picnic/Face-Recognition-and-more for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/Face-Recognition-and-more",
+      "priority": 2,
+      "repository": {
+        "name": "Face-Recognition-and-more",
+        "full_name": "Programmer-s-Picnic/Face-Recognition-and-more",
+        "clone_url": "https://github.com/Programmer-s-Picnic/Face-Recognition-and-more.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/kritri-Web-Data-Analyzer",
+      "description": "GitHub repository Programmer-s-Picnic/kritri-Web-Data-Analyzer for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/kritri-Web-Data-Analyzer",
+      "priority": 2,
+      "repository": {
+        "name": "kritri-Web-Data-Analyzer",
+        "full_name": "Programmer-s-Picnic/kritri-Web-Data-Analyzer",
+        "clone_url": "https://github.com/Programmer-s-Picnic/kritri-Web-Data-Analyzer.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/python-codespace-hello",
+      "description": "GitHub repository Programmer-s-Picnic/python-codespace-hello for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/python-codespace-hello",
+      "priority": 2,
+      "repository": {
+        "name": "python-codespace-hello",
+        "full_name": "Programmer-s-Picnic/python-codespace-hello",
+        "clone_url": "https://github.com/Programmer-s-Picnic/python-codespace-hello.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/react",
+      "description": "GitHub repository Programmer-s-Picnic/react for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/react",
+      "priority": 2,
+      "repository": {
+        "name": "react",
+        "full_name": "Programmer-s-Picnic/react",
+        "clone_url": "https://github.com/Programmer-s-Picnic/react.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Programmer-s-Picnic/learnwithchampak",
+      "description": "GitHub repository Programmer-s-Picnic/learnwithchampak for Programmer's Picnic learning projects, code examples, tools, and web development work.",
+      "type": "repository",
+      "topic": "GitHub / Programmer's Picnic",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Programmer's Picnic",
+        "Champak Roy",
+        "Code"
+      ],
+      "url": "https://github.com/Programmer-s-Picnic/learnwithchampak",
+      "priority": 2,
+      "repository": {
+        "name": "learnwithchampak",
+        "full_name": "Programmer-s-Picnic/learnwithchampak",
+        "clone_url": "https://github.com/Programmer-s-Picnic/learnwithchampak.git",
+        "owner": "Programmer-s-Picnic"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/JavaCodecamp",
+      "description": "GitHub repository Varanasi-Software-Junction/JavaCodecamp for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/JavaCodecamp",
+      "priority": 2,
+      "repository": {
+        "name": "JavaCodecamp",
+        "full_name": "Varanasi-Software-Junction/JavaCodecamp",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/JavaCodecamp.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/pythoncodecamp",
+      "description": "GitHub repository Varanasi-Software-Junction/pythoncodecamp for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/pythoncodecamp",
+      "priority": 2,
+      "repository": {
+        "name": "pythoncodecamp",
+        "full_name": "Varanasi-Software-Junction/pythoncodecamp",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/pythoncodecamp.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/datastructures",
+      "description": "GitHub repository Varanasi-Software-Junction/datastructures for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/datastructures",
+      "priority": 2,
+      "repository": {
+        "name": "datastructures",
+        "full_name": "Varanasi-Software-Junction/datastructures",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/datastructures.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/dart",
+      "description": "GitHub repository Varanasi-Software-Junction/dart for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/dart",
+      "priority": 2,
+      "repository": {
+        "name": "dart",
+        "full_name": "Varanasi-Software-Junction/dart",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/dart.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/The-learn-Django-repository",
+      "description": "GitHub repository Varanasi-Software-Junction/The-learn-Django-repository for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/The-learn-Django-repository",
+      "priority": 2,
+      "repository": {
+        "name": "The-learn-Django-repository",
+        "full_name": "Varanasi-Software-Junction/The-learn-Django-repository",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/The-learn-Django-repository.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/my-react",
+      "description": "GitHub repository Varanasi-Software-Junction/my-react for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/my-react",
+      "priority": 2,
+      "repository": {
+        "name": "my-react",
+        "full_name": "Varanasi-Software-Junction/my-react",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/my-react.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/SpringBootProject",
+      "description": "GitHub repository Varanasi-Software-Junction/SpringBootProject for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/SpringBootProject",
+      "priority": 2,
+      "repository": {
+        "name": "SpringBootProject",
+        "full_name": "Varanasi-Software-Junction/SpringBootProject",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/SpringBootProject.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/C-Programs",
+      "description": "GitHub repository Varanasi-Software-Junction/C-Programs for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/C-Programs",
+      "priority": 2,
+      "repository": {
+        "name": "C-Programs",
+        "full_name": "Varanasi-Software-Junction/C-Programs",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/C-Programs.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/JSONHandling",
+      "description": "GitHub repository Varanasi-Software-Junction/JSONHandling for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/JSONHandling",
+      "priority": 2,
+      "repository": {
+        "name": "JSONHandling",
+        "full_name": "Varanasi-Software-Junction/JSONHandling",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/JSONHandling.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/htmlcodecamp",
+      "description": "GitHub repository Varanasi-Software-Junction/htmlcodecamp for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/htmlcodecamp",
+      "priority": 2,
+      "repository": {
+        "name": "htmlcodecamp",
+        "full_name": "Varanasi-Software-Junction/htmlcodecamp",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/htmlcodecamp.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Python-repository-for-basics",
+      "description": "GitHub repository Varanasi-Software-Junction/Python-repository-for-basics for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Python-repository-for-basics",
+      "priority": 2,
+      "repository": {
+        "name": "Python-repository-for-basics",
+        "full_name": "Varanasi-Software-Junction/Python-repository-for-basics",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Python-repository-for-basics.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/newdjango",
+      "description": "GitHub repository Varanasi-Software-Junction/newdjango for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/newdjango",
+      "priority": 2,
+      "repository": {
+        "name": "newdjango",
+        "full_name": "Varanasi-Software-Junction/newdjango",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/newdjango.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ-Firebase-App",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ-Firebase-App for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ-Firebase-App",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ-Firebase-App",
+        "full_name": "Varanasi-Software-Junction/VSJ-Firebase-App",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ-Firebase-App.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ-URL-Launcher",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ-URL-Launcher for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ-URL-Launcher",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ-URL-Launcher",
+        "full_name": "Varanasi-Software-Junction/VSJ-URL-Launcher",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ-URL-Launcher.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/WebApplication1",
+      "description": "GitHub repository Varanasi-Software-Junction/WebApplication1 for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/WebApplication1",
+      "priority": 2,
+      "repository": {
+        "name": "WebApplication1",
+        "full_name": "Varanasi-Software-Junction/WebApplication1",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/WebApplication1.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/JavaScript",
+      "description": "GitHub repository Varanasi-Software-Junction/JavaScript for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/JavaScript",
+      "priority": 2,
+      "repository": {
+        "name": "JavaScript",
+        "full_name": "Varanasi-Software-Junction/JavaScript",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/JavaScript.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsjchatbot",
+      "description": "GitHub repository Varanasi-Software-Junction/vsjchatbot for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsjchatbot",
+      "priority": 2,
+      "repository": {
+        "name": "vsjchatbot",
+        "full_name": "Varanasi-Software-Junction/vsjchatbot",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsjchatbot.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vns-tourism",
+      "description": "GitHub repository Varanasi-Software-Junction/vns-tourism for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vns-tourism",
+      "priority": 2,
+      "repository": {
+        "name": "vns-tourism",
+        "full_name": "Varanasi-Software-Junction/vns-tourism",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vns-tourism.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/face_recognition",
+      "description": "GitHub repository Varanasi-Software-Junction/face_recognition for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/face_recognition",
+      "priority": 2,
+      "repository": {
+        "name": "face_recognition",
+        "full_name": "Varanasi-Software-Junction/face_recognition",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/face_recognition.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/django",
+      "description": "GitHub repository Varanasi-Software-Junction/django for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/django",
+      "priority": 2,
+      "repository": {
+        "name": "django",
+        "full_name": "Varanasi-Software-Junction/django",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/django.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ-Lightning-Web",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ-Lightning-Web for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ-Lightning-Web",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ-Lightning-Web",
+        "full_name": "Varanasi-Software-Junction/VSJ-Lightning-Web",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ-Lightning-Web.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/ExceptionHandling",
+      "description": "GitHub repository Varanasi-Software-Junction/ExceptionHandling for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/ExceptionHandling",
+      "priority": 2,
+      "repository": {
+        "name": "ExceptionHandling",
+        "full_name": "Varanasi-Software-Junction/ExceptionHandling",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/ExceptionHandling.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Redux-Demo",
+      "description": "GitHub repository Varanasi-Software-Junction/Redux-Demo for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Redux-Demo",
+      "priority": 2,
+      "repository": {
+        "name": "Redux-Demo",
+        "full_name": "Varanasi-Software-Junction/Redux-Demo",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Redux-Demo.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/pictures-json",
+      "description": "GitHub repository Varanasi-Software-Junction/pictures-json for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/pictures-json",
+      "priority": 2,
+      "repository": {
+        "name": "pictures-json",
+        "full_name": "Varanasi-Software-Junction/pictures-json",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/pictures-json.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsjaws",
+      "description": "GitHub repository Varanasi-Software-Junction/vsjaws for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsjaws",
+      "priority": 2,
+      "repository": {
+        "name": "vsjaws",
+        "full_name": "Varanasi-Software-Junction/vsjaws",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsjaws.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Firebase-in-Futter",
+      "description": "GitHub repository Varanasi-Software-Junction/Firebase-in-Futter for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Firebase-in-Futter",
+      "priority": 2,
+      "repository": {
+        "name": "Firebase-in-Futter",
+        "full_name": "Varanasi-Software-Junction/Firebase-in-Futter",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Firebase-in-Futter.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Maven-in-Java",
+      "description": "GitHub repository Varanasi-Software-Junction/Maven-in-Java for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Maven-in-Java",
+      "priority": 2,
+      "repository": {
+        "name": "Maven-in-Java",
+        "full_name": "Varanasi-Software-Junction/Maven-in-Java",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Maven-in-Java.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/blogger",
+      "description": "GitHub repository Varanasi-Software-Junction/blogger for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/blogger",
+      "priority": 2,
+      "repository": {
+        "name": "blogger",
+        "full_name": "Varanasi-Software-Junction/blogger",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/blogger.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/R",
+      "description": "GitHub repository Varanasi-Software-Junction/R for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/R",
+      "priority": 2,
+      "repository": {
+        "name": "R",
+        "full_name": "Varanasi-Software-Junction/R",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/R.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/ToDo",
+      "description": "GitHub repository Varanasi-Software-Junction/ToDo for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/ToDo",
+      "priority": 2,
+      "repository": {
+        "name": "ToDo",
+        "full_name": "Varanasi-Software-Junction/ToDo",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/ToDo.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Flutter-Weather",
+      "description": "GitHub repository Varanasi-Software-Junction/Flutter-Weather for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Flutter-Weather",
+      "priority": 2,
+      "repository": {
+        "name": "Flutter-Weather",
+        "full_name": "Varanasi-Software-Junction/Flutter-Weather",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Flutter-Weather.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ-Sensors",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ-Sensors for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ-Sensors",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ-Sensors",
+        "full_name": "Varanasi-Software-Junction/VSJ-Sensors",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ-Sensors.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/firebase_demo",
+      "description": "GitHub repository Varanasi-Software-Junction/firebase_demo for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/firebase_demo",
+      "priority": 2,
+      "repository": {
+        "name": "firebase_demo",
+        "full_name": "Varanasi-Software-Junction/firebase_demo",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/firebase_demo.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/MyKotlinProject",
+      "description": "GitHub repository Varanasi-Software-Junction/MyKotlinProject for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/MyKotlinProject",
+      "priority": 2,
+      "repository": {
+        "name": "MyKotlinProject",
+        "full_name": "Varanasi-Software-Junction/MyKotlinProject",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/MyKotlinProject.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/oce",
+      "description": "GitHub repository Varanasi-Software-Junction/oce for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/oce",
+      "priority": 2,
+      "repository": {
+        "name": "oce",
+        "full_name": "Varanasi-Software-Junction/oce",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/oce.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VsjFaceDetector",
+      "description": "GitHub repository Varanasi-Software-Junction/VsjFaceDetector for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VsjFaceDetector",
+      "priority": 2,
+      "repository": {
+        "name": "VsjFaceDetector",
+        "full_name": "Varanasi-Software-Junction/VsjFaceDetector",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VsjFaceDetector.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Assignments",
+      "description": "GitHub repository Varanasi-Software-Junction/Assignments for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Assignments",
+      "priority": 2,
+      "repository": {
+        "name": "Assignments",
+        "full_name": "Varanasi-Software-Junction/Assignments",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Assignments.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/AWS",
+      "description": "GitHub repository Varanasi-Software-Junction/AWS for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/AWS",
+      "priority": 2,
+      "repository": {
+        "name": "AWS",
+        "full_name": "Varanasi-Software-Junction/AWS",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/AWS.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Swapi-Flutter-App",
+      "description": "GitHub repository Varanasi-Software-Junction/Swapi-Flutter-App for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Swapi-Flutter-App",
+      "priority": 2,
+      "repository": {
+        "name": "Swapi-Flutter-App",
+        "full_name": "Varanasi-Software-Junction/Swapi-Flutter-App",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Swapi-Flutter-App.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/learndjango",
+      "description": "GitHub repository Varanasi-Software-Junction/learndjango for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/learndjango",
+      "priority": 2,
+      "repository": {
+        "name": "learndjango",
+        "full_name": "Varanasi-Software-Junction/learndjango",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/learndjango.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/varanasisoftwarejunction.github.io",
+      "description": "GitHub repository Varanasi-Software-Junction/varanasisoftwarejunction.github.io for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/varanasisoftwarejunction.github.io",
+      "priority": 2,
+      "repository": {
+        "name": "varanasisoftwarejunction.github.io",
+        "full_name": "Varanasi-Software-Junction/varanasisoftwarejunction.github.io",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/varanasisoftwarejunction.github.io.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/gameappnew",
+      "description": "GitHub repository Varanasi-Software-Junction/gameappnew for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/gameappnew",
+      "priority": 2,
+      "repository": {
+        "name": "gameappnew",
+        "full_name": "Varanasi-Software-Junction/gameappnew",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/gameappnew.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/onlineclasseswa",
+      "description": "GitHub repository Varanasi-Software-Junction/onlineclasseswa for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/onlineclasseswa",
+      "priority": 2,
+      "repository": {
+        "name": "onlineclasseswa",
+        "full_name": "Varanasi-Software-Junction/onlineclasseswa",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/onlineclasseswa.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/LatestITR",
+      "description": "GitHub repository Varanasi-Software-Junction/LatestITR for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/LatestITR",
+      "priority": 2,
+      "repository": {
+        "name": "LatestITR",
+        "full_name": "Varanasi-Software-Junction/LatestITR",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/LatestITR.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Flutter-Theming",
+      "description": "GitHub repository Varanasi-Software-Junction/Flutter-Theming for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Flutter-Theming",
+      "priority": 2,
+      "repository": {
+        "name": "Flutter-Theming",
+        "full_name": "Varanasi-Software-Junction/Flutter-Theming",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Flutter-Theming.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Fast-API-Demo",
+      "description": "GitHub repository Varanasi-Software-Junction/Fast-API-Demo for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Fast-API-Demo",
+      "priority": 2,
+      "repository": {
+        "name": "Fast-API-Demo",
+        "full_name": "Varanasi-Software-Junction/Fast-API-Demo",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Fast-API-Demo.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/New-HTML",
+      "description": "GitHub repository Varanasi-Software-Junction/New-HTML for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/New-HTML",
+      "priority": 2,
+      "repository": {
+        "name": "New-HTML",
+        "full_name": "Varanasi-Software-Junction/New-HTML",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/New-HTML.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ-Colaboratory",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ-Colaboratory for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ-Colaboratory",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ-Colaboratory",
+        "full_name": "Varanasi-Software-Junction/VSJ-Colaboratory",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ-Colaboratory.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Learning-Flutter",
+      "description": "GitHub repository Varanasi-Software-Junction/Learning-Flutter for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Learning-Flutter",
+      "priority": 2,
+      "repository": {
+        "name": "Learning-Flutter",
+        "full_name": "Varanasi-Software-Junction/Learning-Flutter",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Learning-Flutter.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/React-from-the-beginning",
+      "description": "GitHub repository Varanasi-Software-Junction/React-from-the-beginning for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/React-from-the-beginning",
+      "priority": 2,
+      "repository": {
+        "name": "React-from-the-beginning",
+        "full_name": "Varanasi-Software-Junction/React-from-the-beginning",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/React-from-the-beginning.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Flutter-Realtime-Detection",
+      "description": "GitHub repository Varanasi-Software-Junction/Flutter-Realtime-Detection for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Flutter-Realtime-Detection",
+      "priority": 2,
+      "repository": {
+        "name": "Flutter-Realtime-Detection",
+        "full_name": "Varanasi-Software-Junction/Flutter-Realtime-Detection",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Flutter-Realtime-Detection.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vjsjwt",
+      "description": "GitHub repository Varanasi-Software-Junction/vjsjwt for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vjsjwt",
+      "priority": 2,
+      "repository": {
+        "name": "vjsjwt",
+        "full_name": "Varanasi-Software-Junction/vjsjwt",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vjsjwt.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Bluetooth-Scanner",
+      "description": "GitHub repository Varanasi-Software-Junction/Bluetooth-Scanner for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Bluetooth-Scanner",
+      "priority": 2,
+      "repository": {
+        "name": "Bluetooth-Scanner",
+        "full_name": "Varanasi-Software-Junction/Bluetooth-Scanner",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Bluetooth-Scanner.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ-Connector",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ-Connector for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ-Connector",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ-Connector",
+        "full_name": "Varanasi-Software-Junction/VSJ-Connector",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ-Connector.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/itr",
+      "description": "GitHub repository Varanasi-Software-Junction/itr for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/itr",
+      "priority": 2,
+      "repository": {
+        "name": "itr",
+        "full_name": "Varanasi-Software-Junction/itr",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/itr.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/varanasisoftwarejunction",
+      "description": "GitHub repository Varanasi-Software-Junction/varanasisoftwarejunction for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/varanasisoftwarejunction",
+      "priority": 2,
+      "repository": {
+        "name": "varanasisoftwarejunction",
+        "full_name": "Varanasi-Software-Junction/varanasisoftwarejunction",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/varanasisoftwarejunction.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ-Google-Django-Login",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ-Google-Django-Login for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ-Google-Django-Login",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ-Google-Django-Login",
+        "full_name": "Varanasi-Software-Junction/VSJ-Google-Django-Login",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ-Google-Django-Login.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/HerokuHosting",
+      "description": "GitHub repository Varanasi-Software-Junction/HerokuHosting for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/HerokuHosting",
+      "priority": 2,
+      "repository": {
+        "name": "HerokuHosting",
+        "full_name": "Varanasi-Software-Junction/HerokuHosting",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/HerokuHosting.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/programmerspicnic",
+      "description": "GitHub repository Varanasi-Software-Junction/programmerspicnic for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/programmerspicnic",
+      "priority": 2,
+      "repository": {
+        "name": "programmerspicnic",
+        "full_name": "Varanasi-Software-Junction/programmerspicnic",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/programmerspicnic.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/ghs",
+      "description": "GitHub repository Varanasi-Software-Junction/ghs for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/ghs",
+      "priority": 2,
+      "repository": {
+        "name": "ghs",
+        "full_name": "Varanasi-Software-Junction/ghs",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/ghs.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/ocr",
+      "description": "GitHub repository Varanasi-Software-Junction/ocr for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/ocr",
+      "priority": 2,
+      "repository": {
+        "name": "ocr",
+        "full_name": "Varanasi-Software-Junction/ocr",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/ocr.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/program-junction",
+      "description": "GitHub repository Varanasi-Software-Junction/program-junction for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/program-junction",
+      "priority": 2,
+      "repository": {
+        "name": "program-junction",
+        "full_name": "Varanasi-Software-Junction/program-junction",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/program-junction.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsjnnotifications",
+      "description": "GitHub repository Varanasi-Software-Junction/vsjnnotifications for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsjnnotifications",
+      "priority": 2,
+      "repository": {
+        "name": "vsjnnotifications",
+        "full_name": "Varanasi-Software-Junction/vsjnnotifications",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsjnnotifications.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/D--studentdb",
+      "description": "GitHub repository Varanasi-Software-Junction/D--studentdb for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/D--studentdb",
+      "priority": 2,
+      "repository": {
+        "name": "D--studentdb",
+        "full_name": "Varanasi-Software-Junction/D--studentdb",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/D--studentdb.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/DrawerDemo",
+      "description": "GitHub repository Varanasi-Software-Junction/DrawerDemo for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/DrawerDemo",
+      "priority": 2,
+      "repository": {
+        "name": "DrawerDemo",
+        "full_name": "Varanasi-Software-Junction/DrawerDemo",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/DrawerDemo.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Todo-App-in-Django",
+      "description": "GitHub repository Varanasi-Software-Junction/Todo-App-in-Django for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Todo-App-in-Django",
+      "priority": 2,
+      "repository": {
+        "name": "Todo-App-in-Django",
+        "full_name": "Varanasi-Software-Junction/Todo-App-in-Django",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Todo-App-in-Django.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/C---",
+      "description": "GitHub repository Varanasi-Software-Junction/C--- for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/C---",
+      "priority": 2,
+      "repository": {
+        "name": "C---",
+        "full_name": "Varanasi-Software-Junction/C---",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/C---.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/hiflutter",
+      "description": "GitHub repository Varanasi-Software-Junction/hiflutter for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/hiflutter",
+      "priority": 2,
+      "repository": {
+        "name": "hiflutter",
+        "full_name": "Varanasi-Software-Junction/hiflutter",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/hiflutter.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ-Flutter",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ-Flutter for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ-Flutter",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ-Flutter",
+        "full_name": "Varanasi-Software-Junction/VSJ-Flutter",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ-Flutter.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/NET-MVC",
+      "description": "GitHub repository Varanasi-Software-Junction/NET-MVC for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/NET-MVC",
+      "priority": 2,
+      "repository": {
+        "name": "NET-MVC",
+        "full_name": "Varanasi-Software-Junction/NET-MVC",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/NET-MVC.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsjjsonserver",
+      "description": "GitHub repository Varanasi-Software-Junction/vsjjsonserver for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsjjsonserver",
+      "priority": 2,
+      "repository": {
+        "name": "vsjjsonserver",
+        "full_name": "Varanasi-Software-Junction/vsjjsonserver",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsjjsonserver.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/attendance",
+      "description": "GitHub repository Varanasi-Software-Junction/attendance for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/attendance",
+      "priority": 2,
+      "repository": {
+        "name": "attendance",
+        "full_name": "Varanasi-Software-Junction/attendance",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/attendance.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/.Net-ECommerce-App",
+      "description": "GitHub repository Varanasi-Software-Junction/.Net-ECommerce-App for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/.Net-ECommerce-App",
+      "priority": 2,
+      "repository": {
+        "name": ".Net-ECommerce-App",
+        "full_name": "Varanasi-Software-Junction/.Net-ECommerce-App",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/.Net-ECommerce-App.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/GetX-Flutter",
+      "description": "GitHub repository Varanasi-Software-Junction/GetX-Flutter for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/GetX-Flutter",
+      "priority": 2,
+      "repository": {
+        "name": "GetX-Flutter",
+        "full_name": "Varanasi-Software-Junction/GetX-Flutter",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/GetX-Flutter.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/LearningDJango",
+      "description": "GitHub repository Varanasi-Software-Junction/LearningDJango for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/LearningDJango",
+      "priority": 2,
+      "repository": {
+        "name": "LearningDJango",
+        "full_name": "Varanasi-Software-Junction/LearningDJango",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/LearningDJango.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Node-js",
+      "description": "GitHub repository Varanasi-Software-Junction/Node-js for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Node-js",
+      "priority": 2,
+      "repository": {
+        "name": "Node-js",
+        "full_name": "Varanasi-Software-Junction/Node-js",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Node-js.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/flutterquizzes",
+      "description": "GitHub repository Varanasi-Software-Junction/flutterquizzes for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/flutterquizzes",
+      "priority": 2,
+      "repository": {
+        "name": "flutterquizzes",
+        "full_name": "Varanasi-Software-Junction/flutterquizzes",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/flutterquizzes.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/reactcollaborate",
+      "description": "GitHub repository Varanasi-Software-Junction/reactcollaborate for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/reactcollaborate",
+      "priority": 2,
+      "repository": {
+        "name": "reactcollaborate",
+        "full_name": "Varanasi-Software-Junction/reactcollaborate",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/reactcollaborate.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/BasicJava",
+      "description": "GitHub repository Varanasi-Software-Junction/BasicJava for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/BasicJava",
+      "priority": 2,
+      "repository": {
+        "name": "BasicJava",
+        "full_name": "Varanasi-Software-Junction/BasicJava",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/BasicJava.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ_LWC",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ_LWC for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ_LWC",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ_LWC",
+        "full_name": "Varanasi-Software-Junction/VSJ_LWC",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ_LWC.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsjnode",
+      "description": "GitHub repository Varanasi-Software-Junction/vsjnode for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsjnode",
+      "priority": 2,
+      "repository": {
+        "name": "vsjnode",
+        "full_name": "Varanasi-Software-Junction/vsjnode",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsjnode.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/react-quiz-app",
+      "description": "GitHub repository Varanasi-Software-Junction/react-quiz-app for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/react-quiz-app",
+      "priority": 2,
+      "repository": {
+        "name": "react-quiz-app",
+        "full_name": "Varanasi-Software-Junction/react-quiz-app",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/react-quiz-app.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Starting-NLP",
+      "description": "GitHub repository Varanasi-Software-Junction/Starting-NLP for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Starting-NLP",
+      "priority": 2,
+      "repository": {
+        "name": "Starting-NLP",
+        "full_name": "Varanasi-Software-Junction/Starting-NLP",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Starting-NLP.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/modelwaladjango",
+      "description": "GitHub repository Varanasi-Software-Junction/modelwaladjango for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/modelwaladjango",
+      "priority": 2,
+      "repository": {
+        "name": "modelwaladjango",
+        "full_name": "Varanasi-Software-Junction/modelwaladjango",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/modelwaladjango.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/ABC-Videos",
+      "description": "GitHub repository Varanasi-Software-Junction/ABC-Videos for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/ABC-Videos",
+      "priority": 2,
+      "repository": {
+        "name": "ABC-Videos",
+        "full_name": "Varanasi-Software-Junction/ABC-Videos",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/ABC-Videos.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/picturehandling",
+      "description": "GitHub repository Varanasi-Software-Junction/picturehandling for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/picturehandling",
+      "priority": 2,
+      "repository": {
+        "name": "picturehandling",
+        "full_name": "Varanasi-Software-Junction/picturehandling",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/picturehandling.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Apex",
+      "description": "GitHub repository Varanasi-Software-Junction/Apex for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Apex",
+      "priority": 2,
+      "repository": {
+        "name": "Apex",
+        "full_name": "Varanasi-Software-Junction/Apex",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Apex.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/tourism",
+      "description": "GitHub repository Varanasi-Software-Junction/tourism for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/tourism",
+      "priority": 2,
+      "repository": {
+        "name": "tourism",
+        "full_name": "Varanasi-Software-Junction/tourism",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/tourism.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsjreminders",
+      "description": "GitHub repository Varanasi-Software-Junction/vsjreminders for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsjreminders",
+      "priority": 2,
+      "repository": {
+        "name": "vsjreminders",
+        "full_name": "Varanasi-Software-Junction/vsjreminders",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsjreminders.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/myspring",
+      "description": "GitHub repository Varanasi-Software-Junction/myspring for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/myspring",
+      "priority": 2,
+      "repository": {
+        "name": "myspring",
+        "full_name": "Varanasi-Software-Junction/myspring",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/myspring.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/gameapp",
+      "description": "GitHub repository Varanasi-Software-Junction/gameapp for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/gameapp",
+      "priority": 2,
+      "repository": {
+        "name": "gameapp",
+        "full_name": "Varanasi-Software-Junction/gameapp",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/gameapp.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsj-react",
+      "description": "GitHub repository Varanasi-Software-Junction/vsj-react for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsj-react",
+      "priority": 2,
+      "repository": {
+        "name": "vsj-react",
+        "full_name": "Varanasi-Software-Junction/vsj-react",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsj-react.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Flutter-Quizzes",
+      "description": "GitHub repository Varanasi-Software-Junction/Flutter-Quizzes for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Flutter-Quizzes",
+      "priority": 2,
+      "repository": {
+        "name": "Flutter-Quizzes",
+        "full_name": "Varanasi-Software-Junction/Flutter-Quizzes",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Flutter-Quizzes.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/mavenpuja",
+      "description": "GitHub repository Varanasi-Software-Junction/mavenpuja for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/mavenpuja",
+      "priority": 2,
+      "repository": {
+        "name": "mavenpuja",
+        "full_name": "Varanasi-Software-Junction/mavenpuja",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/mavenpuja.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/colab",
+      "description": "GitHub repository Varanasi-Software-Junction/colab for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/colab",
+      "priority": 2,
+      "repository": {
+        "name": "colab",
+        "full_name": "Varanasi-Software-Junction/colab",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/colab.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Champak-s-Pwa",
+      "description": "GitHub repository Varanasi-Software-Junction/Champak-s-Pwa for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Champak-s-Pwa",
+      "priority": 2,
+      "repository": {
+        "name": "Champak-s-Pwa",
+        "full_name": "Varanasi-Software-Junction/Champak-s-Pwa",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Champak-s-Pwa.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/ChampakTV",
+      "description": "GitHub repository Varanasi-Software-Junction/ChampakTV for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/ChampakTV",
+      "priority": 2,
+      "repository": {
+        "name": "ChampakTV",
+        "full_name": "Varanasi-Software-Junction/ChampakTV",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/ChampakTV.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Web-Scraping-using-Selenium",
+      "description": "GitHub repository Varanasi-Software-Junction/Web-Scraping-using-Selenium for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Web-Scraping-using-Selenium",
+      "priority": 2,
+      "repository": {
+        "name": "Web-Scraping-using-Selenium",
+        "full_name": "Varanasi-Software-Junction/Web-Scraping-using-Selenium",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Web-Scraping-using-Selenium.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/bookstore",
+      "description": "GitHub repository Varanasi-Software-Junction/bookstore for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/bookstore",
+      "priority": 2,
+      "repository": {
+        "name": "bookstore",
+        "full_name": "Varanasi-Software-Junction/bookstore",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/bookstore.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/HelloFlutter",
+      "description": "GitHub repository Varanasi-Software-Junction/HelloFlutter for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/HelloFlutter",
+      "priority": 2,
+      "repository": {
+        "name": "HelloFlutter",
+        "full_name": "Varanasi-Software-Junction/HelloFlutter",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/HelloFlutter.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsjcolab",
+      "description": "GitHub repository Varanasi-Software-Junction/vsjcolab for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsjcolab",
+      "priority": 2,
+      "repository": {
+        "name": "vsjcolab",
+        "full_name": "Varanasi-Software-Junction/vsjcolab",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsjcolab.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ-Home-App",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ-Home-App for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ-Home-App",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ-Home-App",
+        "full_name": "Varanasi-Software-Junction/VSJ-Home-App",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ-Home-App.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/School-site",
+      "description": "GitHub repository Varanasi-Software-Junction/School-site for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/School-site",
+      "priority": 2,
+      "repository": {
+        "name": "School-site",
+        "full_name": "Varanasi-Software-Junction/School-site",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/School-site.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsjawsreact",
+      "description": "GitHub repository Varanasi-Software-Junction/vsjawsreact for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsjawsreact",
+      "priority": 2,
+      "repository": {
+        "name": "vsjawsreact",
+        "full_name": "Varanasi-Software-Junction/vsjawsreact",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsjawsreact.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/onlineC",
+      "description": "GitHub repository Varanasi-Software-Junction/onlineC for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/onlineC",
+      "priority": 2,
+      "repository": {
+        "name": "onlineC",
+        "full_name": "Varanasi-Software-Junction/onlineC",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/onlineC.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Interview-Questions",
+      "description": "GitHub repository Varanasi-Software-Junction/Interview-Questions for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Interview-Questions",
+      "priority": 2,
+      "repository": {
+        "name": "Interview-Questions",
+        "full_name": "Varanasi-Software-Junction/Interview-Questions",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Interview-Questions.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/DesignDemo",
+      "description": "GitHub repository Varanasi-Software-Junction/DesignDemo for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/DesignDemo",
+      "priority": 2,
+      "repository": {
+        "name": "DesignDemo",
+        "full_name": "Varanasi-Software-Junction/DesignDemo",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/DesignDemo.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/SQL-Lite",
+      "description": "GitHub repository Varanasi-Software-Junction/SQL-Lite for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/SQL-Lite",
+      "priority": 2,
+      "repository": {
+        "name": "SQL-Lite",
+        "full_name": "Varanasi-Software-Junction/SQL-Lite",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/SQL-Lite.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/jsoncallingflutter",
+      "description": "GitHub repository Varanasi-Software-Junction/jsoncallingflutter for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/jsoncallingflutter",
+      "priority": 2,
+      "repository": {
+        "name": "jsoncallingflutter",
+        "full_name": "Varanasi-Software-Junction/jsoncallingflutter",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/jsoncallingflutter.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Servlets-and-JSP",
+      "description": "GitHub repository Varanasi-Software-Junction/Servlets-and-JSP for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Servlets-and-JSP",
+      "priority": 2,
+      "repository": {
+        "name": "Servlets-and-JSP",
+        "full_name": "Varanasi-Software-Junction/Servlets-and-JSP",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Servlets-and-JSP.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/reactnodemysql",
+      "description": "GitHub repository Varanasi-Software-Junction/reactnodemysql for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/reactnodemysql",
+      "priority": 2,
+      "repository": {
+        "name": "reactnodemysql",
+        "full_name": "Varanasi-Software-Junction/reactnodemysql",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/reactnodemysql.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/QuizApp",
+      "description": "GitHub repository Varanasi-Software-Junction/QuizApp for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/QuizApp",
+      "priority": 2,
+      "repository": {
+        "name": "QuizApp",
+        "full_name": "Varanasi-Software-Junction/QuizApp",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/QuizApp.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/CSharp-Basics",
+      "description": "GitHub repository Varanasi-Software-Junction/CSharp-Basics for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/CSharp-Basics",
+      "priority": 2,
+      "repository": {
+        "name": "CSharp-Basics",
+        "full_name": "Varanasi-Software-Junction/CSharp-Basics",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/CSharp-Basics.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/springdemo",
+      "description": "GitHub repository Varanasi-Software-Junction/springdemo for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/springdemo",
+      "priority": 2,
+      "repository": {
+        "name": "springdemo",
+        "full_name": "Varanasi-Software-Junction/springdemo",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/springdemo.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/form_project",
+      "description": "GitHub repository Varanasi-Software-Junction/form_project for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/form_project",
+      "priority": 2,
+      "repository": {
+        "name": "form_project",
+        "full_name": "Varanasi-Software-Junction/form_project",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/form_project.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Node-from-beginning",
+      "description": "GitHub repository Varanasi-Software-Junction/Node-from-beginning for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Node-from-beginning",
+      "priority": 2,
+      "repository": {
+        "name": "Node-from-beginning",
+        "full_name": "Varanasi-Software-Junction/Node-from-beginning",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Node-from-beginning.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/quiz-demo",
+      "description": "GitHub repository Varanasi-Software-Junction/quiz-demo for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/quiz-demo",
+      "priority": 2,
+      "repository": {
+        "name": "quiz-demo",
+        "full_name": "Varanasi-Software-Junction/quiz-demo",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/quiz-demo.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Web-Analyzer",
+      "description": "GitHub repository Varanasi-Software-Junction/Web-Analyzer for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Web-Analyzer",
+      "priority": 2,
+      "repository": {
+        "name": "Web-Analyzer",
+        "full_name": "Varanasi-Software-Junction/Web-Analyzer",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Web-Analyzer.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Loading-Screens",
+      "description": "GitHub repository Varanasi-Software-Junction/Loading-Screens for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Loading-Screens",
+      "priority": 2,
+      "repository": {
+        "name": "Loading-Screens",
+        "full_name": "Varanasi-Software-Junction/Loading-Screens",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Loading-Screens.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/JavaImageProcessor",
+      "description": "GitHub repository Varanasi-Software-Junction/JavaImageProcessor for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/JavaImageProcessor",
+      "priority": 2,
+      "repository": {
+        "name": "JavaImageProcessor",
+        "full_name": "Varanasi-Software-Junction/JavaImageProcessor",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/JavaImageProcessor.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/WebScraperAndAnalyzer",
+      "description": "GitHub repository Varanasi-Software-Junction/WebScraperAndAnalyzer for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/WebScraperAndAnalyzer",
+      "priority": 2,
+      "repository": {
+        "name": "WebScraperAndAnalyzer",
+        "full_name": "Varanasi-Software-Junction/WebScraperAndAnalyzer",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/WebScraperAndAnalyzer.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/varanasi-software-junction",
+      "description": "GitHub repository Varanasi-Software-Junction/varanasi-software-junction for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/varanasi-software-junction",
+      "priority": 2,
+      "repository": {
+        "name": "varanasi-software-junction",
+        "full_name": "Varanasi-Software-Junction/varanasi-software-junction",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/varanasi-software-junction.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/SQL",
+      "description": "GitHub repository Varanasi-Software-Junction/SQL for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/SQL",
+      "priority": 2,
+      "repository": {
+        "name": "SQL",
+        "full_name": "Varanasi-Software-Junction/SQL",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/SQL.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Java-Server-Programming",
+      "description": "GitHub repository Varanasi-Software-Junction/Java-Server-Programming for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Java-Server-Programming",
+      "priority": 2,
+      "repository": {
+        "name": "Java-Server-Programming",
+        "full_name": "Varanasi-Software-Junction/Java-Server-Programming",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Java-Server-Programming.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Echo-Server-using-Node.js-and-WebSockets.",
+      "description": "GitHub repository Varanasi-Software-Junction/Echo-Server-using-Node.js-and-WebSockets. for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Echo-Server-using-Node.js-and-WebSockets.",
+      "priority": 2,
+      "repository": {
+        "name": "Echo-Server-using-Node.js-and-WebSockets.",
+        "full_name": "Varanasi-Software-Junction/Echo-Server-using-Node.js-and-WebSockets.",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Echo-Server-using-Node.js-and-WebSockets..git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Wordpress-Child-Theme",
+      "description": "GitHub repository Varanasi-Software-Junction/Wordpress-Child-Theme for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Wordpress-Child-Theme",
+      "priority": 2,
+      "repository": {
+        "name": "Wordpress-Child-Theme",
+        "full_name": "Varanasi-Software-Junction/Wordpress-Child-Theme",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Wordpress-Child-Theme.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/LaravelAPI",
+      "description": "GitHub repository Varanasi-Software-Junction/LaravelAPI for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/LaravelAPI",
+      "priority": 2,
+      "repository": {
+        "name": "LaravelAPI",
+        "full_name": "Varanasi-Software-Junction/LaravelAPI",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/LaravelAPI.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/speech",
+      "description": "GitHub repository Varanasi-Software-Junction/speech for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/speech",
+      "priority": 2,
+      "repository": {
+        "name": "speech",
+        "full_name": "Varanasi-Software-Junction/speech",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/speech.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/PythonImage",
+      "description": "GitHub repository Varanasi-Software-Junction/PythonImage for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/PythonImage",
+      "priority": 2,
+      "repository": {
+        "name": "PythonImage",
+        "full_name": "Varanasi-Software-Junction/PythonImage",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/PythonImage.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/OCR-Reader",
+      "description": "GitHub repository Varanasi-Software-Junction/OCR-Reader for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/OCR-Reader",
+      "priority": 2,
+      "repository": {
+        "name": "OCR-Reader",
+        "full_name": "Varanasi-Software-Junction/OCR-Reader",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/OCR-Reader.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/MS-SQL-Server",
+      "description": "GitHub repository Varanasi-Software-Junction/MS-SQL-Server for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/MS-SQL-Server",
+      "priority": 2,
+      "repository": {
+        "name": "MS-SQL-Server",
+        "full_name": "Varanasi-Software-Junction/MS-SQL-Server",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/MS-SQL-Server.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/DSA",
+      "description": "GitHub repository Varanasi-Software-Junction/DSA for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/DSA",
+      "priority": 2,
+      "repository": {
+        "name": "DSA",
+        "full_name": "Varanasi-Software-Junction/DSA",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/DSA.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/VSJ-Playstore-Demo",
+      "description": "GitHub repository Varanasi-Software-Junction/VSJ-Playstore-Demo for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/VSJ-Playstore-Demo",
+      "priority": 2,
+      "repository": {
+        "name": "VSJ-Playstore-Demo",
+        "full_name": "Varanasi-Software-Junction/VSJ-Playstore-Demo",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/VSJ-Playstore-Demo.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Navigation-Flutter",
+      "description": "GitHub repository Varanasi-Software-Junction/Navigation-Flutter for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Navigation-Flutter",
+      "priority": 2,
+      "repository": {
+        "name": "Navigation-Flutter",
+        "full_name": "Varanasi-Software-Junction/Navigation-Flutter",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Navigation-Flutter.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Web-Scraping-Using-Selenium-for-Stock-Prices",
+      "description": "GitHub repository Varanasi-Software-Junction/Web-Scraping-Using-Selenium-for-Stock-Prices for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Web-Scraping-Using-Selenium-for-Stock-Prices",
+      "priority": 2,
+      "repository": {
+        "name": "Web-Scraping-Using-Selenium-for-Stock-Prices",
+        "full_name": "Varanasi-Software-Junction/Web-Scraping-Using-Selenium-for-Stock-Prices",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Web-Scraping-Using-Selenium-for-Stock-Prices.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/share_bazaar",
+      "description": "GitHub repository Varanasi-Software-Junction/share_bazaar for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/share_bazaar",
+      "priority": 2,
+      "repository": {
+        "name": "share_bazaar",
+        "full_name": "Varanasi-Software-Junction/share_bazaar",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/share_bazaar.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Learn-Laravel",
+      "description": "GitHub repository Varanasi-Software-Junction/Learn-Laravel for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Learn-Laravel",
+      "priority": 2,
+      "repository": {
+        "name": "Learn-Laravel",
+        "full_name": "Varanasi-Software-Junction/Learn-Laravel",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Learn-Laravel.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Quiz-App-on-Django",
+      "description": "GitHub repository Varanasi-Software-Junction/Quiz-App-on-Django for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Quiz-App-on-Django",
+      "priority": 2,
+      "repository": {
+        "name": "Quiz-App-on-Django",
+        "full_name": "Varanasi-Software-Junction/Quiz-App-on-Django",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Quiz-App-on-Django.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Flutter-Quiz",
+      "description": "GitHub repository Varanasi-Software-Junction/Flutter-Quiz for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Flutter-Quiz",
+      "priority": 2,
+      "repository": {
+        "name": "Flutter-Quiz",
+        "full_name": "Varanasi-Software-Junction/Flutter-Quiz",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Flutter-Quiz.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsjspring",
+      "description": "GitHub repository Varanasi-Software-Junction/vsjspring for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsjspring",
+      "priority": 2,
+      "repository": {
+        "name": "vsjspring",
+        "full_name": "Varanasi-Software-Junction/vsjspring",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsjspring.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/Vsj-Docker",
+      "description": "GitHub repository Varanasi-Software-Junction/Vsj-Docker for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/Vsj-Docker",
+      "priority": 2,
+      "repository": {
+        "name": "Vsj-Docker",
+        "full_name": "Varanasi-Software-Junction/Vsj-Docker",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/Vsj-Docker.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/vsjpwa",
+      "description": "GitHub repository Varanasi-Software-Junction/vsjpwa for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/vsjpwa",
+      "priority": 2,
+      "repository": {
+        "name": "vsjpwa",
+        "full_name": "Varanasi-Software-Junction/vsjpwa",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/vsjpwa.git",
+        "owner": "Varanasi-Software-Junction"
+      }
+    },
+    {
+      "title": "Varanasi-Software-Junction/simplequiz",
+      "description": "GitHub repository Varanasi-Software-Junction/simplequiz for Varanasi Software Junction code, learning projects, demos, and development practice.",
+      "type": "repository",
+      "topic": "GitHub / Varanasi Software Junction",
+      "tags": [
+        "GitHub",
+        "Repository",
+        "Varanasi Software Junction",
+        "Code",
+        "Project"
+      ],
+      "url": "https://github.com/Varanasi-Software-Junction/simplequiz",
+      "priority": 2,
+      "repository": {
+        "name": "simplequiz",
+        "full_name": "Varanasi-Software-Junction/simplequiz",
+        "clone_url": "https://github.com/Varanasi-Software-Junction/simplequiz.git",
+        "owner": "Varanasi-Software-Junction"
+      }
     }
   ],
-  "totalItems": 490,
+  "totalItems": 659,
   "lastAddSummary": {
-    "date": "2026-07-16",
-    "source": "Manual URL list",
-    "added": 1,
-    "skippedDuplicates": [],
-    "topic": "Web Development"
+    "source": "github_repositories_with_urls.json",
+    "added": 169,
+    "skippedDuplicates": 0,
+    "addedTypes": [
+      "repository"
+    ],
+    "organizations": [
+      {
+        "owner": "Programmer-s-Picnic",
+        "added": 26
+      },
+      {
+        "owner": "Varanasi-Software-Junction",
+        "added": 143
+      }
+    ]
   }
 }
