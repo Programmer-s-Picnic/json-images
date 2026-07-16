@@ -7393,18 +7393,29 @@
       ],
       "url": "https://www.youtube.com/watch?v=-IYBWCiuDjM",
       "priority": 2
+    },
+    {
+      "title": "Show Hide HTML",
+      "description": "Learn and practice show-hide interaction in HTML, CSS, and JavaScript with a simple beginner-friendly page.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Show Hide",
+        "Frontend"
+      ],
+      "url": "https://champak.learnwithchampak.live/showhide.html",
+      "priority": 2
     }
   ],
-  "totalItems": 489,
+  "totalItems": 490,
   "lastAddSummary": {
-    "date": "2026-07-14",
-    "added": 17,
-    "skippedMissingUrl": [
-      "Polynomial Regression in Python | Best Fit Model, R² Score and Prediction",
-      "Python Pattern Printing Using Loops | Alphabet Pyramid Program",
-      "Python Magic Methods Tutorial | Building a Currency Class in Python"
-    ],
+    "date": "2026-07-16",
+    "source": "Manual URL list",
+    "added": 1,
     "skippedDuplicates": [],
-    "source": "Manual YouTube URL list"
+    "topic": "Web Development"
   }
 }
