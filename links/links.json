@@ -5639,12 +5639,12 @@
       "priority": 2
     },
     {
-      "title": "Identifier",
-      "description": "Learn Identifier with beginner-friendly explanations, examples, and practical exercises.",
+      "title": "sorting-identifier",
+      "description": "Learn how to identify sorting with beginner-friendly explanations, examples, and practical exercises.",
       "type": "lesson",
-      "topic": "Learning Resource",
+      "topic": "Sorting",
       "tags": [
-        "Learn With Champak"
+        "Learn With Champak,sorting,sorting method,dry run,sorting identify.insertion sort,bubble sort,selection sort "
       ],
       "url": "https://dsa.learnwithchampak.live/sorting/identifier/",
       "priority": 2
@@ -5927,10 +5927,10 @@
       "priority": 2
     },
     {
-      "title": "Visualizer Human",
-      "description": "Use Visualizer Human as a practical browser-based tool for learning, testing, and classroom practice.",
+      "title": "Visualizer Human dancing",
+      "description": "Dancing Humans",
       "type": "tool",
-      "topic": "DSA Visualizers",
+      "topic": "Dancing Human Visualizers",
       "tags": [
         "DSA",
         "Visualizer",
