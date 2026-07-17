@@ -5855,12 +5855,12 @@
       "title": "Visualizer Patterns",
       "description": "Use Visualizer Patterns as a practical browser-based tool for learning, testing, and classroom practice.",
       "type": "tool",
-      "topic": "DSA Visualizers",
+      "topic": "Patterns Grid",
       "tags": [
         "DSA",
         "Visualizer",
         "Algorithms",
-        "Animation",
+        "Grid",
         "Practice"
       ],
       "url": "https://dsa.learnwithchampak.live/visualizers/patterns/",
