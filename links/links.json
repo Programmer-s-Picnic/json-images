@@ -5808,7 +5808,7 @@
     },
     {
       "title": "Maths Visualizer",
-      "description": "Use Visualizer Maths as a practical browser-based tool for learning, testing, and classroom practice.",
+      "description": "Use Visualizer Maths as a Pebble Math Visualizer.",
       "type": "tool",
       "topic": "DSA Visualizers",
       "tags": [
