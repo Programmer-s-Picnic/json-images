@@ -5987,276 +5987,6 @@
       "priority": 2
     },
     {
-      "title": "DSA Animation",
-      "description": "Learn DSA and frontend ideas through animation-based visual examples for clearer understanding and classroom practice.",
-      "type": "lesson",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Data Structures",
-        "Algorithms"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/animation/",
-      "priority": 2
-    },
-    {
-      "title": "Before Upper Bound",
-      "description": "Practice DSA thinking before upper-bound concepts with beginner-friendly explanations and step-by-step coding preparation.",
-      "type": "lesson",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Data Structures",
-        "Algorithms"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/before-upper/",
-      "priority": 2
-    },
-    {
-      "title": "Cart Page",
-      "description": "Practice cart-page logic and layout ideas with beginner-friendly web development and DSA-style thinking.",
-      "type": "lesson",
-      "topic": "DSA Practice",
-      "tags": [
-        "DSA",
-        "Python",
-        "Practice",
-        "Data Structures",
-        "Algorithms"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/cart/",
-      "priority": 2
-    },
-    {
-      "title": "HTML Layouts",
-      "description": "Practice HTML layouts with structured page sections, responsive thinking, and beginner-friendly frontend examples.",
-      "type": "lesson",
-      "topic": "Web Development",
-      "tags": [
-        "HTML",
-        "CSS",
-        "Frontend",
-        "Layouts",
-        "DSA"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/pages/layouts/",
-      "priority": 2
-    },
-    {
-      "title": "HTML Wizard 0",
-      "description": "Use HTML Wizard 0 for guided beginner-friendly HTML and frontend practice with step-by-step web development activities.",
-      "type": "tool",
-      "topic": "Web Development",
-      "tags": [
-        "HTML",
-        "CSS",
-        "Frontend",
-        "Wizard",
-        "Web Development"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/wizards/0/",
-      "priority": 2
-    },
-    {
-      "title": "HTML Wizard 1",
-      "description": "Use HTML Wizard 1 for guided beginner-friendly HTML and frontend practice with step-by-step web development activities.",
-      "type": "tool",
-      "topic": "Web Development",
-      "tags": [
-        "HTML",
-        "CSS",
-        "Frontend",
-        "Wizard",
-        "Web Development"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/wizards/1/",
-      "priority": 2
-    },
-    {
-      "title": "HTML Wizard 2",
-      "description": "Use HTML Wizard 2 for guided beginner-friendly HTML and frontend practice with step-by-step web development activities.",
-      "type": "tool",
-      "topic": "Web Development",
-      "tags": [
-        "HTML",
-        "CSS",
-        "Frontend",
-        "Wizard",
-        "Web Development"
-      ],
-      "url": "https://dsa.learnwithchampak.live/html/wizards/2/",
-      "priority": 2
-    },
-    {
-      "title": "Java IDEs Setup",
-      "description": "Learn how to install and use Java IDEs such as Eclipse, NetBeans, VS Code, and IntelliJ IDEA with beginner-friendly setup guidance.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "IDE",
-        "Eclipse",
-        "NetBeans",
-        "VS Code"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/ides/",
-      "priority": 2
-    },
-    {
-      "title": "Java If Else Ternary and Switch",
-      "description": "Learn Java decision-making with if, else, else-if, ternary operator, and switch statements through beginner-friendly examples.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "If Else",
-        "Switch",
-        "if else",
-        "Ternary Operator"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/if-else-ternary-switch/",
-      "priority": 2
-    },
-    {
-      "title": "Java Input and Output",
-      "description": "Learn Java input and output basics with console printing, reading user input, and simple beginner-friendly practice examples.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "Input",
-        "Output",
-        "I/O",
-        "Console"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/io/",
-      "priority": 2
-    },
-    {
-      "title": "Java For Loop",
-      "description": "Learn Java for loops with initialization, condition, update, counting patterns, and beginner-friendly loop practice examples.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "Loops",
-        "For Loop",
-        "Iteration",
-        "Control Flow"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/loops/for/",
-      "priority": 2
-    },
-    {
-      "title": "Java Nested For Loops",
-      "description": "Learn Java nested for loops with matrix-style thinking, rows and columns, pattern printing, and structured loop practice.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "Loops",
-        "Nested For Loop",
-        "For Loop",
-        "Nested Loops"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/loops/nested/for/",
-      "priority": 2
-    },
-    {
-      "title": "Java Nested Loops",
-      "description": "Learn Java nested loops with rows, columns, pattern printing, and beginner-friendly examples for repeated loops inside loops.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "Loops",
-        "Nested Loops",
-        "Pattern Printing",
-        "Rows"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/loops/nested/",
-      "priority": 2
-    },
-    {
-      "title": "Java While Loop",
-      "description": "Learn Java while loops with conditions, counters, repeated execution, and beginner-friendly loop practice examples.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "Loops",
-        "While Loop",
-        "Iteration",
-        "Control Flow"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/loops/while/",
-      "priority": 2
-    },
-    {
-      "title": "Java Scanner Class",
-      "description": "Learn the Java Scanner class for input handling with beginner-friendly examples, syntax, practice code, and classroom-style explanation.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Java",
-        "Scanner",
-        "Input",
-        "User Input",
-        "Java class"
-      ],
-      "url": "https://dsa.learnwithchampak.live/java/scanner/",
-      "priority": 2
-    },
-    {
-      "title": "JavaScript Console Lesson",
-      "description": "Learn how to use the JavaScript console from beginner level with console.log, debugging, expressions, variables, errors, and browser practice examples.",
-      "type": "lesson",
-      "topic": "JavaScript",
-      "tags": [
-        "JavaScript",
-        "Console",
-        "Debugging",
-        "Browser",
-        "Frontend"
-      ],
-      "url": "https://dsa.learnwithchampak.live/javascript/console/",
-      "priority": 2
-    },
-    {
-      "title": "Spring Database SQLite",
-      "description": "Learn Spring database work with SQLite using beginner-friendly explanations, setup steps, database connection practice, and backend development workflow.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Spring Boot",
-        "SQLite",
-        "Spring",
-        "Database",
-        "SQL"
-      ],
-      "url": "https://dsa.learnwithchampak.live/spring/database/sqlite/",
-      "priority": 2
-    },
-    {
-      "title": "Spring Boot E-Commerce App",
-      "description": "Build a Spring Boot e-commerce application with MySQL, Thymeleaf, template inheritance, page transactions, API transactions, checkpoints, JavaScript files, SEO tags, and an SEO image.",
-      "type": "lesson",
-      "topic": "Java / Spring",
-      "tags": [
-        "Spring Boot",
-        "Java",
-        "E-Commerce",
-        "MySQL",
-        "Thymeleaf"
-      ],
-      "url": "https://dsa.learnwithchampak.live/spring/e-commerce/",
-      "priority": 2
-    },
-    {
       "title": "Curesia Health",
       "description": "Official Curesia Health website for mental health, counselling, testing, reviews, and contact information.",
       "type": "platform",
@@ -10957,24 +10687,178 @@
         "clone_url": "https://github.com/Varanasi-Software-Junction/simplequiz.git",
         "owner": "Varanasi-Software-Junction"
       }
+    },
+    {
+      "title": "Student Message Sender",
+      "description": "Send prepared student messages for welcome, inquiry, testimonial, fee thanks, and classroom communication.",
+      "type": "tool",
+      "topic": "Student Communication",
+      "tags": [
+        "Student Messages",
+        "WhatsApp",
+        "Forms",
+        "Welcome Message",
+        "Student Inquiry"
+      ],
+      "url": "https://me.learnwithchampak.live/send/",
+      "priority": 1
+    },
+    {
+      "title": "Student Reply and Inquiry Form",
+      "description": "Students can send replies, inquiries, contact details, and learning requests to Learn With Champak.",
+      "type": "form",
+      "topic": "Student Communication",
+      "tags": [
+        "Student Reply",
+        "Inquiry Form",
+        "Contact Form",
+        "Learn With Champak",
+        "Student Support"
+      ],
+      "url": "https://editor.learnwithchampak.live/student-reply-inquiry/",
+      "priority": 1
+    },
+    {
+      "title": "Speaker Page Lesson",
+      "description": "Lesson page for building a speaker or text-to-speech interface using HTML, CSS, and JavaScript.",
+      "type": "lesson",
+      "topic": "Web Development",
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Speaker",
+        "Text to Speech"
+      ],
+      "url": "https://dsa.learnwithchampak.live/html/pages/speaker/lesson/",
+      "priority": 2
     }
   ],
-  "totalItems": 659,
+  "totalItems": 644,
   "lastAddSummary": {
-    "source": "github_repositories_with_urls.json",
-    "added": 169,
-    "skippedDuplicates": 0,
-    "addedTypes": [
-      "repository"
-    ],
-    "organizations": [
+    "source": "Manual URL add",
+    "added": 3,
+    "skippedDuplicates": [],
+    "addedUrls": [
+      "https://me.learnwithchampak.live/send/",
+      "https://editor.learnwithchampak.live/student-reply-inquiry/",
+      "https://dsa.learnwithchampak.live/html/pages/speaker/lesson/"
+    ]
+  },
+  "lastDedupSummary": {
+    "sourceFile": "links_with_new_student_speaker_links.json",
+    "originalItems": 662,
+    "cleanedItems": 644,
+    "removedTrailingSlashDuplicates": 18,
+    "rule": "URLs were considered duplicates when they differed only by a final slash before query or fragment.",
+    "removedExamples": [
       {
-        "owner": "Programmer-s-Picnic",
-        "added": 26
+        "removedTitle": "DSA Animation",
+        "removedUrl": "https://dsa.learnwithchampak.live/html/pages/animation/",
+        "keptTitle": "DSA Animation",
+        "keptUrl": "https://dsa.learnwithchampak.live/html/pages/animation"
       },
       {
-        "owner": "Varanasi-Software-Junction",
-        "added": 143
+        "removedTitle": "Before Upper Bound",
+        "removedUrl": "https://dsa.learnwithchampak.live/html/pages/before-upper/",
+        "keptTitle": "Before Upper Bound",
+        "keptUrl": "https://dsa.learnwithchampak.live/html/pages/before-upper"
+      },
+      {
+        "removedTitle": "Cart Page",
+        "removedUrl": "https://dsa.learnwithchampak.live/html/pages/cart/",
+        "keptTitle": "Cart Page",
+        "keptUrl": "https://dsa.learnwithchampak.live/html/pages/cart"
+      },
+      {
+        "removedTitle": "HTML Layouts",
+        "removedUrl": "https://dsa.learnwithchampak.live/html/pages/layouts/",
+        "keptTitle": "HTML Layouts",
+        "keptUrl": "https://dsa.learnwithchampak.live/html/pages/layouts"
+      },
+      {
+        "removedTitle": "HTML Wizard 0",
+        "removedUrl": "https://dsa.learnwithchampak.live/html/wizards/0/",
+        "keptTitle": "HTML Wizard 0",
+        "keptUrl": "https://dsa.learnwithchampak.live/html/wizards/0"
+      },
+      {
+        "removedTitle": "HTML Wizard 1",
+        "removedUrl": "https://dsa.learnwithchampak.live/html/wizards/1/",
+        "keptTitle": "HTML Wizard 1",
+        "keptUrl": "https://dsa.learnwithchampak.live/html/wizards/1"
+      },
+      {
+        "removedTitle": "HTML Wizard 2",
+        "removedUrl": "https://dsa.learnwithchampak.live/html/wizards/2/",
+        "keptTitle": "HTML Wizard 2",
+        "keptUrl": "https://dsa.learnwithchampak.live/html/wizards/2"
+      },
+      {
+        "removedTitle": "Java IDEs Setup",
+        "removedUrl": "https://dsa.learnwithchampak.live/java/ides/",
+        "keptTitle": "Java IDEs Setup",
+        "keptUrl": "https://dsa.learnwithchampak.live/java/ides"
+      },
+      {
+        "removedTitle": "Java If Else Ternary and Switch",
+        "removedUrl": "https://dsa.learnwithchampak.live/java/if-else-ternary-switch/",
+        "keptTitle": "Java If Else Ternary and Switch",
+        "keptUrl": "https://dsa.learnwithchampak.live/java/if-else-ternary-switch"
+      },
+      {
+        "removedTitle": "Java Input and Output",
+        "removedUrl": "https://dsa.learnwithchampak.live/java/io/",
+        "keptTitle": "Java Input and Output",
+        "keptUrl": "https://dsa.learnwithchampak.live/java/io"
+      },
+      {
+        "removedTitle": "Java For Loop",
+        "removedUrl": "https://dsa.learnwithchampak.live/java/loops/for/",
+        "keptTitle": "Java For Loop",
+        "keptUrl": "https://dsa.learnwithchampak.live/java/loops/for"
+      },
+      {
+        "removedTitle": "Java Nested For Loops",
+        "removedUrl": "https://dsa.learnwithchampak.live/java/loops/nested/for/",
+        "keptTitle": "Java Nested For Loops",
+        "keptUrl": "https://dsa.learnwithchampak.live/java/loops/nested/for"
+      },
+      {
+        "removedTitle": "Java Nested Loops",
+        "removedUrl": "https://dsa.learnwithchampak.live/java/loops/nested/",
+        "keptTitle": "Java Nested Loops",
+        "keptUrl": "https://dsa.learnwithchampak.live/java/loops/nested"
+      },
+      {
+        "removedTitle": "Java While Loop",
+        "removedUrl": "https://dsa.learnwithchampak.live/java/loops/while/",
+        "keptTitle": "Java While Loop",
+        "keptUrl": "https://dsa.learnwithchampak.live/java/loops/while"
+      },
+      {
+        "removedTitle": "Java Scanner Class",
+        "removedUrl": "https://dsa.learnwithchampak.live/java/scanner/",
+        "keptTitle": "Java Scanner Class",
+        "keptUrl": "https://dsa.learnwithchampak.live/java/scanner"
+      },
+      {
+        "removedTitle": "JavaScript Console Lesson",
+        "removedUrl": "https://dsa.learnwithchampak.live/javascript/console/",
+        "keptTitle": "JavaScript Console Lesson",
+        "keptUrl": "https://dsa.learnwithchampak.live/javascript/console"
+      },
+      {
+        "removedTitle": "Spring Database SQLite",
+        "removedUrl": "https://dsa.learnwithchampak.live/spring/database/sqlite/",
+        "keptTitle": "Spring Database SQLite",
+        "keptUrl": "https://dsa.learnwithchampak.live/spring/database/sqlite"
+      },
+      {
+        "removedTitle": "Spring Boot E-Commerce App",
+        "removedUrl": "https://dsa.learnwithchampak.live/spring/e-commerce/",
+        "keptTitle": "Spring Boot E-Commerce App",
+        "keptUrl": "https://dsa.learnwithchampak.live/spring/e-commerce"
       }
     ]
   }
