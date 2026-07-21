@@ -10718,6 +10718,40 @@
       "url": "https://editor.learnwithchampak.live/student-reply-inquiry/",
       "priority": 1
     },
+    {"title":"Keys in Database","description":"Learn primary, candidate, alternate, composite and foreign keys in database systems.","type":"lesson","topic":"Database","tags":["Database Keys","SQL","DBMS","Primary Key"],"url":"https://www.learnwithchampak.live/2022/05/keys-in-database.html","priority":1},
+    {"title":"How to Start Flutter Programming","description":"A beginner-friendly introduction to starting app development with Flutter.","type":"lesson","topic":"Flutter","tags":["Flutter","Dart","Mobile Development","Beginner"],"url":"https://www.learnwithchampak.live/2021/03/how-to-start-flutter-programming.html","priority":1},
+    {"title":"The Programming Sutras","description":"Champak Roy's publication covering programming, DSA, artificial intelligence and machine learning.","type":"publication","topic":"Programming","tags":["Programming","DSA","AI","Machine Learning","Champak Roy"],"url":"https://theprogrammingsutras.substack.com/","priority":1},
+    {"title":"DSA Questions for Saturday, 24 Jan","description":"Saturday practice questions for strengthening data structures and algorithms skills.","type":"exercise","topic":"DSA","tags":["DSA","Saturday Questions","Algorithms","Practice"],"url":"https://theprogrammingsutras.substack.com/p/dsa-questions-for-saturday-24-jan","priority":1},
+    {"title":"Beginning Linear Regression","description":"An introductory lesson on linear regression and predictive modelling.","type":"lesson","topic":"Machine Learning","tags":["Linear Regression","Machine Learning","Prediction","Regression"],"url":"https://theprogrammingsutras.substack.com/p/beginning-linear-regression","priority":1},
+    {"title":"Beginning Classification in Machine Learning","description":"An introduction to classification concepts and methods in machine learning.","type":"lesson","topic":"Machine Learning","tags":["Classification","Machine Learning","AI","Beginner"],"url":"https://theprogrammingsutras.substack.com/p/beginning-classification-in-machine","priority":1},
+    {"title":"Fundamental Skill of Computer Programming","description":"Learn a fundamental computer-programming skill through guided explanation and practice.","type":"lesson","topic":"Programming","tags":["Programming","Fundamentals","Computer Science","Skills"],"url":"https://theprogrammingsutras.substack.com/p/learn-the-fundamental-skill-of-computer","priority":2},
+    {"title":"Starting the Programming Journey","description":"A beginner-friendly guide to beginning the journey of learning computer programming.","type":"lesson","topic":"Programming","tags":["Programming","Beginner","Learning Journey","Coding"],"url":"https://theprogrammingsutras.substack.com/p/starting-the-programming-journey","priority":1},
+    {"title":"This Week in Pictures","description":"A visual weekly update from The Programming Sutras.","type":"article","topic":"Community","tags":["Pictures","Weekly Update","Community","Programming Sutras"],"url":"https://theprogrammingsutras.substack.com/p/this-week-in-pictures","priority":2},
+    {"title":"Starting DFA and NFA Using Pyformlang","description":"Learn deterministic and nondeterministic finite automata using the Pyformlang library.","type":"lesson","topic":"Theory of Computation","tags":["DFA","NFA","Pyformlang","Automata"],"url":"https://theprogrammingsutras.substack.com/p/starting-dfa-and-nfa-using-pyformlang","priority":1},
+    {"title":"Simple Inheritance and Calling Methods","description":"A simple object-oriented programming lesson on inheritance and method calls.","type":"lesson","topic":"OOP","tags":["Inheritance","OOP","Methods","Programming"],"url":"https://theprogrammingsutras.substack.com/p/simple-inheritance-and-calling-of","priority":1},
+    {"title":"AI-ML Discussion Chat","description":"Join Champak Roy's discussion chat for artificial intelligence and machine learning.","type":"community","topic":"AI-ML","tags":["AI","ML","Discussion","Chat","Community"],"url":"https://theprogrammingsutras.substack.com/p/join-my-chat-for-discussing-ai-ml","priority":1},
+    {"title":"Understanding Divide and Conquer","description":"Learn the divide-and-conquer algorithm design technique with clear examples.","type":"lesson","topic":"DSA","tags":["Divide and Conquer","DSA","Algorithms","Recursion"],"url":"https://theprogrammingsutras.substack.com/p/understanding-divide-and-conquer","priority":1},
+    {"title":"Loops in DSA Leading to Factorial","description":"Use loops in data structures and algorithms while progressing toward factorial calculation.","type":"lesson","topic":"DSA","tags":["Loops","DSA","Factorial","Programming"],"url":"https://theprogrammingsutras.substack.com/p/loops-in-dsa-leading-up-to-calculating","priority":1},
+    {"title":"Introduction to Matplotlib","description":"An introduction to creating data visualisations in Python with Matplotlib.","type":"lesson","topic":"Python","tags":["Matplotlib","Python","Data Visualization","Charts"],"url":"https://theprogrammingsutras.substack.com/p/introduction-to-matplotlib","priority":1},
+    {"title":"Predicting Short-Term Fluctuations","description":"Explore methods for predicting short-term fluctuations from data.","type":"lesson","topic":"Machine Learning","tags":["Prediction","Time Series","Machine Learning","Data"],"url":"https://theprogrammingsutras.substack.com/p/how-to-predict-short-term-fluctuations","priority":1},
+    {"title":"DSA for Wednesday, 23 July 2025","description":"Data structures and algorithms practice questions for Wednesday, 23 July 2025.","type":"exercise","topic":"DSA","tags":["DSA","Practice","Algorithms","Questions"],"url":"https://theprogrammingsutras.substack.com/p/dsa-for-wednesday-23-july-2025","priority":2},
+    {"title":"How to Read Text Written in Images","description":"Learn techniques for extracting and reading text from images using optical character recognition.","type":"lesson","topic":"AI","tags":["OCR","Images","Text Recognition","AI"],"url":"https://theprogrammingsutras.substack.com/p/how-to-read-text-written-in-images","priority":1},
+    {"title":"How to Use Machine Learning","description":"A practical introduction to using machine learning for real-world problems.","type":"lesson","topic":"Machine Learning","tags":["Machine Learning","AI","Prediction","Beginner"],"url":"https://theprogrammingsutras.substack.com/p/how-to-use-machine-learningml-to","priority":1},
+    {"title":"Basic Terms in Artificial Intelligence","description":"Understand essential terminology used in artificial intelligence.","type":"lesson","topic":"AI","tags":["Artificial Intelligence","AI Terms","Machine Learning","Beginner"],"url":"https://theprogrammingsutras.substack.com/p/basic-terms-in-artficial-intelligence","priority":1},
+    {"title":"Selection Sort","description":"Learn the selection sort algorithm through a simple step-by-step explanation.","type":"lesson","topic":"DSA","tags":["Selection Sort","Sorting","DSA","Algorithms"],"url":"https://theprogrammingsutras.substack.com/p/selection-sort","priority":1},
+    {"title":"Patterns in Seemingly Random Data","description":"Explore how patterns can emerge from data that initially appears random.","type":"article","topic":"Data Science","tags":["Patterns","Random Data","Data Science","Analysis"],"url":"https://theprogrammingsutras.substack.com/p/is-there-a-pattern-in-seemingly-random","priority":2},
+    {"title":"Decision Tree Classification Explained","description":"A clear explanation of decision-tree classification in machine learning.","type":"lesson","topic":"Machine Learning","tags":["Decision Tree","Classification","Machine Learning","AI"],"url":"https://theprogrammingsutras.substack.com/p/explaining-decision-tree-classification","priority":1},
+    {"title":"Classifying Images Using ml5.js","description":"Learn browser-based image classification using JavaScript and ml5.js.","type":"lesson","topic":"Machine Learning","tags":["ml5.js","Image Classification","JavaScript","Machine Learning"],"url":"https://theprogrammingsutras.substack.com/p/classifying-images-using-ml5js","priority":1},
+    {"title":"Sorting Made Simple","description":"Understand sorting algorithms with a straightforward beginner-friendly explanation.","type":"lesson","topic":"DSA","tags":["Sorting","DSA","Algorithms","Beginner"],"url":"https://theprogrammingsutras.substack.com/p/sorting-made-simple-understanding","priority":1},
+    {"title":"Programming Sutras Discussion Thread","description":"A community discussion thread for readers of The Programming Sutras.","type":"community","topic":"Community","tags":["Discussion","Community","Programming","Questions"],"url":"https://theprogrammingsutras.substack.com/p/discussion-thread","priority":2},
+    {"title":"Predict Future Values from Data","description":"Learn how models use existing data to predict future numerical values.","type":"lesson","topic":"Machine Learning","tags":["Prediction","Regression","Machine Learning","Future Values"],"url":"https://theprogrammingsutras.substack.com/p/how-to-predict-future-values-based","priority":1},
+    {"title":"Machine Learning and Artificial Intelligence","description":"An overview of machine learning and its relationship with artificial intelligence.","type":"lesson","topic":"AI-ML","tags":["Machine Learning","Artificial Intelligence","AI","ML"],"url":"https://theprogrammingsutras.substack.com/p/machine-learning-and-ai","priority":1},
+    {"title":"Introducing Unsupervised Learning","description":"An introduction to unsupervised machine learning and discovering structure in unlabelled data.","type":"lesson","topic":"Machine Learning","tags":["Unsupervised Learning","Clustering","Machine Learning","AI"],"url":"https://theprogrammingsutras.substack.com/p/introducing-unsupervised-learning","priority":1},
+    {"title":"Chapter 1: Defining the Computer","description":"The opening chapter of a structured exploration of computers and programming concepts.","type":"chapter","topic":"Computer Science","tags":["Computer","Programming","Chapter 1","Fundamentals"],"url":"https://theprogrammingsutras.substack.com/p/chapter-1-defining-the-computer-to","priority":1},
+    {"title":"Implementing Quicksort Using Partition","description":"Learn how to implement the Quicksort algorithm using a partitioning procedure.","type":"lesson","topic":"DSA","tags":["Quicksort","Partition","Sorting","DSA"],"url":"https://theprogrammingsutras.substack.com/p/implementing-quicksort-using-partition-a32","priority":1},
+    {"title":"Champak Roy on Facebook","description":"Follow Champak Roy's official Facebook profile for teaching and programming updates.","type":"social","topic":"Social Media","tags":["Champak Roy","Facebook","Programming","Updates"],"url":"https://www.facebook.com/ChampakRoyVNS","priority":1},
+    {"title":"Programmer's Picnic on Facebook","description":"Follow the Programmer's Picnic Facebook page for lessons, videos and community updates.","type":"social","topic":"Social Media","tags":["Programmer's Picnic","Facebook","Programming","Learning"],"url":"https://www.facebook.com/programmerspicnic/","priority":1},
+    {"title":"Champak Roy on LinkedIn","description":"Connect with Champak Roy on LinkedIn for professional, programming and teaching updates.","type":"social","topic":"Social Media","tags":["Champak Roy","LinkedIn","Programming","Teaching"],"url":"https://www.linkedin.com/in/champak-roy-47b69128/","priority":1},
     {
       "title": "Speaker Page Lesson",
       "description": "Lesson page for building a speaker or text-to-speech interface using HTML, CSS, and JavaScript.",
@@ -10734,15 +10768,16 @@
       "priority": 2
     }
   ],
-  "totalItems": 644,
+  "totalItems": 678,
   "lastAddSummary": {
-    "source": "Manual URL add",
-    "added": 3,
-    "skippedDuplicates": [],
-    "addedUrls": [
-      "https://me.learnwithchampak.live/send/",
-      "https://editor.learnwithchampak.live/student-reply-inquiry/",
-      "https://dsa.learnwithchampak.live/html/pages/speaker/lesson/"
+    "source": "User-supplied Learn With Champak, Programming Sutras and social links",
+    "requested": 38,
+    "added": 34,
+    "skippedDuplicates": [
+      "https://www.learnwithchampak.live/2023/01/sql-sequel-posts.html",
+      "https://www.learnwithchampak.live/2022/05/aggregate-queries-in-sql.html",
+      "https://www.learnwithchampak.live/2022/05/joins-in-sql.html",
+      "https://theprogrammingsutras.substack.com/p/dsa-questions-for-saturday-24-jan"
     ]
   },
   "lastDedupSummary": {
