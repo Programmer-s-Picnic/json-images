@@ -10752,6 +10752,17 @@
     {"title":"Champak Roy on Facebook","description":"Follow Champak Roy's official Facebook profile for teaching and programming updates.","type":"social","topic":"Social Media","tags":["Champak Roy","Facebook","Programming","Updates"],"url":"https://www.facebook.com/ChampakRoyVNS","priority":1},
     {"title":"Programmer's Picnic on Facebook","description":"Follow the Programmer's Picnic Facebook page for lessons, videos and community updates.","type":"social","topic":"Social Media","tags":["Programmer's Picnic","Facebook","Programming","Learning"],"url":"https://www.facebook.com/programmerspicnic/","priority":1},
     {"title":"Champak Roy on LinkedIn","description":"Connect with Champak Roy on LinkedIn for professional, programming and teaching updates.","type":"social","topic":"Social Media","tags":["Champak Roy","LinkedIn","Programming","Teaching"],"url":"https://www.linkedin.com/in/champak-roy-47b69128/","priority":1},
+    {"title":"Python Magic Methods: Building a Currency Class","description":"Build a Currency class in Python while learning __init__, __str__ and object-oriented magic methods.","type":"video","topic":"Python OOP","tags":["Python","OOP","Magic Methods","Currency Class","YouTube"],"url":"https://youtu.be/DGyn8hFFsgk","priority":1},
+    {"title":"Object-Oriented Programming in Python: Overloading + and -","description":"Learn operator overloading in Python by implementing the addition and subtraction operators.","type":"video","topic":"Python OOP","tags":["Python","OOP","Operator Overloading","Magic Methods","YouTube"],"url":"https://youtu.be/PP5a-CDKIkw","priority":1},
+    {"title":"Insertion Sort in Python: Sorting with Boxes","description":"Learn insertion sort visually and step by step using movable boxes in Python.","type":"video","topic":"DSA","tags":["Insertion Sort","Python","Sorting","DSA","YouTube"],"url":"https://youtu.be/fdK1w6fhlGU","priority":1},
+    {"title":"Polynomial Regression in Python","description":"Find a best-fit polynomial model, evaluate its R² score and make predictions in Python.","type":"video","topic":"Machine Learning","tags":["Polynomial Regression","Python","R Squared","Prediction","YouTube"],"url":"https://youtu.be/nbI-z0h-1mk","priority":1},
+    {"title":"Variance and Standard Deviation in Python","description":"Learn variance and standard deviation as final statistical preparation for machine-learning programming.","type":"video","topic":"Statistics","tags":["Variance","Standard Deviation","Python","Machine Learning","YouTube"],"url":"https://youtu.be/yI4Jh1mX2_Q","priority":1},
+    {"title":"Machine-Learning Programming Preparation Finale","description":"Review Python functions, roots, error, statistics and prediction before beginning machine-learning programming.","type":"video","topic":"Machine Learning","tags":["Python","Statistics","Prediction","Machine Learning","YouTube"],"url":"https://youtu.be/g-hFFrEGtDA","priority":1},
+    {"title":"Square Root in Python Using Approximation","description":"Build square-root logic with approximation and visualise the result using Matplotlib.","type":"video","topic":"Python","tags":["Square Root","Approximation","Matplotlib","Python","YouTube"],"url":"https://youtu.be/O6q0G1donE0","priority":1},
+    {"title":"Python Program to Find Square Root","description":"A beginner-friendly Python program for finding a square root while developing programming logic.","type":"video","topic":"Python","tags":["Square Root","Python","Logic Building","Beginner","YouTube"],"url":"https://youtu.be/n8kdzZBb6lk","priority":1},
+    {"title":"Binary Search: 11 December 2025","description":"Learn and practise the binary-search algorithm with Programmer's Picnic.","type":"video","topic":"DSA","tags":["Binary Search","DSA","Algorithms","Python","YouTube"],"url":"https://youtu.be/tlCtn2lXtXA","priority":1},
+    {"title":"Download Python, Set Up VS Code and Run Python","description":"Learn how to install Python, configure Visual Studio Code and run your first Python program.","type":"video","topic":"Python","tags":["Python Installation","VS Code","Setup","Beginner","YouTube"],"url":"https://youtu.be/-RcJ3dtiLAs","priority":1},
+    {"title":"Python and VS Code Setup in Hindi","description":"Hindi guide to downloading and installing Python and setting up Visual Studio Code.","type":"video","topic":"Python","tags":["Python Installation","VS Code","Hindi","Beginner","YouTube"],"url":"https://youtu.be/eCEJCfyPs2g","priority":1},
     {
       "title": "Speaker Page Lesson",
       "description": "Lesson page for building a speaker or text-to-speech interface using HTML, CSS, and JavaScript.",
@@ -10768,16 +10779,18 @@
       "priority": 2
     }
   ],
-  "totalItems": 678,
+  "totalItems": 689,
   "lastAddSummary": {
-    "source": "User-supplied Learn With Champak, Programming Sutras and social links",
-    "requested": 38,
-    "added": 34,
+    "source": "User-supplied Programmer's Picnic YouTube links",
+    "requested": 17,
+    "added": 11,
     "skippedDuplicates": [
-      "https://www.learnwithchampak.live/2023/01/sql-sequel-posts.html",
-      "https://www.learnwithchampak.live/2022/05/aggregate-queries-in-sql.html",
-      "https://www.learnwithchampak.live/2022/05/joins-in-sql.html",
-      "https://theprogrammingsutras.substack.com/p/dsa-questions-for-saturday-24-jan"
+      "https://youtu.be/L-HEBCUb-eg",
+      "https://youtu.be/VHLnM6CqAxM",
+      "https://youtu.be/HqIAtTbzOXg",
+      "https://youtu.be/GlmZg64sebM",
+      "https://youtu.be/xRXmWa3dfGQ",
+      "https://youtu.be/rLX8BnYCkRk"
     ]
   },
   "lastDedupSummary": {
