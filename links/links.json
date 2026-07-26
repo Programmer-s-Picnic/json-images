@@ -10718,51 +10718,649 @@
       "url": "https://editor.learnwithchampak.live/student-reply-inquiry/",
       "priority": 1
     },
-    {"title":"Keys in Database","description":"Learn primary, candidate, alternate, composite and foreign keys in database systems.","type":"lesson","topic":"Database","tags":["Database Keys","SQL","DBMS","Primary Key"],"url":"https://www.learnwithchampak.live/2022/05/keys-in-database.html","priority":1},
-    {"title":"How to Start Flutter Programming","description":"A beginner-friendly introduction to starting app development with Flutter.","type":"lesson","topic":"Flutter","tags":["Flutter","Dart","Mobile Development","Beginner"],"url":"https://www.learnwithchampak.live/2021/03/how-to-start-flutter-programming.html","priority":1},
-    {"title":"The Programming Sutras","description":"Champak Roy's publication covering programming, DSA, artificial intelligence and machine learning.","type":"publication","topic":"Programming","tags":["Programming","DSA","AI","Machine Learning","Champak Roy"],"url":"https://theprogrammingsutras.substack.com/","priority":1},
-    {"title":"DSA Questions for Saturday, 24 Jan","description":"Saturday practice questions for strengthening data structures and algorithms skills.","type":"exercise","topic":"DSA","tags":["DSA","Saturday Questions","Algorithms","Practice"],"url":"https://theprogrammingsutras.substack.com/p/dsa-questions-for-saturday-24-jan","priority":1},
-    {"title":"Beginning Linear Regression","description":"An introductory lesson on linear regression and predictive modelling.","type":"lesson","topic":"Machine Learning","tags":["Linear Regression","Machine Learning","Prediction","Regression"],"url":"https://theprogrammingsutras.substack.com/p/beginning-linear-regression","priority":1},
-    {"title":"Beginning Classification in Machine Learning","description":"An introduction to classification concepts and methods in machine learning.","type":"lesson","topic":"Machine Learning","tags":["Classification","Machine Learning","AI","Beginner"],"url":"https://theprogrammingsutras.substack.com/p/beginning-classification-in-machine","priority":1},
-    {"title":"Fundamental Skill of Computer Programming","description":"Learn a fundamental computer-programming skill through guided explanation and practice.","type":"lesson","topic":"Programming","tags":["Programming","Fundamentals","Computer Science","Skills"],"url":"https://theprogrammingsutras.substack.com/p/learn-the-fundamental-skill-of-computer","priority":2},
-    {"title":"Starting the Programming Journey","description":"A beginner-friendly guide to beginning the journey of learning computer programming.","type":"lesson","topic":"Programming","tags":["Programming","Beginner","Learning Journey","Coding"],"url":"https://theprogrammingsutras.substack.com/p/starting-the-programming-journey","priority":1},
-    {"title":"This Week in Pictures","description":"A visual weekly update from The Programming Sutras.","type":"article","topic":"Community","tags":["Pictures","Weekly Update","Community","Programming Sutras"],"url":"https://theprogrammingsutras.substack.com/p/this-week-in-pictures","priority":2},
-    {"title":"Starting DFA and NFA Using Pyformlang","description":"Learn deterministic and nondeterministic finite automata using the Pyformlang library.","type":"lesson","topic":"Theory of Computation","tags":["DFA","NFA","Pyformlang","Automata"],"url":"https://theprogrammingsutras.substack.com/p/starting-dfa-and-nfa-using-pyformlang","priority":1},
-    {"title":"Simple Inheritance and Calling Methods","description":"A simple object-oriented programming lesson on inheritance and method calls.","type":"lesson","topic":"OOP","tags":["Inheritance","OOP","Methods","Programming"],"url":"https://theprogrammingsutras.substack.com/p/simple-inheritance-and-calling-of","priority":1},
-    {"title":"AI-ML Discussion Chat","description":"Join Champak Roy's discussion chat for artificial intelligence and machine learning.","type":"community","topic":"AI-ML","tags":["AI","ML","Discussion","Chat","Community"],"url":"https://theprogrammingsutras.substack.com/p/join-my-chat-for-discussing-ai-ml","priority":1},
-    {"title":"Understanding Divide and Conquer","description":"Learn the divide-and-conquer algorithm design technique with clear examples.","type":"lesson","topic":"DSA","tags":["Divide and Conquer","DSA","Algorithms","Recursion"],"url":"https://theprogrammingsutras.substack.com/p/understanding-divide-and-conquer","priority":1},
-    {"title":"Loops in DSA Leading to Factorial","description":"Use loops in data structures and algorithms while progressing toward factorial calculation.","type":"lesson","topic":"DSA","tags":["Loops","DSA","Factorial","Programming"],"url":"https://theprogrammingsutras.substack.com/p/loops-in-dsa-leading-up-to-calculating","priority":1},
-    {"title":"Introduction to Matplotlib","description":"An introduction to creating data visualisations in Python with Matplotlib.","type":"lesson","topic":"Python","tags":["Matplotlib","Python","Data Visualization","Charts"],"url":"https://theprogrammingsutras.substack.com/p/introduction-to-matplotlib","priority":1},
-    {"title":"Predicting Short-Term Fluctuations","description":"Explore methods for predicting short-term fluctuations from data.","type":"lesson","topic":"Machine Learning","tags":["Prediction","Time Series","Machine Learning","Data"],"url":"https://theprogrammingsutras.substack.com/p/how-to-predict-short-term-fluctuations","priority":1},
-    {"title":"DSA for Wednesday, 23 July 2025","description":"Data structures and algorithms practice questions for Wednesday, 23 July 2025.","type":"exercise","topic":"DSA","tags":["DSA","Practice","Algorithms","Questions"],"url":"https://theprogrammingsutras.substack.com/p/dsa-for-wednesday-23-july-2025","priority":2},
-    {"title":"How to Read Text Written in Images","description":"Learn techniques for extracting and reading text from images using optical character recognition.","type":"lesson","topic":"AI","tags":["OCR","Images","Text Recognition","AI"],"url":"https://theprogrammingsutras.substack.com/p/how-to-read-text-written-in-images","priority":1},
-    {"title":"How to Use Machine Learning","description":"A practical introduction to using machine learning for real-world problems.","type":"lesson","topic":"Machine Learning","tags":["Machine Learning","AI","Prediction","Beginner"],"url":"https://theprogrammingsutras.substack.com/p/how-to-use-machine-learningml-to","priority":1},
-    {"title":"Basic Terms in Artificial Intelligence","description":"Understand essential terminology used in artificial intelligence.","type":"lesson","topic":"AI","tags":["Artificial Intelligence","AI Terms","Machine Learning","Beginner"],"url":"https://theprogrammingsutras.substack.com/p/basic-terms-in-artficial-intelligence","priority":1},
-    {"title":"Selection Sort","description":"Learn the selection sort algorithm through a simple step-by-step explanation.","type":"lesson","topic":"DSA","tags":["Selection Sort","Sorting","DSA","Algorithms"],"url":"https://theprogrammingsutras.substack.com/p/selection-sort","priority":1},
-    {"title":"Patterns in Seemingly Random Data","description":"Explore how patterns can emerge from data that initially appears random.","type":"article","topic":"Data Science","tags":["Patterns","Random Data","Data Science","Analysis"],"url":"https://theprogrammingsutras.substack.com/p/is-there-a-pattern-in-seemingly-random","priority":2},
-    {"title":"Decision Tree Classification Explained","description":"A clear explanation of decision-tree classification in machine learning.","type":"lesson","topic":"Machine Learning","tags":["Decision Tree","Classification","Machine Learning","AI"],"url":"https://theprogrammingsutras.substack.com/p/explaining-decision-tree-classification","priority":1},
-    {"title":"Classifying Images Using ml5.js","description":"Learn browser-based image classification using JavaScript and ml5.js.","type":"lesson","topic":"Machine Learning","tags":["ml5.js","Image Classification","JavaScript","Machine Learning"],"url":"https://theprogrammingsutras.substack.com/p/classifying-images-using-ml5js","priority":1},
-    {"title":"Sorting Made Simple","description":"Understand sorting algorithms with a straightforward beginner-friendly explanation.","type":"lesson","topic":"DSA","tags":["Sorting","DSA","Algorithms","Beginner"],"url":"https://theprogrammingsutras.substack.com/p/sorting-made-simple-understanding","priority":1},
-    {"title":"Programming Sutras Discussion Thread","description":"A community discussion thread for readers of The Programming Sutras.","type":"community","topic":"Community","tags":["Discussion","Community","Programming","Questions"],"url":"https://theprogrammingsutras.substack.com/p/discussion-thread","priority":2},
-    {"title":"Predict Future Values from Data","description":"Learn how models use existing data to predict future numerical values.","type":"lesson","topic":"Machine Learning","tags":["Prediction","Regression","Machine Learning","Future Values"],"url":"https://theprogrammingsutras.substack.com/p/how-to-predict-future-values-based","priority":1},
-    {"title":"Machine Learning and Artificial Intelligence","description":"An overview of machine learning and its relationship with artificial intelligence.","type":"lesson","topic":"AI-ML","tags":["Machine Learning","Artificial Intelligence","AI","ML"],"url":"https://theprogrammingsutras.substack.com/p/machine-learning-and-ai","priority":1},
-    {"title":"Introducing Unsupervised Learning","description":"An introduction to unsupervised machine learning and discovering structure in unlabelled data.","type":"lesson","topic":"Machine Learning","tags":["Unsupervised Learning","Clustering","Machine Learning","AI"],"url":"https://theprogrammingsutras.substack.com/p/introducing-unsupervised-learning","priority":1},
-    {"title":"Chapter 1: Defining the Computer","description":"The opening chapter of a structured exploration of computers and programming concepts.","type":"chapter","topic":"Computer Science","tags":["Computer","Programming","Chapter 1","Fundamentals"],"url":"https://theprogrammingsutras.substack.com/p/chapter-1-defining-the-computer-to","priority":1},
-    {"title":"Implementing Quicksort Using Partition","description":"Learn how to implement the Quicksort algorithm using a partitioning procedure.","type":"lesson","topic":"DSA","tags":["Quicksort","Partition","Sorting","DSA"],"url":"https://theprogrammingsutras.substack.com/p/implementing-quicksort-using-partition-a32","priority":1},
-    {"title":"Champak Roy on Facebook","description":"Follow Champak Roy's official Facebook profile for teaching and programming updates.","type":"social","topic":"Social Media","tags":["Champak Roy","Facebook","Programming","Updates"],"url":"https://www.facebook.com/ChampakRoyVNS","priority":1},
-    {"title":"Programmer's Picnic on Facebook","description":"Follow the Programmer's Picnic Facebook page for lessons, videos and community updates.","type":"social","topic":"Social Media","tags":["Programmer's Picnic","Facebook","Programming","Learning"],"url":"https://www.facebook.com/programmerspicnic/","priority":1},
-    {"title":"Champak Roy on LinkedIn","description":"Connect with Champak Roy on LinkedIn for professional, programming and teaching updates.","type":"social","topic":"Social Media","tags":["Champak Roy","LinkedIn","Programming","Teaching"],"url":"https://www.linkedin.com/in/champak-roy-47b69128/","priority":1},
-    {"title":"Python Magic Methods: Building a Currency Class","description":"Build a Currency class in Python while learning __init__, __str__ and object-oriented magic methods.","type":"video","topic":"Python OOP","tags":["Python","OOP","Magic Methods","Currency Class","YouTube"],"url":"https://youtu.be/DGyn8hFFsgk","priority":1},
-    {"title":"Object-Oriented Programming in Python: Overloading + and -","description":"Learn operator overloading in Python by implementing the addition and subtraction operators.","type":"video","topic":"Python OOP","tags":["Python","OOP","Operator Overloading","Magic Methods","YouTube"],"url":"https://youtu.be/PP5a-CDKIkw","priority":1},
-    {"title":"Insertion Sort in Python: Sorting with Boxes","description":"Learn insertion sort visually and step by step using movable boxes in Python.","type":"video","topic":"DSA","tags":["Insertion Sort","Python","Sorting","DSA","YouTube"],"url":"https://youtu.be/fdK1w6fhlGU","priority":1},
-    {"title":"Polynomial Regression in Python","description":"Find a best-fit polynomial model, evaluate its R² score and make predictions in Python.","type":"video","topic":"Machine Learning","tags":["Polynomial Regression","Python","R Squared","Prediction","YouTube"],"url":"https://youtu.be/nbI-z0h-1mk","priority":1},
-    {"title":"Variance and Standard Deviation in Python","description":"Learn variance and standard deviation as final statistical preparation for machine-learning programming.","type":"video","topic":"Statistics","tags":["Variance","Standard Deviation","Python","Machine Learning","YouTube"],"url":"https://youtu.be/yI4Jh1mX2_Q","priority":1},
-    {"title":"Machine-Learning Programming Preparation Finale","description":"Review Python functions, roots, error, statistics and prediction before beginning machine-learning programming.","type":"video","topic":"Machine Learning","tags":["Python","Statistics","Prediction","Machine Learning","YouTube"],"url":"https://youtu.be/g-hFFrEGtDA","priority":1},
-    {"title":"Square Root in Python Using Approximation","description":"Build square-root logic with approximation and visualise the result using Matplotlib.","type":"video","topic":"Python","tags":["Square Root","Approximation","Matplotlib","Python","YouTube"],"url":"https://youtu.be/O6q0G1donE0","priority":1},
-    {"title":"Python Program to Find Square Root","description":"A beginner-friendly Python program for finding a square root while developing programming logic.","type":"video","topic":"Python","tags":["Square Root","Python","Logic Building","Beginner","YouTube"],"url":"https://youtu.be/n8kdzZBb6lk","priority":1},
-    {"title":"Binary Search: 11 December 2025","description":"Learn and practise the binary-search algorithm with Programmer's Picnic.","type":"video","topic":"DSA","tags":["Binary Search","DSA","Algorithms","Python","YouTube"],"url":"https://youtu.be/tlCtn2lXtXA","priority":1},
-    {"title":"Download Python, Set Up VS Code and Run Python","description":"Learn how to install Python, configure Visual Studio Code and run your first Python program.","type":"video","topic":"Python","tags":["Python Installation","VS Code","Setup","Beginner","YouTube"],"url":"https://youtu.be/-RcJ3dtiLAs","priority":1},
-    {"title":"Python and VS Code Setup in Hindi","description":"Hindi guide to downloading and installing Python and setting up Visual Studio Code.","type":"video","topic":"Python","tags":["Python Installation","VS Code","Hindi","Beginner","YouTube"],"url":"https://youtu.be/eCEJCfyPs2g","priority":1},
+    {
+      "title": "Keys in Database",
+      "description": "Learn primary, candidate, alternate, composite and foreign keys in database systems.",
+      "type": "lesson",
+      "topic": "Database",
+      "tags": [
+        "Database Keys",
+        "SQL",
+        "DBMS",
+        "Primary Key"
+      ],
+      "url": "https://www.learnwithchampak.live/2022/05/keys-in-database.html",
+      "priority": 1
+    },
+    {
+      "title": "How to Start Flutter Programming",
+      "description": "A beginner-friendly introduction to starting app development with Flutter.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Mobile Development",
+        "Beginner"
+      ],
+      "url": "https://www.learnwithchampak.live/2021/03/how-to-start-flutter-programming.html",
+      "priority": 1
+    },
+    {
+      "title": "The Programming Sutras",
+      "description": "Champak Roy's publication covering programming, DSA, artificial intelligence and machine learning.",
+      "type": "publication",
+      "topic": "Programming",
+      "tags": [
+        "Programming",
+        "DSA",
+        "AI",
+        "Machine Learning",
+        "Champak Roy"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/",
+      "priority": 1
+    },
+    {
+      "title": "DSA Questions for Saturday, 24 Jan",
+      "description": "Saturday practice questions for strengthening data structures and algorithms skills.",
+      "type": "exercise",
+      "topic": "DSA",
+      "tags": [
+        "DSA",
+        "Saturday Questions",
+        "Algorithms",
+        "Practice"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/dsa-questions-for-saturday-24-jan",
+      "priority": 1
+    },
+    {
+      "title": "Beginning Linear Regression",
+      "description": "An introductory lesson on linear regression and predictive modelling.",
+      "type": "lesson",
+      "topic": "Machine Learning",
+      "tags": [
+        "Linear Regression",
+        "Machine Learning",
+        "Prediction",
+        "Regression"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/beginning-linear-regression",
+      "priority": 1
+    },
+    {
+      "title": "Beginning Classification in Machine Learning",
+      "description": "An introduction to classification concepts and methods in machine learning.",
+      "type": "lesson",
+      "topic": "Machine Learning",
+      "tags": [
+        "Classification",
+        "Machine Learning",
+        "AI",
+        "Beginner"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/beginning-classification-in-machine",
+      "priority": 1
+    },
+    {
+      "title": "Fundamental Skill of Computer Programming",
+      "description": "Learn a fundamental computer-programming skill through guided explanation and practice.",
+      "type": "lesson",
+      "topic": "Programming",
+      "tags": [
+        "Programming",
+        "Fundamentals",
+        "Computer Science",
+        "Skills"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/learn-the-fundamental-skill-of-computer",
+      "priority": 2
+    },
+    {
+      "title": "Starting the Programming Journey",
+      "description": "A beginner-friendly guide to beginning the journey of learning computer programming.",
+      "type": "lesson",
+      "topic": "Programming",
+      "tags": [
+        "Programming",
+        "Beginner",
+        "Learning Journey",
+        "Coding"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/starting-the-programming-journey",
+      "priority": 1
+    },
+    {
+      "title": "This Week in Pictures",
+      "description": "A visual weekly update from The Programming Sutras.",
+      "type": "article",
+      "topic": "Community",
+      "tags": [
+        "Pictures",
+        "Weekly Update",
+        "Community",
+        "Programming Sutras"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/this-week-in-pictures",
+      "priority": 2
+    },
+    {
+      "title": "Starting DFA and NFA Using Pyformlang",
+      "description": "Learn deterministic and nondeterministic finite automata using the Pyformlang library.",
+      "type": "lesson",
+      "topic": "Theory of Computation",
+      "tags": [
+        "DFA",
+        "NFA",
+        "Pyformlang",
+        "Automata"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/starting-dfa-and-nfa-using-pyformlang",
+      "priority": 1
+    },
+    {
+      "title": "Simple Inheritance and Calling Methods",
+      "description": "A simple object-oriented programming lesson on inheritance and method calls.",
+      "type": "lesson",
+      "topic": "OOP",
+      "tags": [
+        "Inheritance",
+        "OOP",
+        "Methods",
+        "Programming"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/simple-inheritance-and-calling-of",
+      "priority": 1
+    },
+    {
+      "title": "AI-ML Discussion Chat",
+      "description": "Join Champak Roy's discussion chat for artificial intelligence and machine learning.",
+      "type": "community",
+      "topic": "AI-ML",
+      "tags": [
+        "AI",
+        "ML",
+        "Discussion",
+        "Chat",
+        "Community"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/join-my-chat-for-discussing-ai-ml",
+      "priority": 1
+    },
+    {
+      "title": "Understanding Divide and Conquer",
+      "description": "Learn the divide-and-conquer algorithm design technique with clear examples.",
+      "type": "lesson",
+      "topic": "DSA",
+      "tags": [
+        "Divide and Conquer",
+        "DSA",
+        "Algorithms",
+        "Recursion"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/understanding-divide-and-conquer",
+      "priority": 1
+    },
+    {
+      "title": "Loops in DSA Leading to Factorial",
+      "description": "Use loops in data structures and algorithms while progressing toward factorial calculation.",
+      "type": "lesson",
+      "topic": "DSA",
+      "tags": [
+        "Loops",
+        "DSA",
+        "Factorial",
+        "Programming"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/loops-in-dsa-leading-up-to-calculating",
+      "priority": 1
+    },
+    {
+      "title": "Introduction to Matplotlib",
+      "description": "An introduction to creating data visualisations in Python with Matplotlib.",
+      "type": "lesson",
+      "topic": "Python",
+      "tags": [
+        "Matplotlib",
+        "Python",
+        "Data Visualization",
+        "Charts"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/introduction-to-matplotlib",
+      "priority": 1
+    },
+    {
+      "title": "Predicting Short-Term Fluctuations",
+      "description": "Explore methods for predicting short-term fluctuations from data.",
+      "type": "lesson",
+      "topic": "Machine Learning",
+      "tags": [
+        "Prediction",
+        "Time Series",
+        "Machine Learning",
+        "Data"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/how-to-predict-short-term-fluctuations",
+      "priority": 1
+    },
+    {
+      "title": "DSA for Wednesday, 23 July 2025",
+      "description": "Data structures and algorithms practice questions for Wednesday, 23 July 2025.",
+      "type": "exercise",
+      "topic": "DSA",
+      "tags": [
+        "DSA",
+        "Practice",
+        "Algorithms",
+        "Questions"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/dsa-for-wednesday-23-july-2025",
+      "priority": 2
+    },
+    {
+      "title": "How to Read Text Written in Images",
+      "description": "Learn techniques for extracting and reading text from images using optical character recognition.",
+      "type": "lesson",
+      "topic": "AI",
+      "tags": [
+        "OCR",
+        "Images",
+        "Text Recognition",
+        "AI"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/how-to-read-text-written-in-images",
+      "priority": 1
+    },
+    {
+      "title": "How to Use Machine Learning",
+      "description": "A practical introduction to using machine learning for real-world problems.",
+      "type": "lesson",
+      "topic": "Machine Learning",
+      "tags": [
+        "Machine Learning",
+        "AI",
+        "Prediction",
+        "Beginner"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/how-to-use-machine-learningml-to",
+      "priority": 1
+    },
+    {
+      "title": "Basic Terms in Artificial Intelligence",
+      "description": "Understand essential terminology used in artificial intelligence.",
+      "type": "lesson",
+      "topic": "AI",
+      "tags": [
+        "Artificial Intelligence",
+        "AI Terms",
+        "Machine Learning",
+        "Beginner"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/basic-terms-in-artficial-intelligence",
+      "priority": 1
+    },
+    {
+      "title": "Selection Sort",
+      "description": "Learn the selection sort algorithm through a simple step-by-step explanation.",
+      "type": "lesson",
+      "topic": "DSA",
+      "tags": [
+        "Selection Sort",
+        "Sorting",
+        "DSA",
+        "Algorithms"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/selection-sort",
+      "priority": 1
+    },
+    {
+      "title": "Patterns in Seemingly Random Data",
+      "description": "Explore how patterns can emerge from data that initially appears random.",
+      "type": "article",
+      "topic": "Data Science",
+      "tags": [
+        "Patterns",
+        "Random Data",
+        "Data Science",
+        "Analysis"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/is-there-a-pattern-in-seemingly-random",
+      "priority": 2
+    },
+    {
+      "title": "Decision Tree Classification Explained",
+      "description": "A clear explanation of decision-tree classification in machine learning.",
+      "type": "lesson",
+      "topic": "Machine Learning",
+      "tags": [
+        "Decision Tree",
+        "Classification",
+        "Machine Learning",
+        "AI"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/explaining-decision-tree-classification",
+      "priority": 1
+    },
+    {
+      "title": "Classifying Images Using ml5.js",
+      "description": "Learn browser-based image classification using JavaScript and ml5.js.",
+      "type": "lesson",
+      "topic": "Machine Learning",
+      "tags": [
+        "ml5.js",
+        "Image Classification",
+        "JavaScript",
+        "Machine Learning"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/classifying-images-using-ml5js",
+      "priority": 1
+    },
+    {
+      "title": "Sorting Made Simple",
+      "description": "Understand sorting algorithms with a straightforward beginner-friendly explanation.",
+      "type": "lesson",
+      "topic": "DSA",
+      "tags": [
+        "Sorting",
+        "DSA",
+        "Algorithms",
+        "Beginner"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/sorting-made-simple-understanding",
+      "priority": 1
+    },
+    {
+      "title": "Programming Sutras Discussion Thread",
+      "description": "A community discussion thread for readers of The Programming Sutras.",
+      "type": "community",
+      "topic": "Community",
+      "tags": [
+        "Discussion",
+        "Community",
+        "Programming",
+        "Questions"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/discussion-thread",
+      "priority": 2
+    },
+    {
+      "title": "Predict Future Values from Data",
+      "description": "Learn how models use existing data to predict future numerical values.",
+      "type": "lesson",
+      "topic": "Machine Learning",
+      "tags": [
+        "Prediction",
+        "Regression",
+        "Machine Learning",
+        "Future Values"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/how-to-predict-future-values-based",
+      "priority": 1
+    },
+    {
+      "title": "Machine Learning and Artificial Intelligence",
+      "description": "An overview of machine learning and its relationship with artificial intelligence.",
+      "type": "lesson",
+      "topic": "AI-ML",
+      "tags": [
+        "Machine Learning",
+        "Artificial Intelligence",
+        "AI",
+        "ML"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/machine-learning-and-ai",
+      "priority": 1
+    },
+    {
+      "title": "Introducing Unsupervised Learning",
+      "description": "An introduction to unsupervised machine learning and discovering structure in unlabelled data.",
+      "type": "lesson",
+      "topic": "Machine Learning",
+      "tags": [
+        "Unsupervised Learning",
+        "Clustering",
+        "Machine Learning",
+        "AI"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/introducing-unsupervised-learning",
+      "priority": 1
+    },
+    {
+      "title": "Chapter 1: Defining the Computer",
+      "description": "The opening chapter of a structured exploration of computers and programming concepts.",
+      "type": "chapter",
+      "topic": "Computer Science",
+      "tags": [
+        "Computer",
+        "Programming",
+        "Chapter 1",
+        "Fundamentals"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/chapter-1-defining-the-computer-to",
+      "priority": 1
+    },
+    {
+      "title": "Implementing Quicksort Using Partition",
+      "description": "Learn how to implement the Quicksort algorithm using a partitioning procedure.",
+      "type": "lesson",
+      "topic": "DSA",
+      "tags": [
+        "Quicksort",
+        "Partition",
+        "Sorting",
+        "DSA"
+      ],
+      "url": "https://theprogrammingsutras.substack.com/p/implementing-quicksort-using-partition-a32",
+      "priority": 1
+    },
+    {
+      "title": "Champak Roy on Facebook",
+      "description": "Follow Champak Roy's official Facebook profile for teaching and programming updates.",
+      "type": "social",
+      "topic": "Social Media",
+      "tags": [
+        "Champak Roy",
+        "Facebook",
+        "Programming",
+        "Updates"
+      ],
+      "url": "https://www.facebook.com/ChampakRoyVNS",
+      "priority": 1
+    },
+    {
+      "title": "Programmer's Picnic on Facebook",
+      "description": "Follow the Programmer's Picnic Facebook page for lessons, videos and community updates.",
+      "type": "social",
+      "topic": "Social Media",
+      "tags": [
+        "Programmer's Picnic",
+        "Facebook",
+        "Programming",
+        "Learning"
+      ],
+      "url": "https://www.facebook.com/programmerspicnic/",
+      "priority": 1
+    },
+    {
+      "title": "Champak Roy on LinkedIn",
+      "description": "Connect with Champak Roy on LinkedIn for professional, programming and teaching updates.",
+      "type": "social",
+      "topic": "Social Media",
+      "tags": [
+        "Champak Roy",
+        "LinkedIn",
+        "Programming",
+        "Teaching"
+      ],
+      "url": "https://www.linkedin.com/in/champak-roy-47b69128/",
+      "priority": 1
+    },
+    {
+      "title": "Python Magic Methods: Building a Currency Class",
+      "description": "Build a Currency class in Python while learning __init__, __str__ and object-oriented magic methods.",
+      "type": "video",
+      "topic": "Python OOP",
+      "tags": [
+        "Python",
+        "OOP",
+        "Magic Methods",
+        "Currency Class",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/DGyn8hFFsgk",
+      "priority": 1
+    },
+    {
+      "title": "Object-Oriented Programming in Python: Overloading + and -",
+      "description": "Learn operator overloading in Python by implementing the addition and subtraction operators.",
+      "type": "video",
+      "topic": "Python OOP",
+      "tags": [
+        "Python",
+        "OOP",
+        "Operator Overloading",
+        "Magic Methods",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/PP5a-CDKIkw",
+      "priority": 1
+    },
+    {
+      "title": "Insertion Sort in Python: Sorting with Boxes",
+      "description": "Learn insertion sort visually and step by step using movable boxes in Python.",
+      "type": "video",
+      "topic": "DSA",
+      "tags": [
+        "Insertion Sort",
+        "Python",
+        "Sorting",
+        "DSA",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/fdK1w6fhlGU",
+      "priority": 1
+    },
+    {
+      "title": "Polynomial Regression in Python",
+      "description": "Find a best-fit polynomial model, evaluate its R² score and make predictions in Python.",
+      "type": "video",
+      "topic": "Machine Learning",
+      "tags": [
+        "Polynomial Regression",
+        "Python",
+        "R Squared",
+        "Prediction",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/nbI-z0h-1mk",
+      "priority": 1
+    },
+    {
+      "title": "Variance and Standard Deviation in Python",
+      "description": "Learn variance and standard deviation as final statistical preparation for machine-learning programming.",
+      "type": "video",
+      "topic": "Statistics",
+      "tags": [
+        "Variance",
+        "Standard Deviation",
+        "Python",
+        "Machine Learning",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/yI4Jh1mX2_Q",
+      "priority": 1
+    },
+    {
+      "title": "Machine-Learning Programming Preparation Finale",
+      "description": "Review Python functions, roots, error, statistics and prediction before beginning machine-learning programming.",
+      "type": "video",
+      "topic": "Machine Learning",
+      "tags": [
+        "Python",
+        "Statistics",
+        "Prediction",
+        "Machine Learning",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/g-hFFrEGtDA",
+      "priority": 1
+    },
+    {
+      "title": "Square Root in Python Using Approximation",
+      "description": "Build square-root logic with approximation and visualise the result using Matplotlib.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "Square Root",
+        "Approximation",
+        "Matplotlib",
+        "Python",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/O6q0G1donE0",
+      "priority": 1
+    },
+    {
+      "title": "Python Program to Find Square Root",
+      "description": "A beginner-friendly Python program for finding a square root while developing programming logic.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "Square Root",
+        "Python",
+        "Logic Building",
+        "Beginner",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/n8kdzZBb6lk",
+      "priority": 1
+    },
+    {
+      "title": "Binary Search: 11 December 2025",
+      "description": "Learn and practise the binary-search algorithm with Programmer's Picnic.",
+      "type": "video",
+      "topic": "DSA",
+      "tags": [
+        "Binary Search",
+        "DSA",
+        "Algorithms",
+        "Python",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/tlCtn2lXtXA",
+      "priority": 1
+    },
+    {
+      "title": "Download Python, Set Up VS Code and Run Python",
+      "description": "Learn how to install Python, configure Visual Studio Code and run your first Python program.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "Python Installation",
+        "VS Code",
+        "Setup",
+        "Beginner",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/-RcJ3dtiLAs",
+      "priority": 1
+    },
+    {
+      "title": "Python and VS Code Setup in Hindi",
+      "description": "Hindi guide to downloading and installing Python and setting up Visual Studio Code.",
+      "type": "video",
+      "topic": "Python",
+      "tags": [
+        "Python Installation",
+        "VS Code",
+        "Hindi",
+        "Beginner",
+        "YouTube"
+      ],
+      "url": "https://youtu.be/eCEJCfyPs2g",
+      "priority": 1
+    },
     {
       "title": "Speaker Page Lesson",
       "description": "Lesson page for building a speaker or text-to-speech interface using HTML, CSS, and JavaScript.",
@@ -10777,21 +11375,413 @@
       ],
       "url": "https://dsa.learnwithchampak.live/html/pages/speaker/lesson/",
       "priority": 2
+    },
+    {
+      "title": "Dart foundations complete program",
+      "description": "Gist lesson for Dart foundations complete program, part 1 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Dart",
+        "Flutter",
+        "Gist",
+        "Programming",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/84ec3d94715a3448760c34443c99b2a4",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 1,
+      "gistId": "84ec3d94715a3448760c34443c99b2a4",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Dart classes complete program",
+      "description": "Gist lesson for Dart classes complete program, part 2 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Dart",
+        "Flutter",
+        "Gist",
+        "Programming",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/fe4b5c8e8e942a6b2ff33c35c73251d9",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 2,
+      "gistId": "fe4b5c8e8e942a6b2ff33c35c73251d9",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "First Flutter application",
+      "description": "Gist lesson for First Flutter application, part 3 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/ca422dacd76394a40c6d6a230fe9d035",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 3,
+      "gistId": "ca422dacd76394a40c6d6a230fe9d035",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter widgets and layouts",
+      "description": "Gist lesson for Flutter widgets and layouts, part 4 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/bb1f03ac8d4b1f8cfee721bf81020db1",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 4,
+      "gistId": "bb1f03ac8d4b1f8cfee721bf81020db1",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter Row UI",
+      "description": "Gist lesson for Flutter Row UI, part 5 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/934a9e0141a354eba33c24ef57ebae1f",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 5,
+      "gistId": "934a9e0141a354eba33c24ef57ebae1f",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter Column UI",
+      "description": "Gist lesson for Flutter Column UI, part 6 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/2b65bb717bd01a9d67fea88bb56fe47f",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 6,
+      "gistId": "2b65bb717bd01a9d67fea88bb56fe47f",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter Container design",
+      "description": "Gist lesson for Flutter Container design, part 7 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/5bbe1dbe4344f76db806918de1224a2b",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 7,
+      "gistId": "5bbe1dbe4344f76db806918de1224a2b",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter buttons icons and images",
+      "description": "Gist lesson for Flutter buttons icons and images, part 8 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/0d979fa50db1afb9d58e5173b18399dd",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 8,
+      "gistId": "0d979fa50db1afb9d58e5173b18399dd",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter Stack and Positioned",
+      "description": "Gist lesson for Flutter Stack and Positioned, part 9 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/a82c4029e6cd8fe20e9214c5956992a4",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 9,
+      "gistId": "a82c4029e6cd8fe20e9214c5956992a4",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Responsive Flutter user interface",
+      "description": "Gist lesson for Responsive Flutter user interface, part 10 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/0f9c272da2a36913707b09e8d8aabf50",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 10,
+      "gistId": "0f9c272da2a36913707b09e8d8aabf50",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Reusable Flutter widgets",
+      "description": "Gist lesson for Reusable Flutter widgets, part 11 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/b3c506da72134dcbb04b060a0e1b1fd2",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 11,
+      "gistId": "b3c506da72134dcbb04b060a0e1b1fd2",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter stateful counter",
+      "description": "Gist lesson for Flutter stateful counter, part 12 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/fe308b89febb2b0acf664dd7d42788ed",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 12,
+      "gistId": "fe308b89febb2b0acf664dd7d42788ed",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter form and validation",
+      "description": "Gist lesson for Flutter form and validation, part 13 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/88c8be9741b03c788da11dbc7f9b26c6",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 13,
+      "gistId": "88c8be9741b03c788da11dbc7f9b26c6",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter lists and models",
+      "description": "Gist lesson for Flutter lists and models, part 14 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/cef5278d0f80363e84b4cd84ede0d76a",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 14,
+      "gistId": "cef5278d0f80363e84b4cd84ede0d76a",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter navigation between screens",
+      "description": "Gist lesson for Flutter navigation between screens, part 15 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/bd4b1234cd7bb4d34e4d918876bf7ae1",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 15,
+      "gistId": "bd4b1234cd7bb4d34e4d918876bf7ae1",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Dart futures async and await",
+      "description": "Gist lesson for Dart futures async and await, part 16 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Dart",
+        "Flutter",
+        "Gist",
+        "Programming",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/65c9764fffd4ea10196943f2a40ec45a",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 16,
+      "gistId": "65c9764fffd4ea10196943f2a40ec45a",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter REST API request",
+      "description": "Gist lesson for Flutter REST API request, part 17 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/2661203c0f058d06fb36df422e6091ae",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 17,
+      "gistId": "2661203c0f058d06fb36df422e6091ae",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter SWAPI final project",
+      "description": "Gist lesson for Flutter SWAPI final project, part 18 of the Dart and Flutter learning sequence.",
+      "type": "lesson",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Gist",
+        "Mobile App",
+        "Learn With Champak"
+      ],
+      "url": "https://gist.github.com/champaksworldcreate/3ff1a1f0fc318ae3cc8fbf852b6cd01e",
+      "priority": 2,
+      "series": "Flutter and Dart Gist Lessons",
+      "lessonNumber": 18,
+      "gistId": "3ff1a1f0fc318ae3cc8fbf852b6cd01e",
+      "source": "GitHub Gist",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Flutter Learning Portal",
+      "description": "Main Flutter learning page for Dart, Flutter widgets, layouts, state, forms, navigation, APIs, and app-building lessons.",
+      "type": "platform",
+      "topic": "Flutter",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Mobile App",
+        "Learning Portal",
+        "Learn With Champak"
+      ],
+      "url": "https://dsa.learnwithchampak.live/flutter/",
+      "priority": 1,
+      "source": "Website",
+      "brand": "Learn With Champak"
     }
   ],
-  "totalItems": 689,
+  "totalItems": 708,
   "lastAddSummary": {
-    "source": "User-supplied Programmer's Picnic YouTube links",
-    "requested": 17,
-    "added": 11,
-    "skippedDuplicates": [
-      "https://youtu.be/L-HEBCUb-eg",
-      "https://youtu.be/VHLnM6CqAxM",
-      "https://youtu.be/HqIAtTbzOXg",
-      "https://youtu.be/GlmZg64sebM",
-      "https://youtu.be/xRXmWa3dfGQ",
-      "https://youtu.be/rLX8BnYCkRk"
-    ]
+    "source": "Manual add: Flutter and Dart Gist lesson URLs",
+    "originalItems": 689,
+    "added": 19,
+    "skippedDuplicates": 0,
+    "addedUrls": [
+      "https://gist.github.com/champaksworldcreate/84ec3d94715a3448760c34443c99b2a4",
+      "https://gist.github.com/champaksworldcreate/fe4b5c8e8e942a6b2ff33c35c73251d9",
+      "https://gist.github.com/champaksworldcreate/ca422dacd76394a40c6d6a230fe9d035",
+      "https://gist.github.com/champaksworldcreate/bb1f03ac8d4b1f8cfee721bf81020db1",
+      "https://gist.github.com/champaksworldcreate/934a9e0141a354eba33c24ef57ebae1f",
+      "https://gist.github.com/champaksworldcreate/2b65bb717bd01a9d67fea88bb56fe47f",
+      "https://gist.github.com/champaksworldcreate/5bbe1dbe4344f76db806918de1224a2b",
+      "https://gist.github.com/champaksworldcreate/0d979fa50db1afb9d58e5173b18399dd",
+      "https://gist.github.com/champaksworldcreate/a82c4029e6cd8fe20e9214c5956992a4",
+      "https://gist.github.com/champaksworldcreate/0f9c272da2a36913707b09e8d8aabf50",
+      "https://gist.github.com/champaksworldcreate/b3c506da72134dcbb04b060a0e1b1fd2",
+      "https://gist.github.com/champaksworldcreate/fe308b89febb2b0acf664dd7d42788ed",
+      "https://gist.github.com/champaksworldcreate/88c8be9741b03c788da11dbc7f9b26c6",
+      "https://gist.github.com/champaksworldcreate/cef5278d0f80363e84b4cd84ede0d76a",
+      "https://gist.github.com/champaksworldcreate/bd4b1234cd7bb4d34e4d918876bf7ae1",
+      "https://gist.github.com/champaksworldcreate/65c9764fffd4ea10196943f2a40ec45a",
+      "https://gist.github.com/champaksworldcreate/2661203c0f058d06fb36df422e6091ae",
+      "https://gist.github.com/champaksworldcreate/3ff1a1f0fc318ae3cc8fbf852b6cd01e",
+      "https://dsa.learnwithchampak.live/flutter/"
+    ],
+    "skippedDuplicateUrls": []
   },
   "lastDedupSummary": {
     "sourceFile": "links_with_new_student_speaker_links.json",
