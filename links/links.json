@@ -10756,7 +10756,8 @@
         "DSA",
         "AI",
         "Machine Learning",
-        "Champak Roy"
+        "Champak Roy",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/",
       "priority": 1
@@ -10770,7 +10771,8 @@
         "DSA",
         "Saturday Questions",
         "Algorithms",
-        "Practice"
+        "Practice",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/dsa-questions-for-saturday-24-jan",
       "priority": 1
@@ -10784,7 +10786,8 @@
         "Linear Regression",
         "Machine Learning",
         "Prediction",
-        "Regression"
+        "Regression",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/beginning-linear-regression",
       "priority": 1
@@ -10798,7 +10801,8 @@
         "Classification",
         "Machine Learning",
         "AI",
-        "Beginner"
+        "Beginner",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/beginning-classification-in-machine",
       "priority": 1
@@ -10812,7 +10816,8 @@
         "Programming",
         "Fundamentals",
         "Computer Science",
-        "Skills"
+        "Skills",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/learn-the-fundamental-skill-of-computer",
       "priority": 2
@@ -10826,7 +10831,8 @@
         "Programming",
         "Beginner",
         "Learning Journey",
-        "Coding"
+        "Coding",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/starting-the-programming-journey",
       "priority": 1
@@ -10840,7 +10846,8 @@
         "Pictures",
         "Weekly Update",
         "Community",
-        "Programming Sutras"
+        "Programming Sutras",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/this-week-in-pictures",
       "priority": 2
@@ -10854,7 +10861,8 @@
         "DFA",
         "NFA",
         "Pyformlang",
-        "Automata"
+        "Automata",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/starting-dfa-and-nfa-using-pyformlang",
       "priority": 1
@@ -10868,7 +10876,8 @@
         "Inheritance",
         "OOP",
         "Methods",
-        "Programming"
+        "Programming",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/simple-inheritance-and-calling-of",
       "priority": 1
@@ -10883,7 +10892,8 @@
         "ML",
         "Discussion",
         "Chat",
-        "Community"
+        "Community",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/join-my-chat-for-discussing-ai-ml",
       "priority": 1
@@ -10897,7 +10907,8 @@
         "Divide and Conquer",
         "DSA",
         "Algorithms",
-        "Recursion"
+        "Recursion",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/understanding-divide-and-conquer",
       "priority": 1
@@ -10911,7 +10922,8 @@
         "Loops",
         "DSA",
         "Factorial",
-        "Programming"
+        "Programming",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/loops-in-dsa-leading-up-to-calculating",
       "priority": 1
@@ -10925,7 +10937,8 @@
         "Matplotlib",
         "Python",
         "Data Visualization",
-        "Charts"
+        "Charts",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/introduction-to-matplotlib",
       "priority": 1
@@ -10939,7 +10952,8 @@
         "Prediction",
         "Time Series",
         "Machine Learning",
-        "Data"
+        "Data",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/how-to-predict-short-term-fluctuations",
       "priority": 1
@@ -10953,7 +10967,8 @@
         "DSA",
         "Practice",
         "Algorithms",
-        "Questions"
+        "Questions",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/dsa-for-wednesday-23-july-2025",
       "priority": 2
@@ -10967,7 +10982,8 @@
         "OCR",
         "Images",
         "Text Recognition",
-        "AI"
+        "AI",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/how-to-read-text-written-in-images",
       "priority": 1
@@ -10981,7 +10997,8 @@
         "Machine Learning",
         "AI",
         "Prediction",
-        "Beginner"
+        "Beginner",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/how-to-use-machine-learningml-to",
       "priority": 1
@@ -10995,7 +11012,8 @@
         "Artificial Intelligence",
         "AI Terms",
         "Machine Learning",
-        "Beginner"
+        "Beginner",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/basic-terms-in-artficial-intelligence",
       "priority": 1
@@ -11009,7 +11027,8 @@
         "Selection Sort",
         "Sorting",
         "DSA",
-        "Algorithms"
+        "Algorithms",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/selection-sort",
       "priority": 1
@@ -11023,7 +11042,8 @@
         "Patterns",
         "Random Data",
         "Data Science",
-        "Analysis"
+        "Analysis",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/is-there-a-pattern-in-seemingly-random",
       "priority": 2
@@ -11037,7 +11057,8 @@
         "Decision Tree",
         "Classification",
         "Machine Learning",
-        "AI"
+        "AI",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/explaining-decision-tree-classification",
       "priority": 1
@@ -11051,7 +11072,8 @@
         "ml5.js",
         "Image Classification",
         "JavaScript",
-        "Machine Learning"
+        "Machine Learning",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/classifying-images-using-ml5js",
       "priority": 1
@@ -11065,7 +11087,8 @@
         "Sorting",
         "DSA",
         "Algorithms",
-        "Beginner"
+        "Beginner",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/sorting-made-simple-understanding",
       "priority": 1
@@ -11079,7 +11102,8 @@
         "Discussion",
         "Community",
         "Programming",
-        "Questions"
+        "Questions",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/discussion-thread",
       "priority": 2
@@ -11093,7 +11117,8 @@
         "Prediction",
         "Regression",
         "Machine Learning",
-        "Future Values"
+        "Future Values",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/how-to-predict-future-values-based",
       "priority": 1
@@ -11107,7 +11132,8 @@
         "Machine Learning",
         "Artificial Intelligence",
         "AI",
-        "ML"
+        "ML",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/machine-learning-and-ai",
       "priority": 1
@@ -11121,7 +11147,8 @@
         "Unsupervised Learning",
         "Clustering",
         "Machine Learning",
-        "AI"
+        "AI",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/introducing-unsupervised-learning",
       "priority": 1
@@ -11135,7 +11162,8 @@
         "Computer",
         "Programming",
         "Chapter 1",
-        "Fundamentals"
+        "Fundamentals",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/chapter-1-defining-the-computer-to",
       "priority": 1
@@ -11149,7 +11177,8 @@
         "Quicksort",
         "Partition",
         "Sorting",
-        "DSA"
+        "DSA",
+        "Substack"
       ],
       "url": "https://theprogrammingsutras.substack.com/p/implementing-quicksort-using-partition-a32",
       "priority": 1
@@ -11899,5 +11928,23 @@
         "keptUrl": "https://dsa.learnwithchampak.live/spring/e-commerce"
       }
     ]
+  },
+  "lastTagUpdateSummary": {
+    "sourceFile": "links(7).json",
+    "totalItems": 708,
+    "itemsUpdated": 29,
+    "matchedUrlCounts": {
+      "YouTube URLs": 28,
+      "Substack URLs": 29,
+      "Gist URLs": 18
+    },
+    "addedTagInstances": {
+      "Substack": 29
+    },
+    "rules": {
+      "YouTube": "Added to URLs on youtube.com or youtu.be",
+      "Gist": "Added to URLs on gist.github.com or gist.githubusercontent.com",
+      "Substack": "Added to URLs on substack.com"
+    }
   }
 }
