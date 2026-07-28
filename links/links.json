@@ -11781,34 +11781,71 @@
       "priority": 1,
       "source": "Website",
       "brand": "Learn With Champak"
+    },
+    {
+      "title": "Shorts Maker",
+      "description": "Browser-based tool for creating educational shorts, quick lesson videos, and social media learning clips.",
+      "type": "tool",
+      "topic": "Video Tools",
+      "tags": [
+        "Shorts",
+        "Video Maker",
+        "Educational Shorts",
+        "Social Media",
+        "Learn With Champak"
+      ],
+      "url": "https://editor.learnwithchampak.live/shorts/",
+      "priority": 1,
+      "source": "Website",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Simple Shorts Maker",
+      "description": "Simplified browser tool for preparing short educational videos, quick spoken slides, and learning reels.",
+      "type": "tool",
+      "topic": "Video Tools",
+      "tags": [
+        "Shorts",
+        "Simple Shorts",
+        "Video Maker",
+        "Educational Videos",
+        "Learn With Champak"
+      ],
+      "url": "https://editor.learnwithchampak.live/sshorts/",
+      "priority": 1,
+      "source": "Website",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Reel Maker",
+      "description": "Tool for creating educational reels with slides, code movement, narration, highlighting, and short-video production workflow.",
+      "type": "tool",
+      "topic": "Video Tools",
+      "tags": [
+        "Reel Maker",
+        "Educational Reels",
+        "Shorts",
+        "Video Maker",
+        "Learn With Champak"
+      ],
+      "url": "https://editor.learnwithchampak.live/reelmaker/",
+      "priority": 1,
+      "source": "Website",
+      "brand": "Learn With Champak"
     }
   ],
-  "totalItems": 708,
+  "totalItems": 711,
   "lastAddSummary": {
-    "source": "Manual add: Flutter and Dart Gist lesson URLs",
-    "originalItems": 689,
-    "added": 19,
+    "source": "Manual add: short-video editor tools",
+    "sourceFile": "links(8).json",
+    "originalItems": 708,
+    "requestedAdditions": 3,
+    "added": 3,
     "skippedDuplicates": 0,
     "addedUrls": [
-      "https://gist.github.com/champaksworldcreate/84ec3d94715a3448760c34443c99b2a4",
-      "https://gist.github.com/champaksworldcreate/fe4b5c8e8e942a6b2ff33c35c73251d9",
-      "https://gist.github.com/champaksworldcreate/ca422dacd76394a40c6d6a230fe9d035",
-      "https://gist.github.com/champaksworldcreate/bb1f03ac8d4b1f8cfee721bf81020db1",
-      "https://gist.github.com/champaksworldcreate/934a9e0141a354eba33c24ef57ebae1f",
-      "https://gist.github.com/champaksworldcreate/2b65bb717bd01a9d67fea88bb56fe47f",
-      "https://gist.github.com/champaksworldcreate/5bbe1dbe4344f76db806918de1224a2b",
-      "https://gist.github.com/champaksworldcreate/0d979fa50db1afb9d58e5173b18399dd",
-      "https://gist.github.com/champaksworldcreate/a82c4029e6cd8fe20e9214c5956992a4",
-      "https://gist.github.com/champaksworldcreate/0f9c272da2a36913707b09e8d8aabf50",
-      "https://gist.github.com/champaksworldcreate/b3c506da72134dcbb04b060a0e1b1fd2",
-      "https://gist.github.com/champaksworldcreate/fe308b89febb2b0acf664dd7d42788ed",
-      "https://gist.github.com/champaksworldcreate/88c8be9741b03c788da11dbc7f9b26c6",
-      "https://gist.github.com/champaksworldcreate/cef5278d0f80363e84b4cd84ede0d76a",
-      "https://gist.github.com/champaksworldcreate/bd4b1234cd7bb4d34e4d918876bf7ae1",
-      "https://gist.github.com/champaksworldcreate/65c9764fffd4ea10196943f2a40ec45a",
-      "https://gist.github.com/champaksworldcreate/2661203c0f058d06fb36df422e6091ae",
-      "https://gist.github.com/champaksworldcreate/3ff1a1f0fc318ae3cc8fbf852b6cd01e",
-      "https://dsa.learnwithchampak.live/flutter/"
+      "https://editor.learnwithchampak.live/shorts/",
+      "https://editor.learnwithchampak.live/sshorts/",
+      "https://editor.learnwithchampak.live/reelmaker/"
     ],
     "skippedDuplicateUrls": []
   },
