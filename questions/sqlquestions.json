@@ -1,97 +1,800 @@
 {
-  "meta": {
-    "title": "RDBMS & SQL Question Paper Generator",
-    "subtitle": "Build balanced DBMS and SQL examination papers—and check MCQ answers instantly.",
-    "course": "BCA-S301T · Introduction to DBMS",
+  "metadata": {
+    "title": "BCA RDBMS and SQL Question Bank",
+    "browserTitle": "RDBMS and SQL Question Paper Generator | Programmer's Picnic",
+    "description": "Generate syllabus-based BCA RDBMS and SQL question papers, evaluate MCQs and view complete answers.",
+    "author": "Champak Roy",
+    "themeColor": "#047857",
+    "courseCode": "BCA-S301T",
+    "courseName": "Introduction to DBMS",
+    "version": "1.0",
     "brand": "Programmer's Picnic by Champak Roy",
-    "description": "Covers database concepts, ER modelling, relational algebra, SQL, normalization, transactions, recovery and security."
+    "appTitle": "RDBMS & SQL Question Paper Generator",
+    "intro": "Build balanced DBMS and SQL examination papers—and check MCQ answers instantly.",
+    "units": [
+      {
+        "id": 1,
+        "shortLabel": "Unit I",
+        "name": "Unit I: Database Concepts, Architecture and Data Independence"
+      },
+      {
+        "id": 2,
+        "shortLabel": "Unit II",
+        "name": "Unit II: ER Modelling, Keys and Constraints"
+      },
+      {
+        "id": 3,
+        "shortLabel": "Unit III",
+        "name": "Unit III: Relational Model and Relational Algebra"
+      },
+      {
+        "id": 4,
+        "shortLabel": "Unit IV",
+        "name": "Unit IV: SQL: DDL, DML, Queries, Joins and Subqueries"
+      },
+      {
+        "id": 5,
+        "shortLabel": "Unit V",
+        "name": "Unit V: Database Design and Normalization"
+      },
+      {
+        "id": 6,
+        "shortLabel": "Unit VI",
+        "name": "Unit VI: Transactions, Concurrency, Recovery and Security"
+      }
+    ]
   },
-  "labels": {
-    "settings": "Build your paper", "settingsHelp": "Control coverage and question mix.",
-    "difficulty": "Difficulty", "mixed": "Mixed difficulty", "units": "Syllabus units",
-    "composition": "Paper composition", "selectAll": "Select all", "clearAll": "Clear all",
-    "mcq": "Multiple-choice questions", "short": "Short-answer questions",
-    "long": "Long-answer questions", "output": "Query-result questions", "program": "SQL and design problems",
-    "generate": "Generate Question Paper", "regenerate": "Generate Another Version",
-    "paperPlan": "Question-bank coverage", "instructions": "Instructions for students",
-    "showAnswers": "Show Answers", "hideAnswers": "Hide Answers", "print": "Print / Save PDF",
-    "evaluate": "Evaluate MCQ Answers", "answer": "Model answer", "generatedPaper": "Generated examination paper"
+  "interface": {
+    "settingsPanelTitle": "Build your paper",
+    "settingsAriaLabel": "RDBMS & SQL Question Paper Generator settings",
+    "paperTitleLabel": "Paper title",
+    "defaultPaperTitle": "RDBMS and SQL Examination",
+    "durationLabel": "Duration",
+    "durations": [
+      {
+        "value": "1 Hour",
+        "label": "1 Hour"
+      },
+      {
+        "value": "2 Hours",
+        "label": "2 Hours",
+        "selected": true
+      },
+      {
+        "value": "3 Hours",
+        "label": "3 Hours"
+      }
+    ],
+    "difficultyLabel": "Difficulty",
+    "difficulties": [
+      {
+        "value": "mixed",
+        "label": "Mixed difficulty",
+        "selected": true
+      },
+      {
+        "value": "easy",
+        "label": "Easy"
+      },
+      {
+        "value": "medium",
+        "label": "Medium"
+      },
+      {
+        "value": "hard",
+        "label": "Hard"
+      }
+    ],
+    "includeUnitsLabel": "Syllabus units",
+    "questionTypes": [
+      {
+        "key": "mcq",
+        "label": "MCQs",
+        "sectionTitle": "Section A: Multiple-Choice Questions",
+        "defaultCount": 10
+      },
+      {
+        "key": "short",
+        "label": "Short",
+        "sectionTitle": "Section B: Short-Answer Questions",
+        "defaultCount": 5
+      },
+      {
+        "key": "long",
+        "label": "Long",
+        "sectionTitle": "Section C: Long-Answer Questions",
+        "defaultCount": 3
+      },
+      {
+        "key": "output",
+        "label": "Output",
+        "sectionTitle": "Section D: Output-Prediction Questions",
+        "defaultCount": 3
+      },
+      {
+        "key": "program",
+        "label": "Programs",
+        "sectionTitle": "Section E: Programming Questions",
+        "defaultCount": 2
+      }
+    ],
+    "showAnswersImmediatelyLabel": "Show answers immediately",
+    "buttons": {
+      "generate": "Generate Question Paper",
+      "regenerate": "Generate Another Version",
+      "print": "Print / Save PDF",
+      "evaluate": "Evaluate MCQ Answers",
+      "showAnswers": "Show Answers",
+      "hideAnswers": "Hide Answers"
+    },
+    "emptyTitle": "Your question paper will appear here.",
+    "emptyText": "Choose the settings and press “Generate Question Paper”.",
+    "paper": {
+      "durationPrefix": "Duration:",
+      "maximumMarksPrefix": "Maximum Marks:",
+      "nameLabel": "Name:",
+      "rollNumberLabel": "Roll No.:",
+      "instructionsTitle": "Instructions for students",
+      "instructions": [
+        "Attempt all multiple-choice questions and follow the directions for other sections.",
+        "State assumptions and write SQL using standard syntax.",
+        "Draw neat ER diagrams, schemas or schedules wherever required.",
+        "Marks are shown against every question."
+      ],
+      "answerKeyTitle": "Answer Key and Model Answers"
+    },
+    "messages": {
+      "loading": "Loading question bank…",
+      "ready": "{count} questions ready • BCA-S301T",
+      "bankNotReady": "The question bank is not ready.",
+      "selectUnit": "Select at least one unit.",
+      "selectQuestion": "Select at least one question.",
+      "correct": "Correct",
+      "incorrect": "Incorrect. Correct answer: {answer}.",
+      "notAnswered": "Not answered. Correct answer: {answer}.",
+      "score": "MCQ Score: {correct}/{total} ({percent}%) • Answered: {answered}/{total}"
+    },
+    "footer": "Prepared for examination practice • BCA-S301T Introduction to DBMS"
   },
-  "units": [
-    {"id":"u1","name":"Database Concepts, Architecture and Data Independence"},
-    {"id":"u2","name":"ER Modelling, Keys and Constraints"},
-    {"id":"u3","name":"Relational Model and Relational Algebra"},
-    {"id":"u4","name":"SQL: DDL, DML, Queries, Joins and Subqueries"},
-    {"id":"u5","name":"Database Design and Normalization"},
-    {"id":"u6","name":"Transactions, Concurrency, Recovery and Security"}
-  ],
-  "difficulties": ["easy","medium","hard"],
-  "defaults": {"mcq":10,"short":5,"long":3,"output":3,"program":2},
-  "instructions": [
-    "Attempt all multiple-choice questions and follow the directions for other sections.",
-    "State assumptions and write SQL using standard syntax.",
-    "Draw neat ER diagrams, schemas or schedules wherever required.",
-    "Marks are shown against every question."
-  ],
   "questions": [
-    {"id":"m01","type":"mcq","unit":"u1","difficulty":"easy","marks":1,"question":"A collection of related data is called a:","options":["Compiler","Database","Algorithm","Protocol"],"correct":1,"answer":"B. Database"},
-    {"id":"m02","type":"mcq","unit":"u1","difficulty":"medium","marks":1,"question":"Which schema level describes physical storage?","options":["External","Conceptual","Internal","View"],"correct":2,"answer":"C. Internal"},
-    {"id":"m03","type":"mcq","unit":"u1","difficulty":"medium","marks":1,"question":"Changing storage structures without changing the conceptual schema is:","options":["Logical data independence","Physical data independence","Normalization","Authorization"],"correct":1,"answer":"B. Physical data independence"},
-    {"id":"m04","type":"mcq","unit":"u1","difficulty":"hard","marks":1,"question":"Which component chooses an efficient execution plan for a query?","options":["Query optimizer","Form designer","Transaction user","Data dictionary only"],"correct":0,"answer":"A. Query optimizer"},
-    {"id":"m05","type":"mcq","unit":"u2","difficulty":"easy","marks":1,"question":"An attribute that uniquely identifies an entity is commonly a:","options":["Foreign key","Primary key","Derived attribute","Multivalued attribute"],"correct":1,"answer":"B. Primary key"},
-    {"id":"m06","type":"mcq","unit":"u2","difficulty":"medium","marks":1,"question":"A weak entity is identified using:","options":["Only its own complete key","An owner entity and partial key","No attributes","A recursive query"],"correct":1,"answer":"B. An owner entity and partial key"},
-    {"id":"m07","type":"mcq","unit":"u2","difficulty":"medium","marks":1,"question":"A foreign key enforces:","options":["Domain independence","Referential integrity","File compression","Atomicity"],"correct":1,"answer":"B. Referential integrity"},
-    {"id":"m08","type":"mcq","unit":"u2","difficulty":"hard","marks":1,"question":"Total participation is shown in an ER diagram using:","options":["A dashed oval","A double line","A triangle","A single arrow only"],"correct":1,"answer":"B. A double line"},
-    {"id":"m09","type":"mcq","unit":"u3","difficulty":"easy","marks":1,"question":"A row in a relation is a:","options":["Domain","Tuple","Degree","Schema"],"correct":1,"answer":"B. Tuple"},
-    {"id":"m10","type":"mcq","unit":"u3","difficulty":"medium","marks":1,"question":"Which relational-algebra operation selects rows?","options":["Projection","Selection","Rename","Cartesian product"],"correct":1,"answer":"B. Selection"},
-    {"id":"m11","type":"mcq","unit":"u3","difficulty":"medium","marks":1,"question":"The number of attributes in a relation is its:","options":["Cardinality","Degree","Domain","Arity value count"],"correct":1,"answer":"B. Degree"},
-    {"id":"m12","type":"mcq","unit":"u3","difficulty":"hard","marks":1,"question":"Division is useful for queries involving:","options":["At least one","For all","Sorting only","Duplicate removal only"],"correct":1,"answer":"B. For all"},
-    {"id":"m13","type":"mcq","unit":"u4","difficulty":"easy","marks":1,"question":"Which command removes rows but keeps the table definition?","options":["DROP TABLE","DELETE","CREATE","GRANT"],"correct":1,"answer":"B. DELETE"},
-    {"id":"m14","type":"mcq","unit":"u4","difficulty":"medium","marks":1,"question":"Which clause filters groups after GROUP BY?","options":["WHERE","ORDER BY","HAVING","DISTINCT"],"correct":2,"answer":"C. HAVING"},
-    {"id":"m15","type":"mcq","unit":"u4","difficulty":"medium","marks":1,"question":"Which join returns all rows from the left table and matching rows from the right?","options":["INNER JOIN","LEFT JOIN","CROSS JOIN","SELF JOIN"],"correct":1,"answer":"B. LEFT JOIN"},
-    {"id":"m16","type":"mcq","unit":"u4","difficulty":"hard","marks":1,"question":"Which expression counts only non-NULL salary values?","options":["COUNT(*)","COUNT(salary)","SUM(*)","NUMBER(salary)"],"correct":1,"answer":"B. COUNT(salary)"},
-    {"id":"m17","type":"mcq","unit":"u5","difficulty":"easy","marks":1,"question":"First Normal Form requires:","options":["No transitive dependencies","Atomic attribute values","Every determinant be a candidate key","No partial dependencies"],"correct":1,"answer":"B. Atomic attribute values"},
-    {"id":"m18","type":"mcq","unit":"u5","difficulty":"medium","marks":1,"question":"Second Normal Form removes:","options":["Repeating groups only","Partial dependencies","All foreign keys","Transactions"],"correct":1,"answer":"B. Partial dependencies"},
-    {"id":"m19","type":"mcq","unit":"u5","difficulty":"medium","marks":1,"question":"Third Normal Form primarily removes:","options":["Transitive dependencies","Primary keys","Atomic values","Joins"],"correct":0,"answer":"A. Transitive dependencies"},
-    {"id":"m20","type":"mcq","unit":"u5","difficulty":"hard","marks":1,"question":"A decomposition that preserves all original tuples after joining is:","options":["Dependency losing","Lossless-join","Non-atomic","Serial"],"correct":1,"answer":"B. Lossless-join"},
-    {"id":"m21","type":"mcq","unit":"u6","difficulty":"easy","marks":1,"question":"Which ACID property means all-or-nothing execution?","options":["Consistency","Isolation","Atomicity","Durability"],"correct":2,"answer":"C. Atomicity"},
-    {"id":"m22","type":"mcq","unit":"u6","difficulty":"medium","marks":1,"question":"A schedule equivalent to some serial schedule is:","options":["Recoverable only","Serializable","Cascading","Dirty"],"correct":1,"answer":"B. Serializable"},
-    {"id":"m23","type":"mcq","unit":"u6","difficulty":"medium","marks":1,"question":"Which SQL command makes a transaction permanent?","options":["SAVEPOINT","ROLLBACK","COMMIT","GRANT"],"correct":2,"answer":"C. COMMIT"},
-    {"id":"m24","type":"mcq","unit":"u6","difficulty":"hard","marks":1,"question":"Two-phase locking guarantees:","options":["Conflict serializability","No deadlock ever","No rollback ever","Physical data independence"],"correct":0,"answer":"A. Conflict serializability"},
-
-    {"id":"s01","type":"short","unit":"u1","difficulty":"easy","marks":3,"question":"State three advantages of a DBMS over a file-processing system.","answer":"Reduced uncontrolled redundancy, improved data sharing and consistency, centralized security/integrity, concurrency control, backup/recovery and data independence."},
-    {"id":"s02","type":"short","unit":"u1","difficulty":"medium","marks":4,"question":"Differentiate logical and physical data independence.","answer":"Logical data independence permits changes to the conceptual schema without changing external views/programs. Physical data independence permits storage changes without changing the conceptual schema."},
-    {"id":"s03","type":"short","unit":"u2","difficulty":"easy","marks":3,"question":"Differentiate super key, candidate key and primary key.","answer":"A super key uniquely identifies tuples but may contain extra attributes. A candidate key is a minimal super key. One candidate key is selected as the primary key."},
-    {"id":"s04","type":"short","unit":"u2","difficulty":"medium","marks":4,"question":"Explain cardinality ratios in ER modelling.","answer":"Cardinality ratios specify how many entity instances may participate: one-to-one, one-to-many, many-to-one and many-to-many."},
-    {"id":"s05","type":"short","unit":"u3","difficulty":"medium","marks":4,"question":"Differentiate selection and projection.","answer":"Selection chooses tuples satisfying a predicate and is horizontal. Projection chooses specified attributes and is vertical, normally removing duplicate result tuples."},
-    {"id":"s06","type":"short","unit":"u3","difficulty":"hard","marks":4,"question":"What are entity integrity and referential integrity?","answer":"Entity integrity requires primary-key values to be unique and non-NULL. Referential integrity requires each non-NULL foreign-key value to match a referenced candidate/primary key."},
-    {"id":"s07","type":"short","unit":"u4","difficulty":"easy","marks":3,"question":"Differentiate DDL, DML, DCL and TCL with examples.","answer":"DDL defines structures: CREATE, ALTER, DROP. DML reads/changes data: SELECT, INSERT, UPDATE, DELETE. DCL controls privileges: GRANT, REVOKE. TCL controls transactions: COMMIT, ROLLBACK, SAVEPOINT."},
-    {"id":"s08","type":"short","unit":"u4","difficulty":"medium","marks":4,"question":"Differentiate WHERE and HAVING.","answer":"WHERE filters individual rows before grouping and cannot normally contain aggregate conditions. HAVING filters groups after GROUP BY and commonly uses aggregate expressions."},
-    {"id":"s09","type":"short","unit":"u5","difficulty":"medium","marks":4,"question":"What is a functional dependency?","answer":"X → Y means that whenever two tuples agree on attribute set X, they must also agree on Y. X is the determinant and Y is functionally dependent on X."},
-    {"id":"s10","type":"short","unit":"u5","difficulty":"hard","marks":4,"question":"Differentiate 3NF and BCNF.","answer":"3NF permits X→A when X is a super key or A is prime. BCNF requires every non-trivial determinant X to be a super key, so BCNF is stricter."},
-    {"id":"s11","type":"short","unit":"u6","difficulty":"easy","marks":3,"question":"Explain the four ACID properties.","answer":"Atomicity: all or nothing. Consistency: rules remain satisfied. Isolation: concurrent transactions behave safely. Durability: committed changes survive failures."},
-    {"id":"s12","type":"short","unit":"u6","difficulty":"medium","marks":4,"question":"What is deadlock? Name two handling methods.","answer":"Deadlock is a cycle of transactions waiting indefinitely for one another's locks. It may be prevented using ordering/timeouts or detected with a wait-for graph and resolved by rolling back a victim."},
-
-    {"id":"l01","type":"long","unit":"u1","difficulty":"medium","marks":8,"question":"Explain the three-schema architecture and both kinds of data independence.","answer":"Describe external user views, the global conceptual schema and internal physical schema; external-conceptual and conceptual-internal mappings; logical and physical data independence with examples and benefits."},
-    {"id":"l02","type":"long","unit":"u2","difficulty":"hard","marks":10,"question":"Design and explain an ER model for a college database.","answer":"Include Student, Course, Teacher and Department entities; identifiers and attributes; enrolment and teaching relationships; appropriate cardinalities and participation constraints; resolve the many-to-many enrolment relationship when mapping to relations."},
-    {"id":"l03","type":"long","unit":"u3","difficulty":"hard","marks":10,"question":"Explain fundamental relational-algebra operations with examples.","answer":"Cover selection, projection, union, set difference, Cartesian product and rename; derive intersection and joins; explain division and express sample student-course queries."},
-    {"id":"l04","type":"long","unit":"u4","difficulty":"hard","marks":10,"question":"Explain SQL joins, aggregate queries, subqueries, views and indexes with syntax and examples.","answer":"Define inner/outer/cross/self joins; COUNT/SUM/AVG/MIN/MAX with GROUP BY and HAVING; scalar, multi-row and correlated subqueries; CREATE VIEW; CREATE INDEX; benefits and cautions."},
-    {"id":"l05","type":"long","unit":"u5","difficulty":"hard","marks":10,"question":"Normalize a relation from unnormalized form to Third Normal Form, explaining each step.","answer":"Identify repeating groups and atomic values for 1NF, candidate keys and partial dependencies for 2NF, then transitive dependencies for 3NF. Show decomposed schemas and verify lossless joins and preferably dependency preservation."},
-    {"id":"l06","type":"long","unit":"u6","difficulty":"hard","marks":10,"question":"Explain transaction states, serializability, locking, deadlocks and recovery.","answer":"Cover active, partially committed, committed, failed and aborted states; serial and concurrent schedules; conflict serializability; shared/exclusive locks and 2PL; deadlock handling; logs, checkpoints, undo and redo."},
-
-    {"id":"o01","type":"output","unit":"u4","difficulty":"easy","marks":3,"question":"Student rows have marks 80, 70, 70 and NULL. What does SELECT COUNT(marks), COUNT(*) FROM Student return?","answer":"3 and 4. COUNT(marks) ignores NULL; COUNT(*) counts every row."},
-    {"id":"o02","type":"output","unit":"u4","difficulty":"medium","marks":4,"question":"Given Employee salaries 30000, 40000 and 50000, what is returned by SELECT AVG(salary) FROM Employee?","answer":"40000."},
-    {"id":"o03","type":"output","unit":"u4","difficulty":"medium","marks":4,"question":"Department has D1 and D2. Employee contains only one employee in D1. How many rows does Department LEFT JOIN Employee produce?","answer":"Two rows: one matched row for D1 and one row for D2 with NULL Employee columns."},
-    {"id":"o04","type":"output","unit":"u4","difficulty":"hard","marks":5,"question":"What is the logical purpose of: SELECT dept_id FROM Employee GROUP BY dept_id HAVING COUNT(*) > 5?","answer":"It returns identifiers of departments having more than five employee rows."},
-    {"id":"o05","type":"output","unit":"u5","difficulty":"medium","marks":4,"question":"Relation R(A,B,C) has key (A,B) and dependency A→C. Which normal form is violated and why?","answer":"Second Normal Form is violated because non-prime attribute C depends on only part A of the composite key (A,B)."},
-    {"id":"o06","type":"output","unit":"u6","difficulty":"hard","marks":5,"question":"T1 updates a balance and then rolls back. T2 read the uncommitted value. Name the anomaly.","answer":"Dirty read, also called uncommitted dependency. T2 observed a value that never became permanent."},
-
-    {"id":"p01","type":"program","unit":"u2","difficulty":"medium","marks":8,"question":"Convert an ER design with Student, Course and many-to-many Enrolment into relational schemas.","answer":"STUDENT(StudentID PK, Name, ...)\nCOURSE(CourseID PK, Title, ...)\nENROLMENT(StudentID FK→STUDENT, CourseID FK→COURSE, EnrolDate, Grade, PRIMARY KEY(StudentID,CourseID))."},
-    {"id":"p02","type":"program","unit":"u3","difficulty":"hard","marks":8,"question":"Write relational algebra to find names of students enrolled in the course 'DBMS'.","answer":"π Student.Name (Student ⋈ Student.StudentID=Enrolment.StudentID (Enrolment ⋈ Enrolment.CourseID=Course.CourseID σ Course.Title='DBMS'(Course)))"},
-    {"id":"p03","type":"program","unit":"u4","difficulty":"easy","marks":6,"question":"Create a Student table with roll number, name, email, marks and department ID, using suitable constraints.","answer":"CREATE TABLE Student(\n roll_no INT PRIMARY KEY,\n name VARCHAR(80) NOT NULL,\n email VARCHAR(120) UNIQUE,\n marks DECIMAL(5,2) CHECK(marks BETWEEN 0 AND 100),\n dept_id INT,\n FOREIGN KEY(dept_id) REFERENCES Department(dept_id)\n);"},
-    {"id":"p04","type":"program","unit":"u4","difficulty":"medium","marks":8,"question":"Write SQL to display each department name and its average salary, including departments with no employees.","answer":"SELECT d.dept_name, AVG(e.salary) AS average_salary\nFROM Department d\nLEFT JOIN Employee e ON e.dept_id=d.dept_id\nGROUP BY d.dept_id, d.dept_name;"},
-    {"id":"p05","type":"program","unit":"u4","difficulty":"hard","marks":10,"question":"Write SQL to find employees earning more than the average salary of their own department.","answer":"SELECT e.emp_id,e.emp_name,e.salary\nFROM Employee e\nWHERE e.salary > (SELECT AVG(x.salary) FROM Employee x WHERE x.dept_id=e.dept_id);"},
-    {"id":"p06","type":"program","unit":"u5","difficulty":"hard","marks":10,"question":"Normalize ENROLMENT(StudentID, StudentName, CourseID, CourseName, TeacherID, TeacherName, Grade) to 3NF.","answer":"Assume StudentID→StudentName, CourseID→CourseName,TeacherID, TeacherID→TeacherName, and (StudentID,CourseID)→Grade.\nSTUDENT(StudentID PK,StudentName)\nTEACHER(TeacherID PK,TeacherName)\nCOURSE(CourseID PK,CourseName,TeacherID FK)\nENROLMENT(StudentID FK,CourseID FK,Grade,PRIMARY KEY(StudentID,CourseID))."},
-    {"id":"p07","type":"program","unit":"u6","difficulty":"medium","marks":8,"question":"Write a transaction that transfers 1000 from account 1 to account 2, rolling back on failure.","answer":"START TRANSACTION;\nUPDATE Account SET balance=balance-1000 WHERE account_id=1;\nUPDATE Account SET balance=balance+1000 WHERE account_id=2;\nCOMMIT;\n-- In application/error handling, issue ROLLBACK if either operation fails."}
+    {
+      "id": "m01",
+      "type": "mcq",
+      "unit": 1,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "A collection of related data is called a:",
+      "options": [
+        "Compiler",
+        "Database",
+        "Algorithm",
+        "Protocol"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m02",
+      "type": "mcq",
+      "unit": 1,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Which schema level describes physical storage?",
+      "options": [
+        "External",
+        "Conceptual",
+        "Internal",
+        "View"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "m03",
+      "type": "mcq",
+      "unit": 1,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Changing storage structures without changing the conceptual schema is:",
+      "options": [
+        "Logical data independence",
+        "Physical data independence",
+        "Normalization",
+        "Authorization"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m04",
+      "type": "mcq",
+      "unit": 1,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "Which component chooses an efficient execution plan for a query?",
+      "options": [
+        "Query optimizer",
+        "Form designer",
+        "Transaction user",
+        "Data dictionary only"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "m05",
+      "type": "mcq",
+      "unit": 2,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "An attribute that uniquely identifies an entity is commonly a:",
+      "options": [
+        "Foreign key",
+        "Primary key",
+        "Derived attribute",
+        "Multivalued attribute"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m06",
+      "type": "mcq",
+      "unit": 2,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "A weak entity is identified using:",
+      "options": [
+        "Only its own complete key",
+        "An owner entity and partial key",
+        "No attributes",
+        "A recursive query"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m07",
+      "type": "mcq",
+      "unit": 2,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "A foreign key enforces:",
+      "options": [
+        "Domain independence",
+        "Referential integrity",
+        "File compression",
+        "Atomicity"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m08",
+      "type": "mcq",
+      "unit": 2,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "Total participation is shown in an ER diagram using:",
+      "options": [
+        "A dashed oval",
+        "A double line",
+        "A triangle",
+        "A single arrow only"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m09",
+      "type": "mcq",
+      "unit": 3,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "A row in a relation is a:",
+      "options": [
+        "Domain",
+        "Tuple",
+        "Degree",
+        "Schema"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m10",
+      "type": "mcq",
+      "unit": 3,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Which relational-algebra operation selects rows?",
+      "options": [
+        "Projection",
+        "Selection",
+        "Rename",
+        "Cartesian product"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m11",
+      "type": "mcq",
+      "unit": 3,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "The number of attributes in a relation is its:",
+      "options": [
+        "Cardinality",
+        "Degree",
+        "Domain",
+        "Arity value count"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m12",
+      "type": "mcq",
+      "unit": 3,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "Division is useful for queries involving:",
+      "options": [
+        "At least one",
+        "For all",
+        "Sorting only",
+        "Duplicate removal only"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m13",
+      "type": "mcq",
+      "unit": 4,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "Which command removes rows but keeps the table definition?",
+      "options": [
+        "DROP TABLE",
+        "DELETE",
+        "CREATE",
+        "GRANT"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m14",
+      "type": "mcq",
+      "unit": 4,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Which clause filters groups after GROUP BY?",
+      "options": [
+        "WHERE",
+        "ORDER BY",
+        "HAVING",
+        "DISTINCT"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "m15",
+      "type": "mcq",
+      "unit": 4,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Which join returns all rows from the left table and matching rows from the right?",
+      "options": [
+        "INNER JOIN",
+        "LEFT JOIN",
+        "CROSS JOIN",
+        "SELF JOIN"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m16",
+      "type": "mcq",
+      "unit": 4,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "Which expression counts only non-NULL salary values?",
+      "options": [
+        "COUNT(*)",
+        "COUNT(salary)",
+        "SUM(*)",
+        "NUMBER(salary)"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m17",
+      "type": "mcq",
+      "unit": 5,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "First Normal Form requires:",
+      "options": [
+        "No transitive dependencies",
+        "Atomic attribute values",
+        "Every determinant be a candidate key",
+        "No partial dependencies"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m18",
+      "type": "mcq",
+      "unit": 5,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Second Normal Form removes:",
+      "options": [
+        "Repeating groups only",
+        "Partial dependencies",
+        "All foreign keys",
+        "Transactions"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m19",
+      "type": "mcq",
+      "unit": 5,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Third Normal Form primarily removes:",
+      "options": [
+        "Transitive dependencies",
+        "Primary keys",
+        "Atomic values",
+        "Joins"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "m20",
+      "type": "mcq",
+      "unit": 5,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "A decomposition that preserves all original tuples after joining is:",
+      "options": [
+        "Dependency losing",
+        "Lossless-join",
+        "Non-atomic",
+        "Serial"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m21",
+      "type": "mcq",
+      "unit": 6,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "Which ACID property means all-or-nothing execution?",
+      "options": [
+        "Consistency",
+        "Isolation",
+        "Atomicity",
+        "Durability"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "m22",
+      "type": "mcq",
+      "unit": 6,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "A schedule equivalent to some serial schedule is:",
+      "options": [
+        "Recoverable only",
+        "Serializable",
+        "Cascading",
+        "Dirty"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m23",
+      "type": "mcq",
+      "unit": 6,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Which SQL command makes a transaction permanent?",
+      "options": [
+        "SAVEPOINT",
+        "ROLLBACK",
+        "COMMIT",
+        "GRANT"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "m24",
+      "type": "mcq",
+      "unit": 6,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "Two-phase locking guarantees:",
+      "options": [
+        "Conflict serializability",
+        "No deadlock ever",
+        "No rollback ever",
+        "Physical data independence"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "s01",
+      "type": "short",
+      "unit": 1,
+      "difficulty": "easy",
+      "marks": 3,
+      "question": "State three advantages of a DBMS over a file-processing system.",
+      "answer": "Reduced uncontrolled redundancy, improved data sharing and consistency, centralized security/integrity, concurrency control, backup/recovery and data independence."
+    },
+    {
+      "id": "s02",
+      "type": "short",
+      "unit": 1,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Differentiate logical and physical data independence.",
+      "answer": "Logical data independence permits changes to the conceptual schema without changing external views/programs. Physical data independence permits storage changes without changing the conceptual schema."
+    },
+    {
+      "id": "s03",
+      "type": "short",
+      "unit": 2,
+      "difficulty": "easy",
+      "marks": 3,
+      "question": "Differentiate super key, candidate key and primary key.",
+      "answer": "A super key uniquely identifies tuples but may contain extra attributes. A candidate key is a minimal super key. One candidate key is selected as the primary key."
+    },
+    {
+      "id": "s04",
+      "type": "short",
+      "unit": 2,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Explain cardinality ratios in ER modelling.",
+      "answer": "Cardinality ratios specify how many entity instances may participate: one-to-one, one-to-many, many-to-one and many-to-many."
+    },
+    {
+      "id": "s05",
+      "type": "short",
+      "unit": 3,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Differentiate selection and projection.",
+      "answer": "Selection chooses tuples satisfying a predicate and is horizontal. Projection chooses specified attributes and is vertical, normally removing duplicate result tuples."
+    },
+    {
+      "id": "s06",
+      "type": "short",
+      "unit": 3,
+      "difficulty": "hard",
+      "marks": 4,
+      "question": "What are entity integrity and referential integrity?",
+      "answer": "Entity integrity requires primary-key values to be unique and non-NULL. Referential integrity requires each non-NULL foreign-key value to match a referenced candidate/primary key."
+    },
+    {
+      "id": "s07",
+      "type": "short",
+      "unit": 4,
+      "difficulty": "easy",
+      "marks": 3,
+      "question": "Differentiate DDL, DML, DCL and TCL with examples.",
+      "answer": "DDL defines structures: CREATE, ALTER, DROP. DML reads/changes data: SELECT, INSERT, UPDATE, DELETE. DCL controls privileges: GRANT, REVOKE. TCL controls transactions: COMMIT, ROLLBACK, SAVEPOINT."
+    },
+    {
+      "id": "s08",
+      "type": "short",
+      "unit": 4,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Differentiate WHERE and HAVING.",
+      "answer": "WHERE filters individual rows before grouping and cannot normally contain aggregate conditions. HAVING filters groups after GROUP BY and commonly uses aggregate expressions."
+    },
+    {
+      "id": "s09",
+      "type": "short",
+      "unit": 5,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "What is a functional dependency?",
+      "answer": "X → Y means that whenever two tuples agree on attribute set X, they must also agree on Y. X is the determinant and Y is functionally dependent on X."
+    },
+    {
+      "id": "s10",
+      "type": "short",
+      "unit": 5,
+      "difficulty": "hard",
+      "marks": 4,
+      "question": "Differentiate 3NF and BCNF.",
+      "answer": "3NF permits X→A when X is a super key or A is prime. BCNF requires every non-trivial determinant X to be a super key, so BCNF is stricter."
+    },
+    {
+      "id": "s11",
+      "type": "short",
+      "unit": 6,
+      "difficulty": "easy",
+      "marks": 3,
+      "question": "Explain the four ACID properties.",
+      "answer": "Atomicity: all or nothing. Consistency: rules remain satisfied. Isolation: concurrent transactions behave safely. Durability: committed changes survive failures."
+    },
+    {
+      "id": "s12",
+      "type": "short",
+      "unit": 6,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "What is deadlock? Name two handling methods.",
+      "answer": "Deadlock is a cycle of transactions waiting indefinitely for one another's locks. It may be prevented using ordering/timeouts or detected with a wait-for graph and resolved by rolling back a victim."
+    },
+    {
+      "id": "l01",
+      "type": "long",
+      "unit": 1,
+      "difficulty": "medium",
+      "marks": 8,
+      "question": "Explain the three-schema architecture and both kinds of data independence.",
+      "answer": "Describe external user views, the global conceptual schema and internal physical schema; external-conceptual and conceptual-internal mappings; logical and physical data independence with examples and benefits."
+    },
+    {
+      "id": "l02",
+      "type": "long",
+      "unit": 2,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Design and explain an ER model for a college database.",
+      "answer": "Include Student, Course, Teacher and Department entities; identifiers and attributes; enrolment and teaching relationships; appropriate cardinalities and participation constraints; resolve the many-to-many enrolment relationship when mapping to relations."
+    },
+    {
+      "id": "l03",
+      "type": "long",
+      "unit": 3,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Explain fundamental relational-algebra operations with examples.",
+      "answer": "Cover selection, projection, union, set difference, Cartesian product and rename; derive intersection and joins; explain division and express sample student-course queries."
+    },
+    {
+      "id": "l04",
+      "type": "long",
+      "unit": 4,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Explain SQL joins, aggregate queries, subqueries, views and indexes with syntax and examples.",
+      "answer": "Define inner/outer/cross/self joins; COUNT/SUM/AVG/MIN/MAX with GROUP BY and HAVING; scalar, multi-row and correlated subqueries; CREATE VIEW; CREATE INDEX; benefits and cautions."
+    },
+    {
+      "id": "l05",
+      "type": "long",
+      "unit": 5,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Normalize a relation from unnormalized form to Third Normal Form, explaining each step.",
+      "answer": "Identify repeating groups and atomic values for 1NF, candidate keys and partial dependencies for 2NF, then transitive dependencies for 3NF. Show decomposed schemas and verify lossless joins and preferably dependency preservation."
+    },
+    {
+      "id": "l06",
+      "type": "long",
+      "unit": 6,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Explain transaction states, serializability, locking, deadlocks and recovery.",
+      "answer": "Cover active, partially committed, committed, failed and aborted states; serial and concurrent schedules; conflict serializability; shared/exclusive locks and 2PL; deadlock handling; logs, checkpoints, undo and redo."
+    },
+    {
+      "id": "o01",
+      "type": "output",
+      "unit": 4,
+      "difficulty": "easy",
+      "marks": 3,
+      "question": "Student rows have marks 80, 70, 70 and NULL. What does SELECT COUNT(marks), COUNT(*) FROM Student return?",
+      "answer": "3 and 4. COUNT(marks) ignores NULL; COUNT(*) counts every row."
+    },
+    {
+      "id": "o02",
+      "type": "output",
+      "unit": 4,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Given Employee salaries 30000, 40000 and 50000, what is returned by SELECT AVG(salary) FROM Employee?",
+      "answer": "40000."
+    },
+    {
+      "id": "o03",
+      "type": "output",
+      "unit": 4,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Department has D1 and D2. Employee contains only one employee in D1. How many rows does Department LEFT JOIN Employee produce?",
+      "answer": "Two rows: one matched row for D1 and one row for D2 with NULL Employee columns."
+    },
+    {
+      "id": "o04",
+      "type": "output",
+      "unit": 4,
+      "difficulty": "hard",
+      "marks": 5,
+      "question": "What is the logical purpose of: SELECT dept_id FROM Employee GROUP BY dept_id HAVING COUNT(*) > 5?",
+      "answer": "It returns identifiers of departments having more than five employee rows."
+    },
+    {
+      "id": "o05",
+      "type": "output",
+      "unit": 5,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Relation R(A,B,C) has key (A,B) and dependency A→C. Which normal form is violated and why?",
+      "answer": "Second Normal Form is violated because non-prime attribute C depends on only part A of the composite key (A,B)."
+    },
+    {
+      "id": "o06",
+      "type": "output",
+      "unit": 6,
+      "difficulty": "hard",
+      "marks": 5,
+      "question": "T1 updates a balance and then rolls back. T2 read the uncommitted value. Name the anomaly.",
+      "answer": "Dirty read, also called uncommitted dependency. T2 observed a value that never became permanent."
+    },
+    {
+      "id": "p01",
+      "type": "program",
+      "unit": 2,
+      "difficulty": "medium",
+      "marks": 8,
+      "question": "Convert an ER design with Student, Course and many-to-many Enrolment into relational schemas.",
+      "answer": "STUDENT(StudentID PK, Name, ...)\nCOURSE(CourseID PK, Title, ...)\nENROLMENT(StudentID FK→STUDENT, CourseID FK→COURSE, EnrolDate, Grade, PRIMARY KEY(StudentID,CourseID))."
+    },
+    {
+      "id": "p02",
+      "type": "program",
+      "unit": 3,
+      "difficulty": "hard",
+      "marks": 8,
+      "question": "Write relational algebra to find names of students enrolled in the course 'DBMS'.",
+      "answer": "π Student.Name (Student ⋈ Student.StudentID=Enrolment.StudentID (Enrolment ⋈ Enrolment.CourseID=Course.CourseID σ Course.Title='DBMS'(Course)))"
+    },
+    {
+      "id": "p03",
+      "type": "program",
+      "unit": 4,
+      "difficulty": "easy",
+      "marks": 6,
+      "question": "Create a Student table with roll number, name, email, marks and department ID, using suitable constraints.",
+      "answer": "CREATE TABLE Student(\n roll_no INT PRIMARY KEY,\n name VARCHAR(80) NOT NULL,\n email VARCHAR(120) UNIQUE,\n marks DECIMAL(5,2) CHECK(marks BETWEEN 0 AND 100),\n dept_id INT,\n FOREIGN KEY(dept_id) REFERENCES Department(dept_id)\n);"
+    },
+    {
+      "id": "p04",
+      "type": "program",
+      "unit": 4,
+      "difficulty": "medium",
+      "marks": 8,
+      "question": "Write SQL to display each department name and its average salary, including departments with no employees.",
+      "answer": "SELECT d.dept_name, AVG(e.salary) AS average_salary\nFROM Department d\nLEFT JOIN Employee e ON e.dept_id=d.dept_id\nGROUP BY d.dept_id, d.dept_name;"
+    },
+    {
+      "id": "p05",
+      "type": "program",
+      "unit": 4,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Write SQL to find employees earning more than the average salary of their own department.",
+      "answer": "SELECT e.emp_id,e.emp_name,e.salary\nFROM Employee e\nWHERE e.salary > (SELECT AVG(x.salary) FROM Employee x WHERE x.dept_id=e.dept_id);"
+    },
+    {
+      "id": "p06",
+      "type": "program",
+      "unit": 5,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Normalize ENROLMENT(StudentID, StudentName, CourseID, CourseName, TeacherID, TeacherName, Grade) to 3NF.",
+      "answer": "Assume StudentID→StudentName, CourseID→CourseName,TeacherID, TeacherID→TeacherName, and (StudentID,CourseID)→Grade.\nSTUDENT(StudentID PK,StudentName)\nTEACHER(TeacherID PK,TeacherName)\nCOURSE(CourseID PK,CourseName,TeacherID FK)\nENROLMENT(StudentID FK,CourseID FK,Grade,PRIMARY KEY(StudentID,CourseID))."
+    },
+    {
+      "id": "p07",
+      "type": "program",
+      "unit": 6,
+      "difficulty": "medium",
+      "marks": 8,
+      "question": "Write a transaction that transfers 1000 from account 1 to account 2, rolling back on failure.",
+      "answer": "START TRANSACTION;\nUPDATE Account SET balance=balance-1000 WHERE account_id=1;\nUPDATE Account SET balance=balance+1000 WHERE account_id=2;\nCOMMIT;\n-- In application/error handling, issue ROLLBACK if either operation fails."
+    }
   ]
 }
