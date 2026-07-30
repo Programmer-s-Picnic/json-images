@@ -11832,22 +11832,96 @@
       "priority": 1,
       "source": "Website",
       "brand": "Learn With Champak"
+    },
+    {
+      "title": "C++ Question Paper Generator",
+      "description": "Generate C++ exam question papers from the C++ questions JSON file for student practice and exam preparation.",
+      "type": "practice",
+      "topic": "C++",
+      "tags": [
+        "C++",
+        "Question Paper",
+        "Exam Practice",
+        "MCQ",
+        "JSON Questions"
+      ],
+      "url": "https://dsa.learnwithchampak.live/papers/?file=https://programmer-s-picnic.github.io/json-images/questions/cppquestions.json",
+      "priority": 1,
+      "source": "Website",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "Java Question Paper Generator",
+      "description": "Generate Java exam question papers from the Java questions JSON file for student practice and exam preparation.",
+      "type": "practice",
+      "topic": "Java / Spring",
+      "tags": [
+        "Java",
+        "Question Paper",
+        "Exam Practice",
+        "MCQ",
+        "JSON Questions"
+      ],
+      "url": "https://dsa.learnwithchampak.live/papers/?file=https://programmer-s-picnic.github.io/json-images/questions/javaquestions.json",
+      "priority": 1,
+      "source": "Website",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "C Question Paper Generator",
+      "description": "Generate C programming exam question papers from the C questions JSON file for student practice and exam preparation.",
+      "type": "practice",
+      "topic": "C Programming",
+      "tags": [
+        "C",
+        "Question Paper",
+        "Exam Practice",
+        "MCQ",
+        "JSON Questions"
+      ],
+      "url": "https://dsa.learnwithchampak.live/papers/?file=https://programmer-s-picnic.github.io/json-images/questions/cquestions.json",
+      "priority": 1,
+      "source": "Website",
+      "brand": "Learn With Champak"
+    },
+    {
+      "title": "SQL Question Paper Generator",
+      "description": "Generate SQL and RDBMS exam question papers from the SQL questions JSON file for student practice and exam preparation.",
+      "type": "practice",
+      "topic": "SQL / Database",
+      "tags": [
+        "SQL",
+        "RDBMS",
+        "Question Paper",
+        "Exam Practice",
+        "JSON Questions"
+      ],
+      "url": "https://dsa.learnwithchampak.live/papers/?file=https://programmer-s-picnic.github.io/json-images/questions/sqlquestions.json",
+      "priority": 1,
+      "source": "Website",
+      "brand": "Learn With Champak"
     }
   ],
-  "totalItems": 711,
+  "totalItems": 715,
   "lastAddSummary": {
-    "source": "Manual add: short-video editor tools",
-    "sourceFile": "links(8).json",
-    "originalItems": 708,
-    "requestedAdditions": 3,
-    "added": 3,
-    "skippedDuplicates": 0,
+    "source": "Manual add: exam question paper generator URLs",
+    "sourceFile": "links(9).json",
+    "originalItems": 711,
+    "requestedUrls": 5,
+    "uniqueRequestedUrls": 4,
+    "added": 4,
+    "skippedAlreadyExisting": 0,
+    "skippedRepeatedInRequest": 1,
     "addedUrls": [
-      "https://editor.learnwithchampak.live/shorts/",
-      "https://editor.learnwithchampak.live/sshorts/",
-      "https://editor.learnwithchampak.live/reelmaker/"
+      "https://dsa.learnwithchampak.live/papers/?file=https://programmer-s-picnic.github.io/json-images/questions/cppquestions.json",
+      "https://dsa.learnwithchampak.live/papers/?file=https://programmer-s-picnic.github.io/json-images/questions/javaquestions.json",
+      "https://dsa.learnwithchampak.live/papers/?file=https://programmer-s-picnic.github.io/json-images/questions/cquestions.json",
+      "https://dsa.learnwithchampak.live/papers/?file=https://programmer-s-picnic.github.io/json-images/questions/sqlquestions.json"
     ],
-    "skippedDuplicateUrls": []
+    "skippedAlreadyExistingUrls": [],
+    "skippedRepeatedRequestUrls": [
+      "https://dsa.learnwithchampak.live/papers/?file=https://programmer-s-picnic.github.io/json-images/questions/cquestions.json"
+    ]
   },
   "lastDedupSummary": {
     "sourceFile": "links_with_new_student_speaker_links.json",
