@@ -1,0 +1,851 @@
+{
+  "metadata": {
+    "title": "BCA C++ Question Bank",
+    "browserTitle": "C++ Question Paper Generator | Programmer's Picnic",
+    "description": "Generate syllabus-based BCA C++ question papers, evaluate MCQs and view complete answers.",
+    "author": "Champak Roy",
+    "themeColor": "#6d28d9",
+    "courseCode": "BCA-S201T",
+    "courseName": "Object Oriented Programming Using C++",
+    "version": "1.0",
+    "brand": "Programmer's Picnic by Champak Roy",
+    "appTitle": "C++ Question Paper Generator",
+    "intro": "Build balanced, syllabus-aligned examination papers—and evaluate objective answers instantly.",
+    "units": [
+      {
+        "id": 1,
+        "shortLabel": "Unit I",
+        "name": "Unit I: C++ Foundations and OOP Concepts",
+        "topics": [
+          "Differences between C and C++",
+          "C++ program structure, cin and cout",
+          "Stream insertion and extraction operators",
+          "new and delete",
+          "Procedural versus object-oriented programming",
+          "Abstraction, encapsulation, inheritance and polymorphism"
+        ]
+      },
+      {
+        "id": 2,
+        "shortLabel": "Unit II",
+        "name": "Unit II: Classes, Objects, Constructors and Destructors",
+        "topics": [
+          "Classes, objects, data members and member functions",
+          "Access specifiers",
+          "Functions inside and outside classes",
+          "Scope-resolution operator",
+          "Default, parameterised and copy constructors",
+          "Constructor overloading and destructors",
+          "Dynamic memory in classes"
+        ]
+      },
+      {
+        "id": 3,
+        "shortLabel": "Unit III",
+        "name": "Unit III: Inheritance, Aggregation and Composition",
+        "topics": [
+          "Base and derived classes",
+          "Public, private and protected inheritance",
+          "Single, multilevel and hierarchical inheritance",
+          "Constructor and destructor order",
+          "Aggregation and composition",
+          "Abstract classes and pure virtual functions"
+        ]
+      },
+      {
+        "id": 4,
+        "shortLabel": "Unit IV",
+        "name": "Unit IV: Overloading, Overriding and Polymorphism",
+        "topics": [
+          "Function and operator overloading",
+          "Unary and binary operator overloading",
+          "Method overriding",
+          "Compile-time and runtime polymorphism",
+          "Virtual and pure virtual functions",
+          "Base-class pointers and virtual destructors"
+        ]
+      },
+      {
+        "id": 5,
+        "shortLabel": "Unit V",
+        "name": "Unit V: Templates, Multiple Inheritance and Namespaces",
+        "topics": [
+          "Function and class templates",
+          "Generic programming, generic classes and template parameters",
+          "Multiple inheritance and ambiguity",
+          "Virtual base classes",
+          "Namespaces and namespace-resolution operator"
+        ]
+      },
+      {
+        "id": 6,
+        "shortLabel": "Unit VI",
+        "name": "Unit VI: Streams, File Handling and Exceptions",
+        "topics": [
+          "Stream classes and standard streams",
+          "Formatted input and output",
+          "File streams, opening modes, reading and writing",
+          "Sequential and random file access",
+          "try, throw and catch",
+          "Multiple catch blocks and standard exceptions"
+        ]
+      }
+    ]
+  },
+  "interface": {
+    "settingsPanelTitle": "Build your paper",
+    "settingsAriaLabel": "C++ Question Paper Generator settings",
+    "paperTitleLabel": "Paper title",
+    "defaultPaperTitle": "C++ Programming Examination",
+    "durationLabel": "Duration",
+    "durations": [
+      {
+        "value": "1 Hour",
+        "label": "1 Hour"
+      },
+      {
+        "value": "2 Hours",
+        "label": "2 Hours",
+        "selected": true
+      },
+      {
+        "value": "3 Hours",
+        "label": "3 Hours"
+      }
+    ],
+    "difficultyLabel": "Difficulty",
+    "difficulties": [
+      {
+        "value": "mixed",
+        "label": "Mixed difficulty",
+        "selected": true
+      },
+      {
+        "value": "easy",
+        "label": "Easy"
+      },
+      {
+        "value": "medium",
+        "label": "Medium"
+      },
+      {
+        "value": "hard",
+        "label": "Hard"
+      }
+    ],
+    "includeUnitsLabel": "Syllabus units",
+    "questionTypes": [
+      {
+        "key": "mcq",
+        "label": "MCQs",
+        "sectionTitle": "Section A: Multiple-Choice Questions",
+        "defaultCount": 10
+      },
+      {
+        "key": "short",
+        "label": "Short",
+        "sectionTitle": "Section B: Short-Answer Questions",
+        "defaultCount": 5
+      },
+      {
+        "key": "long",
+        "label": "Long",
+        "sectionTitle": "Section C: Long-Answer Questions",
+        "defaultCount": 3
+      },
+      {
+        "key": "output",
+        "label": "Output",
+        "sectionTitle": "Section D: Output-Prediction Questions",
+        "defaultCount": 3
+      },
+      {
+        "key": "program",
+        "label": "Programs",
+        "sectionTitle": "Section E: Programming Questions",
+        "defaultCount": 2
+      }
+    ],
+    "showAnswersImmediatelyLabel": "Show answers immediately",
+    "buttons": {
+      "generate": "Generate Question Paper",
+      "regenerate": "Generate Another Version",
+      "print": "Print / Save PDF",
+      "evaluate": "Evaluate MCQ Answers",
+      "showAnswers": "Show Answers",
+      "hideAnswers": "Hide Answers"
+    },
+    "emptyTitle": "Your question paper will appear here.",
+    "emptyText": "Choose the settings and press “Generate Question Paper”.",
+    "paper": {
+      "durationPrefix": "Duration:",
+      "maximumMarksPrefix": "Maximum Marks:",
+      "nameLabel": "Name:",
+      "rollNumberLabel": "Roll No.:",
+      "instructionsTitle": "Instructions for students",
+      "instructions": [
+        "Attempt all multiple-choice questions and follow the directions given for other sections.",
+        "Write suitable examples, syntax or diagrams wherever they improve an answer.",
+        "Assume a standard-compliant C++ compiler unless a question states otherwise.",
+        "Marks are shown against every question."
+      ],
+      "answerKeyTitle": "Answer Key and Model Answers"
+    },
+    "messages": {
+      "loading": "Loading question bank…",
+      "ready": "{count} questions ready • BCA-S201T",
+      "bankNotReady": "The question bank is not ready.",
+      "selectUnit": "Select at least one unit.",
+      "selectQuestion": "Select at least one question.",
+      "correct": "Correct",
+      "incorrect": "Incorrect. Correct answer: {answer}.",
+      "notAnswered": "Not answered. Correct answer: {answer}.",
+      "score": "MCQ Score: {correct}/{total} ({percent}%) • Answered: {answered}/{total}"
+    },
+    "footer": "Prepared for examination practice • BCA-S201T Object Oriented Programming Using C++"
+  },
+  "questions": [
+    {
+      "id": "m01",
+      "type": "mcq",
+      "unit": 1,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "Which operator is used with cin to accept input?",
+      "options": [
+        "<<",
+        ">>",
+        "::",
+        "->"
+      ],
+      "answer": 1,
+      "explanation": "The extraction operator >> transfers data from an input stream to a variable."
+    },
+    {
+      "id": "m02",
+      "type": "mcq",
+      "unit": 1,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "Which OOP feature binds data and related functions into one unit?",
+      "options": [
+        "Inheritance",
+        "Polymorphism",
+        "Encapsulation",
+        "Recursion"
+      ],
+      "answer": 2,
+      "explanation": "A class encapsulates state and operations in one logical unit."
+    },
+    {
+      "id": "m03",
+      "type": "mcq",
+      "unit": 1,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Memory obtained using new should normally be released using:",
+      "options": [
+        "free",
+        "remove",
+        "clear",
+        "delete"
+      ],
+      "answer": 3,
+      "explanation": "new is paired with delete; new[] is paired with delete[]."
+    },
+    {
+      "id": "m04",
+      "type": "mcq",
+      "unit": 1,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Which concept exposes essential behaviour while hiding implementation details?",
+      "options": [
+        "Abstraction",
+        "Iteration",
+        "Compilation",
+        "Tokenisation"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "m05",
+      "type": "mcq",
+      "unit": 2,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "A constructor has:",
+      "options": [
+        "The same name as its class",
+        "A void return type",
+        "A mandatory int return type",
+        "The name main"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "m06",
+      "type": "mcq",
+      "unit": 2,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "Which symbol begins a destructor name?",
+      "options": [
+        "#",
+        "~",
+        "&",
+        "@"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m07",
+      "type": "mcq",
+      "unit": 2,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Which member is shared by all objects of a class?",
+      "options": [
+        "const member",
+        "friend member",
+        "static data member",
+        "local member"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "m08",
+      "type": "mcq",
+      "unit": 2,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "Which constructor creates an object from another object of the same class?",
+      "options": [
+        "Default constructor",
+        "Copy constructor",
+        "Conversion constructor",
+        "Dynamic constructor"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m09",
+      "type": "mcq",
+      "unit": 3,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "When class B derives from class A, A is called the:",
+      "options": [
+        "Child class",
+        "Base class",
+        "Nested class",
+        "Friend class"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m10",
+      "type": "mcq",
+      "unit": 3,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Under public inheritance, a public base member becomes ______ in the derived class.",
+      "options": [
+        "private",
+        "protected",
+        "public",
+        "inaccessible"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "m11",
+      "type": "mcq",
+      "unit": 3,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "A strong whole–part relationship in which a part's lifetime depends on the whole is:",
+      "options": [
+        "Aggregation",
+        "Composition",
+        "Overloading",
+        "Delegation"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m12",
+      "type": "mcq",
+      "unit": 3,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "In which order are destructors called in inheritance?",
+      "options": [
+        "Base then derived",
+        "Derived then base",
+        "Alphabetical order",
+        "Undefined order"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m13",
+      "type": "mcq",
+      "unit": 4,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "Same function name with different parameter lists is called:",
+      "options": [
+        "Function overriding",
+        "Function overloading",
+        "Data hiding",
+        "Late binding"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m14",
+      "type": "mcq",
+      "unit": 4,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Runtime polymorphism in C++ normally requires:",
+      "options": [
+        "A virtual function",
+        "A macro",
+        "A namespace",
+        "A template only"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "m15",
+      "type": "mcq",
+      "unit": 4,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Which operator cannot be overloaded?",
+      "options": [
+        "+",
+        "[]",
+        "::",
+        "()"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "m16",
+      "type": "mcq",
+      "unit": 4,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "A class containing at least one pure virtual function is called:",
+      "options": [
+        "Friend class",
+        "Local class",
+        "Abstract class",
+        "Static class"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "m17",
+      "type": "mcq",
+      "unit": 5,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "Which keyword introduces a generic type parameter?",
+      "options": [
+        "template",
+        "namespace",
+        "typedef",
+        "dynamic"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "m18",
+      "type": "mcq",
+      "unit": 5,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "The scope-resolution operator is:",
+      "options": [
+        "->",
+        "::",
+        ".*",
+        "??"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m19",
+      "type": "mcq",
+      "unit": 5,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "One class inheriting from two base classes demonstrates:",
+      "options": [
+        "Hierarchical inheritance",
+        "Multilevel inheritance",
+        "Multiple inheritance",
+        "Single inheritance"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "m20",
+      "type": "mcq",
+      "unit": 5,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "The diamond ambiguity can be resolved by making the common base:",
+      "options": [
+        "static",
+        "virtual",
+        "private only",
+        "a namespace"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m21",
+      "type": "mcq",
+      "unit": 6,
+      "difficulty": "easy",
+      "marks": 1,
+      "question": "Which stream class is commonly used to write to a file?",
+      "options": [
+        "ifstream",
+        "ofstream",
+        "istream",
+        "iostream"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m22",
+      "type": "mcq",
+      "unit": 6,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Which block handles an exception?",
+      "options": [
+        "try",
+        "throw",
+        "catch",
+        "final"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "m23",
+      "type": "mcq",
+      "unit": 6,
+      "difficulty": "medium",
+      "marks": 1,
+      "question": "Which file mode appends output at the end of a file?",
+      "options": [
+        "ios::in",
+        "ios::app",
+        "ios::trunc",
+        "ios::beg"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "m24",
+      "type": "mcq",
+      "unit": 6,
+      "difficulty": "hard",
+      "marks": 1,
+      "question": "Which statement is true about catch(...)?",
+      "options": [
+        "It catches no exception",
+        "It catches only integers",
+        "It is a catch-all handler",
+        "It rethrows automatically"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "s01",
+      "type": "short",
+      "unit": 1,
+      "difficulty": "easy",
+      "marks": 3,
+      "question": "State any three differences between C and C++.",
+      "answer": "C is primarily procedural; C++ supports procedural and object-oriented programming. C has no classes or function overloading; C++ supports both. C commonly uses malloc/free; C++ provides new/delete and constructors/destructors."
+    },
+    {
+      "id": "s02",
+      "type": "short",
+      "unit": 1,
+      "difficulty": "medium",
+      "marks": 3,
+      "question": "Define abstraction and encapsulation with one example of each.",
+      "answer": "Abstraction presents essential behaviour while hiding internal detail, such as calling withdraw() without knowing banking logic. Encapsulation bundles data and methods and controls access, such as a BankAccount class with private balance and public deposit()."
+    },
+    {
+      "id": "s03",
+      "type": "short",
+      "unit": 2,
+      "difficulty": "easy",
+      "marks": 3,
+      "question": "What is a constructor? List its main characteristics.",
+      "answer": "A constructor is a special member function invoked automatically when an object is created. It has the class name, no return type, may be overloaded and normally initialises object state."
+    },
+    {
+      "id": "s04",
+      "type": "short",
+      "unit": 2,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Differentiate a shallow copy from a deep copy.",
+      "answer": "A shallow copy duplicates member values, so pointer members may refer to the same resource. A deep copy allocates a separate resource and copies its contents, preventing accidental sharing and double deletion."
+    },
+    {
+      "id": "s05",
+      "type": "short",
+      "unit": 3,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Differentiate aggregation and composition.",
+      "answer": "Both are has-a relationships. In aggregation the part can exist independently of the whole; in composition the whole owns the part and controls its lifetime. A Department–Teacher relation may aggregate; a House–Room relation commonly composes."
+    },
+    {
+      "id": "s06",
+      "type": "short",
+      "unit": 3,
+      "difficulty": "hard",
+      "marks": 4,
+      "question": "Explain the effect of public, protected and private inheritance on public and protected base members.",
+      "answer": "Public inheritance preserves public as public and protected as protected. Protected inheritance makes both protected. Private inheritance makes both private. Private base members are never directly accessible in the derived class."
+    },
+    {
+      "id": "s07",
+      "type": "short",
+      "unit": 4,
+      "difficulty": "easy",
+      "marks": 3,
+      "question": "What is function overloading? Give a valid example signature pair.",
+      "answer": "Function overloading defines several functions with the same name but different parameter lists, e.g. int area(int) and double area(double,double). Return type alone cannot distinguish overloads."
+    },
+    {
+      "id": "s08",
+      "type": "short",
+      "unit": 4,
+      "difficulty": "hard",
+      "marks": 4,
+      "question": "Why should a polymorphic base class usually have a virtual destructor?",
+      "answer": "Deleting a derived object through a base pointer must invoke both derived and base destructors. A virtual base destructor enables correct dynamic dispatch and prevents leaked derived resources."
+    },
+    {
+      "id": "s09",
+      "type": "short",
+      "unit": 5,
+      "difficulty": "medium",
+      "marks": 3,
+      "question": "What problem do namespaces solve?",
+      "answer": "Namespaces group names and prevent collisions between identifiers from different libraries or modules. A name can be qualified, for example college::Student."
+    },
+    {
+      "id": "s10",
+      "type": "short",
+      "unit": 5,
+      "difficulty": "hard",
+      "marks": 4,
+      "question": "What is template specialisation?",
+      "answer": "Template specialisation supplies a custom implementation for a particular type or set of template arguments when the general template is unsuitable or can be improved."
+    },
+    {
+      "id": "s11",
+      "type": "short",
+      "unit": 6,
+      "difficulty": "easy",
+      "marks": 3,
+      "question": "Name the main file-stream classes and state their purposes.",
+      "answer": "ifstream reads files, ofstream writes files, and fstream supports both input and output."
+    },
+    {
+      "id": "s12",
+      "type": "short",
+      "unit": 6,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Explain try, throw and catch.",
+      "answer": "Code that may fail is placed in try. throw signals an exceptional condition and passes an exception object. A matching catch block receives and handles it."
+    },
+    {
+      "id": "l01",
+      "type": "long",
+      "unit": 1,
+      "difficulty": "medium",
+      "marks": 8,
+      "question": "Explain the four major principles of object-oriented programming with suitable C++ examples.",
+      "answer": "Discuss abstraction, encapsulation, inheritance and polymorphism. Define each, show how class access control implements encapsulation, an interface exposes abstraction, a derived class reuses a base class, and virtual functions provide runtime polymorphism. Include a compact class hierarchy example."
+    },
+    {
+      "id": "l02",
+      "type": "long",
+      "unit": 2,
+      "difficulty": "medium",
+      "marks": 8,
+      "question": "Explain default, parameterised and copy constructors, constructor overloading, and destructors.",
+      "answer": "Define each constructor type with syntax and invocation. Explain overloaded constructors and initialiser lists. Describe automatic destructor invocation, reverse destruction order and resource release. A complete Resource class example earns full credit."
+    },
+    {
+      "id": "l03",
+      "type": "long",
+      "unit": 3,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Explain all major types of inheritance with diagrams or class declarations. Also discuss ambiguity.",
+      "answer": "Cover single, multilevel, multiple, hierarchical and hybrid inheritance. Include access modes, constructor/destructor order, ambiguity caused by identical inherited names, explicit qualification and virtual inheritance for the diamond problem."
+    },
+    {
+      "id": "l04",
+      "type": "long",
+      "unit": 4,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Compare compile-time and runtime polymorphism in C++.",
+      "answer": "Compile-time polymorphism uses function/operator overloading and is resolved by the compiler. Runtime polymorphism uses overriding through virtual functions and base pointers/references, resolved by dynamic binding. Give code, benefits, limitations and a comparison table."
+    },
+    {
+      "id": "l05",
+      "type": "long",
+      "unit": 5,
+      "difficulty": "medium",
+      "marks": 8,
+      "question": "Explain function templates and class templates with complete examples.",
+      "answer": "Describe generic programming, template parameters, instantiation and type substitution. Provide one generic maximum function and one Stack<T> class, then mention specialisation and compile-time type checking."
+    },
+    {
+      "id": "l06",
+      "type": "long",
+      "unit": 6,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Explain exception handling in C++, including multiple handlers, catch-all handlers, rethrowing and user-defined exceptions.",
+      "answer": "Describe normal control flow through try, throw and matching catch blocks. Explain handler order, catch(...), throw; for rethrowing, exception objects/classes, stack unwinding, and why exceptions should be caught by reference."
+    },
+    {
+      "id": "o01",
+      "type": "output",
+      "unit": 1,
+      "difficulty": "easy",
+      "marks": 3,
+      "question": "Predict the output:\nint x = 5;\ncout << x++ << \" \" << ++x;",
+      "answer": "5 7\nThe postfix operation prints 5 then makes x equal to 6; prefix increment makes it 7 before printing."
+    },
+    {
+      "id": "o02",
+      "type": "output",
+      "unit": 2,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Predict the output:\nclass A { public: A(){cout<<\"C\";} ~A(){cout<<\"D\";} };\nint main(){ A x; cout<<\"M\"; }",
+      "answer": "CMD\nThe constructor runs at object creation, M is printed, and the destructor runs when main's scope ends."
+    },
+    {
+      "id": "o03",
+      "type": "output",
+      "unit": 3,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Predict the output:\nclass A { public: A(){cout<<\"A\";} };\nclass B: public A { public: B(){cout<<\"B\";} };\nint main(){ B obj; }",
+      "answer": "AB\nThe base-class constructor runs before the derived-class constructor."
+    },
+    {
+      "id": "o04",
+      "type": "output",
+      "unit": 4,
+      "difficulty": "hard",
+      "marks": 5,
+      "question": "Predict the output:\nclass A { public: virtual void show(){cout<<\"A\";} };\nclass B: public A { public: void show(){cout<<\"B\";} };\nint main(){ B b; A *p=&b; p->show(); }",
+      "answer": "B\nshow is virtual, so the overridden B::show is selected using runtime polymorphism."
+    },
+    {
+      "id": "o05",
+      "type": "output",
+      "unit": 5,
+      "difficulty": "medium",
+      "marks": 4,
+      "question": "Predict the output:\ntemplate<class T> T twice(T x){ return x+x; }\nint main(){ cout<<twice(4)<<\" \"<<twice(2.5); }",
+      "answer": "8 5\nThe compiler instantiates twice<int> and twice<double>."
+    },
+    {
+      "id": "o06",
+      "type": "output",
+      "unit": 6,
+      "difficulty": "hard",
+      "marks": 5,
+      "question": "Predict the output:\ntry { throw 10; }\ncatch(double) { cout<<\"D\"; }\ncatch(int) { cout<<\"I\"; }",
+      "answer": "I\nThe thrown int matches catch(int)."
+    },
+    {
+      "id": "p01",
+      "type": "program",
+      "unit": 1,
+      "difficulty": "easy",
+      "marks": 6,
+      "question": "Write a C++ program that dynamically allocates an array of n integers, finds their average and releases the memory.",
+      "answer": "#include <iostream>\nusing namespace std;\nint main(){\n int n; cin>>n; int *a=new int[n]; double sum=0;\n for(int i=0;i<n;i++){ cin>>a[i]; sum+=a[i]; }\n cout<<sum/n; delete[] a;\n}"
+    },
+    {
+      "id": "p02",
+      "type": "program",
+      "unit": 2,
+      "difficulty": "medium",
+      "marks": 8,
+      "question": "Create a Student class with roll number, name and marks. Use a parameterised constructor and a display function.",
+      "answer": "#include <iostream>\n#include <string>\nusing namespace std;\nclass Student{\n int roll; string name; double marks;\npublic:\n Student(int r,string n,double m):roll(r),name(n),marks(m){}\n void display() const { cout<<roll<<\" \"<<name<<\" \"<<marks; }\n};\nint main(){ Student s(1,\"Asha\",88.5); s.display(); }"
+    },
+    {
+      "id": "p03",
+      "type": "program",
+      "unit": 3,
+      "difficulty": "medium",
+      "marks": 8,
+      "question": "Demonstrate multilevel inheritance using Person, Employee and Manager classes.",
+      "answer": "#include <iostream>\n#include <string>\nusing namespace std;\nclass Person{protected:string name; public:Person(string n):name(n){}};\nclass Employee:public Person{protected:int id; public:Employee(string n,int i):Person(n),id(i){}};\nclass Manager:public Employee{string dept; public:Manager(string n,int i,string d):Employee(n,i),dept(d){} void show(){cout<<name<<\" \"<<id<<\" \"<<dept;}};\nint main(){Manager m(\"Ravi\",101,\"Sales\");m.show();}"
+    },
+    {
+      "id": "p04",
+      "type": "program",
+      "unit": 4,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Create an abstract Shape class and derived Circle and Rectangle classes. Calculate areas using runtime polymorphism.",
+      "answer": "#include <iostream>\nusing namespace std;\nclass Shape{public:virtual double area() const=0; virtual ~Shape()=default;};\nclass Circle:public Shape{double r;public:Circle(double x):r(x){} double area()const override{return 3.14159*r*r;}};\nclass Rectangle:public Shape{double w,h;public:Rectangle(double a,double b):w(a),h(b){} double area()const override{return w*h;}};\nint main(){Circle c(2);Rectangle r(3,4);Shape* s[]={&c,&r};for(auto p:s)cout<<p->area()<<\"\\n\";}"
+    },
+    {
+      "id": "p05",
+      "type": "program",
+      "unit": 5,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Write a class template Pair that stores two values and returns the larger value.",
+      "answer": "#include <iostream>\nusing namespace std;\ntemplate<class T> class Pair{\n T a,b;\npublic: Pair(T x,T y):a(x),b(y){} T larger()const{return a>b?a:b;}\n};\nint main(){Pair<int> p(7,12);cout<<p.larger();}"
+    },
+    {
+      "id": "p06",
+      "type": "program",
+      "unit": 6,
+      "difficulty": "medium",
+      "marks": 8,
+      "question": "Write a program that writes student records to a text file and then reads and displays them.",
+      "answer": "#include <fstream>\n#include <iostream>\n#include <string>\nusing namespace std;\nint main(){\n ofstream out(\"students.txt\"); out<<1<<\" Asha 88\\n\"<<2<<\" Ravi 81\\n\"; out.close();\n ifstream in(\"students.txt\"); int roll,marks; string name;\n while(in>>roll>>name>>marks) cout<<roll<<\" \"<<name<<\" \"<<marks<<\"\\n\";\n}"
+    },
+    {
+      "id": "p07",
+      "type": "program",
+      "unit": 6,
+      "difficulty": "hard",
+      "marks": 10,
+      "question": "Write a program that throws and handles an exception when division by zero is attempted.",
+      "answer": "#include <iostream>\n#include <stdexcept>\nusing namespace std;\nint main(){\n double a,b; cin>>a>>b;\n try{ if(b==0) throw runtime_error(\"Division by zero\"); cout<<a/b; }\n catch(const exception& e){ cerr<<e.what(); }\n}"
+    }
+  ]
+}

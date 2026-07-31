@@ -15,32 +15,80 @@
       {
         "id": 1,
         "shortLabel": "Unit I",
-        "name": "Unit I: Java Foundations and Control Structures"
+        "name": "Unit I: Java Foundations and Control Structures",
+        "topics": [
+          "Java features and platform independence",
+          "JVM, JDK and JRE",
+          "Java program structure",
+          "Data types, variables, operators and expressions",
+          "Type conversion and input/output",
+          "Conditions, loops, break, continue and switch"
+        ]
       },
       {
         "id": 2,
         "shortLabel": "Unit II",
-        "name": "Unit II: Arrays, Strings, Vectors, Classes and Inheritance"
+        "name": "Unit II: Arrays, Strings, Vectors, Classes and Inheritance",
+        "topics": [
+          "One-dimensional and multidimensional arrays",
+          "String, StringBuffer and immutability",
+          "Vectors",
+          "Classes, objects and constructors",
+          "Method overloading and encapsulation",
+          "Inheritance and overriding",
+          "Abstract classes and interfaces"
+        ]
       },
       {
         "id": 3,
         "shortLabel": "Unit III",
-        "name": "Unit III: Packages, Exceptions and Multithreading"
+        "name": "Unit III: Packages, Exceptions and Multithreading",
+        "topics": [
+          "Packages, imports and access control",
+          "Exception hierarchy and checked/unchecked exceptions",
+          "try, catch, finally, throw and throws",
+          "User-defined exceptions",
+          "Threads, lifecycle and priorities",
+          "Creating and synchronising threads"
+        ]
       },
       {
         "id": 4,
         "shortLabel": "Unit IV",
-        "name": "Unit IV: Applets, AWT, Layouts and Event Handling"
+        "name": "Unit IV: Applets, AWT, Layouts and Event Handling",
+        "topics": [
+          "Applet lifecycle and parameters",
+          "AWT frames, panels and controls",
+          "Flow, Border, Grid and Card layouts",
+          "Delegation event model",
+          "Event classes and listeners"
+        ]
       },
       {
         "id": 5,
         "shortLabel": "Unit V",
-        "name": "Unit V: Networking, JDBC and Connection Pooling"
+        "name": "Unit V: Networking, JDBC and Connection Pooling",
+        "topics": [
+          "Networking, IP addresses and ports",
+          "Client-server architecture and sockets",
+          "TCP and UDP",
+          "JDBC architecture and drivers",
+          "Connection, Statement, PreparedStatement and ResultSet",
+          "SQL operations, transactions and connection pooling"
+        ]
       },
       {
         "id": 6,
         "shortLabel": "Unit VI",
-        "name": "Unit VI: HTML, Servlets, Sessions, JSP and Tag Libraries"
+        "name": "Unit VI: HTML, Servlets, Sessions, JSP and Tag Libraries",
+        "topics": [
+          "HTML structure, forms and controls",
+          "Servlet architecture and lifecycle",
+          "doGet(), doPost(), request and response",
+          "Cookies, URL rewriting, hidden fields and HttpSession",
+          "JSP lifecycle, directives and scripting elements",
+          "JSP implicit objects, JavaBeans and tag libraries"
+        ]
       }
     ]
   },
