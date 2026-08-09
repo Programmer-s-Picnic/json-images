@@ -750,7 +750,7 @@
       <section class="lwc-card lwc-start">
         <h2>Choose your test mode</h2>
 
-        <p>${escapeHTML(data.instructions)}</p>
+        <p>${data.instructions}</p>
 
         <div class="lwc-mode-grid">
           <label class="lwc-mode selected">
