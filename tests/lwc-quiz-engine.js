@@ -1,15 +1,15 @@
 /*
  * Learn With Champak – Reusable Quiz Engine
  *
- * Example:
+ * Blogger usage:
  *
  * <div
  *   class="lwc-quiz"
- *   data-questions-url="https://example.com/questions.json">
+ *   data-questions-url="YOUR-QUESTIONS.json">
  *   Loading quiz...
  * </div>
  *
- * 
+ * <script src="YOUR-PATH/lwc-quiz-engine.js" defer></script>
  */
 
 (function () {
@@ -36,8 +36,12 @@
         --lwc-success: #166534;
         --lwc-danger: #b91c1c;
 
-        max-width: 1180px;
-        margin: 24px auto;
+        position: relative;
+        left: 50%;
+        width: min(1500px, calc(100vw - 32px));
+        max-width: none;
+        margin: 24px 0 24px -50vw;
+        transform: translateX(calc(50vw - 50%));
         color: var(--lwc-dark);
         font-family: Arial, Helvetica, sans-serif;
         line-height: 1.55;
@@ -74,12 +78,13 @@
 
       .lwc-quiz h1 {
         margin: 0;
+        color: #ffffff;
         font-size: clamp(1.8rem, 4vw, 3rem);
         line-height: 1.12;
       }
 
       .lwc-quiz .lwc-lead {
-        max-width: 780px;
+        max-width: 900px;
         margin: 14px 0 0;
         color: #e0f2fe;
         font-size: 1.04rem;
@@ -121,6 +126,10 @@
         cursor: pointer;
       }
 
+      .lwc-quiz .lwc-mode:hover {
+        border-color: #7dd3fc;
+      }
+
       .lwc-quiz .lwc-mode.selected {
         background: var(--lwc-light);
         border-color: var(--lwc-secondary);
@@ -151,15 +160,20 @@
         border: 0;
         border-radius: 12px;
         cursor: pointer;
-        font: 700 1rem Arial, sans-serif;
+        font: 700 1rem Arial, Helvetica, sans-serif;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          opacity 0.15s ease;
       }
 
       .lwc-quiz button:hover {
         transform: translateY(-1px);
+        box-shadow: 0 7px 16px rgba(15, 23, 42, 0.15);
       }
 
       .lwc-quiz button:focus-visible,
-      .lwc-quiz input:focus-visible + span {
+      .lwc-quiz input:focus-visible {
         outline: 3px solid #f59e0b;
         outline-offset: 3px;
       }
@@ -178,52 +192,91 @@
         display: none !important;
       }
 
+      /*
+       * Fixed status bar.
+       * It stays visible while the learner scrolls.
+       */
       .lwc-quiz .lwc-topbar {
-        position: sticky;
-        top: 8px;
-        z-index: 20;
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        z-index: 99999;
+
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        margin: 18px 0;
-        padding: 12px 16px;
-        background: rgba(255, 255, 255, 0.97);
+        gap: 18px;
+
+        width: min(1500px, calc(100vw - 32px));
+        min-height: 66px;
+        margin: 0;
+        padding: 12px 18px;
+
+        background: rgba(255, 255, 255, 0.98);
         border: 1px solid var(--lwc-border);
-        border-radius: 14px;
-        box-shadow: 0 7px 20px rgba(15, 23, 42, 0.1);
+        border-radius: 16px;
+        box-shadow: 0 10px 32px rgba(15, 23, 42, 0.18);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        transform: translateX(-50%);
+      }
+
+      .lwc-quiz .lwc-test {
+        padding-top: 82px;
       }
 
       .lwc-quiz .lwc-progress {
+        flex: 1;
         color: var(--lwc-primary);
-        font-weight: 700;
+        font-size: 1rem;
+        font-weight: 800;
       }
 
       .lwc-quiz .lwc-timer {
-        min-width: 84px;
-        padding: 7px 12px;
+        display: grid;
+        place-items: center;
+        min-width: 150px;
+        min-height: 44px;
+        padding: 8px 22px;
         color: #ffffff;
-        background: #082f49;
+        background: linear-gradient(135deg, #082f49, #0369a1);
+        border: 2px solid #bae6fd;
         border-radius: 999px;
+        font-size: 1.15rem;
         font-variant-numeric: tabular-nums;
         font-weight: 900;
+        letter-spacing: 0.04em;
         text-align: center;
       }
 
       .lwc-quiz .lwc-timer.low {
         background: var(--lwc-danger);
+        border-color: #fecaca;
         animation: lwc-pulse 1s infinite;
+      }
+
+      .lwc-quiz .lwc-timer.untimed {
+        min-width: 170px;
+        background: linear-gradient(135deg, #166534, #16a34a);
+        border-color: #bbf7d0;
+        font-size: 1rem;
       }
 
       @keyframes lwc-pulse {
         50% {
-          opacity: 0.7;
+          opacity: 0.72;
+          transform: scale(0.98);
         }
+      }
+
+      .lwc-quiz .lwc-questions,
+      .lwc-quiz .lwc-question {
+        width: 100%;
       }
 
       .lwc-quiz .lwc-question {
         margin: 18px 0;
-        padding: 22px;
+        padding: 24px;
         background: #ffffff;
         border: 1px solid var(--lwc-border);
         border-radius: 18px;
@@ -246,26 +299,41 @@
         overflow: auto;
         color: #f8fafc;
         background: #0b1220;
+        border: 1px solid #1e293b;
         border-radius: 12px;
         font: 600 0.96rem/1.65 Consolas, Monaco, monospace;
         white-space: pre-wrap;
         overflow-wrap: anywhere;
       }
 
+      .lwc-quiz code {
+        font-family: Consolas, Monaco, monospace;
+      }
+
       .lwc-quiz .lwc-options {
         display: grid;
-        gap: 10px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }
 
       .lwc-quiz .lwc-option {
         display: flex;
         align-items: flex-start;
         gap: 10px;
-        padding: 12px 14px;
+        min-width: 0;
+        padding: 14px;
         background: #ffffff;
         border: 1px solid var(--lwc-border);
         border-radius: 12px;
         cursor: pointer;
+        transition:
+          background 0.15s ease,
+          border-color 0.15s ease,
+          transform 0.15s ease;
+      }
+
+      .lwc-quiz .lwc-option:hover {
+        transform: translateY(-1px);
       }
 
       .lwc-quiz .lwc-option:hover,
@@ -275,7 +343,8 @@
       }
 
       .lwc-quiz .lwc-option input {
-        margin-top: 8px;
+        flex: 0 0 auto;
+        margin-top: 6px;
         accent-color: var(--lwc-primary);
       }
 
@@ -319,7 +388,7 @@
 
       .lwc-quiz .lwc-review {
         margin: 14px 0;
-        padding: 14px 16px;
+        padding: 16px;
         background: #f8fafc;
         border-left: 5px solid var(--lwc-border);
         border-radius: 10px;
@@ -362,9 +431,46 @@
         text-align: center;
       }
 
+      @media (max-width: 800px) {
+        .lwc-quiz .lwc-options {
+          grid-template-columns: 1fr;
+        }
+      }
+
       @media (max-width: 650px) {
         .lwc-quiz {
-          margin: 10px auto;
+          left: 50%;
+          width: calc(100vw - 16px);
+          margin-top: 8px;
+          margin-bottom: 8px;
+        }
+
+        .lwc-quiz .lwc-topbar {
+          top: 6px;
+          width: calc(100vw - 16px);
+          min-height: 58px;
+          padding: 9px 12px;
+          border-radius: 13px;
+        }
+
+        .lwc-quiz .lwc-test {
+          padding-top: 72px;
+        }
+
+        .lwc-quiz .lwc-progress {
+          font-size: 0.88rem;
+        }
+
+        .lwc-quiz .lwc-timer {
+          min-width: 96px;
+          min-height: 38px;
+          padding: 6px 12px;
+          font-size: 1rem;
+        }
+
+        .lwc-quiz .lwc-timer.untimed {
+          min-width: 112px;
+          font-size: 0.82rem;
         }
 
         .lwc-quiz .lwc-hero,
@@ -395,13 +501,14 @@
   function escapeHTML(value) {
     return String(value ?? "").replace(
       /[&<>"']/g,
-      character => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
-      })[character]
+      character =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        })[character]
     );
   }
 
@@ -409,7 +516,9 @@
     const result = [...items];
 
     for (let index = result.length - 1; index > 0; index--) {
-      const randomIndex = Math.floor(Math.random() * (index + 1));
+      const randomIndex = Math.floor(
+        Math.random() * (index + 1)
+      );
 
       [result[index], result[randomIndex]] = [
         result[randomIndex],
@@ -423,38 +532,71 @@
   function normaliseData(data) {
     const settings = data.settings || {};
 
-    if (!Array.isArray(data.questions) || data.questions.length === 0) {
-      throw new Error("The JSON file does not contain any questions.");
+    if (
+      !Array.isArray(data.questions) ||
+      data.questions.length === 0
+    ) {
+      throw new Error(
+        "The JSON file does not contain any questions."
+      );
     }
+
+    data.questions.forEach((question, index) => {
+      if (
+        !Array.isArray(question.options) ||
+        question.options.length < 2
+      ) {
+        throw new Error(
+          `Question ${index + 1} must contain at least two options.`
+        );
+      }
+
+      if (question.answer === undefined) {
+        throw new Error(
+          `Question ${index + 1} does not contain an answer.`
+        );
+      }
+    });
 
     return {
       title: data.title || "Interactive Quiz",
+
       subtitle:
         data.subtitle ||
         "Select the correct answer for each question.",
+
       kicker:
         data.kicker ||
         "Learn With Champak • Interactive Test",
+
       instructions:
         data.instructions ||
         "Answer the questions and submit the test.",
+
       footer:
         data.footer ||
         "Learn With Champak • Learn by doing",
+
       settings: {
         questionsPerAttempt:
           Number(settings.questionsPerAttempt) || 10,
+
         durationMinutes:
           Number(settings.durationMinutes) || 10,
+
         shuffleQuestions:
           settings.shuffleQuestions !== false,
+
         shuffleOptions:
           settings.shuffleOptions !== false,
+
         allowUntimed:
           settings.allowUntimed !== false,
+
         showReview:
           settings.showReview !== false
       },
+
       questions: data.questions
     };
   }
@@ -494,7 +636,10 @@
 
       buildQuiz(root, data, quizNumber);
     } catch (error) {
-      console.error("Learn With Champak quiz error:", error);
+      console.error(
+        "Learn With Champak quiz error:",
+        error
+      );
 
       root.innerHTML = `
         <div class="lwc-card">
@@ -505,7 +650,8 @@
           </p>
 
           <p class="lwc-note">
-            Check the JSON URL, JSON syntax and GitHub Pages publication.
+            Check the JSON URL, JSON syntax and GitHub Pages
+            publication.
           </p>
         </div>
       `;
@@ -577,12 +723,16 @@
           }
         </div>
 
-        <button class="lwc-primary lwc-start-button" type="button">
+        <button
+          class="lwc-primary lwc-start-button"
+          type="button"
+        >
           Start the test
         </button>
 
         <p class="lwc-note">
-          Each question carries one mark. There is no negative marking.
+          Each question carries one mark.
+          There is no negative marking.
         </p>
       </section>
 
@@ -593,7 +743,9 @@
           </span>
 
           <span class="lwc-timer">
-            ${data.settings.durationMinutes}:00
+            ${String(
+              data.settings.durationMinutes
+            ).padStart(2, "0")}:00
           </span>
         </div>
 
@@ -601,7 +753,10 @@
           <div class="lwc-questions"></div>
 
           <div class="lwc-actions">
-            <button class="lwc-primary" type="submit">
+            <button
+              class="lwc-primary"
+              type="submit"
+            >
               Submit answers
             </button>
 
@@ -645,7 +800,8 @@
       </p>
     `;
 
-    const find = selector => root.querySelector(selector);
+    const find = selector =>
+      root.querySelector(selector);
 
     const startSection = find(".lwc-start");
     const testSection = find(".lwc-test");
@@ -657,8 +813,10 @@
 
     let selectedQuestions = [];
     let interval = null;
+
     let secondsRemaining =
       data.settings.durationMinutes * 60;
+
     let currentMode = "timed";
     let finished = false;
 
@@ -671,9 +829,11 @@
         .slice(0, questionsPerAttempt)
         .map(question => ({
           ...question,
-          displayedOptions: data.settings.shuffleOptions
-            ? shuffle(question.options)
-            : [...question.options]
+
+          displayedOptions:
+            data.settings.shuffleOptions
+              ? shuffle(question.options)
+              : [...question.options]
         }));
     }
 
@@ -697,9 +857,9 @@
               ${
                 question.code !== undefined
                   ? `
-                    <pre><code>${
-                      escapeHTML(question.code)
-                    }</code></pre>
+                    <pre><code>${escapeHTML(
+                      question.code
+                    )}</code></pre>
                   `
                   : ""
               }
@@ -709,42 +869,48 @@
                   ? `
                     <p><strong>Output:</strong></p>
 
-                    <pre><code>${
-                      escapeHTML(question.output)
-                    }</code></pre>
+                    <pre><code>${escapeHTML(
+                      question.output
+                    )}</code></pre>
                   `
                   : ""
               }
 
               <div class="lwc-options">
                 ${question.displayedOptions
-                  .map((option, optionIndex) => `
-                    <label class="lwc-option">
-                      <input
-                        type="radio"
-                        name="${id}-question-${questionIndex}"
-                        value="${optionIndex}"
-                      >
+                  .map(
+                    (option, optionIndex) => `
+                      <label class="lwc-option">
+                        <input
+                          type="radio"
+                          name="${id}-question-${questionIndex}"
+                          value="${optionIndex}"
+                        >
 
-                      <span>
-                        <strong>
-                          ${String.fromCharCode(65 + optionIndex)}.
-                        </strong>
+                        <span>
+                          <strong>
+                            ${String.fromCharCode(
+                              65 + optionIndex
+                            )}.
+                          </strong>
 
-                        ${
-                          question.optionType === "code"
-                            ? `
-                              <pre><code>${
-                                escapeHTML(option)
-                              }</code></pre>
-                            `
-                            : `
-                              <code>${escapeHTML(option)}</code>
-                            `
-                        }
-                      </span>
-                    </label>
-                  `)
+                          ${
+                            question.optionType === "code"
+                              ? `
+                                <pre><code>${escapeHTML(
+                                  option
+                                )}</code></pre>
+                              `
+                              : `
+                                <code>${escapeHTML(
+                                  option
+                                )}</code>
+                              `
+                          }
+                        </span>
+                      </label>
+                    `
+                  )
                   .join("")}
               </div>
             </article>
@@ -765,14 +931,29 @@
     }
 
     function updateTimer() {
-      const minutes = Math.floor(secondsRemaining / 60);
+      if (currentMode === "untimed") {
+        timer.textContent = "No time limit";
+        timer.classList.remove("low");
+        timer.classList.add("untimed");
+        return;
+      }
+
+      const minutes = Math.floor(
+        secondsRemaining / 60
+      );
+
       const seconds = secondsRemaining % 60;
 
       timer.textContent =
         `${String(minutes).padStart(2, "0")}:` +
         `${String(seconds).padStart(2, "0")}`;
 
-      timer.classList.toggle("low", secondsRemaining <= 60);
+      timer.classList.remove("untimed");
+
+      timer.classList.toggle(
+        "low",
+        secondsRemaining <= 60
+      );
     }
 
     function startQuiz() {
@@ -797,16 +978,17 @@
       resultSection.classList.add("lwc-hidden");
       testSection.classList.remove("lwc-hidden");
 
-      timer.classList.toggle(
+      timer.classList.remove(
         "lwc-hidden",
-        currentMode === "untimed"
+        "low",
+        "untimed"
       );
 
-      if (currentMode === "timed") {
-        updateTimer();
+      updateTimer();
 
+      if (currentMode === "timed") {
         interval = setInterval(() => {
-          secondsRemaining--;
+          secondsRemaining -= 1;
           updateTimer();
 
           if (secondsRemaining <= 0) {
@@ -846,10 +1028,11 @@
 
           const correct =
             selectedAnswer !== null &&
-            String(selectedAnswer) === String(question.answer);
+            String(selectedAnswer) ===
+              String(question.answer);
 
           if (correct) {
-            score++;
+            score += 1;
           }
 
           const answerIsCode =
@@ -861,8 +1044,12 @@
             }
 
             return answerIsCode
-              ? `<pre><code>${escapeHTML(value)}</code></pre>`
-              : `<p><code>${escapeHTML(value)}</code></p>`;
+              ? `<pre><code>${escapeHTML(
+                  value
+                )}</code></pre>`
+              : `<p><code>${escapeHTML(
+                  value
+                )}</code></p>`;
           }
 
           return `
@@ -874,12 +1061,19 @@
                 ${correct ? "Correct" : "Incorrect"}
               </strong>
 
+              <h3>
+                ${escapeHTML(
+                  question.question ||
+                    "What is the correct answer?"
+                )}
+              </h3>
+
               ${
                 question.code !== undefined
                   ? `
-                    <pre><code>${
-                      escapeHTML(question.code)
-                    }</code></pre>
+                    <pre><code>${escapeHTML(
+                      question.code
+                    )}</code></pre>
                   `
                   : ""
               }
@@ -888,9 +1082,12 @@
                 question.output !== undefined
                   ? `
                     <p>
-                      Required output:
-                      <code>${escapeHTML(question.output)}</code>
+                      <strong>Required output:</strong>
                     </p>
+
+                    <pre><code>${escapeHTML(
+                      question.output
+                    )}</code></pre>
                   `
                   : ""
               }
@@ -925,7 +1122,10 @@
                 question.explanation
                   ? `
                     <p>
-                      ${escapeHTML(question.explanation)}
+                      <strong>Explanation:</strong>
+                      ${escapeHTML(
+                        question.explanation
+                      )}
                     </p>
                   `
                   : ""
@@ -944,11 +1144,14 @@
       if (percentage >= 90) {
         message = "Excellent work!";
       } else if (percentage >= 70) {
-        message = "Very good—review the few mistakes.";
+        message =
+          "Very good—review the few mistakes.";
       } else if (percentage >= 50) {
-        message = "Good start—practise the reviewed concepts.";
+        message =
+          "Good start—practise the reviewed concepts.";
       } else {
-        message = "Revise the topic and try again.";
+        message =
+          "Revise the topic and try again.";
       }
 
       find(".lwc-summary").innerHTML = `
@@ -959,11 +1162,16 @@
 
           <div>
             <h2>
-              ${timeUp ? "Time is up!" : "Test completed"}
+              ${
+                timeUp
+                  ? "Time is up!"
+                  : "Test completed"
+              }
             </h2>
 
             <p>
-              <strong>${percentage}%</strong> — ${message}
+              <strong>${percentage}%</strong>
+              — ${message}
             </p>
 
             <p class="lwc-note">
@@ -1012,12 +1220,14 @@
       `input[name="${id}-mode"]`
     ).forEach(input => {
       input.addEventListener("change", () => {
-        root.querySelectorAll(".lwc-mode").forEach(label => {
-          label.classList.toggle(
-            "selected",
-            label.querySelector("input").checked
-          );
-        });
+        root
+          .querySelectorAll(".lwc-mode")
+          .forEach(label => {
+            label.classList.toggle(
+              "selected",
+              label.querySelector("input").checked
+            );
+          });
       });
     });
 
@@ -1027,18 +1237,27 @@
     );
 
     form.addEventListener("change", event => {
-      if (event.target.matches('input[type="radio"]')) {
-        const question = event.target.closest(".lwc-question");
+      if (
+        !event.target.matches(
+          'input[type="radio"]'
+        )
+      ) {
+        return;
+      }
 
-        question.querySelectorAll(".lwc-option").forEach(option => {
+      const question =
+        event.target.closest(".lwc-question");
+
+      question
+        .querySelectorAll(".lwc-option")
+        .forEach(option => {
           option.classList.toggle(
             "selected",
             option.querySelector("input").checked
           );
         });
 
-        updateProgress();
-      }
+      updateProgress();
     });
 
     form.addEventListener("submit", event => {
@@ -1065,23 +1284,26 @@
   function startAllQuizzes() {
     addStyles();
 
-    document.querySelectorAll(".lwc-quiz").forEach(
-      (root, index) => {
-        if (root.dataset.lwcInitialised === "true") {
+    document
+      .querySelectorAll(".lwc-quiz")
+      .forEach((root, index) => {
+        if (
+          root.dataset.lwcInitialised === "true"
+        ) {
           return;
         }
 
         root.dataset.lwcInitialised = "true";
+
         initialiseQuiz(root, index + 1);
-      }
-    );
+      });
   }
 
   if (document.readyState === "loading") {
     document.addEventListener(
       "DOMContentLoaded",
       startAllQuizzes
-    ); 
+    );
   } else {
     startAllQuizzes();
   }
