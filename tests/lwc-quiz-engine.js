@@ -279,6 +279,13 @@
         font-weight: 800;
       }
 
+      .lwc-quiz .lwc-topbar-submit {
+        flex: 0 0 auto;
+        min-height: 44px;
+        padding: 10px 18px;
+        white-space: nowrap;
+      }
+
       .lwc-quiz .lwc-timer {
         display: grid;
         place-items: center;
@@ -523,6 +530,7 @@
           min-height: 58px;
           padding: 9px 12px;
           border-radius: 13px;
+          gap: 8px;
         }
 
         .lwc-quiz .lwc-test {
@@ -531,6 +539,12 @@
 
         .lwc-quiz .lwc-progress {
           font-size: 0.88rem;
+        }
+
+        .lwc-quiz .lwc-topbar-submit {
+          min-height: 38px;
+          padding: 7px 10px;
+          font-size: 0.82rem;
         }
 
         .lwc-quiz .lwc-timer {
@@ -603,7 +617,8 @@
   function applySEO(seo) {
     if (!seo || seo.enabled === false) return;
 
-    const canonicalURL = seo.canonicalUrl ||
+    const canonicalURL =
+      seo.canonicalUrl ||
       `${window.location.origin}${window.location.pathname}`;
 
     document.title = seo.title;
@@ -642,14 +657,16 @@
       "og:image:alt": seo.imageAlt
     };
 
-    Object.entries(openGraph).forEach(([property, content]) => {
-      if (!content) return;
+    Object.entries(openGraph).forEach(
+      ([property, content]) => {
+        if (!content) return;
 
-      setMeta(`meta[property="${property}"]`, {
-        property,
-        content
-      });
-    });
+        setMeta(`meta[property="${property}"]`, {
+          property,
+          content
+        });
+      }
+    );
 
     const twitter = {
       "twitter:card": seo.ogImage
@@ -679,6 +696,7 @@
     const schema = document.createElement("script");
     schema.id = "lwc-quiz-structured-data";
     schema.type = "application/ld+json";
+
     schema.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Quiz",
@@ -697,8 +715,14 @@
   function shuffle(items) {
     const result = [...items];
 
-    for (let index = result.length - 1; index > 0; index--) {
-      const randomIndex = Math.floor(Math.random() * (index + 1));
+    for (
+      let index = result.length - 1;
+      index > 0;
+      index--
+    ) {
+      const randomIndex = Math.floor(
+        Math.random() * (index + 1)
+      );
 
       [result[index], result[randomIndex]] = [
         result[randomIndex],
@@ -712,13 +736,21 @@
   function normaliseData(data) {
     const settings = data.settings || {};
     const suppliedSEO = data.seo || {};
-    const seoTitle = suppliedSEO.title || data.title ||
+
+    const seoTitle =
+      suppliedSEO.title ||
+      data.title ||
       "Interactive Quiz | Learn With Champak";
-    const seoDescription = suppliedSEO.description ||
+
+    const seoDescription =
+      suppliedSEO.description ||
       data.subtitle ||
       "Practise programming with this interactive quiz from Learn With Champak.";
 
-    if (!Array.isArray(data.questions) || data.questions.length === 0) {
+    if (
+      !Array.isArray(data.questions) ||
+      data.questions.length === 0
+    ) {
       throw new Error(
         "The JSON file does not contain any questions."
       );
@@ -767,14 +799,22 @@
         keywords: suppliedSEO.keywords || "",
         canonicalUrl: suppliedSEO.canonicalUrl || "",
         ogImage: suppliedSEO.ogImage || "",
+
         imageAlt:
           suppliedSEO.imageAlt ||
           `${data.title || "Interactive quiz"} – Learn With Champak`,
+
         type: suppliedSEO.type || "website",
-        siteName: suppliedSEO.siteName || "Learn With Champak",
+
+        siteName:
+          suppliedSEO.siteName ||
+          "Learn With Champak",
+
         language: suppliedSEO.language || "en-IN",
+
         educationalLevel:
-          suppliedSEO.educationalLevel || "Beginner"
+          suppliedSEO.educationalLevel ||
+          "Beginner"
       },
 
       settings: {
@@ -840,7 +880,10 @@
 
       buildQuiz(root, data, quizNumber);
     } catch (error) {
-      console.error("Learn With Champak quiz error:", error);
+      console.error(
+        "Learn With Champak quiz error:",
+        error
+      );
 
       root.innerHTML = `
         <div class="lwc-card">
@@ -944,15 +987,28 @@
           </span>
 
           <span class="lwc-timer">
-            ${String(data.settings.durationMinutes).padStart(2, "0")}:00
+            ${String(
+              data.settings.durationMinutes
+            ).padStart(2, "0")}:00
           </span>
+
+          <button
+            class="lwc-primary lwc-topbar-submit"
+            type="submit"
+            form="${id}-form"
+          >
+            Submit answers
+          </button>
         </div>
 
-        <form class="lwc-form">
+        <form class="lwc-form" id="${id}-form">
           <div class="lwc-questions"></div>
 
           <div class="lwc-actions">
-            <button class="lwc-primary" type="submit">
+            <button
+              class="lwc-primary"
+              type="submit"
+            >
               Submit answers
             </button>
 
@@ -996,7 +1052,8 @@
       </p>
     `;
 
-    const find = selector => root.querySelector(selector);
+    const find = selector =>
+      root.querySelector(selector);
 
     const startSection = find(".lwc-start");
     const testSection = find(".lwc-test");
@@ -1008,7 +1065,10 @@
 
     let selectedQuestions = [];
     let interval = null;
-    let secondsRemaining = data.settings.durationMinutes * 60;
+
+    let secondsRemaining =
+      data.settings.durationMinutes * 60;
+
     let currentMode = "timed";
     let finished = false;
 
@@ -1022,9 +1082,10 @@
         .map(question => ({
           ...question,
 
-          displayedOptions: data.settings.shuffleOptions
-            ? shuffle(question.options)
-            : [...question.options]
+          displayedOptions:
+            data.settings.shuffleOptions
+              ? shuffle(question.options)
+              : [...question.options]
         }));
     }
 
@@ -1043,7 +1104,9 @@
                 Question ${questionIndex + 1}
               </span>
 
-              <h3>${escapeHTML(questionText)}</h3>
+              <h3>
+                ${escapeHTML(questionText)}
+              </h3>
 
               ${
                 question.code !== undefined
@@ -1058,7 +1121,9 @@
               ${
                 question.output !== undefined
                   ? `
-                    <p><strong>Output:</strong></p>
+                    <p>
+                      <strong>Output:</strong>
+                    </p>
 
                     <pre><code>${escapeHTML(
                       question.output
@@ -1086,7 +1151,8 @@
                           </strong>
 
                           ${
-                            question.optionType === "code"
+                            question.optionType ===
+                            "code"
                               ? `
                                 <pre><code>${escapeHTML(
                                   option
@@ -1129,7 +1195,10 @@
         return;
       }
 
-      const minutes = Math.floor(secondsRemaining / 60);
+      const minutes = Math.floor(
+        secondsRemaining / 60
+      );
+
       const seconds = secondsRemaining % 60;
 
       timer.textContent =
@@ -1268,7 +1337,9 @@
                 question.output !== undefined
                   ? `
                     <p>
-                      <strong>Required output:</strong>
+                      <strong>
+                        Required output:
+                      </strong>
                     </p>
 
                     <pre><code>${escapeHTML(
@@ -1294,7 +1365,9 @@
                       Your answer:
                     </div>
 
-                    ${displayAnswer(selectedAnswer)}
+                    ${displayAnswer(
+                      selectedAnswer
+                    )}
                   `
               }
 
@@ -1330,12 +1403,14 @@
       if (percentage >= 90) {
         message = "Excellent work!";
       } else if (percentage >= 70) {
-        message = "Very good—review the few mistakes.";
+        message =
+          "Very good—review the few mistakes.";
       } else if (percentage >= 50) {
         message =
           "Good start—practise the reviewed concepts.";
       } else {
-        message = "Revise the topic and try again.";
+        message =
+          "Revise the topic and try again.";
       }
 
       find(".lwc-summary").innerHTML = `
@@ -1346,7 +1421,11 @@
 
           <div>
             <h2>
-              ${timeUp ? "Time is up!" : "Test completed"}
+              ${
+                timeUp
+                  ? "Time is up!"
+                  : "Test completed"
+              }
             </h2>
 
             <p>
@@ -1418,7 +1497,9 @@
 
     form.addEventListener("change", event => {
       if (
-        !event.target.matches('input[type="radio"]')
+        !event.target.matches(
+          'input[type="radio"]'
+        )
       ) {
         return;
       }
@@ -1467,11 +1548,14 @@
     document
       .querySelectorAll(".lwc-quiz")
       .forEach((root, index) => {
-        if (root.dataset.lwcInitialised === "true") {
+        if (
+          root.dataset.lwcInitialised === "true"
+        ) {
           return;
         }
 
         root.dataset.lwcInitialised = "true";
+
         initialiseQuiz(root, index + 1);
       });
   }
