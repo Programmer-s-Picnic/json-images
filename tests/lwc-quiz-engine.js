@@ -1081,7 +1081,7 @@
     document.addEventListener(
       "DOMContentLoaded",
       startAllQuizzes
-    );
+    ); 
   } else {
     startAllQuizzes();
   }
