@@ -1,12 +1,12 @@
 /*
  * Learn With Champak – Reusable Quiz Engine
  *
- * Blogger usage:
+ * Blogger embed:
  *
  * <div
  *   class="lwc-quiz"
  *   data-questions-url="YOUR-QUESTIONS.json">
- *   Loading quiz...
+ *   <p>Loading quiz…</p>
  * </div>
  *
  * <script src="YOUR-PATH/lwc-quiz-engine.js" defer></script>
@@ -18,9 +18,7 @@
   const STYLE_ID = "lwc-quiz-engine-styles";
 
   function addStyles() {
-    if (document.getElementById(STYLE_ID)) {
-      return;
-    }
+    if (document.getElementById(STYLE_ID)) return;
 
     const style = document.createElement("style");
     style.id = STYLE_ID;
@@ -36,12 +34,12 @@
         --lwc-success: #166534;
         --lwc-danger: #b91c1c;
 
-        position: relative;
-        left: 50%;
-        width: min(1500px, calc(100vw - 32px));
-        max-width: none;
-        margin: 24px 0 24px -50vw;
-        transform: translateX(calc(50vw - 50%));
+        position: relative !important;
+        width: min(1500px, calc(100vw - 32px)) !important;
+        max-width: none !important;
+        margin: 24px auto !important;
+        padding-top: 16px !important;
+        overflow: visible !important;
         color: var(--lwc-dark);
         font-family: Arial, Helvetica, sans-serif;
         line-height: 1.55;
@@ -54,7 +52,10 @@
       }
 
       .lwc-quiz .lwc-hero {
-        padding: 32px;
+        position: relative !important;
+        display: block !important;
+        padding: 36px 28px !important;
+        overflow: hidden !important;
         color: #ffffff;
         background:
           linear-gradient(
@@ -68,29 +69,52 @@
       }
 
       .lwc-quiz .lwc-kicker {
-        margin: 0 0 6px;
-        color: #bae6fd;
+        position: static !important;
+        display: block !important;
+        margin: 0 0 8px !important;
+        padding: 0 !important;
+        color: #bae6fd !important;
         font-size: 0.78rem;
         font-weight: 800;
         letter-spacing: 0.12em;
+        line-height: 1.4;
         text-transform: uppercase;
+        transform: none !important;
       }
 
-      .lwc-quiz h1 {
-        margin: 0;
-        color: #ffffff;
-        font-size: clamp(1.8rem, 4vw, 3rem);
-        line-height: 1.12;
+      .lwc-quiz .lwc-hero h1 {
+        position: static !important;
+        display: block !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        color: #ffffff !important;
+        font-size: clamp(2rem, 5vw, 4rem) !important;
+        font-weight: 800 !important;
+        line-height: 1.08 !important;
+        letter-spacing: normal !important;
+        text-align: left !important;
+        text-indent: 0 !important;
+        text-transform: none !important;
+        white-space: normal !important;
+        transform: none !important;
       }
 
       .lwc-quiz .lwc-lead {
-        max-width: 900px;
-        margin: 14px 0 0;
-        color: #e0f2fe;
+        position: static !important;
+        display: block !important;
+        max-width: 950px;
+        margin: 16px 0 0 !important;
+        padding: 0 !important;
+        color: #e0f2fe !important;
         font-size: 1.04rem;
+        transform: none !important;
       }
 
       .lwc-quiz .lwc-card {
+        width: 100%;
         margin-top: 22px;
         padding: 24px;
         background: #ffffff;
@@ -117,9 +141,12 @@
       }
 
       .lwc-quiz .lwc-mode {
-        position: relative;
-        display: block;
-        padding: 18px;
+        position: relative !important;
+        display: block !important;
+        min-height: 112px;
+        margin: 0 !important;
+        padding: 18px !important;
+        overflow: visible !important;
         background: #f8fafc;
         border: 2px solid var(--lwc-border);
         border-radius: 16px;
@@ -135,32 +162,53 @@
         border-color: var(--lwc-secondary);
       }
 
-      .lwc-quiz .lwc-mode input {
-        position: absolute;
-        top: 18px;
-        right: 18px;
+      .lwc-quiz .lwc-mode input[type="radio"] {
+        position: absolute !important;
+        top: 18px !important;
+        right: 18px !important;
+        bottom: auto !important;
+        left: auto !important;
+        display: block !important;
+        width: 18px !important;
+        height: 18px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        clip: auto !important;
+        clip-path: none !important;
         accent-color: var(--lwc-primary);
+        appearance: auto !important;
+        -webkit-appearance: radio !important;
+        transform: none !important;
       }
 
       .lwc-quiz .lwc-mode strong {
         display: block;
-        padding-right: 30px;
+        padding-right: 36px;
         color: var(--lwc-primary);
         font-size: 1.08rem;
       }
 
       .lwc-quiz .lwc-mode span {
         display: block;
-        margin-top: 4px;
+        margin-top: 5px;
+        padding-right: 30px;
         color: var(--lwc-muted);
       }
 
       .lwc-quiz button {
+        position: static;
+        display: inline-block;
+        width: auto;
+        min-height: 46px;
+        margin: 0;
         padding: 12px 18px;
         border: 0;
         border-radius: 12px;
         cursor: pointer;
         font: 700 1rem Arial, Helvetica, sans-serif;
+        text-transform: none;
         transition:
           transform 0.15s ease,
           box-shadow 0.15s ease,
@@ -192,14 +240,12 @@
         display: none !important;
       }
 
-      /*
-       * Fixed status bar.
-       * It stays visible while the learner scrolls.
-       */
       .lwc-quiz .lwc-topbar {
-        position: fixed;
-        top: 12px;
-        left: 50%;
+        position: fixed !important;
+        top: 12px !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: 50% !important;
         z-index: 99999;
 
         display: flex;
@@ -218,10 +264,11 @@
         box-shadow: 0 10px 32px rgba(15, 23, 42, 0.18);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        transform: translateX(-50%);
+        transform: translateX(-50%) !important;
       }
 
       .lwc-quiz .lwc-test {
+        width: 100%;
         padding-top: 82px;
       }
 
@@ -269,9 +316,11 @@
         }
       }
 
+      .lwc-quiz .lwc-form,
       .lwc-quiz .lwc-questions,
       .lwc-quiz .lwc-question {
         width: 100%;
+        max-width: none;
       }
 
       .lwc-quiz .lwc-question {
@@ -294,6 +343,7 @@
       }
 
       .lwc-quiz pre {
+        max-width: 100%;
         margin: 14px 0;
         padding: 18px;
         overflow: auto;
@@ -317,10 +367,12 @@
       }
 
       .lwc-quiz .lwc-option {
+        position: relative;
         display: flex;
         align-items: flex-start;
         gap: 10px;
         min-width: 0;
+        margin: 0;
         padding: 14px;
         background: #ffffff;
         border: 1px solid var(--lwc-border);
@@ -342,10 +394,22 @@
         border-color: #38bdf8;
       }
 
-      .lwc-quiz .lwc-option input {
+      .lwc-quiz .lwc-option input[type="radio"] {
+        position: static !important;
+        display: block !important;
         flex: 0 0 auto;
-        margin-top: 6px;
+        width: 17px !important;
+        height: 17px !important;
+        margin: 6px 0 0 !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        clip: auto !important;
+        clip-path: none !important;
         accent-color: var(--lwc-primary);
+        appearance: auto !important;
+        -webkit-appearance: radio !important;
+        transform: none !important;
       }
 
       .lwc-quiz .lwc-option span {
@@ -439,14 +503,22 @@
 
       @media (max-width: 650px) {
         .lwc-quiz {
-          left: 50%;
-          width: calc(100vw - 16px);
-          margin-top: 8px;
-          margin-bottom: 8px;
+          width: calc(100vw - 16px) !important;
+          margin: 8px auto !important;
+          padding-top: 8px !important;
+        }
+
+        .lwc-quiz .lwc-hero {
+          padding: 26px 18px !important;
+          border-radius: 15px;
+        }
+
+        .lwc-quiz .lwc-hero h1 {
+          font-size: clamp(2rem, 11vw, 3rem) !important;
         }
 
         .lwc-quiz .lwc-topbar {
-          top: 6px;
+          top: 6px !important;
           width: calc(100vw - 16px);
           min-height: 58px;
           padding: 9px 12px;
@@ -473,7 +545,6 @@
           font-size: 0.82rem;
         }
 
-        .lwc-quiz .lwc-hero,
         .lwc-quiz .lwc-card,
         .lwc-quiz .lwc-question {
           padding: 18px;
@@ -491,6 +562,10 @@
 
         .lwc-quiz .lwc-score-circle {
           margin: auto;
+        }
+
+        .lwc-quiz .lwc-actions button {
+          flex: 1 1 100%;
         }
       }
     `;
@@ -516,9 +591,7 @@
     const result = [...items];
 
     for (let index = result.length - 1; index > 0; index--) {
-      const randomIndex = Math.floor(
-        Math.random() * (index + 1)
-      );
+      const randomIndex = Math.floor(Math.random() * (index + 1));
 
       [result[index], result[randomIndex]] = [
         result[randomIndex],
@@ -532,10 +605,7 @@
   function normaliseData(data) {
     const settings = data.settings || {};
 
-    if (
-      !Array.isArray(data.questions) ||
-      data.questions.length === 0
-    ) {
+    if (!Array.isArray(data.questions) || data.questions.length === 0) {
       throw new Error(
         "The JSON file does not contain any questions."
       );
@@ -636,10 +706,7 @@
 
       buildQuiz(root, data, quizNumber);
     } catch (error) {
-      console.error(
-        "Learn With Champak quiz error:",
-        error
-      );
+      console.error("Learn With Champak quiz error:", error);
 
       root.innerHTML = `
         <div class="lwc-card">
@@ -743,9 +810,7 @@
           </span>
 
           <span class="lwc-timer">
-            ${String(
-              data.settings.durationMinutes
-            ).padStart(2, "0")}:00
+            ${String(data.settings.durationMinutes).padStart(2, "0")}:00
           </span>
         </div>
 
@@ -753,10 +818,7 @@
           <div class="lwc-questions"></div>
 
           <div class="lwc-actions">
-            <button
-              class="lwc-primary"
-              type="submit"
-            >
+            <button class="lwc-primary" type="submit">
               Submit answers
             </button>
 
@@ -800,8 +862,7 @@
       </p>
     `;
 
-    const find = selector =>
-      root.querySelector(selector);
+    const find = selector => root.querySelector(selector);
 
     const startSection = find(".lwc-start");
     const testSection = find(".lwc-test");
@@ -813,10 +874,7 @@
 
     let selectedQuestions = [];
     let interval = null;
-
-    let secondsRemaining =
-      data.settings.durationMinutes * 60;
-
+    let secondsRemaining = data.settings.durationMinutes * 60;
     let currentMode = "timed";
     let finished = false;
 
@@ -830,10 +888,9 @@
         .map(question => ({
           ...question,
 
-          displayedOptions:
-            data.settings.shuffleOptions
-              ? shuffle(question.options)
-              : [...question.options]
+          displayedOptions: data.settings.shuffleOptions
+            ? shuffle(question.options)
+            : [...question.options]
         }));
     }
 
@@ -938,10 +995,7 @@
         return;
       }
 
-      const minutes = Math.floor(
-        secondsRemaining / 60
-      );
-
+      const minutes = Math.floor(secondsRemaining / 60);
       const seconds = secondsRemaining % 60;
 
       timer.textContent =
@@ -989,12 +1043,16 @@
       if (currentMode === "timed") {
         interval = setInterval(() => {
           secondsRemaining -= 1;
-          updateTimer();
 
           if (secondsRemaining <= 0) {
+            secondsRemaining = 0;
+            updateTimer();
             clearInterval(interval);
             submitQuiz(true);
+            return;
           }
+
+          updateTimer();
         }, 1000);
       }
 
@@ -1005,9 +1063,7 @@
     }
 
     function submitQuiz(timeUp) {
-      if (finished) {
-        return;
-      }
+      if (finished) return;
 
       finished = true;
       clearInterval(interval);
@@ -1031,17 +1087,13 @@
             String(selectedAnswer) ===
               String(question.answer);
 
-          if (correct) {
-            score += 1;
-          }
+          if (correct) score += 1;
 
           const answerIsCode =
             question.optionType === "code";
 
           function displayAnswer(value) {
-            if (value === null) {
-              return "";
-            }
+            if (value === null) return "";
 
             return answerIsCode
               ? `<pre><code>${escapeHTML(
@@ -1144,14 +1196,12 @@
       if (percentage >= 90) {
         message = "Excellent work!";
       } else if (percentage >= 70) {
-        message =
-          "Very good—review the few mistakes.";
+        message = "Very good—review the few mistakes.";
       } else if (percentage >= 50) {
         message =
           "Good start—practise the reviewed concepts.";
       } else {
-        message =
-          "Revise the topic and try again.";
+        message = "Revise the topic and try again.";
       }
 
       find(".lwc-summary").innerHTML = `
@@ -1162,11 +1212,7 @@
 
           <div>
             <h2>
-              ${
-                timeUp
-                  ? "Time is up!"
-                  : "Test completed"
-              }
+              ${timeUp ? "Time is up!" : "Test completed"}
             </h2>
 
             <p>
@@ -1238,9 +1284,7 @@
 
     form.addEventListener("change", event => {
       if (
-        !event.target.matches(
-          'input[type="radio"]'
-        )
+        !event.target.matches('input[type="radio"]')
       ) {
         return;
       }
@@ -1248,14 +1292,16 @@
       const question =
         event.target.closest(".lwc-question");
 
-      question
-        .querySelectorAll(".lwc-option")
-        .forEach(option => {
-          option.classList.toggle(
-            "selected",
-            option.querySelector("input").checked
-          );
-        });
+      if (question) {
+        question
+          .querySelectorAll(".lwc-option")
+          .forEach(option => {
+            option.classList.toggle(
+              "selected",
+              option.querySelector("input").checked
+            );
+          });
+      }
 
       updateProgress();
     });
@@ -1287,14 +1333,11 @@
     document
       .querySelectorAll(".lwc-quiz")
       .forEach((root, index) => {
-        if (
-          root.dataset.lwcInitialised === "true"
-        ) {
+        if (root.dataset.lwcInitialised === "true") {
           return;
         }
 
         root.dataset.lwcInitialised = "true";
-
         initialiseQuiz(root, index + 1);
       });
   }
