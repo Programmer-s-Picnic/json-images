@@ -4,6 +4,19 @@
   "kicker": "Learn With Champak • Interactive Python Test",
   "instructions": "Work out the result mentally. Pay attention to operator precedence, data types, floor division, remainder and assignment operators.",
   "footer": "Learn With Champak • Python from fundamentals to problem solving",
+  "seo": {
+    "enabled": true,
+    "title": "Python Arithmetic Output Quiz | Learn With Champak",
+    "description": "Test your understanding of Python arithmetic operators, precedence, floor division, remainders, assignment operators and numeric output with 50 explained questions.",
+    "keywords": "Python arithmetic quiz, Python output questions, Python operators, operator precedence, floor division, modulo, Python practice, Learn With Champak, Champak Roy",
+    "canonicalUrl": "",
+    "ogImage": "https://programmer-s-picnic.github.io/json-images/mee.jpg",
+    "imageAlt": "Python Arithmetic Output Quiz by Champak Roy",
+    "type": "website",
+    "siteName": "Learn With Champak",
+    "language": "en-IN",
+    "educationalLevel": "Beginner"
+  },
   "settings": {
     "questionsPerAttempt": 10,
     "durationMinutes": 10,

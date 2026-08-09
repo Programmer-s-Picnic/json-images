@@ -587,6 +587,113 @@
     );
   }
 
+  function setMeta(selector, attributes) {
+    let element = document.head.querySelector(selector);
+
+    if (!element) {
+      element = document.createElement("meta");
+      document.head.appendChild(element);
+    }
+
+    Object.entries(attributes).forEach(([name, value]) => {
+      element.setAttribute(name, value);
+    });
+  }
+
+  function applySEO(seo) {
+    if (!seo || seo.enabled === false) return;
+
+    const canonicalURL = seo.canonicalUrl ||
+      `${window.location.origin}${window.location.pathname}`;
+
+    document.title = seo.title;
+
+    setMeta('meta[name="description"]', {
+      name: "description",
+      content: seo.description
+    });
+
+    if (seo.keywords) {
+      setMeta('meta[name="keywords"]', {
+        name: "keywords",
+        content: seo.keywords
+      });
+    }
+
+    let canonical = document.head.querySelector(
+      'link[rel="canonical"]'
+    );
+
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+
+    canonical.href = canonicalURL;
+
+    const openGraph = {
+      "og:type": seo.type,
+      "og:site_name": seo.siteName,
+      "og:title": seo.title,
+      "og:description": seo.description,
+      "og:url": canonicalURL,
+      "og:image": seo.ogImage,
+      "og:image:alt": seo.imageAlt
+    };
+
+    Object.entries(openGraph).forEach(([property, content]) => {
+      if (!content) return;
+
+      setMeta(`meta[property="${property}"]`, {
+        property,
+        content
+      });
+    });
+
+    const twitter = {
+      "twitter:card": seo.ogImage
+        ? "summary_large_image"
+        : "summary",
+      "twitter:title": seo.title,
+      "twitter:description": seo.description,
+      "twitter:image": seo.ogImage,
+      "twitter:image:alt": seo.imageAlt
+    };
+
+    Object.entries(twitter).forEach(([name, content]) => {
+      if (!content) return;
+
+      setMeta(`meta[name="${name}"]`, {
+        name,
+        content
+      });
+    });
+
+    const oldSchema = document.getElementById(
+      "lwc-quiz-structured-data"
+    );
+
+    if (oldSchema) oldSchema.remove();
+
+    const schema = document.createElement("script");
+    schema.id = "lwc-quiz-structured-data";
+    schema.type = "application/ld+json";
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      name: seo.title,
+      description: seo.description,
+      url: canonicalURL,
+      image: seo.ogImage || undefined,
+      educationalLevel: seo.educationalLevel,
+      learningResourceType: "Interactive quiz",
+      inLanguage: seo.language
+    });
+
+    document.head.appendChild(schema);
+  }
+
   function shuffle(items) {
     const result = [...items];
 
@@ -604,6 +711,12 @@
 
   function normaliseData(data) {
     const settings = data.settings || {};
+    const suppliedSEO = data.seo || {};
+    const seoTitle = suppliedSEO.title || data.title ||
+      "Interactive Quiz | Learn With Champak";
+    const seoDescription = suppliedSEO.description ||
+      data.subtitle ||
+      "Practise programming with this interactive quiz from Learn With Champak.";
 
     if (!Array.isArray(data.questions) || data.questions.length === 0) {
       throw new Error(
@@ -646,6 +759,23 @@
       footer:
         data.footer ||
         "Learn With Champak • Learn by doing",
+
+      seo: {
+        enabled: suppliedSEO.enabled !== false,
+        title: seoTitle,
+        description: seoDescription,
+        keywords: suppliedSEO.keywords || "",
+        canonicalUrl: suppliedSEO.canonicalUrl || "",
+        ogImage: suppliedSEO.ogImage || "",
+        imageAlt:
+          suppliedSEO.imageAlt ||
+          `${data.title || "Interactive quiz"} – Learn With Champak`,
+        type: suppliedSEO.type || "website",
+        siteName: suppliedSEO.siteName || "Learn With Champak",
+        language: suppliedSEO.language || "en-IN",
+        educationalLevel:
+          suppliedSEO.educationalLevel || "Beginner"
+      },
 
       settings: {
         questionsPerAttempt:
@@ -703,6 +833,10 @@
 
       const rawData = await response.json();
       const data = normaliseData(rawData);
+
+      if (quizNumber === 1) {
+        applySEO(data.seo);
+      }
 
       buildQuiz(root, data, quizNumber);
     } catch (error) {
