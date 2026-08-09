@@ -9,7 +9,7 @@
  *   Loading quiz...
  * </div>
  *
- * <script src="https://example.com/lwc-quiz-engine.js" defer></script>
+ * 
  */
 
 (function () {
