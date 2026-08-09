@@ -1,0 +1,143 @@
+<!--
+  BLOGGER POST: Python Output to Code Quiz
+
+  Before publishing:
+  1. Upload python-output-to-code-questions.json to GitHub Pages.
+  2. Replace QUESTIONS_JSON_URL below with its public HTTPS URL.
+  3. Replace QUIZ_ENGINE_URL with the public HTTPS URL of lwc-quiz-engine.js.
+-->
+
+<div class="lwc-post-intro">
+  <style>
+    .lwc-post-intro {
+      width: 100%;
+      margin: 0 auto 24px;
+      color: #0f172a;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    .lwc-post-intro * {
+      box-sizing: border-box;
+    }
+
+    .lwc-post-intro .lwc-intro-card {
+      margin-bottom: 20px;
+      padding: 24px;
+      background: #f8fbff;
+      border: 1px solid #bfdbfe;
+      border-radius: 18px;
+    }
+
+    .lwc-post-intro h2 {
+      margin: 0 0 10px;
+      color: #075985;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      line-height: 1.25;
+    }
+
+    .lwc-post-intro p {
+      margin: 10px 0;
+    }
+
+    .lwc-post-intro .lwc-features {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .lwc-post-intro .lwc-feature {
+      padding: 14px;
+      color: #075985;
+      background: #ffffff;
+      border: 1px solid #bae6fd;
+      border-radius: 12px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .lwc-post-intro .lwc-how {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .lwc-post-intro .lwc-how li {
+      margin: 7px 0;
+    }
+
+    @media (max-width: 760px) {
+      .lwc-post-intro .lwc-features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .lwc-post-intro .lwc-intro-card {
+        padding: 18px;
+      }
+    }
+  </style>
+
+  <section class="lwc-intro-card">
+    <h2>Can you work backwards from output to Python code?</h2>
+
+    <p>
+      Most exercises show you a program and ask for its output. This quiz
+      reverses the challenge: you see the exact output first and identify the
+      Python program that produced it.
+    </p>
+
+    <p>
+      The question bank covers arithmetic operators, strings, conditions,
+      loops, lists, dictionaries and functions. Every answer includes a short
+      explanation so that the test also works as a learning activity.
+    </p>
+
+    <div class="lwc-features" aria-label="Quiz features">
+      <div class="lwc-feature">50-question bank</div>
+      <div class="lwc-feature">10 per attempt</div>
+      <div class="lwc-feature">Timed or untimed</div>
+      <div class="lwc-feature">Answer review</div>
+    </div>
+  </section>
+
+  <section class="lwc-intro-card">
+    <h2>How to attempt the quiz</h2>
+
+    <ol class="lwc-how">
+      <li>Choose the timed test or untimed practice mode.</li>
+      <li>Read the displayed output exactly as shown.</li>
+      <li>Compare indentation, operators, ranges and data types.</li>
+      <li>Select the code that produces that output.</li>
+      <li>Submit your answers and study the explanation for every question.</li>
+    </ol>
+  </section>
+</div>
+
+<!-- The reusable engine builds the complete interactive quiz here. -->
+<div
+  class="lwc-quiz"
+  data-questions-url="QUESTIONS_JSON_URL">
+  <p>Loading the Python Output to Code Quiz…</p>
+</div>
+
+<script
+  src="QUIZ_ENGINE_URL"
+  defer>
+</script>
+
+<noscript>
+  <p>
+    JavaScript is required to run this interactive quiz. Please enable
+    JavaScript and reload the page.
+  </p>
+</noscript>
+
+<!--
+  Suggested Blogger search description:
+  Practise reading Python output and identifying the correct code with 50
+  explained questions on arithmetic, strings, lists, loops and functions.
+
+  Suggested labels:
+  Python, Python Quiz, MCQ, Output Questions, Programming Practice,
+  Learn With Champak
+-->
