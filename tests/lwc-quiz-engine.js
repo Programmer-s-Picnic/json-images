@@ -1568,4 +1568,544 @@
   } else {
     startAllQuizzes();
   }
+
+
+
+  /*
+   * =====================================================
+   * TICK-TOCK CLOCK SOUND
+   * =====================================================
+   *
+   * Paste this complete section immediately before the
+   * final `})();` of lwc-quiz-engine.js.
+   *
+   * Features:
+   * - Starts automatically with a timed quiz.
+   * - Alternates between tick and tock.
+   * - Stops when the quiz is submitted or abandoned.
+   * - Does not run in untimed mode.
+   * - Adds an accessible sound on/off button.
+   * - Uses Web Audio API; no sound file is required.
+   */
+
+  function installClockSounds() {
+    document
+      .querySelectorAll(".lwc-quiz")
+      .forEach(quizRoot => {
+        if (
+          quizRoot.dataset.lwcClockInstalled ===
+          "true"
+        ) {
+          return;
+        }
+
+        const startButton = quizRoot.querySelector(
+          ".lwc-start-button"
+        );
+
+        const timer = quizRoot.querySelector(
+          ".lwc-timer"
+        );
+
+        const testSection = quizRoot.querySelector(
+          ".lwc-test"
+        );
+
+        if (!startButton || !timer || !testSection) {
+          return;
+        }
+
+        quizRoot.dataset.lwcClockInstalled = "true";
+
+        let audioContext = null;
+        let clockInterval = null;
+        let soundEnabled = true;
+        let tickNumber = 0;
+
+        /*
+         * Add the sound-button styles once.
+         */
+        if (
+          !document.getElementById(
+            "lwc-clock-sound-styles"
+          )
+        ) {
+          const soundStyles =
+            document.createElement("style");
+
+          soundStyles.id =
+            "lwc-clock-sound-styles";
+
+          soundStyles.textContent = `
+            .lwc-quiz .lwc-sound-toggle {
+              position: static !important;
+              display: grid !important;
+              place-items: center;
+              flex: 0 0 auto;
+              width: 44px !important;
+              min-width: 44px !important;
+              height: 44px !important;
+              min-height: 44px !important;
+              margin: 0 !important;
+              padding: 0 !important;
+              color: #075985;
+              background: #e0f2fe;
+              border: 1px solid #7dd3fc;
+              border-radius: 50%;
+              font-size: 1.1rem;
+              line-height: 1;
+              cursor: pointer;
+            }
+
+            .lwc-quiz .lwc-sound-toggle:hover {
+              color: #ffffff;
+              background: #075985;
+            }
+
+            .lwc-quiz .lwc-sound-toggle.muted {
+              color: #526477;
+              background: #e2e8f0;
+              border-color: #cbd5e1;
+            }
+
+            .lwc-quiz .lwc-sound-toggle:focus-visible {
+              outline: 3px solid #f59e0b;
+              outline-offset: 3px;
+            }
+
+            @media (max-width: 650px) {
+              .lwc-quiz .lwc-sound-toggle {
+                width: 38px !important;
+                min-width: 38px !important;
+                height: 38px !important;
+                min-height: 38px !important;
+                font-size: 1rem;
+              }
+            }
+
+            @media (max-width: 460px) {
+              .lwc-quiz .lwc-topbar {
+                gap: 5px;
+              }
+
+              .lwc-quiz .lwc-sound-toggle {
+                width: 34px !important;
+                min-width: 34px !important;
+                height: 34px !important;
+                min-height: 34px !important;
+                font-size: 0.9rem;
+              }
+            }
+          `;
+
+          document.head.appendChild(soundStyles);
+        }
+
+        /*
+         * Add the sound control beside the timer.
+         */
+        const soundButton =
+          document.createElement("button");
+
+        soundButton.type = "button";
+        soundButton.className =
+          "lwc-sound-toggle";
+
+        soundButton.title =
+          "Mute clock sound";
+
+        soundButton.setAttribute(
+          "aria-label",
+          "Mute clock sound"
+        );
+
+        soundButton.setAttribute(
+          "aria-pressed",
+          "false"
+        );
+
+        soundButton.innerHTML =
+          '<span aria-hidden="true">🔊</span>';
+
+        timer.insertAdjacentElement(
+          "afterend",
+          soundButton
+        );
+
+        function getAudioContext() {
+          const AudioContextClass =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+          if (!AudioContextClass) {
+            return null;
+          }
+
+          if (!audioContext) {
+            audioContext =
+              new AudioContextClass();
+          }
+
+          if (
+            audioContext.state === "suspended"
+          ) {
+            audioContext.resume().catch(
+              () => {}
+            );
+          }
+
+          return audioContext;
+        }
+
+        /*
+         * Produce a brief mechanical clock sound.
+         *
+         * Tick uses a slightly higher frequency.
+         * Tock uses a slightly lower frequency.
+         */
+        function playClockSound() {
+          if (!soundEnabled) return;
+
+          if (
+            testSection.classList.contains(
+              "lwc-hidden"
+            )
+          ) {
+            return;
+          }
+
+          const selectedMode =
+            quizRoot.querySelector(
+              'input[value="timed"]:checked'
+            );
+
+          if (!selectedMode) return;
+
+          const context = getAudioContext();
+
+          if (!context) return;
+
+          const isTick =
+            tickNumber % 2 === 0;
+
+          tickNumber += 1;
+
+          const now = context.currentTime;
+
+          const oscillator =
+            context.createOscillator();
+
+          const gain =
+            context.createGain();
+
+          const filter =
+            context.createBiquadFilter();
+
+          oscillator.type = "triangle";
+
+          oscillator.frequency.setValueAtTime(
+            isTick ? 1150 : 760,
+            now
+          );
+
+          oscillator.frequency.exponentialRampToValueAtTime(
+            isTick ? 850 : 560,
+            now + 0.065
+          );
+
+          filter.type = "highpass";
+
+          filter.frequency.setValueAtTime(
+            420,
+            now
+          );
+
+          filter.Q.setValueAtTime(
+            0.8,
+            now
+          );
+
+          gain.gain.setValueAtTime(
+            0.0001,
+            now
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            isTick ? 0.055 : 0.07,
+            now + 0.006
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            now + 0.085
+          );
+
+          oscillator.connect(filter);
+          filter.connect(gain);
+          gain.connect(context.destination);
+
+          oscillator.start(now);
+
+          oscillator.stop(
+            now + 0.09
+          );
+        }
+
+        function stopClock() {
+          if (clockInterval !== null) {
+            clearInterval(clockInterval);
+            clockInterval = null;
+          }
+
+          tickNumber = 0;
+        }
+
+        function startClock() {
+          stopClock();
+
+          const selectedMode =
+            quizRoot.querySelector(
+              'input[value="timed"]:checked'
+            );
+
+          if (!selectedMode) return;
+
+          /*
+           * The audio context is created after the
+           * student clicks Start, satisfying browser
+           * autoplay restrictions.
+           */
+          getAudioContext();
+
+          playClockSound();
+
+          clockInterval = setInterval(
+            playClockSound,
+            1000
+          );
+        }
+
+        function updateSoundButton() {
+          soundButton.classList.toggle(
+            "muted",
+            !soundEnabled
+          );
+
+          soundButton.innerHTML =
+            soundEnabled
+              ? '<span aria-hidden="true">🔊</span>'
+              : '<span aria-hidden="true">🔇</span>';
+
+          const label = soundEnabled
+            ? "Mute clock sound"
+            : "Turn on clock sound";
+
+          soundButton.title = label;
+
+          soundButton.setAttribute(
+            "aria-label",
+            label
+          );
+
+          soundButton.setAttribute(
+            "aria-pressed",
+            String(!soundEnabled)
+          );
+        }
+
+        soundButton.addEventListener(
+          "click",
+          () => {
+            soundEnabled = !soundEnabled;
+
+            updateSoundButton();
+
+            if (soundEnabled) {
+              getAudioContext();
+
+              const selectedMode =
+                quizRoot.querySelector(
+                  'input[value="timed"]:checked'
+                );
+
+              if (
+                selectedMode &&
+                !testSection.classList.contains(
+                  "lwc-hidden"
+                )
+              ) {
+                playClockSound();
+              }
+            }
+          }
+        );
+
+        /*
+         * Start the sound after the quiz engine handles
+         * the Start button click.
+         */
+        startButton.addEventListener(
+          "click",
+          () => {
+            window.setTimeout(
+              startClock,
+              50
+            );
+          }
+        );
+
+        /*
+         * "Try new questions" starts another attempt.
+         */
+        const againButton =
+          quizRoot.querySelector(
+            ".lwc-again"
+          );
+
+        if (againButton) {
+          againButton.addEventListener(
+            "click",
+            () => {
+              window.setTimeout(
+                startClock,
+                50
+              );
+            }
+          );
+        }
+
+        /*
+         * Stop sound when answers are submitted.
+         */
+        quizRoot
+          .querySelectorAll(
+            '.lwc-form button[type="submit"], ' +
+            ".lwc-topbar-submit"
+          )
+          .forEach(button => {
+            button.addEventListener(
+              "click",
+              stopClock
+            );
+          });
+
+        const form =
+          quizRoot.querySelector(
+            ".lwc-form"
+          );
+
+        if (form) {
+          form.addEventListener(
+            "submit",
+            stopClock
+          );
+        }
+
+        /*
+         * Stop sound when the student abandons the test
+         * or returns to the mode-selection screen.
+         */
+        quizRoot
+          .querySelectorAll(
+            ".lwc-abandon, .lwc-home"
+          )
+          .forEach(button => {
+            button.addEventListener(
+              "click",
+              stopClock
+            );
+          });
+
+        /*
+         * Watch for automatic submission when time ends.
+         * When the test section becomes hidden, the clock
+         * sound is stopped.
+         */
+        const testObserver =
+          new MutationObserver(() => {
+            if (
+              testSection.classList.contains(
+                "lwc-hidden"
+              )
+            ) {
+              stopClock();
+            }
+          });
+
+        testObserver.observe(
+          testSection,
+          {
+            attributes: true,
+            attributeFilter: ["class"]
+          }
+        );
+
+        /*
+         * Stop the sound if the page becomes hidden.
+         * Restart it when the student returns, provided
+         * that the timed test is still active.
+         */
+        document.addEventListener(
+          "visibilitychange",
+          () => {
+            if (document.hidden) {
+              stopClock();
+              return;
+            }
+
+            const selectedMode =
+              quizRoot.querySelector(
+                'input[value="timed"]:checked'
+              );
+
+            if (
+              selectedMode &&
+              !testSection.classList.contains(
+                "lwc-hidden"
+              )
+            ) {
+              startClock();
+            }
+          }
+        );
+
+        /*
+         * Stop the sound before leaving the page.
+         */
+        window.addEventListener(
+          "pagehide",
+          stopClock
+        );
+
+        updateSoundButton();
+      });
+  }
+
+  /*
+   * Quiz content is loaded asynchronously from JSON,
+   * so wait until the generated quiz interface exists.
+   */
+  const clockInstallationObserver =
+    new MutationObserver(() => {
+      installClockSounds();
+    });
+
+  clockInstallationObserver.observe(
+    document.documentElement,
+    {
+      childList: true,
+      subtree: true
+    }
+  );
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      installClockSounds
+    );
+  } else {
+    installClockSounds();
+  }
+
+
 })();
