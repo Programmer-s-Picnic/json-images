@@ -26,55 +26,655 @@
     "showReview": true
   },
   "questions": [
-    {"question":"Which Python code produces this exact output?","output":"12","optionType":"code","options":["print(7 + 5)","print(7 - 5)","print(7 * 5)","print(7, 5)"],"answer":"print(7 + 5)","explanation":"The addition operator adds 7 and 5 to produce 12."},
-    {"question":"Which Python code produces this exact output?","output":"4.0","optionType":"code","options":["print(20 / 5)","print(20 // 5)","print(20 % 5)","print(20 - 5)"],"answer":"print(20 / 5)","explanation":"In Python 3, / performs true division and returns the floating-point value 4.0."},
-    {"question":"Which Python code produces this exact output?","output":"3","optionType":"code","options":["print(20 // 6)","print(20 / 6)","print(20 % 6)","print(20 - 6)"],"answer":"print(20 // 6)","explanation":"Floor division gives the whole-number quotient 3."},
-    {"question":"Which Python code produces this exact output?","output":"2","optionType":"code","options":["print(20 % 6)","print(20 // 6)","print(20 / 10)","print(20 - 6)"],"answer":"print(20 % 6)","explanation":"The remainder when 20 is divided by 6 is 2."},
-    {"question":"Which Python code produces this exact output?","output":"32","optionType":"code","options":["print(2 ** 5)","print(2 * 5)","print(2 + 5)","print(5 // 2)"],"answer":"print(2 ** 5)","explanation":"The ** operator raises 2 to the power 5."},
-    {"question":"Which Python code produces this exact output?","output":"11","optionType":"code","options":["print(3 + 4 * 2)","print((3 + 4) * 2)","print(3 * 4 - 2)","print(3 + 4 + 2)"],"answer":"print(3 + 4 * 2)","explanation":"Multiplication happens first: 4 × 2 = 8, then 3 + 8 = 11."},
-    {"question":"Which Python code produces this exact output?","output":"14","optionType":"code","options":["print((3 + 4) * 2)","print(3 + 4 * 2)","print(3 * 4 + 2)","print(3 + 4 + 2)"],"answer":"print((3 + 4) * 2)","explanation":"Parentheses make 3 + 4 evaluate first; 7 × 2 is 14."},
-    {"question":"Which Python code produces this exact output?","output":"13","optionType":"code","options":["x = 8\nx += 5\nprint(x)","x = 8\nx -= 5\nprint(x)","x = 8\nx *= 5\nprint(x)","x = 8\nprint(x)"],"answer":"x = 8\nx += 5\nprint(x)","explanation":"x += 5 replaces x with 8 + 5."},
-    {"question":"Which Python code produces this exact output?","output":"-5","optionType":"code","options":["print(-8 + 3)","print(-8 - 3)","print(8 - 3)","print(-8 * 3)"],"answer":"print(-8 + 3)","explanation":"Adding 3 to -8 produces -5."},
-    {"question":"Which Python code produces this exact output?","output":"9","optionType":"code","options":["print(5 - (-4))","print(5 - 4)","print(-5 - 4)","print(5 + (-4))"],"answer":"print(5 - (-4))","explanation":"Subtracting a negative number is equivalent to addition."},
-    {"question":"Which Python code produces this exact output?","output":"Hello Champak","optionType":"code","options":["print(\"Hello\", \"Champak\")","print(\"Hello\" + \"Champak\")","print(\"Hello-Champak\")","print(\"Champak Hello\")"],"answer":"print(\"Hello\", \"Champak\")","explanation":"print inserts a space between its comma-separated arguments."},
-    {"question":"Which Python code produces this exact output?","output":"HelloChampak","optionType":"code","options":["print(\"Hello\" + \"Champak\")","print(\"Hello\", \"Champak\")","print(\"Hello Champak\", sep=\"-\")","print(\"Champak\" + \"Hello\")"],"answer":"print(\"Hello\" + \"Champak\")","explanation":"String concatenation joins the two strings without adding a space."},
-    {"question":"Which Python code produces this exact output?","output":"PythonPythonPython","optionType":"code","options":["print(\"Python\" * 3)","print(\"Python\" + 3)","print(3 * \"Python \" )","print(\"Python\", 3)"],"answer":"print(\"Python\" * 3)","explanation":"Multiplying a string by 3 repeats it three times without separators."},
-    {"question":"Which Python code produces this exact output?","output":"P","optionType":"code","options":["print(\"Python\"[0])","print(\"Python\"[1])","print(\"Python\"[-1])","print(\"Python\"[0:2])"],"answer":"print(\"Python\"[0])","explanation":"Index 0 selects the first character."},
-    {"question":"Which Python code produces this exact output?","output":"nohtyP","optionType":"code","options":["print(\"Python\"[::-1])","print(\"Python\"[1:])","print(\"Python\"[-1])","print(\"Python\".upper())"],"answer":"print(\"Python\"[::-1])","explanation":"A slice with step -1 reverses the string."},
-    {"question":"Which Python code produces this exact output?","output":"PYTHON","optionType":"code","options":["print(\"Python\".upper())","print(\"Python\".lower())","print(\"Python\".title())","print(\"PYTHON\".capitalize())"],"answer":"print(\"Python\".upper())","explanation":"upper converts every letter to uppercase."},
-    {"question":"Which Python code produces this exact output?","output":"6","optionType":"code","options":["print(len(\"Python\"))","print(len(\"Python \"))","print(\"Python\".count(\"o\"))","print(\"Python\".find(\"n\"))"],"answer":"print(len(\"Python\"))","explanation":"Python contains six characters."},
-    {"question":"Which Python code produces this exact output?","output":"True","optionType":"code","options":["print(5 > 3)","print(5 < 3)","print(5 == 3)","print(5 != 5)"],"answer":"print(5 > 3)","explanation":"5 is greater than 3, so the comparison is True."},
-    {"question":"Which Python code produces this exact output?","output":"False","optionType":"code","options":["print(10 == \"10\")","print(10 == 10)","print(10 != \"10\")","print(10 >= 10)"],"answer":"print(10 == \"10\")","explanation":"The integer 10 and the string \"10\" have different types and are not equal."},
-    {"question":"Which Python code produces this exact output?","output":"Adult","optionType":"code","options":["age = 20\nprint(\"Adult\" if age >= 18 else \"Minor\")","age = 20\nprint(\"Adult\" if age < 18 else \"Minor\")","age = 20\nif age == 18: print(\"Adult\")","age = 20\nprint(\"Minor\")"],"answer":"age = 20\nprint(\"Adult\" if age >= 18 else \"Minor\")","explanation":"20 satisfies age >= 18, so the first conditional expression value is printed."},
-    {"question":"Which Python code produces this exact output?","output":"Even","optionType":"code","options":["n = 14\nprint(\"Even\" if n % 2 == 0 else \"Odd\")","n = 14\nprint(\"Even\" if n % 2 else \"Odd\")","n = 14\nprint(\"Odd\" if n % 2 == 0 else \"Even\")","n = 14\nprint(\"Even\" if n // 2 == 0 else \"Odd\")"],"answer":"n = 14\nprint(\"Even\" if n % 2 == 0 else \"Odd\")","explanation":"14 has remainder 0 when divided by 2, so it is even."},
-    {"question":"Which Python code produces this exact output?","output":"0\n1\n2","optionType":"code","options":["for i in range(3):\n    print(i)","for i in range(1, 3):\n    print(i)","for i in range(3):\n    print(i + 1)","print(0, 1, 2)"],"answer":"for i in range(3):\n    print(i)","explanation":"range(3) supplies 0, 1 and 2, and each value is printed on a new line."},
-    {"question":"Which Python code produces this exact output?","output":"1\n2\n3","optionType":"code","options":["for i in range(1, 4):\n    print(i)","for i in range(3):\n    print(i)","for i in range(1, 3):\n    print(i)","print(1, 2, 3)"],"answer":"for i in range(1, 4):\n    print(i)","explanation":"range stops before 4, producing 1, 2 and 3."},
-    {"question":"Which Python code produces this exact output?","output":"0 1 2 ","optionType":"code","options":["for i in range(3):\n    print(i, end=\" \" )","for i in range(3):\n    print(i)","print(\"0 1 2\")","for i in range(1, 3):\n    print(i, end=\" \" )"],"answer":"for i in range(3):\n    print(i, end=\" \" )","explanation":"end=\" \" keeps all values on one line and places a space after each one."},
-    {"question":"Which Python code produces this exact output?","output":"10","optionType":"code","options":["total = 0\nfor n in range(1, 5):\n    total += n\nprint(total)","total = 0\nfor n in range(1, 4):\n    total += n\nprint(total)","print(sum(range(4)))","print(1 * 2 * 3 * 4)"],"answer":"total = 0\nfor n in range(1, 5):\n    total += n\nprint(total)","explanation":"The loop adds 1 + 2 + 3 + 4, which equals 10."},
-    {"question":"Which Python code produces this exact output?","output":"15","optionType":"code","options":["print(sum([1, 2, 3, 4, 5]))","print(len([1, 2, 3, 4, 5]))","print(max([1, 2, 3, 4, 5]))","print(sum([1, 2, 3, 4]))"],"answer":"print(sum([1, 2, 3, 4, 5]))","explanation":"sum adds all five numbers."},
-    {"question":"Which Python code produces this exact output?","output":"[1, 2, 3]","optionType":"code","options":["print(list(range(1, 4)))","print(list(range(3)))","print(tuple(range(1, 4)))","print([1, 2, 3, 4])"],"answer":"print(list(range(1, 4)))","explanation":"range(1, 4) supplies 1, 2 and 3; list converts it into a list."},
-    {"question":"Which Python code produces this exact output?","output":"3","optionType":"code","options":["print(len([10, 20, 30]))","print([10, 20, 30][0])","print(sum([1, 2, 3]))","print(max([1, 2, 3]))"],"answer":"print(len([10, 20, 30]))","explanation":"The list contains three elements."},
-    {"question":"Which Python code produces this exact output?","output":"30","optionType":"code","options":["values = [10, 20, 30]\nprint(values[-1])","values = [10, 20, 30]\nprint(values[1])","values = [10, 20, 30]\nprint(values[0])","values = [10, 20, 30]\nprint(len(values))"],"answer":"values = [10, 20, 30]\nprint(values[-1])","explanation":"Index -1 selects the final list element."},
-    {"question":"Which Python code produces this exact output?","output":"[2, 4, 6]","optionType":"code","options":["print([n * 2 for n in range(1, 4)])","print([n for n in range(1, 4)])","print([n + 2 for n in range(1, 4)])","print([2 * 3])"],"answer":"print([n * 2 for n in range(1, 4)])","explanation":"The comprehension doubles 1, 2 and 3."},
-    {"question":"Which Python code produces this exact output?","output":"[2, 4]","optionType":"code","options":["print([n for n in range(1, 6) if n % 2 == 0])","print([n for n in range(1, 5) if n % 2])","print([n * 2 for n in range(1, 5)])","print(list(range(2, 4)))"],"answer":"print([n for n in range(1, 6) if n % 2 == 0])","explanation":"Only the even values 2 and 4 pass the condition."},
-    {"question":"Which Python code produces this exact output?","output":"(1, 2, 3)","optionType":"code","options":["print(tuple([1, 2, 3]))","print(list((1, 2, 3)))","print({1, 2, 3})","print(1, 2, 3)"],"answer":"print(tuple([1, 2, 3]))","explanation":"tuple converts the list to a tuple, whose representation uses parentheses."},
-    {"question":"Which Python code produces this exact output?","output":"{'name': 'Champak'}","optionType":"code","options":["print({\"name\": \"Champak\"})","print([\"name\", \"Champak\"])","print((\"name\", \"Champak\"))","print({\"Champak\": \"name\"})"],"answer":"print({\"name\": \"Champak\"})","explanation":"A dictionary displays its key and value separated by a colon."},
-    {"question":"Which Python code produces this exact output?","output":"Champak","optionType":"code","options":["student = {\"name\": \"Champak\"}\nprint(student[\"name\"])","student = {\"name\": \"Champak\"}\nprint(student)","student = {\"name\": \"Champak\"}\nprint(student.keys())","student = {\"name\": \"Champak\"}\nprint(\"name\")"],"answer":"student = {\"name\": \"Champak\"}\nprint(student[\"name\"])","explanation":"The key \"name\" retrieves the value \"Champak\"."},
-    {"question":"Which Python code produces this exact output?","output":"81","optionType":"code","options":["print(pow(3, 4))","print(3 * 4)","print(4 ** 3)","print(pow(3, 3))"],"answer":"print(pow(3, 4))","explanation":"pow(3, 4) calculates 3 raised to the fourth power."},
-    {"question":"Which Python code produces this exact output?","output":"(3, 2)","optionType":"code","options":["print(divmod(17, 5))","print((17 // 5, 17 // 5))","print((17 % 5, 17 // 5))","print([17 // 5, 17 % 5])"],"answer":"print(divmod(17, 5))","explanation":"divmod returns a tuple containing the quotient and remainder."},
-    {"question":"Which Python code produces this exact output?","output":"5","optionType":"code","options":["print(min(8, 5, 11))","print(max(8, 5, 11))","print(sum([8, 5, 11]))","print(len([8, 5, 11]))"],"answer":"print(min(8, 5, 11))","explanation":"min returns the smallest argument."},
-    {"question":"Which Python code produces this exact output?","output":"11","optionType":"code","options":["print(max(8, 5, 11))","print(min(8, 5, 11))","print(len([8, 5, 11]))","print(sum([8, 5, 11]))"],"answer":"print(max(8, 5, 11))","explanation":"max returns the largest argument."},
-    {"question":"Which Python code produces this exact output?","output":"3.14","optionType":"code","options":["print(round(3.14159, 2))","print(round(3.14159))","print(int(3.14159))","print(round(3.14159, 3))"],"answer":"print(round(3.14159, 2))","explanation":"The second argument asks round to retain two decimal places."},
-    {"question":"Which Python code produces this exact output?","output":"14","optionType":"code","options":["print(abs(-14))","print(abs(14) + 14)","print(-abs(14))","print(round(14.4))"],"answer":"print(abs(-14))","explanation":"abs returns the non-negative distance from zero."},
-    {"question":"Which Python code produces this exact output?","output":"512","optionType":"code","options":["print(2 ** 3 ** 2)","print((2 ** 3) ** 2)","print(2 ** (3 * 2))","print(2 * 3 ** 2)"],"answer":"print(2 ** 3 ** 2)","explanation":"Exponentiation is right-associative: 2 ** (3 ** 2) equals 512."},
-    {"question":"Which Python code produces this exact output?","output":"-3","optionType":"code","options":["print(-7 // 3)","print(int(-7 / 3))","print(-7 % 3)","print(7 // 3)"],"answer":"print(-7 // 3)","explanation":"Floor division rounds down toward negative infinity."},
-    {"question":"Which Python code produces this exact output?","output":"2","optionType":"code","options":["print(True + True + False)","print(True and True and False)","print(False + False)","print(int(False))"],"answer":"print(True + True + False)","explanation":"In arithmetic, True acts as 1 and False as 0."},
-    {"question":"Which Python code produces this exact output?","output":"7","optionType":"code","options":["print(0 or 5 + 2)","print(0 and 5 + 2)","print(5 and 2)","print(0 or 5)"],"answer":"print(0 or 5 + 2)","explanation":"0 is falsy, so or returns the result of 5 + 2."},
-    {"question":"Which Python code produces this exact output?","output":"25","optionType":"code","options":["def square(n):\n    return n * n\nprint(square(5))","def square(n):\n    return n + n\nprint(square(5))","def square(n):\n    return n ** 3\nprint(square(5))","def square(n):\n    print(n)\nsquare(5)"],"answer":"def square(n):\n    return n * n\nprint(square(5))","explanation":"The function returns 5 × 5."},
-    {"question":"Which Python code produces this exact output?","output":"Hello, Champak!","optionType":"code","options":["def greet(name):\n    return f\"Hello, {name}!\"\nprint(greet(\"Champak\"))","def greet(name):\n    return \"Hello, name!\"\nprint(greet(\"Champak\"))","def greet(name):\n    return f\"Hello {name}\"\nprint(greet(\"Champak\"))","print(\"Hello\", \"Champak\")"],"answer":"def greet(name):\n    return f\"Hello, {name}!\"\nprint(greet(\"Champak\"))","explanation":"The f-string inserts the argument between the comma and exclamation mark."},
-    {"question":"Which Python code produces this exact output?","output":"6","optionType":"code","options":["def add(a, b=1):\n    return a + b\nprint(add(5))","def add(a, b=1):\n    return a * b\nprint(add(5))","def add(a, b=1):\n    return a - b\nprint(add(5))","def add(a, b=1):\n    return b\nprint(add(5))"],"answer":"def add(a, b=1):\n    return a + b\nprint(add(5))","explanation":"The omitted second argument uses its default value 1, so 5 + 1 equals 6."},
-    {"question":"Which Python code produces this exact output?","output":"4\n3\n2\n1","optionType":"code","options":["n = 4\nwhile n > 0:\n    print(n)\n    n -= 1","n = 4\nwhile n > 0:\n    n -= 1\n    print(n)","for n in range(1, 5):\n    print(n)","n = 4\nwhile n > 1:\n    print(n)\n    n -= 1"],"answer":"n = 4\nwhile n > 0:\n    print(n)\n    n -= 1","explanation":"The value is printed before it is decreased, continuing through 1."},
-    {"question":"Which Python code produces this exact output?","output":"1\n3\n5","optionType":"code","options":["for n in range(1, 6, 2):\n    print(n)","for n in range(1, 5, 2):\n    print(n)","for n in range(0, 6, 2):\n    print(n)","for n in range(1, 6):\n    print(n)"],"answer":"for n in range(1, 6, 2):\n    print(n)","explanation":"The range begins at 1, advances by 2 and stops before 6."},
-    {"question":"Which Python code produces this exact output?","output":"3 2 1 ","optionType":"code","options":["for n in range(3, 0, -1):\n    print(n, end=\" \" )","for n in range(3):\n    print(n, end=\" \" )","for n in range(3, 1, -1):\n    print(n, end=\" \" )","for n in range(1, 4):\n    print(n, end=\" \" )"],"answer":"for n in range(3, 0, -1):\n    print(n, end=\" \" )","explanation":"A step of -1 counts down from 3 and stops before 0."}
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "12",
+      "optionType": "code",
+      "options": [
+        "print(7 + 5)",
+        "print(7 - 5)",
+        "print(7 * 5)",
+        "print(7, 5)"
+      ],
+      "answer": "print(7 + 5)",
+      "explanation": "The addition operator adds 7 and 5 to produce 12."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "4.0",
+      "optionType": "code",
+      "options": [
+        "print(20 / 5)",
+        "print(20 // 5)",
+        "print(20 % 5)",
+        "print(20 - 5)"
+      ],
+      "answer": "print(20 / 5)",
+      "explanation": "In Python 3, / performs true division and returns the floating-point value 4.0."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "3",
+      "optionType": "code",
+      "options": [
+        "print(20 // 6)",
+        "print(20 / 6)",
+        "print(20 % 6)",
+        "print(20 - 6)"
+      ],
+      "answer": "print(20 // 6)",
+      "explanation": "Floor division gives the whole-number quotient 3."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "2",
+      "optionType": "code",
+      "options": [
+        "print(20 % 6)",
+        "print(20 // 6)",
+        "print(20 / 10)",
+        "print(20 - 6)"
+      ],
+      "answer": "print(20 % 6)",
+      "explanation": "The remainder when 20 is divided by 6 is 2."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "32",
+      "optionType": "code",
+      "options": [
+        "print(2 ** 5)",
+        "print(2 * 5)",
+        "print(2 + 5)",
+        "print(5 // 2)"
+      ],
+      "answer": "print(2 ** 5)",
+      "explanation": "The ** operator raises 2 to the power 5."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "11",
+      "optionType": "code",
+      "options": [
+        "print(3 + 4 * 2)",
+        "print((3 + 4) * 2)",
+        "print(3 * 4 - 2)",
+        "print(3 + 4 + 2)"
+      ],
+      "answer": "print(3 + 4 * 2)",
+      "explanation": "Multiplication happens first: 4 × 2 = 8, then 3 + 8 = 11."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "14",
+      "optionType": "code",
+      "options": [
+        "print((3 + 4) * 2)",
+        "print(3 + 4 * 2)",
+        "print(3 * 4 + 2)",
+        "print(3 + 4 + 2)"
+      ],
+      "answer": "print((3 + 4) * 2)",
+      "explanation": "Parentheses make 3 + 4 evaluate first; 7 × 2 is 14."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "13",
+      "optionType": "code",
+      "options": [
+        "x = 8\nx += 5\nprint(x)",
+        "x = 8\nx -= 5\nprint(x)",
+        "x = 8\nx *= 5\nprint(x)",
+        "x = 8\nprint(x)"
+      ],
+      "answer": "x = 8\nx += 5\nprint(x)",
+      "explanation": "x += 5 replaces x with 8 + 5."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "-5",
+      "optionType": "code",
+      "options": [
+        "print(-8 + 3)",
+        "print(-8 - 3)",
+        "print(8 - 3)",
+        "print(-8 * 3)"
+      ],
+      "answer": "print(-8 + 3)",
+      "explanation": "Adding 3 to -8 produces -5."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "9",
+      "optionType": "code",
+      "options": [
+        "print(5 - (-4))",
+        "print(5 - 4)",
+        "print(-5 - 4)",
+        "print(5 + (-4))"
+      ],
+      "answer": "print(5 - (-4))",
+      "explanation": "Subtracting a negative number is equivalent to addition."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "Hello Champak",
+      "optionType": "code",
+      "options": [
+        "print(\"Hello\", \"Champak\")",
+        "print(\"Hello\" + \"Champak\")",
+        "print(\"Hello-Champak\")",
+        "print(\"Champak Hello\")"
+      ],
+      "answer": "print(\"Hello\", \"Champak\")",
+      "explanation": "print inserts a space between its comma-separated arguments."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "HelloChampak",
+      "optionType": "code",
+      "options": [
+        "print(\"Hello\" + \"Champak\")",
+        "print(\"Hello\", \"Champak\")",
+        "print(\"Hello Champak\", sep=\"-\")",
+        "print(\"Champak\" + \"Hello\")"
+      ],
+      "answer": "print(\"Hello\" + \"Champak\")",
+      "explanation": "String concatenation joins the two strings without adding a space."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "PythonPythonPython",
+      "optionType": "code",
+      "options": [
+        "print(\"Python\" * 3)",
+        "print(\"Python\" + 3)",
+        "print(3 * \"Python \" )",
+        "print(\"Python\", 3)"
+      ],
+      "answer": "print(\"Python\" * 3)",
+      "explanation": "Multiplying a string by 3 repeats it three times without separators."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "P",
+      "optionType": "code",
+      "options": [
+        "print(\"Python\"[0])",
+        "print(\"Python\"[1])",
+        "print(\"Python\"[-1])",
+        "print(\"Python\"[0:2])"
+      ],
+      "answer": "print(\"Python\"[0])",
+      "explanation": "Index 0 selects the first character."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "nohtyP",
+      "optionType": "code",
+      "options": [
+        "print(\"Python\"[::-1])",
+        "print(\"Python\"[1:])",
+        "print(\"Python\"[-1])",
+        "print(\"Python\".upper())"
+      ],
+      "answer": "print(\"Python\"[::-1])",
+      "explanation": "A slice with step -1 reverses the string."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "PYTHON",
+      "optionType": "code",
+      "options": [
+        "print(\"Python\".upper())",
+        "print(\"Python\".lower())",
+        "print(\"Python\".title())",
+        "print(\"PYTHON\".capitalize())"
+      ],
+      "answer": "print(\"Python\".upper())",
+      "explanation": "upper converts every letter to uppercase."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "6",
+      "optionType": "code",
+      "options": [
+        "print(len(\"Python\"))",
+        "print(len(\"Python \"))",
+        "print(\"Python\".count(\"o\"))",
+        "print(\"Python\".find(\"n\"))"
+      ],
+      "answer": "print(len(\"Python\"))",
+      "explanation": "Python contains six characters."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "True",
+      "optionType": "code",
+      "options": [
+        "print(5 > 3)",
+        "print(5 < 3)",
+        "print(5 == 3)",
+        "print(5 != 5)"
+      ],
+      "answer": "print(5 > 3)",
+      "explanation": "5 is greater than 3, so the comparison is True."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "False",
+      "optionType": "code",
+      "options": [
+        "print(10 == \"10\")",
+        "print(10 == 10)",
+        "print(10 != \"10\")",
+        "print(10 >= 10)"
+      ],
+      "answer": "print(10 == \"10\")",
+      "explanation": "The integer 10 and the string \"10\" have different types and are not equal."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "Adult",
+      "optionType": "code",
+      "options": [
+        "age = 20\nprint(\"Adult\" if age >= 18 else \"Minor\")",
+        "age = 20\nprint(\"Adult\" if age < 18 else \"Minor\")",
+        "age = 20\nif age == 18: print(\"Adult\")",
+        "age = 20\nprint(\"Minor\")"
+      ],
+      "answer": "age = 20\nprint(\"Adult\" if age >= 18 else \"Minor\")",
+      "explanation": "20 satisfies age >= 18, so the first conditional expression value is printed."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "Even",
+      "optionType": "code",
+      "options": [
+        "n = 14\nprint(\"Even\" if n % 2 == 0 else \"Odd\")",
+        "n = 14\nprint(\"Even\" if n % 2 else \"Odd\")",
+        "n = 14\nprint(\"Odd\" if n % 2 == 0 else \"Even\")",
+        "n = 14\nprint(\"Even\" if n // 2 == 0 else \"Odd\")"
+      ],
+      "answer": "n = 14\nprint(\"Even\" if n % 2 == 0 else \"Odd\")",
+      "explanation": "14 has remainder 0 when divided by 2, so it is even."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "0\n1\n2",
+      "optionType": "code",
+      "options": [
+        "for i in range(3):\n    print(i)",
+        "for i in range(1, 3):\n    print(i)",
+        "for i in range(3):\n    print(i + 1)",
+        "print(0, 1, 2)"
+      ],
+      "answer": "for i in range(3):\n    print(i)",
+      "explanation": "range(3) supplies 0, 1 and 2, and each value is printed on a new line."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "1\n2\n3",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 4):\n    print(i)",
+        "for i in range(3):\n    print(i)",
+        "for i in range(1, 3):\n    print(i)",
+        "print(1, 2, 3)"
+      ],
+      "answer": "for i in range(1, 4):\n    print(i)",
+      "explanation": "range stops before 4, producing 1, 2 and 3."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "0 1 2 ",
+      "optionType": "code",
+      "options": [
+        "for i in range(3):\n    print(i, end=\" \" )",
+        "for i in range(3):\n    print(i)",
+        "print(\"0 1 2\")",
+        "for i in range(1, 3):\n    print(i, end=\" \" )"
+      ],
+      "answer": "for i in range(3):\n    print(i, end=\" \" )",
+      "explanation": "end=\" \" keeps all values on one line and places a space after each one."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "10",
+      "optionType": "code",
+      "options": [
+        "total = 0\nfor n in range(1, 5):\n    total += n\nprint(total)",
+        "total = 0\nfor n in range(1, 4):\n    total += n\nprint(total)",
+        "print(sum(range(4)))",
+        "print(1 * 2 * 3 * 4)"
+      ],
+      "answer": "total = 0\nfor n in range(1, 5):\n    total += n\nprint(total)",
+      "explanation": "The loop adds 1 + 2 + 3 + 4, which equals 10."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "15",
+      "optionType": "code",
+      "options": [
+        "print(sum([1, 2, 3, 4, 5]))",
+        "print(len([1, 2, 3, 4, 5]))",
+        "print(max([1, 2, 3, 4, 5]))",
+        "print(sum([1, 2, 3, 4]))"
+      ],
+      "answer": "print(sum([1, 2, 3, 4, 5]))",
+      "explanation": "sum adds all five numbers."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "[1, 2, 3]",
+      "optionType": "code",
+      "options": [
+        "print(list(range(1, 4)))",
+        "print(list(range(3)))",
+        "print(tuple(range(1, 4)))",
+        "print([1, 2, 3, 4])"
+      ],
+      "answer": "print(list(range(1, 4)))",
+      "explanation": "range(1, 4) supplies 1, 2 and 3; list converts it into a list."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "3",
+      "optionType": "code",
+      "options": [
+        "print(len([10, 20, 30]))",
+        "print([10, 20, 30][0])",
+        "print(sum([1, 2, 3]))",
+        "print(max([1, 2, 3]))"
+      ],
+      "answer": "print(len([10, 20, 30]))",
+      "explanation": "The list contains three elements."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "30",
+      "optionType": "code",
+      "options": [
+        "values = [10, 20, 30]\nprint(values[-1])",
+        "values = [10, 20, 30]\nprint(values[1])",
+        "values = [10, 20, 30]\nprint(values[0])",
+        "values = [10, 20, 30]\nprint(len(values))"
+      ],
+      "answer": "values = [10, 20, 30]\nprint(values[-1])",
+      "explanation": "Index -1 selects the final list element."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "[2, 4, 6]",
+      "optionType": "code",
+      "options": [
+        "print([n * 2 for n in range(1, 4)])",
+        "print([n for n in range(1, 4)])",
+        "print([n + 2 for n in range(1, 4)])",
+        "print([2 * 3])"
+      ],
+      "answer": "print([n * 2 for n in range(1, 4)])",
+      "explanation": "The comprehension doubles 1, 2 and 3."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "[2, 4]",
+      "optionType": "code",
+      "options": [
+        "print([n for n in range(1, 6) if n % 2 == 0])",
+        "print([n for n in range(1, 5) if n % 2])",
+        "print([n * 2 for n in range(1, 5)])",
+        "print(list(range(2, 4)))"
+      ],
+      "answer": "print([n for n in range(1, 6) if n % 2 == 0])",
+      "explanation": "Only the even values 2 and 4 pass the condition."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "(1, 2, 3)",
+      "optionType": "code",
+      "options": [
+        "print(tuple([1, 2, 3]))",
+        "print(list((1, 2, 3)))",
+        "print({1, 2, 3})",
+        "print(1, 2, 3)"
+      ],
+      "answer": "print(tuple([1, 2, 3]))",
+      "explanation": "tuple converts the list to a tuple, whose representation uses parentheses."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "{'name': 'Champak'}",
+      "optionType": "code",
+      "options": [
+        "print({\"name\": \"Champak\"})",
+        "print([\"name\", \"Champak\"])",
+        "print((\"name\", \"Champak\"))",
+        "print({\"Champak\": \"name\"})"
+      ],
+      "answer": "print({\"name\": \"Champak\"})",
+      "explanation": "A dictionary displays its key and value separated by a colon."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "Champak",
+      "optionType": "code",
+      "options": [
+        "student = {\"name\": \"Champak\"}\nprint(student[\"name\"])",
+        "student = {\"name\": \"Champak\"}\nprint(student)",
+        "student = {\"name\": \"Champak\"}\nprint(student.keys())",
+        "student = {\"name\": \"Champak\"}\nprint(\"name\")"
+      ],
+      "answer": "student = {\"name\": \"Champak\"}\nprint(student[\"name\"])",
+      "explanation": "The key \"name\" retrieves the value \"Champak\"."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "81",
+      "optionType": "code",
+      "options": [
+        "print(pow(3, 4))",
+        "print(3 * 4)",
+        "print(4 ** 3)",
+        "print(pow(3, 3))"
+      ],
+      "answer": "print(pow(3, 4))",
+      "explanation": "pow(3, 4) calculates 3 raised to the fourth power."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "(3, 2)",
+      "optionType": "code",
+      "options": [
+        "print(divmod(17, 5))",
+        "print((17 // 5, 17 // 5))",
+        "print((17 % 5, 17 // 5))",
+        "print([17 // 5, 17 % 5])"
+      ],
+      "answer": "print(divmod(17, 5))",
+      "explanation": "divmod returns a tuple containing the quotient and remainder."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "5",
+      "optionType": "code",
+      "options": [
+        "print(min(8, 5, 11))",
+        "print(max(8, 5, 11))",
+        "print(sum([8, 5, 11]))",
+        "print(len([8, 5, 11]))"
+      ],
+      "answer": "print(min(8, 5, 11))",
+      "explanation": "min returns the smallest argument."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "11",
+      "optionType": "code",
+      "options": [
+        "print(max(8, 5, 11))",
+        "print(min(8, 5, 11))",
+        "print(len([8, 5, 11]))",
+        "print(sum([8, 5, 11]))"
+      ],
+      "answer": "print(max(8, 5, 11))",
+      "explanation": "max returns the largest argument."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "3.14",
+      "optionType": "code",
+      "options": [
+        "print(round(3.14159, 2))",
+        "print(round(3.14159))",
+        "print(int(3.14159))",
+        "print(round(3.14159, 3))"
+      ],
+      "answer": "print(round(3.14159, 2))",
+      "explanation": "The second argument asks round to retain two decimal places."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "14",
+      "optionType": "code",
+      "options": [
+        "print(abs(-14))",
+        "print(abs(14) + 14)",
+        "print(-abs(14))",
+        "print(round(14.4))"
+      ],
+      "answer": "print(abs(-14))",
+      "explanation": "abs returns the non-negative distance from zero."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "512",
+      "optionType": "code",
+      "options": [
+        "print(2 ** 3 ** 2)",
+        "print((2 ** 3) ** 2)",
+        "print(2 ** (3 * 2))",
+        "print(2 * 3 ** 2)"
+      ],
+      "answer": "print(2 ** 3 ** 2)",
+      "explanation": "Exponentiation is right-associative: 2 ** (3 ** 2) equals 512."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "-3",
+      "optionType": "code",
+      "options": [
+        "print(-7 // 3)",
+        "print(int(-7 / 3))",
+        "print(-7 % 3)",
+        "print(7 // 3)"
+      ],
+      "answer": "print(-7 // 3)",
+      "explanation": "Floor division rounds down toward negative infinity."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "2",
+      "optionType": "code",
+      "options": [
+        "print(True + True + False)",
+        "print(True and True and False)",
+        "print(False + False)",
+        "print(int(False))"
+      ],
+      "answer": "print(True + True + False)",
+      "explanation": "In arithmetic, True acts as 1 and False as 0."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "7",
+      "optionType": "code",
+      "options": [
+        "print(0 or 5 + 2)",
+        "print(0 and 5 + 2)",
+        "print(5 and 2)",
+        "print(0 or 5)"
+      ],
+      "answer": "print(0 or 5 + 2)",
+      "explanation": "0 is falsy, so or returns the result of 5 + 2."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "25",
+      "optionType": "code",
+      "options": [
+        "def square(n):\n    return n * n\nprint(square(5))",
+        "def square(n):\n    return n + n\nprint(square(5))",
+        "def square(n):\n    return n ** 3\nprint(square(5))",
+        "def square(n):\n    print(n)\nsquare(5)"
+      ],
+      "answer": "def square(n):\n    return n * n\nprint(square(5))",
+      "explanation": "The function returns 5 × 5."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "Hello, Champak!",
+      "optionType": "code",
+      "options": [
+        "def greet(name):\n    return f\"Hello, {name}!\"\nprint(greet(\"Champak\"))",
+        "def greet(name):\n    return \"Hello, name!\"\nprint(greet(\"Champak\"))",
+        "def greet(name):\n    return f\"Hello {name}\"\nprint(greet(\"Champak\"))",
+        "print(\"Hello\", \"Champak\")"
+      ],
+      "answer": "def greet(name):\n    return f\"Hello, {name}!\"\nprint(greet(\"Champak\"))",
+      "explanation": "The f-string inserts the argument between the comma and exclamation mark."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "6",
+      "optionType": "code",
+      "options": [
+        "def add(a, b=1):\n    return a + b\nprint(add(5))",
+        "def add(a, b=1):\n    return a * b\nprint(add(5))",
+        "def add(a, b=1):\n    return a - b\nprint(add(5))",
+        "def add(a, b=1):\n    return b\nprint(add(5))"
+      ],
+      "answer": "def add(a, b=1):\n    return a + b\nprint(add(5))",
+      "explanation": "The omitted second argument uses its default value 1, so 5 + 1 equals 6."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "4\n3\n2\n1",
+      "optionType": "code",
+      "options": [
+        "n = 4\nwhile n > 0:\n    print(n)\n    n -= 1",
+        "n = 4\nwhile n > 0:\n    n -= 1\n    print(n)",
+        "for n in range(1, 5):\n    print(n)",
+        "n = 4\nwhile n > 1:\n    print(n)\n    n -= 1"
+      ],
+      "answer": "n = 4\nwhile n > 0:\n    print(n)\n    n -= 1",
+      "explanation": "The value is printed before it is decreased, continuing through 1."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "1\n3\n5",
+      "optionType": "code",
+      "options": [
+        "for n in range(1, 6, 2):\n    print(n)",
+        "for n in range(1, 5, 2):\n    print(n)",
+        "for n in range(0, 6, 2):\n    print(n)",
+        "for n in range(1, 6):\n    print(n)"
+      ],
+      "answer": "for n in range(1, 6, 2):\n    print(n)",
+      "explanation": "The range begins at 1, advances by 2 and stops before 6."
+    },
+    {
+      "question": "Which Python code produces this exact output?",
+      "output": "3 2 1 ",
+      "optionType": "code",
+      "options": [
+        "for n in range(3, 0, -1):\n    print(n, end=\" \" )",
+        "for n in range(3):\n    print(n, end=\" \" )",
+        "for n in range(3, 1, -1):\n    print(n, end=\" \" )",
+        "for n in range(1, 4):\n    print(n, end=\" \" )"
+      ],
+      "answer": "for n in range(3, 0, -1):\n    print(n, end=\" \" )",
+      "explanation": "A step of -1 counts down from 3 and stops before 0."
+    }
   ]
 }

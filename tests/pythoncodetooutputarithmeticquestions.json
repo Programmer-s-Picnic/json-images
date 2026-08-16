@@ -29,350 +29,600 @@
     {
       "question": "What is the exact output?",
       "code": "print(7 + 5)",
-      "options": ["12", "2", "35", "75"],
+      "options": [
+        "12",
+        "2",
+        "35",
+        "75"
+      ],
       "answer": "12",
       "explanation": "7 + 5 equals 12."
     },
     {
       "question": "What is the exact output?",
       "code": "print(18 - 7)",
-      "options": ["11", "25", "126", "10"],
+      "options": [
+        "11",
+        "25",
+        "126",
+        "10"
+      ],
       "answer": "11",
       "explanation": "18 - 7 equals 11."
     },
     {
       "question": "What is the exact output?",
       "code": "print(6 * 4)",
-      "options": ["24", "10", "64", "2"],
+      "options": [
+        "24",
+        "10",
+        "64",
+        "2"
+      ],
       "answer": "24",
       "explanation": "6 multiplied by 4 is 24."
     },
     {
       "question": "What is the exact output?",
       "code": "print(20 / 5)",
-      "options": ["4.0", "4", "5.0", "100"],
+      "options": [
+        "4.0",
+        "4",
+        "5.0",
+        "100"
+      ],
       "answer": "4.0",
       "explanation": "The / operator returns a floating-point value in Python 3."
     },
     {
       "question": "What is the exact output?",
       "code": "print(20 // 6)",
-      "options": ["3", "3.3333333333333335", "2", "4"],
+      "options": [
+        "3",
+        "3.3333333333333335",
+        "2",
+        "4"
+      ],
       "answer": "3",
       "explanation": "Floor division returns the whole-number quotient."
     },
     {
       "question": "What is the exact output?",
       "code": "print(20 % 6)",
-      "options": ["2", "3", "3.0", "0"],
+      "options": [
+        "2",
+        "3",
+        "3.0",
+        "0"
+      ],
       "answer": "2",
       "explanation": "20 divided by 6 leaves a remainder of 2."
     },
     {
       "question": "What is the exact output?",
       "code": "print(2 ** 5)",
-      "options": ["32", "10", "25", "7"],
+      "options": [
+        "32",
+        "10",
+        "25",
+        "7"
+      ],
       "answer": "32",
       "explanation": "** performs exponentiation: 2 raised to the power 5 is 32."
     },
     {
       "question": "What is the exact output?",
       "code": "print(3 + 4 * 2)",
-      "options": ["11", "14", "10", "9"],
+      "options": [
+        "11",
+        "14",
+        "10",
+        "9"
+      ],
       "answer": "11",
       "explanation": "Multiplication is performed before addition."
     },
     {
       "question": "What is the exact output?",
       "code": "print((3 + 4) * 2)",
-      "options": ["14", "11", "9", "18"],
+      "options": [
+        "14",
+        "11",
+        "9",
+        "18"
+      ],
       "answer": "14",
       "explanation": "The expression inside the parentheses is evaluated first."
     },
     {
       "question": "What is the exact output?",
       "code": "print(15 - 6 / 3)",
-      "options": ["13.0", "3.0", "13", "7.0"],
+      "options": [
+        "13.0",
+        "3.0",
+        "13",
+        "7.0"
+      ],
       "answer": "13.0",
       "explanation": "6 / 3 is 2.0, and 15 - 2.0 is 13.0."
     },
     {
       "question": "What is the exact output?",
       "code": "x = 8\nx += 5\nprint(x)",
-      "options": ["13", "8", "5", "40"],
+      "options": [
+        "13",
+        "8",
+        "5",
+        "40"
+      ],
       "answer": "13",
       "explanation": "x += 5 means x = x + 5."
     },
     {
       "question": "What is the exact output?",
       "code": "x = 9\nx -= 4\nprint(x)",
-      "options": ["5", "13", "36", "9"],
+      "options": [
+        "5",
+        "13",
+        "36",
+        "9"
+      ],
       "answer": "5",
       "explanation": "x -= 4 subtracts 4 from x."
     },
     {
       "question": "What is the exact output?",
       "code": "x = 7\nx *= 3\nprint(x)",
-      "options": ["21", "10", "73", "4"],
+      "options": [
+        "21",
+        "10",
+        "73",
+        "4"
+      ],
       "answer": "21",
       "explanation": "x *= 3 multiplies x by 3."
     },
     {
       "question": "What is the exact output?",
       "code": "x = 17\nx //= 5\nprint(x)",
-      "options": ["3", "3.4", "2", "4"],
+      "options": [
+        "3",
+        "3.4",
+        "2",
+        "4"
+      ],
       "answer": "3",
       "explanation": "//= performs floor division and assigns the result."
     },
     {
       "question": "What is the exact output?",
       "code": "x = 17\nx %= 5\nprint(x)",
-      "options": ["2", "3", "5", "0"],
+      "options": [
+        "2",
+        "3",
+        "5",
+        "0"
+      ],
       "answer": "2",
       "explanation": "%= assigns the remainder to x."
     },
     {
       "question": "What is the exact output?",
       "code": "print(-8 + 3)",
-      "options": ["-5", "-11", "5", "11"],
+      "options": [
+        "-5",
+        "-11",
+        "5",
+        "11"
+      ],
       "answer": "-5",
       "explanation": "Adding 3 to -8 gives -5."
     },
     {
       "question": "What is the exact output?",
       "code": "print(5 - (-4))",
-      "options": ["9", "1", "-9", "-1"],
+      "options": [
+        "9",
+        "1",
+        "-9",
+        "-1"
+      ],
       "answer": "9",
       "explanation": "Subtracting a negative number is equivalent to addition."
     },
     {
       "question": "What is the exact output?",
       "code": "print(-3 * -6)",
-      "options": ["18", "-18", "9", "-9"],
+      "options": [
+        "18",
+        "-18",
+        "9",
+        "-9"
+      ],
       "answer": "18",
       "explanation": "The product of two negative numbers is positive."
     },
     {
       "question": "What is the exact output?",
       "code": "print(abs(-14))",
-      "options": ["14", "-14", "0", "1"],
+      "options": [
+        "14",
+        "-14",
+        "0",
+        "1"
+      ],
       "answer": "14",
       "explanation": "abs returns the absolute value, or distance from zero."
     },
     {
       "question": "What is the exact output?",
       "code": "print(round(6.7))",
-      "options": ["7", "6", "6.7", "7.0"],
+      "options": [
+        "7",
+        "6",
+        "6.7",
+        "7.0"
+      ],
       "answer": "7",
       "explanation": "6.7 rounds to the nearest integer, which is 7."
     },
     {
       "question": "What is the exact output?",
       "code": "print(round(6.4))",
-      "options": ["6", "7", "6.0", "6.4"],
+      "options": [
+        "6",
+        "7",
+        "6.0",
+        "6.4"
+      ],
       "answer": "6",
       "explanation": "6.4 rounds to the nearest integer, which is 6."
     },
     {
       "question": "What is the exact output?",
       "code": "print(round(3.14159, 2))",
-      "options": ["3.14", "3.15", "3.141", "3"],
+      "options": [
+        "3.14",
+        "3.15",
+        "3.141",
+        "3"
+      ],
       "answer": "3.14",
       "explanation": "The second argument tells round to retain two decimal places."
     },
     {
       "question": "What is the exact output?",
       "code": "print(0.5 + 0.25)",
-      "options": ["0.75", "0.30", "0.7", "0.025"],
+      "options": [
+        "0.75",
+        "0.30",
+        "0.7",
+        "0.025"
+      ],
       "answer": "0.75",
       "explanation": "0.5 plus 0.25 equals 0.75."
     },
     {
       "question": "What is the exact output?",
       "code": "print(1.5 * 4)",
-      "options": ["6.0", "6", "5.5", "60"],
+      "options": [
+        "6.0",
+        "6",
+        "5.5",
+        "60"
+      ],
       "answer": "6.0",
       "explanation": "A calculation involving a floating-point value produces a floating-point result."
     },
     {
       "question": "What is the exact output?",
       "code": "print(9 / 2 + 1)",
-      "options": ["5.5", "5", "4.5", "6.0"],
+      "options": [
+        "5.5",
+        "5",
+        "4.5",
+        "6.0"
+      ],
       "answer": "5.5",
       "explanation": "9 / 2 is 4.5, and adding 1 gives 5.5."
     },
     {
       "question": "What is the exact output?",
       "code": "a = 5\nb = 2\nprint(a ** b)",
-      "options": ["25", "10", "7", "3"],
+      "options": [
+        "25",
+        "10",
+        "7",
+        "3"
+      ],
       "answer": "25",
       "explanation": "5 raised to the power 2 is 25."
     },
     {
       "question": "What is the exact output?",
       "code": "a = 25\nb = 4\nprint(a // b, a % b)",
-      "options": ["6 1", "6.25 1", "1 6", "5 5"],
+      "options": [
+        "6 1",
+        "6.25 1",
+        "1 6",
+        "5 5"
+      ],
       "answer": "6 1",
       "explanation": "25 can be written as 4 × 6 + 1."
     },
     {
       "question": "What is the exact output?",
       "code": "print(2 + 3 * 4 ** 2)",
-      "options": ["50", "80", "196", "26"],
+      "options": [
+        "50",
+        "80",
+        "196",
+        "26"
+      ],
       "answer": "50",
       "explanation": "Exponentiation comes first, followed by multiplication and then addition."
     },
     {
       "question": "What is the exact output?",
       "code": "print((2 + 3) * 4 ** 2)",
-      "options": ["80", "50", "400", "40"],
+      "options": [
+        "80",
+        "50",
+        "400",
+        "40"
+      ],
       "answer": "80",
       "explanation": "2 + 3 is 5 and 4 squared is 16; therefore, 5 × 16 is 80."
     },
     {
       "question": "What is the exact output?",
       "code": "print(100 // 10 // 2)",
-      "options": ["5", "20", "50", "2"],
+      "options": [
+        "5",
+        "20",
+        "50",
+        "2"
+      ],
       "answer": "5",
       "explanation": "Floor divisions of equal precedence are evaluated from left to right."
     },
     {
       "question": "What is the exact output?",
       "code": "print(2 ** 3 ** 2)",
-      "options": ["512", "64", "36", "256"],
+      "options": [
+        "512",
+        "64",
+        "36",
+        "256"
+      ],
       "answer": "512",
       "explanation": "Exponentiation is right-associative, so Python calculates 2 ** (3 ** 2)."
     },
     {
       "question": "What is the exact output?",
       "code": "print((2 ** 3) ** 2)",
-      "options": ["64", "512", "36", "12"],
+      "options": [
+        "64",
+        "512",
+        "36",
+        "12"
+      ],
       "answer": "64",
       "explanation": "The parentheses make Python calculate 8 squared."
     },
     {
       "question": "What is the exact output?",
       "code": "print(7 % 4 * 3)",
-      "options": ["9", "7", "1", "21"],
+      "options": [
+        "9",
+        "7",
+        "1",
+        "21"
+      ],
       "answer": "9",
       "explanation": "7 % 4 is 3, and 3 multiplied by 3 is 9."
     },
     {
       "question": "What is the exact output?",
       "code": "print(8 + 12 / 4 * 2)",
-      "options": ["14.0", "10.0", "16.0", "5.0"],
+      "options": [
+        "14.0",
+        "10.0",
+        "16.0",
+        "5.0"
+      ],
       "answer": "14.0",
       "explanation": "12 / 4 is 3.0, multiplied by 2 is 6.0, and adding 8 gives 14.0."
     },
     {
       "question": "What is the exact output?",
       "code": "print(10 - 3 - 2)",
-      "options": ["5", "9", "11", "7"],
+      "options": [
+        "5",
+        "9",
+        "11",
+        "7"
+      ],
       "answer": "5",
       "explanation": "Subtraction is evaluated from left to right."
     },
     {
       "question": "What is the exact output?",
       "code": "print(10 - (3 - 2))",
-      "options": ["9", "5", "11", "7"],
+      "options": [
+        "9",
+        "5",
+        "11",
+        "7"
+      ],
       "answer": "9",
       "explanation": "The parentheses produce 1, so the result is 10 - 1."
     },
     {
       "question": "What is the exact output?",
       "code": "print(5 * 2 + 8 // 3)",
-      "options": ["12", "6", "18", "12.0"],
+      "options": [
+        "12",
+        "6",
+        "18",
+        "12.0"
+      ],
       "answer": "12",
       "explanation": "5 × 2 is 10 and 8 // 3 is 2, giving a total of 12."
     },
     {
       "question": "What is the exact output?",
       "code": "print(divmod(17, 5))",
-      "options": ["(3, 2)", "(2, 3)", "[3, 2]", "3 2"],
+      "options": [
+        "(3, 2)",
+        "(2, 3)",
+        "[3, 2]",
+        "3 2"
+      ],
       "answer": "(3, 2)",
       "explanation": "divmod returns a tuple containing the quotient and remainder."
     },
     {
       "question": "What is the exact output?",
       "code": "print(pow(3, 4))",
-      "options": ["81", "12", "64", "7"],
+      "options": [
+        "81",
+        "12",
+        "64",
+        "7"
+      ],
       "answer": "81",
       "explanation": "pow(3, 4) is equivalent to 3 ** 4."
     },
     {
       "question": "What is the exact output?",
       "code": "print(pow(2, 5, 7))",
-      "options": ["4", "32", "3", "2"],
+      "options": [
+        "4",
+        "32",
+        "3",
+        "2"
+      ],
       "answer": "4",
       "explanation": "Three-argument pow calculates (2 ** 5) % 7."
     },
     {
       "question": "What is the exact output?",
       "code": "print(min(8, 3, 11, 5))",
-      "options": ["3", "5", "8", "11"],
+      "options": [
+        "3",
+        "5",
+        "8",
+        "11"
+      ],
       "answer": "3",
       "explanation": "min returns the smallest supplied value."
     },
     {
       "question": "What is the exact output?",
       "code": "print(max(8, 3, 11, 5))",
-      "options": ["11", "8", "5", "3"],
+      "options": [
+        "11",
+        "8",
+        "5",
+        "3"
+      ],
       "answer": "11",
       "explanation": "max returns the largest supplied value."
     },
     {
       "question": "What is the exact output?",
       "code": "print(sum([2, 4, 6, 8]))",
-      "options": ["20", "18", "24", "10"],
+      "options": [
+        "20",
+        "18",
+        "24",
+        "10"
+      ],
       "answer": "20",
       "explanation": "sum adds all the elements of the list."
     },
     {
       "question": "What is the exact output?",
       "code": "x = 4\ny = 3\nx = x + y\ny = x - y\nprint(x, y)",
-      "options": ["7 4", "7 3", "4 7", "1 4"],
+      "options": [
+        "7 4",
+        "7 3",
+        "4 7",
+        "1 4"
+      ],
       "answer": "7 4",
       "explanation": "x becomes 7, and y then becomes 7 - 3, which is 4."
     },
     {
       "question": "What is the exact output?",
       "code": "a = 10\nb = 3\nprint(a / b == a // b)",
-      "options": ["False", "True", "3", "3.3333333333333335"],
+      "options": [
+        "False",
+        "True",
+        "3",
+        "3.3333333333333335"
+      ],
       "answer": "False",
       "explanation": "10 / 3 is not equal to 10 // 3."
     },
     {
       "question": "What is the exact output?",
       "code": "print(4 + 2 * 3 == 18)",
-      "options": ["False", "True", "10", "18"],
+      "options": [
+        "False",
+        "True",
+        "10",
+        "18"
+      ],
       "answer": "False",
       "explanation": "The arithmetic expression produces 10, and 10 == 18 is False."
     },
     {
       "question": "What is the exact output?",
       "code": "print(0 or 5 + 2)",
-      "options": ["7", "0", "5", "True"],
+      "options": [
+        "7",
+        "0",
+        "5",
+        "True"
+      ],
       "answer": "7",
       "explanation": "0 is falsy, so or returns the value of 5 + 2."
     },
     {
       "question": "What is the exact output?",
       "code": "print(True + True + False)",
-      "options": ["2", "True", "1", "3"],
+      "options": [
+        "2",
+        "True",
+        "1",
+        "3"
+      ],
       "answer": "2",
       "explanation": "In arithmetic, True behaves like 1 and False behaves like 0."
     },
     {
       "question": "What is the exact output?",
       "code": "print(10 / 4 * 2)",
-      "options": ["5.0", "1.25", "8.0", "5"],
+      "options": [
+        "5.0",
+        "1.25",
+        "8.0",
+        "5"
+      ],
       "answer": "5.0",
       "explanation": "10 / 4 is 2.5, and multiplying by 2 produces 5.0."
     },
     {
       "question": "What is the exact output?",
       "code": "print(-7 // 3)",
-      "options": ["-3", "-2", "-2.3333333333333335", "3"],
+      "options": [
+        "-3",
+        "-2",
+        "-2.3333333333333335",
+        "3"
+      ],
       "answer": "-3",
       "explanation": "Floor division rounds down toward negative infinity."
     }

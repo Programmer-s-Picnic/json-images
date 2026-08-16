@@ -27,7 +27,7 @@
   },
   "questions": [
     {
-      "question": "Which Python program produces the required output? (positive number)",
+      "question": "Which Python program produces the required output?",
       "output": "Positive",
       "optionType": "code",
       "options": [
@@ -40,7 +40,7 @@
       "explanation": "7 is greater than 0, so the if branch runs."
     },
     {
-      "question": "Which Python program produces the required output? (zero boundary)",
+      "question": "Which Python program produces the required output?",
       "output": "Not positive",
       "optionType": "code",
       "options": [
@@ -53,7 +53,7 @@
       "explanation": "0 is not greater than 0, so the else branch runs."
     },
     {
-      "question": "Which Python program produces the required output? (even or odd)",
+      "question": "Which Python program produces the required output?",
       "output": "Even",
       "optionType": "code",
       "options": [
@@ -66,7 +66,7 @@
       "explanation": "14 leaves remainder 0 when divided by 2."
     },
     {
-      "question": "Which Python program produces the required output? (odd number)",
+      "question": "Which Python program produces the required output?",
       "output": "Odd",
       "optionType": "code",
       "options": [
@@ -79,7 +79,7 @@
       "explanation": "19 leaves remainder 1 when divided by 2."
     },
     {
-      "question": "Which Python program produces the required output? (pass mark)",
+      "question": "Which Python program produces the required output?",
       "output": "Pass",
       "optionType": "code",
       "options": [
@@ -92,7 +92,7 @@
       "explanation": "The >= operator includes the boundary value 40."
     },
     {
-      "question": "Which Python program produces the required output? (below pass mark)",
+      "question": "Which Python program produces the required output?",
       "output": "Fail",
       "optionType": "code",
       "options": [
@@ -105,7 +105,7 @@
       "explanation": "39 is less than 40."
     },
     {
-      "question": "Which Python program produces the required output? (equality)",
+      "question": "Which Python program produces the required output?",
       "output": "Match",
       "optionType": "code",
       "options": [
@@ -118,7 +118,7 @@
       "explanation": "The value of n is exactly 12."
     },
     {
-      "question": "Which Python program produces the required output? (not equal)",
+      "question": "Which Python program produces the required output?",
       "output": "Same",
       "optionType": "code",
       "options": [
@@ -131,7 +131,7 @@
       "explanation": "8 != 8 is False."
     },
     {
-      "question": "Which Python program produces the required output? (divisibility)",
+      "question": "Which Python program produces the required output?",
       "output": "Divisible",
       "optionType": "code",
       "options": [
@@ -144,7 +144,7 @@
       "explanation": "21 is divisible by 7."
     },
     {
-      "question": "Which Python program produces the required output? (negative check)",
+      "question": "Which Python program produces the required output?",
       "output": "Negative",
       "optionType": "code",
       "options": [
@@ -157,7 +157,7 @@
       "explanation": "-4 is less than 0."
     },
     {
-      "question": "Which Python program produces the required output? (grade A)",
+      "question": "Which Python program produces the required output?",
       "output": "A",
       "optionType": "code",
       "options": [
@@ -170,7 +170,7 @@
       "explanation": "The first true elif-chain condition is used; 92 satisfies n >= 90."
     },
     {
-      "question": "Which Python program produces the required output? (grade B)",
+      "question": "Which Python program produces the required output?",
       "output": "B",
       "optionType": "code",
       "options": [
@@ -183,7 +183,7 @@
       "explanation": "82 fails n >= 90 but satisfies n >= 75."
     },
     {
-      "question": "Which Python program produces the required output? (grade C)",
+      "question": "Which Python program produces the required output?",
       "output": "C",
       "optionType": "code",
       "options": [
@@ -196,7 +196,7 @@
       "explanation": "Neither condition is true, so else prints C."
     },
     {
-      "question": "Which Python program produces the required output? (temperature hot)",
+      "question": "Which Python program produces the required output?",
       "output": "Hot",
       "optionType": "code",
       "options": [
@@ -209,7 +209,7 @@
       "explanation": "36 satisfies the first condition."
     },
     {
-      "question": "Which Python program produces the required output? (temperature pleasant)",
+      "question": "Which Python program produces the required output?",
       "output": "Pleasant",
       "optionType": "code",
       "options": [
@@ -222,7 +222,7 @@
       "explanation": "20 fails the first test but satisfies the inclusive second test."
     },
     {
-      "question": "Which Python program produces the required output? (temperature cold)",
+      "question": "Which Python program produces the required output?",
       "output": "Cold",
       "optionType": "code",
       "options": [
@@ -235,7 +235,7 @@
       "explanation": "19 satisfies neither condition."
     },
     {
-      "question": "Which Python program produces the required output? (number sign zero)",
+      "question": "Which Python program produces the required output?",
       "output": "Zero",
       "optionType": "code",
       "options": [
@@ -248,7 +248,7 @@
       "explanation": "0 fails n > 0 and satisfies n == 0."
     },
     {
-      "question": "Which Python program produces the required output? (ticket child)",
+      "question": "Which Python program produces the required output?",
       "output": "Child",
       "optionType": "code",
       "options": [
@@ -261,7 +261,7 @@
       "explanation": "8 is below both thresholds."
     },
     {
-      "question": "Which Python program produces the required output? (ticket adult)",
+      "question": "Which Python program produces the required output?",
       "output": "Adult",
       "optionType": "code",
       "options": [
@@ -274,7 +274,7 @@
       "explanation": "25 fails the senior test but passes the adult test."
     },
     {
-      "question": "Which Python program produces the required output? (ticket senior)",
+      "question": "Which Python program produces the required output?",
       "output": "Senior",
       "optionType": "code",
       "options": [
@@ -287,7 +287,7 @@
       "explanation": "67 satisfies the first condition, so later branches are skipped."
     },
     {
-      "question": "Which Python program produces the required output? (and: inside range)",
+      "question": "Which Python program produces the required output?",
       "output": "Inside",
       "optionType": "code",
       "options": [
@@ -300,7 +300,7 @@
       "explanation": "Both comparisons are True, so the and expression is True."
     },
     {
-      "question": "Which Python program produces the required output? (and: outside range)",
+      "question": "Which Python program produces the required output?",
       "output": "Outside",
       "optionType": "code",
       "options": [
@@ -313,7 +313,7 @@
       "explanation": "The second comparison is False, so the and expression is False."
     },
     {
-      "question": "Which Python program produces the required output? (or: boundary match)",
+      "question": "Which Python program produces the required output?",
       "output": "Selected",
       "optionType": "code",
       "options": [
@@ -326,7 +326,7 @@
       "explanation": "The right side of or is True."
     },
     {
-      "question": "Which Python program produces the required output? (or: neither condition)",
+      "question": "Which Python program produces the required output?",
       "output": "Rejected",
       "optionType": "code",
       "options": [
@@ -339,7 +339,7 @@
       "explanation": "Both sides of or are False."
     },
     {
-      "question": "Which Python program produces the required output? (not operator)",
+      "question": "Which Python program produces the required output?",
       "output": "Small",
       "optionType": "code",
       "options": [
@@ -352,7 +352,7 @@
       "explanation": "n > 10 is False; not changes it to True."
     },
     {
-      "question": "Which Python program produces the required output? (multiple divisibility)",
+      "question": "Which Python program produces the required output?",
       "output": "Multiple of 10",
       "optionType": "code",
       "options": [
@@ -365,7 +365,7 @@
       "explanation": "30 is divisible by both 2 and 5."
     },
     {
-      "question": "Which Python program produces the required output? (one divisibility test fails)",
+      "question": "Which Python program produces the required output?",
       "output": "Other",
       "optionType": "code",
       "options": [
@@ -378,7 +378,7 @@
       "explanation": "18 is even but not divisible by 5."
     },
     {
-      "question": "Which Python program produces the required output? (membership with or)",
+      "question": "Which Python program produces the required output?",
       "output": "Found",
       "optionType": "code",
       "options": [
@@ -391,7 +391,7 @@
       "explanation": "The final comparison n == 3 is True."
     },
     {
-      "question": "Which Python program produces the required output? (combined not equal)",
+      "question": "Which Python program produces the required output?",
       "output": "Blocked",
       "optionType": "code",
       "options": [
@@ -404,7 +404,7 @@
       "explanation": "n != 7 is False, so the and expression is False."
     },
     {
-      "question": "Which Python program produces the required output? (De Morgan-style condition)",
+      "question": "Which Python program produces the required output?",
       "output": "Valid",
       "optionType": "code",
       "options": [
@@ -417,7 +417,7 @@
       "explanation": "4 is neither below 1 nor above 5, so the parenthesized or is False and not makes it True."
     },
     {
-      "question": "Which Python program produces the required output? (adult with ID)",
+      "question": "Which Python program produces the required output?",
       "output": "Entry allowed",
       "optionType": "code",
       "options": [
@@ -430,7 +430,7 @@
       "explanation": "The outer condition and inner has_id condition are both True."
     },
     {
-      "question": "Which Python program produces the required output? (adult without ID)",
+      "question": "Which Python program produces the required output?",
       "output": "Bring ID",
       "optionType": "code",
       "options": [
@@ -443,7 +443,7 @@
       "explanation": "The age test passes, but has_id is False, so the inner else runs."
     },
     {
-      "question": "Which Python program produces the required output? (minor with ID)",
+      "question": "Which Python program produces the required output?",
       "output": "Too young",
       "optionType": "code",
       "options": [
@@ -456,7 +456,7 @@
       "explanation": "The outer age condition is False, so the inner condition is never checked."
     },
     {
-      "question": "Which Python program produces the required output? (non-negative even)",
+      "question": "Which Python program produces the required output?",
       "output": "Non-negative even",
       "optionType": "code",
       "options": [
@@ -469,7 +469,7 @@
       "explanation": "12 passes the outer non-negative check and the inner even check."
     },
     {
-      "question": "Which Python program produces the required output? (non-negative odd)",
+      "question": "Which Python program produces the required output?",
       "output": "Non-negative odd",
       "optionType": "code",
       "options": [
@@ -482,7 +482,7 @@
       "explanation": "9 is non-negative but not even."
     },
     {
-      "question": "Which Python program produces the required output? (negative value)",
+      "question": "Which Python program produces the required output?",
       "output": "Negative",
       "optionType": "code",
       "options": [
@@ -495,7 +495,7 @@
       "explanation": "The outer condition is False, so the outer else runs."
     },
     {
-      "question": "Which Python program produces the required output? (distinction)",
+      "question": "Which Python program produces the required output?",
       "output": "Distinction",
       "optionType": "code",
       "options": [
@@ -508,7 +508,7 @@
       "explanation": "84 passes both the pass and distinction tests."
     },
     {
-      "question": "Which Python program produces the required output? (simple pass)",
+      "question": "Which Python program produces the required output?",
       "output": "Pass",
       "optionType": "code",
       "options": [
@@ -521,7 +521,7 @@
       "explanation": "62 passes the outer condition but fails score >= 75."
     },
     {
-      "question": "Which Python program produces the required output? (failed score)",
+      "question": "Which Python program produces the required output?",
       "output": "Fail",
       "optionType": "code",
       "options": [
@@ -534,7 +534,7 @@
       "explanation": "32 fails the outer pass condition."
     },
     {
-      "question": "Which Python program produces the required output? (coordinate quadrant)",
+      "question": "Which Python program produces the required output?",
       "output": "Only x positive",
       "optionType": "code",
       "options": [
@@ -547,7 +547,7 @@
       "explanation": "x is positive, but y is not, so the inner else runs."
     },
     {
-      "question": "Which conditional-expression program produces the required output? (maximum of two)",
+      "question": "Which conditional-expression program produces the required output?",
       "output": "a is larger",
       "optionType": "code",
       "options": [
@@ -560,7 +560,7 @@
       "explanation": "The value before if is selected because a > b is True."
     },
     {
-      "question": "Which conditional-expression program produces the required output? (minimum boundary)",
+      "question": "Which conditional-expression program produces the required output?",
       "output": "a is smaller",
       "optionType": "code",
       "options": [
@@ -573,7 +573,7 @@
       "explanation": "4 < 9 is True."
     },
     {
-      "question": "Which conditional-expression program produces the required output? (pass result)",
+      "question": "Which conditional-expression program produces the required output?",
       "output": "Fail",
       "optionType": "code",
       "options": [
@@ -586,7 +586,7 @@
       "explanation": "The condition is False, so the expression after else is selected."
     },
     {
-      "question": "Which conditional-expression program produces the required output? (even label)",
+      "question": "Which conditional-expression program produces the required output?",
       "output": "Odd",
       "optionType": "code",
       "options": [
@@ -599,7 +599,7 @@
       "explanation": "17 is not even, so Odd is selected."
     },
     {
-      "question": "Which conditional-expression program produces the required output? (absolute sign label)",
+      "question": "Which conditional-expression program produces the required output?",
       "output": "Negative",
       "optionType": "code",
       "options": [
@@ -612,7 +612,7 @@
       "explanation": "-6 fails the condition."
     },
     {
-      "question": "Which conditional-expression program produces the required output? (discount eligibility)",
+      "question": "Which conditional-expression program produces the required output?",
       "output": "Discount",
       "optionType": "code",
       "options": [
@@ -625,7 +625,7 @@
       "explanation": "1200 meets the discount threshold."
     },
     {
-      "question": "Which conditional-expression program produces the required output? (login state)",
+      "question": "Which conditional-expression program produces the required output?",
       "output": "Welcome",
       "optionType": "code",
       "options": [
@@ -638,7 +638,7 @@
       "explanation": "The Boolean variable is True."
     },
     {
-      "question": "Which conditional-expression program produces the required output? (age category)",
+      "question": "Which conditional-expression program produces the required output?",
       "output": "Minor",
       "optionType": "code",
       "options": [
@@ -651,7 +651,7 @@
       "explanation": "17 is below 18."
     },
     {
-      "question": "Which conditional-expression program produces the required output? (range result)",
+      "question": "Which conditional-expression program produces the required output?",
       "output": "In range",
       "optionType": "code",
       "options": [
@@ -664,7 +664,7 @@
       "explanation": "Python chained comparisons confirm that 5 lies from 1 through 10."
     },
     {
-      "question": "Which conditional-expression program produces the required output? (logical condition)",
+      "question": "Which conditional-expression program produces the required output?",
       "output": "Condition met",
       "optionType": "code",
       "options": [
@@ -678,4 +678,3 @@
     }
   ]
 }
-
