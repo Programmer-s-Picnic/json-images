@@ -1,0 +1,681 @@
+{
+  "title": "Python Conditions: Output-to-Code Quiz",
+  "subtitle": "See the output and identify the Python conditions that produced it. Each attempt selects 10 questions from a 50-question bank.",
+  "kicker": "Learn With Champak • Python Conditions Test",
+  "instructions": "Study the required output and select the exact Python code that produces it.",
+  "footer": "Learn With Champak • Python • if • elif • else • conditional expressions",
+  "seo": {
+    "enabled": true,
+    "title": "Python Conditions: Output-to-Code Quiz | Learn With Champak",
+    "description": "Identify Python if, elif, else and conditional-expression code from its output in this randomized interactive quiz.",
+    "keywords": "Python conditions quiz, Python if else quiz, Python elif quiz, Python ternary operator, Python code output, programming practice",
+    "canonicalUrl": "https://www.learnwithchampak.live/2026/08/python-conditions-output-to-code-quiz.html",
+    "ogImage": "https://www.learnwithchampak.live/favicon.ico",
+    "imageAlt": "Python Conditions: Output-to-Code Quiz – Learn With Champak",
+    "type": "website",
+    "siteName": "Learn With Champak",
+    "language": "en-IN",
+    "educationalLevel": "Beginner to Intermediate"
+  },
+  "settings": {
+    "questionsPerAttempt": 10,
+    "durationMinutes": 10,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "allowUntimed": true,
+    "showReview": true
+  },
+  "questions": [
+    {
+      "question": "Which Python program produces the required output? (positive number)",
+      "output": "Positive",
+      "optionType": "code",
+      "options": [
+        "n = 7\nif n > 0:\n    print(\"Not positive\")\nelse:\n    print(\"Positive\")",
+        "n = 7\nif not (n > 0):\n    print(\"Positive\")\nelse:\n    print(\"Not positive\")",
+        "n = 7\nif n > 0:\n    print(\"Not positive\")\nelse:\n    print(\"Not positive\")",
+        "n = 7\nif n > 0:\n    print(\"Positive\")\nelse:\n    print(\"Not positive\")"
+      ],
+      "answer": "n = 7\nif n > 0:\n    print(\"Positive\")\nelse:\n    print(\"Not positive\")",
+      "explanation": "7 is greater than 0, so the if branch runs."
+    },
+    {
+      "question": "Which Python program produces the required output? (zero boundary)",
+      "output": "Not positive",
+      "optionType": "code",
+      "options": [
+        "n = 0\nif n > 0:\n    print(\"Positive\")\nelse:\n    print(\"Not positive\")",
+        "n = 0\nif n > 0:\n    print(\"Positive\")\nelse:\n    print(\"Positive\")",
+        "n = 0\nif not (n > 0):\n    print(\"Positive\")\nelse:\n    print(\"Not positive\")",
+        "n = 0\nif n > 0:\n    print(\"Not positive\")\nelse:\n    print(\"Positive\")"
+      ],
+      "answer": "n = 0\nif n > 0:\n    print(\"Positive\")\nelse:\n    print(\"Not positive\")",
+      "explanation": "0 is not greater than 0, so the else branch runs."
+    },
+    {
+      "question": "Which Python program produces the required output? (even or odd)",
+      "output": "Even",
+      "optionType": "code",
+      "options": [
+        "n = 14\nif n % 2 == 0:\n    print(\"Odd\")\nelse:\n    print(\"Odd\")",
+        "n = 14\nif n % 2 == 0:\n    print(\"Even\")\nelse:\n    print(\"Odd\")",
+        "n = 14\nif n % 2 == 0:\n    print(\"Odd\")\nelse:\n    print(\"Even\")",
+        "n = 14\nif not (n % 2 == 0):\n    print(\"Even\")\nelse:\n    print(\"Odd\")"
+      ],
+      "answer": "n = 14\nif n % 2 == 0:\n    print(\"Even\")\nelse:\n    print(\"Odd\")",
+      "explanation": "14 leaves remainder 0 when divided by 2."
+    },
+    {
+      "question": "Which Python program produces the required output? (odd number)",
+      "output": "Odd",
+      "optionType": "code",
+      "options": [
+        "n = 19\nif not (n % 2 == 0):\n    print(\"Even\")\nelse:\n    print(\"Odd\")",
+        "n = 19\nif n % 2 == 0:\n    print(\"Odd\")\nelse:\n    print(\"Even\")",
+        "n = 19\nif n % 2 == 0:\n    print(\"Even\")\nelse:\n    print(\"Odd\")",
+        "n = 19\nif n % 2 == 0:\n    print(\"Even\")\nelse:\n    print(\"Even\")"
+      ],
+      "answer": "n = 19\nif n % 2 == 0:\n    print(\"Even\")\nelse:\n    print(\"Odd\")",
+      "explanation": "19 leaves remainder 1 when divided by 2."
+    },
+    {
+      "question": "Which Python program produces the required output? (pass mark)",
+      "output": "Pass",
+      "optionType": "code",
+      "options": [
+        "n = 40\nif n >= 40:\n    print(\"Fail\")\nelse:\n    print(\"Pass\")",
+        "n = 40\nif n >= 40:\n    print(\"Fail\")\nelse:\n    print(\"Fail\")",
+        "n = 40\nif not (n >= 40):\n    print(\"Pass\")\nelse:\n    print(\"Fail\")",
+        "n = 40\nif n >= 40:\n    print(\"Pass\")\nelse:\n    print(\"Fail\")"
+      ],
+      "answer": "n = 40\nif n >= 40:\n    print(\"Pass\")\nelse:\n    print(\"Fail\")",
+      "explanation": "The >= operator includes the boundary value 40."
+    },
+    {
+      "question": "Which Python program produces the required output? (below pass mark)",
+      "output": "Fail",
+      "optionType": "code",
+      "options": [
+        "n = 39\nif n >= 40:\n    print(\"Pass\")\nelse:\n    print(\"Fail\")",
+        "n = 39\nif not (n >= 40):\n    print(\"Pass\")\nelse:\n    print(\"Fail\")",
+        "n = 39\nif n >= 40:\n    print(\"Pass\")\nelse:\n    print(\"Pass\")",
+        "n = 39\nif n >= 40:\n    print(\"Fail\")\nelse:\n    print(\"Pass\")"
+      ],
+      "answer": "n = 39\nif n >= 40:\n    print(\"Pass\")\nelse:\n    print(\"Fail\")",
+      "explanation": "39 is less than 40."
+    },
+    {
+      "question": "Which Python program produces the required output? (equality)",
+      "output": "Match",
+      "optionType": "code",
+      "options": [
+        "n = 12\nif n == 12:\n    print(\"Different\")\nelse:\n    print(\"Match\")",
+        "n = 12\nif n == 12:\n    print(\"Different\")\nelse:\n    print(\"Different\")",
+        "n = 12\nif n == 12:\n    print(\"Match\")\nelse:\n    print(\"Different\")",
+        "n = 12\nif not (n == 12):\n    print(\"Match\")\nelse:\n    print(\"Different\")"
+      ],
+      "answer": "n = 12\nif n == 12:\n    print(\"Match\")\nelse:\n    print(\"Different\")",
+      "explanation": "The value of n is exactly 12."
+    },
+    {
+      "question": "Which Python program produces the required output? (not equal)",
+      "output": "Same",
+      "optionType": "code",
+      "options": [
+        "n = 8\nif n != 8:\n    print(\"Different\")\nelse:\n    print(\"Same\")",
+        "n = 8\nif n != 8:\n    print(\"Same\")\nelse:\n    print(\"Different\")",
+        "n = 8\nif not (n != 8):\n    print(\"Different\")\nelse:\n    print(\"Same\")",
+        "n = 8\nif n != 8:\n    print(\"Different\")\nelse:\n    print(\"Different\")"
+      ],
+      "answer": "n = 8\nif n != 8:\n    print(\"Different\")\nelse:\n    print(\"Same\")",
+      "explanation": "8 != 8 is False."
+    },
+    {
+      "question": "Which Python program produces the required output? (divisibility)",
+      "output": "Divisible",
+      "optionType": "code",
+      "options": [
+        "n = 21\nif not (n % 7 == 0):\n    print(\"Divisible\")\nelse:\n    print(\"Not divisible\")",
+        "n = 21\nif n % 7 == 0:\n    print(\"Not divisible\")\nelse:\n    print(\"Not divisible\")",
+        "n = 21\nif n % 7 == 0:\n    print(\"Not divisible\")\nelse:\n    print(\"Divisible\")",
+        "n = 21\nif n % 7 == 0:\n    print(\"Divisible\")\nelse:\n    print(\"Not divisible\")"
+      ],
+      "answer": "n = 21\nif n % 7 == 0:\n    print(\"Divisible\")\nelse:\n    print(\"Not divisible\")",
+      "explanation": "21 is divisible by 7."
+    },
+    {
+      "question": "Which Python program produces the required output? (negative check)",
+      "output": "Negative",
+      "optionType": "code",
+      "options": [
+        "n = -4\nif not (n < 0):\n    print(\"Negative\")\nelse:\n    print(\"Non-negative\")",
+        "n = -4\nif n < 0:\n    print(\"Non-negative\")\nelse:\n    print(\"Non-negative\")",
+        "n = -4\nif n < 0:\n    print(\"Negative\")\nelse:\n    print(\"Non-negative\")",
+        "n = -4\nif n < 0:\n    print(\"Non-negative\")\nelse:\n    print(\"Negative\")"
+      ],
+      "answer": "n = -4\nif n < 0:\n    print(\"Negative\")\nelse:\n    print(\"Non-negative\")",
+      "explanation": "-4 is less than 0."
+    },
+    {
+      "question": "Which Python program produces the required output? (grade A)",
+      "output": "A",
+      "optionType": "code",
+      "options": [
+        "n = 80\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")",
+        "n = 92\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")",
+        "n = 92\nif n >= 90:\n    print(\"B\")\nelif n >= 75:\n    print(\"C\")\nelse:\n    print(\"A\")",
+        "n = 60\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")"
+      ],
+      "answer": "n = 92\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")",
+      "explanation": "The first true elif-chain condition is used; 92 satisfies n >= 90."
+    },
+    {
+      "question": "Which Python program produces the required output? (grade B)",
+      "output": "B",
+      "optionType": "code",
+      "options": [
+        "n = 82\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")",
+        "n = 60\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")",
+        "n = 95\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")",
+        "n = 82\nif n >= 90:\n    print(\"B\")\nelif n >= 75:\n    print(\"C\")\nelse:\n    print(\"A\")"
+      ],
+      "answer": "n = 82\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")",
+      "explanation": "82 fails n >= 90 but satisfies n >= 75."
+    },
+    {
+      "question": "Which Python program produces the required output? (grade C)",
+      "output": "C",
+      "optionType": "code",
+      "options": [
+        "n = 95\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")",
+        "n = 80\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")",
+        "n = 68\nif n >= 90:\n    print(\"B\")\nelif n >= 75:\n    print(\"C\")\nelse:\n    print(\"A\")",
+        "n = 68\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")"
+      ],
+      "answer": "n = 68\nif n >= 90:\n    print(\"A\")\nelif n >= 75:\n    print(\"B\")\nelse:\n    print(\"C\")",
+      "explanation": "Neither condition is true, so else prints C."
+    },
+    {
+      "question": "Which Python program produces the required output? (temperature hot)",
+      "output": "Hot",
+      "optionType": "code",
+      "options": [
+        "n = 36\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")",
+        "n = 36\nif n > 35:\n    print(\"Pleasant\")\nelif n >= 20:\n    print(\"Cold\")\nelse:\n    print(\"Hot\")",
+        "n = 10\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")",
+        "n = 25\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")"
+      ],
+      "answer": "n = 36\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")",
+      "explanation": "36 satisfies the first condition."
+    },
+    {
+      "question": "Which Python program produces the required output? (temperature pleasant)",
+      "output": "Pleasant",
+      "optionType": "code",
+      "options": [
+        "n = 20\nif n > 35:\n    print(\"Pleasant\")\nelif n >= 20:\n    print(\"Cold\")\nelse:\n    print(\"Hot\")",
+        "n = 20\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")",
+        "n = 40\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")",
+        "n = 10\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")"
+      ],
+      "answer": "n = 20\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")",
+      "explanation": "20 fails the first test but satisfies the inclusive second test."
+    },
+    {
+      "question": "Which Python program produces the required output? (temperature cold)",
+      "output": "Cold",
+      "optionType": "code",
+      "options": [
+        "n = 25\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")",
+        "n = 40\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")",
+        "n = 19\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")",
+        "n = 19\nif n > 35:\n    print(\"Pleasant\")\nelif n >= 20:\n    print(\"Cold\")\nelse:\n    print(\"Hot\")"
+      ],
+      "answer": "n = 19\nif n > 35:\n    print(\"Hot\")\nelif n >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")",
+      "explanation": "19 satisfies neither condition."
+    },
+    {
+      "question": "Which Python program produces the required output? (number sign zero)",
+      "output": "Zero",
+      "optionType": "code",
+      "options": [
+        "n = 5\nif n > 0:\n    print(\"Positive\")\nelif n == 0:\n    print(\"Zero\")\nelse:\n    print(\"Negative\")",
+        "n = 0\nif n > 0:\n    print(\"Zero\")\nelif n == 0:\n    print(\"Negative\")\nelse:\n    print(\"Positive\")",
+        "n = -2\nif n > 0:\n    print(\"Positive\")\nelif n == 0:\n    print(\"Zero\")\nelse:\n    print(\"Negative\")",
+        "n = 0\nif n > 0:\n    print(\"Positive\")\nelif n == 0:\n    print(\"Zero\")\nelse:\n    print(\"Negative\")"
+      ],
+      "answer": "n = 0\nif n > 0:\n    print(\"Positive\")\nelif n == 0:\n    print(\"Zero\")\nelse:\n    print(\"Negative\")",
+      "explanation": "0 fails n > 0 and satisfies n == 0."
+    },
+    {
+      "question": "Which Python program produces the required output? (ticket child)",
+      "output": "Child",
+      "optionType": "code",
+      "options": [
+        "n = 8\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")",
+        "n = 25\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")",
+        "n = 8\nif n >= 60:\n    print(\"Adult\")\nelif n >= 13:\n    print(\"Child\")\nelse:\n    print(\"Senior\")",
+        "n = 65\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")"
+      ],
+      "answer": "n = 8\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")",
+      "explanation": "8 is below both thresholds."
+    },
+    {
+      "question": "Which Python program produces the required output? (ticket adult)",
+      "output": "Adult",
+      "optionType": "code",
+      "options": [
+        "n = 65\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")",
+        "n = 25\nif n >= 60:\n    print(\"Adult\")\nelif n >= 13:\n    print(\"Child\")\nelse:\n    print(\"Senior\")",
+        "n = 25\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")",
+        "n = 8\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")"
+      ],
+      "answer": "n = 25\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")",
+      "explanation": "25 fails the senior test but passes the adult test."
+    },
+    {
+      "question": "Which Python program produces the required output? (ticket senior)",
+      "output": "Senior",
+      "optionType": "code",
+      "options": [
+        "n = 67\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")",
+        "n = 25\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")",
+        "n = 8\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")",
+        "n = 67\nif n >= 60:\n    print(\"Adult\")\nelif n >= 13:\n    print(\"Child\")\nelse:\n    print(\"Senior\")"
+      ],
+      "answer": "n = 67\nif n >= 60:\n    print(\"Senior\")\nelif n >= 13:\n    print(\"Adult\")\nelse:\n    print(\"Child\")",
+      "explanation": "67 satisfies the first condition, so later branches are skipped."
+    },
+    {
+      "question": "Which Python program produces the required output? (and: inside range)",
+      "output": "Inside",
+      "optionType": "code",
+      "options": [
+        "n = 15\nif not (n >= 10 and n <= 20):\n    print(\"Inside\")\nelse:\n    print(\"Outside\")",
+        "n = 15\nif n >= 10 and n <= 20:\n    print(\"Outside\")\nelse:\n    print(\"Outside\")",
+        "n = 15\nif n >= 10 and n <= 20:\n    print(\"Outside\")\nelse:\n    print(\"Inside\")",
+        "n = 15\nif n >= 10 and n <= 20:\n    print(\"Inside\")\nelse:\n    print(\"Outside\")"
+      ],
+      "answer": "n = 15\nif n >= 10 and n <= 20:\n    print(\"Inside\")\nelse:\n    print(\"Outside\")",
+      "explanation": "Both comparisons are True, so the and expression is True."
+    },
+    {
+      "question": "Which Python program produces the required output? (and: outside range)",
+      "output": "Outside",
+      "optionType": "code",
+      "options": [
+        "n = 25\nif not (n >= 10 and n <= 20):\n    print(\"Inside\")\nelse:\n    print(\"Outside\")",
+        "n = 25\nif n >= 10 and n <= 20:\n    print(\"Inside\")\nelse:\n    print(\"Inside\")",
+        "n = 25\nif n >= 10 and n <= 20:\n    print(\"Inside\")\nelse:\n    print(\"Outside\")",
+        "n = 25\nif n >= 10 and n <= 20:\n    print(\"Outside\")\nelse:\n    print(\"Inside\")"
+      ],
+      "answer": "n = 25\nif n >= 10 and n <= 20:\n    print(\"Inside\")\nelse:\n    print(\"Outside\")",
+      "explanation": "The second comparison is False, so the and expression is False."
+    },
+    {
+      "question": "Which Python program produces the required output? (or: boundary match)",
+      "output": "Selected",
+      "optionType": "code",
+      "options": [
+        "n = 5\nif n < 0 or n == 5:\n    print(\"Rejected\")\nelse:\n    print(\"Selected\")",
+        "n = 5\nif n < 0 or n == 5:\n    print(\"Selected\")\nelse:\n    print(\"Rejected\")",
+        "n = 5\nif n < 0 or n == 5:\n    print(\"Rejected\")\nelse:\n    print(\"Rejected\")",
+        "n = 5\nif not (n < 0 or n == 5):\n    print(\"Selected\")\nelse:\n    print(\"Rejected\")"
+      ],
+      "answer": "n = 5\nif n < 0 or n == 5:\n    print(\"Selected\")\nelse:\n    print(\"Rejected\")",
+      "explanation": "The right side of or is True."
+    },
+    {
+      "question": "Which Python program produces the required output? (or: neither condition)",
+      "output": "Rejected",
+      "optionType": "code",
+      "options": [
+        "n = 3\nif n < 0 or n == 5:\n    print(\"Selected\")\nelse:\n    print(\"Rejected\")",
+        "n = 3\nif not (n < 0 or n == 5):\n    print(\"Selected\")\nelse:\n    print(\"Rejected\")",
+        "n = 3\nif n < 0 or n == 5:\n    print(\"Rejected\")\nelse:\n    print(\"Selected\")",
+        "n = 3\nif n < 0 or n == 5:\n    print(\"Selected\")\nelse:\n    print(\"Selected\")"
+      ],
+      "answer": "n = 3\nif n < 0 or n == 5:\n    print(\"Selected\")\nelse:\n    print(\"Rejected\")",
+      "explanation": "Both sides of or are False."
+    },
+    {
+      "question": "Which Python program produces the required output? (not operator)",
+      "output": "Small",
+      "optionType": "code",
+      "options": [
+        "n = 6\nif not n > 10:\n    print(\"Large\")\nelse:\n    print(\"Small\")",
+        "n = 6\nif not (not n > 10):\n    print(\"Small\")\nelse:\n    print(\"Large\")",
+        "n = 6\nif not n > 10:\n    print(\"Large\")\nelse:\n    print(\"Large\")",
+        "n = 6\nif not n > 10:\n    print(\"Small\")\nelse:\n    print(\"Large\")"
+      ],
+      "answer": "n = 6\nif not n > 10:\n    print(\"Small\")\nelse:\n    print(\"Large\")",
+      "explanation": "n > 10 is False; not changes it to True."
+    },
+    {
+      "question": "Which Python program produces the required output? (multiple divisibility)",
+      "output": "Multiple of 10",
+      "optionType": "code",
+      "options": [
+        "n = 30\nif n % 2 == 0 and n % 5 == 0:\n    print(\"Multiple of 10\")\nelse:\n    print(\"Other\")",
+        "n = 30\nif n % 2 == 0 and n % 5 == 0:\n    print(\"Other\")\nelse:\n    print(\"Other\")",
+        "n = 30\nif not (n % 2 == 0 and n % 5 == 0):\n    print(\"Multiple of 10\")\nelse:\n    print(\"Other\")",
+        "n = 30\nif n % 2 == 0 and n % 5 == 0:\n    print(\"Other\")\nelse:\n    print(\"Multiple of 10\")"
+      ],
+      "answer": "n = 30\nif n % 2 == 0 and n % 5 == 0:\n    print(\"Multiple of 10\")\nelse:\n    print(\"Other\")",
+      "explanation": "30 is divisible by both 2 and 5."
+    },
+    {
+      "question": "Which Python program produces the required output? (one divisibility test fails)",
+      "output": "Other",
+      "optionType": "code",
+      "options": [
+        "n = 18\nif n % 2 == 0 and n % 5 == 0:\n    print(\"Multiple of 10\")\nelse:\n    print(\"Multiple of 10\")",
+        "n = 18\nif n % 2 == 0 and n % 5 == 0:\n    print(\"Multiple of 10\")\nelse:\n    print(\"Other\")",
+        "n = 18\nif n % 2 == 0 and n % 5 == 0:\n    print(\"Other\")\nelse:\n    print(\"Multiple of 10\")",
+        "n = 18\nif not (n % 2 == 0 and n % 5 == 0):\n    print(\"Multiple of 10\")\nelse:\n    print(\"Other\")"
+      ],
+      "answer": "n = 18\nif n % 2 == 0 and n % 5 == 0:\n    print(\"Multiple of 10\")\nelse:\n    print(\"Other\")",
+      "explanation": "18 is even but not divisible by 5."
+    },
+    {
+      "question": "Which Python program produces the required output? (membership with or)",
+      "output": "Found",
+      "optionType": "code",
+      "options": [
+        "n = 3\nif not (n == 1 or n == 2 or n == 3):\n    print(\"Found\")\nelse:\n    print(\"Missing\")",
+        "n = 3\nif n == 1 or n == 2 or n == 3:\n    print(\"Missing\")\nelse:\n    print(\"Found\")",
+        "n = 3\nif n == 1 or n == 2 or n == 3:\n    print(\"Found\")\nelse:\n    print(\"Missing\")",
+        "n = 3\nif n == 1 or n == 2 or n == 3:\n    print(\"Missing\")\nelse:\n    print(\"Missing\")"
+      ],
+      "answer": "n = 3\nif n == 1 or n == 2 or n == 3:\n    print(\"Found\")\nelse:\n    print(\"Missing\")",
+      "explanation": "The final comparison n == 3 is True."
+    },
+    {
+      "question": "Which Python program produces the required output? (combined not equal)",
+      "output": "Blocked",
+      "optionType": "code",
+      "options": [
+        "n = 7\nif n != 5 and n != 7:\n    print(\"Blocked\")\nelse:\n    print(\"Allowed\")",
+        "n = 7\nif n != 5 and n != 7:\n    print(\"Allowed\")\nelse:\n    print(\"Allowed\")",
+        "n = 7\nif not (n != 5 and n != 7):\n    print(\"Allowed\")\nelse:\n    print(\"Blocked\")",
+        "n = 7\nif n != 5 and n != 7:\n    print(\"Allowed\")\nelse:\n    print(\"Blocked\")"
+      ],
+      "answer": "n = 7\nif n != 5 and n != 7:\n    print(\"Allowed\")\nelse:\n    print(\"Blocked\")",
+      "explanation": "n != 7 is False, so the and expression is False."
+    },
+    {
+      "question": "Which Python program produces the required output? (De Morgan-style condition)",
+      "output": "Valid",
+      "optionType": "code",
+      "options": [
+        "n = 4\nif not (n < 1 or n > 5):\n    print(\"Valid\")\nelse:\n    print(\"Invalid\")",
+        "n = 4\nif not (not (n < 1 or n > 5)):\n    print(\"Valid\")\nelse:\n    print(\"Invalid\")",
+        "n = 4\nif not (n < 1 or n > 5):\n    print(\"Invalid\")\nelse:\n    print(\"Invalid\")",
+        "n = 4\nif not (n < 1 or n > 5):\n    print(\"Invalid\")\nelse:\n    print(\"Valid\")"
+      ],
+      "answer": "n = 4\nif not (n < 1 or n > 5):\n    print(\"Valid\")\nelse:\n    print(\"Invalid\")",
+      "explanation": "4 is neither below 1 nor above 5, so the parenthesized or is False and not makes it True."
+    },
+    {
+      "question": "Which Python program produces the required output? (adult with ID)",
+      "output": "Entry allowed",
+      "optionType": "code",
+      "options": [
+        "age = 22\nhas_id = True\nif age >= 18:\n    if has_id:\n        print(\"Bring ID\")\n    else:\n        print(\"Entry allowed\")\nelse:\n    print(\"Too young\")",
+        "age = 22\nhas_id = True\nif age >= 18:\n    if has_id:\n        print(\"Denied\")\n    else:\n        print(\"Bring ID\")\nelse:\n    print(\"Too young\")",
+        "age = 22\nhas_id = True\nif age >= 18:\n    if has_id:\n        print(\"Entry allowed\")\n    else:\n        print(\"Bring ID\")\nelse:\n    print(\"Too young\")",
+        "age = 22\nhas_id = True\nif age >= 18:\n    if has_id:\n        print(\"Too young\")\n    else:\n        print(\"Bring ID\")\nelse:\n    print(\"Entry allowed\")"
+      ],
+      "answer": "age = 22\nhas_id = True\nif age >= 18:\n    if has_id:\n        print(\"Entry allowed\")\n    else:\n        print(\"Bring ID\")\nelse:\n    print(\"Too young\")",
+      "explanation": "The outer condition and inner has_id condition are both True."
+    },
+    {
+      "question": "Which Python program produces the required output? (adult without ID)",
+      "output": "Bring ID",
+      "optionType": "code",
+      "options": [
+        "age = 22\nhas_id = False\nif age >= 18:\n    if has_id:\n        print(\"Entry allowed\")\n    else:\n        print(\"Bring ID\")\nelse:\n    print(\"Too young\")",
+        "age = 22\nhas_id = False\nif age >= 18:\n    if has_id:\n        print(\"Bring ID\")\n    else:\n        print(\"Entry allowed\")\nelse:\n    print(\"Too young\")",
+        "age = 22\nhas_id = False\nif age >= 18:\n    if has_id:\n        print(\"Entry allowed\")\n    else:\n        print(\"Too young\")\nelse:\n    print(\"Bring ID\")",
+        "age = 22\nhas_id = False\nif age >= 18:\n    if has_id:\n        print(\"Entry allowed\")\n    else:\n        print(\"Denied\")\nelse:\n    print(\"Too young\")"
+      ],
+      "answer": "age = 22\nhas_id = False\nif age >= 18:\n    if has_id:\n        print(\"Entry allowed\")\n    else:\n        print(\"Bring ID\")\nelse:\n    print(\"Too young\")",
+      "explanation": "The age test passes, but has_id is False, so the inner else runs."
+    },
+    {
+      "question": "Which Python program produces the required output? (minor with ID)",
+      "output": "Too young",
+      "optionType": "code",
+      "options": [
+        "age = 16\nhas_id = True\nif age >= 18:\n    if has_id:\n        print(\"Entry allowed\")\n    else:\n        print(\"Too young\")\nelse:\n    print(\"Bring ID\")",
+        "age = 16\nhas_id = True\nif age >= 18:\n    if has_id:\n        print(\"Entry allowed\")\n    else:\n        print(\"Bring ID\")\nelse:\n    print(\"Denied\")",
+        "age = 16\nhas_id = True\nif age >= 18:\n    if has_id:\n        print(\"Too young\")\n    else:\n        print(\"Bring ID\")\nelse:\n    print(\"Entry allowed\")",
+        "age = 16\nhas_id = True\nif age >= 18:\n    if has_id:\n        print(\"Entry allowed\")\n    else:\n        print(\"Bring ID\")\nelse:\n    print(\"Too young\")"
+      ],
+      "answer": "age = 16\nhas_id = True\nif age >= 18:\n    if has_id:\n        print(\"Entry allowed\")\n    else:\n        print(\"Bring ID\")\nelse:\n    print(\"Too young\")",
+      "explanation": "The outer age condition is False, so the inner condition is never checked."
+    },
+    {
+      "question": "Which Python program produces the required output? (non-negative even)",
+      "output": "Non-negative even",
+      "optionType": "code",
+      "options": [
+        "n = 12\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Negative\")\n    else:\n        print(\"Non-negative odd\")\nelse:\n    print(\"Non-negative even\")",
+        "n = 12\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Other\")\n    else:\n        print(\"Non-negative odd\")\nelse:\n    print(\"Negative\")",
+        "n = 12\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative even\")\n    else:\n        print(\"Non-negative odd\")\nelse:\n    print(\"Negative\")",
+        "n = 12\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative odd\")\n    else:\n        print(\"Non-negative even\")\nelse:\n    print(\"Negative\")"
+      ],
+      "answer": "n = 12\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative even\")\n    else:\n        print(\"Non-negative odd\")\nelse:\n    print(\"Negative\")",
+      "explanation": "12 passes the outer non-negative check and the inner even check."
+    },
+    {
+      "question": "Which Python program produces the required output? (non-negative odd)",
+      "output": "Non-negative odd",
+      "optionType": "code",
+      "options": [
+        "n = 9\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative odd\")\n    else:\n        print(\"Non-negative even\")\nelse:\n    print(\"Negative\")",
+        "n = 9\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative even\")\n    else:\n        print(\"Non-negative odd\")\nelse:\n    print(\"Negative\")",
+        "n = 9\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative even\")\n    else:\n        print(\"Other\")\nelse:\n    print(\"Negative\")",
+        "n = 9\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative even\")\n    else:\n        print(\"Negative\")\nelse:\n    print(\"Non-negative odd\")"
+      ],
+      "answer": "n = 9\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative even\")\n    else:\n        print(\"Non-negative odd\")\nelse:\n    print(\"Negative\")",
+      "explanation": "9 is non-negative but not even."
+    },
+    {
+      "question": "Which Python program produces the required output? (negative value)",
+      "output": "Negative",
+      "optionType": "code",
+      "options": [
+        "n = -2\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative even\")\n    else:\n        print(\"Non-negative odd\")\nelse:\n    print(\"Negative\")",
+        "n = -2\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative even\")\n    else:\n        print(\"Negative\")\nelse:\n    print(\"Non-negative odd\")",
+        "n = -2\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Negative\")\n    else:\n        print(\"Non-negative odd\")\nelse:\n    print(\"Non-negative even\")",
+        "n = -2\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative even\")\n    else:\n        print(\"Non-negative odd\")\nelse:\n    print(\"Other\")"
+      ],
+      "answer": "n = -2\nif n >= 0:\n    if n % 2 == 0:\n        print(\"Non-negative even\")\n    else:\n        print(\"Non-negative odd\")\nelse:\n    print(\"Negative\")",
+      "explanation": "The outer condition is False, so the outer else runs."
+    },
+    {
+      "question": "Which Python program produces the required output? (distinction)",
+      "output": "Distinction",
+      "optionType": "code",
+      "options": [
+        "score = 84\nif score >= 40:\n    if score >= 75:\n        print(\"Pass\")\n    else:\n        print(\"Distinction\")\nelse:\n    print(\"Fail\")",
+        "score = 84\nif score >= 40:\n    if score >= 75:\n        print(\"Fail\")\n    else:\n        print(\"Pass\")\nelse:\n    print(\"Distinction\")",
+        "score = 84\nif score >= 40:\n    if score >= 75:\n        print(\"Merit\")\n    else:\n        print(\"Pass\")\nelse:\n    print(\"Fail\")",
+        "score = 84\nif score >= 40:\n    if score >= 75:\n        print(\"Distinction\")\n    else:\n        print(\"Pass\")\nelse:\n    print(\"Fail\")"
+      ],
+      "answer": "score = 84\nif score >= 40:\n    if score >= 75:\n        print(\"Distinction\")\n    else:\n        print(\"Pass\")\nelse:\n    print(\"Fail\")",
+      "explanation": "84 passes both the pass and distinction tests."
+    },
+    {
+      "question": "Which Python program produces the required output? (simple pass)",
+      "output": "Pass",
+      "optionType": "code",
+      "options": [
+        "score = 62\nif score >= 40:\n    if score >= 75:\n        print(\"Distinction\")\n    else:\n        print(\"Pass\")\nelse:\n    print(\"Fail\")",
+        "score = 62\nif score >= 40:\n    if score >= 75:\n        print(\"Distinction\")\n    else:\n        print(\"Review\")\nelse:\n    print(\"Fail\")",
+        "score = 62\nif score >= 40:\n    if score >= 75:\n        print(\"Distinction\")\n    else:\n        print(\"Fail\")\nelse:\n    print(\"Pass\")",
+        "score = 62\nif score >= 40:\n    if score >= 75:\n        print(\"Pass\")\n    else:\n        print(\"Distinction\")\nelse:\n    print(\"Fail\")"
+      ],
+      "answer": "score = 62\nif score >= 40:\n    if score >= 75:\n        print(\"Distinction\")\n    else:\n        print(\"Pass\")\nelse:\n    print(\"Fail\")",
+      "explanation": "62 passes the outer condition but fails score >= 75."
+    },
+    {
+      "question": "Which Python program produces the required output? (failed score)",
+      "output": "Fail",
+      "optionType": "code",
+      "options": [
+        "score = 32\nif score >= 40:\n    if score >= 75:\n        print(\"Distinction\")\n    else:\n        print(\"Pass\")\nelse:\n    print(\"Review\")",
+        "score = 32\nif score >= 40:\n    if score >= 75:\n        print(\"Distinction\")\n    else:\n        print(\"Pass\")\nelse:\n    print(\"Fail\")",
+        "score = 32\nif score >= 40:\n    if score >= 75:\n        print(\"Fail\")\n    else:\n        print(\"Pass\")\nelse:\n    print(\"Distinction\")",
+        "score = 32\nif score >= 40:\n    if score >= 75:\n        print(\"Distinction\")\n    else:\n        print(\"Fail\")\nelse:\n    print(\"Pass\")"
+      ],
+      "answer": "score = 32\nif score >= 40:\n    if score >= 75:\n        print(\"Distinction\")\n    else:\n        print(\"Pass\")\nelse:\n    print(\"Fail\")",
+      "explanation": "32 fails the outer pass condition."
+    },
+    {
+      "question": "Which Python program produces the required output? (coordinate quadrant)",
+      "output": "Only x positive",
+      "optionType": "code",
+      "options": [
+        "x = 3\ny = -2\nif x > 0:\n    if y > 0:\n        print(\"Both positive\")\n    else:\n        print(\"x not positive\")\nelse:\n    print(\"Only x positive\")",
+        "x = 3\ny = -2\nif x > 0:\n    if y > 0:\n        print(\"Only x positive\")\n    else:\n        print(\"Both positive\")\nelse:\n    print(\"x not positive\")",
+        "x = 3\ny = -2\nif x > 0:\n    if y > 0:\n        print(\"Both positive\")\n    else:\n        print(\"Only x positive\")\nelse:\n    print(\"x not positive\")",
+        "x = 3\ny = -2\nif x > 0:\n    if y > 0:\n        print(\"Both positive\")\n    else:\n        print(\"Other\")\nelse:\n    print(\"x not positive\")"
+      ],
+      "answer": "x = 3\ny = -2\nif x > 0:\n    if y > 0:\n        print(\"Both positive\")\n    else:\n        print(\"Only x positive\")\nelse:\n    print(\"x not positive\")",
+      "explanation": "x is positive, but y is not, so the inner else runs."
+    },
+    {
+      "question": "Which conditional-expression program produces the required output? (maximum of two)",
+      "output": "a is larger",
+      "optionType": "code",
+      "options": [
+        "a = 8\nb = 5\nresult = \"b is larger\" if a > b else \"a is larger\"\nprint(result)",
+        "a = 8\nb = 5\nresult = \"b is larger\" if a > b else \"b is larger\"\nprint(result)",
+        "a = 8\nb = 5\nresult = \"a is larger\" if not (a > b) else \"b is larger\"\nprint(result)",
+        "a = 8\nb = 5\nresult = \"a is larger\" if a > b else \"b is larger\"\nprint(result)"
+      ],
+      "answer": "a = 8\nb = 5\nresult = \"a is larger\" if a > b else \"b is larger\"\nprint(result)",
+      "explanation": "The value before if is selected because a > b is True."
+    },
+    {
+      "question": "Which conditional-expression program produces the required output? (minimum boundary)",
+      "output": "a is smaller",
+      "optionType": "code",
+      "options": [
+        "a = 4\nb = 9\nresult = \"a is smaller\" if a < b else \"b is smaller\"\nprint(result)",
+        "a = 4\nb = 9\nresult = \"a is smaller\" if not (a < b) else \"b is smaller\"\nprint(result)",
+        "a = 4\nb = 9\nresult = \"b is smaller\" if a < b else \"b is smaller\"\nprint(result)",
+        "a = 4\nb = 9\nresult = \"b is smaller\" if a < b else \"a is smaller\"\nprint(result)"
+      ],
+      "answer": "a = 4\nb = 9\nresult = \"a is smaller\" if a < b else \"b is smaller\"\nprint(result)",
+      "explanation": "4 < 9 is True."
+    },
+    {
+      "question": "Which conditional-expression program produces the required output? (pass result)",
+      "output": "Fail",
+      "optionType": "code",
+      "options": [
+        "marks = 39\nresult = \"Fail\" if marks >= 40 else \"Pass\"\nprint(result)",
+        "marks = 39\nresult = \"Pass\" if marks >= 40 else \"Pass\"\nprint(result)",
+        "marks = 39\nresult = \"Pass\" if marks >= 40 else \"Fail\"\nprint(result)",
+        "marks = 39\nresult = \"Pass\" if not (marks >= 40) else \"Fail\"\nprint(result)"
+      ],
+      "answer": "marks = 39\nresult = \"Pass\" if marks >= 40 else \"Fail\"\nprint(result)",
+      "explanation": "The condition is False, so the expression after else is selected."
+    },
+    {
+      "question": "Which conditional-expression program produces the required output? (even label)",
+      "output": "Odd",
+      "optionType": "code",
+      "options": [
+        "n = 17\nresult = \"Even\" if n % 2 == 0 else \"Odd\"\nprint(result)",
+        "n = 17\nresult = \"Odd\" if n % 2 == 0 else \"Even\"\nprint(result)",
+        "n = 17\nresult = \"Even\" if not (n % 2 == 0) else \"Odd\"\nprint(result)",
+        "n = 17\nresult = \"Even\" if n % 2 == 0 else \"Even\"\nprint(result)"
+      ],
+      "answer": "n = 17\nresult = \"Even\" if n % 2 == 0 else \"Odd\"\nprint(result)",
+      "explanation": "17 is not even, so Odd is selected."
+    },
+    {
+      "question": "Which conditional-expression program produces the required output? (absolute sign label)",
+      "output": "Negative",
+      "optionType": "code",
+      "options": [
+        "n = -6\nresult = \"Non-negative\" if not (n >= 0) else \"Negative\"\nprint(result)",
+        "n = -6\nresult = \"Non-negative\" if n >= 0 else \"Non-negative\"\nprint(result)",
+        "n = -6\nresult = \"Negative\" if n >= 0 else \"Non-negative\"\nprint(result)",
+        "n = -6\nresult = \"Non-negative\" if n >= 0 else \"Negative\"\nprint(result)"
+      ],
+      "answer": "n = -6\nresult = \"Non-negative\" if n >= 0 else \"Negative\"\nprint(result)",
+      "explanation": "-6 fails the condition."
+    },
+    {
+      "question": "Which conditional-expression program produces the required output? (discount eligibility)",
+      "output": "Discount",
+      "optionType": "code",
+      "options": [
+        "total = 1200\nresult = \"Discount\" if not (total >= 1000) else \"No discount\"\nprint(result)",
+        "total = 1200\nresult = \"No discount\" if total >= 1000 else \"No discount\"\nprint(result)",
+        "total = 1200\nresult = \"Discount\" if total >= 1000 else \"No discount\"\nprint(result)",
+        "total = 1200\nresult = \"No discount\" if total >= 1000 else \"Discount\"\nprint(result)"
+      ],
+      "answer": "total = 1200\nresult = \"Discount\" if total >= 1000 else \"No discount\"\nprint(result)",
+      "explanation": "1200 meets the discount threshold."
+    },
+    {
+      "question": "Which conditional-expression program produces the required output? (login state)",
+      "output": "Welcome",
+      "optionType": "code",
+      "options": [
+        "is_logged_in = True\nresult = \"Please log in\" if is_logged_in else \"Welcome\"\nprint(result)",
+        "is_logged_in = True\nresult = \"Welcome\" if is_logged_in else \"Please log in\"\nprint(result)",
+        "is_logged_in = True\nresult = \"Please log in\" if is_logged_in else \"Please log in\"\nprint(result)",
+        "is_logged_in = True\nresult = \"Welcome\" if not (is_logged_in) else \"Please log in\"\nprint(result)"
+      ],
+      "answer": "is_logged_in = True\nresult = \"Welcome\" if is_logged_in else \"Please log in\"\nprint(result)",
+      "explanation": "The Boolean variable is True."
+    },
+    {
+      "question": "Which conditional-expression program produces the required output? (age category)",
+      "output": "Minor",
+      "optionType": "code",
+      "options": [
+        "age = 17\nresult = \"Adult\" if age >= 18 else \"Minor\"\nprint(result)",
+        "age = 17\nresult = \"Adult\" if not (age >= 18) else \"Minor\"\nprint(result)",
+        "age = 17\nresult = \"Minor\" if age >= 18 else \"Adult\"\nprint(result)",
+        "age = 17\nresult = \"Adult\" if age >= 18 else \"Adult\"\nprint(result)"
+      ],
+      "answer": "age = 17\nresult = \"Adult\" if age >= 18 else \"Minor\"\nprint(result)",
+      "explanation": "17 is below 18."
+    },
+    {
+      "question": "Which conditional-expression program produces the required output? (range result)",
+      "output": "In range",
+      "optionType": "code",
+      "options": [
+        "n = 5\nresult = \"Out of range\" if 1 <= n <= 10 else \"In range\"\nprint(result)",
+        "n = 5\nresult = \"In range\" if not (1 <= n <= 10) else \"Out of range\"\nprint(result)",
+        "n = 5\nresult = \"Out of range\" if 1 <= n <= 10 else \"Out of range\"\nprint(result)",
+        "n = 5\nresult = \"In range\" if 1 <= n <= 10 else \"Out of range\"\nprint(result)"
+      ],
+      "answer": "n = 5\nresult = \"In range\" if 1 <= n <= 10 else \"Out of range\"\nprint(result)",
+      "explanation": "Python chained comparisons confirm that 5 lies from 1 through 10."
+    },
+    {
+      "question": "Which conditional-expression program produces the required output? (logical condition)",
+      "output": "Condition met",
+      "optionType": "code",
+      "options": [
+        "x = 7\ny = 2\nresult = \"Condition met\" if x > 5 and y < 5 else \"Condition failed\"\nprint(result)",
+        "x = 7\ny = 2\nresult = \"Condition failed\" if x > 5 and y < 5 else \"Condition failed\"\nprint(result)",
+        "x = 7\ny = 2\nresult = \"Condition met\" if not (x > 5 and y < 5) else \"Condition failed\"\nprint(result)",
+        "x = 7\ny = 2\nresult = \"Condition failed\" if x > 5 and y < 5 else \"Condition met\"\nprint(result)"
+      ],
+      "answer": "x = 7\ny = 2\nresult = \"Condition met\" if x > 5 and y < 5 else \"Condition failed\"\nprint(result)",
+      "explanation": "Both comparisons are True, so the first expression is selected."
+    }
+  ]
+}
+
