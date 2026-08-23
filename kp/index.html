@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#511c25">
+  <meta name="description" content="Install Kashi Yatra Guide for Varanasi temples, ghats, food, festivals and local travel guidance.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Kashi Guide">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <title>Kashi Yatra Guide</title>
+  <style>
+    :root{color-scheme:light;--wine:#511c25;--saffron:#e79224;--cream:#fff8ed;--ink:#2d171a}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{background:radial-gradient(circle at 20% 10%,#943749 0,transparent 34%),linear-gradient(145deg,#260e13,#511c25 60%,#8a3b24);color:#fff;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+    .install-screen{align-items:center;display:flex;min-height:100%;padding:24px}
+    .card{background:var(--cream);border-radius:26px;box-shadow:0 30px 90px #12060999;color:var(--ink);margin:auto;max-width:560px;overflow:hidden;width:100%}
+    .art{align-items:center;background:linear-gradient(135deg,#6a202c,#321117);display:flex;justify-content:center;min-height:180px;padding:25px}
+    .mark{align-items:center;background:var(--saffron);border:5px solid #fff5;box-shadow:0 12px 35px #0005;display:flex;font-family:Georgia,serif;font-size:54px;font-weight:700;height:120px;justify-content:center;transform:rotate(-3deg);width:120px}
+    .content{padding:28px}
+    h1{color:var(--wine);font-family:Georgia,serif;font-size:34px;line-height:1.12;margin:0 0 12px}
+    p{font-size:16px;line-height:1.65;margin:0 0 22px}
+    button,.open{align-items:center;border-radius:999px;cursor:pointer;display:flex;font:800 16px/1 system-ui;justify-content:center;padding:16px 22px;text-decoration:none;width:100%}
+    #install{background:linear-gradient(135deg,#792735,var(--wine));border:0;box-shadow:0 10px 25px #511c2540;color:#fff}
+    #install:hover,#install:focus{outline:4px solid #e7922455;transform:translateY(-1px)}
+    .open{border:2px solid #e4c9b5;color:var(--wine);margin-top:12px}
+    .help{background:#fff;border:1px solid #ead8ca;border-radius:14px;display:none;font-size:14px;line-height:1.6;margin-top:16px;padding:15px}
+    .help.show{display:block}
+    .status{color:#735b5e;font-size:13px;margin:16px 0 0;text-align:center}
+    #guide{background:#fff;border:0;display:none;height:100%;inset:0;position:fixed;width:100%}
+    body.standalone .install-screen{display:none}
+    body.standalone #guide{display:block}
+    @media(max-width:520px){.install-screen{padding:14px}.art{min-height:145px}.mark{font-size:44px;height:96px;width:96px}.content{padding:23px}h1{font-size:29px}}
+  </style>
+</head>
+<body>
+  <main class="install-screen">
+    <section class="card">
+      <div class="art"><div class="mark" aria-hidden="true">काशी</div></div>
+      <div class="content">
+        <h1>Kashi Yatra Guide</h1>
+        <p>Keep Varanasi temples, ghats, festivals, food and practical local guidance one tap away.</p>
+        <button id="install" type="button">Install Kashi Guide</button>
+        <a class="open" href="https://kashipanchkoshiparikrama.blogspot.com/">Continue in browser</a>
+        <div class="help" id="help"></div>
+        <p class="status" id="status">Secure, lightweight and free to install.</p>
+      </div>
+    </section>
+  </main>
+  <iframe id="guide" title="Kashi Yatra Guide" src="https://kashipanchkoshiparikrama.blogspot.com/"></iframe>
+  <script>
+    (()=>{
+      const install=document.querySelector('#install');
+      const help=document.querySelector('#help');
+      const status=document.querySelector('#status');
+      const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+      let promptEvent=null;
+      if(standalone) document.body.classList.add('standalone');
+      if('serviceWorker' in navigator) addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+      addEventListener('beforeinstallprompt',event=>{
+        event.preventDefault();
+        promptEvent=event;
+        install.textContent='Install Kashi Guide';
+        status.textContent='Ready to install.';
+      });
+      addEventListener('appinstalled',()=>{
+        promptEvent=null;
+        install.textContent='Installed';
+        install.disabled=true;
+        status.textContent='Kashi Guide has been added to your device.';
+      });
+      install.addEventListener('click',async()=>{
+        if(promptEvent){
+          promptEvent.prompt();
+          const choice=await promptEvent.userChoice;
+          promptEvent=null;
+          status.textContent=choice.outcome==='accepted'?'Installation started.':'Installation was cancelled.';
+          return;
+        }
+        const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+        help.classList.add('show');
+        help.innerHTML=ios
+          ?'<b>Install on iPhone/iPad:</b> tap Safari’s Share button, choose <b>Add to Home Screen</b>, then tap <b>Add</b>.'
+          :'<b>Install from the browser menu:</b> choose <b>Install app</b> or <b>Add to Home screen</b>. If the option has not appeared yet, refresh this page once.';
+      });
+    })();
+  </script>
+</body>
+</html>

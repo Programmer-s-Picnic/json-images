@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "Kashi Yatra Guide",
+  "short_name": "Kashi Guide",
+  "description": "Varanasi temples, ghats, food, festivals and practical local travel guidance.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fff8ed",
+  "theme_color": "#511c25",
+  "icons": [
+    {"src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
