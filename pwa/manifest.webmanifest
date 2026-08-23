@@ -1,0 +1,26 @@
+{
+  "id": "https://www.learnwithchampak.live/",
+  "name": "Learn With Champak",
+  "short_name": "LWC",
+  "description": "Programming, DSA, SQL, Artificial Intelligence and Machine Learning lessons with Champak Roy.",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "start_url": "https://www.learnwithchampak.live/?source=pwa",
+  "scope": "https://www.learnwithchampak.live/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#f3f6fa",
+  "theme_color": "#071426",
+  "categories": ["education", "productivity", "developer tools"],
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ],
+  "shortcuts": [
+    {"name": "Python Lessons", "short_name": "Python", "url": "https://www.learnwithchampak.live/search/label/Python?source=pwa-shortcut", "icons": [{"src": "icon-192.png", "sizes": "192x192"}]},
+    {"name": "Data Structures and Algorithms", "short_name": "DSA", "url": "https://dsa.learnwithchampak.live/?source=pwa-shortcut", "icons": [{"src": "icon-192.png", "sizes": "192x192"}]},
+    {"name": "AI and Machine Learning", "short_name": "AI/ML", "url": "https://aiml.learnwithchampak.live/?source=pwa-shortcut", "icons": [{"src": "icon-192.png", "sizes": "192x192"}]},
+    {"name": "Programming Quizzes", "short_name": "Quizzes", "url": "https://www.learnwithchampak.live/search/label/Quiz?source=pwa-shortcut", "icons": [{"src": "icon-192.png", "sizes": "192x192"}]}
+  ]
+}
