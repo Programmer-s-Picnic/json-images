@@ -1,0 +1,52 @@
+name: Publish Champak TV APK
+
+on:
+  push:
+    paths:
+      - ".github/workflows/publish-champak-tv-apk.yml"
+      - "tv/apk-publish-trigger.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout json-images
+        uses: actions/checkout@v4
+
+      - name: Download latest ChampakTV APK artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SRC_REPO: Varanasi-Software-Junction/ChampakTV
+          RUN_ID: "34460836495"
+          ARTIFACT_ID: "10145492790"
+        run: |
+          set -euo pipefail
+          mkdir -p tv tmp-apk
+          curl -L \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${SRC_REPO}/actions/artifacts/${ARTIFACT_ID}/zip" \
+            -o tmp-apk/apk-artifact.zip
+          unzip -o tmp-apk/apk-artifact.zip -d tmp-apk
+          if [ ! -f tmp-apk/app-debug.apk ]; then
+            echo "APK not found in artifact"
+            find tmp-apk -type f -maxdepth 2 -print
+            exit 1
+          fi
+          cp tmp-apk/app-debug.apk tv/champak-tv.apk
+          ls -lh tv/champak-tv.apk
+
+      - name: Commit APK to GitHub Pages repo
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tv/champak-tv.apk
+          git commit -m "Publish Champak TV APK" || echo "No APK changes to commit"
+          git push
