@@ -22,8 +22,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           SRC_REPO: Varanasi-Software-Junction/ChampakTV
-          RUN_ID: "34460836495"
-          ARTIFACT_ID: "10145492790"
+          RUN_ID: "34462398284"
+          ARTIFACT_ID: "10146118202"
         run: |
           set -euo pipefail
           mkdir -p tv tmp-apk
@@ -36,7 +36,7 @@ jobs:
           unzip -o tmp-apk/apk-artifact.zip -d tmp-apk
           if [ ! -f tmp-apk/app-debug.apk ]; then
             echo "APK not found in artifact"
-            find tmp-apk -type f -maxdepth 2 -print
+            find tmp-apk -maxdepth 2 -type f -print
             exit 1
           fi
           cp tmp-apk/app-debug.apk tv/champak-tv.apk
@@ -48,5 +48,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add tv/champak-tv.apk
-          git commit -m "Publish Champak TV APK" || echo "No APK changes to commit"
+          git commit -m "Publish Hello World Champak TV APK" || echo "No APK changes to commit"
           git push
