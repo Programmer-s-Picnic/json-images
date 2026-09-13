@@ -22,8 +22,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           SRC_REPO: Varanasi-Software-Junction/ChampakTV
-          RUN_ID: "34736147136"
-          ARTIFACT_ID: "10310718634"
+          RUN_ID: "34736411781"
+          ARTIFACT_ID: "10310998330"
         run: |
           set -euo pipefail
           mkdir -p tv tmp-apk
@@ -48,5 +48,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add tv/champak-tv.apk
-          git commit -m "Publish Champak TV APK v2.7 default browser Google helper" || echo "No APK changes to commit"
+          git commit -m "Publish Champak TV APK v2.8 multi tabs" || echo "No APK changes to commit"
           git push
