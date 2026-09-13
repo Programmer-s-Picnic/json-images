@@ -1,9 +1,9 @@
 {
   "appName": "Learn With Champak Desktop",
   "packageName": "learn_with_champak_windows",
-  "versionName": "1.1.0",
-  "versionCode": 2,
+  "versionName": "1.2.0",
+  "versionCode": 3,
   "installerUrl": "https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-setup.exe",
   "portableZipUrl": "https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-portable.zip",
-  "updatedAt": "2026-09-13T09:10:00+05:30"
+  "updatedAt": "2026-09-13T09:25:00+05:30"
 }
