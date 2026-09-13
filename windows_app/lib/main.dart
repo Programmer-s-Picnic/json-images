@@ -50,7 +50,6 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   bool _checking = false;
   String _title = 'Learn With Champak Desktop';
   String _status = 'Starting browser...';
-  double _progress = 0;
 
   @override
   void initState() {
@@ -119,6 +118,22 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     final uri = Uri.parse(url);
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       setState(() => _status = 'Could not open $url');
+    }
+  }
+
+  Future<void> _safeBack() async {
+    try {
+      await _controller.goBack();
+    } catch (_) {
+      setState(() => _status = 'No back page');
+    }
+  }
+
+  Future<void> _safeForward() async {
+    try {
+      await _controller.goForward();
+    } catch (_) {
+      setState(() => _status = 'No forward page');
     }
   }
 
@@ -195,8 +210,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
           const SizedBox(height: 10),
           Row(
             children: [
-              _toolbarButton('Back', Icons.arrow_back, () async { if (await _controller.canGoBack()) _controller.goBack(); }),
-              _toolbarButton('Forward', Icons.arrow_forward, () async { if (await _controller.canGoForward()) _controller.goForward(); }),
+              _toolbarButton('Back', Icons.arrow_back, _safeBack),
+              _toolbarButton('Forward', Icons.arrow_forward, _safeForward),
               _toolbarButton('Reload', Icons.refresh, () => _controller.reload()),
               _toolbarButton('Home', Icons.home, () => _load(homeUrl)),
               Expanded(
