@@ -46,9 +46,13 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   static const youtubeUrl = 'https://youtube.com/@champaksworld';
   static const whatsappUrl = 'https://web.whatsapp.com';
   static const googleSignInUrl = 'https://accounts.google.com/signin';
+  static const googleMyAccountUrl = 'https://myaccount.google.com';
+  static const googleMailUrl = 'https://mail.google.com';
+  static const googleSearchUrl = 'https://www.google.com';
   static const apkUrl = 'https://programmer-s-picnic.github.io/json-images/tv/champak-tv.apk';
   static const windowsInstallerUrl = 'https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-setup.exe';
   static const versionUrl = 'https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-version.json';
+  static const desktopUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0';
 
   final TextEditingController _addressController = TextEditingController(text: homeUrl);
   final List<BrowserTab> _tabs = [];
@@ -63,9 +67,29 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   @override
   void initState() {
     super.initState();
-    _newTab(homeUrl);
-    _checkUpdate();
+    _startBrowser();
     WidgetsBinding.instance.addPostFrameCallback((_) => _askDefaultBrowserFirstRun());
+  }
+
+  Future<void> _startBrowser() async {
+    await _prepareWebView2Environment();
+    await _newTab(homeUrl);
+    await _checkUpdate();
+  }
+
+  Future<void> _prepareWebView2Environment() async {
+    try {
+      final base = Platform.environment['APPDATA'] ?? Directory.current.path;
+      final userDataPath = '$base\\LearnWithChampakDesktop\\WebView2UserData';
+      await Directory(userDataPath).create(recursive: true);
+      await WebviewController.initializeEnvironment(
+        userDataPath: userDataPath,
+        additionalArguments: '--enable-features=NetworkService',
+      );
+      if (mounted) setState(() => _status = 'WebView2 session storage ready');
+    } catch (e) {
+      if (mounted) setState(() => _status = 'WebView2 default session will be used: $e');
+    }
   }
 
   @override
@@ -90,7 +114,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     try {
       await controller.initialize();
       await controller.setBackgroundColor(Colors.white);
-      await controller.setPopupWindowPolicy(WebviewPopupWindowPolicy.deny);
+      await controller.setPopupWindowPolicy(WebviewPopupWindowPolicy.allow);
+      await controller.setUserAgent(desktopUserAgent);
 
       controller.url.listen((value) {
         tab.url = value;
@@ -200,7 +225,55 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     _tab?.url = url;
     _addressController.text = url == 'about:blank' ? '' : url;
     setState(() => _status = 'Opening $url');
+    await _controller?.setUserAgent(desktopUserAgent);
     await _controller?.loadUrl(url);
+  }
+
+  Future<void> _openGoogleSignInInside() async {
+    await _load(googleSignInUrl);
+    if (mounted) {
+      setState(() => _status = 'Google Sign-In opened inside. Popups are allowed; use Outside if Google blocks embedded sign-in.');
+    }
+  }
+
+  Future<void> _openGoogleAccountInside() async {
+    await _load(googleMyAccountUrl);
+    if (mounted) setState(() => _status = 'Google Account opened inside');
+  }
+
+  Future<void> _openGmailInside() async {
+    await _load(googleMailUrl);
+    if (mounted) setState(() => _status = 'Gmail opened inside');
+  }
+
+  void _showGoogleSignInHelp() {
+    showDialog<void>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Google sign-in support'),
+        content: const Text(
+          'Use G Inside first. This uses WebView2 with a Windows desktop user-agent, persistent WebView2 session storage, and popups enabled.\n\n'
+          'If Google still shows a secure-browser warning, choose G Outside. Google sometimes blocks sign-in from embedded browsers even when WebView2 is used.'
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _openExternal(googleSignInUrl);
+            },
+            child: const Text('G Outside'),
+          ),
+          FilledButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _openGoogleSignInInside();
+            },
+            child: const Text('G Inside'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _openExternal(String url) async {
@@ -366,7 +439,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v1.3 - Tabbed Browser', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v1.4 - Tabbed Browser', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
@@ -374,6 +447,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
               _toolbarButton('+ New Tab', Icons.add_box, () => _newTab(homeUrl), important: true),
               _toolbarButton('Tabs', Icons.tab, _showTabs, important: true),
               _toolbarButton('Close Tab', Icons.close, () => _closeTab(_current), important: true),
+              _toolbarButton('G Help', Icons.help, _showGoogleSignInHelp),
               _toolbarButton('Win Update', Icons.system_update_alt, () => _openExternal(windowsInstallerUrl)),
               _toolbarButton('APK', Icons.android, () => _openExternal(apkUrl)),
             ],
@@ -393,7 +467,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
-                    hintText: 'Type website or search',
+                    hintText: 'Type website/search, Google, Gmail, WhatsApp, or saved URL',
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide.none),
                   ),
@@ -412,7 +486,11 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
               _toolbarButton('Inside Kashi', Icons.temple_hindu, () => _load(insideKashiUrl)),
               _toolbarButton('YouTube', Icons.smart_display, () => _openExternal(youtubeUrl)),
               _toolbarButton('WhatsApp Web', Icons.chat, () => _load(whatsappUrl)),
-              _toolbarButton('Google Sign-in', Icons.login, () => _openExternal(googleSignInUrl)),
+              _toolbarButton('Google', Icons.search, () => _load(googleSearchUrl)),
+              _toolbarButton('G Inside', Icons.login, _openGoogleSignInInside, important: true),
+              _toolbarButton('G Outside', Icons.open_in_browser, () => _openExternal(googleSignInUrl)),
+              _toolbarButton('G Account', Icons.account_circle, _openGoogleAccountInside),
+              _toolbarButton('Gmail', Icons.mail, _openGmailInside),
               _toolbarButton('Default Browser', Icons.settings_applications, _openWindowsDefaultApps),
               const Spacer(),
               if (_checking) const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)),
