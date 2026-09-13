@@ -1,0 +1,17 @@
+name: learn_with_champak_windows
+description: Learn With Champak Windows desktop app built with Flutter.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.2
+  url_launcher: ^6.3.1
+  webview_windows: ^0.4.0
+
+flutter:
+  uses-material-design: true
