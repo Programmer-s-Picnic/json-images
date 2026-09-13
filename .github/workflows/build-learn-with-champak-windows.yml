@@ -30,6 +30,18 @@ jobs:
         working-directory: windows_app
         run: flutter create --platforms=windows --project-name learn_with_champak_windows .
 
+      - name: Patch Windows compiler flags
+        shell: pwsh
+        working-directory: windows_app
+        run: |
+          $cmake = "windows\CMakeLists.txt"
+          $flag = 'add_compile_definitions(_SILENCE_EXPERIMENTAL_COROUTINE_DEPRECATION_WARNINGS)'
+          $text = Get-Content $cmake -Raw
+          if ($text -notmatch '_SILENCE_EXPERIMENTAL_COROUTINE_DEPRECATION_WARNINGS') {
+            Set-Content -Path $cmake -Value ($flag + "`r`n" + $text)
+          }
+          Get-Content $cmake | Select-Object -First 8
+
       - name: Restore dependencies
         working-directory: windows_app
         run: flutter pub get
