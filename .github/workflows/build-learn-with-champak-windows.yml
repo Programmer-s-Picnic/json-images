@@ -1,0 +1,67 @@
+name: Build Learn With Champak Windows Installer
+
+on:
+  push:
+    paths:
+      - "windows_app/**"
+      - ".github/workflows/build-learn-with-champak-windows.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Enable Windows desktop
+        run: flutter config --enable-windows-desktop
+
+      - name: Generate Windows runner
+        working-directory: windows_app
+        run: flutter create --platforms=windows --project-name learn_with_champak_windows .
+
+      - name: Restore dependencies
+        working-directory: windows_app
+        run: flutter pub get
+
+      - name: Build Flutter Windows release
+        working-directory: windows_app
+        run: flutter build windows --release
+
+      - name: Create portable ZIP
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path windows | Out-Null
+          Compress-Archive -Path windows_app\build\windows\x64\runner\Release\* -DestinationPath windows\learn-with-champak-windows-portable.zip -Force
+
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress -y
+
+      - name: Build installer EXE
+        shell: pwsh
+        working-directory: windows_app
+        run: |
+          $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+          if (!(Test-Path $iscc)) { $iscc = "C:\Program Files\Inno Setup 6\ISCC.exe" }
+          & $iscc installer\learn_with_champak.iss
+
+      - name: Publish installer and portable ZIP
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path windows | Out-Null
+          Copy-Item windows_app\dist\learn-with-champak-windows-setup.exe windows\learn-with-champak-windows-setup.exe -Force
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add windows/learn-with-champak-windows-setup.exe windows/learn-with-champak-windows-portable.zip windows/learn-with-champak-windows-version.json
+          git commit -m "Publish Learn With Champak Windows installer" || echo "No Windows app changes to commit"
+          git push
