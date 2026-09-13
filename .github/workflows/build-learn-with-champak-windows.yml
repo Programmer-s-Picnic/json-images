@@ -30,6 +30,16 @@ jobs:
         working-directory: windows_app
         run: flutter create --platforms=windows --project-name learn_with_champak_windows .
 
+      - name: Create Champak app icon
+        shell: pwsh
+        working-directory: windows_app
+        run: |
+          choco install imagemagick.app --no-progress -y
+          New-Item -ItemType Directory -Force -Path assets | Out-Null
+          Invoke-WebRequest -Uri "https://programmer-s-picnic.github.io/json-images/tv/champak-photo.png" -OutFile "assets\champak-photo.png"
+          magick assets\champak-photo.png -resize 256x256^ -gravity center -extent 256x256 windows\runner\resources\app_icon.ico
+          Get-Item windows\runner\resources\app_icon.ico
+
       - name: Patch Windows compiler flags
         shell: pwsh
         working-directory: windows_app
@@ -75,5 +85,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add windows/learn-with-champak-windows-setup.exe windows/learn-with-champak-windows-portable.zip windows/learn-with-champak-windows-version.json
-          git commit -m "Publish Learn With Champak Windows installer" || echo "No Windows app changes to commit"
+          git commit -m "Publish Learn With Champak Windows installer with updated icon" || echo "No Windows app changes to commit"
           git push
