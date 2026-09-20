@@ -60,36 +60,46 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   if (window.__lwcInternalTabsInstalled) return;
   window.__lwcInternalTabsInstalled = true;
 
+  function isOpenableHttpUrl(url){
+    try {
+      var u = new URL(url, location.href);
+      return (u.protocol === 'http:' || u.protocol === 'https:');
+    } catch(e) {
+      return false;
+    }
+  }
+
+  function shouldIgnoreAnchor(a){
+    if (!a) return true;
+    var raw = (a.getAttribute('href') || '').trim();
+    if (!raw) return true;
+    var lower = raw.toLowerCase();
+    if (raw === '#' || lower.indexOf('javascript:') === 0 || lower.indexOf('mailto:') === 0 || lower.indexOf('tel:') === 0) return true;
+    if (a.hasAttribute('download')) return true;
+    try {
+      var u = new URL(a.href, location.href);
+      if ((u.protocol !== 'http:' && u.protocol !== 'https:')) return true;
+      if (u.href.split('#')[0] === location.href.split('#')[0] && u.hash) return true;
+    } catch(e) { return true; }
+    return false;
+  }
+
   function post(url, reason, label){
     try {
+      var u = new URL(url, location.href);
+      if (!isOpenableHttpUrl(u.href)) return;
       window.chrome.webview.postMessage(JSON.stringify({
         type: 'lwc-open-new-tab',
-        url: url,
+        url: u.href,
         reason: reason || 'link',
         label: label || ''
       }));
     } catch(e) {}
   }
 
-  function relevant(url){
-    try {
-      var u = new URL(url, location.href);
-      if (u.protocol !== 'http:' && u.protocol !== 'https:') return false;
-      var host = u.hostname.toLowerCase();
-      return host === location.hostname.toLowerCase() ||
-        host === 'learnwithchampak.live' || host.endsWith('.learnwithchampak.live') ||
-        host === 'insidekashi.com' || host.endsWith('.insidekashi.com') ||
-        host === 'punyayatra.in' || host.endsWith('.punyayatra.in') ||
-        host === 'programmer-s-picnic.github.io' ||
-        host === 'youtube.com' || host === 'www.youtube.com' || host === 'youtu.be' ||
-        host === 'web.whatsapp.com' ||
-        host === 'google.com' || host.endsWith('.google.com');
-    } catch(e) { return false; }
-  }
-
   document.addEventListener('auxclick', function(e){
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-    if (!a || e.button !== 1 || !relevant(a.href)) return;
+    if (e.button !== 1 || shouldIgnoreAnchor(a)) return;
     e.preventDefault();
     e.stopPropagation();
     post(a.href, 'middle-click', a.textContent || a.title || a.href);
@@ -97,20 +107,15 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
 
   document.addEventListener('click', function(e){
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-    if (!a || !relevant(a.href)) return;
-    var u;
-    try { u = new URL(a.href, location.href); } catch(err) { return; }
-    var target = (a.getAttribute('target') || '').toLowerCase();
-    var openNew = target === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey || u.hostname.toLowerCase() !== location.hostname.toLowerCase();
-    if (!openNew) return;
+    if (shouldIgnoreAnchor(a)) return;
     e.preventDefault();
     e.stopPropagation();
-    post(u.href, 'click', a.textContent || a.title || u.href);
+    post(a.href, 'click', a.textContent || a.title || a.href);
   }, true);
 
   var originalOpen = window.open;
   window.open = function(url, name, features){
-    if (url && relevant(url)) {
+    if (url && isOpenableHttpUrl(url)) {
       try { post(new URL(url, location.href).href, 'window-open', name || ''); } catch(e) {}
       return null;
     }
@@ -221,24 +226,16 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       if (decoded is! Map) return;
       if (decoded['type'] != 'lwc-open-new-tab') return;
       final url = decoded['url']?.toString() ?? '';
-      if (!_isRelevantInternalUrl(url)) return;
+      if (!_isInternalTabUrl(url)) return;
       _newTab(url);
       if (mounted) setState(() => _status = 'Opened link in a new app tab');
     } catch (_) {}
   }
 
-  bool _isRelevantInternalUrl(String value) {
+  bool _isInternalTabUrl(String value) {
     try {
       final uri = Uri.parse(_normaliseUrl(value));
-      if (uri.scheme != 'http' && uri.scheme != 'https') return false;
-      final host = uri.host.toLowerCase();
-      return host == 'learnwithchampak.live' || host.endsWith('.learnwithchampak.live') ||
-          host == 'insidekashi.com' || host.endsWith('.insidekashi.com') ||
-          host == 'punyayatra.in' || host.endsWith('.punyayatra.in') ||
-          host == 'programmer-s-picnic.github.io' ||
-          host == 'youtube.com' || host == 'www.youtube.com' || host == 'youtu.be' ||
-          host == 'web.whatsapp.com' ||
-          host == 'google.com' || host.endsWith('.google.com');
+      return uri.scheme == 'http' || uri.scheme == 'https';
     } catch (_) {
       return false;
     }
@@ -591,7 +588,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v1.6 - Links Open In Tabs', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v1.7 - Every Link Opens New Tab', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
