@@ -55,6 +55,70 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   static const versionUrl = 'https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-version.json';
   static const desktopUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0';
 
+  static const newTabLinkScript = r'''
+(function(){
+  if (window.__lwcInternalTabsInstalled) return;
+  window.__lwcInternalTabsInstalled = true;
+
+  function post(url, reason, label){
+    try {
+      window.chrome.webview.postMessage(JSON.stringify({
+        type: 'lwc-open-new-tab',
+        url: url,
+        reason: reason || 'link',
+        label: label || ''
+      }));
+    } catch(e) {}
+  }
+
+  function relevant(url){
+    try {
+      var u = new URL(url, location.href);
+      if (u.protocol !== 'http:' && u.protocol !== 'https:') return false;
+      var host = u.hostname.toLowerCase();
+      return host === location.hostname.toLowerCase() ||
+        host === 'learnwithchampak.live' || host.endsWith('.learnwithchampak.live') ||
+        host === 'insidekashi.com' || host.endsWith('.insidekashi.com') ||
+        host === 'punyayatra.in' || host.endsWith('.punyayatra.in') ||
+        host === 'programmer-s-picnic.github.io' ||
+        host === 'youtube.com' || host === 'www.youtube.com' || host === 'youtu.be' ||
+        host === 'web.whatsapp.com' ||
+        host === 'google.com' || host.endsWith('.google.com');
+    } catch(e) { return false; }
+  }
+
+  document.addEventListener('auxclick', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || e.button !== 1 || !relevant(a.href)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    post(a.href, 'middle-click', a.textContent || a.title || a.href);
+  }, true);
+
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || !relevant(a.href)) return;
+    var u;
+    try { u = new URL(a.href, location.href); } catch(err) { return; }
+    var target = (a.getAttribute('target') || '').toLowerCase();
+    var openNew = target === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey || u.hostname.toLowerCase() !== location.hostname.toLowerCase();
+    if (!openNew) return;
+    e.preventDefault();
+    e.stopPropagation();
+    post(u.href, 'click', a.textContent || a.title || u.href);
+  }, true);
+
+  var originalOpen = window.open;
+  window.open = function(url, name, features){
+    if (url && relevant(url)) {
+      try { post(new URL(url, location.href).href, 'window-open', name || ''); } catch(e) {}
+      return null;
+    }
+    return originalOpen.apply(window, arguments);
+  };
+})();
+''';
+
   final TextEditingController _addressController = TextEditingController(text: homeUrl);
   final List<BrowserTab> _tabs = [];
 
@@ -120,6 +184,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       await controller.setBackgroundColor(Colors.white);
       await controller.setPopupWindowPolicy(WebviewPopupWindowPolicy.allow);
       await controller.setUserAgent(desktopUserAgent);
+      await controller.addScriptToExecuteOnDocumentCreated(newTabLinkScript);
+
+      controller.webMessage.listen(_handleWebMessage);
 
       controller.url.listen((value) {
         if (value.isEmpty) return;
@@ -145,6 +212,35 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       if (mounted) setState(() => _status = 'Ready');
     } catch (e) {
       if (mounted) setState(() => _status = 'WebView2 is required. Error: $e');
+    }
+  }
+
+  void _handleWebMessage(dynamic message) {
+    try {
+      final Object? decoded = message is String ? jsonDecode(message) : message;
+      if (decoded is! Map) return;
+      if (decoded['type'] != 'lwc-open-new-tab') return;
+      final url = decoded['url']?.toString() ?? '';
+      if (!_isRelevantInternalUrl(url)) return;
+      _newTab(url);
+      if (mounted) setState(() => _status = 'Opened link in a new app tab');
+    } catch (_) {}
+  }
+
+  bool _isRelevantInternalUrl(String value) {
+    try {
+      final uri = Uri.parse(_normaliseUrl(value));
+      if (uri.scheme != 'http' && uri.scheme != 'https') return false;
+      final host = uri.host.toLowerCase();
+      return host == 'learnwithchampak.live' || host.endsWith('.learnwithchampak.live') ||
+          host == 'insidekashi.com' || host.endsWith('.insidekashi.com') ||
+          host == 'punyayatra.in' || host.endsWith('.punyayatra.in') ||
+          host == 'programmer-s-picnic.github.io' ||
+          host == 'youtube.com' || host == 'www.youtube.com' || host == 'youtu.be' ||
+          host == 'web.whatsapp.com' ||
+          host == 'google.com' || host.endsWith('.google.com');
+    } catch (_) {
+      return false;
     }
   }
 
@@ -248,20 +344,20 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   }
 
   Future<void> _openGoogleSignInInside() async {
-    await _load(googleSignInUrl);
+    await _newTab(googleSignInUrl);
     if (mounted) {
-      setState(() => _status = 'Google Sign-In opened inside. Popups are allowed; use Outside if Google blocks embedded sign-in.');
+      setState(() => _status = 'Google Sign-In opened in a new app tab. Use Outside if Google blocks embedded sign-in.');
     }
   }
 
   Future<void> _openGoogleAccountInside() async {
-    await _load(googleMyAccountUrl);
-    if (mounted) setState(() => _status = 'Google Account opened inside');
+    await _newTab(googleMyAccountUrl);
+    if (mounted) setState(() => _status = 'Google Account opened in a new app tab');
   }
 
   Future<void> _openGmailInside() async {
-    await _load(googleMailUrl);
-    if (mounted) setState(() => _status = 'Gmail opened inside');
+    await _newTab(googleMailUrl);
+    if (mounted) setState(() => _status = 'Gmail opened in a new app tab');
   }
 
   void _showGoogleSignInHelp() {
@@ -270,7 +366,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       builder: (_) => AlertDialog(
         title: const Text('Google sign-in support'),
         content: const Text(
-          'Use G Inside first. This uses WebView2 with a Windows desktop user-agent, persistent WebView2 session storage, and popups enabled.\n\n'
+          'Use G Inside first. This opens Google sign-in in a new internal browser tab with WebView2 session storage and a Windows desktop user-agent.\n\n'
           'If Google still shows a secure-browser warning, choose G Outside. Google sometimes blocks sign-in from embedded browsers even when WebView2 is used.',
         ),
         actions: [
@@ -495,7 +591,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v1.5 - Browser Tabs', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v1.6 - Links Open In Tabs', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
@@ -538,11 +634,11 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
           Row(
             children: [
               _toolbarButton('Home', Icons.home, () => _load(homeUrl)),
-              _toolbarButton('LearnWithChampak', Icons.public, () => _load(homeUrl)),
-              _toolbarButton('Inside Kashi', Icons.temple_hindu, () => _load(insideKashiUrl)),
-              _toolbarButton('YouTube', Icons.smart_display, () => _openExternal(youtubeUrl)),
-              _toolbarButton('WhatsApp Web', Icons.chat, () => _load(whatsappUrl)),
-              _toolbarButton('Google', Icons.search, () => _load(googleSearchUrl)),
+              _toolbarButton('LearnWithChampak', Icons.public, () => _newTab(homeUrl)),
+              _toolbarButton('Inside Kashi', Icons.temple_hindu, () => _newTab(insideKashiUrl)),
+              _toolbarButton('YouTube', Icons.smart_display, () => _newTab(youtubeUrl)),
+              _toolbarButton('WhatsApp Web', Icons.chat, () => _newTab(whatsappUrl)),
+              _toolbarButton('Google', Icons.search, () => _newTab(googleSearchUrl)),
               _toolbarButton('G Inside', Icons.login, _openGoogleSignInInside, important: true),
               _toolbarButton('G Outside', Icons.open_in_browser, () => _openExternal(googleSignInUrl)),
               _toolbarButton('G Account', Icons.account_circle, _openGoogleAccountInside),
