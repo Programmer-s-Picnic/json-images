@@ -1,7 +1,7 @@
 name: learn_with_champak_windows
 description: Learn With Champak Windows desktop app built with Flutter.
 publish_to: "none"
-version: 1.4.0+4
+version: 1.5.0+5
 
 environment:
   sdk: ">=3.4.0 <4.0.0"
