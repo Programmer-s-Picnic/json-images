@@ -15,7 +15,7 @@ class LearnWithChampakWindowsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Learn With Champak Desktop',
+      title: 'Learn With Champak Desktop Browser',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff075985)),
         useMaterial3: true,
@@ -27,6 +27,7 @@ class LearnWithChampakWindowsApp extends StatelessWidget {
 
 class BrowserTab {
   BrowserTab({required this.controller, required this.title, required this.url});
+
   final WebviewController controller;
   String title;
   String url;
@@ -52,16 +53,17 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   static const apkUrl = 'https://programmer-s-picnic.github.io/json-images/tv/champak-tv.apk';
   static const windowsInstallerUrl = 'https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-setup.exe';
   static const versionUrl = 'https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-version.json';
-  static const desktopUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0';
+  static const desktopUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0';
 
   final TextEditingController _addressController = TextEditingController(text: homeUrl);
   final List<BrowserTab> _tabs = [];
+
   int _current = 0;
   bool _fullScreen = false;
   bool _checking = false;
   String _status = 'Starting browser...';
 
-  BrowserTab? get _tab => _tabs.isEmpty ? null : _tabs[_current];
+  BrowserTab? get _tab => _tabs.isEmpty || _current < 0 || _current >= _tabs.length ? null : _tabs[_current];
   WebviewController? get _controller => _tab?.controller;
 
   @override
@@ -102,12 +104,14 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   }
 
   Future<void> _newTab([String url = homeUrl]) async {
+    final safeUrl = _normaliseUrl(url);
     final controller = WebviewController();
-    final tab = BrowserTab(controller: controller, title: 'New Tab', url: url);
+    final tab = BrowserTab(controller: controller, title: 'New Tab', url: safeUrl);
+
     setState(() {
       _tabs.add(tab);
       _current = _tabs.length - 1;
-      _addressController.text = url;
+      _addressController.text = safeUrl == 'about:blank' ? '' : safeUrl;
       _status = 'Opening new tab...';
     });
 
@@ -118,9 +122,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       await controller.setUserAgent(desktopUserAgent);
 
       controller.url.listen((value) {
+        if (value.isEmpty) return;
         tab.url = value;
-        if (mounted && _tab == tab && value.isNotEmpty) {
-          setState(() => _addressController.text = value);
+        if (mounted && _tab == tab) {
+          setState(() => _addressController.text = value == 'about:blank' ? '' : value);
         }
       });
 
@@ -135,7 +140,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
         }
       });
 
-      await controller.loadUrl(_normaliseUrl(url));
+      await controller.loadUrl(safeUrl);
       tab.ready = true;
       if (mounted) setState(() => _status = 'Ready');
     } catch (e) {
@@ -147,8 +152,33 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     if (index < 0 || index >= _tabs.length) return;
     setState(() {
       _current = index;
-      _addressController.text = _tab?.url ?? homeUrl;
+      _addressController.text = _tab?.url == 'about:blank' ? '' : (_tab?.url ?? homeUrl);
       _status = 'Tab ${index + 1}';
+    });
+  }
+
+  void _closeTab(int index) {
+    if (index < 0 || index >= _tabs.length) return;
+    if (_tabs.length <= 1) {
+      _load('about:blank');
+      return;
+    }
+
+    final oldCurrent = _current;
+    final old = _tabs.removeAt(index);
+    old.controller.dispose();
+
+    if (index < oldCurrent) {
+      _current = oldCurrent - 1;
+    } else if (index == oldCurrent) {
+      _current = index.clamp(0, _tabs.length - 1);
+    } else {
+      _current = oldCurrent.clamp(0, _tabs.length - 1);
+    }
+
+    setState(() {
+      _addressController.text = _tab?.url == 'about:blank' ? '' : (_tab?.url ?? homeUrl);
+      _status = 'Tab closed';
     });
   }
 
@@ -156,9 +186,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     showDialog<void>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Open tabs'),
+        title: const Text('Open Tabs'),
         content: SizedBox(
-          width: 520,
+          width: 620,
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: _tabs.length,
@@ -174,6 +204,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                   _switchTab(index);
                 },
                 trailing: IconButton(
+                  tooltip: 'Close tab',
                   icon: const Icon(Icons.close),
                   onPressed: () {
                     Navigator.pop(context);
@@ -186,30 +217,17 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
-          FilledButton(
+          FilledButton.icon(
             onPressed: () {
               Navigator.pop(context);
               _newTab(homeUrl);
             },
-            child: const Text('+ New Tab'),
+            icon: const Icon(Icons.add),
+            label: const Text('New Tab'),
           ),
         ],
       ),
     );
-  }
-
-  void _closeTab(int index) {
-    if (_tabs.length <= 1) {
-      _load('about:blank');
-      return;
-    }
-    final old = _tabs.removeAt(index);
-    old.controller.dispose();
-    if (_current >= _tabs.length) _current = _tabs.length - 1;
-    setState(() {
-      _addressController.text = _tab?.url ?? homeUrl;
-      _status = 'Tab closed';
-    });
   }
 
   String _normaliseUrl(String value) {
@@ -253,7 +271,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
         title: const Text('Google sign-in support'),
         content: const Text(
           'Use G Inside first. This uses WebView2 with a Windows desktop user-agent, persistent WebView2 session storage, and popups enabled.\n\n'
-          'If Google still shows a secure-browser warning, choose G Outside. Google sometimes blocks sign-in from embedded browsers even when WebView2 is used.'
+          'If Google still shows a secure-browser warning, choose G Outside. Google sometimes blocks sign-in from embedded browsers even when WebView2 is used.',
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
@@ -368,9 +386,63 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     );
   }
 
+  Widget _tabButton(int index) {
+    final tab = _tabs[index];
+    final selected = index == _current;
+    final title = tab.title.trim().isEmpty ? 'New Tab' : tab.title.trim();
+
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 260, minWidth: 150),
+      margin: const EdgeInsets.only(right: 6, top: 4, bottom: 4),
+      decoration: BoxDecoration(
+        color: selected ? Colors.amber : const Color(0xff0b395d),
+        borderRadius: BorderRadius.circular(13),
+        border: Border.all(color: selected ? Colors.amberAccent : Colors.white24),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: InkWell(
+              borderRadius: BorderRadius.circular(13),
+              onTap: () => _switchTab(index),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                child: Row(
+                  children: [
+                    Icon(Icons.language, size: 16, color: selected ? Colors.black : Colors.white),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        '${index + 1}. $title',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: selected ? Colors.black : Colors.white,
+                          fontWeight: selected ? FontWeight.w900 : FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          InkWell(
+            borderRadius: BorderRadius.circular(20),
+            onTap: () => _closeTab(index),
+            child: Padding(
+              padding: const EdgeInsets.all(7),
+              child: Icon(Icons.close, size: 16, color: selected ? Colors.black : Colors.white70),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _tabStrip() {
     return Container(
-      height: 42,
+      height: 48,
       padding: const EdgeInsets.symmetric(horizontal: 6),
       decoration: BoxDecoration(
         color: const Color(0xff02182a),
@@ -379,33 +451,17 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       ),
       child: Row(
         children: [
-          const Text('Tabs:', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          const Text('Tabs', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           const SizedBox(width: 8),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: _tabs.length,
-              itemBuilder: (context, index) {
-                final tab = _tabs[index];
-                final selected = index == _current;
-                return Padding(
-                  padding: const EdgeInsets.only(right: 6, top: 4, bottom: 4),
-                  child: selected
-                      ? FilledButton(
-                          onPressed: () => _switchTab(index),
-                          child: Text('${index + 1}. ${tab.title}', overflow: TextOverflow.ellipsis),
-                        )
-                      : OutlinedButton(
-                          onPressed: () => _switchTab(index),
-                          child: Text('${index + 1}. ${tab.title}', overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white)),
-                        ),
-                );
-              },
+              itemBuilder: (context, index) => _tabButton(index),
             ),
           ),
-          _toolbarButton('+ New Tab', Icons.add_box, () => _newTab(homeUrl), important: true),
-          _toolbarButton('Tab List', Icons.tab, _showTabs, important: true),
-          _toolbarButton('Close Tab', Icons.close, () => _closeTab(_current), important: true),
+          _toolbarButton('New', Icons.add_box, () => _newTab(homeUrl), important: true),
+          _toolbarButton('List', Icons.tab, _showTabs, important: true),
         ],
       ),
     );
@@ -439,14 +495,14 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v1.4 - Tabbed Browser', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v1.5 - Browser Tabs', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
               ),
               _toolbarButton('+ New Tab', Icons.add_box, () => _newTab(homeUrl), important: true),
               _toolbarButton('Tabs', Icons.tab, _showTabs, important: true),
-              _toolbarButton('Close Tab', Icons.close, () => _closeTab(_current), important: true),
+              _toolbarButton('Close', Icons.close, () => _closeTab(_current), important: true),
               _toolbarButton('G Help', Icons.help, _showGoogleSignInHelp),
               _toolbarButton('Win Update', Icons.system_update_alt, () => _openExternal(windowsInstallerUrl)),
               _toolbarButton('APK', Icons.android, () => _openExternal(apkUrl)),
