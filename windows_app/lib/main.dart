@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_windows/webview_windows.dart';
 
 void main() => runApp(const LearnWithChampakWindowsApp());
@@ -343,7 +342,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   Future<void> _openGoogleSignInInside() async {
     await _newTab(googleSignInUrl);
     if (mounted) {
-      setState(() => _status = 'Google Sign-In opened in a new app tab. Use Outside if Google blocks embedded sign-in.');
+      setState(() => _status = 'Google Sign-In opened in a new app tab.');
     }
   }
 
@@ -363,18 +362,11 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       builder: (_) => AlertDialog(
         title: const Text('Google sign-in support'),
         content: const Text(
-          'Use G Inside first. This opens Google sign-in in a new internal browser tab with WebView2 session storage and a Windows desktop user-agent.\n\n'
-          'If Google still shows a secure-browser warning, choose G Outside. Google sometimes blocks sign-in from embedded browsers even when WebView2 is used.',
+          'Use G Inside. It opens Google sign-in in a new internal browser tab with WebView2 session storage and a Windows desktop user-agent.\\n\\n'
+          'No website button opens Chrome, Bing, Edge, or another default browser.',
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              _openExternal(googleSignInUrl);
-            },
-            child: const Text('G Outside'),
-          ),
           FilledButton(
             onPressed: () {
               Navigator.pop(context);
@@ -385,13 +377,6 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
         ],
       ),
     );
-  }
-
-  Future<void> _openExternal(String url) async {
-    final uri = Uri.parse(url);
-    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-      setState(() => _status = 'Could not open $url');
-    }
   }
 
   Future<void> _openWindowsDefaultApps() async {
@@ -588,7 +573,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v1.7 - Every Link Opens New Tab', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v1.8 - No External Browser', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
@@ -597,8 +582,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
               _toolbarButton('Tabs', Icons.tab, _showTabs, important: true),
               _toolbarButton('Close', Icons.close, () => _closeTab(_current), important: true),
               _toolbarButton('G Help', Icons.help, _showGoogleSignInHelp),
-              _toolbarButton('Win Update', Icons.system_update_alt, () => _openExternal(windowsInstallerUrl)),
-              _toolbarButton('APK', Icons.android, () => _openExternal(apkUrl)),
+              _toolbarButton('Win Update', Icons.system_update_alt, () => _newTab(windowsInstallerUrl)),
+              _toolbarButton('APK', Icons.android, () => _newTab(apkUrl)),
             ],
           ),
           const SizedBox(height: 8),
@@ -637,7 +622,6 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
               _toolbarButton('WhatsApp Web', Icons.chat, () => _newTab(whatsappUrl)),
               _toolbarButton('Google', Icons.search, () => _newTab(googleSearchUrl)),
               _toolbarButton('G Inside', Icons.login, _openGoogleSignInInside, important: true),
-              _toolbarButton('G Outside', Icons.open_in_browser, () => _openExternal(googleSignInUrl)),
               _toolbarButton('G Account', Icons.account_circle, _openGoogleAccountInside),
               _toolbarButton('Gmail', Icons.mail, _openGmailInside),
               _toolbarButton('Default Browser', Icons.settings_applications, _openWindowsDefaultApps),
