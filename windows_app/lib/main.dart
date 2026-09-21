@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -126,6 +127,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   final TextEditingController _addressController = TextEditingController(text: homeUrl);
   final List<BrowserTab> _tabs = [];
 
+  Timer? _sessionSaveTimer;
+  bool _restoringSession = false;
   int _current = 0;
   bool _fullScreen = false;
   bool _checking = false;
@@ -137,14 +140,145 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   @override
   void initState() {
     super.initState();
-    _startBrowser();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _askDefaultBrowserFirstRun());
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _startBrowser();
+      if (mounted) _askDefaultBrowserFirstRun();
+    });
   }
 
   Future<void> _startBrowser() async {
     await _prepareWebView2Environment();
-    await _newTab(homeUrl);
+    await _restorePreviousSessionOrStartFresh();
     await _checkUpdate();
+  }
+
+  String get _sessionFilePath {
+    final base = Platform.environment['APPDATA'] ?? Directory.current.path;
+    return '$base\\\\LearnWithChampakDesktop\\\\browser_session.json';
+  }
+
+  Future<Map<String, dynamic>?> _readSavedSession() async {
+    try {
+      final file = File(_sessionFilePath);
+      if (!await file.exists()) return null;
+      final decoded = jsonDecode(await file.readAsString());
+      return decoded is Map<String, dynamic> ? decoded : null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Map<String, dynamic> _sessionSnapshot() => {
+        'savedAt': DateTime.now().toIso8601String(),
+        'current': _current,
+        'tabs': _tabs
+            .map((tab) => {
+                  'title': tab.title,
+                  'url': tab.url,
+                })
+            .toList(),
+      };
+
+  void _scheduleSessionSave() {
+    if (_restoringSession) return;
+    _sessionSaveTimer?.cancel();
+    _sessionSaveTimer = Timer(const Duration(milliseconds: 250), _saveSessionNow);
+  }
+
+  Future<void> _saveSessionNow() async {
+    if (_restoringSession || _tabs.isEmpty) return;
+    try {
+      final file = File(_sessionFilePath);
+      await file.parent.create(recursive: true);
+      await file.writeAsString(jsonEncode(_sessionSnapshot()), flush: true);
+    } catch (_) {}
+  }
+
+  void _saveSessionNowSync() {
+    if (_restoringSession || _tabs.isEmpty) return;
+    try {
+      final file = File(_sessionFilePath);
+      file.parent.createSync(recursive: true);
+      file.writeAsStringSync(jsonEncode(_sessionSnapshot()), flush: true);
+    } catch (_) {}
+  }
+
+  Future<void> _deleteSavedSession() async {
+    _sessionSaveTimer?.cancel();
+    try {
+      final file = File(_sessionFilePath);
+      if (await file.exists()) await file.delete();
+    } catch (_) {}
+  }
+
+  Future<void> _restorePreviousSessionOrStartFresh() async {
+    final saved = await _readSavedSession();
+    final rawTabs = saved?['tabs'];
+    final savedTabs = rawTabs is List
+        ? rawTabs
+            .whereType<Map>()
+            .map((item) => {
+                  'title': item['title']?.toString() ?? 'Tab',
+                  'url': item['url']?.toString() ?? '',
+                })
+            .where((item) => item['url']!.isNotEmpty && item['url'] != 'about:blank')
+            .toList()
+        : <Map<String, String>>[];
+
+    if (savedTabs.isEmpty) {
+      await _newTab('about:blank');
+      return;
+    }
+
+    if (!mounted) return;
+    final reopen = await showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => AlertDialog(
+        title: const Text('Previous browsing session found'),
+        content: Text(
+          '${savedTabs.length} ${savedTabs.length == 1 ? 'tab was' : 'tabs were'} still open when Learn With Champak Desktop last closed.\\n\\n'
+          'Reopen them, or discard the old session and start with a blank tab?',
+        ),
+        actions: [
+          TextButton.icon(
+            autofocus: true,
+            onPressed: () => Navigator.pop(context, false),
+            icon: const Icon(Icons.delete_outline),
+            label: const Text('DISCARD & START FRESH'),
+          ),
+          FilledButton.icon(
+            onPressed: () => Navigator.pop(context, true),
+            icon: const Icon(Icons.restore),
+            label: Text('REOPEN ${savedTabs.length} ${savedTabs.length == 1 ? 'TAB' : 'TABS'}'),
+          ),
+        ],
+      ),
+    );
+
+    if (reopen != true) {
+      await _deleteSavedSession();
+      await _newTab('about:blank');
+      if (mounted) setState(() => _status = 'Previous tabs discarded');
+      return;
+    }
+
+    _restoringSession = true;
+    try {
+      for (final item in savedTabs) {
+        await _newTab(item['url']!, saveSession: false);
+      }
+      if (_tabs.isNotEmpty) {
+        final savedCurrent = saved?['current'];
+        final desired = savedCurrent is int ? savedCurrent : 0;
+        _current = desired.clamp(0, _tabs.length - 1);
+        _addressController.text = _tab?.url == 'about:blank' ? '' : (_tab?.url ?? '');
+      }
+    } finally {
+      _restoringSession = false;
+    }
+    await _saveSessionNow();
+    if (mounted) setState(() => _status = 'Previous session restored');
   }
 
   Future<void> _prepareWebView2Environment() async {
@@ -164,6 +298,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
 
   @override
   void dispose() {
+    _sessionSaveTimer?.cancel();
+    _saveSessionNowSync();
     _addressController.dispose();
     for (final tab in _tabs) {
       tab.controller.dispose();
@@ -171,7 +307,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     super.dispose();
   }
 
-  Future<void> _newTab([String url = homeUrl]) async {
+  Future<void> _newTab([String url = homeUrl, bool saveSession = true]) async {
     final safeUrl = _normaliseUrl(url);
     final controller = WebviewController();
     final tab = BrowserTab(controller: controller, title: 'New Tab', url: safeUrl);
@@ -182,6 +318,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       _addressController.text = safeUrl == 'about:blank' ? '' : safeUrl;
       _status = 'Opening new tab...';
     });
+    if (saveSession) _scheduleSessionSave();
 
     try {
       await controller.initialize();
@@ -195,6 +332,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       controller.url.listen((value) {
         if (value.isEmpty) return;
         tab.url = value;
+        _scheduleSessionSave();
         if (mounted && _tab == tab) {
           setState(() => _addressController.text = value == 'about:blank' ? '' : value);
         }
@@ -202,6 +340,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
 
       controller.title.listen((value) {
         if (value.isNotEmpty) tab.title = value;
+        _scheduleSessionSave();
         if (mounted) setState(() {});
       });
 
@@ -213,6 +352,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
 
       await controller.loadUrl(safeUrl);
       tab.ready = true;
+      if (saveSession) _scheduleSessionSave();
       if (mounted) setState(() => _status = 'Ready');
     } catch (e) {
       if (mounted) setState(() => _status = 'WebView2 is required. Error: $e');
@@ -247,6 +387,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       _addressController.text = _tab?.url == 'about:blank' ? '' : (_tab?.url ?? homeUrl);
       _status = 'Tab ${index + 1}';
     });
+    _scheduleSessionSave();
   }
 
   void _closeTab(int index) {
@@ -272,6 +413,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       _addressController.text = _tab?.url == 'about:blank' ? '' : (_tab?.url ?? homeUrl);
       _status = 'Tab closed';
     });
+    _scheduleSessionSave();
   }
 
   void _showTabs() {
@@ -335,6 +477,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     _tab?.url = url;
     _addressController.text = url == 'about:blank' ? '' : url;
     setState(() => _status = 'Opening $url');
+    _scheduleSessionSave();
     await _controller?.setUserAgent(desktopUserAgent);
     await _controller?.loadUrl(url);
   }
@@ -573,7 +716,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v1.8 - No External Browser', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v1.9 - Session Recovery', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
