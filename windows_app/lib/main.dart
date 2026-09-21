@@ -154,7 +154,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
 
   String get _sessionFilePath {
     final base = Platform.environment['APPDATA'] ?? Directory.current.path;
-    return '$base\\\\LearnWithChampakDesktop\\\\browser_session.json';
+    return '$base\\LearnWithChampakDesktop\\browser_session.json';
   }
 
   Future<Map<String, dynamic>?> _readSavedSession() async {
@@ -237,7 +237,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       builder: (_) => AlertDialog(
         title: const Text('Previous browsing session found'),
         content: Text(
-          '${savedTabs.length} ${savedTabs.length == 1 ? 'tab was' : 'tabs were'} still open when Learn With Champak Desktop last closed.\\n\\n'
+          '${savedTabs.length} ${savedTabs.length == 1 ? 'tab was' : 'tabs were'} still open when Learn With Champak Desktop last closed.\n\n'
           'Reopen them, or discard the old session and start with a blank tab?',
         ),
         actions: [
@@ -271,7 +271,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       if (_tabs.isNotEmpty) {
         final savedCurrent = saved?['current'];
         final desired = savedCurrent is int ? savedCurrent : 0;
-        _current = desired.clamp(0, _tabs.length - 1);
+        _current = desired.clamp(0, _tabs.length - 1).toInt();
         _addressController.text = _tab?.url == 'about:blank' ? '' : (_tab?.url ?? '');
       }
     } finally {
@@ -404,9 +404,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     if (index < oldCurrent) {
       _current = oldCurrent - 1;
     } else if (index == oldCurrent) {
-      _current = index.clamp(0, _tabs.length - 1);
+      _current = index.clamp(0, _tabs.length - 1).toInt();
     } else {
-      _current = oldCurrent.clamp(0, _tabs.length - 1);
+      _current = oldCurrent.clamp(0, _tabs.length - 1).toInt();
     }
 
     setState(() {
