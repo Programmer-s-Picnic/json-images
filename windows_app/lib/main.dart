@@ -166,7 +166,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     final timedUrl = _startupTimedUrl;
     if (timedUrl != null && timedUrl.trim().isNotEmpty) {
       _suppressSessionPersistence = true;
-      await _newTab(timedUrl, saveSession: false);
+      await _newTab(timedUrl, false);
       if (mounted) setState(() => _status = 'Timed site opened automatically');
     } else {
       await _restorePreviousSessionOrStartFresh();
@@ -288,7 +288,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     _restoringSession = true;
     try {
       for (final item in savedTabs) {
-        await _newTab(item['url']!, saveSession: false);
+        await _newTab(item['url']!, false);
       }
       if (_tabs.isNotEmpty) {
         final savedCurrent = saved?['current'];
