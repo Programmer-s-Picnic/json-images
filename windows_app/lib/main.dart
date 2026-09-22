@@ -6,7 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:webview_windows/webview_windows.dart';
 
-void main() => runApp(const LearnWithChampakWindowsApp());
+String? _startupTimedUrl;
+
+void main(List<String> args) {
+  for (var i = 0; i < args.length; i++) {
+    if (args[i] == '--timed-open' && i + 1 < args.length) {
+      _startupTimedUrl = args[i + 1];
+      break;
+    }
+    if (args[i].startsWith('--timed-open=')) {
+      _startupTimedUrl = args[i].substring('--timed-open='.length);
+      break;
+    }
+  }
+  runApp(const LearnWithChampakWindowsApp());
+}
 
 class LearnWithChampakWindowsApp extends StatelessWidget {
   const LearnWithChampakWindowsApp({super.key});
@@ -129,6 +143,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
 
   Timer? _sessionSaveTimer;
   bool _restoringSession = false;
+  bool _suppressSessionPersistence = false;
   int _current = 0;
   bool _fullScreen = false;
   bool _checking = false;
@@ -142,13 +157,20 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _startBrowser();
-      if (mounted) _askDefaultBrowserFirstRun();
+      if (mounted && _startupTimedUrl == null) _askDefaultBrowserFirstRun();
     });
   }
 
   Future<void> _startBrowser() async {
     await _prepareWebView2Environment();
-    await _restorePreviousSessionOrStartFresh();
+    final timedUrl = _startupTimedUrl;
+    if (timedUrl != null && timedUrl.trim().isNotEmpty) {
+      _suppressSessionPersistence = true;
+      await _newTab(timedUrl, saveSession: false);
+      if (mounted) setState(() => _status = 'Timed site opened automatically');
+    } else {
+      await _restorePreviousSessionOrStartFresh();
+    }
     await _checkUpdate();
   }
 
@@ -180,13 +202,13 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       };
 
   void _scheduleSessionSave() {
-    if (_restoringSession) return;
+    if (_restoringSession || _suppressSessionPersistence) return;
     _sessionSaveTimer?.cancel();
     _sessionSaveTimer = Timer(const Duration(milliseconds: 250), _saveSessionNow);
   }
 
   Future<void> _saveSessionNow() async {
-    if (_restoringSession || _tabs.isEmpty) return;
+    if (_restoringSession || _suppressSessionPersistence || _tabs.isEmpty) return;
     try {
       final file = File(_sessionFilePath);
       await file.parent.create(recursive: true);
@@ -195,7 +217,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   }
 
   void _saveSessionNowSync() {
-    if (_restoringSession || _tabs.isEmpty) return;
+    if (_restoringSession || _suppressSessionPersistence || _tabs.isEmpty) return;
     try {
       final file = File(_sessionFilePath);
       file.parent.createSync(recursive: true);
@@ -279,6 +301,261 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     }
     await _saveSessionNow();
     if (mounted) setState(() => _status = 'Previous session restored');
+  }
+
+  static const _timedTaskName = 'LearnWithChampakTimedSite';
+
+  String get _timedSiteFilePath {
+    final base = Platform.environment['APPDATA'] ?? Directory.current.path;
+    return '$base\\LearnWithChampakDesktop\\timed_site.json';
+  }
+
+  Future<Map<String, dynamic>?> _readTimedSiteConfig() async {
+    try {
+      final file = File(_timedSiteFilePath);
+      if (!await file.exists()) return null;
+      final value = jsonDecode(await file.readAsString());
+      return value is Map<String, dynamic> ? value : null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> _writeTimedSiteConfig(Map<String, dynamic> value) async {
+    final file = File(_timedSiteFilePath);
+    await file.parent.create(recursive: true);
+    await file.writeAsString(jsonEncode(value), flush: true);
+  }
+
+  Future<void> _deleteTimedSiteConfig() async {
+    try {
+      final file = File(_timedSiteFilePath);
+      if (await file.exists()) await file.delete();
+    } catch (_) {}
+  }
+
+  Future<bool> _createTimedSiteTask({
+    required String url,
+    required String mode,
+    required TimeOfDay dailyTime,
+    required int intervalMinutes,
+  }) async {
+    final normalised = _normaliseUrl(url);
+    final uri = Uri.tryParse(normalised);
+    if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) return false;
+
+    final exe = Platform.resolvedExecutable;
+    final taskCommand = '"$exe" --timed-open "$normalised"';
+    final args = <String>[
+      '/Create',
+      '/F',
+      '/TN',
+      _timedTaskName,
+      '/TR',
+      taskCommand,
+    ];
+
+    if (mode == 'interval') {
+      if (intervalMinutes < 1 || intervalMinutes > 1439) return false;
+      args.addAll(['/SC', 'MINUTE', '/MO', '$intervalMinutes']);
+    } else {
+      final hh = dailyTime.hour.toString().padLeft(2, '0');
+      final mm = dailyTime.minute.toString().padLeft(2, '0');
+      args.addAll(['/SC', 'DAILY', '/ST', '$hh:$mm']);
+    }
+
+    try {
+      final result = await Process.run('schtasks.exe', args, runInShell: false);
+      if (result.exitCode != 0) {
+        if (mounted) setState(() => _status = 'Could not create Windows timed task: ${result.stderr}');
+        return false;
+      }
+      await _writeTimedSiteConfig({
+        'enabled': true,
+        'url': normalised,
+        'mode': mode,
+        'hour': dailyTime.hour,
+        'minute': dailyTime.minute,
+        'intervalMinutes': intervalMinutes,
+      });
+      return true;
+    } catch (e) {
+      if (mounted) setState(() => _status = 'Timed task error: $e');
+      return false;
+    }
+  }
+
+  Future<void> _disableTimedSiteTask() async {
+    try {
+      await Process.run(
+        'schtasks.exe',
+        ['/Delete', '/F', '/TN', _timedTaskName],
+        runInShell: false,
+      );
+    } catch (_) {}
+    await _deleteTimedSiteConfig();
+    if (mounted) setState(() => _status = 'Timed site opening disabled');
+  }
+
+  String _timedConfigSummary(Map<String, dynamic>? config) {
+    if (config == null || config['enabled'] != true) return 'No timed site is configured.';
+    final url = config['url']?.toString() ?? '';
+    final mode = config['mode']?.toString() ?? 'daily';
+    if (mode == 'interval') {
+      return 'Every ${config['intervalMinutes'] ?? '?'} minutes → $url';
+    }
+    final h = (config['hour'] as num?)?.toInt() ?? 0;
+    final m = (config['minute'] as num?)?.toInt() ?? 0;
+    return 'Daily at ${h.toString().padLeft(2, '0')}:${m.toString().padLeft(2, '0')} → $url';
+  }
+
+  Future<void> _showTimedSiteDialog() async {
+    final config = await _readTimedSiteConfig();
+    if (!mounted) return;
+
+    final currentUrl = _tab?.url;
+    final urlController = TextEditingController(
+      text: config?['url']?.toString() ??
+          ((currentUrl != null && currentUrl != 'about:blank') ? currentUrl : homeUrl),
+    );
+    final intervalController = TextEditingController(
+      text: (config?['intervalMinutes'] ?? 30).toString(),
+    );
+    var mode = config?['mode']?.toString() == 'interval' ? 'interval' : 'daily';
+    var dailyTime = TimeOfDay(
+      hour: (config?['hour'] as num?)?.toInt() ?? TimeOfDay.now().hour,
+      minute: (config?['minute'] as num?)?.toInt() ?? TimeOfDay.now().minute,
+    );
+    var saving = false;
+
+    await showDialog<void>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, setLocalState) => AlertDialog(
+          title: const Text('Timed Site Open'),
+          content: SizedBox(
+            width: 560,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(_timedConfigSummary(config)),
+                const SizedBox(height: 14),
+                TextField(
+                  controller: urlController,
+                  decoration: const InputDecoration(
+                    labelText: 'Website URL',
+                    hintText: 'https://example.com',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                DropdownButtonFormField<String>(
+                  value: mode,
+                  decoration: const InputDecoration(
+                    labelText: 'Open mode',
+                    border: OutlineInputBorder(),
+                  ),
+                  items: const [
+                    DropdownMenuItem(value: 'daily', child: Text('Daily at a fixed time')),
+                    DropdownMenuItem(value: 'interval', child: Text('Repeat at an interval')),
+                  ],
+                  onChanged: (value) {
+                    if (value != null) setLocalState(() => mode = value);
+                  },
+                ),
+                const SizedBox(height: 12),
+                if (mode == 'daily')
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text('Daily time'),
+                    subtitle: Text(dailyTime.format(dialogContext)),
+                    trailing: FilledButton.icon(
+                      onPressed: () async {
+                        final picked = await showTimePicker(
+                          context: dialogContext,
+                          initialTime: dailyTime,
+                        );
+                        if (picked != null) setLocalState(() => dailyTime = picked);
+                      },
+                      icon: const Icon(Icons.schedule),
+                      label: const Text('Choose'),
+                    ),
+                  )
+                else
+                  TextField(
+                    controller: intervalController,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'Interval in minutes',
+                      helperText: '1–1439 minutes',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          actions: [
+            if (config != null)
+              TextButton.icon(
+                onPressed: saving
+                    ? null
+                    : () async {
+                        setLocalState(() => saving = true);
+                        await _disableTimedSiteTask();
+                        if (dialogContext.mounted) Navigator.pop(dialogContext);
+                      },
+                icon: const Icon(Icons.timer_off),
+                label: const Text('Disable'),
+              ),
+            TextButton(
+              onPressed: saving ? null : () => Navigator.pop(dialogContext),
+              child: const Text('Cancel'),
+            ),
+            FilledButton.icon(
+              onPressed: saving
+                  ? null
+                  : () async {
+                      final interval = int.tryParse(intervalController.text.trim()) ?? 0;
+                      final url = _normaliseUrl(urlController.text);
+                      final uri = Uri.tryParse(url);
+                      if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
+                        setState(() => _status = 'Enter a valid http/https URL');
+                        return;
+                      }
+                      if (mode == 'interval' && (interval < 1 || interval > 1439)) {
+                        setState(() => _status = 'Interval must be between 1 and 1439 minutes');
+                        return;
+                      }
+                      setLocalState(() => saving = true);
+                      final ok = await _createTimedSiteTask(
+                        url: url,
+                        mode: mode,
+                        dailyTime: dailyTime,
+                        intervalMinutes: interval,
+                      );
+                      if (!mounted) return;
+                      if (ok) {
+                        setState(() {
+                          _status = mode == 'daily'
+                              ? 'Timed site scheduled daily at ${dailyTime.format(context)}'
+                              : 'Timed site scheduled every $interval minutes';
+                        });
+                        if (dialogContext.mounted) Navigator.pop(dialogContext);
+                      } else {
+                        setLocalState(() => saving = false);
+                      }
+                    },
+              icon: const Icon(Icons.alarm_add),
+              label: Text(saving ? 'Saving...' : 'Save Schedule'),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    urlController.dispose();
+    intervalController.dispose();
   }
 
   Future<void> _prepareWebView2Environment() async {
@@ -683,6 +960,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
           ),
           _toolbarButton('New', Icons.add_box, () => _newTab(homeUrl), important: true),
           _toolbarButton('List', Icons.tab, _showTabs, important: true),
+          _toolbarButton('Timed', Icons.alarm, _showTimedSiteDialog, important: true),
         ],
       ),
     );
@@ -716,7 +994,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v1.9 - Session Recovery', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v2.0 - Timed Site Open', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
