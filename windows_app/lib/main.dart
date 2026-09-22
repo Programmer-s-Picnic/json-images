@@ -5,10 +5,46 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:webview_windows/webview_windows.dart';
+import 'package:window_manager/window_manager.dart';
 
 String? _startupTimedUrl;
 
-void main(List<String> args) {
+String _appDataPath(String fileName) {
+  final base = Platform.environment['APPDATA'] ?? Directory.current.path;
+  return '$base\\LearnWithChampakDesktop\\$fileName';
+}
+
+Future<Map<String, dynamic>?> _readWindowBounds() async {
+  try {
+    final file = File(_appDataPath('window_bounds.json'));
+    if (!await file.exists()) return null;
+    final decoded = jsonDecode(await file.readAsString());
+    return decoded is Map<String, dynamic> ? decoded : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+Future<void> _writeWindowBounds(Rect bounds) async {
+  try {
+    final file = File(_appDataPath('window_bounds.json'));
+    await file.parent.create(recursive: true);
+    await file.writeAsString(
+      jsonEncode({
+        'x': bounds.left,
+        'y': bounds.top,
+        'width': bounds.width,
+        'height': bounds.height,
+      }),
+      flush: true,
+    );
+  } catch (_) {}
+}
+
+void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await windowManager.ensureInitialized();
+
   for (var i = 0; i < args.length; i++) {
     if (args[i] == '--timed-open' && i + 1 < args.length) {
       _startupTimedUrl = args[i + 1];
@@ -19,6 +55,34 @@ void main(List<String> args) {
       break;
     }
   }
+
+  final saved = await _readWindowBounds();
+  final width = ((saved?['width'] as num?)?.toDouble() ?? 1280).clamp(900.0, 3840.0);
+  final height = ((saved?['height'] as num?)?.toDouble() ?? 820).clamp(600.0, 2160.0);
+  final hasSavedPosition = saved?['x'] is num && saved?['y'] is num;
+
+  final options = WindowOptions(
+    size: Size(width, height),
+    minimumSize: const Size(900, 600),
+    center: !hasSavedPosition,
+    backgroundColor: Colors.white,
+    title: 'Learn With Champak Desktop Browser',
+  );
+
+  await windowManager.waitUntilReadyToShow(options, () async {
+    if (hasSavedPosition) {
+      await windowManager.setPosition(
+        Offset(
+          (saved!['x'] as num).toDouble(),
+          (saved['y'] as num).toDouble(),
+        ),
+      );
+    }
+    await windowManager.setPreventClose(true);
+    await windowManager.show();
+    await windowManager.focus();
+  });
+
   runApp(const LearnWithChampakWindowsApp());
 }
 
@@ -55,7 +119,7 @@ class DesktopHomePage extends StatefulWidget {
   State<DesktopHomePage> createState() => _DesktopHomePageState();
 }
 
-class _DesktopHomePageState extends State<DesktopHomePage> {
+class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   static const homeUrl = 'https://www.learnwithchampak.live';
   static const insideKashiUrl = 'https://insidekashi.com';
   static const youtubeUrl = 'https://youtube.com/@champaksworld';
@@ -140,8 +204,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
 
   final TextEditingController _addressController = TextEditingController(text: homeUrl);
   final List<BrowserTab> _tabs = [];
+  final List<Map<String, String>> _history = [];
 
   Timer? _sessionSaveTimer;
+  Timer? _windowBoundsSaveTimer;
   bool _restoringSession = false;
   bool _suppressSessionPersistence = false;
   int _current = 0;
@@ -155,6 +221,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   @override
   void initState() {
     super.initState();
+    windowManager.addListener(this);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _startBrowser();
       if (mounted && _startupTimedUrl == null) _askDefaultBrowserFirstRun();
@@ -162,6 +229,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   }
 
   Future<void> _startBrowser() async {
+    await _loadHistory();
     await _prepareWebView2Environment();
     final timedUrl = _startupTimedUrl;
     if (timedUrl != null && timedUrl.trim().isNotEmpty) {
@@ -172,6 +240,112 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       await _restorePreviousSessionOrStartFresh();
     }
     await _checkUpdate();
+  }
+
+  String get _historyFilePath => _appDataPath('browser_history.json');
+
+  Future<void> _loadHistory() async {
+    try {
+      final file = File(_historyFilePath);
+      if (!await file.exists()) return;
+      final decoded = jsonDecode(await file.readAsString());
+      if (decoded is! List) return;
+      _history
+        ..clear()
+        ..addAll(
+          decoded.whereType<Map>().map((item) => {
+                'url': item['url']?.toString() ?? '',
+                'title': item['title']?.toString() ?? '',
+                'visitedAt': item['visitedAt']?.toString() ?? '',
+              }).where((item) => item['url']!.isNotEmpty),
+        );
+    } catch (_) {}
+  }
+
+  Future<void> _saveHistory() async {
+    try {
+      final file = File(_historyFilePath);
+      await file.parent.create(recursive: true);
+      await file.writeAsString(jsonEncode(_history.take(100).toList()), flush: true);
+    } catch (_) {}
+  }
+
+  void _addHistory(String url, String title) {
+    if (!(url.startsWith('http://') || url.startsWith('https://'))) return;
+    _history.removeWhere((item) => item['url'] == url);
+    _history.insert(0, {
+      'url': url,
+      'title': title.trim().isEmpty ? url : title.trim(),
+      'visitedAt': DateTime.now().toIso8601String(),
+    });
+    if (_history.length > 100) _history.removeRange(100, _history.length);
+    unawaited(_saveHistory());
+  }
+
+  void _showHistory() {
+    showDialog<void>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Browsing History'),
+        content: SizedBox(
+          width: 700,
+          height: 520,
+          child: _history.isEmpty
+              ? const Center(child: Text('No browsing history yet.'))
+              : ListView.builder(
+                  itemCount: _history.length,
+                  itemBuilder: (context, index) {
+                    final item = _history[index];
+                    final visited = DateTime.tryParse(item['visitedAt'] ?? '');
+                    final timeText = visited == null
+                        ? ''
+                        : '${visited.toLocal().day.toString().padLeft(2, '0')}/'
+                            '${visited.toLocal().month.toString().padLeft(2, '0')}/'
+                            '${visited.toLocal().year} '
+                            '${visited.toLocal().hour.toString().padLeft(2, '0')}:'
+                            '${visited.toLocal().minute.toString().padLeft(2, '0')}';
+                    return ListTile(
+                      leading: const Icon(Icons.history),
+                      title: Text(
+                        item['title'] ?? item['url'] ?? 'Page',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Text(
+                        '${item['url'] ?? ''}${timeText.isEmpty ? '' : '\n$timeText'}',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      onTap: () {
+                        Navigator.pop(context);
+                        _newTab(item['url'] ?? homeUrl);
+                      },
+                    );
+                  },
+                ),
+        ),
+        actions: [
+          TextButton.icon(
+            onPressed: _history.isEmpty
+                ? null
+                : () async {
+                    _history.clear();
+                    await _saveHistory();
+                    if (mounted) {
+                      Navigator.pop(context);
+                      setState(() => _status = 'Browsing history cleared');
+                    }
+                  },
+            icon: const Icon(Icons.delete_sweep),
+            label: const Text('Clear History'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
   }
 
   String get _sessionFilePath {
@@ -573,9 +747,49 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
     }
   }
 
+  Future<void> _saveWindowBoundsNow() async {
+    try {
+      final bounds = await windowManager.getBounds();
+      if (bounds.width >= 300 && bounds.height >= 300) {
+        await _writeWindowBounds(bounds);
+      }
+    } catch (_) {}
+  }
+
+  void _scheduleWindowBoundsSave() {
+    _windowBoundsSaveTimer?.cancel();
+    _windowBoundsSaveTimer = Timer(
+      const Duration(milliseconds: 250),
+      () => unawaited(_saveWindowBoundsNow()),
+    );
+  }
+
+  @override
+  void onWindowMove() => _scheduleWindowBoundsSave();
+
+  @override
+  void onWindowResize() => _scheduleWindowBoundsSave();
+
+  @override
+  void onWindowMoved() => _scheduleWindowBoundsSave();
+
+  @override
+  void onWindowResized() => _scheduleWindowBoundsSave();
+
+  @override
+  void onWindowClose() async {
+    _windowBoundsSaveTimer?.cancel();
+    await _saveWindowBoundsNow();
+    await _saveSessionNow();
+    await windowManager.setPreventClose(false);
+    await windowManager.destroy();
+  }
+
   @override
   void dispose() {
+    _windowBoundsSaveTimer?.cancel();
     _sessionSaveTimer?.cancel();
+    windowManager.removeListener(this);
     _saveSessionNowSync();
     _addressController.dispose();
     for (final tab in _tabs) {
@@ -609,6 +823,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       controller.url.listen((value) {
         if (value.isEmpty) return;
         tab.url = value;
+        _addHistory(value, tab.title);
         _scheduleSessionSave();
         if (mounted && _tab == tab) {
           setState(() => _addressController.text = value == 'about:blank' ? '' : value);
@@ -616,7 +831,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       });
 
       controller.title.listen((value) {
-        if (value.isNotEmpty) tab.title = value;
+        if (value.isNotEmpty) {
+          tab.title = value;
+          _addHistory(tab.url, value);
+        }
         _scheduleSessionSave();
         if (mounted) setState(() {});
       });
@@ -994,7 +1212,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v2.0 - Timed Site Open', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v2.1 - History + Window Memory', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
@@ -1002,6 +1220,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
               _toolbarButton('+ New Tab', Icons.add_box, () => _newTab(homeUrl), important: true),
               _toolbarButton('Tabs', Icons.tab, _showTabs, important: true),
               _toolbarButton('Close', Icons.close, () => _closeTab(_current), important: true),
+              _toolbarButton('History', Icons.history, _showHistory, important: true),
               _toolbarButton('G Help', Icons.help, _showGoogleSignInHelp),
               _toolbarButton('Win Update', Icons.system_update_alt, () => _newTab(windowsInstallerUrl)),
               _toolbarButton('APK', Icons.android, () => _newTab(apkUrl)),
