@@ -76,6 +76,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash origin main
           git add tv/champak-tv.apk
           git commit -m "Publish Champak TV APK v2.17 timed site opening" || echo "No APK changes to commit"
           git push
