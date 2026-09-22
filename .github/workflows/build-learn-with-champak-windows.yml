@@ -86,7 +86,7 @@ jobs:
           Copy-Item windows_app\dist\learn-with-champak-windows-setup.exe windows\learn-with-champak-windows-setup.exe -Force
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
+          git pull --rebase --autostash origin main
           git add windows/learn-with-champak-windows-setup.exe windows/learn-with-champak-windows-portable.zip windows/learn-with-champak-windows-version.json
-          git commit -m "Publish Learn With Champak Windows multi tab installer" || echo "No Windows app changes to commit"
+          git commit -m "Publish Learn With Champak Windows v2.0 timed site installer" || echo "No Windows app changes to commit"
           git push
