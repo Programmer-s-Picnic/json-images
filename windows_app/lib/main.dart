@@ -1029,21 +1029,147 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     );
   }
 
-  Future<void> _openWindowsDefaultApps() async {
+  Future<bool> _regAdd(
+    String key, {
+    String? valueName,
+    required String data,
+  }) async {
     try {
-      await Process.start(
-        'explorer.exe',
-        ['ms-settings:defaultapps?registeredAppUser=Learn%20With%20Champak%20Desktop'],
-      );
-      setState(() => _status = 'Choose Learn With Champak for HTTP and HTTPS');
-    } catch (_) {
-      try {
-        await Process.start('explorer.exe', ['ms-settings:defaultapps']);
-        setState(() => _status = 'Search Learn With Champak Desktop in Default apps');
-      } catch (_) {
-        setState(() => _status = 'Open Settings > Apps > Default apps');
+      final args = <String>['add', key];
+      if (valueName == null) {
+        args.add('/ve');
+      } else {
+        args.addAll(['/v', valueName]);
       }
+      args.addAll(['/t', 'REG_SZ', '/d', data, '/f']);
+      final result = await Process.run('reg.exe', args, runInShell: false);
+      return result.exitCode == 0;
+    } catch (_) {
+      return false;
     }
+  }
+
+  Future<bool> _ensureCurrentUserBrowserRegistration() async {
+    if (!Platform.isWindows) return false;
+
+    final exe = Platform.resolvedExecutable;
+    final icon = '$exe,0';
+    final command = '"$exe" "%1"';
+    const appName = 'Learn With Champak Desktop';
+    const capabilitiesPath = r'Software\LearnWithChampakDesktop\Capabilities';
+    const capabilitiesKey = r'HKCU\Software\LearnWithChampakDesktop\Capabilities';
+    const progIdKey = r'HKCU\Software\Classes\LearnWithChampakHTML';
+
+    final results = <bool>[];
+
+    results.add(await _regAdd(
+      r'HKCU\Software\RegisteredApplications',
+      valueName: appName,
+      data: capabilitiesPath,
+    ));
+
+    results.add(await _regAdd(
+      capabilitiesKey,
+      valueName: 'ApplicationName',
+      data: appName,
+    ));
+    results.add(await _regAdd(
+      capabilitiesKey,
+      valueName: 'ApplicationDescription',
+      data: 'Learn With Champak desktop web browser',
+    ));
+    results.add(await _regAdd(
+      capabilitiesKey,
+      valueName: 'ApplicationIcon',
+      data: icon,
+    ));
+
+    results.add(await _regAdd(
+      r'HKCU\Software\LearnWithChampakDesktop\Capabilities\URLAssociations',
+      valueName: 'http',
+      data: 'LearnWithChampakHTML',
+    ));
+    results.add(await _regAdd(
+      r'HKCU\Software\LearnWithChampakDesktop\Capabilities\URLAssociations',
+      valueName: 'https',
+      data: 'LearnWithChampakHTML',
+    ));
+    results.add(await _regAdd(
+      r'HKCU\Software\LearnWithChampakDesktop\Capabilities\FileAssociations',
+      valueName: '.htm',
+      data: 'LearnWithChampakHTML',
+    ));
+    results.add(await _regAdd(
+      r'HKCU\Software\LearnWithChampakDesktop\Capabilities\FileAssociations',
+      valueName: '.html',
+      data: 'LearnWithChampakHTML',
+    ));
+
+    results.add(await _regAdd(
+      progIdKey,
+      data: 'Learn With Champak HTML Document',
+    ));
+    results.add(await _regAdd(
+      progIdKey,
+      valueName: 'FriendlyTypeName',
+      data: 'Learn With Champak Web Link',
+    ));
+    results.add(await _regAdd(
+      progIdKey,
+      valueName: 'URL Protocol',
+      data: '',
+    ));
+    results.add(await _regAdd(
+      r'HKCU\Software\Classes\LearnWithChampakHTML\DefaultIcon',
+      data: icon,
+    ));
+    results.add(await _regAdd(
+      r'HKCU\Software\Classes\LearnWithChampakHTML\shell\open\command',
+      data: command,
+    ));
+
+    return results.every((ok) => ok);
+  }
+
+  Future<bool> _launchSettingsUri(String uri) async {
+    try {
+      final process = await Process.start(
+        'explorer.exe',
+        [uri],
+        runInShell: false,
+      );
+      return process.pid > 0;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<void> _openWindowsDefaultApps() async {
+    final userRegistered = await _ensureCurrentUserBrowserRegistration();
+
+    var opened = false;
+    if (userRegistered) {
+      opened = await _launchSettingsUri(
+        'ms-settings:defaultapps?registeredAppUser=Learn%20With%20Champak%20Desktop',
+      );
+    }
+
+    if (!opened) {
+      opened = await _launchSettingsUri(
+        'ms-settings:defaultapps?registeredAppMachine=Learn%20With%20Champak%20Desktop',
+      );
+    }
+
+    if (!opened) {
+      opened = await _launchSettingsUri('ms-settings:defaultapps');
+    }
+
+    if (!mounted) return;
+    setState(() {
+      _status = opened
+          ? 'In Default apps, choose Learn With Champak Desktop and set HTTP/HTTPS (and HTML if offered).'
+          : 'Open Windows Settings > Apps > Default apps > Learn With Champak Desktop.';
+    });
   }
 
   void _askDefaultBrowserFirstRun() {
@@ -1051,7 +1177,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('Set as default browser?'),
-        content: const Text('Windows will open Default apps settings. Search for Learn With Champak Desktop and set it as your browser/link handler where available.'),
+        content: const Text(
+          'Learn With Champak will register itself for this Windows user, then open its own Default Apps page. '
+          'Windows requires you to confirm the default browser choice there.',
+        ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: const Text('Later')),
           FilledButton(
@@ -1059,7 +1188,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               Navigator.pop(context);
               _openWindowsDefaultApps();
             },
-            child: const Text('Open Settings'),
+            child: const Text('Register & Open Settings'),
           ),
         ],
       ),
@@ -1232,7 +1361,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v2.2 - Windows Default Browser', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v2.3 - Windows Default Browser Fix', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
