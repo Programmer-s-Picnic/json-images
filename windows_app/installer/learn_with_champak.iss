@@ -17,6 +17,7 @@ SetupIconFile=..\windows\runner\resources\app_icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+ChangesAssociations=yes
 ArchitecturesInstallIn64BitMode=x64
 
 [Languages]
