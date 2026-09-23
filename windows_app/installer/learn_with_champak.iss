@@ -1,5 +1,5 @@
 #define MyAppName "Learn With Champak Desktop"
-#define MyAppVersion "2.2.0"
+#define MyAppVersion "2.3.0"
 #define MyAppPublisher "Learn With Champak"
 #define MyAppExeName "learn_with_champak_windows.exe"
 
@@ -50,6 +50,9 @@ Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\
 Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities"; ValueType: string; ValueName: "ApplicationIcon"; ValueData: "{app}\{#MyAppExeName},0"
 Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities\URLAssociations"; ValueType: string; ValueName: "http"; ValueData: "LearnWithChampakHTML"
 Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities\URLAssociations"; ValueType: string; ValueName: "https"; ValueData: "LearnWithChampakHTML"
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities\FileAssociations"; ValueType: string; ValueName: ".htm"; ValueData: "LearnWithChampakHTML"
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities\FileAssociations"; ValueType: string; ValueName: ".html"; ValueData: "LearnWithChampakHTML"
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities\Startmenu"; ValueType: string; ValueName: "StartMenuInternet"; ValueData: "LearnWithChampakDesktop"
 
 Root: HKLM; Subkey: "Software\Classes\LearnWithChampakHTML"; ValueType: string; ValueName: ""; ValueData: "Learn With Champak HTML Document"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "Software\Classes\LearnWithChampakHTML"; ValueType: string; ValueName: "FriendlyTypeName"; ValueData: "Learn With Champak Web Link"
