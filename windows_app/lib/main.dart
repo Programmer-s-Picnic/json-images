@@ -1376,13 +1376,36 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<bool> _launchSettingsUri(String uri) async {
+    // Do not pass ms-settings: URIs to explorer.exe. On some Windows
+    // installations Explorer interprets them as file-system locations and
+    // opens Documents instead of Settings.
     try {
-      final process = await Process.start(
-        'explorer.exe',
-        [uri],
+      final parsed = Uri.parse(uri);
+      final launched = await launchUrl(
+        parsed,
+        mode: LaunchMode.externalApplication,
+      );
+      if (launched) return true;
+    } catch (_) {}
+
+    // Windows shell fallback.
+    try {
+      final result = await Process.run(
+        'cmd.exe',
+        ['/d', '/c', 'start', '', uri],
         runInShell: false,
       );
-      return process.pid > 0;
+      if (result.exitCode == 0) return true;
+    } catch (_) {}
+
+    // Final protocol-handler fallback.
+    try {
+      final result = await Process.run(
+        'rundll32.exe',
+        ['url.dll,FileProtocolHandler', uri],
+        runInShell: false,
+      );
+      return result.exitCode == 0;
     } catch (_) {
       return false;
     }
@@ -1412,7 +1435,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     if (!mounted) return;
     setState(() {
       _status = opened
-          ? "Windows Default Apps opened for Champak's Desktop Browser. Press Set default there."
+          ? "Windows Default Apps opened. Press Set default for Champak's Desktop Browser."
           : "Open Windows Settings > Apps > Default apps > Champak's Desktop Browser.";
     });
   }
@@ -2237,7 +2260,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Champak's Desktop Browser v3.1",
+                      "Champak's Desktop Browser v3.1.1",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
                     ),
                     const Text(
