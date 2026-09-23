@@ -4,7 +4,9 @@ import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter_windows/webview_flutter_windows.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -72,7 +74,7 @@ void main(List<String> args) async {
     minimumSize: const Size(900, 600),
     center: !hasSavedPosition,
     backgroundColor: Colors.white,
-    title: 'Learn With Champak Desktop Browser',
+    title: "Champak's Desktop Browser",
   );
 
   await windowManager.waitUntilReadyToShow(options, () async {
@@ -99,7 +101,7 @@ class LearnWithChampakWindowsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Learn With Champak Desktop Browser',
+      title: "Champak's Desktop Browser",
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff075985)),
         useMaterial3: true,
@@ -143,6 +145,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   static const apkUrl = 'https://programmer-s-picnic.github.io/json-images/tv/champak-tv.apk';
   static const windowsInstallerUrl = 'https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-setup.exe';
   static const versionUrl = 'https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-version.json';
+  static const githubCodeUrl = 'https://github.com/Programmer-s-Picnic/json-images/tree/main/windows_app';
+  static const contactEmail = 'champaksworld@gmail.com';
+  static const contactPhone = '+91 9335874326';
+  static const whatsappNumber = '919335874326';
   static const desktopUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0';
 
   static const newTabLinkScript = r'''
@@ -1253,7 +1259,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     final exe = Platform.resolvedExecutable;
     final icon = '$exe,0';
     final command = '"$exe" "%1"';
-    const appName = 'Learn With Champak Desktop';
+    const appName = "Champak's Desktop Browser";
     const capabilitiesPath = r'Software\LearnWithChampakDesktop\Capabilities';
     const capabilitiesKey = r'HKCU\Software\LearnWithChampakDesktop\Capabilities';
     const progIdKey = r'HKCU\Software\Classes\LearnWithChampakHTML';
@@ -1348,13 +1354,13 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     var opened = false;
     if (userRegistered) {
       opened = await _launchSettingsUri(
-        'ms-settings:defaultapps?registeredAppUser=Learn%20With%20Champak%20Desktop',
+        'ms-settings:defaultapps?registeredAppUser=Champak%27s%20Desktop%20Browser',
       );
     }
 
     if (!opened) {
       opened = await _launchSettingsUri(
-        'ms-settings:defaultapps?registeredAppMachine=Learn%20With%20Champak%20Desktop',
+        'ms-settings:defaultapps?registeredAppMachine=Champak%27s%20Desktop%20Browser',
       );
     }
 
@@ -1365,7 +1371,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     if (!mounted) return;
     setState(() {
       _status = opened
-          ? 'In Default apps, choose Learn With Champak Desktop and set HTTP/HTTPS (and HTML if offered).'
+          ? 'In Default apps, choose Champak's Desktop Browser and set HTTP/HTTPS (and HTML if offered).'
           : 'Open Windows Settings > Apps > Default apps > Learn With Champak Desktop.';
     });
   }
@@ -1376,7 +1382,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       builder: (_) => AlertDialog(
         title: const Text('Set as default browser?'),
         content: const Text(
-          'Learn With Champak will register itself for this Windows user, then open its own Default Apps page. '
+          'Champak's Desktop Browser will register itself for this Windows user, then open its own Default Apps page. '
           'Windows requires you to confirm the default browser choice there.',
         ),
         actions: [
@@ -1603,6 +1609,259 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     } catch (_) {}
   }
 
+  Future<void> _launchExternalUri(Uri uri) async {
+    try {
+      final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (!ok && mounted) {
+        setState(() => _status = 'Could not open ' + uri.toString());
+      }
+    } catch (e) {
+      if (mounted) setState(() => _status = 'Could not open link: ' + e.toString());
+    }
+  }
+
+  void _showHowToUse() {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Row(
+          children: [
+            Icon(Icons.school, color: Color(0xff075985)),
+            SizedBox(width: 10),
+            Text("How to use Champak's Desktop Browser"),
+          ],
+        ),
+        content: const SizedBox(
+          width: 680,
+          child: SingleChildScrollView(
+            child: Text(
+              '1. Type a website address or search in the address bar and press Go.\n\n'
+              '2. Use New Tab, Tabs and Close to work with several learning pages at once.\n\n'
+              '3. Use Add Bookmark to save the current page. Open Bookmarks to revisit or remove saved pages.\n\n'
+              '4. Use Download to save the current HTTP/HTTPS address into your Windows Downloads folder. '
+              'Open File opens the most recent downloaded file, while Downloads opens the folder.\n\n'
+              '5. History shows recently visited pages. Privacy hides the selected tab when this browser loses focus.\n\n'
+              '6. Timed lets you schedule a learning website to open automatically.\n\n'
+              '7. Default Browser registers Champak\'s Desktop Browser with Windows and opens Default Apps, where Windows asks you to confirm it.\n\n'
+              '8. Use Learn With Champak, Inside Kashi, YouTube, WhatsApp Web, Google, Gmail and the other shortcuts for quick access.\n\n'
+              'This browser is strictly for learning purposes.',
+              style: TextStyle(fontSize: 15, height: 1.4),
+            ),
+          ),
+        ),
+        actions: [
+          FilledButton.icon(
+            onPressed: () => Navigator.pop(dialogContext),
+            icon: const Icon(Icons.check),
+            label: const Text('Got it'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _showContactChampak() async {
+    final nameController = TextEditingController();
+    final emailController = TextEditingController();
+    final messageController = TextEditingController();
+
+    await showDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Row(
+          children: [
+            CircleAvatar(
+              radius: 24,
+              backgroundImage: AssetImage('assets/champak_roy.jpg'),
+            ),
+            SizedBox(width: 12),
+            Expanded(child: Text('Contact Champak Roy')),
+          ],
+        ),
+        content: SizedBox(
+          width: 650,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Learn With Champak',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xff075985)),
+                ),
+                const SizedBox(height: 6),
+                const SelectableText('Email: champaksworld@gmail.com'),
+                const SelectableText('WhatsApp / Phone: +91 9335874326'),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: nameController,
+                  decoration: const InputDecoration(labelText: 'Your name', border: OutlineInputBorder()),
+                ),
+                const SizedBox(height: 10),
+                TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(labelText: 'Your email', border: OutlineInputBorder()),
+                ),
+                const SizedBox(height: 10),
+                TextField(
+                  controller: messageController,
+                  minLines: 4,
+                  maxLines: 8,
+                  decoration: const InputDecoration(labelText: 'Message', border: OutlineInputBorder()),
+                ),
+              ],
+            ),
+          ),
+        ),
+        actions: [
+          TextButton.icon(
+            onPressed: () async {
+              await Clipboard.setData(const ClipboardData(text: contactPhone));
+              if (mounted) setState(() => _status = 'Phone number copied: ' + contactPhone);
+            },
+            icon: const Icon(Icons.copy),
+            label: const Text('Copy Phone'),
+          ),
+          TextButton.icon(
+            onPressed: () {
+              final text = [
+                'Hello Champak Roy,',
+                if (nameController.text.trim().isNotEmpty) 'My name is ' + nameController.text.trim() + '.',
+                if (emailController.text.trim().isNotEmpty) 'Email: ' + emailController.text.trim(),
+                if (messageController.text.trim().isNotEmpty) messageController.text.trim(),
+              ].join('\n');
+              final uri = Uri.https('wa.me', '/$whatsappNumber', {'text': text});
+              _launchExternalUri(uri);
+            },
+            icon: const Icon(Icons.chat),
+            label: const Text('WhatsApp'),
+          ),
+          FilledButton.icon(
+            onPressed: () {
+              final subject = nameController.text.trim().isEmpty
+                  ? "Champak's Desktop Browser contact"
+                  : "Champak's Desktop Browser contact from " + nameController.text.trim();
+              final body = [
+                if (nameController.text.trim().isNotEmpty) 'Name: ' + nameController.text.trim(),
+                if (emailController.text.trim().isNotEmpty) 'Email: ' + emailController.text.trim(),
+                '',
+                messageController.text.trim(),
+              ].join('\n');
+              final uri = Uri(
+                scheme: 'mailto',
+                path: contactEmail,
+                queryParameters: {'subject': subject, 'body': body},
+              );
+              _launchExternalUri(uri);
+            },
+            icon: const Icon(Icons.email),
+            label: const Text('Send Email'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+
+    nameController.dispose();
+    emailController.dispose();
+    messageController.dispose();
+  }
+
+  void _showDisclaimer() {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Disclaimer'),
+        content: const SizedBox(
+          width: 560,
+          child: Text(
+            'This browser is strictly for learning purposes.\n\n'
+            'Websites, downloads and external services opened through the browser remain subject to their own terms, '
+            'privacy policies and security practices.',
+            style: TextStyle(fontSize: 15, height: 1.4),
+          ),
+        ),
+        actions: [
+          TextButton.icon(
+            onPressed: () {
+              Navigator.pop(dialogContext);
+              _newTab(githubCodeUrl);
+            },
+            icon: const Icon(Icons.code),
+            label: const Text('View Code on GitHub'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showBrandMenu() {
+    showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      builder: (sheetContext) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(18, 6, 18, 18),
+          child: Wrap(
+            runSpacing: 8,
+            children: [
+              const ListTile(
+                leading: CircleAvatar(
+                  radius: 24,
+                  backgroundImage: AssetImage('assets/champak_roy.jpg'),
+                ),
+                title: Text("Champak's Desktop Browser", style: TextStyle(fontWeight: FontWeight.w900)),
+                subtitle: Text('Learn With Champak • Designed by Champak Roy'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.menu_book),
+                title: const Text('How to Use'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _showHowToUse();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.contact_mail),
+                title: const Text('Contact Champak Roy'),
+                subtitle: const Text('champaksworld@gmail.com • +91 9335874326'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _showContactChampak();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.code),
+                title: const Text('Code on GitHub'),
+                subtitle: const Text('Programmer-s-Picnic / json-images / windows_app'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _newTab(githubCodeUrl);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.info_outline),
+                title: const Text('Disclaimer'),
+                subtitle: const Text('This browser is strictly for learning purposes.'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _showDisclaimer();
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Future<void> _safeBack() async {
     try {
       await _controller?.goBack();
@@ -1755,39 +2014,66 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       );
     }
 
+    Widget actionScroller(List<Widget> children) => SizedBox(
+          height: 46,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(children: children),
+          ),
+        );
+
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
       decoration: const BoxDecoration(
-        gradient: LinearGradient(colors: [Color(0xff022c43), Color(0xff075985)]),
+        gradient: LinearGradient(colors: [Color(0xff022c43), Color(0xff075985), Color(0xff0b6f9f)]),
+        boxShadow: [BoxShadow(blurRadius: 7, color: Colors.black26, offset: Offset(0, 2))],
       ),
       child: Column(
         children: [
           Row(
             children: [
-              const CircleAvatar(radius: 20, backgroundColor: Colors.white, child: Icon(Icons.school, color: Color(0xff075985), size: 25)),
-              const SizedBox(width: 10),
+              InkWell(
+                borderRadius: BorderRadius.circular(28),
+                onTap: _showContactChampak,
+                child: const CircleAvatar(
+                  radius: 25,
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage('assets/champak_roy.jpg'),
+                ),
+              ),
+              const SizedBox(width: 11),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v2.6 - Bookmarks + Privacy', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-                    Text(_privacyHidden ? 'Private Tab' : (_tab?.title ?? 'Browser'), maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
+                    const Text(
+                      "Champak's Desktop Browser v3.0",
+                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
+                    ),
+                    const Text(
+                      'Learn With Champak • Designed by Champak Roy • Strictly for learning purposes',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Color(0xffffdd80), fontSize: 12.5, fontWeight: FontWeight.w700),
+                    ),
+                    Text(
+                      _privacyHidden ? 'Private Tab' : (_tab?.title ?? 'Browser'),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(color: Colors.white70, fontSize: 12),
+                    ),
                   ],
                 ),
               ),
-              _toolbarButton('+ New Tab', Icons.add_box, () => _newTab(homeUrl), important: true),
-              _toolbarButton('Tabs', Icons.tab, _showTabs, important: true),
-              _toolbarButton('Close', Icons.close, () => _closeTab(_current), important: true),
-              _toolbarButton('History', Icons.history, _showHistory, important: true),
-              _toolbarButton('Bookmarks', Icons.bookmarks, _showBookmarks, important: true),
-              _toolbarButton('G Help', Icons.help, _showGoogleSignInHelp),
-              _toolbarButton('Win Update', Icons.system_update_alt, () => _newTab(windowsInstallerUrl)),
-              _toolbarButton('APK', Icons.android, () => _newTab(apkUrl)),
+              const SizedBox(width: 8),
+              _toolbarButton('How to Use', Icons.menu_book, _showHowToUse, important: true),
+              _toolbarButton('Contact', Icons.contact_mail, _showContactChampak, important: true),
+              _toolbarButton('Menu', Icons.menu, _showBrandMenu),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 7),
           _tabStrip(),
-          const SizedBox(height: 8),
+          const SizedBox(height: 7),
           Row(
             children: [
               _toolbarButton('Back', Icons.arrow_back, _safeBack),
@@ -1800,38 +2086,61 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
-                    hintText: 'Type website/search, Google, Gmail, WhatsApp, or saved URL',
+                    hintText: 'Type a website, search, or paste a link',
+                    prefixIcon: const Icon(Icons.language),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide.none),
                   ),
                 ),
               ),
               const SizedBox(width: 8),
-              _toolbarButton('Go', Icons.play_arrow, () => _load(_addressController.text)),
+              _toolbarButton('Go', Icons.play_arrow, () => _load(_addressController.text), important: true),
               _toolbarButton('Full', Icons.fullscreen, () => setState(() => _fullScreen = true)),
             ],
           ),
-          const SizedBox(height: 7),
+          const SizedBox(height: 6),
+          actionScroller([
+            _toolbarButton('Home', Icons.home, () => _load(homeUrl)),
+            _toolbarButton('Learn With Champak', Icons.school, () => _newTab(homeUrl), important: true),
+            _toolbarButton('Inside Kashi', Icons.temple_hindu, () => _newTab(insideKashiUrl)),
+            _toolbarButton('YouTube', Icons.smart_display, () => _newTab(youtubeUrl)),
+            _toolbarButton('WhatsApp Web', Icons.chat, () => _newTab(whatsappUrl)),
+            _toolbarButton('Google', Icons.search, () => _newTab(googleSearchUrl)),
+            _toolbarButton('G Account', Icons.account_circle, _openGoogleAccountInside),
+            _toolbarButton('Gmail', Icons.mail, _openGmailInside),
+            _toolbarButton('Add Bookmark', Icons.bookmark_add, _bookmarkCurrentPage, important: true),
+            _toolbarButton('Bookmarks', Icons.bookmarks, _showBookmarks, important: true),
+            _toolbarButton('History', Icons.history, _showHistory),
+            _toolbarButton('Download', Icons.download, _downloadCurrentUrl, important: true),
+            _toolbarButton('Open File', Icons.file_open, _openLastDownloadedFile, important: true),
+            _toolbarButton('Downloads', Icons.folder_open, _openDownloadsFolder),
+            _toolbarButton(_tab?.privacyBlur == true ? 'Privacy On' : 'Privacy', Icons.visibility_off, _togglePrivacyBlur),
+            _toolbarButton('Default Browser', Icons.settings_applications, _openWindowsDefaultApps),
+            _toolbarButton('GitHub Code', Icons.code, () => _newTab(githubCodeUrl)),
+            _toolbarButton('Disclaimer', Icons.info_outline, _showDisclaimer),
+            _toolbarButton('Win Update', Icons.system_update_alt, () => _newTab(windowsInstallerUrl)),
+            _toolbarButton('APK', Icons.android, () => _newTab(apkUrl)),
+          ]),
+          const SizedBox(height: 4),
           Row(
             children: [
-              _toolbarButton('Home', Icons.home, () => _load(homeUrl)),
-              _toolbarButton('LearnWithChampak', Icons.public, () => _newTab(homeUrl)),
-              _toolbarButton('Inside Kashi', Icons.temple_hindu, () => _newTab(insideKashiUrl)),
-              _toolbarButton('YouTube', Icons.smart_display, () => _newTab(youtubeUrl)),
-              _toolbarButton('WhatsApp Web', Icons.chat, () => _newTab(whatsappUrl)),
-              _toolbarButton('Google', Icons.search, () => _newTab(googleSearchUrl)),
-              _toolbarButton('G Inside', Icons.login, _openGoogleSignInInside, important: true),
-              _toolbarButton('G Account', Icons.account_circle, _openGoogleAccountInside),
-              _toolbarButton('Gmail', Icons.mail, _openGmailInside),
-              _toolbarButton('Add Bookmark', Icons.bookmark_add, _bookmarkCurrentPage, important: true),
-              _toolbarButton('Download', Icons.download, _downloadCurrentUrl, important: true),
-              _toolbarButton('Open File', Icons.file_open, _openLastDownloadedFile, important: true),
-              _toolbarButton(_tab?.privacyBlur == true ? 'Privacy On' : 'Privacy', Icons.visibility_off, _togglePrivacyBlur, important: true),
-              _toolbarButton('Default Browser', Icons.settings_applications, _openWindowsDefaultApps),
-              const Spacer(),
-              if (_checking) const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)),
-              const SizedBox(width: 8),
-              Flexible(child: Text(_status, style: const TextStyle(color: Colors.white), overflow: TextOverflow.ellipsis)),
+              const Icon(Icons.school_outlined, color: Color(0xffffdd80), size: 15),
+              const SizedBox(width: 5),
+              const Text(
+                'Learn With Champak',
+                style: TextStyle(color: Color(0xffffdd80), fontWeight: FontWeight.w900, fontSize: 12),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  _status,
+                  style: const TextStyle(color: Colors.white70, fontSize: 11.5),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              if (_checking)
+                const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)),
             ],
           ),
         ],

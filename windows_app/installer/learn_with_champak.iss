@@ -1,5 +1,5 @@
-#define MyAppName "Learn With Champak Desktop"
-#define MyAppVersion "2.6.0"
+#define MyAppName "Champak's Desktop Browser"
+#define MyAppVersion "3.0.0"
 #define MyAppPublisher "Learn With Champak"
 #define MyAppExeName "learn_with_champak_windows.exe"
 
@@ -9,7 +9,7 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 DefaultDirName={autopf}\Learn With Champak Desktop
-DefaultGroupName=Learn With Champak Desktop
+DefaultGroupName=Champak's Desktop Browser
 DisableProgramGroupPage=yes
 OutputDir=..\dist
 OutputBaseFilename=learn-with-champak-windows-setup
