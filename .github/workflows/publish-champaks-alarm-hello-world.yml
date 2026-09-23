@@ -58,7 +58,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --rebase --autostash origin main
+          cp alarm/champaks-alarm-hello-world.apk /tmp/champaks-alarm-publish.apk
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/champaks-alarm-publish.apk alarm/champaks-alarm-hello-world.apk
+          sha256sum alarm/champaks-alarm-hello-world.apk > alarm/champaks-alarm-hello-world.apk.sha256
           git add alarm/champaks-alarm-hello-world.apk alarm/champaks-alarm-hello-world.apk.sha256
           if ! git diff --cached --quiet; then
             git commit -m "Publish Champak's Alarm APK at existing URL"
