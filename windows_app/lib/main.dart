@@ -1400,14 +1400,15 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       return;
     }
 
+    final downloadedFile = file;
     try {
       await Process.start(
         'powershell.exe',
-        ['-NoProfile', '-Command', r'Start-Process -FilePath $args[0]', file.path],
+        ['-NoProfile', '-Command', r'Start-Process -FilePath $args[0]', downloadedFile.path],
         runInShell: false,
       );
-      _lastDownloadedPath = file.path;
-      if (mounted) setState(() => _status = 'Opened ' + file.path);
+      _lastDownloadedPath = downloadedFile.path;
+      if (mounted) setState(() => _status = 'Opened ' + downloadedFile.path);
     } catch (_) {
       await _openDownloadsFolder();
       if (mounted) setState(() => _status = 'Could not open file directly; opened Downloads folder');
