@@ -25,7 +25,7 @@ class AlarmService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val id = intent?.getIntExtra("id", 0) ?: 0
         if (id <= 0) { stopSelf(); return START_NOT_STICKY }
-        val label = intent.getStringExtra("label").orEmpty().ifBlank { "Alarm" }
+        val label = intent?.getStringExtra("label").orEmpty().ifBlank { "Alarm" }
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.createNotificationChannel(NotificationChannel("ringing_v1", "Ringing alarms", NotificationManager.IMPORTANCE_HIGH).apply {
             description = "Alarm sound and stop controls"
