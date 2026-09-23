@@ -1,5 +1,5 @@
 #define MyAppName "Learn With Champak Desktop"
-#define MyAppVersion "2.1.0"
+#define MyAppVersion "2.2.0"
 #define MyAppPublisher "Learn With Champak"
 #define MyAppExeName "learn_with_champak_windows.exe"
 
@@ -34,3 +34,26 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilen
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "Launch {#MyAppName}"; Flags: nowait postinstall skipifsilent
+
+
+[Registry]
+; Register Learn With Champak as a browser-capable Windows application.
+Root: HKLM; Subkey: "Software\RegisteredApplications"; ValueType: string; ValueName: "{#MyAppName}"; ValueData: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities"; Flags: uninsdeletevalue
+
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"""
+
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities"; ValueType: string; ValueName: "ApplicationName"; ValueData: "{#MyAppName}"
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities"; ValueType: string; ValueName: "ApplicationDescription"; ValueData: "Learn With Champak desktop web browser"
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities"; ValueType: string; ValueName: "ApplicationIcon"; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities\URLAssociations"; ValueType: string; ValueName: "http"; ValueData: "LearnWithChampakHTML"
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities\URLAssociations"; ValueType: string; ValueName: "https"; ValueData: "LearnWithChampakHTML"
+
+Root: HKLM; Subkey: "Software\Classes\LearnWithChampakHTML"; ValueType: string; ValueName: ""; ValueData: "Learn With Champak HTML Document"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Classes\LearnWithChampakHTML"; ValueType: string; ValueName: "FriendlyTypeName"; ValueData: "Learn With Champak Web Link"
+Root: HKLM; Subkey: "Software\Classes\LearnWithChampakHTML"; ValueType: string; ValueName: "URL Protocol"; ValueData: ""
+Root: HKLM; Subkey: "Software\Classes\LearnWithChampakHTML\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKLM; Subkey: "Software\Classes\LearnWithChampakHTML\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
+
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\InstallInfo"; ValueType: string; ValueName: "ReinstallCommand"; ValueData: """{app}\{#MyAppExeName}"""
