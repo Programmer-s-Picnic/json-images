@@ -27,7 +27,11 @@ class ChampaksAlarmApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         title: "Champak's Alarm",
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff2176b9)), useMaterial3: true),
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff2176b9)),
+          useMaterial3: true,
+          scaffoldBackgroundColor: const Color(0xfff7f9fc),
+        ),
         home: const AlarmHome(),
       );
 }
@@ -117,35 +121,63 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
     final saved = await showModalBottomSheet<bool>(
       context: context,
       isScrollControlled: true,
-      showDragHandle: true,
-      builder: (sheetContext) => StatefulBuilder(builder: (context, update) => Padding(
-            padding: EdgeInsets.fromLTRB(20, 8, 20, MediaQuery.viewInsetsOf(context).bottom + 24),
-            child: SingleChildScrollView(
-              child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(item == null ? 'Add alarm' : 'Edit alarm', style: Theme.of(context).textTheme.headlineSmall),
-                const SizedBox(height: 14),
-                OutlinedButton.icon(
-                  onPressed: () async {
-                    final picked = await showTimePicker(context: context, initialTime: time);
-                    if (picked != null) update(() => time = picked);
-                  },
-                  icon: const Icon(Icons.schedule), label: Text(time.format(context)),
-                ),
-                TextField(controller: label, maxLength: 80, decoration: const InputDecoration(labelText: 'Label', hintText: 'Wake up')),
-                const SizedBox(height: 8),
-                const Text('Repeat on these days (none means once)'),
-                Wrap(spacing: 5, children: [
-                  for (var day = 1; day <= 7; day++) FilterChip(
-                    label: Text(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][day - 1]),
-                    selected: selected.contains(day),
-                    onSelected: (checked) => update(() { if (checked) { selected.add(day); } else { selected.remove(day); } }),
+      useSafeArea: true,
+      builder: (sheetContext) => StatefulBuilder(builder: (context, update) {
+        final keyboardHeight = MediaQuery.viewInsetsOf(context).bottom;
+        return Padding(
+          padding: EdgeInsets.only(bottom: keyboardHeight),
+          child: SafeArea(
+            top: false,
+            child: FractionallySizedBox(
+              heightFactor: keyboardHeight > 0 ? 0.8 : 0.64,
+              child: Column(children: [
+                const SizedBox(height: 10),
+                Container(width: 36, height: 4, decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.outlineVariant,
+                  borderRadius: BorderRadius.circular(4),
+                )),
+                Expanded(child: ListView(padding: const EdgeInsets.fromLTRB(24, 22, 24, 12), children: [
+                  Text(item == null ? 'Add alarm' : 'Edit alarm', style: Theme.of(context).textTheme.headlineSmall),
+                  const SizedBox(height: 20),
+                  Text('TIME', style: Theme.of(context).textTheme.labelMedium),
+                  const SizedBox(height: 8),
+                  OutlinedButton.icon(
+                    onPressed: () async {
+                      final picked = await showTimePicker(context: context, initialTime: time);
+                      if (picked != null) update(() => time = picked);
+                    },
+                    icon: const Icon(Icons.schedule), label: Text(time.format(context)),
+                    style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56), alignment: Alignment.centerLeft),
                   ),
-                ]),
-                const SizedBox(height: 12),
-                FilledButton.icon(onPressed: () => Navigator.pop(sheetContext, true), icon: const Icon(Icons.check), label: const Text('Save alarm')),
+                  const SizedBox(height: 12),
+                  TextField(controller: label, maxLength: 80,
+                    textInputAction: TextInputAction.done,
+                    decoration: const InputDecoration(labelText: 'Label', hintText: 'Wake up', border: OutlineInputBorder())),
+                  const SizedBox(height: 4),
+                  Text('REPEAT', style: Theme.of(context).textTheme.labelMedium),
+                  const SizedBox(height: 4),
+                  Text('Leave all days off for a one-time alarm', style: Theme.of(context).textTheme.bodySmall),
+                  const SizedBox(height: 12),
+                  Wrap(spacing: 8, runSpacing: 4, children: [
+                    for (var day = 1; day <= 7; day++) FilterChip(
+                      label: Text(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][day - 1]),
+                      selected: selected.contains(day),
+                      onSelected: (checked) => update(() { if (checked) { selected.add(day); } else { selected.remove(day); } }),
+                    ),
+                  ]),
+                ])),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 12, 24, 16),
+                  child: SizedBox(width: double.infinity, height: 52,
+                    child: FilledButton.icon(
+                      onPressed: () => Navigator.pop(sheetContext, true),
+                      icon: const Icon(Icons.check), label: const Text('Save alarm'))),
+                ),
               ]),
             ),
-          )),
+          ),
+        );
+      }),
     );
     if (saved == true) {
       final data = jsonEncode({'id': item?.id ?? 0, 'hour': time.hour, 'minute': time.minute,
@@ -193,20 +225,27 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
       ..sort((a, b) => a.nextAt.compareTo(b.nextAt));
     final ordered = [...alarms]..sort((a, b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute));
     return Scaffold(
-      appBar: AppBar(title: const Text("Champak's Alarm")),
-      body: loading ? const Center(child: CircularProgressIndicator()) : ListView(children: [
-        Card(margin: const EdgeInsets.all(16), child: Padding(padding: const EdgeInsets.all(18), child: Column(
+      appBar: AppBar(title: const Text("Champak's Alarm"), backgroundColor: const Color(0xfff7f9fc)),
+      body: loading ? const Center(child: CircularProgressIndicator()) : ListView(padding: const EdgeInsets.only(top: 8), children: [
+        Card(margin: const EdgeInsets.fromLTRB(16, 0, 16, 16), color: Theme.of(context).colorScheme.primaryContainer,
+          child: Padding(padding: const EdgeInsets.all(22), child: Column(
           crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('NEXT ALARM'), const SizedBox(height: 5),
-            Text(next.isEmpty ? 'No alarm scheduled' : '${_time(context, next.first)} · ${next.first.label.isEmpty ? 'Alarm' : next.first.label}',
-              style: Theme.of(context).textTheme.titleLarge),
-            if (next.isNotEmpty) Text(MaterialLocalizations.of(context).formatMediumDate(DateTime.fromMillisecondsSinceEpoch(next.first.nextAt))),
+            Row(children: [const Icon(Icons.nights_stay_outlined, size: 20), const SizedBox(width: 8),
+              Text('NEXT ALARM', style: Theme.of(context).textTheme.labelLarge)]),
+            const SizedBox(height: 14),
+            Text(next.isEmpty ? 'No alarm scheduled' : _time(context, next.first),
+              style: Theme.of(context).textTheme.headlineMedium),
+            const SizedBox(height: 4),
+            Text(next.isEmpty ? 'Add an alarm to get started' :
+              '${next.first.label.isEmpty ? 'Alarm' : next.first.label} · ${MaterialLocalizations.of(context).formatMediumDate(DateTime.fromMillisecondsSinceEpoch(next.first.nextAt))}',
+              style: Theme.of(context).textTheme.bodyMedium),
           ],
         ))),
         if (permissions.values.any((allowed) => !allowed)) Card(
           margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-          child: Padding(padding: const EdgeInsets.all(12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('Allow alarm access', style: TextStyle(fontWeight: FontWeight.bold)),
+          child: Padding(padding: const EdgeInsets.all(18), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('Allow alarm access', style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 4),
             const Text('Allow these Android settings so alarms ring at the selected time and show on the lock screen.'),
             for (final kind in ['exact', 'notifications', 'fullScreen'])
               if (permissions[kind] == false) TextButton.icon(
@@ -216,7 +255,13 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
               ),
           ])),
         ),
-        if (ordered.isEmpty) const Padding(padding: EdgeInsets.all(36), child: Center(child: Text('No alarms yet. Tap Add alarm.'))),
+        if (ordered.isEmpty) Padding(padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 60), child: Column(children: [
+          Icon(Icons.alarm_add_outlined, size: 56, color: Theme.of(context).colorScheme.primary),
+          const SizedBox(height: 14),
+          Text('No alarms yet', style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 4),
+          const Text('Tap Add alarm to set your first one.', textAlign: TextAlign.center),
+        ])),
         for (final item in ordered) Card(margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4), child: ListTile(
           onTap: () => _edit(item),
           title: Text(_time(context, item), style: Theme.of(context).textTheme.headlineMedium),
