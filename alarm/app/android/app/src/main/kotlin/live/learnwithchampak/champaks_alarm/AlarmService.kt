@@ -10,15 +10,20 @@ import android.content.Intent
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import android.os.IBinder
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.content.Context
+import android.speech.tts.TextToSpeech
+import android.speech.tts.UtteranceProgressListener
+import java.util.Locale
 
 class AlarmService : Service() {
     private var player: MediaPlayer? = null
     private var vibrator: Vibrator? = null
+    private var speech: TextToSpeech? = null
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -55,7 +60,9 @@ class AlarmService : Service() {
         player?.release()
         vibrator?.cancel()
         try {
-            val uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+            val chosen = intent.getStringExtra("tuneUri").orEmpty()
+            val uri = chosen.takeIf { it.isNotBlank() }?.let(Uri::parse)
+                ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
                 ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
                 ?: throw IllegalStateException("No system alarm sound")
             player = MediaPlayer().apply {
@@ -65,15 +72,50 @@ class AlarmService : Service() {
                 prepare()
                 start()
             }
-        } catch (_: Exception) { player = null }
+        } catch (_: Exception) {
+            player?.release()
+            player = null
+            try {
+                val fallback = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+                if (fallback != null) player = MediaPlayer().apply {
+                    setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).build())
+                    setDataSource(this@AlarmService, fallback)
+                    isLooping = true
+                    prepare()
+                    start()
+                }
+            } catch (_: Exception) { player?.release(); player = null }
+        }
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         vibrator?.vibrate(VibrationEffect.createWaveform(longArrayOf(0, 700, 300), 0))
+        val message = intent.getStringExtra("message").orEmpty().take(160)
+        if (message.isNotBlank()) {
+            speech?.shutdown()
+            speech = TextToSpeech(this) { status ->
+                if (status == TextToSpeech.SUCCESS) {
+                    speech?.language = Locale.getDefault()
+                    speech?.setAudioAttributes(AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_ALARM)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
+                    speech?.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
+                        override fun onStart(utteranceId: String?) { player?.setVolume(0.2f, 0.2f) }
+                        override fun onDone(utteranceId: String?) { player?.setVolume(1f, 1f) }
+                        @Deprecated("Android callback")
+                        override fun onError(utteranceId: String?) { player?.setVolume(1f, 1f) }
+                    })
+                    speech?.speak(message, TextToSpeech.QUEUE_FLUSH, null, "alarm-message")
+                }
+            }
+        }
         return START_NOT_STICKY
     }
 
     override fun onDestroy() {
         player?.run { if (isPlaying) stop(); release() }
         player = null
+        speech?.stop()
+        speech?.shutdown()
+        speech = null
         vibrator?.cancel()
         vibrator = null
         super.onDestroy()

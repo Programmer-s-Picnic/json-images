@@ -12,6 +12,8 @@ class AlarmReceiver : BroadcastReceiver() {
         val entry = AlarmRepository(context).onFire(id, intent.getBooleanExtra("snooze", false)) ?: return
         val ringIntent = Intent(context, AlarmService::class.java)
             .putExtra("id", id).putExtra("label", entry.optString("label"))
+            .putExtra("tuneUri", entry.optString("tuneUri"))
+            .putExtra("message", entry.optString("message"))
         if (Build.VERSION.SDK_INT >= 26) context.startForegroundService(ringIntent)
         else context.startService(ringIntent)
     }

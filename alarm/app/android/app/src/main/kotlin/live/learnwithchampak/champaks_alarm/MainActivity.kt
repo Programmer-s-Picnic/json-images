@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.media.RingtoneManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -22,6 +23,18 @@ class MainActivity : FlutterActivity() {
             val repo = AlarmRepository(this)
             try {
                 when (call.method) {
+                    "tunes" -> {
+                        val tunes = mutableListOf(mapOf("name" to "Default alarm", "uri" to ""))
+                        val ringtoneManager = RingtoneManager(this).apply { setType(RingtoneManager.TYPE_ALARM) }
+                        val cursor = ringtoneManager.cursor
+                        cursor.moveToPosition(-1)
+                        while (cursor.moveToNext()) {
+                            val position = cursor.position
+                            val uri = ringtoneManager.getRingtoneUri(position)?.toString() ?: continue
+                            tunes.add(mapOf("name" to cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX), "uri" to uri))
+                        }
+                        result.success(tunes)
+                    }
                     "list" -> result.success(repo.all().map { entry ->
                         entry.put("nextAt", repo.nextAt(entry)).toString()
                     })

@@ -8,16 +8,19 @@ const native = MethodChannel('champaks_alarm/native');
 void main() => runApp(const ChampaksAlarmApp());
 
 class AlarmItem {
-  AlarmItem(this.id, this.hour, this.minute, this.label, this.days, this.enabled, this.nextAt);
+  AlarmItem(this.id, this.hour, this.minute, this.label, this.days, this.enabled, this.nextAt, this.tuneUri, this.tuneName, this.message);
   final int id, hour, minute, nextAt;
   final String label;
+  final String tuneUri, tuneName, message;
   final List<int> days;
   final bool enabled;
   factory AlarmItem.fromJson(String source) {
     final value = jsonDecode(source) as Map<String, dynamic>;
     return AlarmItem(value['id'] as int, value['hour'] as int, value['minute'] as int,
         value['label'] as String, (value['days'] as List).cast<int>(),
-        value['enabled'] as bool, value['nextAt'] as int);
+        value['enabled'] as bool, value['nextAt'] as int,
+        value['tuneUri'] as String? ?? '', value['tuneName'] as String? ?? 'Default alarm',
+        value['message'] as String? ?? '');
   }
 }
 
@@ -117,6 +120,9 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
   Future<void> _edit([AlarmItem? item]) async {
     var time = TimeOfDay(hour: item?.hour ?? TimeOfDay.now().hour, minute: item?.minute ?? TimeOfDay.now().minute);
     final label = TextEditingController(text: item?.label ?? '');
+    final message = TextEditingController(text: item?.message ?? '');
+    var tuneUri = item?.tuneUri ?? '';
+    var tuneName = item?.tuneName ?? 'Default alarm';
     final selected = item?.days.toSet() ?? <int>{};
     final saved = await showModalBottomSheet<bool>(
       context: context,
@@ -154,6 +160,42 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
                     textInputAction: TextInputAction.done,
                     decoration: const InputDecoration(labelText: 'Label', hintText: 'Wake up', border: OutlineInputBorder())),
                   const SizedBox(height: 4),
+                  Text('SOUND & VOICE', style: Theme.of(context).textTheme.labelMedium),
+                  const SizedBox(height: 8),
+                  ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(color: Theme.of(context).colorScheme.outlineVariant)),
+                    leading: const Icon(Icons.music_note_outlined), title: const Text('Alarm tune'),
+                    subtitle: Text(tuneName), trailing: const Icon(Icons.chevron_right),
+                    onTap: () async {
+                      try {
+                        final raw = await native.invokeListMethod<Map<dynamic, dynamic>>('tunes') ?? [];
+                        if (!context.mounted) return;
+                        final picked = await showModalBottomSheet<Map<dynamic, dynamic>>(
+                          context: context, showDragHandle: true, useSafeArea: true,
+                          builder: (pickerContext) => SafeArea(child: ListView(shrinkWrap: true, children: [
+                            const ListTile(title: Text('Choose alarm tune')),
+                            for (final tune in raw) ListTile(
+                              title: Text('${tune['name']}'),
+                              leading: Icon(tuneUri == tune['uri'] ? Icons.radio_button_checked : Icons.radio_button_unchecked),
+                              onTap: () => Navigator.pop(pickerContext, tune),
+                            ),
+                          ])),
+                        );
+                        if (picked != null) update(() {
+                          tuneUri = '${picked['uri']}';
+                          tuneName = '${picked['name']}';
+                        });
+                      } catch (error) { if (context.mounted) _showError(error); }
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(controller: message, maxLength: 160, maxLines: 2,
+                    decoration: const InputDecoration(labelText: 'Speak a message (optional)',
+                      hintText: 'Good morning! Time to get up.', border: OutlineInputBorder(),
+                      helperText: 'Spoken once when the alarm rings')),
+                  const SizedBox(height: 4),
                   Text('REPEAT', style: Theme.of(context).textTheme.labelMedium),
                   const SizedBox(height: 4),
                   Text('Leave all days off for a one-time alarm', style: Theme.of(context).textTheme.bodySmall),
@@ -181,10 +223,12 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
     );
     if (saved == true) {
       final data = jsonEncode({'id': item?.id ?? 0, 'hour': time.hour, 'minute': time.minute,
-        'label': label.text.trim(), 'days': selected.toList()..sort(), 'enabled': item?.enabled ?? true});
+        'label': label.text.trim(), 'days': selected.toList()..sort(), 'enabled': item?.enabled ?? true,
+        'tuneUri': tuneUri, 'tuneName': tuneName, 'message': message.text.trim()});
       await _mutate(() async { await native.invokeMethod<String>('save', {'json': data}); });
     }
     label.dispose();
+    message.dispose();
   }
 
   Future<void> _delete(AlarmItem item) async {

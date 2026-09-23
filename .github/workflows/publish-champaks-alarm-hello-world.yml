@@ -29,6 +29,7 @@ jobs:
           cp alarm/app/lib/main.dart /tmp/champaks_alarm/lib/main.dart
           cp alarm/app/pubspec.yaml /tmp/champaks_alarm/pubspec.yaml
           cp alarm/app/android/app/src/main/AndroidManifest.xml /tmp/champaks_alarm/android/app/src/main/AndroidManifest.xml
+          cp alarm/app/android/app/src/main/res/drawable/champak_alarm_icon.xml /tmp/champaks_alarm/android/app/src/main/res/drawable/champak_alarm_icon.xml
           cp alarm/app/android/app/src/main/kotlin/live/learnwithchampak/champaks_alarm/*.kt /tmp/champaks_alarm/android/app/src/main/kotlin/live/learnwithchampak/champaks_alarm/
           rm -f /tmp/champaks_alarm/test/widget_test.dart /tmp/champaks_alarm/analysis_options.yaml
           python3 - <<'PY'
