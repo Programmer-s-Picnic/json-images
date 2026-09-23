@@ -217,6 +217,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   final TextEditingController _addressController = TextEditingController(text: homeUrl);
   final List<BrowserTab> _tabs = [];
   final List<Map<String, String>> _history = [];
+  final List<Map<String, String>> _bookmarks = [];
 
   Timer? _sessionSaveTimer;
   Timer? _windowBoundsSaveTimer;
@@ -245,6 +246,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
   Future<void> _startBrowser() async {
     await _loadHistory();
+    await _loadBookmarks();
     await _prepareWebView2Environment();
 
     final timedUrl = _startupTimedUrl;
@@ -265,6 +267,135 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   String get _historyFilePath => _appDataPath('browser_history.json');
+  String get _bookmarksFilePath => _appDataPath('browser_bookmarks.json');
+
+  Future<void> _loadBookmarks() async {
+    try {
+      final file = File(_bookmarksFilePath);
+      if (!await file.exists()) return;
+      final decoded = jsonDecode(await file.readAsString());
+      if (decoded is! List) return;
+      _bookmarks
+        ..clear()
+        ..addAll(
+          decoded.whereType<Map>().map((item) => {
+                'url': item['url']?.toString() ?? '',
+                'title': item['title']?.toString() ?? '',
+                'savedAt': item['savedAt']?.toString() ?? '',
+              }).where((item) => item['url']!.isNotEmpty),
+        );
+    } catch (_) {}
+  }
+
+  Future<void> _saveBookmarks() async {
+    try {
+      final file = File(_bookmarksFilePath);
+      await file.parent.create(recursive: true);
+      await file.writeAsString(jsonEncode(_bookmarks), flush: true);
+    } catch (_) {}
+  }
+
+  Future<void> _bookmarkCurrentPage() async {
+    final tab = _tab;
+    if (tab == null) return;
+    final url = tab.url.trim();
+    if (!(url.startsWith('http://') || url.startsWith('https://'))) {
+      if (mounted) setState(() => _status = 'Open a web page before adding a bookmark');
+      return;
+    }
+
+    final existing = _bookmarks.indexWhere((item) => item['url'] == url);
+    if (existing >= 0) {
+      if (mounted) setState(() => _status = 'This page is already bookmarked');
+      return;
+    }
+
+    _bookmarks.insert(0, {
+      'url': url,
+      'title': tab.title.trim().isEmpty ? url : tab.title.trim(),
+      'savedAt': DateTime.now().toIso8601String(),
+    });
+    await _saveBookmarks();
+    if (mounted) setState(() => _status = 'Bookmark saved');
+  }
+
+  void _showBookmarks() {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, setLocalState) => AlertDialog(
+          title: const Text('Bookmarks'),
+          content: SizedBox(
+            width: 720,
+            height: 520,
+            child: _bookmarks.isEmpty
+                ? const Center(
+                    child: Text('No bookmarks yet. Use Add Bookmark on any web page.'),
+                  )
+                : ListView.builder(
+                    itemCount: _bookmarks.length,
+                    itemBuilder: (context, index) {
+                      final item = _bookmarks[index];
+                      return ListTile(
+                        leading: const Icon(Icons.bookmark),
+                        title: Text(
+                          item['title'] ?? item['url'] ?? 'Bookmark',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        subtitle: Text(
+                          item['url'] ?? '',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        onTap: () {
+                          Navigator.pop(dialogContext);
+                          _newTab(item['url'] ?? homeUrl);
+                        },
+                        trailing: IconButton(
+                          tooltip: 'Delete bookmark',
+                          icon: const Icon(Icons.delete_outline),
+                          onPressed: () async {
+                            _bookmarks.removeAt(index);
+                            await _saveBookmarks();
+                            setLocalState(() {});
+                            if (mounted) setState(() => _status = 'Bookmark deleted');
+                          },
+                        ),
+                      );
+                    },
+                  ),
+          ),
+          actions: [
+            TextButton.icon(
+              onPressed: _bookmarks.isEmpty
+                  ? null
+                  : () async {
+                      _bookmarks.clear();
+                      await _saveBookmarks();
+                      setLocalState(() {});
+                      if (mounted) setState(() => _status = 'All bookmarks cleared');
+                    },
+              icon: const Icon(Icons.delete_sweep),
+              label: const Text('Clear All'),
+            ),
+            FilledButton.icon(
+              onPressed: () {
+                Navigator.pop(dialogContext);
+                _bookmarkCurrentPage();
+              },
+              icon: const Icon(Icons.bookmark_add),
+              label: const Text('Add Current Page'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Close'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   Future<void> _loadHistory() async {
     try {
@@ -1639,7 +1770,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v2.5 - Privacy Blur', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v2.6 - Bookmarks + Privacy', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_privacyHidden ? 'Private Tab' : (_tab?.title ?? 'Browser'), maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
@@ -1648,6 +1779,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               _toolbarButton('Tabs', Icons.tab, _showTabs, important: true),
               _toolbarButton('Close', Icons.close, () => _closeTab(_current), important: true),
               _toolbarButton('History', Icons.history, _showHistory, important: true),
+              _toolbarButton('Bookmarks', Icons.bookmarks, _showBookmarks, important: true),
               _toolbarButton('G Help', Icons.help, _showGoogleSignInHelp),
               _toolbarButton('Win Update', Icons.system_update_alt, () => _newTab(windowsInstallerUrl)),
               _toolbarButton('APK', Icons.android, () => _newTab(apkUrl)),
@@ -1691,6 +1823,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               _toolbarButton('G Inside', Icons.login, _openGoogleSignInInside, important: true),
               _toolbarButton('G Account', Icons.account_circle, _openGoogleAccountInside),
               _toolbarButton('Gmail', Icons.mail, _openGmailInside),
+              _toolbarButton('Add Bookmark', Icons.bookmark_add, _bookmarkCurrentPage, important: true),
               _toolbarButton('Download', Icons.download, _downloadCurrentUrl, important: true),
               _toolbarButton('Open File', Icons.file_open, _openLastDownloadedFile, important: true),
               _toolbarButton(_tab?.privacyBlur == true ? 'Privacy On' : 'Privacy', Icons.visibility_off, _togglePrivacyBlur, important: true),
