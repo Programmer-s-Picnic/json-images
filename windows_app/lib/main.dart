@@ -8,6 +8,7 @@ import 'package:webview_windows/webview_windows.dart';
 import 'package:window_manager/window_manager.dart';
 
 String? _startupTimedUrl;
+String? _startupExternalUrl;
 
 String _appDataPath(String fileName) {
   final base = Platform.environment['APPDATA'] ?? Directory.current.path;
@@ -53,6 +54,10 @@ void main(List<String> args) async {
     if (args[i].startsWith('--timed-open=')) {
       _startupTimedUrl = args[i].substring('--timed-open='.length);
       break;
+    }
+    final arg = args[i].trim();
+    if (arg.startsWith('http://') || arg.startsWith('https://')) {
+      _startupExternalUrl = arg;
     }
   }
 
@@ -231,14 +236,21 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   Future<void> _startBrowser() async {
     await _loadHistory();
     await _prepareWebView2Environment();
+
     final timedUrl = _startupTimedUrl;
+    final externalUrl = _startupExternalUrl;
+
     if (timedUrl != null && timedUrl.trim().isNotEmpty) {
       _suppressSessionPersistence = true;
       await _newTab(timedUrl, false);
       if (mounted) setState(() => _status = 'Timed site opened automatically');
+    } else if (externalUrl != null && externalUrl.trim().isNotEmpty) {
+      await _newTab(externalUrl);
+      if (mounted) setState(() => _status = 'Opened link from Windows');
     } else {
       await _restorePreviousSessionOrStartFresh();
     }
+
     await _checkUpdate();
   }
 
@@ -1019,10 +1031,18 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
   Future<void> _openWindowsDefaultApps() async {
     try {
-      await Process.start('explorer.exe', ['ms-settings:defaultapps']);
-      setState(() => _status = 'Opened Windows default apps settings');
+      await Process.start(
+        'explorer.exe',
+        ['ms-settings:defaultapps?registeredAppUser=Learn%20With%20Champak%20Desktop'],
+      );
+      setState(() => _status = 'Choose Learn With Champak for HTTP and HTTPS');
     } catch (_) {
-      setState(() => _status = 'Open Settings > Apps > Default apps');
+      try {
+        await Process.start('explorer.exe', ['ms-settings:defaultapps']);
+        setState(() => _status = 'Search Learn With Champak Desktop in Default apps');
+      } catch (_) {
+        setState(() => _status = 'Open Settings > Apps > Default apps');
+      }
     }
   }
 
@@ -1212,7 +1232,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v2.1 - History + Window Memory', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v2.2 - Windows Default Browser', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
