@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: learn-with-champak-windows-publish
+  cancel-in-progress: true
+
 jobs:
   build-windows:
     runs-on: windows-latest
