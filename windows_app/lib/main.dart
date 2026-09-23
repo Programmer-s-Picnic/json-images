@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -109,11 +110,17 @@ class LearnWithChampakWindowsApp extends StatelessWidget {
 }
 
 class BrowserTab {
-  BrowserTab({required this.controller, required this.title, required this.url});
+  BrowserTab({
+    required this.controller,
+    required this.title,
+    required this.url,
+    this.privacyBlur = false,
+  });
 
   final WebviewController controller;
   String title;
   String url;
+  bool privacyBlur;
   bool ready = false;
 }
 
@@ -218,6 +225,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   int _current = 0;
   bool _fullScreen = false;
   bool _checking = false;
+  bool _windowHasFocus = true;
+  bool _privacyHidden = false;
   String? _lastDownloadedPath;
   String _status = 'Starting browser...';
 
@@ -384,6 +393,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
             .map((tab) => {
                   'title': tab.title,
                   'url': tab.url,
+                  'privacyBlur': tab.privacyBlur,
                 })
             .toList(),
       };
@@ -426,13 +436,14 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     final savedTabs = rawTabs is List
         ? rawTabs
             .whereType<Map>()
-            .map((item) => {
+            .map((item) => <String, dynamic>{
                   'title': item['title']?.toString() ?? 'Tab',
                   'url': item['url']?.toString() ?? '',
+                  'privacyBlur': item['privacyBlur'] == true,
                 })
-            .where((item) => item['url']!.isNotEmpty && item['url'] != 'about:blank')
+            .where((item) => (item['url']?.toString() ?? '').isNotEmpty && item['url'] != 'about:blank')
             .toList()
-        : <Map<String, String>>[];
+        : <Map<String, dynamic>>[];
 
     if (savedTabs.isEmpty) {
       await _newTab('about:blank');
@@ -475,7 +486,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     _restoringSession = true;
     try {
       for (final item in savedTabs) {
-        await _newTab(item['url']!, false);
+        await _newTab(item['url']!.toString(), false, item['privacyBlur'] == true);
       }
       if (_tabs.isNotEmpty) {
         final savedCurrent = saved?['current'];
@@ -778,6 +789,22 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   @override
+  void onWindowFocus() {
+    _windowHasFocus = true;
+    if (mounted) {
+      setState(() => _privacyHidden = false);
+    }
+  }
+
+  @override
+  void onWindowBlur() {
+    _windowHasFocus = false;
+    if (mounted) {
+      setState(() => _privacyHidden = _tab?.privacyBlur == true);
+    }
+  }
+
+  @override
   void onWindowMove() => _scheduleWindowBoundsSave();
 
   @override
@@ -811,10 +838,19 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     super.dispose();
   }
 
-  Future<void> _newTab([String url = homeUrl, bool saveSession = true]) async {
+  Future<void> _newTab([
+    String url = homeUrl,
+    bool saveSession = true,
+    bool privacyBlur = false,
+  ]) async {
     final safeUrl = _normaliseUrl(url);
     final controller = WebviewController();
-    final tab = BrowserTab(controller: controller, title: 'New Tab', url: safeUrl);
+    final tab = BrowserTab(
+      controller: controller,
+      title: 'New Tab',
+      url: safeUrl,
+      privacyBlur: privacyBlur,
+    );
 
     setState(() {
       _tabs.add(tab);
@@ -904,10 +940,24 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     }
   }
 
+  void _togglePrivacyBlur() {
+    final tab = _tab;
+    if (tab == null) return;
+    setState(() {
+      tab.privacyBlur = !tab.privacyBlur;
+      _privacyHidden = !_windowHasFocus && tab.privacyBlur;
+      _status = tab.privacyBlur
+          ? 'Privacy Blur enabled for this tab'
+          : 'Privacy Blur disabled for this tab';
+    });
+    _scheduleSessionSave();
+  }
+
   void _switchTab(int index) {
     if (index < 0 || index >= _tabs.length) return;
     setState(() {
       _current = index;
+      _privacyHidden = !_windowHasFocus && (_tab?.privacyBlur == true);
       _addressController.text = _tab?.url == 'about:blank' ? '' : (_tab?.url ?? homeUrl);
       _status = 'Tab ${index + 1}';
     });
@@ -1481,7 +1531,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   Widget _tabButton(int index) {
     final tab = _tabs[index];
     final selected = index == _current;
-    final title = tab.title.trim().isEmpty ? 'New Tab' : tab.title.trim();
+    final rawTitle = tab.title.trim().isEmpty ? 'New Tab' : tab.title.trim();
+    final title = (!_windowHasFocus && tab.privacyBlur) ? 'Private Tab' : rawTitle;
 
     return Container(
       constraints: const BoxConstraints(maxWidth: 260, minWidth: 150),
@@ -1588,8 +1639,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v2.4 - Downloads + Default Browser', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-                    Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
+                    const Text('Learn With Champak Desktop v2.5 - Privacy Blur', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    Text(_privacyHidden ? 'Private Tab' : (_tab?.title ?? 'Browser'), maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
               ),
@@ -1642,6 +1693,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               _toolbarButton('Gmail', Icons.mail, _openGmailInside),
               _toolbarButton('Download', Icons.download, _downloadCurrentUrl, important: true),
               _toolbarButton('Open File', Icons.file_open, _openLastDownloadedFile, important: true),
+              _toolbarButton(_tab?.privacyBlur == true ? 'Privacy On' : 'Privacy', Icons.visibility_off, _togglePrivacyBlur, important: true),
               _toolbarButton('Default Browser', Icons.settings_applications, _openWindowsDefaultApps),
               const Spacer(),
               if (_checking) const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)),
@@ -1667,7 +1719,46 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               Expanded(
                 child: tab == null || !tab.ready
                     ? Center(child: Text(_status, style: const TextStyle(color: Colors.white)))
-                    : Webview(tab.controller, permissionRequested: (_, __, ___) => WebviewPermissionDecision.allow),
+                    : Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Webview(
+                            tab.controller,
+                            permissionRequested: (_, __, ___) => WebviewPermissionDecision.allow,
+                          ),
+                          if (_privacyHidden)
+                            ClipRect(
+                              child: BackdropFilter(
+                                filter: ui.ImageFilter.blur(sigmaX: 24, sigmaY: 24),
+                                child: Container(
+                                  color: const Color(0xcc031526),
+                                  alignment: Alignment.center,
+                                  child: const Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.visibility_off, color: Colors.white, size: 52),
+                                      SizedBox(height: 14),
+                                      Text(
+                                        'PRIVATE TAB',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 26,
+                                          fontWeight: FontWeight.w900,
+                                          letterSpacing: 1.3,
+                                        ),
+                                      ),
+                                      SizedBox(height: 6),
+                                      Text(
+                                        'Return to Learn With Champak to reveal this tab',
+                                        style: TextStyle(color: Colors.white70, fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
               ),
             ],
           ),
