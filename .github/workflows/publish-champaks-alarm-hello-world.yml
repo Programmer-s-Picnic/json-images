@@ -1,0 +1,61 @@
+name: Build and publish Champak's Alarm Hello World APK
+
+on:
+  push:
+    paths:
+      - ".github/workflows/publish-champaks-alarm-hello-world.yml"
+      - "alarm/hello-world/main.dart"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: champaks-alarm-hello-world
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Create clean Flutter Android app
+        run: |
+          flutter create --platforms android --org live.learnwithchampak --project-name champaks_alarm /tmp/champaks_alarm
+          cp alarm/hello-world/main.dart /tmp/champaks_alarm/lib/main.dart
+          rm -f /tmp/champaks_alarm/test/widget_test.dart
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('/tmp/champaks_alarm/android/app/src/main/AndroidManifest.xml')
+          s = p.read_text().replace('android:label="champaks_alarm"', 'android:label="Champak\'s Alarm"')
+          p.write_text(s)
+          PY
+      - name: Analyze and build release APK
+        working-directory: /tmp/champaks_alarm
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter build apk --release
+      - name: Stage APK
+        run: |
+          mkdir -p alarm
+          cp /tmp/champaks_alarm/build/app/outputs/flutter-apk/app-release.apk alarm/champaks-alarm-hello-world.apk
+          sha256sum alarm/champaks-alarm-hello-world.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: champaks-alarm-hello-world
+          path: alarm/champaks-alarm-hello-world.apk
+      - name: Publish to GitHub Pages repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash origin main
+          git add alarm/champaks-alarm-hello-world.apk
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish Champak's Alarm Hello World APK"
+            git push origin HEAD:main
+          fi
