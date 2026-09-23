@@ -136,6 +136,11 @@ internal class AlarmRepository(private val context: Context) {
         prefs.edit().putString("snoozes", snoozes.toString()).commit()
     }
 
+    fun test(id: Int) {
+        require(byId(id) != null) { "Save the alarm before testing it" }
+        setExact(id, System.currentTimeMillis() + 10_000L, true)
+    }
+
     fun cancel(id: Int) {
         listOf(false, true).forEach { snooze ->
             val pending = pending(id, snooze)

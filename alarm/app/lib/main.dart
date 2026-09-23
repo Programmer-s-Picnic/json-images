@@ -48,6 +48,7 @@ class AlarmHome extends StatefulWidget {
 class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
   List<AlarmItem> alarms = [];
   Map<String, bool> permissions = {};
+  int alarmVolume = -1;
   int active = 0;
   Timer? timer;
   bool loading = true;
@@ -91,11 +92,13 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
       final entries = await native.invokeListMethod<String>('list') ?? <String>[];
       final status = await native.invokeMapMethod<String, bool>('permissions') ?? <String, bool>{};
       final ringing = await native.invokeMethod<int>('active') ?? 0;
+      final volume = await native.invokeMapMethod<String, int>('alarmVolume') ?? <String, int>{};
       if (!mounted) return;
       setState(() {
         alarms = entries.map(AlarmItem.fromJson).toList();
         permissions = status;
         active = ringing;
+        alarmVolume = volume['current'] ?? -1;
         loading = false;
       });
     } catch (error) {
@@ -240,6 +243,16 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
     if (confirmed == true) await _mutate(() => native.invokeMethod<void>('delete', {'id': item.id}));
   }
 
+  Future<void> _test(AlarmItem item) async {
+    try {
+      await native.invokeMethod<void>('test', {'id': item.id});
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Test alarm will ring in 10 seconds. Lock your phone to check it.')));
+    } catch (error) {
+      if (mounted) _showError(error);
+    }
+  }
+
   String _time(BuildContext context, AlarmItem item) => TimeOfDay(hour: item.hour, minute: item.minute).format(context);
 
   @override
@@ -299,6 +312,13 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
               ),
           ])),
         ),
+        if (alarmVolume == 0) Card(
+          margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+          child: Padding(padding: const EdgeInsets.all(18), child: Row(children: [
+            const Icon(Icons.volume_off_outlined), const SizedBox(width: 12),
+            const Expanded(child: Text('Alarm volume is muted. Turn it up in Android sound settings.')),
+          ])),
+        ),
         if (ordered.isEmpty) Padding(padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 60), child: Column(children: [
           Icon(Icons.alarm_add_outlined, size: 56, color: Theme.of(context).colorScheme.primary),
           const SizedBox(height: 14),
@@ -312,7 +332,12 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
           subtitle: Text('${item.label.isEmpty ? 'Alarm' : item.label} · ${item.days.isEmpty ? 'Once' : item.days.map((d) => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][d - 1]).join(', ')}'),
           trailing: Row(mainAxisSize: MainAxisSize.min, children: [
             Switch(value: item.enabled, onChanged: (on) => _mutate(() => native.invokeMethod<void>('toggle', {'id': item.id, 'enabled': on}))),
-            IconButton(onPressed: () => _delete(item), tooltip: 'Delete', icon: const Icon(Icons.delete_outline)),
+            PopupMenuButton<String>(tooltip: 'Alarm options',
+              onSelected: (value) => value == 'test' ? _test(item) : _delete(item),
+              itemBuilder: (_) => const [
+                PopupMenuItem(value: 'test', child: Text('Test in 10 seconds')),
+                PopupMenuItem(value: 'delete', child: Text('Delete alarm')),
+              ]),
           ]),
         )),
         const SizedBox(height: 90),

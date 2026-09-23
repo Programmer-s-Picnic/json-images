@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.media.RingtoneManager
+import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -49,6 +50,12 @@ class MainActivity : FlutterActivity() {
                         result.success(null)
                     }
                     "delete" -> { repo.remove(call.argument<Int>("id") ?: 0); result.success(null) }
+                    "test" -> { repo.test(call.argument<Int>("id") ?: 0); result.success(null) }
+                    "alarmVolume" -> {
+                        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+                        result.success(mapOf("current" to audio.getStreamVolume(AudioManager.STREAM_ALARM),
+                            "max" to audio.getStreamMaxVolume(AudioManager.STREAM_ALARM)))
+                    }
                     "active" -> result.success(repo.activeId())
                     "stop" -> { repo.stopRing(); result.success(null) }
                     "snooze" -> {

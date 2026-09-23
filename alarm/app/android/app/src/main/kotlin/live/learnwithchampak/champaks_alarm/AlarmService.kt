@@ -10,9 +10,13 @@ import android.content.Intent
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.RingtoneManager
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.net.Uri
 import android.os.Build
 import android.os.IBinder
+import android.os.Handler
+import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.content.Context
@@ -24,6 +28,14 @@ class AlarmService : Service() {
     private var player: MediaPlayer? = null
     private var vibrator: Vibrator? = null
     private var speech: TextToSpeech? = null
+    private var fallbackTone: ToneGenerator? = null
+    private val toneHandler = Handler(Looper.getMainLooper())
+    private val toneLoop = object : Runnable {
+        override fun run() {
+            fallbackTone?.startTone(ToneGenerator.TONE_PROP_BEEP, 750)
+            if (fallbackTone != null) toneHandler.postDelayed(this, 1100)
+        }
+    }
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -58,6 +70,9 @@ class AlarmService : Service() {
             .build()
         startForeground(1001, notification)
         player?.release()
+        toneHandler.removeCallbacks(toneLoop)
+        fallbackTone?.release()
+        fallbackTone = null
         vibrator?.cancel()
         try {
             val chosen = intent?.getStringExtra("tuneUri").orEmpty()
@@ -86,6 +101,12 @@ class AlarmService : Service() {
                 }
             } catch (_: Exception) { player?.release(); player = null }
         }
+        if (player == null) {
+            try {
+                fallbackTone = ToneGenerator(AudioManager.STREAM_ALARM, 100)
+                toneHandler.post(toneLoop)
+            } catch (_: Exception) { fallbackTone = null }
+        }
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         vibrator?.vibrate(VibrationEffect.createWaveform(longArrayOf(0, 700, 300), 0))
         val message = intent?.getStringExtra("message").orEmpty().take(160)
@@ -113,6 +134,10 @@ class AlarmService : Service() {
     override fun onDestroy() {
         player?.run { if (isPlaying) stop(); release() }
         player = null
+        toneHandler.removeCallbacks(toneLoop)
+        fallbackTone?.stopTone()
+        fallbackTone?.release()
+        fallbackTone = null
         speech?.stop()
         speech?.shutdown()
         speech = null
