@@ -126,6 +126,45 @@ class BrowserTab {
   bool ready = false;
 }
 
+
+class _DefaultAssociationTile extends StatelessWidget {
+  const _DefaultAssociationTile({
+    required this.label,
+    required this.description,
+    required this.icon,
+  });
+
+  final String label;
+  final String description;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color(0xffdde5ea)),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: const Color(0xff075985)),
+          const SizedBox(width: 12),
+          SizedBox(
+            width: 78,
+            child: Text(label, style: const TextStyle(fontWeight: FontWeight.w900)),
+          ),
+          Expanded(
+            child: Text(description, style: const TextStyle(color: Colors.black54)),
+          ),
+          const Icon(Icons.open_in_new, size: 18, color: Colors.black45),
+        ],
+      ),
+    );
+  }
+}
+
 class DesktopHomePage extends StatefulWidget {
   const DesktopHomePage({super.key});
 
@@ -149,6 +188,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   static const contactEmail = 'champaksworld@gmail.com';
   static const contactPhone = '+91 9335874326';
   static const whatsappNumber = '919335874326';
+  static const defaultBrowserAppName = "Champak's Desktop Browser";
   static const desktopUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0';
 
   static const newTabLinkScript = r'''
@@ -1259,7 +1299,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     final exe = Platform.resolvedExecutable;
     final icon = '$exe,0';
     final command = '"$exe" "%1"';
-    const appName = "Champak's Desktop Browser";
+    const appName = defaultBrowserAppName;
     const capabilitiesPath = r'Software\LearnWithChampakDesktop\Capabilities';
     const capabilitiesKey = r'HKCU\Software\LearnWithChampakDesktop\Capabilities';
     const progIdKey = r'HKCU\Software\Classes\LearnWithChampakHTML';
@@ -1350,17 +1390,18 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
   Future<void> _openWindowsDefaultApps() async {
     final userRegistered = await _ensureCurrentUserBrowserRegistration();
+    final encodedName = Uri.encodeComponent(defaultBrowserAppName);
 
     var opened = false;
     if (userRegistered) {
       opened = await _launchSettingsUri(
-        'ms-settings:defaultapps?registeredAppUser=Champak%27s%20Desktop%20Browser',
+        'ms-settings:defaultapps?registeredAppUser=' + encodedName,
       );
     }
 
     if (!opened) {
       opened = await _launchSettingsUri(
-        'ms-settings:defaultapps?registeredAppMachine=Champak%27s%20Desktop%20Browser',
+        'ms-settings:defaultapps?registeredAppMachine=' + encodedName,
       );
     }
 
@@ -1371,9 +1412,149 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     if (!mounted) return;
     setState(() {
       _status = opened
-          ? "In Default apps, choose Champak's Desktop Browser and set HTTP/HTTPS (and HTML if offered)."
+          ? "Windows Default Apps opened for Champak's Desktop Browser. Press Set default there."
           : "Open Windows Settings > Apps > Default apps > Champak's Desktop Browser.";
     });
+  }
+
+  void _showDefaultBrowserSetup() {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        titlePadding: EdgeInsets.zero,
+        title: Container(
+          padding: const EdgeInsets.fromLTRB(22, 18, 22, 16),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xff022c43), Color(0xff075985)],
+            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+          ),
+          child: const Row(
+            children: [
+              Icon(Icons.public, color: Colors.white, size: 28),
+              SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  'Default Browser',
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900),
+                ),
+              ),
+            ],
+          ),
+        ),
+        content: SizedBox(
+          width: 720,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration: BoxDecoration(
+                    color: const Color(0xfff8fafc),
+                    border: Border.all(color: const Color(0xffd8e3ea)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      const CircleAvatar(
+                        radius: 25,
+                        backgroundImage: AssetImage('assets/champak_roy.jpg'),
+                      ),
+                      const SizedBox(width: 14),
+                      const Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Make Champak's Desktop Browser your default browser",
+                              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              'Windows will show the final confirmation screen.',
+                              style: TextStyle(color: Colors.black54),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      FilledButton.icon(
+                        onPressed: () {
+                          Navigator.pop(dialogContext);
+                          _openWindowsDefaultApps();
+                        },
+                        icon: const Icon(Icons.check_circle_outline),
+                        label: const Text('Set default'),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 22),
+                const Text(
+                  'Set default link and file types',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
+                ),
+                const SizedBox(height: 8),
+                const _DefaultAssociationTile(
+                  label: 'HTTP',
+                  description: 'Web links using http://',
+                  icon: Icons.link,
+                ),
+                const _DefaultAssociationTile(
+                  label: 'HTTPS',
+                  description: 'Secure web links using https://',
+                  icon: Icons.lock_outline,
+                ),
+                const _DefaultAssociationTile(
+                  label: '.htm',
+                  description: 'HTML document',
+                  icon: Icons.description_outlined,
+                ),
+                const _DefaultAssociationTile(
+                  label: '.html',
+                  description: 'HTML document',
+                  icon: Icons.description_outlined,
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Windows controls the actual default-app choice. This browser registers these types, then opens the Windows Default Apps page where you confirm the change.',
+                  style: TextStyle(color: Colors.black54, height: 1.35),
+                ),
+              ],
+            ),
+          ),
+        ),
+        actions: [
+          TextButton.icon(
+            onPressed: () async {
+              final ok = await _ensureCurrentUserBrowserRegistration();
+              if (mounted) {
+                setState(() => _status = ok
+                    ? 'Default-browser registration refreshed'
+                    : 'Could not refresh default-browser registration');
+              }
+            },
+            icon: const Icon(Icons.refresh),
+            label: const Text('Refresh registration'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('Close'),
+          ),
+          FilledButton.icon(
+            onPressed: () {
+              Navigator.pop(dialogContext);
+              _openWindowsDefaultApps();
+            },
+            icon: const Icon(Icons.settings),
+            label: const Text('Open Windows Settings'),
+          ),
+        ],
+      ),
+    );
   }
 
   void _askDefaultBrowserFirstRun() {
@@ -1390,9 +1571,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
           FilledButton(
             onPressed: () {
               Navigator.pop(context);
-              _openWindowsDefaultApps();
+              _showDefaultBrowserSetup();
             },
-            child: const Text('Register & Open Settings'),
+            child: const Text('Set default'),
           ),
         ],
       ),
@@ -1838,6 +2019,15 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.check_circle_outline),
+                title: const Text('Default Browser'),
+                subtitle: const Text('Register and open Windows Default Apps'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _showDefaultBrowserSetup();
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.code),
                 title: const Text('Code on GitHub'),
                 subtitle: const Text('Programmer-s-Picnic / json-images / windows_app'),
@@ -2047,7 +2237,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Champak's Desktop Browser v3.0",
+                      "Champak's Desktop Browser v3.1",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
                     ),
                     const Text(
@@ -2115,7 +2305,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
             _toolbarButton('Open File', Icons.file_open, _openLastDownloadedFile, important: true),
             _toolbarButton('Downloads', Icons.folder_open, _openDownloadsFolder),
             _toolbarButton(_tab?.privacyBlur == true ? 'Privacy On' : 'Privacy', Icons.visibility_off, _togglePrivacyBlur),
-            _toolbarButton('Default Browser', Icons.settings_applications, _openWindowsDefaultApps),
+            _toolbarButton('Set Default', Icons.check_circle, _showDefaultBrowserSetup, important: true),
             _toolbarButton('GitHub Code', Icons.code, () => _newTab(githubCodeUrl)),
             _toolbarButton('Disclaimer', Icons.info_outline, _showDisclaimer),
             _toolbarButton('Win Update', Icons.system_update_alt, () => _newTab(windowsInstallerUrl)),
