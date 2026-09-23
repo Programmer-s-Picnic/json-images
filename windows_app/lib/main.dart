@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:webview_windows/webview_windows.dart';
+import 'package:webview_flutter_windows/webview_flutter_windows.dart';
 import 'package:window_manager/window_manager.dart';
 
 String? _startupTimedUrl;
@@ -218,6 +218,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   int _current = 0;
   bool _fullScreen = false;
   bool _checking = false;
+  String? _lastDownloadedPath;
   String _status = 'Starting browser...';
 
   BrowserTab? get _tab => _tabs.isEmpty || _current < 0 || _current >= _tabs.length ? null : _tabs[_current];
@@ -857,6 +858,22 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
         }
       });
 
+      controller.onDownloadEvent.listen((event) {
+        if (event.resultFilePath.isNotEmpty) {
+          _lastDownloadedPath = event.resultFilePath;
+        }
+        if (!mounted) return;
+        if (event.kind == WebviewDownloadEventKind.downloadStarted) {
+          setState(() => _status = 'Download started');
+        } else if (event.kind == WebviewDownloadEventKind.downloadCompleted) {
+          setState(() => _status = 'Download complete: ' + event.resultFilePath);
+        } else if (event.kind == WebviewDownloadEventKind.downloadProgress &&
+            event.totalBytesToReceive > 0) {
+          final percent = ((event.bytesReceived * 100) / event.totalBytesToReceive).round();
+          setState(() => _status = 'Downloading... ' + percent.toString() + '%');
+        }
+      });
+
       await controller.loadUrl(safeUrl);
       tab.ready = true;
       if (saveSession) _scheduleSessionSave();
@@ -1195,6 +1212,215 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     );
   }
 
+  String get _downloadsDirectoryPath {
+    final home = Platform.environment['USERPROFILE'] ?? Directory.current.path;
+    return home + r'\Downloads';
+  }
+
+  String _safeDownloadFileName(String value) {
+    var name = value.trim();
+    if (name.isEmpty) {
+      name = 'download_' + DateTime.now().millisecondsSinceEpoch.toString();
+    }
+    name = name.replaceAll(RegExp(r'[<>:"/\\|?*\x00-\x1F]'), '_');
+    while (name.endsWith('.') || name.endsWith(' ')) {
+      name = name.substring(0, name.length - 1);
+    }
+    return name.isEmpty
+        ? 'download_' + DateTime.now().millisecondsSinceEpoch.toString()
+        : name;
+  }
+
+  String? _contentDispositionFileName(String? value) {
+    if (value == null || value.trim().isEmpty) return null;
+    final utf8Match = RegExp(
+      r'''filename\*=UTF-8''([^;]+)''',
+      caseSensitive: false,
+    ).firstMatch(value);
+    if (utf8Match != null) {
+      try {
+        return Uri.decodeComponent(utf8Match.group(1)!.trim());
+      } catch (_) {
+        return utf8Match.group(1)!.trim();
+      }
+    }
+    final match = RegExp(
+      r'''filename="?([^";]+)"?''',
+      caseSensitive: false,
+    ).firstMatch(value);
+    return match?.group(1)?.trim();
+  }
+
+  String _downloadFileName(Uri uri, Map<String, String> headers) {
+    final fromHeader = _contentDispositionFileName(headers['content-disposition']);
+    if (fromHeader != null && fromHeader.isNotEmpty) {
+      return _safeDownloadFileName(fromHeader);
+    }
+
+    if (uri.pathSegments.isNotEmpty && uri.pathSegments.last.trim().isNotEmpty) {
+      try {
+        return _safeDownloadFileName(Uri.decodeComponent(uri.pathSegments.last));
+      } catch (_) {
+        return _safeDownloadFileName(uri.pathSegments.last);
+      }
+    }
+
+    final contentType = headers['content-type']?.toLowerCase() ?? '';
+    final ext = contentType.contains('text/html')
+        ? '.html'
+        : contentType.contains('application/pdf')
+            ? '.pdf'
+            : '';
+    return 'download_' + DateTime.now().millisecondsSinceEpoch.toString() + ext;
+  }
+
+  Future<String> _uniqueDownloadPath(String fileName) async {
+    final dir = Directory(_downloadsDirectoryPath);
+    await dir.create(recursive: true);
+
+    final safeName = _safeDownloadFileName(fileName);
+    var path = dir.path + '\\' + safeName;
+    if (!await File(path).exists()) return path;
+
+    final dot = safeName.lastIndexOf('.');
+    final base = dot > 0 ? safeName.substring(0, dot) : safeName;
+    final ext = dot > 0 ? safeName.substring(dot) : '';
+    var index = 1;
+    while (await File(path).exists()) {
+      path = dir.path + '\\' + base + ' (' + index.toString() + ')' + ext;
+      index++;
+    }
+    return path;
+  }
+
+  Future<void> _downloadCurrentUrl() async {
+    final url = _tab?.url ?? '';
+    final uri = Uri.tryParse(url);
+    if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
+      if (mounted) setState(() => _status = 'Open a downloadable HTTP/HTTPS address first');
+      return;
+    }
+
+    http.Client? client;
+    IOSink? sink;
+    try {
+      if (mounted) setState(() => _status = 'Starting download...');
+
+      final request = http.Request('GET', uri);
+      request.headers['User-Agent'] = desktopUserAgent;
+
+      final cookies = await _controller?.getCookies(url) ?? <WebviewCookie>[];
+      if (cookies.isNotEmpty) {
+        request.headers['Cookie'] =
+            cookies.map((cookie) => cookie.name + '=' + cookie.value).join('; ');
+      }
+
+      client = http.Client();
+      final response = await client.send(request);
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        throw HttpException('HTTP ' + response.statusCode.toString());
+      }
+
+      final fileName = _downloadFileName(uri, response.headers);
+      final path = await _uniqueDownloadPath(fileName);
+      final file = File(path);
+      sink = file.openWrite();
+
+      var received = 0;
+      final total = response.contentLength ?? 0;
+      await for (final chunk in response.stream) {
+        sink.add(chunk);
+        received += chunk.length;
+        if (mounted && total > 0) {
+          final percent = ((received * 100) / total).round();
+          setState(() => _status = 'Downloading ' + fileName + '... ' + percent.toString() + '%');
+        }
+      }
+      await sink.flush();
+      await sink.close();
+      sink = null;
+
+      _lastDownloadedPath = path;
+      if (mounted) setState(() => _status = 'Download complete: ' + path);
+    } catch (e) {
+      if (mounted) setState(() => _status = 'Download failed: ' + e.toString());
+    } finally {
+      if (sink != null) {
+        try {
+          await sink.close();
+        } catch (_) {}
+      }
+      client?.close();
+    }
+  }
+
+  Future<File?> _findLatestDownloadedFile() async {
+    try {
+      final dir = Directory(_downloadsDirectoryPath);
+      if (!await dir.exists()) return null;
+      final files = await dir
+          .list()
+          .where((entity) => entity is File)
+          .cast<File>()
+          .where((file) {
+            final lower = file.path.toLowerCase();
+            return !lower.endsWith('.crdownload') &&
+                !lower.endsWith('.tmp') &&
+                !lower.endsWith('.partial');
+          })
+          .toList();
+      if (files.isEmpty) return null;
+
+      final dated = <MapEntry<File, DateTime>>[];
+      for (final file in files) {
+        try {
+          dated.add(MapEntry(file, (await file.stat()).modified));
+        } catch (_) {}
+      }
+      if (dated.isEmpty) return null;
+      dated.sort((a, b) => b.value.compareTo(a.value));
+      return dated.first.key;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> _openLastDownloadedFile() async {
+    File? file;
+    final remembered = _lastDownloadedPath;
+    if (remembered != null && remembered.isNotEmpty) {
+      final candidate = File(remembered);
+      if (await candidate.exists()) file = candidate;
+    }
+    file ??= await _findLatestDownloadedFile();
+
+    if (file == null) {
+      await _openDownloadsFolder();
+      if (mounted) setState(() => _status = 'No downloaded file found; opened Downloads folder');
+      return;
+    }
+
+    try {
+      await Process.start(
+        'powershell.exe',
+        ['-NoProfile', '-Command', r'Start-Process -FilePath $args[0]', file.path],
+        runInShell: false,
+      );
+      _lastDownloadedPath = file.path;
+      if (mounted) setState(() => _status = 'Opened ' + file.path);
+    } catch (_) {
+      await _openDownloadsFolder();
+      if (mounted) setState(() => _status = 'Could not open file directly; opened Downloads folder');
+    }
+  }
+
+  Future<void> _openDownloadsFolder() async {
+    try {
+      await Directory(_downloadsDirectoryPath).create(recursive: true);
+      await Process.start('explorer.exe', [_downloadsDirectoryPath], runInShell: false);
+    } catch (_) {}
+  }
+
   Future<void> _safeBack() async {
     try {
       await _controller?.goBack();
@@ -1361,7 +1587,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Learn With Champak Desktop v2.3 - Windows Default Browser Fix', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text('Learn With Champak Desktop v2.4 - Downloads + Default Browser', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                     Text(_tab?.title ?? 'Browser', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xffffdd80))),
                   ],
                 ),
@@ -1413,6 +1639,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               _toolbarButton('G Inside', Icons.login, _openGoogleSignInInside, important: true),
               _toolbarButton('G Account', Icons.account_circle, _openGoogleAccountInside),
               _toolbarButton('Gmail', Icons.mail, _openGmailInside),
+              _toolbarButton('Download', Icons.download, _downloadCurrentUrl, important: true),
+              _toolbarButton('Open File', Icons.file_open, _openLastDownloadedFile, important: true),
               _toolbarButton('Default Browser', Icons.settings_applications, _openWindowsDefaultApps),
               const Spacer(),
               if (_checking) const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)),
