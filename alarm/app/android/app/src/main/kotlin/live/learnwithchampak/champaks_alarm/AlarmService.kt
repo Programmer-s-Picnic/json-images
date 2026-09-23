@@ -60,7 +60,7 @@ class AlarmService : Service() {
         player?.release()
         vibrator?.cancel()
         try {
-            val chosen = intent.getStringExtra("tuneUri").orEmpty()
+            val chosen = intent?.getStringExtra("tuneUri").orEmpty()
             val uri = chosen.takeIf { it.isNotBlank() }?.let(Uri::parse)
                 ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
                 ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
@@ -88,7 +88,7 @@ class AlarmService : Service() {
         }
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         vibrator?.vibrate(VibrationEffect.createWaveform(longArrayOf(0, 700, 300), 0))
-        val message = intent.getStringExtra("message").orEmpty().take(160)
+        val message = intent?.getStringExtra("message").orEmpty().take(160)
         if (message.isNotBlank()) {
             speech?.shutdown()
             speech = TextToSpeech(this) { status ->
