@@ -1,4 +1,5 @@
 name: Build Learn With Champak Windows Installer
+# Clean rebuild trigger for Windows v2.3 default-browser fix
 
 on:
   push:
