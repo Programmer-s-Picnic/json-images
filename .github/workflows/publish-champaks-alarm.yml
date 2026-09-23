@@ -1,0 +1,66 @@
+name: Build and publish Champak's Alarm APK
+
+on:
+  push:
+    paths:
+      - ".github/workflows/publish-champaks-alarm.yml"
+      - "alarm/app/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-champaks-alarm
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate Flutter Android runner
+        run: |
+          flutter create --platforms android --org live.learnwithchampak --project-name champaks_alarm /tmp/champaks_alarm
+          cp alarm/app/lib/main.dart /tmp/champaks_alarm/lib/main.dart
+          cp alarm/app/pubspec.yaml /tmp/champaks_alarm/pubspec.yaml
+          cp alarm/app/android/app/src/main/AndroidManifest.xml /tmp/champaks_alarm/android/app/src/main/AndroidManifest.xml
+          cp alarm/app/android/app/src/main/kotlin/live/learnwithchampak/champaks_alarm/*.kt /tmp/champaks_alarm/android/app/src/main/kotlin/live/learnwithchampak/champaks_alarm/
+          rm -f /tmp/champaks_alarm/test/widget_test.dart
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('/tmp/champaks_alarm/android/app/build.gradle.kts')
+          s = p.read_text()
+          assert 'minSdk = flutter.minSdkVersion' in s
+          p.write_text(s.replace('minSdk = flutter.minSdkVersion', 'minSdk = 26'))
+          PY
+      - name: Analyze and build release APK
+        working-directory: /tmp/champaks_alarm
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter build apk --release
+      - name: Stage and checksum APK
+        run: |
+          cp /tmp/champaks_alarm/build/app/outputs/flutter-apk/app-release.apk alarm/champaks-alarm.apk
+          sha256sum alarm/champaks-alarm.apk > alarm/champaks-alarm.apk.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: champaks-alarm-apk
+          path: |
+            alarm/champaks-alarm.apk
+            alarm/champaks-alarm.apk.sha256
+      - name: Publish APK to GitHub Pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash origin main
+          git add alarm/champaks-alarm.apk alarm/champaks-alarm.apk.sha256
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish Champak's Alarm APK"
+            git push origin HEAD:main
+          fi
