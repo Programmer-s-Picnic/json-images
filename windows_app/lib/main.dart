@@ -1382,7 +1382,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       builder: (_) => AlertDialog(
         title: const Text('Set as default browser?'),
         content: const Text(
-          'Champak's Desktop Browser will register itself for this Windows user, then open its own Default Apps page. '
+          "Champak's Desktop Browser will register itself for this Windows user, then open its own Default Apps page. "
           'Windows requires you to confirm the default browser choice there.',
         ),
         actions: [
