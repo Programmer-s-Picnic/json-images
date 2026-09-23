@@ -1371,8 +1371,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     if (!mounted) return;
     setState(() {
       _status = opened
-          ? 'In Default apps, choose Champak's Desktop Browser and set HTTP/HTTPS (and HTML if offered).'
-          : 'Open Windows Settings > Apps > Default apps > Learn With Champak Desktop.';
+          ? "In Default apps, choose Champak's Desktop Browser and set HTTP/HTTPS (and HTML if offered)."
+          : "Open Windows Settings > Apps > Default apps > Champak's Desktop Browser.";
     });
   }
 
