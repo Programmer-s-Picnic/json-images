@@ -189,7 +189,7 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
       );
     }
 
-    final next = alarms.where((a) => a.enabled && a.nextAt > DateTime.now().millisecondsSinceEpoch).toList()
+    final next = alarms.where((a) => a.nextAt > DateTime.now().millisecondsSinceEpoch).toList()
       ..sort((a, b) => a.nextAt.compareTo(b.nextAt));
     final ordered = [...alarms]..sort((a, b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute));
     return Scaffold(
