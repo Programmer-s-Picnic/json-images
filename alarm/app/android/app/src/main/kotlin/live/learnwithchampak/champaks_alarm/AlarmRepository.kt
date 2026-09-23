@@ -72,6 +72,13 @@ internal class AlarmRepository(private val context: Context) {
     }
 
     fun nextAt(entry: JSONObject): Long {
+        val snoozedUntil = JSONObject(prefs.getString("snoozes", "{}"))
+            .optLong(entry.getInt("id").toString())
+        val regular = regularAt(entry)
+        return if (snoozedUntil > System.currentTimeMillis() && (regular == 0L || snoozedUntil < regular)) snoozedUntil else regular
+    }
+
+    private fun regularAt(entry: JSONObject): Long {
         if (!entry.optBoolean("enabled")) return 0L
         val days = entry.getJSONArray("days")
         if (days.length() == 0) return entry.optLong("onceAt")
@@ -114,7 +121,7 @@ internal class AlarmRepository(private val context: Context) {
     }
 
     fun schedule(entry: JSONObject) {
-        val whenMillis = nextAt(entry)
+        val whenMillis = regularAt(entry)
         if (whenMillis > System.currentTimeMillis()) setExact(entry.getInt("id"), whenMillis, false)
     }
 
