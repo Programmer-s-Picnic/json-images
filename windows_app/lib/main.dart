@@ -2070,6 +2070,449 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     );
   }
 
+  Future<void> _openDeveloperTools() async {
+    final controller = _controller;
+    if (controller == null) {
+      if (mounted) setState(() => _status = 'Open a web page before using Developer Mode');
+      return;
+    }
+
+    try {
+      await controller.openDevTools();
+      if (mounted) setState(() => _status = 'WebView2 DevTools opened');
+    } catch (e) {
+      if (mounted) setState(() => _status = 'Could not open DevTools: $e');
+    }
+  }
+
+  Future<void> _viewPageSource() async {
+    final controller = _controller;
+    if (controller == null) {
+      if (mounted) setState(() => _status = 'Open a web page before viewing source');
+      return;
+    }
+
+    try {
+      final raw = await controller.executeScript('document.documentElement.outerHTML');
+      final source = raw?.toString() ?? '';
+      final readable = source.replaceAll('><', '>\n<');
+      final lines = const LineSplitter().convert(readable);
+      final width = lines.length.toString().length;
+      final numbered = <String>[];
+      for (var i = 0; i < lines.length; i++) {
+        numbered.add('${(i + 1).toString().padLeft(width)}  ${lines[i]}');
+      }
+      final numberedSource = numbered.join('\n');
+
+      if (!mounted) return;
+      await showDialog<void>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: Row(
+            children: [
+              const Icon(Icons.code, color: Color(0xff075985)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  'Page Source — ${_tab?.title ?? 'Current Page'}',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          content: SizedBox(
+            width: 980,
+            height: 620,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: const Color(0xff0f172a),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(14),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: SelectableText(
+                    numberedSource.isEmpty ? '(No source returned)' : numberedSource,
+                    style: const TextStyle(
+                      color: Color(0xffe2e8f0),
+                      fontFamily: 'Consolas',
+                      fontSize: 12.5,
+                      height: 1.35,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          actions: [
+            TextButton.icon(
+              onPressed: () async {
+                await Clipboard.setData(ClipboardData(text: source));
+                if (mounted) setState(() => _status = 'Page source copied');
+              },
+              icon: const Icon(Icons.copy),
+              label: const Text('Copy Source'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Close'),
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      if (mounted) setState(() => _status = 'Could not read page source: $e');
+    }
+  }
+
+  Future<void> _showJavaScriptRunner() async {
+    final controller = _controller;
+    if (controller == null) {
+      if (mounted) setState(() => _status = 'Open a web page before running JavaScript');
+      return;
+    }
+
+    final scriptController = TextEditingController(text: 'document.title');
+    var resultText = 'Enter JavaScript and press Run.';
+    var running = false;
+
+    await showDialog<void>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, setLocalState) => AlertDialog(
+          title: const Row(
+            children: [
+              Icon(Icons.javascript, color: Color(0xff075985)),
+              SizedBox(width: 10),
+              Text('Run JavaScript'),
+            ],
+          ),
+          content: SizedBox(
+            width: 800,
+            height: 520,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  'Runs in the current page. Use only code you understand.',
+                  style: TextStyle(color: Colors.black54),
+                ),
+                const SizedBox(height: 10),
+                Expanded(
+                  flex: 3,
+                  child: TextField(
+                    controller: scriptController,
+                    expands: true,
+                    minLines: null,
+                    maxLines: null,
+                    textAlignVertical: TextAlignVertical.top,
+                    style: const TextStyle(fontFamily: 'Consolas', fontSize: 13),
+                    decoration: const InputDecoration(
+                      labelText: 'JavaScript',
+                      alignLabelWithHint: true,
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    FilledButton.icon(
+                      onPressed: running
+                          ? null
+                          : () async {
+                              final script = scriptController.text.trim();
+                              if (script.isEmpty) return;
+                              setLocalState(() {
+                                running = true;
+                                resultText = 'Running...';
+                              });
+                              try {
+                                final value = await controller.executeScript(script);
+                                String display;
+                                try {
+                                  display = const JsonEncoder.withIndent('  ').convert(value);
+                                } catch (_) {
+                                  display = value?.toString() ?? 'null';
+                                }
+                                if (dialogContext.mounted) {
+                                  setLocalState(() {
+                                    resultText = display;
+                                    running = false;
+                                  });
+                                }
+                              } catch (e) {
+                                if (dialogContext.mounted) {
+                                  setLocalState(() {
+                                    resultText = 'Error: $e';
+                                    running = false;
+                                  });
+                                }
+                              }
+                            },
+                      icon: const Icon(Icons.play_arrow),
+                      label: Text(running ? 'Running...' : 'Run'),
+                    ),
+                    const SizedBox(width: 8),
+                    OutlinedButton.icon(
+                      onPressed: () => scriptController.text =
+                          "document.querySelectorAll('a').length",
+                      icon: const Icon(Icons.auto_fix_high),
+                      label: const Text('Example'),
+                    ),
+                    const Spacer(),
+                    TextButton.icon(
+                      onPressed: () async {
+                        await Clipboard.setData(ClipboardData(text: resultText));
+                      },
+                      icon: const Icon(Icons.copy),
+                      label: const Text('Copy Result'),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Expanded(
+                  flex: 2,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: const Color(0xfff1f5f9),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: const Color(0xffcbd5e1)),
+                    ),
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(12),
+                      child: SelectableText(
+                        resultText,
+                        style: const TextStyle(fontFamily: 'Consolas', fontSize: 12.5),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Close'),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    scriptController.dispose();
+  }
+
+  Future<void> _showPageInfo() async {
+    final controller = _controller;
+    final tab = _tab;
+    if (controller == null || tab == null) {
+      if (mounted) setState(() => _status = 'Open a web page before viewing page information');
+      return;
+    }
+
+    if (mounted) setState(() => _status = 'Reading page information...');
+
+    try {
+      final raw = await controller.executeScript(r'''
+(() => {
+  function safe(fn) {
+    try { return fn(); } catch (e) { return 'Unavailable'; }
+  }
+  return JSON.stringify({
+    url: location.href,
+    title: document.title,
+    protocol: location.protocol.replace(':', '').toUpperCase(),
+    viewport: window.innerWidth + ' × ' + window.innerHeight,
+    documentSize: document.documentElement.scrollWidth + ' × ' + document.documentElement.scrollHeight,
+    readyState: document.readyState,
+    language: navigator.language,
+    userAgent: navigator.userAgent,
+    links: document.links.length,
+    images: document.images.length,
+    scripts: document.scripts.length,
+    forms: document.forms.length,
+    localStorageItems: safe(() => localStorage.length),
+    sessionStorageItems: safe(() => sessionStorage.length)
+  });
+})()
+''');
+
+      Map<String, dynamic> info = <String, dynamic>{};
+      if (raw is String && raw.isNotEmpty) {
+        final decoded = jsonDecode(raw);
+        if (decoded is Map) {
+          info = decoded.map((key, value) => MapEntry(key.toString(), value));
+        }
+      }
+
+      final currentUrl = info['url']?.toString() ?? tab.url;
+      var cookieCount = 0;
+      try {
+        cookieCount = (await controller.getCookies(currentUrl)).length;
+      } catch (_) {}
+
+      final entries = <MapEntry<String, String>>[
+        MapEntry('Title', info['title']?.toString() ?? tab.title),
+        MapEntry('URL', currentUrl),
+        MapEntry('Protocol', info['protocol']?.toString() ?? ''),
+        MapEntry('Viewport', info['viewport']?.toString() ?? ''),
+        MapEntry('Document size', info['documentSize']?.toString() ?? ''),
+        MapEntry('Ready state', info['readyState']?.toString() ?? ''),
+        MapEntry('Language', info['language']?.toString() ?? ''),
+        MapEntry('Links', info['links']?.toString() ?? '0'),
+        MapEntry('Images', info['images']?.toString() ?? '0'),
+        MapEntry('Scripts', info['scripts']?.toString() ?? '0'),
+        MapEntry('Forms', info['forms']?.toString() ?? '0'),
+        MapEntry('Cookies', cookieCount.toString()),
+        MapEntry('Local storage items', info['localStorageItems']?.toString() ?? ''),
+        MapEntry('Session storage items', info['sessionStorageItems']?.toString() ?? ''),
+        MapEntry('User agent', info['userAgent']?.toString() ?? desktopUserAgent),
+      ];
+
+      final copyText = entries.map((e) => '${e.key}: ${e.value}').join('\n');
+
+      if (!mounted) return;
+      await showDialog<void>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: const Row(
+            children: [
+              Icon(Icons.info_outline, color: Color(0xff075985)),
+              SizedBox(width: 10),
+              Text('Page Information'),
+            ],
+          ),
+          content: SizedBox(
+            width: 780,
+            height: 560,
+            child: ListView.separated(
+              itemCount: entries.length,
+              separatorBuilder: (_, __) => const Divider(height: 1),
+              itemBuilder: (context, index) {
+                final entry = entries[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 9),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 150,
+                        child: Text(
+                          entry.key,
+                          style: const TextStyle(fontWeight: FontWeight.w800),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(child: SelectableText(entry.value)),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          actions: [
+            TextButton.icon(
+              onPressed: () async {
+                await Clipboard.setData(ClipboardData(text: currentUrl));
+                if (mounted) setState(() => _status = 'Page URL copied');
+              },
+              icon: const Icon(Icons.link),
+              label: const Text('Copy URL'),
+            ),
+            TextButton.icon(
+              onPressed: () async {
+                await Clipboard.setData(ClipboardData(text: copyText));
+                if (mounted) setState(() => _status = 'Page information copied');
+              },
+              icon: const Icon(Icons.copy_all),
+              label: const Text('Copy Info'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Close'),
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      if (mounted) setState(() => _status = 'Could not read page information: $e');
+    }
+  }
+
+  void _showDeveloperMenu() {
+    showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      builder: (sheetContext) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(18, 6, 18, 18),
+          child: Wrap(
+            runSpacing: 4,
+            children: [
+              ListTile(
+                leading: const CircleAvatar(
+                  backgroundColor: Color(0xff075985),
+                  child: Icon(Icons.code, color: Colors.white),
+                ),
+                title: const Text(
+                  'Developer Mode v1',
+                  style: TextStyle(fontWeight: FontWeight.w900),
+                ),
+                subtitle: Text(
+                  _tab == null
+                      ? 'Open a page to use developer tools'
+                      : (_tab!.title.trim().isEmpty ? _tab!.url : _tab!.title),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.developer_mode),
+                title: const Text('Open DevTools'),
+                subtitle: const Text('Elements, Console, Network, Sources, Storage and more'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _openDeveloperTools();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.code),
+                title: const Text('View Page Source'),
+                subtitle: const Text('HTML source with line numbers and copy support'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _viewPageSource();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.javascript),
+                title: const Text('Run JavaScript'),
+                subtitle: const Text('Execute JavaScript in the current page and inspect the result'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _showJavaScriptRunner();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.info_outline),
+                title: const Text('Page Info'),
+                subtitle: const Text('URL, viewport, document size, cookies, storage and page counts'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _showPageInfo();
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   void _showBrandMenu() {
     showModalBottomSheet<void>(
       context: context,
@@ -2116,6 +2559,15 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 onTap: () {
                   Navigator.pop(sheetContext);
                   _showDefaultBrowserSetup();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.developer_mode),
+                title: const Text('Developer Mode'),
+                subtitle: const Text('DevTools, source, JavaScript and page information'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _showDeveloperMenu();
                 },
               ),
               ListTile(
@@ -2328,7 +2780,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Champak's Desktop Browser v3.2",
+                      "Champak's Desktop Browser v3.3",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
                     ),
                     const Text(
@@ -2392,6 +2844,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
             _toolbarButton('Add Bookmark', Icons.bookmark_add, _bookmarkCurrentPage, important: true),
             _toolbarButton('Bookmarks', Icons.bookmarks, _showBookmarks, important: true),
             _toolbarButton('History', Icons.history, _showHistory),
+            _toolbarButton('Developer', Icons.developer_mode, _showDeveloperMenu, important: true),
             _toolbarButton('Download', Icons.download, _downloadCurrentUrl, important: true),
             _toolbarButton('Open File', Icons.file_open, _openLastDownloadedFile, important: true),
             _toolbarButton('Downloads', Icons.folder_open, _openDownloadsFolder),
