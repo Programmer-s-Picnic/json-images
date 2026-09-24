@@ -288,7 +288,12 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _startBrowser();
       await _refreshDefaultBrowserState();
-      if (mounted && _startupTimedUrl == null && !_isDefaultBrowser) {
+      final promptShown = await _defaultPromptShownForCurrentVersion();
+      if (mounted &&
+          _startupTimedUrl == null &&
+          !_isDefaultBrowser &&
+          !promptShown) {
+        await _markDefaultPromptShown();
         _askDefaultBrowserFirstRun();
       }
     });
@@ -318,6 +323,32 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
   String get _historyFilePath => _appDataPath('browser_history.json');
   String get _bookmarksFilePath => _appDataPath('browser_bookmarks.json');
+  String get _defaultPromptStateFilePath => _appDataPath('default_browser_prompt.json');
+
+  Future<bool> _defaultPromptShownForCurrentVersion() async {
+    try {
+      final file = File(_defaultPromptStateFilePath);
+      if (!await file.exists()) return false;
+      final decoded = jsonDecode(await file.readAsString());
+      return decoded is Map && decoded['version']?.toString() == '3.3.1';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<void> _markDefaultPromptShown() async {
+    try {
+      final file = File(_defaultPromptStateFilePath);
+      await file.parent.create(recursive: true);
+      await file.writeAsString(
+        jsonEncode({
+          'version': '3.3.1',
+          'shownAt': DateTime.now().toIso8601String(),
+        }),
+        flush: true,
+      );
+    } catch (_) {}
+  }
 
   Future<void> _loadBookmarks() async {
     try {
@@ -1291,7 +1322,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       for (final line in const LineSplitter().convert(output)) {
         final trimmed = line.trim();
         if (!trimmed.startsWith(valueName)) continue;
-        final parts = trimmed.split(RegExp(r'\\s+'));
+        final parts = trimmed.split(RegExp(r'\s+'));
         if (parts.length >= 3) {
           return parts.sublist(2).join(' ').trim();
         }
@@ -1311,8 +1342,14 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     final httpProgId = await _regQueryValue(httpKey, 'ProgId');
     final httpsProgId = await _regQueryValue(httpsKey, 'ProgId');
 
-    return httpProgId?.toLowerCase() == 'learnwithchampakhtml' &&
-        httpsProgId?.toLowerCase() == 'learnwithchampakhtml';
+    bool isChampakProgId(String? value) {
+      final normalized = value?.trim().toLowerCase() ?? '';
+      return normalized == 'learnwithchampakhtml' ||
+          normalized.contains('learnwithchampak') ||
+          normalized.contains('learn_with_champak');
+    }
+
+    return isChampakProgId(httpProgId) && isChampakProgId(httpsProgId);
   }
 
   Future<void> _refreshDefaultBrowserState() async {
@@ -2780,7 +2817,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Champak's Desktop Browser v3.3",
+                      "Champak's Desktop Browser v3.3.1",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
                     ),
                     const Text(
