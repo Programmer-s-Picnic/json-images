@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -124,6 +125,184 @@ class BrowserTab {
   String url;
   bool privacyBlur;
   bool ready = false;
+}
+
+class _WeatherDay {
+  const _WeatherDay({
+    required this.date,
+    required this.code,
+    required this.maxTemp,
+    required this.minTemp,
+    required this.rainChance,
+  });
+
+  final DateTime date;
+  final int code;
+  final double maxTemp;
+  final double minTemp;
+  final int rainChance;
+}
+
+class _LocalClockPanel extends StatefulWidget {
+  const _LocalClockPanel();
+
+  @override
+  State<_LocalClockPanel> createState() => _LocalClockPanelState();
+}
+
+class _LocalClockPanelState extends State<_LocalClockPanel> {
+  late DateTime _now;
+  Timer? _timer;
+
+  static const _weekdays = <String>[
+    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
+  ];
+  static const _months = <String>[
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _now = DateTime.now();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) setState(() => _now = DateTime.now());
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  String get _timeText =>
+      '${_now.hour.toString().padLeft(2, '0')}:${_now.minute.toString().padLeft(2, '0')}:${_now.second.toString().padLeft(2, '0')}';
+
+  String get _dateText =>
+      '${_weekdays[_now.weekday - 1]}, ${_now.day} ${_months[_now.month - 1]} ${_now.year}';
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          width: 54,
+          height: 54,
+          child: CustomPaint(
+            painter: _AnalogClockPainter(_now),
+          ),
+        ),
+        const SizedBox(width: 8),
+        SizedBox(
+          width: 112,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                _timeText,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 16,
+                  letterSpacing: 0.4,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                _dateText,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  color: Color(0xffffdd80),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 10.5,
+                  height: 1.15,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _AnalogClockPainter extends CustomPainter {
+  const _AnalogClockPainter(this.now);
+
+  final DateTime now;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = math.min(size.width, size.height) / 2 - 2;
+
+    canvas.drawCircle(
+      center,
+      radius,
+      Paint()..color = const Color(0x22ffffff),
+    );
+    canvas.drawCircle(
+      center,
+      radius,
+      Paint()
+        ..color = const Color(0xaaffffff)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.4,
+    );
+
+    for (var i = 0; i < 12; i++) {
+      final angle = (i * 30 - 90) * math.pi / 180;
+      final outer = Offset(
+        center.dx + math.cos(angle) * (radius - 3),
+        center.dy + math.sin(angle) * (radius - 3),
+      );
+      final inner = Offset(
+        center.dx + math.cos(angle) * (radius - (i % 3 == 0 ? 8 : 6)),
+        center.dy + math.sin(angle) * (radius - (i % 3 == 0 ? 8 : 6)),
+      );
+      canvas.drawLine(
+        inner,
+        outer,
+        Paint()
+          ..color = i % 3 == 0 ? const Color(0xffffdd80) : const Color(0x99ffffff)
+          ..strokeWidth = i % 3 == 0 ? 2 : 1,
+      );
+    }
+
+    final second = now.second.toDouble();
+    final minute = now.minute + second / 60;
+    final hour = (now.hour % 12) + minute / 60;
+
+    void hand(double value, double maxValue, double length, double width, Color color) {
+      final angle = (value / maxValue * 360 - 90) * math.pi / 180;
+      canvas.drawLine(
+        center,
+        Offset(
+          center.dx + math.cos(angle) * radius * length,
+          center.dy + math.sin(angle) * radius * length,
+        ),
+        Paint()
+          ..color = color
+          ..strokeWidth = width
+          ..strokeCap = StrokeCap.round,
+      );
+    }
+
+    hand(hour, 12, 0.52, 3.4, Colors.white);
+    hand(minute, 60, 0.72, 2.5, const Color(0xffffdd80));
+    hand(second, 60, 0.82, 1.2, const Color(0xffff8a80));
+
+    canvas.drawCircle(center, 2.8, Paint()..color = Colors.white);
+  }
+
+  @override
+  bool shouldRepaint(covariant _AnalogClockPainter oldDelegate) =>
+      oldDelegate.now.second != now.second;
 }
 
 
@@ -267,6 +446,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
   Timer? _sessionSaveTimer;
   Timer? _windowBoundsSaveTimer;
+  Timer? _weatherRefreshTimer;
   bool _restoringSession = false;
   bool _suppressSessionPersistence = false;
   int _current = 0;
@@ -275,8 +455,16 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   bool _windowHasFocus = true;
   bool _privacyHidden = false;
   bool _isDefaultBrowser = false;
+  bool _weatherLoading = false;
   String? _lastDownloadedPath;
   String _status = 'Starting browser...';
+  String _weatherLocation = 'Finding local weather...';
+  String _weatherCurrent = 'Weather loading...';
+  String _weatherFeelsLike = '';
+  int? _weatherCode;
+  double? _weatherTemperature;
+  DateTime? _weatherUpdatedAt;
+  List<_WeatherDay> _weatherForecast = const [];
 
   BrowserTab? get _tab => _tabs.isEmpty || _current < 0 || _current >= _tabs.length ? null : _tabs[_current];
   WebviewController? get _controller => _tab?.controller;
@@ -285,6 +473,11 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   void initState() {
     super.initState();
     windowManager.addListener(this);
+    unawaited(_refreshWeather());
+    _weatherRefreshTimer = Timer.periodic(
+      const Duration(minutes: 30),
+      (_) => unawaited(_refreshWeather(silent: true)),
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _startBrowser();
       await _refreshDefaultBrowserState();
@@ -297,6 +490,333 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
         _askDefaultBrowserFirstRun();
       }
     });
+  }
+
+  String _weatherDescription(int code) {
+    if (code == 0) return 'Clear sky';
+    if (code == 1) return 'Mainly clear';
+    if (code == 2) return 'Partly cloudy';
+    if (code == 3) return 'Overcast';
+    if (code == 45 || code == 48) return 'Fog';
+    if (code >= 51 && code <= 57) return 'Drizzle';
+    if (code >= 61 && code <= 67) return 'Rain';
+    if (code >= 71 && code <= 77) return 'Snow';
+    if (code >= 80 && code <= 82) return 'Rain showers';
+    if (code >= 85 && code <= 86) return 'Snow showers';
+    if (code >= 95) return 'Thunderstorm';
+    return 'Variable weather';
+  }
+
+  IconData _weatherIcon(int? code) {
+    if (code == null) return Icons.cloud_queue;
+    if (code == 0) return Icons.wb_sunny;
+    if (code <= 2) return Icons.wb_cloudy;
+    if (code == 3 || code == 45 || code == 48) return Icons.cloud;
+    if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) return Icons.grain;
+    if ((code >= 71 && code <= 77) || (code >= 85 && code <= 86)) return Icons.ac_unit;
+    if (code >= 95) return Icons.thunderstorm;
+    return Icons.cloud_queue;
+  }
+
+  String _shortDay(DateTime date) {
+    const days = <String>['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    return days[date.weekday - 1];
+  }
+
+  Future<void> _refreshWeather({bool silent = false}) async {
+    if (_weatherLoading) return;
+    _weatherLoading = true;
+    if (mounted && !silent) {
+      setState(() {
+        _weatherCurrent = 'Updating weather...';
+      });
+    }
+
+    try {
+      final locationResponse = await http
+          .get(Uri.parse('https://ipwho.is/'))
+          .timeout(const Duration(seconds: 8));
+      if (locationResponse.statusCode != 200) {
+        throw HttpException('Location HTTP ${locationResponse.statusCode}');
+      }
+
+      final locationData = jsonDecode(locationResponse.body);
+      if (locationData is! Map || locationData['success'] == false) {
+        throw const FormatException('Local location unavailable');
+      }
+
+      final latitude = (locationData['latitude'] as num?)?.toDouble();
+      final longitude = (locationData['longitude'] as num?)?.toDouble();
+      if (latitude == null || longitude == null) {
+        throw const FormatException('Location coordinates unavailable');
+      }
+
+      final city = locationData['city']?.toString().trim() ?? '';
+      final region = locationData['region']?.toString().trim() ?? '';
+      final country = locationData['country']?.toString().trim() ?? '';
+      final locationParts = <String>[
+        if (city.isNotEmpty) city,
+        if (region.isNotEmpty && region != city) region,
+        if (country.isNotEmpty) country,
+      ];
+
+      final weatherUri = Uri.https(
+        'api.open-meteo.com',
+        '/v1/forecast',
+        <String, String>{
+          'latitude': latitude.toString(),
+          'longitude': longitude.toString(),
+          'current': 'temperature_2m,apparent_temperature,weather_code,wind_speed_10m',
+          'daily': 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max',
+          'forecast_days': '4',
+          'timezone': 'auto',
+        },
+      );
+
+      final weatherResponse =
+          await http.get(weatherUri).timeout(const Duration(seconds: 10));
+      if (weatherResponse.statusCode != 200) {
+        throw HttpException('Weather HTTP ${weatherResponse.statusCode}');
+      }
+
+      final weatherData = jsonDecode(weatherResponse.body);
+      if (weatherData is! Map) throw const FormatException('Weather response invalid');
+
+      final current = weatherData['current'];
+      final daily = weatherData['daily'];
+      if (current is! Map || daily is! Map) {
+        throw const FormatException('Weather data incomplete');
+      }
+
+      final temp = (current['temperature_2m'] as num?)?.toDouble();
+      final feels = (current['apparent_temperature'] as num?)?.toDouble();
+      final code = (current['weather_code'] as num?)?.toInt();
+      final wind = (current['wind_speed_10m'] as num?)?.toDouble();
+
+      final times = daily['time'] is List ? daily['time'] as List : const [];
+      final codes = daily['weather_code'] is List ? daily['weather_code'] as List : const [];
+      final maxTemps = daily['temperature_2m_max'] is List ? daily['temperature_2m_max'] as List : const [];
+      final minTemps = daily['temperature_2m_min'] is List ? daily['temperature_2m_min'] as List : const [];
+      final rain = daily['precipitation_probability_max'] is List
+          ? daily['precipitation_probability_max'] as List
+          : const [];
+
+      final count = <int>[
+        times.length,
+        codes.length,
+        maxTemps.length,
+        minTemps.length,
+        rain.length,
+        4,
+      ].reduce(math.min);
+
+      final forecast = <_WeatherDay>[];
+      for (var i = 0; i < count; i++) {
+        final date = DateTime.tryParse(times[i]?.toString() ?? '');
+        if (date == null) continue;
+        forecast.add(
+          _WeatherDay(
+            date: date,
+            code: (codes[i] as num?)?.toInt() ?? 0,
+            maxTemp: (maxTemps[i] as num?)?.toDouble() ?? 0,
+            minTemp: (minTemps[i] as num?)?.toDouble() ?? 0,
+            rainChance: (rain[i] as num?)?.round() ?? 0,
+          ),
+        );
+      }
+
+      if (!mounted) return;
+      setState(() {
+        _weatherLocation =
+            locationParts.isEmpty ? 'Local weather' : locationParts.join(', ');
+        _weatherTemperature = temp;
+        _weatherCode = code;
+        _weatherCurrent = code == null
+            ? (temp == null ? 'Weather available' : '${temp.round()}°C')
+            : '${temp == null ? '' : '${temp.round()}°C • '}${_weatherDescription(code)}';
+        _weatherFeelsLike = [
+          if (feels != null) 'Feels ${feels.round()}°C',
+          if (wind != null) 'Wind ${wind.round()} km/h',
+        ].join(' • ');
+        _weatherForecast = forecast;
+        _weatherUpdatedAt = DateTime.now();
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _weatherLocation = 'Local weather';
+        _weatherCurrent = 'Weather unavailable';
+        _weatherFeelsLike = 'Click to retry';
+        _weatherCode = null;
+        _weatherTemperature = null;
+      });
+    } finally {
+      _weatherLoading = false;
+    }
+  }
+
+  Widget _localClockWeatherPanel() {
+    return Container(
+      constraints: const BoxConstraints(minWidth: 330, maxWidth: 370),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(
+        color: const Color(0x20000000),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: Colors.white24),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const _LocalClockPanel(),
+          Container(
+            width: 1,
+            height: 50,
+            margin: const EdgeInsets.symmetric(horizontal: 10),
+            color: Colors.white24,
+          ),
+          Expanded(
+            child: InkWell(
+              borderRadius: BorderRadius.circular(10),
+              onTap: _showWeatherForecast,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+                child: Row(
+                  children: [
+                    Icon(
+                      _weatherIcon(_weatherCode),
+                      color: const Color(0xffffdd80),
+                      size: 26,
+                    ),
+                    const SizedBox(width: 7),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            _weatherLocation,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 10.5,
+                            ),
+                          ),
+                          Text(
+                            _weatherCurrent,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: Color(0xffffdd80),
+                              fontWeight: FontWeight.w900,
+                              fontSize: 12,
+                            ),
+                          ),
+                          Text(
+                            _weatherFeelsLike,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 9.5,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (_weatherLoading)
+                      const SizedBox(
+                        width: 13,
+                        height: 13,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 1.5,
+                          color: Colors.white,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showWeatherForecast() {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Row(
+          children: [
+            Icon(_weatherIcon(_weatherCode), color: const Color(0xff075985)),
+            const SizedBox(width: 10),
+            Expanded(child: Text('Local Weather • $_weatherLocation')),
+          ],
+        ),
+        content: SizedBox(
+          width: 620,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(_weatherIcon(_weatherCode), size: 40),
+                title: Text(
+                  _weatherCurrent,
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+                ),
+                subtitle: Text(
+                  [
+                    if (_weatherFeelsLike.isNotEmpty) _weatherFeelsLike,
+                    if (_weatherUpdatedAt != null)
+                      'Updated ${_weatherUpdatedAt!.hour.toString().padLeft(2, '0')}:${_weatherUpdatedAt!.minute.toString().padLeft(2, '0')}',
+                    'Location is estimated from this internet connection.',
+                  ].join('\n'),
+                ),
+              ),
+              const Divider(),
+              if (_weatherForecast.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.all(18),
+                  child: Text('Forecast is not available. Use Refresh Weather to try again.'),
+                )
+              else
+                ..._weatherForecast.map(
+                  (day) => ListTile(
+                    dense: true,
+                    leading: Icon(_weatherIcon(day.code)),
+                    title: Text(
+                      '${_shortDay(day.date)} • ${_weatherDescription(day.code)}',
+                      style: const TextStyle(fontWeight: FontWeight.w800),
+                    ),
+                    subtitle: Text('Rain chance ${day.rainChance}%'),
+                    trailing: Text(
+                      '${day.maxTemp.round()}° / ${day.minTemp.round()}°',
+                      style: const TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton.icon(
+            onPressed: () {
+              Navigator.pop(dialogContext);
+              unawaited(_refreshWeather());
+            },
+            icon: const Icon(Icons.refresh),
+            label: const Text('Refresh Weather'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _startBrowser() async {
@@ -330,7 +850,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       final file = File(_defaultPromptStateFilePath);
       if (!await file.exists()) return false;
       final decoded = jsonDecode(await file.readAsString());
-      return decoded is Map && decoded['version']?.toString() == '3.3.1';
+      return decoded is Map && decoded['version']?.toString() == '3.4.0';
     } catch (_) {
       return false;
     }
@@ -342,7 +862,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       await file.parent.create(recursive: true);
       await file.writeAsString(
         jsonEncode({
-          'version': '3.3.1',
+          'version': '3.4.0',
           'shownAt': DateTime.now().toIso8601String(),
         }),
         flush: true,
@@ -1042,6 +1562,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   void dispose() {
     _windowBoundsSaveTimer?.cancel();
     _sessionSaveTimer?.cancel();
+    _weatherRefreshTimer?.cancel();
     windowManager.removeListener(this);
     _saveSessionNowSync();
     _addressController.dispose();
@@ -2817,7 +3338,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Champak's Desktop Browser v3.3.1",
+                      "Champak's Desktop Browser v3.4.0",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
                     ),
                     const Text(
@@ -2835,6 +3356,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   ],
                 ),
               ),
+              const SizedBox(width: 8),
+              _localClockWeatherPanel(),
               const SizedBox(width: 8),
               _toolbarButton('How to Use', Icons.menu_book, _showHowToUse, important: true),
               _toolbarButton('Contact', Icons.contact_mail, _showContactChampak, important: true),
