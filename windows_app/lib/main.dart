@@ -428,6 +428,32 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     post(a.href, 'click', a.textContent || a.title || a.href);
   }, true);
 
+  document.addEventListener('contextmenu', function(e){
+    try {
+      e.preventDefault();
+      e.stopPropagation();
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      var linkUrl = '';
+      var linkText = '';
+      if (a) {
+        try { linkUrl = new URL(a.href, location.href).href; } catch(_) {}
+        linkText = (a.textContent || a.title || '').trim();
+      }
+      var selectedText = '';
+      try { selectedText = (window.getSelection ? window.getSelection().toString() : '').trim(); } catch(_) {}
+      window.chrome.webview.postMessage(JSON.stringify({
+        type: 'lwc-context-menu',
+        x: e.clientX || 0,
+        y: e.clientY || 0,
+        linkUrl: linkUrl,
+        linkText: linkText,
+        selectedText: selectedText,
+        pageUrl: location.href,
+        pageTitle: document.title || ''
+      }));
+    } catch(_) {}
+  }, true);
+
   var originalOpen = window.open;
   window.open = function(url, name, features){
     if (url && isOpenableHttpUrl(url)) {
@@ -440,6 +466,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 ''';
 
   final TextEditingController _addressController = TextEditingController(text: homeUrl);
+  final GlobalKey _webViewAreaKey = GlobalKey();
   final List<BrowserTab> _tabs = [];
   final List<Map<String, String>> _history = [];
   final List<Map<String, String>> _bookmarks = [];
@@ -850,7 +877,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       final file = File(_defaultPromptStateFilePath);
       if (!await file.exists()) return false;
       final decoded = jsonDecode(await file.readAsString());
-      return decoded is Map && decoded['version']?.toString() == '3.4.0';
+      return decoded is Map && decoded['version']?.toString() == '3.5.0';
     } catch (_) {
       return false;
     }
@@ -862,7 +889,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       await file.parent.create(recursive: true);
       await file.writeAsString(
         jsonEncode({
-          'version': '3.4.0',
+          'version': '3.5.0',
           'shownAt': DateTime.now().toIso8601String(),
         }),
         flush: true,
@@ -1657,12 +1684,158 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     try {
       final Object? decoded = message is String ? jsonDecode(message) : message;
       if (decoded is! Map) return;
-      if (decoded['type'] != 'lwc-open-new-tab') return;
-      final url = decoded['url']?.toString() ?? '';
-      if (!_isInternalTabUrl(url)) return;
-      _newTab(url);
-      if (mounted) setState(() => _status = 'Opened link in a new app tab');
+
+      final type = decoded['type']?.toString() ?? '';
+      if (type == 'lwc-open-new-tab') {
+        final url = decoded['url']?.toString() ?? '';
+        if (!_isInternalTabUrl(url)) return;
+        _newTab(url);
+        if (mounted) setState(() => _status = 'Opened link in a new app tab');
+        return;
+      }
+
+      if (type == 'lwc-context-menu') {
+        final x = (decoded['x'] as num?)?.toDouble() ?? 0;
+        final y = (decoded['y'] as num?)?.toDouble() ?? 0;
+        final linkUrl = decoded['linkUrl']?.toString() ?? '';
+        final selectedText = decoded['selectedText']?.toString() ?? '';
+        final pageUrl = decoded['pageUrl']?.toString() ?? (_tab?.url ?? '');
+        unawaited(
+          _showWebContextMenu(
+            x: x,
+            y: y,
+            linkUrl: linkUrl,
+            selectedText: selectedText,
+            pageUrl: pageUrl,
+          ),
+        );
+      }
     } catch (_) {}
+  }
+
+  Future<void> _showWebContextMenu({
+    required double x,
+    required double y,
+    required String linkUrl,
+    required String selectedText,
+    required String pageUrl,
+  }) async {
+    if (!mounted) return;
+
+    final overlay = Overlay.of(context).context.findRenderObject() as RenderBox?;
+    final webBox = _webViewAreaKey.currentContext?.findRenderObject() as RenderBox?;
+    if (overlay == null) return;
+
+    final anchor = webBox?.localToGlobal(Offset(x, y)) ??
+        Offset(overlay.size.width / 2, overlay.size.height / 2);
+    final left = anchor.dx.clamp(0.0, math.max(0.0, overlay.size.width - 1));
+    final top = anchor.dy.clamp(0.0, math.max(0.0, overlay.size.height - 1));
+    final position = RelativeRect.fromRect(
+      Rect.fromLTWH(left, top, 1, 1),
+      Offset.zero & overlay.size,
+    );
+
+    final hasLink = _isInternalTabUrl(linkUrl);
+    final hasSelection = selectedText.trim().isNotEmpty;
+    final items = <PopupMenuEntry<String>>[];
+
+    if (hasLink) {
+      items.addAll(const [
+        PopupMenuItem(value: 'link-here', child: ListTile(leading: Icon(Icons.open_in_browser), title: Text('Open Link Here'), dense: true)),
+        PopupMenuItem(value: 'link-tab', child: ListTile(leading: Icon(Icons.add_box), title: Text('Open Link in New Tab'), dense: true)),
+        PopupMenuItem(value: 'link-copy', child: ListTile(leading: Icon(Icons.link), title: Text('Copy Link Address'), dense: true)),
+        PopupMenuItem(value: 'link-download', child: ListTile(leading: Icon(Icons.download), title: Text('Download Link'), dense: true)),
+        PopupMenuItem(value: 'link-outside', child: ListTile(leading: Icon(Icons.open_in_new), title: Text('Open Link Outside'), dense: true)),
+        PopupMenuDivider(),
+      ]);
+    }
+
+    if (hasSelection) {
+      items.addAll(const [
+        PopupMenuItem(value: 'selection-copy', child: ListTile(leading: Icon(Icons.copy), title: Text('Copy Selected Text'), dense: true)),
+        PopupMenuItem(value: 'selection-search', child: ListTile(leading: Icon(Icons.search), title: Text('Search Selected Text'), dense: true)),
+        PopupMenuDivider(),
+      ]);
+    }
+
+    items.addAll(const [
+      PopupMenuItem(value: 'back', child: ListTile(leading: Icon(Icons.arrow_back), title: Text('Back'), dense: true)),
+      PopupMenuItem(value: 'forward', child: ListTile(leading: Icon(Icons.arrow_forward), title: Text('Forward'), dense: true)),
+      PopupMenuItem(value: 'reload', child: ListTile(leading: Icon(Icons.refresh), title: Text('Reload'), dense: true)),
+      PopupMenuDivider(),
+      PopupMenuItem(value: 'bookmark', child: ListTile(leading: Icon(Icons.bookmark_add), title: Text('Bookmark This Page'), dense: true)),
+      PopupMenuItem(value: 'copy-page', child: ListTile(leading: Icon(Icons.content_copy), title: Text('Copy Page Address'), dense: true)),
+      PopupMenuItem(value: 'download-page', child: ListTile(leading: Icon(Icons.download_for_offline), title: Text('Download Current Page/File'), dense: true)),
+      PopupMenuItem(value: 'downloads', child: ListTile(leading: Icon(Icons.folder_open), title: Text('Open Downloads'), dense: true)),
+      PopupMenuItem(value: 'outside-page', child: ListTile(leading: Icon(Icons.launch), title: Text('Open Page Outside'), dense: true)),
+      PopupMenuDivider(),
+      PopupMenuItem(value: 'fullscreen', child: ListTile(leading: Icon(Icons.fullscreen), title: Text('Full Screen'), dense: true)),
+    ]);
+
+    final choice = await showMenu<String>(
+      context: context,
+      position: position,
+      items: items,
+      elevation: 12,
+    );
+    if (choice == null || !mounted) return;
+
+    switch (choice) {
+      case 'link-here':
+        _load(linkUrl);
+        break;
+      case 'link-tab':
+        await _newTab(linkUrl);
+        break;
+      case 'link-copy':
+        await Clipboard.setData(ClipboardData(text: linkUrl));
+        if (mounted) setState(() => _status = 'Link copied');
+        break;
+      case 'link-download':
+        await _downloadUrl(linkUrl);
+        break;
+      case 'link-outside':
+        await _launchExternalUri(Uri.parse(linkUrl));
+        break;
+      case 'selection-copy':
+        await Clipboard.setData(ClipboardData(text: selectedText));
+        if (mounted) setState(() => _status = 'Selected text copied');
+        break;
+      case 'selection-search':
+        await _newTab(
+          'https://www.google.com/search?q=' + Uri.encodeQueryComponent(selectedText),
+        );
+        break;
+      case 'back':
+        await _safeBack();
+        break;
+      case 'forward':
+        await _safeForward();
+        break;
+      case 'reload':
+        await _controller?.reload();
+        break;
+      case 'bookmark':
+        await _bookmarkCurrentPage();
+        break;
+      case 'copy-page':
+        await Clipboard.setData(ClipboardData(text: pageUrl));
+        if (mounted) setState(() => _status = 'Page address copied');
+        break;
+      case 'download-page':
+        await _downloadUrl(pageUrl);
+        break;
+      case 'downloads':
+        await _openDownloadsFolder();
+        break;
+      case 'outside-page':
+        final uri = Uri.tryParse(pageUrl);
+        if (uri != null) await _launchExternalUri(uri);
+        break;
+      case 'fullscreen':
+        setState(() => _fullScreen = true);
+        break;
+    }
   }
 
   bool _isInternalTabUrl(String value) {
@@ -2307,7 +2480,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<void> _downloadCurrentUrl() async {
-    final url = _tab?.url ?? '';
+    await _downloadUrl(_tab?.url ?? '');
+  }
+
+  Future<void> _downloadUrl(String url) async {
     final uri = Uri.tryParse(url);
     if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
       if (mounted) setState(() => _status = 'Open a downloadable HTTP/HTTPS address first');
@@ -2470,6 +2646,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               '6. Timed lets you schedule a learning website to open automatically.\n\n'
               '7. Default Browser registers Champak\'s Desktop Browser with Windows and opens Default Apps, where Windows asks you to confirm it.\n\n'
               '8. Use Learn With Champak, Inside Kashi, YouTube, WhatsApp Web, Google, Gmail and the other shortcuts for quick access.\n\n'
+              '9. Right-click anywhere on a web page for browser actions. Right-click a link for Open Here, New Tab, Copy Link, Download Link or Open Outside. Selected text can be copied or searched directly.\n\n'
               'This browser is strictly for learning purposes.',
               style: TextStyle(fontSize: 15, height: 1.4),
             ),
@@ -3338,7 +3515,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Champak's Desktop Browser v3.4.0",
+                      "Champak's Desktop Browser v3.5.0",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
                     ),
                     const Text(
@@ -3461,9 +3638,12 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                     : Stack(
                         fit: StackFit.expand,
                         children: [
-                          Webview(
-                            tab.controller,
-                            permissionRequested: (_, __, ___) => WebviewPermissionDecision.allow,
+                          Container(
+                            key: _webViewAreaKey,
+                            child: Webview(
+                              tab.controller,
+                              permissionRequested: (_, __, ___) => WebviewPermissionDecision.allow,
+                            ),
                           ),
                           if (_privacyHidden)
                             ClipRect(
