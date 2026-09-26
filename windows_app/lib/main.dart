@@ -1728,8 +1728,12 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
     final anchor = webBox?.localToGlobal(Offset(x, y)) ??
         Offset(overlay.size.width / 2, overlay.size.height / 2);
-    final left = anchor.dx.clamp(0.0, math.max(0.0, overlay.size.width - 1));
-    final top = anchor.dy.clamp(0.0, math.max(0.0, overlay.size.height - 1));
+    final left = anchor.dx
+        .clamp(0.0, math.max(0.0, overlay.size.width - 1))
+        .toDouble();
+    final top = anchor.dy
+        .clamp(0.0, math.max(0.0, overlay.size.height - 1))
+        .toDouble();
     final position = RelativeRect.fromRect(
       Rect.fromLTWH(left, top, 1, 1),
       Offset.zero & overlay.size,
