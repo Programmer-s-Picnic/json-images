@@ -877,7 +877,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       final file = File(_defaultPromptStateFilePath);
       if (!await file.exists()) return false;
       final decoded = jsonDecode(await file.readAsString());
-      return decoded is Map && decoded['version']?.toString() == '3.5.0';
+      return decoded is Map && decoded['version']?.toString() == '3.5.1';
     } catch (_) {
       return false;
     }
@@ -889,7 +889,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       await file.parent.create(recursive: true);
       await file.writeAsString(
         jsonEncode({
-          'version': '3.5.0',
+          'version': '3.5.1',
           'shownAt': DateTime.now().toIso8601String(),
         }),
         flush: true,
@@ -1773,7 +1773,14 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       PopupMenuItem(value: 'downloads', child: ListTile(leading: Icon(Icons.folder_open), title: Text('Open Downloads'), dense: true)),
       PopupMenuItem(value: 'outside-page', child: ListTile(leading: Icon(Icons.launch), title: Text('Open Page Outside'), dense: true)),
       PopupMenuDivider(),
-      PopupMenuItem(value: 'fullscreen', child: ListTile(leading: Icon(Icons.fullscreen), title: Text('Full Screen'), dense: true)),
+      PopupMenuItem(
+        value: 'fullscreen',
+        child: ListTile(
+          leading: Icon(_fullScreen ? Icons.fullscreen_exit : Icons.fullscreen),
+          title: Text(_fullScreen ? 'Exit Full Screen' : 'Full Screen'),
+          dense: true,
+        ),
+      ),
     ]);
 
     final choice = await showMenu<String>(
@@ -1837,7 +1844,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
         if (uri != null) await _launchExternalUri(uri);
         break;
       case 'fullscreen':
-        setState(() => _fullScreen = true);
+        _toggleFullScreen();
         break;
     }
   }
@@ -1849,6 +1856,13 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     } catch (_) {
       return false;
     }
+  }
+
+  void _toggleFullScreen() {
+    setState(() {
+      _fullScreen = !_fullScreen;
+      _status = _fullScreen ? 'Full screen enabled' : 'Full screen exited';
+    });
   }
 
   void _togglePrivacyBlur() {
@@ -3479,9 +3493,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
         left: 12,
         top: 12,
         child: FilledButton.icon(
-          onPressed: () => setState(() => _fullScreen = false),
-          icon: const Icon(Icons.arrow_back, size: 18),
-          label: const Text('Controls'),
+          onPressed: _toggleFullScreen,
+          icon: const Icon(Icons.fullscreen_exit, size: 18),
+          label: const Text('Exit Full Screen'),
         ),
       );
     }
@@ -3519,7 +3533,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Champak's Desktop Browser v3.5.0",
+                      "Champak's Desktop Browser v3.5.1",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
                     ),
                     const Text(
@@ -3569,7 +3583,11 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               ),
               const SizedBox(width: 8),
               _toolbarButton('Go', Icons.play_arrow, () => _load(_addressController.text), important: true),
-              _toolbarButton('Full', Icons.fullscreen, () => setState(() => _fullScreen = true)),
+              _toolbarButton(
+                _fullScreen ? 'Exit Full Screen' : 'Full Screen',
+                _fullScreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                _toggleFullScreen,
+              ),
             ],
           ),
           const SizedBox(height: 6),
