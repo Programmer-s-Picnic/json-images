@@ -1762,17 +1762,17 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       ]);
     }
 
-    items.addAll(const [
-      PopupMenuItem(value: 'back', child: ListTile(leading: Icon(Icons.arrow_back), title: Text('Back'), dense: true)),
-      PopupMenuItem(value: 'forward', child: ListTile(leading: Icon(Icons.arrow_forward), title: Text('Forward'), dense: true)),
-      PopupMenuItem(value: 'reload', child: ListTile(leading: Icon(Icons.refresh), title: Text('Reload'), dense: true)),
-      PopupMenuDivider(),
-      PopupMenuItem(value: 'bookmark', child: ListTile(leading: Icon(Icons.bookmark_add), title: Text('Bookmark This Page'), dense: true)),
-      PopupMenuItem(value: 'copy-page', child: ListTile(leading: Icon(Icons.content_copy), title: Text('Copy Page Address'), dense: true)),
-      PopupMenuItem(value: 'download-page', child: ListTile(leading: Icon(Icons.download_for_offline), title: Text('Download Current Page/File'), dense: true)),
-      PopupMenuItem(value: 'downloads', child: ListTile(leading: Icon(Icons.folder_open), title: Text('Open Downloads'), dense: true)),
-      PopupMenuItem(value: 'outside-page', child: ListTile(leading: Icon(Icons.launch), title: Text('Open Page Outside'), dense: true)),
-      PopupMenuDivider(),
+    items.addAll([
+      const PopupMenuItem(value: 'back', child: ListTile(leading: Icon(Icons.arrow_back), title: Text('Back'), dense: true)),
+      const PopupMenuItem(value: 'forward', child: ListTile(leading: Icon(Icons.arrow_forward), title: Text('Forward'), dense: true)),
+      const PopupMenuItem(value: 'reload', child: ListTile(leading: Icon(Icons.refresh), title: Text('Reload'), dense: true)),
+      const PopupMenuDivider(),
+      const PopupMenuItem(value: 'bookmark', child: ListTile(leading: Icon(Icons.bookmark_add), title: Text('Bookmark This Page'), dense: true)),
+      const PopupMenuItem(value: 'copy-page', child: ListTile(leading: Icon(Icons.content_copy), title: Text('Copy Page Address'), dense: true)),
+      const PopupMenuItem(value: 'download-page', child: ListTile(leading: Icon(Icons.download_for_offline), title: Text('Download Current Page/File'), dense: true)),
+      const PopupMenuItem(value: 'downloads', child: ListTile(leading: Icon(Icons.folder_open), title: Text('Open Downloads'), dense: true)),
+      const PopupMenuItem(value: 'outside-page', child: ListTile(leading: Icon(Icons.launch), title: Text('Open Page Outside'), dense: true)),
+      const PopupMenuDivider(),
       PopupMenuItem(
         value: 'fullscreen',
         child: ListTile(
