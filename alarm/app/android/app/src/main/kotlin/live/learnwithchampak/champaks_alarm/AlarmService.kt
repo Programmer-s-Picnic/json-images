@@ -29,6 +29,18 @@ class AlarmService : Service() {
     private var vibrator: Vibrator? = null
     private var speech: TextToSpeech? = null
     private var fallbackTone: ToneGenerator? = null
+    private var running = false
+    private var voiceReady = false
+    private var alarmMessage = ""
+    private val voiceHandler = Handler(Looper.getMainLooper())
+    private val fallbackVoice = object : Runnable {
+        override fun run() {
+            if (running && player == null && alarmMessage.isNotBlank() && voiceReady) {
+                speech?.speak(alarmMessage, TextToSpeech.QUEUE_FLUSH, null, "alarm-message")
+            }
+            if (running && player == null) voiceHandler.postDelayed(this, 12000)
+        }
+    }
     private val toneHandler = Handler(Looper.getMainLooper())
     private val toneLoop = object : Runnable {
         override fun run() {
@@ -41,6 +53,12 @@ class AlarmService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val id = intent?.getIntExtra("id", 0) ?: 0
+        running = true
+        voiceReady = false
+        voiceHandler.removeCallbacks(fallbackVoice)
+        speech?.stop()
+        speech?.shutdown()
+        speech = null
         if (id <= 0) { stopSelf(); return START_NOT_STICKY }
         val label = intent?.getStringExtra("label").orEmpty().ifBlank { "Alarm" }
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -109,29 +127,59 @@ class AlarmService : Service() {
         }
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         vibrator?.vibrate(VibrationEffect.createWaveform(longArrayOf(0, 700, 300), 0))
-        val message = intent?.getStringExtra("message").orEmpty().take(160)
-        if (message.isNotBlank()) {
-            speech?.shutdown()
+        alarmMessage = intent?.getStringExtra("message").orEmpty().take(160)
+        if (alarmMessage.isNotBlank()) {
+            player?.apply {
+                isLooping = false
+                setOnCompletionListener { completed ->
+                    if (running) {
+                        if (voiceReady) {
+                            val queued = speech?.speak(alarmMessage, TextToSpeech.QUEUE_FLUSH, null, "alarm-message")
+                            if (queued != TextToSpeech.SUCCESS) restartTune(completed)
+                        } else restartTune(completed)
+                    }
+                }
+            }
+            if (player == null) voiceHandler.postDelayed(fallbackVoice, 3000)
             speech = TextToSpeech(this) { status ->
-                if (status == TextToSpeech.SUCCESS) {
-                    speech?.language = Locale.getDefault()
-                    speech?.setAudioAttributes(AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_ALARM)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
-                    speech?.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
-                        override fun onStart(utteranceId: String?) { player?.setVolume(0.2f, 0.2f) }
-                        override fun onDone(utteranceId: String?) { player?.setVolume(1f, 1f) }
-                        @Deprecated("Android callback")
-                        override fun onError(utteranceId: String?) { player?.setVolume(1f, 1f) }
-                    })
-                    speech?.speak(message, TextToSpeech.QUEUE_FLUSH, null, "alarm-message")
+                voiceHandler.post {
+                    val engine = speech
+                    if (running && status == TextToSpeech.SUCCESS && engine != null) {
+                        val localeStatus = engine.setLanguage(Locale.getDefault())
+                        if (localeStatus == TextToSpeech.LANG_MISSING_DATA ||
+                            localeStatus == TextToSpeech.LANG_NOT_SUPPORTED) engine.language = Locale.US
+                        engine.setAudioAttributes(AudioAttributes.Builder()
+                            .setUsage(AudioAttributes.USAGE_ALARM)
+                            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
+                        engine.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
+                            override fun onStart(utteranceId: String?) {}
+                            override fun onDone(utteranceId: String?) {
+                                voiceHandler.post { player?.let { restartTune(it) } }
+                            }
+                            @Deprecated("Android callback")
+                            override fun onError(utteranceId: String?) {
+                                voiceHandler.post { player?.let { restartTune(it) } }
+                            }
+                        })
+                        voiceReady = true
+                    }
                 }
             }
         }
         return START_NOT_STICKY
     }
 
+    private fun restartTune(completed: MediaPlayer) {
+        if (!running || player !== completed) return
+        try {
+            completed.seekTo(0)
+            completed.start()
+        } catch (_: Exception) { /* Stop controls remain available. */ }
+    }
+
     override fun onDestroy() {
+        running = false
+        voiceHandler.removeCallbacks(fallbackVoice)
         player?.run { if (isPlaying) stop(); release() }
         player = null
         toneHandler.removeCallbacks(toneLoop)
