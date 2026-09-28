@@ -51,6 +51,31 @@ class MainActivity : FlutterActivity() {
                     }
                     "delete" -> { repo.remove(call.argument<Int>("id") ?: 0); result.success(null) }
                     "test" -> { repo.test(call.argument<Int>("id") ?: 0); result.success(null) }
+                    "testAlarm" -> {
+                        val message = call.argument<String>("message").orEmpty().trim().take(160)
+                        val tuneUri = call.argument<String>("tuneUri").orEmpty().take(512)
+                        val label = call.argument<String>("label").orEmpty().take(80).ifBlank { "Test alarm" }
+                        if (repo.activeId() != 0) throw IllegalStateException("Stop the ringing alarm before testing")
+                        val intent = Intent(this, AlarmService::class.java)
+                            .putExtra("id", 999999)
+                            .putExtra("preview", true)
+                            .putExtra("label", label)
+                            .putExtra("message", message)
+                            .putExtra("tuneUri", tuneUri)
+                        startForegroundService(intent)
+                        result.success(null)
+                    }
+                    "stopTestAlarm" -> {
+                        if (repo.activeId() == 0) stopService(Intent(this, AlarmService::class.java))
+                        result.success(null)
+                    }
+                    "setAlarmVolume" -> {
+                        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+                        val level = call.argument<Int>("level") ?: 0
+                        require(level in 0..audio.getStreamMaxVolume(AudioManager.STREAM_ALARM)) { "Invalid alarm volume" }
+                        audio.setStreamVolume(AudioManager.STREAM_ALARM, level, 0)
+                        result.success(null)
+                    }
                     "alarmVolume" -> {
                         val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
                         result.success(mapOf("current" to audio.getStreamVolume(AudioManager.STREAM_ALARM),
