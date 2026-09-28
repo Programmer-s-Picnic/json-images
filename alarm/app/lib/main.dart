@@ -49,6 +49,7 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
   List<AlarmItem> alarms = [];
   Map<String, bool> permissions = {};
   int alarmVolume = -1;
+  int alarmVolumeMax = 15;
   int active = 0;
   Timer? timer;
   bool loading = true;
@@ -99,6 +100,7 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
         permissions = status;
         active = ringing;
         alarmVolume = volume['current'] ?? -1;
+        alarmVolumeMax = volume['max'] ?? 15;
         loading = false;
       });
     } catch (error) {
@@ -126,6 +128,8 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
     final message = TextEditingController(text: item?.message ?? '');
     var tuneUri = item?.tuneUri ?? '';
     var tuneName = item?.tuneName ?? 'Default alarm';
+    var previewing = false;
+    var previewVolume = alarmVolume.clamp(0, alarmVolumeMax);
     final selected = item?.days.toSet() ?? <int>{};
     final saved = await showModalBottomSheet<bool>(
       context: context,
@@ -197,7 +201,44 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
                   TextField(controller: message, maxLength: 160, maxLines: 2,
                     decoration: const InputDecoration(labelText: 'Speak a message (optional)',
                       hintText: 'Good morning! Time to get up.', border: OutlineInputBorder(),
-                      helperText: 'Spoken once when the alarm rings')),
+                      helperText: 'Spoken after each play of the alarm tune')),
+                  Row(children: [
+                    Expanded(child: OutlinedButton.icon(
+                      onPressed: () async {
+                        try {
+                          if (previewing) {
+                            await native.invokeMethod<void>('stopTestAlarm');
+                            update(() => previewing = false);
+                          } else {
+                            await native.invokeMethod<void>('testAlarm', {
+                              'label': label.text.trim(), 'tuneUri': tuneUri,
+                              'message': message.text.trim(),
+                            });
+                            update(() => previewing = true);
+                          }
+                        } catch (error) {
+                          if (context.mounted) _showError(error);
+                        }
+                      },
+                      icon: Icon(previewing ? Icons.stop : Icons.play_arrow),
+                      label: Text(previewing ? 'Stop test alarm' : 'Test alarm'),
+                    )),
+                  ]),
+                  const SizedBox(height: 8),
+                  Text('Alarm volume: $previewVolume / $alarmVolumeMax'),
+                  Slider(
+                    value: previewVolume.toDouble(),
+                    min: 0, max: (alarmVolumeMax > 0 ? alarmVolumeMax : 1).toDouble(),
+                    divisions: alarmVolumeMax.clamp(1, 100),
+                    label: '$previewVolume',
+                    onChanged: (value) => update(() => previewVolume = value.round()),
+                    onChangeEnd: (value) async {
+                      try {
+                        await native.invokeMethod<void>('setAlarmVolume', {'level': value.round()});
+                        if (mounted) setState(() => alarmVolume = value.round());
+                      } catch (error) { if (context.mounted) _showError(error); }
+                    },
+                  ),
                   const SizedBox(height: 4),
                   Text('REPEAT', style: Theme.of(context).textTheme.labelMedium),
                   const SizedBox(height: 4),
@@ -224,6 +265,9 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
         );
       }),
     );
+    if (previewing) {
+      try { await native.invokeMethod<void>('stopTestAlarm'); } catch (_) {}
+    }
     if (saved == true) {
       final data = jsonEncode({'id': item?.id ?? 0, 'hour': time.hour, 'minute': time.minute,
         'label': label.text.trim(), 'days': selected.toList()..sort(), 'enabled': item?.enabled ?? true,
