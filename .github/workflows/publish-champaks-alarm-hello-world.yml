@@ -47,24 +47,24 @@ jobs:
           flutter build apk --release
       - name: Stage APK and checksum
         run: |
-          cp /tmp/champaks_alarm/build/app/outputs/flutter-apk/app-release.apk alarm/champaks-alarm-hello-world.apk
-          sha256sum alarm/champaks-alarm-hello-world.apk > alarm/champaks-alarm-hello-world.apk.sha256
+          cp /tmp/champaks_alarm/build/app/outputs/flutter-apk/app-release.apk alarm/champaks-alarm.apk
+          sha256sum alarm/champaks-alarm.apk > alarm/champaks-alarm.apk.sha256
       - uses: actions/upload-artifact@v4
         with:
           name: champaks-alarm-apk
           path: |
-            alarm/champaks-alarm-hello-world.apk
-            alarm/champaks-alarm-hello-world.apk.sha256
+            alarm/champaks-alarm.apk
+            alarm/champaks-alarm.apk.sha256
       - name: Publish to the same GitHub Pages URL
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          cp alarm/champaks-alarm-hello-world.apk /tmp/champaks-alarm-publish.apk
+          cp alarm/champaks-alarm.apk /tmp/champaks-alarm-publish.apk
           git fetch origin main
           git reset --hard origin/main
-          cp /tmp/champaks-alarm-publish.apk alarm/champaks-alarm-hello-world.apk
-          sha256sum alarm/champaks-alarm-hello-world.apk > alarm/champaks-alarm-hello-world.apk.sha256
-          git add alarm/champaks-alarm-hello-world.apk alarm/champaks-alarm-hello-world.apk.sha256
+          cp /tmp/champaks-alarm-publish.apk alarm/champaks-alarm.apk
+          sha256sum alarm/champaks-alarm.apk > alarm/champaks-alarm.apk.sha256
+          git add alarm/champaks-alarm.apk alarm/champaks-alarm.apk.sha256
           if ! git diff --cached --quiet; then
             git commit -m "Publish Champak's Alarm APK at existing URL"
             git push origin HEAD:main
