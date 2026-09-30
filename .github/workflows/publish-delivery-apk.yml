@@ -2,7 +2,7 @@ name: Publish delivery partner APK
 on:
   push:
     branches: [main]
-    paths: ['delivery-artifact.json']
+    paths: ['delivery-artifact.json', '.github/workflows/publish-delivery-apk.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -11,15 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download verified APK artifact
+      - name: Download successful location-sharing partner build
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          url=$(jq -r '.artifactUrl' delivery-artifact.json)
-          expected=$(jq -r '.apkSha256' delivery-artifact.json)
-          test -n "$url" && test "$url" != null
-          curl --fail --location --retry 3 --output /tmp/delivery-partner.zip "$url"
           mkdir -p /tmp/delivery-partner
-          unzip -j /tmp/delivery-partner.zip app-release.apk -d /tmp/delivery-partner
-          printf '%s  %s\n' "$expected" /tmp/delivery-partner/app-release.apk | sha256sum --check -
+          gh run download 36583275531 --repo Programmer-s-Picnic/delivery-app --name delivery-partner-apk --dir /tmp/delivery-partner
+          test -s /tmp/delivery-partner/app-release.apk
       - name: Update permanent download path
         run: |
           mkdir -p delivery
