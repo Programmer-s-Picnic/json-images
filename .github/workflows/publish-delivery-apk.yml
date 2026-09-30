@@ -11,12 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download successful location-sharing partner build
+      - name: Download successful notification partner build
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p /tmp/delivery-partner
-          gh run download 36583275531 --repo Programmer-s-Picnic/delivery-app --name delivery-partner-apk --dir /tmp/delivery-partner
+          gh run watch 36682198563 --repo Programmer-s-Picnic/delivery-app --exit-status
+          gh run download 36682198563 --repo Programmer-s-Picnic/delivery-app --name delivery-partner-apk --dir /tmp/delivery-partner
           test -s /tmp/delivery-partner/app-release.apk
       - name: Update permanent download path
         run: |
