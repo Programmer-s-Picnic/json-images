@@ -6,24 +6,31 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  actions: read
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download successful notification partner build
+      - name: Download and verify source build
         env:
           GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: d0f16b5762c0b5fd8797ce1e19a6682d9ca3ee81
         run: |
+          run_id=$(gh run list --repo Programmer-s-Picnic/delivery-app --workflow partner-apk.yml --limit 30 --json databaseId,headSha --jq ".[] | select(.headSha == \"$SOURCE_SHA\") | .databaseId" | head -1)
+          test -n "$run_id"
+          gh run watch "$run_id" --repo Programmer-s-Picnic/delivery-app --exit-status
+          test "$(gh run view "$run_id" --repo Programmer-s-Picnic/delivery-app --json headSha --jq .headSha)" = "$SOURCE_SHA"
           mkdir -p /tmp/delivery-partner
-          gh run watch 36701200992 --repo Programmer-s-Picnic/delivery-app --exit-status
-          gh run download 36701200992 --repo Programmer-s-Picnic/delivery-app --name delivery-partner-apk --dir /tmp/delivery-partner
+          gh run download "$run_id" --repo Programmer-s-Picnic/delivery-app --name delivery-partner-apk --dir /tmp/delivery-partner
           test -s /tmp/delivery-partner/app-release.apk
       - name: Update permanent download path
         run: |
           mkdir -p delivery
           install -m 644 /tmp/delivery-partner/app-release.apk delivery/DeliveryPartner.apk
+          sha256sum delivery/DeliveryPartner.apk > delivery/SHA256SUMS
+          printf '%s\n' '{"sourceCommit":"d0f16b5762c0b5fd8797ce1e19a6682d9ca3ee81","version":"1.0.2+3","workflowRun":36722333482}' > delivery/build.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add delivery/DeliveryPartner.apk
-          git diff --cached --quiet || { git commit -m 'Publish delivery partner APK at fixed URL'; git push; }
+          git add delivery/DeliveryPartner.apk delivery/SHA256SUMS delivery/build.json
+          git diff --cached --quiet || { git commit -m 'Publish validated partner cleanup APK at fixed URL'; git push; }
