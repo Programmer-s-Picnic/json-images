@@ -16,8 +16,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p /tmp/delivery-partner
-          gh run watch 36692169767 --repo Programmer-s-Picnic/delivery-app --exit-status
-          gh run download 36692169767 --repo Programmer-s-Picnic/delivery-app --name delivery-partner-apk --dir /tmp/delivery-partner
+          gh run watch 36701200992 --repo Programmer-s-Picnic/delivery-app --exit-status
+          gh run download 36701200992 --repo Programmer-s-Picnic/delivery-app --name delivery-partner-apk --dir /tmp/delivery-partner
           test -s /tmp/delivery-partner/app-release.apk
       - name: Update permanent download path
         run: |
