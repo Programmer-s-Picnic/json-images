@@ -39,12 +39,27 @@ jobs:
           assert 'minSdk = flutter.minSdkVersion' in s
           p.write_text(s.replace('minSdk = flutter.minSdkVersion', 'minSdk = 26').replace('targetSdk = flutter.targetSdkVersion', 'targetSdk = 36').replace('compileSdk = flutter.compileSdkVersion', 'compileSdk = 36'))
           PY
+      - name: Configure Android regression tests
+        run: |
+          mkdir -p /tmp/champaks_alarm/android/app/src/test
+          cp -R alarm/app/android/app/src/test/* /tmp/champaks_alarm/android/app/src/test/
+          cat >> /tmp/champaks_alarm/android/app/build.gradle.kts <<'GRADLE'
+          android { testOptions { unitTests.isIncludeAndroidResources = true } }
+          dependencies {
+              testImplementation("junit:junit:4.13.2")
+              testImplementation("org.robolectric:robolectric:4.14.1")
+              testImplementation("androidx.test:core:1.6.1")
+          }
+          GRADLE
       - name: Analyze and build release APK
         working-directory: /tmp/champaks_alarm
         run: |
           flutter pub get
           flutter analyze
           flutter build apk --release
+      - name: Android alarm regression tests
+        working-directory: /tmp/champaks_alarm/android
+        run: ./gradlew :app:testDebugUnitTest
       - name: Stage APK and checksum
         run: |
           cp /tmp/champaks_alarm/build/app/outputs/flutter-apk/app-release.apk alarm/champaks-alarm.apk

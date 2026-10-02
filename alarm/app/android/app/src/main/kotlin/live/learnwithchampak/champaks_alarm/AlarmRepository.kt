@@ -107,10 +107,10 @@ internal class AlarmRepository(private val context: Context) {
 
     private fun pending(id: Int, snooze: Boolean): PendingIntent {
         val requestCode = id * 2 + if (snooze) 1 else 0
-        val intent = Intent(context, AlarmReceiver::class.java)
-            .putExtra("id", id).putExtra("snooze", snooze)
+        val intent = Intent(context, AlarmService::class.java)
+            .putExtra("id", id).putExtra("snooze", snooze).putExtra("scheduled", true)
             .setAction("alarm.$requestCode")
-        return PendingIntent.getBroadcast(context, requestCode, intent,
+        return PendingIntent.getForegroundService(context, requestCode, intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
 
@@ -125,6 +125,7 @@ internal class AlarmRepository(private val context: Context) {
         if (Build.VERSION.SDK_INT >= 31 && !manager.canScheduleExactAlarms()) {
             throw SecurityException("Allow exact alarms in Android settings")
         }
+        cancelLegacy(id, snooze)
         manager.setAlarmClock(AlarmManager.AlarmClockInfo(whenMillis, showIntent(id)), pending(id, snooze))
     }
 
@@ -146,8 +147,17 @@ internal class AlarmRepository(private val context: Context) {
         setExact(id, System.currentTimeMillis() + 10_000L, true)
     }
 
+    private fun cancelLegacy(id: Int, snooze: Boolean) {
+        val requestCode = id * 2 + if (snooze) 1 else 0
+        val legacy = PendingIntent.getBroadcast(context, requestCode,
+            Intent(context, AlarmReceiver::class.java).setAction("alarm.$requestCode"),
+            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE)
+        legacy?.let { manager.cancel(it); it.cancel() }
+    }
+
     fun cancel(id: Int) {
         listOf(false, true).forEach { snooze ->
+            cancelLegacy(id, snooze)
             val pending = pending(id, snooze)
             manager.cancel(pending)
             pending.cancel()
@@ -157,14 +167,21 @@ internal class AlarmRepository(private val context: Context) {
         prefs.edit().putString("snoozes", snoozes.toString()).commit()
     }
 
-    fun rescheduleAll() {
+    fun rescheduleAll(recoverRecent: Boolean = false) {
         val items = all()
         var changed = false
         for (entry in items) {
             if (!entry.optBoolean("enabled")) continue
             if (entry.getJSONArray("days").length() == 0 && entry.optLong("onceAt") <= System.currentTimeMillis()) {
-                entry.put("enabled", false)
-                changed = true
+                val missedBy = System.currentTimeMillis() - entry.optLong("onceAt")
+                if (recoverRecent && missedBy <= 5 * 60_000L) {
+                    // Restore a recently due alarm if the OS dropped its registration.
+                    try { setExact(entry.getInt("id"), System.currentTimeMillis() + 500L, false) }
+                    catch (_: SecurityException) { }
+                } else {
+                    entry.put("enabled", false)
+                    changed = true
+                }
             } else {
                 try { schedule(entry) } catch (_: SecurityException) { /* Permission can be restored in the app. */ }
             }

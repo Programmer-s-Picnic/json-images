@@ -36,29 +36,56 @@ class AlarmService : Service() {
     private var voiceReady = false
     private var alarmMessage = ""
     private val voiceHandler = Handler(Looper.getMainLooper())
-    private val fallbackVoice = object : Runnable {
-        override fun run() {
-            if (running && player == null && alarmMessage.isNotBlank() && voiceReady) {
-                speech?.speak(alarmMessage, TextToSpeech.QUEUE_FLUSH, null, "alarm-message")
-            }
-            if (running && player == null) voiceHandler.postDelayed(this, 12000)
-        }
-    }
+    private var generation = 0
+    private var preview = false
+    private var speaking = false
+    private var tunePrepared = false
+    private var tuneFinished = false
     private val toneHandler = Handler(Looper.getMainLooper())
     private val toneLoop = object : Runnable {
         override fun run() {
+            if (!running || speaking) return
             fallbackTone?.startTone(ToneGenerator.TONE_PROP_BEEP, 750)
             if (fallbackTone != null) toneHandler.postDelayed(this, 1100)
         }
     }
+    private val speechTimeout = Runnable {
+        if (running && speaking) {
+            speech?.stop()
+            resumeTune()
+        }
+    }
+    private val voiceCycle = Runnable { speakMessage() }
+
 
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val id = intent?.getIntExtra("id", 0) ?: 0
+        if (intent?.getBooleanExtra("scheduled", false) == true) {
+            val entry = AlarmRepository(this).onFire(id, intent.getBooleanExtra("snooze", false))
+            if (entry == null) {
+                if (!running) stopSelf()
+                return START_NOT_STICKY
+            }
+            intent.putExtra("label", entry.optString("label"))
+                .putExtra("tuneUri", entry.optString("tuneUri"))
+                .putExtra("message", entry.optString("message"))
+                .putExtra("volume", entry.optInt("volume", -1))
+                .putExtra("vibrate", entry.optBoolean("vibrate", true))
+                .putExtra("snoozeMinutes", entry.optInt("snoozeMinutes", 5))
+                .putExtra("speechRate", entry.optDouble("speechRate", 1.0).toFloat())
+                .putExtra("language", entry.optString("language"))
+        }
+        generation++
+        val session = generation
         running = true
+        preview = intent?.getBooleanExtra("preview", false) == true
+        speaking = false
+        tunePrepared = false
+        tuneFinished = false
         voiceReady = false
-        voiceHandler.removeCallbacks(fallbackVoice)
+        voiceHandler.removeCallbacksAndMessages(null)
         speech?.stop()
         speech?.shutdown()
         speech = null
@@ -103,63 +130,27 @@ class AlarmService : Service() {
             .build()
         startForeground(1001, notification)
         player?.release()
+        player = null
         toneHandler.removeCallbacks(toneLoop)
         fallbackTone?.release()
         fallbackTone = null
         vibrator?.cancel()
-        try {
-            val chosen = intent?.getStringExtra("tuneUri").orEmpty()
-            val uri = chosen.takeIf { it.isNotBlank() }?.let(Uri::parse)
-                ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-                ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-                ?: throw IllegalStateException("No system alarm sound")
-            player = MediaPlayer().apply {
-                setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
-                setDataSource(this@AlarmService, uri)
-                isLooping = true
-                prepare()
-                start()
-            }
-        } catch (_: Exception) {
-            player?.release()
-            player = null
-            try {
-                val fallback = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-                if (fallback != null) player = MediaPlayer().apply {
-                    setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).build())
-                    setDataSource(this@AlarmService, fallback)
-                    isLooping = true
-                    prepare()
-                    start()
-                }
-            } catch (_: Exception) { player?.release(); player = null }
-        }
-        if (player == null) {
-            try {
-                fallbackTone = ToneGenerator(AudioManager.STREAM_ALARM, 100)
-                toneHandler.post(toneLoop)
-            } catch (_: Exception) { fallbackTone = null }
-        }
+        alarmMessage = intent?.getStringExtra("message").orEmpty().trim().take(160)
+            .ifBlank { if (preview) "This is a test alarm." else "" }
+        val candidates = listOfNotNull(
+            intent?.getStringExtra("tuneUri")?.takeIf { it.isNotBlank() }?.let(Uri::parse),
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM),
+            RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM),
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        ).distinct()
+        prepareTune(candidates, 0, session)
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if (intent?.getBooleanExtra("vibrate", true) != false) vibrator?.vibrate(VibrationEffect.createWaveform(longArrayOf(0, 700, 300), 0))
-        alarmMessage = intent?.getStringExtra("message").orEmpty().take(160)
         if (alarmMessage.isNotBlank()) {
-            player?.apply {
-                isLooping = false
-                setOnCompletionListener { completed ->
-                    if (running) {
-                        if (voiceReady) {
-                            val queued = speech?.speak(alarmMessage, TextToSpeech.QUEUE_FLUSH, null, "alarm-message")
-                            if (queued != TextToSpeech.SUCCESS) restartTune(completed)
-                        } else restartTune(completed)
-                    }
-                }
-            }
-            if (player == null) voiceHandler.postDelayed(fallbackVoice, 3000)
             speech = TextToSpeech(this) { status ->
                 voiceHandler.post {
                     val engine = speech
-                    if (running && status == TextToSpeech.SUCCESS && engine != null) {
+                    if (running && generation == session && status == TextToSpeech.SUCCESS && engine != null) {
                         val localeStatus = engine.setLanguage(intent?.getStringExtra("language")?.takeIf { it.isNotBlank() }?.let(Locale::forLanguageTag) ?: Locale.getDefault())
                         if (localeStatus == TextToSpeech.LANG_MISSING_DATA ||
                             localeStatus == TextToSpeech.LANG_NOT_SUPPORTED) engine.language = Locale.US
@@ -170,14 +161,15 @@ class AlarmService : Service() {
                         engine.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
                             override fun onStart(utteranceId: String?) {}
                             override fun onDone(utteranceId: String?) {
-                                voiceHandler.post { player?.let { restartTune(it) } }
+                                voiceHandler.post { if (generation == session && speaking) resumeTune() }
                             }
                             @Deprecated("Android callback")
                             override fun onError(utteranceId: String?) {
-                                voiceHandler.post { player?.let { restartTune(it) } }
+                                voiceHandler.post { if (generation == session && speaking) resumeTune() }
                             }
                         })
                         voiceReady = true
+                        if (tuneFinished) speakMessage()
                     }
                 }
             }
@@ -185,18 +177,96 @@ class AlarmService : Service() {
         return START_NOT_STICKY
     }
 
-    private fun restartTune(completed: MediaPlayer) {
-        if (!running || player !== completed) return
+    private fun prepareTune(candidates: List<Uri>, index: Int, session: Int) {
+        if (!running || generation != session) return
+        if (index >= candidates.size) {
+            fallbackTone = try { ToneGenerator(AudioManager.STREAM_ALARM, 100) } catch (_: Exception) { null }
+            toneHandler.post(toneLoop)
+            if (alarmMessage.isNotBlank()) voiceHandler.postDelayed(voiceCycle, 5000)
+            return
+        }
+        val candidate = MediaPlayer()
+        player = candidate
+        tunePrepared = false
+        val timeout = Runnable {
+            if (running && generation == session && player === candidate && !tunePrepared) {
+                candidate.release()
+                player = null
+                prepareTune(candidates, index + 1, session)
+            }
+        }
+        fun fail() {
+            voiceHandler.removeCallbacks(timeout)
+            if (generation != session || player !== candidate) return
+            candidate.release()
+            player = null
+            tunePrepared = false
+            prepareTune(candidates, index + 1, session)
+        }
         try {
-            completed.seekTo(0)
-            completed.start()
-        } catch (_: Exception) { /* Stop controls remain available. */ }
+            candidate.setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
+            candidate.setOnErrorListener { _, _, _ -> fail(); true }
+            candidate.setOnCompletionListener {
+                if (running && generation == session && player === candidate) {
+                    tuneFinished = true
+                    if (alarmMessage.isNotBlank()) speakMessage() else resumeTune()
+                }
+            }
+            candidate.setOnPreparedListener {
+                voiceHandler.removeCallbacks(timeout)
+                if (running && generation == session && player === candidate) {
+                    tunePrepared = true
+                    candidate.isLooping = alarmMessage.isBlank()
+                    try { candidate.start() } catch (_: Exception) { fail(); return@setOnPreparedListener }
+                    // A preview samples the chosen sound, then tests speech promptly.
+                    if (preview && alarmMessage.isNotBlank()) voiceHandler.postDelayed(voiceCycle, 5000)
+                }
+            }
+            candidate.setDataSource(this, candidates[index])
+            candidate.prepareAsync()
+            voiceHandler.postDelayed(timeout, 5000)
+        } catch (_: Exception) { fail() }
+    }
+
+    private fun speakMessage() {
+        if (!running || speaking || alarmMessage.isBlank()) return
+        if (!voiceReady) {
+            if (tuneFinished) resumeTune()
+            voiceHandler.postDelayed(voiceCycle, 1000)
+            return
+        }
+        voiceHandler.removeCallbacks(voiceCycle)
+        try { if (tunePrepared && player?.isPlaying == true) player?.pause() } catch (_: Exception) { }
+        toneHandler.removeCallbacks(toneLoop)
+        fallbackTone?.stopTone()
+        speaking = true
+        val queued = try { speech?.speak(alarmMessage, TextToSpeech.QUEUE_FLUSH, null, "alarm-message") }
+            catch (_: Exception) { TextToSpeech.ERROR }
+        if (queued == TextToSpeech.SUCCESS) voiceHandler.postDelayed(speechTimeout, 20000)
+        else resumeTune()
+    }
+
+    private fun resumeTune() {
+        if (!running) return
+        voiceHandler.removeCallbacks(speechTimeout)
+        speaking = false
+        tuneFinished = false
+        val current = player
+        if (current != null && tunePrepared) {
+            try { current.seekTo(0); current.start() } catch (_: Exception) { }
+            if (preview && alarmMessage.isNotBlank()) voiceHandler.postDelayed(voiceCycle, 5000)
+        } else if (fallbackTone != null) {
+            toneHandler.post(toneLoop)
+            if (alarmMessage.isNotBlank()) voiceHandler.postDelayed(voiceCycle, 5000)
+        }
     }
 
     override fun onDestroy() {
         running = false
-        voiceHandler.removeCallbacks(fallbackVoice)
-        player?.run { if (isPlaying) stop(); release() }
+        generation++
+        voiceHandler.removeCallbacksAndMessages(null)
+        player?.release()
         player = null
         toneHandler.removeCallbacks(toneLoop)
         fallbackTone?.stopTone()

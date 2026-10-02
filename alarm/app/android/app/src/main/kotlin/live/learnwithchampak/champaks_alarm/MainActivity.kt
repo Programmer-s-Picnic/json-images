@@ -69,9 +69,12 @@ class MainActivity : FlutterActivity() {
                         }
                         result.success(tunes)
                     }
-                    "list" -> result.success(repo.all().map { entry ->
-                        entry.put("nextAt", repo.nextAt(entry)).toString()
-                    })
+                    "list" -> {
+                        repo.rescheduleAll(recoverRecent = true)
+                        result.success(repo.all().map { entry ->
+                            entry.put("nextAt", repo.nextAt(entry)).toString()
+                        })
+                    }
                     "save" -> {
                         val input = JSONObject(call.argument<String>("json") ?: "{}")
                         if (input.optBoolean("enabled", true) && !canSchedule()) throw SecurityException("Exact alarm access is required")
