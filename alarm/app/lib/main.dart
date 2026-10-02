@@ -8,19 +8,24 @@ const native = MethodChannel('champaks_alarm/native');
 void main() => runApp(const ChampaksAlarmApp());
 
 class AlarmItem {
-  AlarmItem(this.id, this.hour, this.minute, this.label, this.days, this.enabled, this.nextAt, this.tuneUri, this.tuneName, this.message);
+  AlarmItem(this.id, this.hour, this.minute, this.label, this.days, this.enabled, this.nextAt, this.tuneUri, this.tuneName, this.message, this.volume, this.vibrate, this.snoozeMinutes, this.speechRate, this.language);
   final int id, hour, minute, nextAt;
   final String label;
   final String tuneUri, tuneName, message;
   final List<int> days;
-  final bool enabled;
+  final bool enabled, vibrate;
+  final int volume, snoozeMinutes;
+  final double speechRate;
+  final String language;
   factory AlarmItem.fromJson(String source) {
     final value = jsonDecode(source) as Map<String, dynamic>;
     return AlarmItem(value['id'] as int, value['hour'] as int, value['minute'] as int,
         value['label'] as String, (value['days'] as List).cast<int>(),
         value['enabled'] as bool, value['nextAt'] as int,
         value['tuneUri'] as String? ?? '', value['tuneName'] as String? ?? 'Default alarm',
-        value['message'] as String? ?? '');
+        value['message'] as String? ?? '', value['volume'] as int? ?? -1,
+        value['vibrate'] as bool? ?? true, value['snoozeMinutes'] as int? ?? 5,
+        (value['speechRate'] as num? ?? 1).toDouble(), value['language'] as String? ?? '');
   }
 }
 
@@ -35,6 +40,9 @@ class ChampaksAlarmApp extends StatelessWidget {
           useMaterial3: true,
           scaffoldBackgroundColor: const Color(0xfff7f9fc),
         ),
+        darkTheme: ThemeData(colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xff2176b9), brightness: Brightness.dark), useMaterial3: true),
+        themeMode: ThemeMode.system,
         home: const AlarmHome(),
       );
 }
@@ -80,7 +88,7 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
     polling = true;
     try {
       final current = await native.invokeMethod<int>('active') ?? 0;
-      if (mounted && active != current) await _refresh();
+      if (mounted && active != current) { await _refresh(); } else if (mounted) { setState(() {}); }
     } catch (_) {
       // Android channel may briefly be unavailable while the activity starts.
     } finally {
@@ -129,7 +137,11 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
     var tuneUri = item?.tuneUri ?? '';
     var tuneName = item?.tuneName ?? 'Default alarm';
     var previewing = false;
-    var previewVolume = alarmVolume.clamp(0, alarmVolumeMax);
+    var previewVolume = item?.volume ?? -1;
+    var vibrate = item?.vibrate ?? true;
+    var snoozeMinutes = item?.snoozeMinutes ?? 5;
+    var speechRate = item?.speechRate ?? 1.0;
+    var language = item?.language ?? '';
     final selected = item?.days.toSet() ?? <int>{};
     final saved = await showModalBottomSheet<bool>(
       context: context,
@@ -183,6 +195,13 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
                           context: context, showDragHandle: true, useSafeArea: true,
                           builder: (pickerContext) => SafeArea(child: ListView(shrinkWrap: true, children: [
                             const ListTile(title: Text('Choose alarm tune')),
+                            ListTile(leading: const Icon(Icons.audio_file_outlined), title: const Text('Choose audio file from phone'),
+                              onTap: () async {
+                                try {
+                                  final audio = await native.invokeMapMethod<String, dynamic>('pickAudio');
+                                  if (pickerContext.mounted && audio != null) Navigator.pop(pickerContext, audio);
+                                } catch (error) { if (pickerContext.mounted) _showError(error); }
+                              }),
                             for (final tune in raw) ListTile(
                               title: Text('${tune['name']}'),
                               leading: Icon(tuneUri == tune['uri'] ? Icons.radio_button_checked : Icons.radio_button_unchecked),
@@ -212,7 +231,8 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
                           } else {
                             await native.invokeMethod<void>('testAlarm', {
                               'label': label.text.trim(), 'tuneUri': tuneUri,
-                              'message': message.text.trim(),
+                              'message': message.text.trim(), 'volume': previewVolume,
+                              'vibrate': vibrate, 'speechRate': speechRate, 'language': language,
                             });
                             update(() => previewing = true);
                           }
@@ -225,21 +245,32 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
                     )),
                   ]),
                   const SizedBox(height: 8),
-                  Text('Alarm volume: $previewVolume / $alarmVolumeMax'),
-                  Slider(
-                    value: previewVolume.toDouble(),
-                    min: 0, max: (alarmVolumeMax > 0 ? alarmVolumeMax : 1).toDouble(),
-                    divisions: alarmVolumeMax.clamp(1, 100),
-                    label: '$previewVolume',
-                    onChanged: (value) => update(() => previewVolume = value.round()),
-                    onChangeEnd: (value) async {
-                      try {
-                        await native.invokeMethod<void>('setAlarmVolume', {'level': value.round()});
-                        if (mounted) setState(() => alarmVolume = value.round());
-                      } catch (error) { if (context.mounted) _showError(error); }
-                    },
-                  ),
-                  const SizedBox(height: 4),
+                  SwitchListTile(contentPadding: EdgeInsets.zero,
+                    title: const Text('Use phone alarm volume'), value: previewVolume == -1,
+                    onChanged: (on) => update(() => previewVolume = on ? -1 : 80)),
+                  if (previewVolume >= 0) ...[
+                    Text('Volume for this alarm: $previewVolume%'),
+                    Slider(value: previewVolume.toDouble(), min: 0, max: 100, divisions: 20,
+                      label: '$previewVolume%', onChanged: (v) => update(() => previewVolume = v.round())),
+                  ],
+                  SwitchListTile(contentPadding: EdgeInsets.zero, title: const Text('Vibration'),
+                    value: vibrate, onChanged: (on) => update(() => vibrate = on)),
+                  DropdownButtonFormField<int>(initialValue: snoozeMinutes,
+                    decoration: const InputDecoration(labelText: 'Snooze duration', border: OutlineInputBorder()),
+                    items: [1, 3, 5, 10, 15, 20, 30].map((n) => DropdownMenuItem(value: n, child: Text('$n minutes'))).toList(),
+                    onChanged: (n) { if (n != null) update(() => snoozeMinutes = n); }),
+                  const SizedBox(height: 12),
+                  DropdownButtonFormField<String>(initialValue: language,
+                    decoration: const InputDecoration(labelText: 'Spoken language', border: OutlineInputBorder()),
+                    items: const [DropdownMenuItem(value: '', child: Text('Phone language')),
+                      DropdownMenuItem(value: 'en-IN', child: Text('English (India)')),
+                      DropdownMenuItem(value: 'hi-IN', child: Text('Hindi'))],
+                    onChanged: (v) { if (v != null) update(() => language = v); }),
+                  Text('Speech speed: ${speechRate.toStringAsFixed(1)}'),
+                  Slider(value: speechRate, min: 0.5, max: 1.5, divisions: 10,
+                    onChanged: (v) => update(() => speechRate = v)),
+                  const Text('Voice availability depends on your phone. Test the alarm before saving.'),
+                  const SizedBox(height: 16),
                   Text('REPEAT', style: Theme.of(context).textTheme.labelMedium),
                   const SizedBox(height: 4),
                   Text('Leave all days off for a one-time alarm', style: Theme.of(context).textTheme.bodySmall),
@@ -271,7 +302,9 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
     if (saved == true) {
       final data = jsonEncode({'id': item?.id ?? 0, 'hour': time.hour, 'minute': time.minute,
         'label': label.text.trim(), 'days': selected.toList()..sort(), 'enabled': item?.enabled ?? true,
-        'tuneUri': tuneUri, 'tuneName': tuneName, 'message': message.text.trim()});
+        'tuneUri': tuneUri, 'tuneName': tuneName, 'message': message.text.trim(),
+        'volume': previewVolume, 'vibrate': vibrate, 'snoozeMinutes': snoozeMinutes,
+        'speechRate': speechRate, 'language': language});
       await _mutate(() async { await native.invokeMethod<String>('save', {'json': data}); });
     }
     label.dispose();
@@ -297,6 +330,14 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
     }
   }
 
+  String _remaining(int timestamp) {
+    final minutes = ((timestamp - DateTime.now().millisecondsSinceEpoch) / 60000).ceil().clamp(0, 999999);
+    if (minutes < 1) return 'Ringing shortly';
+    final days = minutes ~/ 1440;
+    final hours = (minutes % 1440) ~/ 60;
+    return 'In ${days > 0 ? "$days days " : ""}${hours > 0 ? "$hours hours " : ""}${minutes % 60} minutes';
+  }
+
   String _time(BuildContext context, AlarmItem item) => TimeOfDay(hour: item.hour, minute: item.minute).format(context);
 
   @override
@@ -316,7 +357,7 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
               icon: const Icon(Icons.stop), label: const Padding(padding: EdgeInsets.all(12), child: Text('Stop alarm'))),
             const SizedBox(height: 12),
             OutlinedButton.icon(onPressed: () => _mutate(() => native.invokeMethod<void>('snooze', {'id': active})),
-              icon: const Icon(Icons.snooze), label: const Padding(padding: EdgeInsets.all(12), child: Text('Snooze 5 minutes'))),
+              icon: const Icon(Icons.snooze), label: Padding(padding: const EdgeInsets.all(12), child: Text('Snooze ${item?.snoozeMinutes ?? 5} minutes'))),
           ],
         ))),
       );
@@ -326,7 +367,7 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
       ..sort((a, b) => a.nextAt.compareTo(b.nextAt));
     final ordered = [...alarms]..sort((a, b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute));
     return Scaffold(
-      appBar: AppBar(title: const Text("Champak's Alarm"), backgroundColor: const Color(0xfff7f9fc)),
+      appBar: AppBar(title: const Text("Champak's Alarm"), backgroundColor: Theme.of(context).scaffoldBackgroundColor),
       body: loading ? const Center(child: CircularProgressIndicator()) : ListView(padding: const EdgeInsets.only(top: 8), children: [
         Card(margin: const EdgeInsets.fromLTRB(16, 0, 16, 16), color: Theme.of(context).colorScheme.primaryContainer,
           child: Padding(padding: const EdgeInsets.all(22), child: Column(
@@ -340,6 +381,10 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
             Text(next.isEmpty ? 'Add an alarm to get started' :
               '${next.first.label.isEmpty ? 'Alarm' : next.first.label} · ${MaterialLocalizations.of(context).formatMediumDate(DateTime.fromMillisecondsSinceEpoch(next.first.nextAt))}',
               style: Theme.of(context).textTheme.bodyMedium),
+            if (next.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(_remaining(next.first.nextAt), style: Theme.of(context).textTheme.titleMedium),
+            ],
           ],
         ))),
         if (permissions.values.any((allowed) => !allowed)) Card(

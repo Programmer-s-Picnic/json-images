@@ -37,7 +37,7 @@ jobs:
           p = Path('/tmp/champaks_alarm/android/app/build.gradle.kts')
           s = p.read_text()
           assert 'minSdk = flutter.minSdkVersion' in s
-          p.write_text(s.replace('minSdk = flutter.minSdkVersion', 'minSdk = 26'))
+          p.write_text(s.replace('minSdk = flutter.minSdkVersion', 'minSdk = 26').replace('targetSdk = flutter.targetSdkVersion', 'targetSdk = 36').replace('compileSdk = flutter.compileSdkVersion', 'compileSdk = 36'))
           PY
       - name: Analyze and build release APK
         working-directory: /tmp/champaks_alarm

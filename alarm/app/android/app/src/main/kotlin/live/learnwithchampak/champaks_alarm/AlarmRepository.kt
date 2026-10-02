@@ -45,6 +45,11 @@ internal class AlarmRepository(private val context: Context) {
             put("tuneUri", input.optString("tuneUri").take(512))
             put("tuneName", input.optString("tuneName", "Default alarm").take(80))
             put("message", input.optString("message").take(160))
+            put("volume", input.optInt("volume", -1).coerceIn(-1, 100))
+            put("vibrate", input.optBoolean("vibrate", true))
+            put("snoozeMinutes", input.optInt("snoozeMinutes", 5).coerceIn(1, 30))
+            put("speechRate", input.optDouble("speechRate", 1.0).coerceIn(0.5, 1.5))
+            put("language", input.optString("language", "").take(20))
             put("days", days)
             put("enabled", input.optBoolean("enabled", true))
             put("onceAt", if (days.length() == 0) nextOccurrence(hour, minute, emptySet()) else 0L)
@@ -129,7 +134,7 @@ internal class AlarmRepository(private val context: Context) {
     }
 
     fun scheduleSnooze(id: Int) {
-        val whenMillis = System.currentTimeMillis() + 5 * 60_000L
+        val whenMillis = System.currentTimeMillis() + (byId(id)?.optInt("snoozeMinutes", 5) ?: 5).coerceIn(1, 30) * 60_000L
         setExact(id, whenMillis, true)
         val snoozes = JSONObject(prefs.getString("snoozes", "{}"))
         snoozes.put(id.toString(), whenMillis)
@@ -198,6 +203,8 @@ internal class AlarmRepository(private val context: Context) {
         prefs.edit().putInt("active_id", id).commit()
         return entry
     }
+
+    fun clearActive() { prefs.edit().remove("active_id").commit() }
 
     fun activeId(): Int = prefs.getInt("active_id", 0)
     fun stopRing() {

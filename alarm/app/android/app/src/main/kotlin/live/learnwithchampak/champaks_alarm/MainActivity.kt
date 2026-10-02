@@ -18,12 +18,45 @@ import io.flutter.plugin.common.MethodChannel
 import org.json.JSONObject
 
 class MainActivity : FlutterActivity() {
+    private var audioPickerResult: MethodChannel.Result? = null
+
+    @Deprecated("Activity result bridge")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode != 701) return
+        val pending = audioPickerResult ?: return
+        audioPickerResult = null
+        val uri = data?.data
+        if (resultCode != android.app.Activity.RESULT_OK || uri == null) {
+            pending.success(null); return
+        }
+        try {
+            contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            var name = "Selected audio"
+            contentResolver.query(uri, arrayOf(android.provider.OpenableColumns.DISPLAY_NAME), null, null, null)?.use {
+                if (it.moveToFirst()) name = it.getString(0)
+            }
+            pending.success(mapOf("uri" to uri.toString(), "name" to name))
+        } catch (error: Exception) {
+            pending.error("AUDIO_FILE", "Could not keep access to this audio file. Choose a local file.", null)
+        }
+    }
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "champaks_alarm/native").setMethodCallHandler { call, result ->
             val repo = AlarmRepository(this)
             try {
                 when (call.method) {
+                    "pickAudio" -> {
+                        if (audioPickerResult != null) throw IllegalStateException("Audio picker is already open")
+                        audioPickerResult = result
+                        try {
+                            startActivityForResult(Intent(Intent.ACTION_OPEN_DOCUMENT)
+                                .addCategory(Intent.CATEGORY_OPENABLE).setType("audio/*")
+                                .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION), 701)
+                        } catch (error: Exception) { audioPickerResult = null; throw error }
+                    }
                     "tunes" -> {
                         val tunes = mutableListOf(mapOf("name" to "Default alarm", "uri" to ""))
                         val ringtoneManager = RingtoneManager(this).apply { setType(RingtoneManager.TYPE_ALARM) }
@@ -62,6 +95,10 @@ class MainActivity : FlutterActivity() {
                             .putExtra("label", label)
                             .putExtra("message", message)
                             .putExtra("tuneUri", tuneUri)
+                            .putExtra("volume", call.argument<Int>("volume") ?: -1)
+                            .putExtra("vibrate", call.argument<Boolean>("vibrate") ?: true)
+                            .putExtra("speechRate", (call.argument<Number>("speechRate")?.toFloat() ?: 1f))
+                            .putExtra("language", call.argument<String>("language").orEmpty())
                         startForegroundService(intent)
                         result.success(null)
                     }
@@ -85,7 +122,7 @@ class MainActivity : FlutterActivity() {
                     "stop" -> { repo.stopRing(); result.success(null) }
                     "snooze" -> {
                         val id = call.argument<Int>("id") ?: 0
-                        if (repo.activeId() == id) { repo.stopRing(); repo.scheduleSnooze(id) }
+                        if (repo.activeId() == id) { repo.scheduleSnooze(id); repo.stopRing() }
                         result.success(null)
                     }
                     "permissions" -> result.success(mapOf(

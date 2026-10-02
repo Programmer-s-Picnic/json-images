@@ -30,6 +30,9 @@ class AlarmService : Service() {
     private var speech: TextToSpeech? = null
     private var fallbackTone: ToneGenerator? = null
     private var running = false
+    private var originalVolume: Int? = null
+    private var appliedVolume: Int? = null
+    private var wakeLock: android.os.PowerManager.WakeLock? = null
     private var voiceReady = false
     private var alarmMessage = ""
     private val voiceHandler = Handler(Looper.getMainLooper())
@@ -60,6 +63,18 @@ class AlarmService : Service() {
         speech?.shutdown()
         speech = null
         if (id <= 0) { stopSelf(); return START_NOT_STICKY }
+        if (wakeLock == null) {
+            wakeLock = (getSystemService(Context.POWER_SERVICE) as android.os.PowerManager)
+                .newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, "champaks_alarm:ring").apply { acquire(10 * 60_000L) }
+        }
+        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        val volume = intent?.getIntExtra("volume", -1) ?: -1
+        if (originalVolume == null) originalVolume = audio.getStreamVolume(AudioManager.STREAM_ALARM)
+        if (volume >= 0) {
+            appliedVolume = (audio.getStreamMaxVolume(AudioManager.STREAM_ALARM) * volume.coerceIn(0, 100) / 100f).toInt()
+            audio.setStreamVolume(AudioManager.STREAM_ALARM, appliedVolume!!, 0)
+        }
+        val snoozeMinutes = (intent?.getIntExtra("snoozeMinutes", 5) ?: 5).coerceIn(1, 30)
         val label = intent?.getStringExtra("label").orEmpty().ifBlank { "Alarm" }
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.createNotificationChannel(NotificationChannel("ringing_v1", "Ringing alarms", NotificationManager.IMPORTANCE_HIGH).apply {
@@ -72,7 +87,7 @@ class AlarmService : Service() {
             Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("alarm_id", id),
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         fun action(name: String, request: Int) = PendingIntent.getBroadcast(this, request,
-            Intent(this, AlarmActionReceiver::class.java).setAction("alarm.$name").putExtra("id", id),
+            Intent(this, AlarmActionReceiver::class.java).setAction("alarm.$name").putExtra("id", id).putExtra("preview", intent?.getBooleanExtra("preview", false) == true),
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         val notification = Notification.Builder(this, "ringing_v1")
             .setSmallIcon(applicationInfo.icon)
@@ -84,7 +99,7 @@ class AlarmService : Service() {
             .setContentIntent(open)
             .setFullScreenIntent(open, true)
             .addAction(Notification.Action.Builder(Icon.createWithResource(this, applicationInfo.icon), "Stop", action("STOP", id * 2)).build())
-            .addAction(Notification.Action.Builder(Icon.createWithResource(this, applicationInfo.icon), "Snooze 5 min", action("SNOOZE", id * 2 + 1)).build())
+            .addAction(Notification.Action.Builder(Icon.createWithResource(this, applicationInfo.icon), "Snooze $snoozeMinutes min", action("SNOOZE", id * 2 + 1)).build())
             .build()
         startForeground(1001, notification)
         player?.release()
@@ -126,7 +141,7 @@ class AlarmService : Service() {
             } catch (_: Exception) { fallbackTone = null }
         }
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        vibrator?.vibrate(VibrationEffect.createWaveform(longArrayOf(0, 700, 300), 0))
+        if (intent?.getBooleanExtra("vibrate", true) != false) vibrator?.vibrate(VibrationEffect.createWaveform(longArrayOf(0, 700, 300), 0))
         alarmMessage = intent?.getStringExtra("message").orEmpty().take(160)
         if (alarmMessage.isNotBlank()) {
             player?.apply {
@@ -145,9 +160,10 @@ class AlarmService : Service() {
                 voiceHandler.post {
                     val engine = speech
                     if (running && status == TextToSpeech.SUCCESS && engine != null) {
-                        val localeStatus = engine.setLanguage(Locale.getDefault())
+                        val localeStatus = engine.setLanguage(intent?.getStringExtra("language")?.takeIf { it.isNotBlank() }?.let(Locale::forLanguageTag) ?: Locale.getDefault())
                         if (localeStatus == TextToSpeech.LANG_MISSING_DATA ||
                             localeStatus == TextToSpeech.LANG_NOT_SUPPORTED) engine.language = Locale.US
+                        engine.setSpeechRate((intent?.getFloatExtra("speechRate", 1f) ?: 1f).coerceIn(0.5f, 1.5f))
                         engine.setAudioAttributes(AudioAttributes.Builder()
                             .setUsage(AudioAttributes.USAGE_ALARM)
                             .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
@@ -191,6 +207,13 @@ class AlarmService : Service() {
         speech = null
         vibrator?.cancel()
         vibrator = null
+        val audio = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        if (appliedVolume != null && audio.getStreamVolume(AudioManager.STREAM_ALARM) == appliedVolume) {
+            originalVolume?.let { audio.setStreamVolume(AudioManager.STREAM_ALARM, it, 0) }
+        }
+        wakeLock?.let { if (it.isHeld) it.release() }
+        wakeLock = null
+        AlarmRepository(this).clearActive()
         super.onDestroy()
     }
 }
