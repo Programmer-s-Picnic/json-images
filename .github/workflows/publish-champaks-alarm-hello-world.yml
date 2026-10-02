@@ -50,16 +50,22 @@ jobs:
               testImplementation("org.robolectric:robolectric:4.14.1")
               testImplementation("androidx.test:core:1.6.1")
           }
+          tasks.matching { it.name == "packageDebugUnitTestForUnitTest" }.configureEach {
+              dependsOn("copyFlutterAssetsDebug")
+          }
           GRADLE
       - name: Analyze and build release APK
         working-directory: /tmp/champaks_alarm
         run: |
           flutter pub get
           flutter analyze
-          flutter build apk --release
       - name: Android alarm regression tests
         working-directory: /tmp/champaks_alarm/android
         run: ./gradlew :app:testDebugUnitTest
+      - name: Build validated release
+        working-directory: /tmp/champaks_alarm
+        run: |
+          flutter build apk --release
       - name: Stage APK and checksum
         run: |
           cp /tmp/champaks_alarm/build/app/outputs/flutter-apk/app-release.apk alarm/champaks-alarm.apk
