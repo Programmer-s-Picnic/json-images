@@ -11,6 +11,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import org.robolectric.shadows.ShadowAlarmManager
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [33])
@@ -24,7 +25,7 @@ class AlarmRepositoryTest {
         context.getSharedPreferences("champaks_alarms", Context.MODE_PRIVATE).edit().clear().commit()
         repo = AlarmRepository(context)
         manager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        shadowOf(manager).setCanScheduleExactAlarms(true)
+        ShadowAlarmManager.setCanScheduleExactAlarms(true)
     }
 
     private fun save() = repo.save(JSONObject("""{"hour":23,"minute":59,"message":"Time to study","days":[],"enabled":true}"""))
@@ -32,7 +33,7 @@ class AlarmRepositoryTest {
     @Test fun savedAlarmStartsForegroundServiceDirectly() {
         val entry = save()
         val alarm = shadowOf(manager).scheduledAlarms.single()
-        assertTrue(alarm.operation.isForegroundService)
+        assertTrue(alarm.operation!!.isForegroundService)
         val intent = shadowOf(alarm.operation).savedIntent
         assertEquals(AlarmService::class.java.name, intent.component!!.className)
         assertTrue(intent.getBooleanExtra("scheduled", false))
