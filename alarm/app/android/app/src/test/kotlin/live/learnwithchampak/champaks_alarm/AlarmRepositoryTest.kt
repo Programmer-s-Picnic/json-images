@@ -2,6 +2,7 @@ package live.learnwithchampak.champaks_alarm
 
 import android.app.AlarmManager
 import android.content.Context
+import android.content.Intent
 import androidx.test.core.app.ApplicationProvider
 import org.json.JSONObject
 import org.junit.Assert.*
@@ -30,14 +31,25 @@ class AlarmRepositoryTest {
 
     private fun save() = repo.save(JSONObject("""{"hour":23,"minute":59,"message":"Time to study","days":[],"enabled":true}"""))
 
-    @Test fun savedAlarmStartsForegroundServiceDirectly() {
+    @Test fun savedAlarmUsesReceiverForBackgroundDelivery() {
         val entry = save()
         val alarm = shadowOf(manager).scheduledAlarms.single()
-        assertTrue(alarm.operation!!.isForegroundService)
+        assertTrue(alarm.operation!!.isBroadcast)
         val intent = shadowOf(alarm.operation).savedIntent
-        assertEquals(AlarmService::class.java.name, intent.component!!.className)
-        assertTrue(intent.getBooleanExtra("scheduled", false))
+        assertEquals(AlarmReceiver::class.java.name, intent.component!!.className)
         assertEquals(entry.getInt("id"), intent.getIntExtra("id", 0))
+    }
+
+    @Test fun receiverStartsRingingWithPersistedDataAndNoActivity() {
+        val entry = save()
+        AlarmReceiver().onReceive(context, Intent(context, AlarmReceiver::class.java)
+            .putExtra("id", entry.getInt("id")))
+        val started = shadowOf(context as android.app.Application).nextStartedService
+        assertNotNull(started)
+        assertEquals(AlarmService::class.java.name, started.component!!.className)
+        assertEquals("Time to study", started.getStringExtra("message"))
+        assertEquals(entry.getInt("id"), repo.activeId())
+        assertFalse(repo.byId(entry.getInt("id"))!!.getBoolean("enabled"))
     }
 
     @Test fun reopeningAppRecoversRecentlyDueAlarmWithoutDisablingIt() {
@@ -54,7 +66,7 @@ class AlarmRepositoryTest {
         assertFalse(repo.byId(entry.getInt("id"))!!.getBoolean("enabled"))
     }
 
-    @Test fun toggleOffCancelsScheduledService() {
+    @Test fun toggleOffCancelsScheduledAlarm() {
         val entry = save()
         repo.toggle(entry.getInt("id"), false)
         assertTrue(shadowOf(manager).scheduledAlarms.isEmpty())

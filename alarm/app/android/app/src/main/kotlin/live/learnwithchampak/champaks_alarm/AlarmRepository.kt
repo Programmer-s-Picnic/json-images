@@ -107,10 +107,10 @@ internal class AlarmRepository(private val context: Context) {
 
     private fun pending(id: Int, snooze: Boolean): PendingIntent {
         val requestCode = id * 2 + if (snooze) 1 else 0
-        val intent = Intent(context, AlarmService::class.java)
-            .putExtra("id", id).putExtra("snooze", snooze).putExtra("scheduled", true)
+        val intent = Intent(context, AlarmReceiver::class.java)
+            .putExtra("id", id).putExtra("snooze", snooze)
             .setAction("alarm.$requestCode")
-        return PendingIntent.getForegroundService(context, requestCode, intent,
+        return PendingIntent.getBroadcast(context, requestCode, intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
 
@@ -125,7 +125,7 @@ internal class AlarmRepository(private val context: Context) {
         if (Build.VERSION.SDK_INT >= 31 && !manager.canScheduleExactAlarms()) {
             throw SecurityException("Allow exact alarms in Android settings")
         }
-        cancelLegacy(id, snooze)
+        cancelDirectService(id, snooze)
         manager.setAlarmClock(AlarmManager.AlarmClockInfo(whenMillis, showIntent(id)), pending(id, snooze))
     }
 
@@ -147,17 +147,17 @@ internal class AlarmRepository(private val context: Context) {
         setExact(id, System.currentTimeMillis() + 10_000L, true)
     }
 
-    private fun cancelLegacy(id: Int, snooze: Boolean) {
+    private fun cancelDirectService(id: Int, snooze: Boolean) {
         val requestCode = id * 2 + if (snooze) 1 else 0
-        val legacy = PendingIntent.getBroadcast(context, requestCode,
-            Intent(context, AlarmReceiver::class.java).setAction("alarm.$requestCode"),
+        val legacy = PendingIntent.getForegroundService(context, requestCode,
+            Intent(context, AlarmService::class.java).setAction("alarm.$requestCode"),
             PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE)
         legacy?.let { manager.cancel(it); it.cancel() }
     }
 
     fun cancel(id: Int) {
         listOf(false, true).forEach { snooze ->
-            cancelLegacy(id, snooze)
+            cancelDirectService(id, snooze)
             val pending = pending(id, snooze)
             manager.cancel(pending)
             pending.cancel()
