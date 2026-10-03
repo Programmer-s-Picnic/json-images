@@ -31,6 +31,16 @@ class AlarmRepositoryTest {
 
     private fun save() = repo.save(JSONObject("""{"hour":23,"minute":59,"message":"Time to study","days":[],"enabled":true}"""))
 
+    @Test fun diagnosticsAreBoundedAndExcludeAlarmMessage() {
+        AlarmDiagnostics.clear(context)
+        save()
+        assertFalse(AlarmDiagnostics.report(context).contains("Time to study"))
+        repeat(205) { AlarmDiagnostics.log(context, "EVENT_$it") }
+        val report = AlarmDiagnostics.report(context)
+        assertFalse(report.contains("  EVENT_0\n"))
+        assertTrue(report.contains("  EVENT_204"))
+    }
+
     @Test fun savedAlarmUsesReceiverForBackgroundDelivery() {
         val entry = save()
         val alarm = shadowOf(manager).scheduledAlarms.single()

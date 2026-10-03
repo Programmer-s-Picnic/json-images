@@ -367,7 +367,7 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
       ..sort((a, b) => a.nextAt.compareTo(b.nextAt));
     final ordered = [...alarms]..sort((a, b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute));
     return Scaffold(
-      appBar: AppBar(title: const Text("Champak's Alarm"), backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+      appBar: AppBar(actions: [IconButton(tooltip: 'Diagnostics', icon: const Icon(Icons.bug_report_outlined), onPressed: () => Navigator.push(context, MaterialPageRoute<void>(builder: (_) => const DiagnosticsPage())))], title: const Text("Champak's Alarm"), backgroundColor: Theme.of(context).scaffoldBackgroundColor),
       body: loading ? const Center(child: CircularProgressIndicator()) : ListView(padding: const EdgeInsets.only(top: 8), children: [
         Card(margin: const EdgeInsets.fromLTRB(16, 0, 16, 16), color: Theme.of(context).colorScheme.primaryContainer,
           child: Padding(padding: const EdgeInsets.all(22), child: Column(
@@ -434,4 +434,55 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
       floatingActionButton: FloatingActionButton.extended(onPressed: () => _edit(), icon: const Icon(Icons.add_alarm), label: const Text('Add alarm')),
     );
   }
+}
+
+class DiagnosticsPage extends StatefulWidget {
+  const DiagnosticsPage({super.key});
+  @override
+  State<DiagnosticsPage> createState() => _DiagnosticsPageState();
+}
+
+class _DiagnosticsPageState extends State<DiagnosticsPage> {
+  String report = 'Loading diagnostics…';
+  bool busy = false;
+  @override
+  void initState() { super.initState(); load(); }
+  Future<void> load() async {
+    try {
+      final value = await native.invokeMethod<String>('diagnostics') ?? 'No report';
+      if (mounted) setState(() => report = value);
+    } catch (error) { if (mounted) setState(() => report = '$error'); }
+  }
+  Future<void> test() async {
+    setState(() => busy = true);
+    try {
+      final due = await native.invokeMethod<int>('diagnosticTest');
+      await load();
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: const Duration(seconds: 10),
+        content: Text('Test saved for ${DateTime.fromMillisecondsSinceEpoch(due!)}. Press Home and lock the phone. Reopen Diagnostics afterwards.')));
+    } catch (error) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$error')));
+    } finally { if (mounted) setState(() => busy = false); }
+  }
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(title: const Text('Alarm diagnostics'), actions: [
+      IconButton(tooltip: 'Refresh', onPressed: load, icon: const Icon(Icons.refresh)),
+    ]),
+    body: ListView(padding: const EdgeInsets.all(16), children: [
+      const Text('Run a background test, press Home and lock the phone. After the due time, reopen this screen and copy the report. Logs stay on your phone; nothing is uploaded.'),
+      const SizedBox(height: 12),
+      FilledButton.icon(onPressed: busy ? null : test, icon: const Icon(Icons.alarm), label: const Text('Schedule background test (about 2 minutes)')),
+      Wrap(spacing: 8, children: [
+        TextButton.icon(onPressed: () async {
+          await Clipboard.setData(ClipboardData(text: report));
+          if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Report copied')));
+        }, icon: const Icon(Icons.copy), label: const Text('Copy report')),
+        TextButton(onPressed: () async { await native.invokeMethod<void>('clearDiagnostics'); await load(); }, child: const Text('Clear log')),
+      ]),
+      const Divider(),
+      SelectableText(report, style: const TextStyle(fontFamily: 'monospace', fontSize: 13)),
+    ]),
+  );
 }

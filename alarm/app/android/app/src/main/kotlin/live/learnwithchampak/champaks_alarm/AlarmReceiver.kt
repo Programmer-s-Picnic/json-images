@@ -8,6 +8,7 @@ import android.os.Build
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val id = intent.getIntExtra("id", 0)
+        AlarmDiagnostics.log(context, "RECEIVER_DELIVERED id=$id")
         if (id <= 0) return
         val entry = AlarmRepository(context).onFire(id, intent.getBooleanExtra("snooze", false)) ?: return
         val ringIntent = Intent(context, AlarmService::class.java)
@@ -19,13 +20,20 @@ class AlarmReceiver : BroadcastReceiver() {
             .putExtra("snoozeMinutes", entry.optInt("snoozeMinutes", 5))
             .putExtra("speechRate", entry.optDouble("speechRate", 1.0).toFloat())
             .putExtra("language", entry.optString("language"))
-        if (Build.VERSION.SDK_INT >= 26) context.startForegroundService(ringIntent)
-        else context.startService(ringIntent)
+        try {
+            if (Build.VERSION.SDK_INT >= 26) context.startForegroundService(ringIntent)
+            else context.startService(ringIntent)
+            AlarmDiagnostics.log(context, "SERVICE_REQUEST_OK id=$id")
+        } catch (error: Exception) {
+            AlarmDiagnostics.log(context, "SERVICE_REQUEST_FAILED id=$id type=${error.javaClass.simpleName}")
+            AlarmRepository(context).clearActive()
+        }
     }
 }
 
 class AlarmBootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
+        AlarmDiagnostics.log(context, "RESTORE action=${intent.action}")
         AlarmRepository(context).rescheduleAll()
     }
 }

@@ -58,10 +58,20 @@ class AlarmService : Service() {
     private val voiceCycle = Runnable { speakMessage() }
 
 
+    override fun onCreate() {
+        super.onCreate()
+        val previous = Thread.getDefaultUncaughtExceptionHandler()
+        Thread.setDefaultUncaughtExceptionHandler { thread, error ->
+            AlarmDiagnostics.log(this, "UNCAUGHT type=${error.javaClass.simpleName} cause=${error.cause?.javaClass?.simpleName}")
+            previous?.uncaughtException(thread, error)
+        }
+    }
+
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val id = intent?.getIntExtra("id", 0) ?: 0
+        AlarmDiagnostics.log(this, "SERVICE_START id=$id preview=${intent?.getBooleanExtra("preview", false)}")
         if (intent?.getBooleanExtra("scheduled", false) == true) {
             val entry = AlarmRepository(this).onFire(id, intent.getBooleanExtra("snooze", false))
             if (entry == null) {
@@ -128,7 +138,14 @@ class AlarmService : Service() {
             .addAction(Notification.Action.Builder(Icon.createWithResource(this, applicationInfo.icon), "Stop", action("STOP", id * 2)).build())
             .addAction(Notification.Action.Builder(Icon.createWithResource(this, applicationInfo.icon), "Snooze $snoozeMinutes min", action("SNOOZE", id * 2 + 1)).build())
             .build()
-        startForeground(1001, notification)
+        try {
+            startForeground(1001, notification)
+            AlarmDiagnostics.log(this, "FOREGROUND_OK id=$id")
+        } catch (error: Exception) {
+            AlarmDiagnostics.log(this, "FOREGROUND_FAILED id=$id type=${error.javaClass.simpleName}")
+            stopSelf()
+            return START_NOT_STICKY
+        }
         player?.release()
         player = null
         toneHandler.removeCallbacks(toneLoop)
@@ -149,6 +166,7 @@ class AlarmService : Service() {
         if (alarmMessage.isNotBlank()) {
             speech = TextToSpeech(this) { status ->
                 voiceHandler.post {
+                    AlarmDiagnostics.log(this, "TTS_INIT status=$status")
                     val engine = speech
                     if (running && generation == session && status == TextToSpeech.SUCCESS && engine != null) {
                         val localeStatus = engine.setLanguage(intent?.getStringExtra("language")?.takeIf { it.isNotBlank() }?.let(Locale::forLanguageTag) ?: Locale.getDefault())
@@ -181,6 +199,7 @@ class AlarmService : Service() {
         if (!running || generation != session) return
         if (index >= candidates.size) {
             fallbackTone = try { ToneGenerator(AudioManager.STREAM_ALARM, 100) } catch (_: Exception) { null }
+            AlarmDiagnostics.log(this, "FALLBACK_TONE available=${fallbackTone != null}")
             toneHandler.post(toneLoop)
             if (alarmMessage.isNotBlank()) voiceHandler.postDelayed(voiceCycle, 5000)
             return
@@ -190,12 +209,14 @@ class AlarmService : Service() {
         tunePrepared = false
         val timeout = Runnable {
             if (running && generation == session && player === candidate && !tunePrepared) {
+                AlarmDiagnostics.log(this, "TUNE_PREPARE_TIMEOUT candidate=$index")
                 candidate.release()
                 player = null
                 prepareTune(candidates, index + 1, session)
             }
         }
         fun fail() {
+            AlarmDiagnostics.log(this, "TUNE_FAILED candidate=$index")
             voiceHandler.removeCallbacks(timeout)
             if (generation != session || player !== candidate) return
             candidate.release()
@@ -218,7 +239,7 @@ class AlarmService : Service() {
                 if (running && generation == session && player === candidate) {
                     tunePrepared = true
                     candidate.isLooping = alarmMessage.isBlank()
-                    try { candidate.start() } catch (_: Exception) { fail(); return@setOnPreparedListener }
+                    try { candidate.start(); AlarmDiagnostics.log(this, "TUNE_STARTED candidate=$index") } catch (_: Exception) { fail(); return@setOnPreparedListener }
                     // A preview samples the chosen sound, then tests speech promptly.
                     if (preview && alarmMessage.isNotBlank()) voiceHandler.postDelayed(voiceCycle, 5000)
                 }
@@ -243,6 +264,7 @@ class AlarmService : Service() {
         speaking = true
         val queued = try { speech?.speak(alarmMessage, TextToSpeech.QUEUE_FLUSH, null, "alarm-message") }
             catch (_: Exception) { TextToSpeech.ERROR }
+        AlarmDiagnostics.log(this, "SPEECH_QUEUE status=$queued")
         if (queued == TextToSpeech.SUCCESS) voiceHandler.postDelayed(speechTimeout, 20000)
         else resumeTune()
     }
@@ -263,6 +285,7 @@ class AlarmService : Service() {
     }
 
     override fun onDestroy() {
+        AlarmDiagnostics.log(this, "SERVICE_DESTROY")
         running = false
         generation++
         voiceHandler.removeCallbacksAndMessages(null)

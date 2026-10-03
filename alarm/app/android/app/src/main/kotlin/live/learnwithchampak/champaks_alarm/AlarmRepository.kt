@@ -126,7 +126,13 @@ internal class AlarmRepository(private val context: Context) {
             throw SecurityException("Allow exact alarms in Android settings")
         }
         cancelDirectService(id, snooze)
-        manager.setAlarmClock(AlarmManager.AlarmClockInfo(whenMillis, showIntent(id)), pending(id, snooze))
+        try {
+            manager.setAlarmClock(AlarmManager.AlarmClockInfo(whenMillis, showIntent(id)), pending(id, snooze))
+            AlarmDiagnostics.log(context, "SCHEDULE_OK id=$id snooze=$snooze due=$whenMillis")
+        } catch (error: Exception) {
+            AlarmDiagnostics.log(context, "SCHEDULE_FAILED id=$id type=${error.javaClass.simpleName}")
+            throw error
+        }
     }
 
     fun schedule(entry: JSONObject) {
@@ -156,6 +162,7 @@ internal class AlarmRepository(private val context: Context) {
     }
 
     fun cancel(id: Int) {
+        AlarmDiagnostics.log(context, "CANCEL id=$id")
         listOf(false, true).forEach { snooze ->
             cancelDirectService(id, snooze)
             val pending = pending(id, snooze)

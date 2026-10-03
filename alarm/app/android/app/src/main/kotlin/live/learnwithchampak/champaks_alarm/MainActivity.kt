@@ -48,6 +48,16 @@ class MainActivity : FlutterActivity() {
             val repo = AlarmRepository(this)
             try {
                 when (call.method) {
+                    "diagnostics" -> result.success(AlarmDiagnostics.report(this))
+                    "clearDiagnostics" -> { AlarmDiagnostics.clear(this); result.success(null) }
+                    "diagnosticTest" -> {
+                        val time = java.time.ZonedDateTime.now().plusMinutes(2)
+                        val entry = repo.save(JSONObject().put("hour", time.hour).put("minute", time.minute)
+                            .put("label", "Background diagnostic test").put("message", "Background alarm test")
+                            .put("volume", 80).put("enabled", true))
+                        AlarmDiagnostics.log(this, "DIAGNOSTIC_TEST id=${entry.getInt("id")}")
+                        result.success(repo.nextAt(entry))
+                    }
                     "pickAudio" -> {
                         if (audioPickerResult != null) throw IllegalStateException("Audio picker is already open")
                         audioPickerResult = result
@@ -144,9 +154,20 @@ class MainActivity : FlutterActivity() {
                     else -> result.notImplemented()
                 }
             } catch (error: Exception) {
+                AlarmDiagnostics.log(this, "APP_ERROR method=${call.method} type=${error.javaClass.simpleName}")
                 result.error("ALARM_ERROR", error.message ?: "Could not update alarm", null)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        AlarmDiagnostics.log(this, "ACTIVITY_RESUME")
+    }
+
+    override fun onPause() {
+        AlarmDiagnostics.log(this, "ACTIVITY_PAUSE")
+        super.onPause()
     }
 
     private fun canSchedule() = Build.VERSION.SDK_INT < 31 ||
