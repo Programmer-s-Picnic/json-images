@@ -48,6 +48,32 @@ class MainActivity : FlutterActivity() {
             val repo = AlarmRepository(this)
             try {
                 when (call.method) {
+                    "backgroundSetup" -> {
+                        val prefs = getSharedPreferences("background_setup", Context.MODE_PRIVATE)
+                        val needed = Build.MANUFACTURER.lowercase(java.util.Locale.US) in listOf("xiaomi", "redmi", "poco")
+                        result.success(mapOf("needed" to needed, "confirmed" to prefs.getBoolean("confirmed", false),
+                            "prompt" to (needed && !prefs.getBoolean("prompted", false))))
+                    }
+                    "backgroundPromptShown" -> {
+                        getSharedPreferences("background_setup", Context.MODE_PRIVATE).edit().putBoolean("prompted", true).apply()
+                        result.success(null)
+                    }
+                    "confirmBackgroundSetup" -> {
+                        getSharedPreferences("background_setup", Context.MODE_PRIVATE).edit().putBoolean("confirmed", true).apply()
+                        result.success(null)
+                    }
+                    "openAutostart" -> {
+                        val candidates = listOf(
+                            Intent().setComponent(android.content.ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity")),
+                            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName"))
+                        )
+                        var opened = false
+                        for (candidate in candidates) {
+                            try { startActivity(candidate); opened = true; break } catch (_: Exception) { }
+                        }
+                        if (!opened) throw IllegalStateException("Open Settings and search for Background autostart")
+                        result.success(null)
+                    }
                     "diagnostics" -> result.success(AlarmDiagnostics.report(this))
                     "clearDiagnostics" -> { AlarmDiagnostics.clear(this); result.success(null) }
                     "diagnosticTest" -> {

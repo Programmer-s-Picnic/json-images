@@ -56,6 +56,7 @@ class AlarmHome extends StatefulWidget {
 class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
   List<AlarmItem> alarms = [];
   Map<String, bool> permissions = {};
+  bool backgroundNeeded = false, backgroundConfirmed = false, backgroundDialogOpen = false;
   int alarmVolume = -1;
   int alarmVolumeMax = 15;
   int active = 0;
@@ -100,20 +101,43 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
     try {
       final entries = await native.invokeListMethod<String>('list') ?? <String>[];
       final status = await native.invokeMapMethod<String, bool>('permissions') ?? <String, bool>{};
+      final background = await native.invokeMapMethod<String, bool>('backgroundSetup') ?? <String, bool>{};
       final ringing = await native.invokeMethod<int>('active') ?? 0;
       final volume = await native.invokeMapMethod<String, int>('alarmVolume') ?? <String, int>{};
       if (!mounted) return;
       setState(() {
         alarms = entries.map(AlarmItem.fromJson).toList();
         permissions = status;
+        backgroundNeeded = background['needed'] ?? false;
+        backgroundConfirmed = background['confirmed'] ?? false;
         active = ringing;
         alarmVolume = volume['current'] ?? -1;
         alarmVolumeMax = volume['max'] ?? 15;
         loading = false;
       });
+      if (background['prompt'] == true && !backgroundDialogOpen) await _backgroundSetup();
     } catch (error) {
       if (mounted) _showError(error);
     }
+  }
+
+  Future<void> _backgroundSetup() async {
+    if (backgroundDialogOpen || !mounted) return;
+    backgroundDialogOpen = true;
+    await native.invokeMethod<void>('backgroundPromptShown');
+    if (!mounted) { backgroundDialogOpen = false; return; }
+    await showDialog<void>(context: context, builder: (dialogContext) => AlertDialog(
+      title: const Text('Allow background autostart'),
+      content: const Text('On Xiaomi, Redmi and POCO phones, enable Background autostart for Champak’s Alarm so saved alarms can ring while the app is closed. Keep app battery settings on No restrictions.\n\nTap Open settings, enable this app, then return. If app details opens instead, search phone Settings for Background autostart. The app cannot read or change this switch.'),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(dialogContext), child: const Text('Later')),
+        FilledButton(onPressed: () async {
+          Navigator.pop(dialogContext);
+          await _mutate(() => native.invokeMethod<void>('openAutostart'));
+        }, child: const Text('Open settings')),
+      ],
+    ));
+    backgroundDialogOpen = false;
   }
 
   void _showError(Object error) => ScaffoldMessenger.of(context).showSnackBar(
@@ -399,6 +423,15 @@ class _AlarmHomeState extends State<AlarmHome> with WidgetsBindingObserver {
                 icon: const Icon(Icons.settings),
                 label: Text({'exact': 'Exact alarms', 'notifications': 'Notifications', 'fullScreen': 'Full-screen alerts'}[kind]!),
               ),
+          ])),
+        ),
+        if (backgroundNeeded) Card(
+          margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+          child: Padding(padding: const EdgeInsets.all(18), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('Background autostart', style: Theme.of(context).textTheme.titleMedium),
+            Text(backgroundConfirmed ? 'You confirmed this setting. Run a background test after phone updates or reinstalling.' : 'Enable this app in Xiaomi Background autostart. The app cannot check this switch automatically.'),
+            TextButton.icon(onPressed: _backgroundSetup, icon: const Icon(Icons.settings), label: const Text('Open autostart setup')),
+            if (!backgroundConfirmed) TextButton(onPressed: () => _mutate(() => native.invokeMethod<void>('confirmBackgroundSetup')), child: const Text('I have enabled it')),
           ])),
         ),
         if (alarmVolume == 0) Card(
