@@ -15,7 +15,7 @@ jobs:
       - name: Download and verify source build
         env:
           GH_TOKEN: ${{ github.token }}
-          SOURCE_SHA: 3ba0d0a9f2e8eea928542fef302f91378339b0a4
+          SOURCE_SHA: 9716654ba5daa65405d04d5cbd7c0a800684500e
         run: |
           run_id=$(gh run list --repo Programmer-s-Picnic/delivery-app --workflow partner-apk.yml --limit 30 --json databaseId,headSha --jq ".[] | select(.headSha == \"$SOURCE_SHA\") | .databaseId" | head -1)
           test -n "$run_id"
@@ -29,8 +29,8 @@ jobs:
           mkdir -p delivery
           install -m 644 /tmp/delivery-partner/app-release.apk delivery/DeliveryPartner.apk
           sha256sum delivery/DeliveryPartner.apk > delivery/SHA256SUMS
-          printf '%s\n' '{"sourceCommit":"3ba0d0a9f2e8eea928542fef302f91378339b0a4","version":"1.2.0+7","workflowRun":37173902063}' > delivery/build.json
+          printf '%s\n' '{"sourceCommit":"9716654ba5daa65405d04d5cbd7c0a800684500e","version":"1.2.1+8","workflowRun":37175894936}' > delivery/build.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add delivery/DeliveryPartner.apk delivery/SHA256SUMS delivery/build.json
-          git diff --cached --quiet || { git commit -m 'Publish full-function Delivery Partner APK at fixed URL'; git push; }
+          git diff --cached --quiet || { git commit -m 'Publish completed-order action lock Delivery Partner APK'; git push; }
