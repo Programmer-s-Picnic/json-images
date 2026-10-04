@@ -15,7 +15,7 @@ jobs:
       - name: Download and verify source build
         env:
           GH_TOKEN: ${{ github.token }}
-          SOURCE_SHA: 70d143ff29d2c539b48b6fa71bc8fcb3ccceed02
+          SOURCE_SHA: 674d9658869e49b908ba1ec88130c19e1139b257
         run: |
           run_id=$(gh run list --repo Programmer-s-Picnic/delivery-app --workflow partner-apk.yml --limit 30 --json databaseId,headSha --jq ".[] | select(.headSha == \"$SOURCE_SHA\") | .databaseId" | head -1)
           test -n "$run_id"
@@ -29,8 +29,8 @@ jobs:
           mkdir -p delivery
           install -m 644 /tmp/delivery-partner/app-release.apk delivery/DeliveryPartner.apk
           sha256sum delivery/DeliveryPartner.apk > delivery/SHA256SUMS
-          printf '%s\n' '{"sourceCommit":"70d143ff29d2c539b48b6fa71bc8fcb3ccceed02","version":"1.2.2+9","workflowRun":37190298918}' > delivery/build.json
+          printf '%s\n' '{"sourceCommit":"674d9658869e49b908ba1ec88130c19e1139b257","version":"1.3.0+10","workflowRun":37205070414}' > delivery/build.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add delivery/DeliveryPartner.apk delivery/SHA256SUMS delivery/build.json
-          git diff --cached --quiet || { git commit -m 'Publish custom-icon Delivery Partner APK'; git push; }
+          git diff --cached --quiet || { git commit -m 'Publish QR-scanning Delivery Partner APK'; git push; }
