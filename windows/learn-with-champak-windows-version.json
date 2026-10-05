@@ -1,9 +1,9 @@
 {
   "appName": "Champak's Desktop Browser",
   "packageName": "learn_with_champak_windows",
-  "versionName": "3.5.1",
-  "versionCode": 25,
+  "versionName": "3.6.0",
+  "versionCode": 26,
   "installerUrl": "https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-setup.exe",
   "portableZipUrl": "https://programmer-s-picnic.github.io/json-images/windows/learn-with-champak-windows-portable.zip",
-  "updatedAt": "2026-09-27T08:51:00+05:30"
+  "updatedAt": "2026-10-05T15:46:00+05:30"
 }
