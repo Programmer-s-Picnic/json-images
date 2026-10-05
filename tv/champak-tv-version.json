@@ -6,7 +6,8 @@
   "targetSdk": 36,
   "apkUrl": "https://programmer-s-picnic.github.io/json-images/tv/champak-tv.apk",
   "privacyPolicyUrl": "https://programmer-s-picnic.github.io/json-images/tv/privacy-policy.html",
-  "sourceBuildRunId": 37319701384,
-  "playAabArtifactId": 11348783696,
-  "updatedAt": "2026-10-05T19:22:00+05:30"
+  "sourceBuildRunId": 37331701738,
+  "playAabArtifactId": 11354003710,
+  "updatedAt": "2026-10-05T20:50:00+05:30",
+  "notes": "Direct browser launch; Windows-parity toolbar; secure Google sign-in routing"
 }
