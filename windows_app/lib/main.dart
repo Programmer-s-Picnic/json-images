@@ -1242,7 +1242,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
   void _resetToolbarLayout() {
     setState(() {
-      _toolbarOrder = List<String>.from(_defaultToolbarOrder);
+      _toolbarOrder = <String>[
+        ..._defaultToolbarOrder,
+        ..._customToolbarLinks.map((item) => item['id']!).where((id) => id.isNotEmpty),
+      ];
       _hiddenToolbarItems.clear();
       _status = 'Toolbar restored to default layout';
     });
@@ -4346,7 +4349,12 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               ),
               TextButton.icon(
                 onPressed: () {
-                  _toolbarOrder = List<String>.from(_defaultToolbarOrder);
+                  _toolbarOrder = <String>[
+                    ..._defaultToolbarOrder,
+                    ..._customToolbarLinks
+                        .map((item) => item['id']!)
+                        .where((id) => id.isNotEmpty),
+                  ];
                   _hiddenToolbarItems.clear();
                   refresh();
                 },
