@@ -127,6 +127,22 @@ class BrowserTab {
   bool ready = false;
 }
 
+class _ToolbarAction {
+  _ToolbarAction({
+    required this.id,
+    required this.label,
+    required this.icon,
+    required this.onPressed,
+    this.important = false,
+  });
+
+  final String id;
+  final String label;
+  final IconData icon;
+  final VoidCallback onPressed;
+  final bool important;
+}
+
 class _WeatherDay {
   const _WeatherDay({
     required this.date,
@@ -352,6 +368,30 @@ class DesktopHomePage extends StatefulWidget {
 }
 
 class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
+  static const List<String> _defaultToolbarOrder = <String>[
+    'home',
+    'learn',
+    'inside-kashi',
+    'youtube',
+    'whatsapp',
+    'google',
+    'g-account',
+    'gmail',
+    'add-bookmark',
+    'bookmarks',
+    'history',
+    'developer',
+    'download',
+    'open-file',
+    'downloads',
+    'privacy',
+    'default-browser',
+    'github-code',
+    'disclaimer',
+    'win-update',
+    'apk',
+  ];
+
   static const homeUrl = 'https://www.learnwithchampak.live';
   static const insideKashiUrl = 'https://insidekashi.com';
   static const youtubeUrl = 'https://youtube.com/@champaksworld';
@@ -470,6 +510,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   final List<BrowserTab> _tabs = [];
   final List<Map<String, String>> _history = [];
   final List<Map<String, String>> _bookmarks = [];
+  List<String> _toolbarOrder = List<String>.from(_defaultToolbarOrder);
+  final Set<String> _hiddenToolbarItems = <String>{};
 
   Timer? _sessionSaveTimer;
   Timer? _windowBoundsSaveTimer;
@@ -849,6 +891,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   Future<void> _startBrowser() async {
     await _loadHistory();
     await _loadBookmarks();
+    await _loadToolbarLayout();
     await _prepareWebView2Environment();
 
     final timedUrl = _startupTimedUrl;
@@ -870,14 +913,78 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
   String get _historyFilePath => _appDataPath('browser_history.json');
   String get _bookmarksFilePath => _appDataPath('browser_bookmarks.json');
+  String get _toolbarLayoutFilePath => _appDataPath('toolbar_layout.json');
   String get _defaultPromptStateFilePath => _appDataPath('default_browser_prompt.json');
+
+  Future<void> _loadToolbarLayout() async {
+    try {
+      final file = File(_toolbarLayoutFilePath);
+      if (!await file.exists()) return;
+      final decoded = jsonDecode(await file.readAsString());
+      if (decoded is! Map) return;
+
+      final rawOrder = decoded['order'];
+      final rawHidden = decoded['hidden'];
+
+      final savedOrder = rawOrder is List
+          ? rawOrder.map((e) => e.toString()).where(_defaultToolbarOrder.contains).toList()
+          : <String>[];
+      final completeOrder = <String>[
+        ...savedOrder,
+        ..._defaultToolbarOrder.where((id) => !savedOrder.contains(id)),
+      ];
+
+      final hidden = rawHidden is List
+          ? rawHidden.map((e) => e.toString()).where(_defaultToolbarOrder.contains).toSet()
+          : <String>{};
+
+      if (!mounted) {
+        _toolbarOrder = completeOrder;
+        _hiddenToolbarItems
+          ..clear()
+          ..addAll(hidden);
+        return;
+      }
+
+      setState(() {
+        _toolbarOrder = completeOrder;
+        _hiddenToolbarItems
+          ..clear()
+          ..addAll(hidden);
+      });
+    } catch (_) {}
+  }
+
+  Future<void> _saveToolbarLayout() async {
+    try {
+      final file = File(_toolbarLayoutFilePath);
+      await file.parent.create(recursive: true);
+      await file.writeAsString(
+        jsonEncode({
+          'order': _toolbarOrder,
+          'hidden': _hiddenToolbarItems.toList(),
+          'savedAt': DateTime.now().toIso8601String(),
+        }),
+        flush: true,
+      );
+    } catch (_) {}
+  }
+
+  void _resetToolbarLayout() {
+    setState(() {
+      _toolbarOrder = List<String>.from(_defaultToolbarOrder);
+      _hiddenToolbarItems.clear();
+      _status = 'Toolbar restored to default layout';
+    });
+    unawaited(_saveToolbarLayout());
+  }
 
   Future<bool> _defaultPromptShownForCurrentVersion() async {
     try {
       final file = File(_defaultPromptStateFilePath);
       if (!await file.exists()) return false;
       final decoded = jsonDecode(await file.readAsString());
-      return decoded is Map && decoded['version']?.toString() == '3.5.1';
+      return decoded is Map && decoded['version']?.toString() == '3.6.0';
     } catch (_) {
       return false;
     }
@@ -889,7 +996,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       await file.parent.create(recursive: true);
       await file.writeAsString(
         jsonEncode({
-          'version': '3.5.1',
+          'version': '3.6.0',
           'shownAt': DateTime.now().toIso8601String(),
         }),
         flush: true,
@@ -3315,6 +3422,15 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.tune),
+                title: const Text('Manage Toolbar'),
+                subtitle: const Text('Show, hide and reorder shortcut buttons'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _showToolbarManager();
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.developer_mode),
                 title: const Text('Developer Mode'),
                 subtitle: const Text('DevTools, source, JavaScript and page information'),
@@ -3375,6 +3491,385 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     } finally {
       if (mounted) setState(() => _checking = false);
     }
+  }
+
+  Map<String, _ToolbarAction> _toolbarActions() => <String, _ToolbarAction>{
+        'home': _ToolbarAction(
+          id: 'home',
+          label: 'Home',
+          icon: Icons.home,
+          onPressed: () => _load(homeUrl),
+        ),
+        'learn': _ToolbarAction(
+          id: 'learn',
+          label: 'Learn With Champak',
+          icon: Icons.school,
+          onPressed: () => _newTab(homeUrl),
+          important: true,
+        ),
+        'inside-kashi': _ToolbarAction(
+          id: 'inside-kashi',
+          label: 'Inside Kashi',
+          icon: Icons.temple_hindu,
+          onPressed: () => _newTab(insideKashiUrl),
+        ),
+        'youtube': _ToolbarAction(
+          id: 'youtube',
+          label: 'YouTube',
+          icon: Icons.smart_display,
+          onPressed: () => _newTab(youtubeUrl),
+        ),
+        'whatsapp': _ToolbarAction(
+          id: 'whatsapp',
+          label: 'WhatsApp Web',
+          icon: Icons.chat,
+          onPressed: () => _newTab(whatsappUrl),
+        ),
+        'google': _ToolbarAction(
+          id: 'google',
+          label: 'Google',
+          icon: Icons.search,
+          onPressed: () => _newTab(googleSearchUrl),
+        ),
+        'g-account': _ToolbarAction(
+          id: 'g-account',
+          label: 'G Account',
+          icon: Icons.account_circle,
+          onPressed: _openGoogleAccountInside,
+        ),
+        'gmail': _ToolbarAction(
+          id: 'gmail',
+          label: 'Gmail',
+          icon: Icons.mail,
+          onPressed: _openGmailInside,
+        ),
+        'add-bookmark': _ToolbarAction(
+          id: 'add-bookmark',
+          label: 'Add Bookmark',
+          icon: Icons.bookmark_add,
+          onPressed: _bookmarkCurrentPage,
+          important: true,
+        ),
+        'bookmarks': _ToolbarAction(
+          id: 'bookmarks',
+          label: 'Bookmarks',
+          icon: Icons.bookmarks,
+          onPressed: _showBookmarks,
+          important: true,
+        ),
+        'history': _ToolbarAction(
+          id: 'history',
+          label: 'History',
+          icon: Icons.history,
+          onPressed: _showHistory,
+        ),
+        'developer': _ToolbarAction(
+          id: 'developer',
+          label: 'Developer',
+          icon: Icons.developer_mode,
+          onPressed: _showDeveloperMenu,
+          important: true,
+        ),
+        'download': _ToolbarAction(
+          id: 'download',
+          label: 'Download',
+          icon: Icons.download,
+          onPressed: _downloadCurrentUrl,
+          important: true,
+        ),
+        'open-file': _ToolbarAction(
+          id: 'open-file',
+          label: 'Open File',
+          icon: Icons.file_open,
+          onPressed: _openLastDownloadedFile,
+          important: true,
+        ),
+        'downloads': _ToolbarAction(
+          id: 'downloads',
+          label: 'Downloads',
+          icon: Icons.folder_open,
+          onPressed: _openDownloadsFolder,
+        ),
+        'privacy': _ToolbarAction(
+          id: 'privacy',
+          label: _tab?.privacyBlur == true ? 'Privacy On' : 'Privacy',
+          icon: Icons.visibility_off,
+          onPressed: _togglePrivacyBlur,
+        ),
+        'default-browser': _ToolbarAction(
+          id: 'default-browser',
+          label: _isDefaultBrowser ? 'Default ✓' : 'Set Default',
+          icon: _isDefaultBrowser ? Icons.verified : Icons.check_circle,
+          onPressed: _showDefaultBrowserSetup,
+          important: !_isDefaultBrowser,
+        ),
+        'github-code': _ToolbarAction(
+          id: 'github-code',
+          label: 'GitHub Code',
+          icon: Icons.code,
+          onPressed: () => _newTab(githubCodeUrl),
+        ),
+        'disclaimer': _ToolbarAction(
+          id: 'disclaimer',
+          label: 'Disclaimer',
+          icon: Icons.info_outline,
+          onPressed: _showDisclaimer,
+        ),
+        'win-update': _ToolbarAction(
+          id: 'win-update',
+          label: 'Win Update',
+          icon: Icons.system_update_alt,
+          onPressed: () => _newTab(windowsInstallerUrl),
+        ),
+        'apk': _ToolbarAction(
+          id: 'apk',
+          label: 'APK',
+          icon: Icons.android,
+          onPressed: () => _newTab(apkUrl),
+        ),
+      };
+
+  List<Widget> _managedToolbarWidgets() {
+    final actions = _toolbarActions();
+    final widgets = <Widget>[];
+
+    for (final id in _toolbarOrder) {
+      if (_hiddenToolbarItems.contains(id)) continue;
+      final action = actions[id];
+      if (action == null) continue;
+      widgets.add(_managedToolbarButton(action));
+    }
+
+    widgets.add(
+      _toolbarButton(
+        'Manage',
+        Icons.tune,
+        _showToolbarManager,
+        important: true,
+      ),
+    );
+    return widgets;
+  }
+
+  Widget _managedToolbarButton(_ToolbarAction action) {
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onSecondaryTapDown: (details) =>
+          _showToolbarItemContextMenu(action.id, details.globalPosition),
+      child: _toolbarButton(
+        action.label,
+        action.icon,
+        action.onPressed,
+        important: action.important,
+      ),
+    );
+  }
+
+  void _moveToolbarItem(String id, int delta) {
+    final index = _toolbarOrder.indexOf(id);
+    final target = index + delta;
+    if (index < 0 || target < 0 || target >= _toolbarOrder.length) return;
+
+    setState(() {
+      final item = _toolbarOrder.removeAt(index);
+      _toolbarOrder.insert(target, item);
+      _status = 'Toolbar entry moved';
+    });
+    unawaited(_saveToolbarLayout());
+  }
+
+  Future<void> _showToolbarItemContextMenu(String id, Offset position) async {
+    final actions = _toolbarActions();
+    final action = actions[id];
+    if (action == null || !mounted) return;
+
+    final index = _toolbarOrder.indexOf(id);
+    final choice = await showMenu<String>(
+      context: context,
+      position: RelativeRect.fromLTRB(position.dx, position.dy, 0, 0),
+      items: <PopupMenuEntry<String>>[
+        PopupMenuItem(
+          value: 'hide',
+          child: ListTile(
+            dense: true,
+            leading: const Icon(Icons.visibility_off),
+            title: Text('Hide ${action.label}'),
+          ),
+        ),
+        PopupMenuItem(
+          value: 'left',
+          enabled: index > 0,
+          child: const ListTile(
+            dense: true,
+            leading: Icon(Icons.arrow_back),
+            title: Text('Move Left'),
+          ),
+        ),
+        PopupMenuItem(
+          value: 'right',
+          enabled: index >= 0 && index < _toolbarOrder.length - 1,
+          child: const ListTile(
+            dense: true,
+            leading: Icon(Icons.arrow_forward),
+            title: Text('Move Right'),
+          ),
+        ),
+        const PopupMenuDivider(),
+        const PopupMenuItem(
+          value: 'manage',
+          child: ListTile(
+            dense: true,
+            leading: Icon(Icons.tune),
+            title: Text('Manage Toolbar'),
+          ),
+        ),
+      ],
+      elevation: 12,
+    );
+
+    switch (choice) {
+      case 'hide':
+        setState(() {
+          _hiddenToolbarItems.add(id);
+          _status = '${action.label} hidden from toolbar';
+        });
+        unawaited(_saveToolbarLayout());
+        break;
+      case 'left':
+        _moveToolbarItem(id, -1);
+        break;
+      case 'right':
+        _moveToolbarItem(id, 1);
+        break;
+      case 'manage':
+        _showToolbarManager();
+        break;
+    }
+  }
+
+  void _showToolbarManager() {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, setLocalState) {
+          final actions = _toolbarActions();
+
+          void refresh() {
+            if (mounted) setState(() {});
+            setLocalState(() {});
+            unawaited(_saveToolbarLayout());
+          }
+
+          return AlertDialog(
+            title: const Row(
+              children: [
+                Icon(Icons.tune),
+                SizedBox(width: 10),
+                Text('Manage Toolbar'),
+              ],
+            ),
+            content: SizedBox(
+              width: 680,
+              height: 610,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Choose which shortcut entries appear and change their order. '
+                    'You can also right-click any visible toolbar button for quick controls.',
+                  ),
+                  const SizedBox(height: 10),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: _toolbarOrder.length,
+                      itemBuilder: (context, index) {
+                        final id = _toolbarOrder[index];
+                        final action = actions[id];
+                        if (action == null) return const SizedBox.shrink();
+                        final visible = !_hiddenToolbarItems.contains(id);
+
+                        return Card(
+                          margin: const EdgeInsets.only(bottom: 6),
+                          child: ListTile(
+                            leading: Icon(action.icon),
+                            title: Text(
+                              action.label,
+                              style: const TextStyle(fontWeight: FontWeight.w800),
+                            ),
+                            subtitle: Text(visible ? 'Visible' : 'Hidden'),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  tooltip: 'Move up / left',
+                                  onPressed: index == 0
+                                      ? null
+                                      : () {
+                                          final item = _toolbarOrder.removeAt(index);
+                                          _toolbarOrder.insert(index - 1, item);
+                                          refresh();
+                                        },
+                                  icon: const Icon(Icons.arrow_upward),
+                                ),
+                                IconButton(
+                                  tooltip: 'Move down / right',
+                                  onPressed: index == _toolbarOrder.length - 1
+                                      ? null
+                                      : () {
+                                          final item = _toolbarOrder.removeAt(index);
+                                          _toolbarOrder.insert(index + 1, item);
+                                          refresh();
+                                        },
+                                  icon: const Icon(Icons.arrow_downward),
+                                ),
+                                Switch(
+                                  value: visible,
+                                  onChanged: (value) {
+                                    if (value) {
+                                      _hiddenToolbarItems.remove(id);
+                                    } else {
+                                      _hiddenToolbarItems.add(id);
+                                    }
+                                    refresh();
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton.icon(
+                onPressed: () {
+                  _hiddenToolbarItems.clear();
+                  refresh();
+                },
+                icon: const Icon(Icons.visibility),
+                label: const Text('Show All'),
+              ),
+              TextButton.icon(
+                onPressed: () {
+                  _toolbarOrder = List<String>.from(_defaultToolbarOrder);
+                  _hiddenToolbarItems.clear();
+                  refresh();
+                },
+                icon: const Icon(Icons.restart_alt),
+                label: const Text('Reset Default'),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(dialogContext),
+                child: const Text('Done'),
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 
   Widget _toolbarButton(String text, IconData icon, VoidCallback onPressed, {bool important = false}) {
@@ -3533,7 +4028,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Champak's Desktop Browser v3.5.1",
+                      "Champak's Desktop Browser v3.6.0",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
                     ),
                     const Text(
@@ -3591,32 +4086,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
             ],
           ),
           const SizedBox(height: 6),
-          actionScroller([
-            _toolbarButton('Home', Icons.home, () => _load(homeUrl)),
-            _toolbarButton('Learn With Champak', Icons.school, () => _newTab(homeUrl), important: true),
-            _toolbarButton('Inside Kashi', Icons.temple_hindu, () => _newTab(insideKashiUrl)),
-            _toolbarButton('YouTube', Icons.smart_display, () => _newTab(youtubeUrl)),
-            _toolbarButton('WhatsApp Web', Icons.chat, () => _newTab(whatsappUrl)),
-            _toolbarButton('Google', Icons.search, () => _newTab(googleSearchUrl)),
-            _toolbarButton('G Account', Icons.account_circle, _openGoogleAccountInside),
-            _toolbarButton('Gmail', Icons.mail, _openGmailInside),
-            _toolbarButton('Add Bookmark', Icons.bookmark_add, _bookmarkCurrentPage, important: true),
-            _toolbarButton('Bookmarks', Icons.bookmarks, _showBookmarks, important: true),
-            _toolbarButton('History', Icons.history, _showHistory),
-            _toolbarButton('Developer', Icons.developer_mode, _showDeveloperMenu, important: true),
-            _toolbarButton('Download', Icons.download, _downloadCurrentUrl, important: true),
-            _toolbarButton('Open File', Icons.file_open, _openLastDownloadedFile, important: true),
-            _toolbarButton('Downloads', Icons.folder_open, _openDownloadsFolder),
-            _toolbarButton(_tab?.privacyBlur == true ? 'Privacy On' : 'Privacy', Icons.visibility_off, _togglePrivacyBlur),
-            if (_isDefaultBrowser)
-              _toolbarButton('Default ✓', Icons.verified, _showDefaultBrowserSetup)
-            else
-              _toolbarButton('Set Default', Icons.check_circle, _showDefaultBrowserSetup, important: true),
-            _toolbarButton('GitHub Code', Icons.code, () => _newTab(githubCodeUrl)),
-            _toolbarButton('Disclaimer', Icons.info_outline, _showDisclaimer),
-            _toolbarButton('Win Update', Icons.system_update_alt, () => _newTab(windowsInstallerUrl)),
-            _toolbarButton('APK', Icons.android, () => _newTab(apkUrl)),
-          ]),
+          actionScroller(_managedToolbarWidgets()),
           const SizedBox(height: 4),
           Row(
             children: [
