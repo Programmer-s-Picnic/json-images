@@ -3795,7 +3795,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       builder: (dialogContext) => AlertDialog(
         title: Row(
           children: [
-            Icon(id == null ? Icons.add_link : Icons.edit_link),
+            Icon(id == null ? Icons.add_link : Icons.edit),
             const SizedBox(width: 10),
             Text(id == null ? 'Add Toolbar Link' : 'Edit Toolbar Link'),
           ],
