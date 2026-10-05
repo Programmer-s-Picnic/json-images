@@ -2317,7 +2317,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 .difference(DateTime.now())
                 .inMilliseconds,
           ).toDouble();
-    return (1 - (remainingMs / totalMs)).clamp(0.0, 1.0);
+    return (1 - (remainingMs / totalMs)).clamp(0.0, 1.0).toDouble();
   }
 
   void _armTabRotation({Duration? remaining}) {
