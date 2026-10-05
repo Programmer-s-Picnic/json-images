@@ -1,9 +1,12 @@
 {
-  "appName": "Learn With Champak TV",
+  "appName": "Learn With Champak Browser",
   "packageName": "com.learnwithchampak.tv",
-  "versionName": "2.22",
-  "versionCode": 33,
+  "versionName": "3.0.0",
+  "versionCode": 34,
+  "targetSdk": 36,
   "apkUrl": "https://programmer-s-picnic.github.io/json-images/tv/champak-tv.apk",
-  "updatedAt": "2026-10-05T18:58:00+05:30",
-  "buildRunId": 37316798093
+  "privacyPolicyUrl": "https://programmer-s-picnic.github.io/json-images/tv/privacy-policy.html",
+  "sourceBuildRunId": 37319701384,
+  "playAabArtifactId": 11348783696,
+  "updatedAt": "2026-10-05T19:22:00+05:30"
 }
