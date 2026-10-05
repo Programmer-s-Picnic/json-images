@@ -510,6 +510,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   final List<BrowserTab> _tabs = [];
   final List<Map<String, String>> _history = [];
   final List<Map<String, String>> _bookmarks = [];
+  final List<Map<String, String>> _customToolbarLinks = [];
   List<String> _toolbarOrder = List<String>.from(_defaultToolbarOrder);
   final Set<String> _hiddenToolbarItems = <String>{};
 
@@ -1169,17 +1170,41 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
       final rawOrder = decoded['order'];
       final rawHidden = decoded['hidden'];
+      final rawCustom = decoded['customLinks'];
+
+      _customToolbarLinks
+        ..clear()
+        ..addAll(
+          rawCustom is List
+              ? rawCustom.whereType<Map>().map((item) => <String, String>{
+                    'id': item['id']?.toString() ?? '',
+                    'label': item['label']?.toString() ?? '',
+                    'url': item['url']?.toString() ?? '',
+                  }).where((item) =>
+                      item['id']!.startsWith('custom-link-') &&
+                      item['label']!.trim().isNotEmpty &&
+                      item['url']!.trim().isNotEmpty)
+              : const Iterable<Map<String, String>>.empty(),
+        );
+
+      final validIds = <String>{
+        ..._defaultToolbarOrder,
+        ..._customToolbarLinks.map((item) => item['id']!),
+      };
 
       final savedOrder = rawOrder is List
-          ? rawOrder.map((e) => e.toString()).where(_defaultToolbarOrder.contains).toList()
+          ? rawOrder.map((e) => e.toString()).where(validIds.contains).toList()
           : <String>[];
       final completeOrder = <String>[
         ...savedOrder,
         ..._defaultToolbarOrder.where((id) => !savedOrder.contains(id)),
+        ..._customToolbarLinks
+            .map((item) => item['id']!)
+            .where((id) => !savedOrder.contains(id)),
       ];
 
       final hidden = rawHidden is List
-          ? rawHidden.map((e) => e.toString()).where(_defaultToolbarOrder.contains).toSet()
+          ? rawHidden.map((e) => e.toString()).where(validIds.contains).toSet()
           : <String>{};
 
       if (!mounted) {
@@ -1207,6 +1232,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
         jsonEncode({
           'order': _toolbarOrder,
           'hidden': _hiddenToolbarItems.toList(),
+          'customLinks': _customToolbarLinks,
           'savedAt': DateTime.now().toIso8601String(),
         }),
         flush: true,
@@ -3668,7 +3694,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               ListTile(
                 leading: const Icon(Icons.tune),
                 title: const Text('Manage Toolbar'),
-                subtitle: const Text('Show, hide and reorder shortcut buttons'),
+                subtitle: const Text('Add links, show/hide buttons and change their order'),
                 onTap: () {
                   Navigator.pop(sheetContext);
                   _showToolbarManager();
@@ -3737,7 +3763,161 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     }
   }
 
-  Map<String, _ToolbarAction> _toolbarActions() => <String, _ToolbarAction>{
+  String _normalizeToolbarUrl(String raw) {
+    final value = raw.trim();
+    if (value.isEmpty) return '';
+    final parsed = Uri.tryParse(value);
+    if (parsed != null && (parsed.scheme == 'http' || parsed.scheme == 'https')) {
+      return parsed.toString();
+    }
+    final withScheme = Uri.tryParse('https://$value');
+    if (withScheme != null && withScheme.host.isNotEmpty) {
+      return withScheme.toString();
+    }
+    return '';
+  }
+
+  Future<void> _addOrEditToolbarLink({String? id}) async {
+    final existing = id == null
+        ? null
+        : _customToolbarLinks.cast<Map<String, String>?>().firstWhere(
+              (item) => item?['id'] == id,
+              orElse: () => null,
+            );
+    final labelController = TextEditingController(text: existing?['label'] ?? '');
+    final urlController = TextEditingController(text: existing?['url'] ?? '');
+
+    final saved = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Row(
+          children: [
+            Icon(id == null ? Icons.add_link : Icons.edit_link),
+            const SizedBox(width: 10),
+            Text(id == null ? 'Add Toolbar Link' : 'Edit Toolbar Link'),
+          ],
+        ),
+        content: SizedBox(
+          width: 520,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: labelController,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  labelText: 'Button label',
+                  hintText: 'Example: My Website',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: urlController,
+                keyboardType: TextInputType.url,
+                decoration: const InputDecoration(
+                  labelText: 'Link',
+                  hintText: 'https://example.com',
+                  prefixIcon: Icon(Icons.link),
+                  border: OutlineInputBorder(),
+                ),
+                onSubmitted: (_) => Navigator.pop(dialogContext, true),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton.icon(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            icon: const Icon(Icons.save),
+            label: Text(id == null ? 'Add Link' : 'Save'),
+          ),
+        ],
+      ),
+    );
+
+    if (saved != true) {
+      labelController.dispose();
+      urlController.dispose();
+      return;
+    }
+
+    final label = labelController.text.trim();
+    final url = _normalizeToolbarUrl(urlController.text);
+    labelController.dispose();
+    urlController.dispose();
+
+    if (label.isEmpty || url.isEmpty) {
+      if (mounted) {
+        setState(() => _status = 'Enter a valid label and web address');
+      }
+      return;
+    }
+
+    setState(() {
+      if (id == null) {
+        final newId = 'custom-link-${DateTime.now().microsecondsSinceEpoch}';
+        _customToolbarLinks.add(<String, String>{
+          'id': newId,
+          'label': label,
+          'url': url,
+        });
+        _toolbarOrder.add(newId);
+        _status = '$label added to toolbar';
+      } else {
+        final index = _customToolbarLinks.indexWhere((item) => item['id'] == id);
+        if (index >= 0) {
+          _customToolbarLinks[index] = <String, String>{
+            'id': id,
+            'label': label,
+            'url': url,
+          };
+          _status = '$label updated';
+        }
+      }
+    });
+    await _saveToolbarLayout();
+  }
+
+  Future<void> _deleteCustomToolbarLink(String id) async {
+    final index = _customToolbarLinks.indexWhere((item) => item['id'] == id);
+    if (index < 0) return;
+    final label = _customToolbarLinks[index]['label'] ?? 'Link';
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Remove Toolbar Link?'),
+        content: Text('Remove "$label" from the toolbar?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: const Text('Remove'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+
+    setState(() {
+      _customToolbarLinks.removeWhere((item) => item['id'] == id);
+      _toolbarOrder.remove(id);
+      _hiddenToolbarItems.remove(id);
+      _status = '$label removed from toolbar';
+    });
+    await _saveToolbarLayout();
+  }
+
+  Map<String, _ToolbarAction> _toolbarActions() {
+    final actions = <String, _ToolbarAction>{
         'home': _ToolbarAction(
           id: 'home',
           label: 'Home',
@@ -3873,6 +4053,22 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
         ),
       };
 
+    for (final item in _customToolbarLinks) {
+      final id = item['id'] ?? '';
+      final label = item['label'] ?? 'Link';
+      final url = item['url'] ?? '';
+      if (id.isEmpty || url.isEmpty) continue;
+      actions[id] = _ToolbarAction(
+        id: id,
+        label: label,
+        icon: Icons.link,
+        onPressed: () => _newTab(url),
+        important: true,
+      );
+    }
+    return actions;
+  }
+
   List<Widget> _managedToolbarWidgets() {
     final actions = _toolbarActions();
     final widgets = <Widget>[];
@@ -3958,6 +4154,25 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
             title: Text('Move Right'),
           ),
         ),
+        if (id.startsWith('custom-link-')) ...[
+          const PopupMenuDivider(),
+          PopupMenuItem(
+            value: 'edit',
+            child: ListTile(
+              dense: true,
+              leading: const Icon(Icons.edit),
+              title: Text('Edit ${action.label}'),
+            ),
+          ),
+          PopupMenuItem(
+            value: 'delete',
+            child: ListTile(
+              dense: true,
+              leading: const Icon(Icons.delete_outline),
+              title: Text('Remove ${action.label}'),
+            ),
+          ),
+        ],
         const PopupMenuDivider(),
         const PopupMenuItem(
           value: 'manage',
@@ -3984,6 +4199,12 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
         break;
       case 'right':
         _moveToolbarItem(id, 1);
+        break;
+      case 'edit':
+        unawaited(_addOrEditToolbarLink(id: id));
+        break;
+      case 'delete':
+        unawaited(_deleteCustomToolbarLink(id));
         break;
       case 'manage':
         _showToolbarManager();
@@ -4020,7 +4241,16 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 children: [
                   const Text(
                     'Choose which shortcut entries appear and change their order. '
-                    'You can also right-click any visible toolbar button for quick controls.',
+                    'You can also add your own web links and right-click visible buttons for quick controls.',
+                  ),
+                  const SizedBox(height: 10),
+                  FilledButton.icon(
+                    onPressed: () async {
+                      await _addOrEditToolbarLink();
+                      refresh();
+                    },
+                    icon: const Icon(Icons.add_link),
+                    label: const Text('Add Link to Toolbar'),
                   ),
                   const SizedBox(height: 10),
                   Expanded(
@@ -4044,6 +4274,24 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                             trailing: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
+                                if (id.startsWith('custom-link-'))
+                                  IconButton(
+                                    tooltip: 'Edit link',
+                                    onPressed: () async {
+                                      await _addOrEditToolbarLink(id: id);
+                                      refresh();
+                                    },
+                                    icon: const Icon(Icons.edit),
+                                  ),
+                                if (id.startsWith('custom-link-'))
+                                  IconButton(
+                                    tooltip: 'Remove link',
+                                    onPressed: () async {
+                                      await _deleteCustomToolbarLink(id);
+                                      refresh();
+                                    },
+                                    icon: const Icon(Icons.delete_outline),
+                                  ),
                                 IconButton(
                                   tooltip: 'Move up / left',
                                   onPressed: index == 0
