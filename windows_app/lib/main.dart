@@ -380,6 +380,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     'add-bookmark',
     'bookmarks',
     'history',
+    'rotate-tabs',
     'developer',
     'download',
     'open-file',
@@ -517,6 +518,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   Timer? _sessionSaveTimer;
   Timer? _windowBoundsSaveTimer;
   Timer? _weatherRefreshTimer;
+  Timer? _tabRotationTimer;
   bool _restoringSession = false;
   bool _suppressSessionPersistence = false;
   int _current = 0;
@@ -526,6 +528,11 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   bool _privacyHidden = false;
   bool _isDefaultBrowser = false;
   bool _weatherLoading = false;
+  bool _tabRotationActive = false;
+  bool _tabRotationPaused = false;
+  int _tabRotationSeconds = 30;
+  DateTime? _tabRotationDeadline;
+  Duration _tabRotationPausedRemaining = Duration.zero;
   bool _weatherAutomaticLocation = true;
   String? _weatherSavedLocationName;
   double? _weatherSavedLatitude;
@@ -1136,6 +1143,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     await _loadHistory();
     await _loadBookmarks();
     await _loadToolbarLayout();
+    await _loadTabRotationSettings();
     await _prepareWebView2Environment();
 
     final timedUrl = _startupTimedUrl;
@@ -1158,6 +1166,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   String get _historyFilePath => _appDataPath('browser_history.json');
   String get _bookmarksFilePath => _appDataPath('browser_bookmarks.json');
   String get _toolbarLayoutFilePath => _appDataPath('toolbar_layout.json');
+  String get _tabRotationSettingsFilePath => _appDataPath('tab_rotation.json');
   String get _weatherLocationFilePath => _appDataPath('weather_location.json');
   String get _defaultPromptStateFilePath => _appDataPath('default_browser_prompt.json');
 
@@ -1233,6 +1242,33 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
           'order': _toolbarOrder,
           'hidden': _hiddenToolbarItems.toList(),
           'customLinks': _customToolbarLinks,
+          'savedAt': DateTime.now().toIso8601String(),
+        }),
+        flush: true,
+      );
+    } catch (_) {}
+  }
+
+  Future<void> _loadTabRotationSettings() async {
+    try {
+      final file = File(_tabRotationSettingsFilePath);
+      if (!await file.exists()) return;
+      final decoded = jsonDecode(await file.readAsString());
+      if (decoded is! Map) return;
+      final seconds = (decoded['seconds'] as num?)?.toInt();
+      if (seconds != null) {
+        _tabRotationSeconds = seconds.clamp(5, 600).toInt();
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _saveTabRotationSettings() async {
+    try {
+      final file = File(_tabRotationSettingsFilePath);
+      await file.parent.create(recursive: true);
+      await file.writeAsString(
+        jsonEncode({
+          'seconds': _tabRotationSeconds,
           'savedAt': DateTime.now().toIso8601String(),
         }),
         flush: true,
@@ -1970,6 +2006,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     _windowBoundsSaveTimer?.cancel();
     _sessionSaveTimer?.cancel();
     _weatherRefreshTimer?.cancel();
+    _tabRotationTimer?.cancel();
     windowManager.removeListener(this);
     _saveSessionNowSync();
     _addressController.dispose();
@@ -2258,15 +2295,252 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     _scheduleSessionSave();
   }
 
-  void _switchTab(int index) {
+  int get _tabRotationRemainingSeconds {
+    if (!_tabRotationActive) return _tabRotationSeconds;
+    if (_tabRotationPaused) {
+      return math.max(0, _tabRotationPausedRemaining.inMilliseconds / 1000).ceil();
+    }
+    final deadline = _tabRotationDeadline;
+    if (deadline == null) return _tabRotationSeconds;
+    return math.max(0, deadline.difference(DateTime.now()).inMilliseconds / 1000).ceil();
+  }
+
+  double get _tabRotationProgress {
+    if (!_tabRotationActive) return 0;
+    final totalMs = _tabRotationSeconds * 1000.0;
+    if (totalMs <= 0) return 0;
+    final remainingMs = _tabRotationPaused
+        ? _tabRotationPausedRemaining.inMilliseconds.toDouble()
+        : math.max(
+            0,
+            (_tabRotationDeadline ?? DateTime.now())
+                .difference(DateTime.now())
+                .inMilliseconds,
+          ).toDouble();
+    return (1 - (remainingMs / totalMs)).clamp(0.0, 1.0);
+  }
+
+  void _armTabRotation({Duration? remaining}) {
+    _tabRotationTimer?.cancel();
+    if (!_tabRotationActive || _tabRotationPaused) return;
+
+    final duration = remaining != null && remaining > Duration.zero
+        ? remaining
+        : Duration(seconds: _tabRotationSeconds);
+    _tabRotationDeadline = DateTime.now().add(duration);
+
+    _tabRotationTimer = Timer.periodic(const Duration(milliseconds: 250), (_) {
+      if (!mounted || !_tabRotationActive || _tabRotationPaused) return;
+      final deadline = _tabRotationDeadline;
+      if (deadline == null) return;
+
+      if (!DateTime.now().isBefore(deadline)) {
+        _tabRotationTimer?.cancel();
+        if (_tabs.length < 2) {
+          _stopTabRotation(message: 'Tab rotation stopped — open at least two tabs');
+          return;
+        }
+        final next = (_current + 1) % _tabs.length;
+        _switchTab(next, fromRotation: true);
+        _armTabRotation();
+      } else {
+        setState(() {});
+      }
+    });
+  }
+
+  void _startTabRotation() {
+    if (_tabs.length < 2) {
+      setState(() => _status = 'Open at least two tabs to start rotation');
+      return;
+    }
+    setState(() {
+      _tabRotationActive = true;
+      _tabRotationPaused = false;
+      _tabRotationPausedRemaining = Duration.zero;
+      _status = 'Rotating tabs every $_tabRotationSeconds seconds';
+    });
+    _armTabRotation();
+  }
+
+  void _pauseTabRotation() {
+    if (!_tabRotationActive || _tabRotationPaused) return;
+    final remaining = (_tabRotationDeadline ?? DateTime.now()).difference(DateTime.now());
+    _tabRotationTimer?.cancel();
+    setState(() {
+      _tabRotationPaused = true;
+      _tabRotationPausedRemaining =
+          remaining > Duration.zero ? remaining : Duration(seconds: _tabRotationSeconds);
+      _status = 'Tab rotation paused';
+    });
+  }
+
+  void _resumeTabRotation() {
+    if (!_tabRotationActive || !_tabRotationPaused) return;
+    final remaining = _tabRotationPausedRemaining;
+    setState(() {
+      _tabRotationPaused = false;
+      _status = 'Tab rotation resumed';
+    });
+    _armTabRotation(remaining: remaining);
+  }
+
+  void _stopTabRotation({String message = 'Tab rotation stopped'}) {
+    _tabRotationTimer?.cancel();
+    if (!mounted) return;
+    setState(() {
+      _tabRotationActive = false;
+      _tabRotationPaused = false;
+      _tabRotationDeadline = null;
+      _tabRotationPausedRemaining = Duration.zero;
+      _status = message;
+    });
+  }
+
+  Future<void> _showTabRotationDialog() async {
+    var seconds = _tabRotationSeconds.toDouble();
+
+    final action = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, setLocalState) => AlertDialog(
+          title: Row(
+            children: [
+              const Icon(Icons.autorenew, color: Color(0xff075985)),
+              const SizedBox(width: 10),
+              const Expanded(child: Text('Rotate Tabs')),
+              if (_tabRotationActive)
+                Chip(
+                  avatar: Icon(
+                    _tabRotationPaused ? Icons.pause : Icons.play_arrow,
+                    size: 16,
+                  ),
+                  label: Text(_tabRotationPaused ? 'Paused' : 'Running'),
+                ),
+            ],
+          ),
+          content: SizedBox(
+            width: 560,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  'Automatically show each open tab in sequence. The countdown restarts when you manually choose a tab.',
+                  style: TextStyle(color: Colors.black54),
+                ),
+                const SizedBox(height: 18),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [Color(0xffe0f2fe), Color(0xfffff7d6)],
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: const Color(0xffbae6fd)),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.timer_outlined, size: 30, color: Color(0xff075985)),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          '${seconds.round()} seconds per tab',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Slider(
+                  value: seconds,
+                  min: 5,
+                  max: 180,
+                  divisions: 35,
+                  label: '${seconds.round()} sec',
+                  onChanged: (value) => setLocalState(() => seconds = value),
+                ),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [10, 15, 30, 45, 60, 120]
+                      .map(
+                        (value) => ChoiceChip(
+                          label: Text('${value}s'),
+                          selected: seconds.round() == value,
+                          onSelected: (_) => setLocalState(() => seconds = value.toDouble()),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            if (_tabRotationActive)
+              TextButton.icon(
+                onPressed: () => Navigator.pop(dialogContext, 'stop'),
+                icon: const Icon(Icons.stop_circle_outlined),
+                label: const Text('Stop'),
+              ),
+            if (_tabRotationActive)
+              TextButton.icon(
+                onPressed: () => Navigator.pop(
+                  dialogContext,
+                  _tabRotationPaused ? 'resume' : 'pause',
+                ),
+                icon: Icon(_tabRotationPaused ? Icons.play_arrow : Icons.pause),
+                label: Text(_tabRotationPaused ? 'Resume' : 'Pause'),
+              ),
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Cancel'),
+            ),
+            FilledButton.icon(
+              onPressed: () => Navigator.pop(dialogContext, 'apply'),
+              icon: const Icon(Icons.autorenew),
+              label: Text(_tabRotationActive ? 'Apply & Restart' : 'Start Rotation'),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    if (action == null || !mounted) return;
+    switch (action) {
+      case 'stop':
+        _stopTabRotation();
+        return;
+      case 'pause':
+        _pauseTabRotation();
+        return;
+      case 'resume':
+        _resumeTabRotation();
+        return;
+      case 'apply':
+        setState(() => _tabRotationSeconds = seconds.round().clamp(5, 600).toInt());
+        await _saveTabRotationSettings();
+        _startTabRotation();
+        return;
+    }
+  }
+
+  void _switchTab(int index, {bool fromRotation = false}) {
     if (index < 0 || index >= _tabs.length) return;
     setState(() {
       _current = index;
       _privacyHidden = !_windowHasFocus && (_tab?.privacyBlur == true);
       _addressController.text = _tab?.url == 'about:blank' ? '' : (_tab?.url ?? homeUrl);
-      _status = 'Tab ${index + 1}';
+      _status = fromRotation ? 'Rotated to tab ${index + 1}' : 'Tab ${index + 1}';
     });
     _scheduleSessionSave();
+
+    if (_tabRotationActive && !_tabRotationPaused && !fromRotation) {
+      _armTabRotation();
+    }
   }
 
   void _closeTab(int index) {
@@ -2293,6 +2567,14 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       _status = 'Tab closed';
     });
     _scheduleSessionSave();
+
+    if (_tabRotationActive) {
+      if (_tabs.length < 2) {
+        _stopTabRotation(message: 'Tab rotation stopped — only one tab remains');
+      } else if (!_tabRotationPaused) {
+        _armTabRotation();
+      }
+    }
   }
 
   void _showTabs() {
@@ -3990,6 +4272,15 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
           icon: Icons.history,
           onPressed: _showHistory,
         ),
+        'rotate-tabs': _ToolbarAction(
+          id: 'rotate-tabs',
+          label: _tabRotationActive
+              ? (_tabRotationPaused ? 'Rotate Paused' : 'Rotate ${_tabRotationRemainingSeconds}s')
+              : 'Rotate Tabs',
+          icon: _tabRotationPaused ? Icons.pause_circle_outline : Icons.autorenew,
+          onPressed: _showTabRotationDialog,
+          important: _tabRotationActive,
+        ),
         'developer': _ToolbarAction(
           id: 'developer',
           label: 'Developer',
@@ -4454,6 +4745,94 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     );
   }
 
+  Widget _tabRotationIndicator() {
+    if (!_tabRotationActive) return const SizedBox.shrink();
+
+    final remaining = _tabRotationRemainingSeconds;
+    final progress = _tabRotationProgress;
+
+    return InkWell(
+      borderRadius: BorderRadius.circular(14),
+      onTap: _showTabRotationDialog,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 220),
+        width: 190,
+        margin: const EdgeInsets.only(right: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: _tabRotationPaused
+                ? const [Color(0xff475569), Color(0xff334155)]
+                : const [Color(0xff0369a1), Color(0xff0f766e)],
+          ),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: Colors.white38),
+          boxShadow: const [
+            BoxShadow(
+              blurRadius: 10,
+              offset: Offset(0, 3),
+              color: Color(0x33000000),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Transform.rotate(
+              angle: _tabRotationPaused ? 0 : progress * math.pi * 2,
+              child: Icon(
+                _tabRotationPaused ? Icons.pause : Icons.autorenew,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _tabRotationPaused ? 'Rotation paused' : 'Next tab in ${remaining}s',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 11.5,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: LinearProgressIndicator(
+                      value: progress,
+                      minHeight: 4,
+                      backgroundColor: Colors.white24,
+                      valueColor: const AlwaysStoppedAnimation<Color>(Colors.amber),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 6),
+            InkWell(
+              borderRadius: BorderRadius.circular(20),
+              onTap: _tabRotationPaused ? _resumeTabRotation : _pauseTabRotation,
+              child: Padding(
+                padding: const EdgeInsets.all(4),
+                child: Icon(
+                  _tabRotationPaused ? Icons.play_arrow : Icons.pause,
+                  color: Colors.white,
+                  size: 18,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _tabStrip() {
     return Container(
       height: 48,
@@ -4474,6 +4853,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               itemBuilder: (context, index) => _tabButton(index),
             ),
           ),
+          _tabRotationIndicator(),
+          if (!_tabRotationActive)
+            _toolbarButton('Rotate', Icons.autorenew, _showTabRotationDialog, important: true),
           _toolbarButton('New', Icons.add_box, () => _newTab(homeUrl), important: true),
           _toolbarButton('List', Icons.tab, _showTabs, important: true),
           _toolbarButton('Timed', Icons.alarm, _showTimedSiteDialog, important: true),
