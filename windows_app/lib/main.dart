@@ -525,6 +525,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   bool _privacyHidden = false;
   bool _isDefaultBrowser = false;
   bool _weatherLoading = false;
+  bool _weatherAutomaticLocation = true;
+  String? _weatherSavedLocationName;
+  double? _weatherSavedLatitude;
+  double? _weatherSavedLongitude;
   String? _lastDownloadedPath;
   String _status = 'Starting browser...';
   String _weatherLocation = 'Finding local weather...';
@@ -542,7 +546,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   void initState() {
     super.initState();
     windowManager.addListener(this);
-    unawaited(_refreshWeather());
+    unawaited(_loadWeatherLocationAndRefresh());
     _weatherRefreshTimer = Timer.periodic(
       const Duration(minutes: 30),
       (_) => unawaited(_refreshWeather(silent: true)),
@@ -592,6 +596,219 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     return days[date.weekday - 1];
   }
 
+  Future<void> _loadWeatherLocationAndRefresh() async {
+    try {
+      final file = File(_weatherLocationFilePath);
+      if (await file.exists()) {
+        final decoded = jsonDecode(await file.readAsString());
+        if (decoded is Map && decoded['mode']?.toString() == 'manual') {
+          final latitude = (decoded['latitude'] as num?)?.toDouble();
+          final longitude = (decoded['longitude'] as num?)?.toDouble();
+          final name = decoded['name']?.toString().trim();
+          if (latitude != null && longitude != null && name != null && name.isNotEmpty) {
+            _weatherAutomaticLocation = false;
+            _weatherSavedLatitude = latitude;
+            _weatherSavedLongitude = longitude;
+            _weatherSavedLocationName = name;
+          }
+        }
+      }
+    } catch (_) {}
+    await _refreshWeather();
+  }
+
+  Future<void> _saveWeatherLocation() async {
+    try {
+      final file = File(_weatherLocationFilePath);
+      await file.parent.create(recursive: true);
+      await file.writeAsString(
+        jsonEncode(
+          _weatherAutomaticLocation
+              ? <String, dynamic>{
+                  'mode': 'automatic',
+                  'savedAt': DateTime.now().toIso8601String(),
+                }
+              : <String, dynamic>{
+                  'mode': 'manual',
+                  'name': _weatherSavedLocationName,
+                  'latitude': _weatherSavedLatitude,
+                  'longitude': _weatherSavedLongitude,
+                  'savedAt': DateTime.now().toIso8601String(),
+                },
+        ),
+        flush: true,
+      );
+    } catch (_) {}
+  }
+
+  Future<void> _chooseWeatherLocation() async {
+    final controller = TextEditingController(
+      text: _weatherAutomaticLocation ? '' : (_weatherSavedLocationName ?? ''),
+    );
+
+    final choice = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Row(
+          children: [
+            Icon(Icons.location_on_outlined, color: Color(0xff075985)),
+            SizedBox(width: 10),
+            Text('Weather Location'),
+          ],
+        ),
+        content: SizedBox(
+          width: 480,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                _weatherAutomaticLocation
+                    ? 'Current default: Automatic location'
+                    : 'Current default: ${_weatherSavedLocationName ?? _weatherLocation}',
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 14),
+              TextField(
+                controller: controller,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  labelText: 'City or place',
+                  hintText: 'Example: Varanasi, Lucknow, Delhi',
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(),
+                ),
+                onSubmitted: (_) => Navigator.pop(dialogContext, 'manual'),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Choose a city to make it the default weather location. You can switch back to automatic detection at any time.',
+                style: TextStyle(color: Colors.black54),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton.icon(
+            onPressed: () => Navigator.pop(dialogContext, 'automatic'),
+            icon: const Icon(Icons.my_location),
+            label: const Text('Use Automatic Location'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('Cancel'),
+          ),
+          FilledButton.icon(
+            onPressed: () => Navigator.pop(dialogContext, 'manual'),
+            icon: const Icon(Icons.save_outlined),
+            label: const Text('Set Default'),
+          ),
+        ],
+      ),
+    );
+
+    if (!mounted || choice == null) {
+      controller.dispose();
+      return;
+    }
+
+    if (choice == 'automatic') {
+      setState(() {
+        _weatherAutomaticLocation = true;
+        _weatherSavedLocationName = null;
+        _weatherSavedLatitude = null;
+        _weatherSavedLongitude = null;
+        _status = 'Weather location set to automatic';
+      });
+      await _saveWeatherLocation();
+      controller.dispose();
+      await _refreshWeather();
+      return;
+    }
+
+    final query = controller.text.trim();
+    controller.dispose();
+    if (query.isEmpty) {
+      if (mounted) setState(() => _status = 'Enter a city or place for weather');
+      return;
+    }
+
+    if (mounted) {
+      setState(() {
+        _weatherLoading = true;
+        _weatherCurrent = 'Finding $query...';
+        _status = 'Finding weather location: $query';
+      });
+    }
+
+    try {
+      final uri = Uri.https(
+        'geocoding-api.open-meteo.com',
+        '/v1/search',
+        <String, String>{
+          'name': query,
+          'count': '1',
+          'language': 'en',
+          'format': 'json',
+        },
+      );
+      final response = await http.get(uri).timeout(const Duration(seconds: 10));
+      if (response.statusCode != 200) {
+        throw HttpException('Location search HTTP ${response.statusCode}');
+      }
+
+      final decoded = jsonDecode(response.body);
+      final results = decoded is Map && decoded['results'] is List
+          ? decoded['results'] as List
+          : const [];
+      if (results.isEmpty || results.first is! Map) {
+        throw const FormatException('No matching location found');
+      }
+
+      final result = results.first as Map;
+      final latitude = (result['latitude'] as num?)?.toDouble();
+      final longitude = (result['longitude'] as num?)?.toDouble();
+      if (latitude == null || longitude == null) {
+        throw const FormatException('Location coordinates unavailable');
+      }
+
+      final name = result['name']?.toString().trim() ?? query;
+      final admin = result['admin1']?.toString().trim() ?? '';
+      final country = result['country']?.toString().trim() ?? '';
+      final parts = <String>[
+        if (name.isNotEmpty) name,
+        if (admin.isNotEmpty && admin != name) admin,
+        if (country.isNotEmpty) country,
+      ];
+      final displayName = parts.isEmpty ? query : parts.join(', ');
+
+      if (!mounted) return;
+      setState(() {
+        _weatherAutomaticLocation = false;
+        _weatherSavedLocationName = displayName;
+        _weatherSavedLatitude = latitude;
+        _weatherSavedLongitude = longitude;
+        _weatherLocation = displayName;
+        _status = 'Default weather location set to $displayName';
+      });
+      await _saveWeatherLocation();
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _weatherLoading = false;
+          _weatherCurrent = 'Location not found';
+          _weatherFeelsLike = 'Try a more specific city or place name';
+          _status = 'Could not set weather location: $e';
+        });
+      }
+      return;
+    } finally {
+      _weatherLoading = false;
+    }
+
+    await _refreshWeather();
+  }
+
   Future<void> _refreshWeather({bool silent = false}) async {
     if (_weatherLoading) return;
     _weatherLoading = true;
@@ -602,32 +819,48 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     }
 
     try {
-      final locationResponse = await http
-          .get(Uri.parse('https://ipwho.is/'))
-          .timeout(const Duration(seconds: 8));
-      if (locationResponse.statusCode != 200) {
-        throw HttpException('Location HTTP ${locationResponse.statusCode}');
-      }
+      late final double latitude;
+      late final double longitude;
+      late final List<String> locationParts;
 
-      final locationData = jsonDecode(locationResponse.body);
-      if (locationData is! Map || locationData['success'] == false) {
-        throw const FormatException('Local location unavailable');
-      }
+      if (!_weatherAutomaticLocation &&
+          _weatherSavedLatitude != null &&
+          _weatherSavedLongitude != null) {
+        latitude = _weatherSavedLatitude!;
+        longitude = _weatherSavedLongitude!;
+        locationParts = <String>[
+          if ((_weatherSavedLocationName ?? '').isNotEmpty) _weatherSavedLocationName!,
+        ];
+      } else {
+        final locationResponse = await http
+            .get(Uri.parse('https://ipwho.is/'))
+            .timeout(const Duration(seconds: 8));
+        if (locationResponse.statusCode != 200) {
+          throw HttpException('Location HTTP ${locationResponse.statusCode}');
+        }
 
-      final latitude = (locationData['latitude'] as num?)?.toDouble();
-      final longitude = (locationData['longitude'] as num?)?.toDouble();
-      if (latitude == null || longitude == null) {
-        throw const FormatException('Location coordinates unavailable');
-      }
+        final locationData = jsonDecode(locationResponse.body);
+        if (locationData is! Map || locationData['success'] == false) {
+          throw const FormatException('Local location unavailable');
+        }
 
-      final city = locationData['city']?.toString().trim() ?? '';
-      final region = locationData['region']?.toString().trim() ?? '';
-      final country = locationData['country']?.toString().trim() ?? '';
-      final locationParts = <String>[
-        if (city.isNotEmpty) city,
-        if (region.isNotEmpty && region != city) region,
-        if (country.isNotEmpty) country,
-      ];
+        final autoLatitude = (locationData['latitude'] as num?)?.toDouble();
+        final autoLongitude = (locationData['longitude'] as num?)?.toDouble();
+        if (autoLatitude == null || autoLongitude == null) {
+          throw const FormatException('Location coordinates unavailable');
+        }
+        latitude = autoLatitude;
+        longitude = autoLongitude;
+
+        final city = locationData['city']?.toString().trim() ?? '';
+        final region = locationData['region']?.toString().trim() ?? '';
+        final country = locationData['country']?.toString().trim() ?? '';
+        locationParts = <String>[
+          if (city.isNotEmpty) city,
+          if (region.isNotEmpty && region != city) region,
+          if (country.isNotEmpty) country,
+        ];
+      }
 
       final weatherUri = Uri.https(
         'api.open-meteo.com',
@@ -841,7 +1074,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                     if (_weatherFeelsLike.isNotEmpty) _weatherFeelsLike,
                     if (_weatherUpdatedAt != null)
                       'Updated ${_weatherUpdatedAt!.hour.toString().padLeft(2, '0')}:${_weatherUpdatedAt!.minute.toString().padLeft(2, '0')}',
-                    'Location is estimated from this internet connection.',
+                    _weatherAutomaticLocation
+                        ? 'Location is estimated from this internet connection.'
+                        : 'Using your saved default weather location.',
                   ].join('\n'),
                 ),
               ),
@@ -871,6 +1106,14 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
           ),
         ),
         actions: [
+          TextButton.icon(
+            onPressed: () {
+              Navigator.pop(dialogContext);
+              unawaited(_chooseWeatherLocation());
+            },
+            icon: const Icon(Icons.location_on_outlined),
+            label: const Text('Change Location'),
+          ),
           TextButton.icon(
             onPressed: () {
               Navigator.pop(dialogContext);
@@ -914,6 +1157,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   String get _historyFilePath => _appDataPath('browser_history.json');
   String get _bookmarksFilePath => _appDataPath('browser_bookmarks.json');
   String get _toolbarLayoutFilePath => _appDataPath('toolbar_layout.json');
+  String get _weatherLocationFilePath => _appDataPath('weather_location.json');
   String get _defaultPromptStateFilePath => _appDataPath('default_browser_prompt.json');
 
   Future<void> _loadToolbarLayout() async {
