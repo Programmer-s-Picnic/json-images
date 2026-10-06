@@ -1,0 +1,69 @@
+name: Deploy Pages with Gecko APK
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages-gecko-apk"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build Pages payload with current Gecko APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          rsync -a \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude '_site/' \
+            ./ _site/
+
+          APK_URL="$(jq -r '.apkUrl' tv/champak-tv-version.json)"
+          if [ -z "$APK_URL" ] || [ "$APK_URL" = "null" ]; then
+            echo "apkUrl missing from tv/champak-tv-version.json"
+            exit 1
+          fi
+
+          echo "Fetching Gecko APK from: $APK_URL"
+          mkdir -p _site/tv
+          curl --fail --location --retry 3 --retry-delay 3 \
+            "$APK_URL" \
+            --output _site/tv/champak-tv.apk
+
+          test -s _site/tv/champak-tv.apk
+          echo "Published APK:"
+          ls -lh _site/tv/champak-tv.apk
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
