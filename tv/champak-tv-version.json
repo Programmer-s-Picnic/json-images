@@ -1,13 +1,13 @@
 {
   "appName": "Learn With Champak Browser",
   "packageName": "com.learnwithchampak.tv",
-  "versionName": "3.0.1",
-  "versionCode": 35,
+  "versionName": "3.1.0",
+  "versionCode": 36,
   "targetSdk": 36,
   "apkUrl": "https://programmer-s-picnic.github.io/json-images/tv/champak-tv.apk",
   "privacyPolicyUrl": "https://programmer-s-picnic.github.io/json-images/tv/privacy-policy.html",
-  "sourceBuildRunId": 37334090783,
-  "playAabArtifactId": 11355726744,
-  "updatedAt": "2026-10-05T21:11:00+05:30",
-  "notes": "Fix Google account chooser continuation and preserve website OAuth URLs"
+  "sourceBuildRunId": 37404674342,
+  "playAabArtifactId": 11386508902,
+  "updatedAt": "2026-10-06T08:06:00+05:30",
+  "notes": "Windows-parity Android/Android TV chrome with branded header, live clock/weather, Windows-style tabs/address/toolbar/status layout"
 }
