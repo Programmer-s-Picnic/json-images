@@ -76,7 +76,7 @@ void main(List<String> args) async {
     minimumSize: const Size(900, 600),
     center: !hasSavedPosition,
     backgroundColor: Colors.white,
-    title: "Champak's Desktop Browser",
+    title: "Champak's Browser",
   );
 
   await windowManager.waitUntilReadyToShow(options, () async {
@@ -103,7 +103,7 @@ class LearnWithChampakWindowsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Champak's Desktop Browser",
+      title: "Champak's Browser",
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff075985)),
         useMaterial3: true,
@@ -410,7 +410,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   static const contactEmail = 'champaksworld@gmail.com';
   static const contactPhone = '+91 9335874326';
   static const whatsappNumber = '919335874326';
-  static const defaultBrowserAppName = "Champak's Desktop Browser";
+  static const defaultBrowserAppName = "Champak's Browser";
   static const desktopUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0';
 
   static const newTabLinkScript = r'''
@@ -2152,21 +2152,33 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<void> _openScreenshotFile(String path) async {
+    final file = File(path);
+    if (!await file.exists()) {
+      if (mounted) setState(() => _status = 'Screenshot file not found');
+      return;
+    }
+
+    try {
+      final launched = await launchUrl(
+        Uri.file(file.path, windows: true),
+        mode: LaunchMode.externalApplication,
+      );
+      if (launched) return;
+    } catch (_) {}
+
     try {
       await Process.start(
-        'powershell.exe',
-        <String>[
-          '-NoProfile',
-          '-Command',
-          r'Start-Process -FilePath $args[0]',
-          path,
-        ],
+        'rundll32.exe',
+        <String>['url.dll,FileProtocolHandler', file.path],
         runInShell: false,
       );
+      return;
+    } catch (_) {}
+
+    try {
+      await Process.start('explorer.exe', <String>[file.path], runInShell: false);
     } catch (_) {
-      try {
-        await Process.start('explorer.exe', <String>['/select,$path'], runInShell: false);
-      } catch (_) {}
+      if (mounted) setState(() => _status = 'Could not open screenshot image');
     }
   }
 
@@ -3570,7 +3582,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
           FilledButton.icon(
             onPressed: () {
               final subject = nameController.text.trim().isEmpty
-                  ? "Champak's Desktop Browser contact"
+                  ? "Champak's Browser contact"
                   : "Champak's Desktop Browser contact from " + nameController.text.trim();
               final body = [
                 if (nameController.text.trim().isNotEmpty) 'Name: ' + nameController.text.trim(),
@@ -4091,7 +4103,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   radius: 24,
                   backgroundImage: AssetImage('assets/champak_roy.jpg'),
                 ),
-                title: Text("Champak's Desktop Browser", style: TextStyle(fontWeight: FontWeight.w900)),
+                title: Text("Champak's Browser", style: TextStyle(fontWeight: FontWeight.w900)),
                 subtitle: Text('Learn With Champak • Designed by Champak Roy'),
               ),
               ListTile(
@@ -4518,26 +4530,138 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     return actions;
   }
 
-  List<Widget> _managedToolbarWidgets() {
-    final actions = _toolbarActions();
-    final widgets = <Widget>[];
+  double _estimatedToolbarActionWidth(_ToolbarAction action) {
+    final textWidth = action.label.length * (action.important ? 8.4 : 7.7);
+    final base = action.important ? 58.0 : 52.0;
+    return (textWidth + base).clamp(84.0, 190.0).toDouble();
+  }
 
-    for (final id in _toolbarOrder) {
-      if (_hiddenToolbarItems.contains(id)) continue;
-      final action = actions[id];
-      if (action == null) continue;
-      widgets.add(_managedToolbarButton(action));
-    }
+  Future<void> _showToolbarOverflowDialog(List<_ToolbarAction> actions) async {
+    if (actions.isEmpty || !mounted) return;
 
-    widgets.add(
-      _toolbarButton(
-        'Manage',
-        Icons.tune,
-        _showToolbarManager,
-        important: true,
+    await showDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Row(
+          children: [
+            const Icon(Icons.apps, color: Color(0xff075985)),
+            const SizedBox(width: 10),
+            const Expanded(
+              child: Text(
+                'More Browser Tools',
+                style: TextStyle(fontWeight: FontWeight.w900),
+              ),
+            ),
+            IconButton(
+              tooltip: 'Close',
+              onPressed: () => Navigator.pop(dialogContext),
+              icon: const Icon(Icons.close),
+            ),
+          ],
+        ),
+        content: SizedBox(
+          width: 620,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 520),
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemCount: actions.length,
+              separatorBuilder: (_, __) => const Divider(height: 1),
+              itemBuilder: (_, index) {
+                final action = actions[index];
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: action.important
+                        ? const Color(0xffffc107)
+                        : const Color(0xff075985),
+                    foregroundColor: action.important ? Colors.black : Colors.white,
+                    child: Icon(action.icon, size: 20),
+                  ),
+                  title: Text(
+                    action.label,
+                    style: const TextStyle(fontWeight: FontWeight.w800),
+                  ),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {
+                    Navigator.pop(dialogContext);
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (mounted) action.onPressed();
+                    });
+                  },
+                );
+              },
+            ),
+          ),
+        ),
+        actions: [
+          TextButton.icon(
+            onPressed: () {
+              Navigator.pop(dialogContext);
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (mounted) _showToolbarManager();
+              });
+            },
+            icon: const Icon(Icons.tune),
+            label: const Text('Manage Toolbar'),
+          ),
+        ],
       ),
     );
-    return widgets;
+  }
+
+  Widget _managedToolbarBar() {
+    return SizedBox(
+      height: 46,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final actionMap = _toolbarActions();
+          final ordered = <_ToolbarAction>[];
+          for (final id in _toolbarOrder) {
+            if (_hiddenToolbarItems.contains(id)) continue;
+            final action = actionMap[id];
+            if (action != null) ordered.add(action);
+          }
+
+          const manageReserve = 112.0;
+          const moreReserve = 118.0;
+          final available = math.max(0.0, constraints.maxWidth - manageReserve);
+          var used = 0.0;
+          final visible = <_ToolbarAction>[];
+          final overflow = <_ToolbarAction>[];
+
+          for (final action in ordered) {
+            final estimate = _estimatedToolbarActionWidth(action);
+            final canFit = visible.length < 14 &&
+                used + estimate + moreReserve <= available;
+            if (canFit) {
+              visible.add(action);
+              used += estimate;
+            } else {
+              overflow.add(action);
+            }
+          }
+
+          return Row(
+            children: [
+              ...visible.map(_managedToolbarButton),
+              if (overflow.isNotEmpty)
+                _toolbarButton(
+                  'More (' + overflow.length.toString() + ')',
+                  Icons.more_horiz,
+                  () => _showToolbarOverflowDialog(overflow),
+                  important: true,
+                ),
+              _toolbarButton(
+                'Manage',
+                Icons.tune,
+                _showToolbarManager,
+                important: true,
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 
   Widget _managedToolbarButton(_ToolbarAction action) {
@@ -5032,14 +5156,6 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       );
     }
 
-    Widget actionScroller(List<Widget> children) => SizedBox(
-          height: 46,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(children: children),
-          ),
-        );
-
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
       decoration: const BoxDecoration(
@@ -5065,7 +5181,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Champak's Desktop Browser v3.6.0",
+                      "Champak's Browser",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
                     ),
                     const Text(
@@ -5123,7 +5239,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
             ],
           ),
           const SizedBox(height: 6),
-          actionScroller(_managedToolbarWidgets()),
+          _managedToolbarBar(),
           const SizedBox(height: 4),
           Row(
             children: [
