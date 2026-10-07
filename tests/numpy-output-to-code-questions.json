@@ -675,45 +675,6 @@
       ],
       "answer": "import numpy as np\na = np.array([1, 2, 3])\nprint(np.cumprod(a))",
       "explanation": "The cumulative products are 1, 1×2=2, and 1×2×3=6."
-    },
-    {
-      "question": "Which NumPy code produces this exact output?",
-      "output": "[2 3 5]",
-      "optionType": "code",
-      "options": [
-        "import numpy as np\na = np.array([1, 3, 6, 11])\nprint(np.diff(a))",
-        "import numpy as np\na = np.array([1, 3, 6, 11])\nprint(np.cumsum(a))",
-        "import numpy as np\na = np.array([1, 3, 6, 11])\nprint(a[1:])",
-        "import numpy as np\na = np.array([1, 3, 6, 11])\nprint(np.gradient(a))"
-      ],
-      "answer": "import numpy as np\na = np.array([1, 3, 6, 11])\nprint(np.diff(a))",
-      "explanation": "Successive differences are 3−1=2, 6−3=3 and 11−6=5."
-    },
-    {
-      "question": "Which NumPy code produces this exact output?",
-      "output": "[1. 2. 3.]",
-      "optionType": "code",
-      "options": [
-        "import numpy as np\na = np.array([1, 2, 3], dtype=float)\nprint(a)",
-        "import numpy as np\na = np.array([1, 2, 3], dtype=int)\nprint(a)",
-        "import numpy as np\na = np.array([1, 2, 3]).astype(str)\nprint(a)",
-        "import numpy as np\na = np.array([1.5, 2.5, 3.5])\nprint(a)"
-      ],
-      "answer": "import numpy as np\na = np.array([1, 2, 3], dtype=float)\nprint(a)",
-      "explanation": "Specifying dtype=float converts integer literals to floating-point values."
-    },
-    {
-      "question": "Which NumPy code produces this exact output?",
-      "output": "[1 2 3]",
-      "optionType": "code",
-      "options": [
-        "import numpy as np\na = np.array([1.9, 2.1, 3.8])\nprint(a.astype(int))",
-        "import numpy as np\na = np.array([1.9, 2.1, 3.8])\nprint(np.round(a))",
-        "import numpy as np\na = np.array([1.9, 2.1, 3.8])\nprint(np.ceil(a))",
-        "import numpy as np\na = np.array([1.9, 2.1, 3.8])\nprint(np.floor(a))"
-      ],
-      "answer": "import numpy as np\na = np.array([1.9, 2.1, 3.8])\nprint(a.astype(int))",
-      "explanation": "astype(int) truncates the decimal part when converting positive floats to integers."
     }
   ]
 }
