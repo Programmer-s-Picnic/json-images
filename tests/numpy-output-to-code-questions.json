@@ -1,0 +1,719 @@
+{
+  "title": "NumPy Output-to-Code Quiz",
+  "subtitle": "Study the displayed NumPy output and choose the code that produces it. Each attempt selects 10 questions from a 50-question bank.",
+  "kicker": "Learn With Champak • NumPy Interactive Test",
+  "instructions": "Read the required output carefully, compare all four NumPy programs, and select the exact matching code. Try to reason without running the choices.",
+  "footer": "Learn With Champak • NumPy • arrays • slicing • reshaping • broadcasting • aggregation",
+  "seo": {
+    "enabled": true,
+    "title": "NumPy Output-to-Code Quiz | Learn With Champak",
+    "description": "Practise NumPy by identifying the code that produces a given output. Includes arrays, arange, linspace, reshape, slicing, Boolean indexing, broadcasting, aggregation, sorting and more.",
+    "keywords": "NumPy quiz, NumPy output to code, Python NumPy MCQ, NumPy array questions, NumPy practice, Learn With Champak, Champak Roy",
+    "canonicalUrl": "",
+    "ogImage": "https://programmer-s-picnic.github.io/json-images/mee.jpg",
+    "imageAlt": "NumPy Output-to-Code Quiz by Learn With Champak",
+    "type": "website",
+    "siteName": "Learn With Champak",
+    "language": "en-IN",
+    "educationalLevel": "Beginner to Intermediate"
+  },
+  "settings": {
+    "questionsPerAttempt": 10,
+    "durationMinutes": 10,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "allowUntimed": true,
+    "showReview": true
+  },
+  "questions": [
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 3 4 5]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a)",
+        "import numpy as np\na = np.array([0, 1, 2, 3, 4])\nprint(a)",
+        "import numpy as np\na = np.arange(1, 5)\nprint(a)",
+        "import numpy as np\na = np.array([[1, 2, 3, 4, 5]])\nprint(a)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a)",
+      "explanation": "np.array creates a one-dimensional array containing exactly the listed values."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[0 1 2 3 4]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\nprint(np.arange(5))",
+        "import numpy as np\nprint(np.arange(1, 5))",
+        "import numpy as np\nprint(np.arange(0, 4))",
+        "import numpy as np\nprint(np.ones(5))"
+      ],
+      "answer": "import numpy as np\nprint(np.arange(5))",
+      "explanation": "np.arange(5) starts at 0 and stops before 5."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[2 4 6 8]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\nprint(np.arange(2, 10, 2))",
+        "import numpy as np\nprint(np.arange(2, 8, 2))",
+        "import numpy as np\nprint(np.arange(1, 9, 2))",
+        "import numpy as np\nprint(np.arange(2, 10, 3))"
+      ],
+      "answer": "import numpy as np\nprint(np.arange(2, 10, 2))",
+      "explanation": "The stop value is excluded, so arange(2, 10, 2) gives 2, 4, 6 and 8."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[0.   0.25 0.5  0.75 1.  ]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\nprint(np.linspace(0, 1, 5))",
+        "import numpy as np\nprint(np.arange(0, 1, 0.25))",
+        "import numpy as np\nprint(np.linspace(0, 1, 4))",
+        "import numpy as np\nprint(np.array([0, .2, .4, .6, .8]))"
+      ],
+      "answer": "import numpy as np\nprint(np.linspace(0, 1, 5))",
+      "explanation": "linspace includes both endpoints and creates five equally spaced values."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[0. 0. 0.]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\nprint(np.zeros(3))",
+        "import numpy as np\nprint(np.ones(3))",
+        "import numpy as np\nprint(np.zeros((1, 3), dtype=int))",
+        "import numpy as np\nprint(np.full(3, 1))"
+      ],
+      "answer": "import numpy as np\nprint(np.zeros(3))",
+      "explanation": "np.zeros(3) creates three floating-point zeros."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1. 1. 1. 1.]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\nprint(np.ones(4))",
+        "import numpy as np\nprint(np.zeros(4))",
+        "import numpy as np\nprint(np.ones(3))",
+        "import numpy as np\nprint(np.full(4, 2.0))"
+      ],
+      "answer": "import numpy as np\nprint(np.ones(4))",
+      "explanation": "np.ones(4) creates a one-dimensional float array containing four ones."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[7 7 7 7]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\nprint(np.full(4, 7))",
+        "import numpy as np\nprint(np.ones(4) * 4)",
+        "import numpy as np\nprint(np.arange(7, 11))",
+        "import numpy as np\nprint(np.full(7, 4))"
+      ],
+      "answer": "import numpy as np\nprint(np.full(4, 7))",
+      "explanation": "np.full(4, 7) fills four positions with the value 7."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[[1 2 3]\n [4 5 6]]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\nprint(np.arange(1, 7).reshape(2, 3))",
+        "import numpy as np\nprint(np.arange(1, 7).reshape(3, 2))",
+        "import numpy as np\nprint(np.arange(6).reshape(2, 3))",
+        "import numpy as np\nprint(np.arange(1, 6).reshape(2, 3))"
+      ],
+      "answer": "import numpy as np\nprint(np.arange(1, 7).reshape(2, 3))",
+      "explanation": "Six values from 1 through 6 are reshaped into 2 rows and 3 columns."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[[1 2]\n [3 4]\n [5 6]]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\nprint(np.arange(1, 7).reshape(3, 2))",
+        "import numpy as np\nprint(np.arange(1, 7).reshape(2, 3))",
+        "import numpy as np\nprint(np.arange(6).reshape(3, 2))",
+        "import numpy as np\nprint(np.arange(1, 7).reshape(1, 6))"
+      ],
+      "answer": "import numpy as np\nprint(np.arange(1, 7).reshape(3, 2))",
+      "explanation": "reshape(3, 2) arranges six elements into three rows of two."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "6",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a.sum())",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a.mean())",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a.max())",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a.size)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nprint(a.sum())",
+      "explanation": "1 + 2 + 3 equals 6."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "2.0",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a.mean())",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a.sum())",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a.max())",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a.min())"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nprint(a.mean())",
+      "explanation": "The arithmetic mean of 1, 2 and 3 is 2.0."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "9",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([4, 9, 2, 7])\nprint(a.max())",
+        "import numpy as np\na = np.array([4, 9, 2, 7])\nprint(a.min())",
+        "import numpy as np\na = np.array([4, 9, 2, 7])\nprint(a.argmax() + 1)",
+        "import numpy as np\na = np.array([4, 9, 2, 7])\nprint(a.sum())"
+      ],
+      "answer": "import numpy as np\na = np.array([4, 9, 2, 7])\nprint(a.max())",
+      "explanation": "The largest value in the array is 9."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "2",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([4, 9, 2, 7])\nprint(a.min())",
+        "import numpy as np\na = np.array([4, 9, 2, 7])\nprint(a.max())",
+        "import numpy as np\na = np.array([4, 9, 2, 7])\nprint(a.argmax())",
+        "import numpy as np\na = np.array([4, 9, 2, 7])\nprint(a.size)"
+      ],
+      "answer": "import numpy as np\na = np.array([4, 9, 2, 7])\nprint(a.min())",
+      "explanation": "The minimum array value is 2."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[20 30 40]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[1:4])",
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[1:3])",
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[2:5])",
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[:3])"
+      ],
+      "answer": "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[1:4])",
+      "explanation": "Slicing includes index 1 and excludes index 4."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[10 30 50]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[::2])",
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[1::2])",
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[:2])",
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[::-2])"
+      ],
+      "answer": "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[::2])",
+      "explanation": "A step of 2 selects indices 0, 2 and 4."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[50 40 30 20 10]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[::-1])",
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[::1])",
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(np.sort(a))",
+        "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[-1])"
+      ],
+      "answer": "import numpy as np\na = np.array([10, 20, 30, 40, 50])\nprint(a[::-1])",
+      "explanation": "A slice step of -1 reverses the array."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[4 5]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a[a > 3])",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a[a >= 3])",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a[a < 3])",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a[3])"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a[a > 3])",
+      "explanation": "Boolean indexing keeps only values greater than 3."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[2 4 6]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5, 6])\nprint(a[a % 2 == 0])",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5, 6])\nprint(a[a % 2 == 1])",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5, 6])\nprint(a[::3])",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5, 6])\nprint(a[:3])"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3, 4, 5, 6])\nprint(a[a % 2 == 0])",
+      "explanation": "The Boolean mask selects even numbers."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[11 12 13]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a + 10)",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a * 10)",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a + 1)",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a - 10)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nprint(a + 10)",
+      "explanation": "NumPy broadcasts the scalar 10 across every element."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[ 2  4  6  8 10]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a * 2)",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a + 2)",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a ** 2)",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a / 2)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a * 2)",
+      "explanation": "Multiplication by a scalar is element-wise."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[ 1  4  9 16]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3, 4])\nprint(a ** 2)",
+        "import numpy as np\na = np.array([1, 2, 3, 4])\nprint(a * 2)",
+        "import numpy as np\na = np.array([1, 2, 3, 4])\nprint(a + a)",
+        "import numpy as np\na = np.array([1, 2, 3, 4])\nprint(np.sqrt(a))"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3, 4])\nprint(a ** 2)",
+      "explanation": "Exponentiation is applied element-wise."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[5 7 9]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a + b)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a * b)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(b - a)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.concatenate((a, b)))"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a + b)",
+      "explanation": "Arrays of the same shape add element by element."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[ 4 10 18]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a * b)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a + b)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(b - a)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a @ b)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a * b)",
+      "explanation": "The * operator performs element-wise multiplication on NumPy arrays."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "32",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a @ b)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a * b)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a + b)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.sum(a))"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a @ b)",
+      "explanation": "The dot product is 1×4 + 2×5 + 3×6 = 32."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 3 4 5 6]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.concatenate((a, b)))",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a + b)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.stack((a, b)))",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.vstack((a, b)))"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.concatenate((a, b)))",
+      "explanation": "Concatenation joins both 1-D arrays end to end."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[[1 2 3]\n [4 5 6]]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.vstack((a, b)))",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.hstack((a, b)))",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(a + b)",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.column_stack((a, b)))"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.vstack((a, b)))",
+      "explanation": "vstack places the two 1-D arrays as separate rows."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[[1 4]\n [2 5]\n [3 6]]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.column_stack((a, b)))",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.vstack((a, b)))",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.hstack((a, b)))",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.concatenate((a, b)))"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(np.column_stack((a, b)))",
+      "explanation": "column_stack uses the input arrays as columns."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 3 4 5 6]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.flatten())",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.T)",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a[0])",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a[:, 0])"
+      ],
+      "answer": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.flatten())",
+      "explanation": "flatten converts the 2-D array to a one-dimensional copy."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[[1 4]\n [2 5]\n [3 6]]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.T)",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.flatten())",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a[::-1])",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a[:, ::-1])"
+      ],
+      "answer": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.T)",
+      "explanation": "The transpose swaps rows and columns."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "(2, 3)",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.shape)",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.size)",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.ndim)",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.dtype)"
+      ],
+      "answer": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.shape)",
+      "explanation": "The array has 2 rows and 3 columns, so shape is (2, 3)."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "6",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.size)",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.ndim)",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.shape[0])",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.shape[1])"
+      ],
+      "answer": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.size)",
+      "explanation": "size is the total number of elements: 2 × 3 = 6."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "2",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.ndim)",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.size)",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.shape[1])",
+        "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.itemsize)"
+      ],
+      "answer": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.ndim)",
+      "explanation": "A matrix-like NumPy array has two dimensions."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[6 8]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.sum(axis=0))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.sum(axis=1))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.mean(axis=0))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.max(axis=0))"
+      ],
+      "answer": "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.sum(axis=0))",
+      "explanation": "Summing along axis 0 adds values down each column: 1+3+5 and 2+4+6."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[ 3  7 11]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.sum(axis=1))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.sum(axis=0))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.max(axis=1))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.mean(axis=1))"
+      ],
+      "answer": "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.sum(axis=1))",
+      "explanation": "Summing along axis 1 adds across each row."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[3. 4.]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.mean(axis=0))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.mean(axis=1))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.sum(axis=0))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.min(axis=0))"
+      ],
+      "answer": "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.mean(axis=0))",
+      "explanation": "Column means are (1+3+5)/3 = 3 and (2+4+6)/3 = 4."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[2 4 6]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.max(axis=1))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.min(axis=1))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.max(axis=0))",
+        "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a[:, 0])"
+      ],
+      "answer": "import numpy as np\na = np.array([[1, 2], [3, 4], [5, 6]])\nprint(a.max(axis=1))",
+      "explanation": "The maximum in each row is 2, 4 and 6."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 3 4 5]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.sort(a))",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(a[::-1])",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argsort(a))",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(a)"
+      ],
+      "answer": "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.sort(a))",
+      "explanation": "np.sort returns the values in ascending order."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 3 0 4 2]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argsort(a))",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.sort(a))",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argmax(a))",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argmin(a))"
+      ],
+      "answer": "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argsort(a))",
+      "explanation": "argsort returns the indices that would arrange the array in ascending order."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "2",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argmax(a))",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argmin(a))",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.max(a))",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argsort(a)[0])"
+      ],
+      "answer": "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argmax(a))",
+      "explanation": "The largest value, 5, is at index 2."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "1",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argmin(a))",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argmax(a))",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.min(a) + 1)",
+        "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argsort(a)[1])"
+      ],
+      "answer": "import numpy as np\na = np.array([3, 1, 5, 2, 4])\nprint(np.argmin(a))",
+      "explanation": "The smallest value, 1, is at index 1."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 3 9 9]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\na[a > 3] = 9\nprint(a)",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\na[a >= 3] = 9\nprint(a)",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\na[a < 3] = 9\nprint(a)",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\na[3] = 9\nprint(a)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3, 4, 5])\na[a > 3] = 9\nprint(a)",
+      "explanation": "The Boolean assignment replaces values 4 and 5 with 9."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 0 0 0]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(np.where(a < 3, a, 0))",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(np.where(a > 3, a, 0))",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(np.where(a < 3, 0, a))",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a[a < 3])"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(np.where(a < 3, a, 0))",
+      "explanation": "np.where keeps values below 3 and substitutes 0 elsewhere."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[False False  True  True  True]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a >= 3)",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a > 3)",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a <= 3)",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a == 3)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a >= 3)",
+      "explanation": "Element-wise comparison marks 3, 4 and 5 as True."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "3",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(np.count_nonzero(a >= 3))",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(np.count_nonzero(a > 3))",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(np.count_nonzero(a == 3) + 1)",
+        "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(a.size)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3, 4, 5])\nprint(np.count_nonzero(a >= 3))",
+      "explanation": "There are three values greater than or equal to 3."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 3]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 2, 3, 3, 3])\nprint(np.unique(a))",
+        "import numpy as np\na = np.array([1, 2, 2, 3, 3, 3])\nprint(np.sort(a))",
+        "import numpy as np\na = np.array([1, 2, 2, 3, 3, 3])\nprint(a[:3])",
+        "import numpy as np\na = np.array([1, 2, 2, 3, 3, 3])\nprint(np.diff(a))"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 2, 3, 3, 3])\nprint(np.unique(a))",
+      "explanation": "np.unique returns the distinct sorted values."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 3 4]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2])\nprint(np.repeat(a, 2))",
+        "import numpy as np\na = np.array([1, 2])\nprint(np.tile(a, 2))",
+        "import numpy as np\na = np.array([1, 2, 3, 4])\nprint(a)",
+        "import numpy as np\na = np.array([1, 2])\nprint(a + 2)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3, 4])\nprint(a)",
+      "explanation": "This direct array construction exactly produces the displayed output."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 1 2 2]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2])\nprint(np.repeat(a, 2))",
+        "import numpy as np\na = np.array([1, 2])\nprint(np.tile(a, 2))",
+        "import numpy as np\na = np.array([1, 2])\nprint(np.repeat(a, 3))",
+        "import numpy as np\na = np.array([1, 2])\nprint(a * 2)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2])\nprint(np.repeat(a, 2))",
+      "explanation": "repeat duplicates each individual element twice."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 1 2]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2])\nprint(np.tile(a, 2))",
+        "import numpy as np\na = np.array([1, 2])\nprint(np.repeat(a, 2))",
+        "import numpy as np\na = np.array([1, 2])\nprint(np.tile(a, 3))",
+        "import numpy as np\na = np.array([1, 2])\nprint(a + a)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2])\nprint(np.tile(a, 2))",
+      "explanation": "tile repeats the entire array pattern."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 3 6]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(np.cumsum(a))",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(np.cumprod(a))",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(np.diff(a))",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(np.sum(a))"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nprint(np.cumsum(a))",
+      "explanation": "The cumulative sums are 1, then 1+2=3, then 1+2+3=6."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 6]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(np.cumprod(a))",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(np.cumsum(a))",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(np.prod(a))",
+        "import numpy as np\na = np.array([1, 2, 3])\nprint(a ** 2)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3])\nprint(np.cumprod(a))",
+      "explanation": "The cumulative products are 1, 1×2=2, and 1×2×3=6."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[2 3 5]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 3, 6, 11])\nprint(np.diff(a))",
+        "import numpy as np\na = np.array([1, 3, 6, 11])\nprint(np.cumsum(a))",
+        "import numpy as np\na = np.array([1, 3, 6, 11])\nprint(a[1:])",
+        "import numpy as np\na = np.array([1, 3, 6, 11])\nprint(np.gradient(a))"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 3, 6, 11])\nprint(np.diff(a))",
+      "explanation": "Successive differences are 3−1=2, 6−3=3 and 11−6=5."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1. 2. 3.]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1, 2, 3], dtype=float)\nprint(a)",
+        "import numpy as np\na = np.array([1, 2, 3], dtype=int)\nprint(a)",
+        "import numpy as np\na = np.array([1, 2, 3]).astype(str)\nprint(a)",
+        "import numpy as np\na = np.array([1.5, 2.5, 3.5])\nprint(a)"
+      ],
+      "answer": "import numpy as np\na = np.array([1, 2, 3], dtype=float)\nprint(a)",
+      "explanation": "Specifying dtype=float converts integer literals to floating-point values."
+    },
+    {
+      "question": "Which NumPy code produces this exact output?",
+      "output": "[1 2 3]",
+      "optionType": "code",
+      "options": [
+        "import numpy as np\na = np.array([1.9, 2.1, 3.8])\nprint(a.astype(int))",
+        "import numpy as np\na = np.array([1.9, 2.1, 3.8])\nprint(np.round(a))",
+        "import numpy as np\na = np.array([1.9, 2.1, 3.8])\nprint(np.ceil(a))",
+        "import numpy as np\na = np.array([1.9, 2.1, 3.8])\nprint(np.floor(a))"
+      ],
+      "answer": "import numpy as np\na = np.array([1.9, 2.1, 3.8])\nprint(a.astype(int))",
+      "explanation": "astype(int) truncates the decimal part when converting positive floats to integers."
+    }
+  ]
+}
