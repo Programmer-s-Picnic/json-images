@@ -1,4 +1,4 @@
-#define MyAppName "Champak's Desktop Browser"
+#define MyAppName "Champak's Browser"
 #define MyAppVersion "3.6.0"
 #define MyAppPublisher "Learn With Champak"
 #define MyAppExeName "learn_with_champak_windows.exe"
@@ -9,7 +9,7 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 DefaultDirName={autopf}\Learn With Champak Desktop
-DefaultGroupName=Champak's Desktop Browser
+DefaultGroupName=Champak's Browser
 DisableProgramGroupPage=yes
 OutputDir=..\dist
 OutputBaseFilename=learn-with-champak-windows-setup
@@ -46,7 +46,7 @@ Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\
 Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"""
 
 Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities"; ValueType: string; ValueName: "ApplicationName"; ValueData: "{#MyAppName}"
-Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities"; ValueType: string; ValueName: "ApplicationDescription"; ValueData: "Champak's Desktop Browser for learning and education"
+Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities"; ValueType: string; ValueName: "ApplicationDescription"; ValueData: "Champak's Browser for learning and education"
 Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities"; ValueType: string; ValueName: "ApplicationIcon"; ValueData: "{app}\{#MyAppExeName},0"
 Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities\URLAssociations"; ValueType: string; ValueName: "http"; ValueData: "LearnWithChampakHTML"
 Root: HKLM; Subkey: "Software\Clients\StartMenuInternet\LearnWithChampakDesktop\Capabilities\URLAssociations"; ValueType: string; ValueName: "https"; ValueData: "LearnWithChampakHTML"
