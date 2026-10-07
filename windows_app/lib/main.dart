@@ -3056,8 +3056,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     if (!mounted) return;
     setState(() {
       _status = opened
-          ? "Windows Default Apps opened. Press Set default for Champak's Desktop Browser."
-          : "Open Windows Settings > Apps > Default apps > Champak's Desktop Browser.";
+          ? "Windows Default Apps opened. Press Set default for Champak's Browser."
+          : "Open Windows Settings > Apps > Default apps > Champak's Browser.";
     });
   }
 
@@ -3114,8 +3114,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                           children: [
                             Text(
                               _isDefaultBrowser
-                                  ? "Champak's Desktop Browser is your default browser"
-                                  : "Make Champak's Desktop Browser your default browser",
+                                  ? "Champak's Browser is your default browser"
+                                  : "Make Champak's Browser your default browser",
                               style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
                             ),
                             const SizedBox(height: 4),
@@ -3188,7 +3188,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               await _refreshDefaultBrowserState();
               if (mounted) {
                 setState(() => _status = _isDefaultBrowser
-                    ? "Champak's Desktop Browser is already the Windows default"
+                    ? "Champak's Browser is already the Windows default"
                     : (ok
                         ? 'Default-browser registration refreshed'
                         : 'Could not refresh default-browser registration'));
@@ -3221,7 +3221,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       builder: (_) => AlertDialog(
         title: const Text('Set as default browser?'),
         content: const Text(
-          "Champak's Desktop Browser will register itself for this Windows user, then open its own Default Apps page. "
+          "Champak's Browser will register itself for this Windows user, then open its own Default Apps page. "
           'Windows requires you to confirm the default browser choice there.',
         ),
         actions: [
@@ -3470,7 +3470,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
           children: [
             Icon(Icons.school, color: Color(0xff075985)),
             SizedBox(width: 10),
-            Text("How to use Champak's Desktop Browser"),
+            Text("How to use Champak's Browser"),
           ],
         ),
         content: const SizedBox(
@@ -3583,7 +3583,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
             onPressed: () {
               final subject = nameController.text.trim().isEmpty
                   ? "Champak's Browser contact"
-                  : "Champak's Desktop Browser contact from " + nameController.text.trim();
+                  : "Champak's Browser contact from " + nameController.text.trim();
               final body = [
                 if (nameController.text.trim().isNotEmpty) 'Name: ' + nameController.text.trim(),
                 if (emailController.text.trim().isNotEmpty) 'Email: ' + emailController.text.trim(),
