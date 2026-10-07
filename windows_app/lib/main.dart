@@ -5,6 +5,7 @@ import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
@@ -385,6 +386,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     'download',
     'open-file',
     'downloads',
+    'screenshot',
     'privacy',
     'default-browser',
     'github-code',
@@ -2130,6 +2132,148 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     } catch (_) {}
   }
 
+
+  String get _screenshotsDirectoryPath {
+    final userProfile = Platform.environment['USERPROFILE'];
+    if (userProfile != null && userProfile.trim().isNotEmpty) {
+      return '$userProfile\\Pictures\\Learn With Champak Screenshots';
+    }
+    return '$_downloadsDirectoryPath\\Learn With Champak Screenshots';
+  }
+
+  String _safeScreenshotFilePart(String value) {
+    var cleaned = value
+        .replaceAll(RegExp(r'[<>:"/\\|?*]'), ' ')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
+    if (cleaned.isEmpty) cleaned = 'Tab';
+    if (cleaned.length > 70) cleaned = cleaned.substring(0, 70).trim();
+    return cleaned;
+  }
+
+  Future<void> _openScreenshotFile(String path) async {
+    try {
+      await Process.start(
+        'powershell.exe',
+        <String>[
+          '-NoProfile',
+          '-Command',
+          r'Start-Process -FilePath $args[0]',
+          path,
+        ],
+        runInShell: false,
+      );
+    } catch (_) {
+      try {
+        await Process.start('explorer.exe', <String>['/select,$path'], runInShell: false);
+      } catch (_) {}
+    }
+  }
+
+  Future<void> _openScreenshotsFolder() async {
+    try {
+      final directory = Directory(_screenshotsDirectoryPath);
+      await directory.create(recursive: true);
+      await Process.start('explorer.exe', <String>[directory.path], runInShell: false);
+    } catch (_) {}
+  }
+
+  Future<void> _takeTabScreenshot() async {
+    final tab = _tab;
+    if (tab == null || !tab.ready) {
+      if (mounted) setState(() => _status = 'Open a tab before taking a screenshot');
+      return;
+    }
+
+    if (mounted) setState(() => _status = 'Taking tab screenshot...');
+
+    try {
+      await WidgetsBinding.instance.endOfFrame;
+      final renderObject = _webViewAreaKey.currentContext?.findRenderObject();
+      if (renderObject is! RenderRepaintBoundary) {
+        throw StateError('Tab capture area is not ready');
+      }
+
+      final media = MediaQuery.maybeOf(context);
+      final pixelRatio = (media?.devicePixelRatio ?? 1.0).clamp(1.0, 2.0).toDouble();
+      final image = await renderObject.toImage(pixelRatio: pixelRatio);
+      final png = await image.toByteData(format: ui.ImageByteFormat.png);
+      image.dispose();
+
+      if (png == null) {
+        throw StateError('Could not encode screenshot');
+      }
+
+      final now = DateTime.now();
+      String two(int value) => value.toString().padLeft(2, '0');
+      final stamp =
+          '${now.year}-${two(now.month)}-${two(now.day)}_${two(now.hour)}-${two(now.minute)}-${two(now.second)}';
+      final title = _safeScreenshotFilePart(tab.title);
+      final directory = Directory(_screenshotsDirectoryPath);
+      await directory.create(recursive: true);
+
+      var file = File('${directory.path}\\$stamp - $title.png');
+      var suffix = 2;
+      while (await file.exists()) {
+        file = File('${directory.path}\\$stamp - $title ($suffix).png');
+        suffix++;
+      }
+      await file.writeAsBytes(png.buffer.asUint8List(), flush: true);
+
+      if (!mounted) return;
+      setState(() => _status = 'Tab screenshot saved: ${file.uri.pathSegments.last}');
+
+      await showDialog<void>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: const Row(
+            children: [
+              Icon(Icons.camera_alt_outlined, color: Color(0xff075985)),
+              SizedBox(width: 10),
+              Text('Tab Screenshot Saved'),
+            ],
+          ),
+          content: SizedBox(
+            width: 560,
+            child: SelectableText(
+              file.path,
+              style: const TextStyle(fontWeight: FontWeight.w700),
+            ),
+          ),
+          actions: [
+            TextButton.icon(
+              onPressed: () async {
+                Navigator.pop(dialogContext);
+                await _openScreenshotsFolder();
+              },
+              icon: const Icon(Icons.folder_open),
+              label: const Text('Open Folder'),
+            ),
+            TextButton.icon(
+              onPressed: () async {
+                Navigator.pop(dialogContext);
+                await _openScreenshotFile(file.path);
+              },
+              icon: const Icon(Icons.image_outlined),
+              label: const Text('Open Image'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Close'),
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      if (mounted) {
+        setState(() => _status = 'Could not take tab screenshot: $e');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Screenshot failed: $e')),
+        );
+      }
+    }
+  }
+
   Future<void> _showWebContextMenu({
     required double x,
     required double y,
@@ -2187,6 +2331,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       const PopupMenuItem(value: 'bookmark', child: ListTile(leading: Icon(Icons.bookmark_add), title: Text('Bookmark This Page'), dense: true)),
       const PopupMenuItem(value: 'copy-page', child: ListTile(leading: Icon(Icons.content_copy), title: Text('Copy Page Address'), dense: true)),
       const PopupMenuItem(value: 'download-page', child: ListTile(leading: Icon(Icons.download_for_offline), title: Text('Download Current Page/File'), dense: true)),
+      const PopupMenuItem(value: 'screenshot', child: ListTile(leading: Icon(Icons.camera_alt_outlined), title: Text('Take Tab Screenshot'), dense: true)),
       const PopupMenuItem(value: 'downloads', child: ListTile(leading: Icon(Icons.folder_open), title: Text('Open Downloads'), dense: true)),
       const PopupMenuItem(value: 'outside-page', child: ListTile(leading: Icon(Icons.launch), title: Text('Open Page Outside'), dense: true)),
       const PopupMenuDivider(),
@@ -2252,6 +2397,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
         break;
       case 'download-page':
         await _downloadUrl(pageUrl);
+        break;
+      case 'screenshot':
+        await _takeTabScreenshot();
         break;
       case 'downloads':
         await _openDownloadsFolder();
@@ -3322,7 +3470,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               '3. Use Add Bookmark to save the current page. Open Bookmarks to revisit or remove saved pages.\n\n'
               '4. Use Download to save the current HTTP/HTTPS address into your Windows Downloads folder. '
               'Open File opens the most recent downloaded file, while Downloads opens the folder.\n\n'
-              '5. History shows recently visited pages. Privacy hides the selected tab when this browser loses focus.\n\n'
+              '5. Screenshot saves the visible current tab as a PNG in Pictures → Learn With Champak Screenshots. History shows recently visited pages. Privacy hides the selected tab when this browser loses focus.\n\n'
               '6. Timed lets you schedule a learning website to open automatically.\n\n'
               '7. Default Browser registers Champak\'s Desktop Browser with Windows and opens Default Apps, where Windows asks you to confirm it.\n\n'
               '8. Use Learn With Champak, Inside Kashi, YouTube, WhatsApp Web, Google, Gmail and the other shortcuts for quick access.\n\n'
@@ -4308,6 +4456,13 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
           icon: Icons.folder_open,
           onPressed: _openDownloadsFolder,
         ),
+        'screenshot': _ToolbarAction(
+          id: 'screenshot',
+          label: 'Screenshot',
+          icon: Icons.camera_alt_outlined,
+          onPressed: _takeTabScreenshot,
+          important: true,
+        ),
         'privacy': _ToolbarAction(
           id: 'privacy',
           label: _tab?.privacyBlur == true ? 'Privacy On' : 'Privacy',
@@ -5012,7 +5167,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                     : Stack(
                         fit: StackFit.expand,
                         children: [
-                          Container(
+                          RepaintBoundary(
                             key: _webViewAreaKey,
                             child: Webview(
                               tab.controller,
