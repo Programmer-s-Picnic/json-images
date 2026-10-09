@@ -1,0 +1,270 @@
+{
+  "title": "NumPy Operations: Code-to-Output Quiz",
+  "subtitle": "Predict the exact NumPy output. Each attempt selects 10 questions from a 20-question bank.",
+  "kicker": "Learn With Champak • NumPy Operations Interactive Test",
+  "instructions": "Read each NumPy program and select its exact printed output.",
+  "footer": "Learn With Champak • NumPy operations • reshape • filters • transpose • sort • broadcasting",
+  "seo": {
+    "enabled": true,
+    "title": "NumPy Operations Code-to-Output Quiz | Learn With Champak",
+    "description": "Test NumPy reshape, broadcasting, sorting, Boolean filtering, transpose, axis and np.where with interactive code-to-output questions.",
+    "keywords": "NumPy operations quiz, NumPy reshape quiz, broadcasting Python, NumPy filtering quiz, NumPy code to output, Learn With Champak",
+    "canonicalUrl": "",
+    "ogImage": "https://programmer-s-picnic.github.io/json-images/mee.jpg",
+    "imageAlt": "NumPy Operations code-to-output quiz by Learn With Champak",
+    "type": "website",
+    "siteName": "Learn With Champak",
+    "language": "en-IN",
+    "educationalLevel": "Beginner to Intermediate"
+  },
+  "settings": {
+    "questionsPerAttempt": 10,
+    "durationMinutes": 10,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "allowUntimed": true,
+    "showReview": true
+  },
+  "questions": [
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([2,4,6]); print(a+3)",
+      "options": [
+        "[5 7 9]",
+        "[2 4 6]",
+        "[6 8 10]",
+        "[ 6 12 18]"
+      ],
+      "answer": "[5 7 9]",
+      "explanation": "Adding a scalar applies it to every element."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([1,2,3]); b=np.array([4,5,6]); print(a*b)",
+      "options": [
+        "[5 7 9]",
+        "[ 4 10 18]",
+        "[ 4  5  6]",
+        "[1 2 3 4 5 6]"
+      ],
+      "answer": "[ 4 10 18]",
+      "explanation": "Multiplication between NumPy arrays is element-wise."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\nprint(np.arange(1,7).reshape(2,3))",
+      "options": [
+        "[[1 2]\n [3 4]\n [5 6]]",
+        "[1 2 3 4 5 6]",
+        "[[1 2 3]\n [4 5 6]]",
+        "ValueError"
+      ],
+      "answer": "[[1 2 3]\n [4 5 6]]",
+      "explanation": "Six values fit into a 2-by-3 matrix."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([[1,2],[3,4]]); print(a.T)",
+      "options": [
+        "[[1 2]\n [3 4]]",
+        "[1 2 3 4]",
+        "[[4 3]\n [2 1]]",
+        "[[1 3]\n [2 4]]"
+      ],
+      "answer": "[[1 3]\n [2 4]]",
+      "explanation": "Transpose interchanges row and column positions."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([10,25,30,45,50]); print(a[a>25])",
+      "options": [
+        "[30 45 50]",
+        "[25 30 45 50]",
+        "[10 25]",
+        "[False False True True True]"
+      ],
+      "answer": "[30 45 50]",
+      "explanation": "The mask selects only values strictly greater than 25."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([5,10,15,20,25]); print(a[(a>=10)&(a<25)])",
+      "options": [
+        "[10 15 20 25]",
+        "[10 15 20]",
+        "[5 10 15 20]",
+        "[15 20 25]"
+      ],
+      "answer": "[10 15 20]",
+      "explanation": "Both conditions must hold; 25 is excluded."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([35,60,20,85]); print(np.where(a>=40,1,0))",
+      "options": [
+        "[1 0 1 0]",
+        "[35 60 20 85]",
+        "[0 1 0 1]",
+        "[60 85]"
+      ],
+      "answer": "[0 1 0 1]",
+      "explanation": "np.where chooses 1 for values at least 40 and 0 otherwise."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([9,3,7,1]); print(np.sort(a))",
+      "options": [
+        "[9 7 3 1]",
+        "[3 1 7 9]",
+        "[0 1 2 3]",
+        "[1 3 7 9]"
+      ],
+      "answer": "[1 3 7 9]",
+      "explanation": "np.sort returns values in ascending order."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([40,10,30]); print(np.argsort(a))",
+      "options": [
+        "[1 2 0]",
+        "[10 30 40]",
+        "[2 1 0]",
+        "[0 2 1]"
+      ],
+      "answer": "[1 2 0]",
+      "explanation": "argsort returns the original indices in ascending value order."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([[1,2,3],[4,5,6]]); b=np.array([10,20,30]); print(a+b)",
+      "options": [
+        "[[11 12 13]\n [24 25 26]]",
+        "[[11 22 33]\n [14 25 36]]",
+        "[[10 20 30]\n [10 20 30]]",
+        "ValueError"
+      ],
+      "answer": "[[11 22 33]\n [14 25 36]]",
+      "explanation": "A shape-(3,) vector broadcasts across both rows of a shape-(2,3) matrix."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([[1,2,3],[4,5,6]]); print(np.sum(a,axis=1))",
+      "options": [
+        "[5 7 9]",
+        "21",
+        "[ 6 15]",
+        "[1 2 3]"
+      ],
+      "answer": "[ 6 15]",
+      "explanation": "axis=1 reduces the columns within each row."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([2,4,6,8]); print(np.max(a.reshape(2,2),axis=0))",
+      "options": [
+        "[4 8]",
+        "8",
+        "[2 4]",
+        "[6 8]"
+      ],
+      "answer": "[6 8]",
+      "explanation": "Column maxima of [[2,4],[6,8]] are 6 and 8."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([1,2,3,4]); print(a.reshape(2,2).shape)",
+      "options": [
+        "(2, 2)",
+        "(4,)",
+        "[2 2]",
+        "4"
+      ],
+      "answer": "(2, 2)",
+      "explanation": "The result has 2 rows and 2 columns; shape is a tuple."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([[7,8],[9,10]]); print(a.flatten())",
+      "options": [
+        "[[ 7  8]\n [ 9 10]]",
+        "[ 7  8  9 10]",
+        "[7 9 8 10]",
+        "(4,)"
+      ],
+      "answer": "[ 7  8  9 10]",
+      "explanation": "flatten creates a one-dimensional copy in row-major order."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([1,4,7]); print(a**2)",
+      "options": [
+        "[2 8 14]",
+        "[1 4 7 1 4 7]",
+        "[ 1 16 49]",
+        "[ 1  8 21]"
+      ],
+      "answer": "[ 1 16 49]",
+      "explanation": "Power is applied separately to each array element."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([20,35,40,55]); print(a[a%2==0])",
+      "options": [
+        "[35 55]",
+        "[20 35 40 55]",
+        "[ True False True False]",
+        "[20 40]"
+      ],
+      "answer": "[20 40]",
+      "explanation": "Values divisible by 2 have remainder zero."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([5,10,15]); print(np.where(a>10,'H','L'))",
+      "options": [
+        "['L' 'L' 'H']",
+        "['H' 'H' 'L']",
+        "[0 0 1]",
+        "['L' 'H' 'H']"
+      ],
+      "answer": "['L' 'L' 'H']",
+      "explanation": "Only 15 is greater than 10; NumPy prints the string array."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([[3,9,6],[7,4,8]]); print(a.max(axis=0))",
+      "options": [
+        "[9 8]",
+        "[7 9 8]",
+        "9",
+        "[3 4 6]"
+      ],
+      "answer": "[7 9 8]",
+      "explanation": "axis=0 finds the maximum within each column."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([3,1,2]); print(a[np.argsort(a)[::-1]])",
+      "options": [
+        "[1 2 3]",
+        "[2 1 0]",
+        "[3 2 1]",
+        "[3 1 2]"
+      ],
+      "answer": "[3 2 1]",
+      "explanation": "Reverse the sorting indices to arrange the values descending."
+    },
+    {
+      "question": "What is the output of this NumPy operations program?",
+      "code": "import numpy as np\na=np.array([[40,70],[60,90]]); print(np.all(a>=50,axis=1))",
+      "options": [
+        "[ True  True]",
+        "[False False]",
+        "[ True False]",
+        "[False  True]"
+      ],
+      "answer": "[False  True]",
+      "explanation": "The first row has a score below 50; every score in the second row passes."
+    }
+  ]
+}
