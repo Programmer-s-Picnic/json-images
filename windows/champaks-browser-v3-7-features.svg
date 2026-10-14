@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" role="img" aria-labelledby="ft fd">
+<title id="ft">Three ways Champak's Browser simplifies Windows browsing</title>
+<desc id="fd">An infographic showing tab rotation and time controls, bookmarks and downloads, and isolated incognito browsing.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#effbff"/><stop offset="1" stop-color="#d0ecf7"/></linearGradient></defs>
+<rect width="1200" height="440" fill="url(#bg)" rx="26"/>
+<text x="55" y="63" fill="#103d62" font-family="Arial,Helvetica,sans-serif" font-size="35" font-weight="bold">Made for a smoother browsing day</text>
+<g font-family="Arial,Helvetica,sans-serif">
+ <rect x="45" y="101" width="351" height="289" rx="24" fill="#fff" stroke="#b4dce9" stroke-width="2"/>
+ <circle cx="105" cy="166" r="35" fill="#d0f3f9"/><text x="105" y="177" text-anchor="middle" fill="#087697" font-size="41">↻</text>
+ <text x="73" y="232" fill="#134365" font-weight="bold" font-size="25">Focus &amp; flow</text>
+ <text x="73" y="271" fill="#4a7186" font-size="19">Rotate tabs at your pace</text>
+ <text x="73" y="300" fill="#4a7186" font-size="19">Schedule useful websites</text>
+ <text x="73" y="329" fill="#4a7186" font-size="19">Use fullscreen when needed</text>
+ <rect x="425" y="101" width="350" height="289" rx="24" fill="#fff" stroke="#b4dce9" stroke-width="2"/>
+ <circle cx="485" cy="166" r="35" fill="#fff0cb"/><text x="485" y="177" text-anchor="middle" fill="#ac7420" font-size="40">★</text>
+ <text x="453" y="232" fill="#134365" font-weight="bold" font-size="25">Keep organised</text>
+ <text x="453" y="271" fill="#4a7186" font-size="19">Bookmarks and history</text>
+ <text x="453" y="300" fill="#4a7186" font-size="19">Downloads and quick-open</text>
+ <text x="453" y="329" fill="#4a7186" font-size="19">One-click screenshots</text>
+ <rect x="804" y="101" width="352" height="289" rx="24" fill="#18234c"/>
+ <circle cx="864" cy="166" r="35" fill="#5746a1"/><text x="864" y="177" text-anchor="middle" fill="#f1e8ff" font-size="36">◈</text>
+ <text x="831" y="232" fill="#fff" font-weight="bold" font-size="25">Browse privately</text>
+ <text x="831" y="271" fill="#e0d9ff" font-size="19">Separate incognito window</text>
+ <text x="831" y="300" fill="#e0d9ff" font-size="19">No private history saved</text>
+ <text x="831" y="329" fill="#e0d9ff" font-size="19">Isolated session storage</text>
+</g>
+</svg>
