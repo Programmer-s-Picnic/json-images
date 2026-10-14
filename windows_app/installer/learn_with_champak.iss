@@ -1,5 +1,5 @@
 #define MyAppName "Champak's Browser"
-#define MyAppVersion "3.6.0"
+#define MyAppVersion "3.7.0"
 #define MyAppPublisher "Learn With Champak"
 #define MyAppExeName "learn_with_champak_windows.exe"
 
