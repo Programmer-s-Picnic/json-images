@@ -1,6 +1,6 @@
 {
-  "sourceCommit": "8a52193335977deea3915f5ef73628d70792f95a",
-  "version": "1.3.5+15",
-  "notes": "Delivery partner app update checker showing the official APK link when a newer version is published.",
-  "releaseRequestedOn": "2026-10-11"
+  "sourceCommit": "a8d4d53e23ffffe50f1e00dc9ba7bb89238d42dd",
+  "version": "1.3.6+16",
+  "notes": "Official new orange-and-green ईज़ीमंडी logo on partner launcher and in-app header.",
+  "releaseRequestedOn": "2026-10-14"
 }
