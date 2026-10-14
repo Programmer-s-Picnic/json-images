@@ -526,6 +526,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   Timer? _weatherRefreshTimer;
   Timer? _tabRotationTimer;
   bool _restoringSession = false;
+  bool _incognitoEnvironmentReady = false;
   bool _suppressSessionPersistence = false;
   int _current = 0;
   bool _fullScreen = false;
@@ -1324,7 +1325,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       final file = File(_defaultPromptStateFilePath);
       if (!await file.exists()) return false;
       final decoded = jsonDecode(await file.readAsString());
-      return decoded is Map && decoded['version']?.toString() == '3.6.0';
+      return decoded is Map && decoded['version']?.toString() == '3.7.0';
     } catch (_) {
       return false;
     }
@@ -1336,7 +1337,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       await file.parent.create(recursive: true);
       await file.writeAsString(
         jsonEncode({
-          'version': '3.6.0',
+          'version': '3.7.0',
           'shownAt': DateTime.now().toIso8601String(),
         }),
         flush: true,
@@ -1993,6 +1994,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
         userDataPath: userDataPath,
         additionalArguments: '--enable-features=NetworkService',
       );
+      if (_incognitoProcess) _incognitoEnvironmentReady = true;
       if (mounted) setState(() => _status = _incognitoProcess
           ? 'Private WebView2 environment ready'
           : 'WebView2 session storage ready');
@@ -2127,6 +2129,11 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     bool saveSession = true,
     bool privacyBlur = false,
   ]) async {
+    if (_incognitoProcess && !_incognitoEnvironmentReady) {
+      if (mounted) setState(() =>
+          _status = 'Cannot open a private tab: isolated profile unavailable');
+      return;
+    }
     final safeUrl = _normaliseUrl(url);
     final controller = WebviewController();
     final tab = BrowserTab(
