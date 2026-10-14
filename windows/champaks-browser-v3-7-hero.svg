@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Champak's Browser for Windows 3.7 — Download and Incognito</title>
+<desc id="desc">An illustrated preview of Champak's Browser for Windows, featuring colourful tabs, a visible address bar, incognito mode, bookmarks, a clock and weather.</desc>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061b36"/><stop offset=".55" stop-color="#074b76"/><stop offset="1" stop-color="#0b94b2"/></linearGradient>
+ <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eaf8ff"/><stop offset="1" stop-color="#c8e7f7"/></linearGradient>
+ <linearGradient id="priv" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#423c8e"/><stop offset="1" stop-color="#212654"/></linearGradient>
+ <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="15" stdDeviation="20" flood-color="#02142c" flood-opacity=".45"/></filter>
+ <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#fff" opacity=".08"/></pattern>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/><rect width="1200" height="630" fill="url(#dots)"/>
+<circle cx="1088" cy="50" r="255" fill="#74d7ee" opacity=".12"/><circle cx="123" cy="585" r="260" fill="#1bd3d1" opacity=".09"/>
+<rect x="50" y="55" rx="22" width="258" height="43" fill="#ffffff" opacity=".13" stroke="#93e8f3" stroke-opacity=".33"/>
+<circle cx="78" cy="76" r="10" fill="#facf64"/><text x="99" y="82" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="18" fill="#f5fdff">LEARN WITH CHAMPAK</text>
+<text x="55" y="172" font-family="Arial,Helvetica,sans-serif" font-size="62" font-weight="bold" fill="#ffffff">Champak's</text>
+<text x="55" y="242" font-family="Arial,Helvetica,sans-serif" font-size="70" font-weight="bold" fill="#9ce9f9">Browser</text>
+<text x="57" y="291" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#d7f5fc">Your learning-friendly web browser</text>
+<text x="57" y="330" font-family="Arial,Helvetica,sans-serif" font-size="23" fill="#d7f5fc">for Windows 10 &amp; 11</text>
+<rect x="56" y="372" width="190" height="51" rx="25" fill="#ffcf70"/><text x="151" y="405" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="bold" fill="#123046">VERSION 3.7.0</text>
+<rect x="56" y="445" width="155" height="39" rx="20" fill="#fff" opacity=".12" stroke="#d8f9ff" stroke-opacity=".5"/><text x="134" y="471" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="18" fill="#e6fbff">◆ Incognito</text>
+<rect x="221" y="445" width="192" height="39" rx="20" fill="#fff" opacity=".12" stroke="#d8f9ff" stroke-opacity=".5"/><text x="317" y="471" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="18" fill="#e6fbff">↻ Rotate tabs</text>
+<text x="57" y="560" font-family="Arial,Helvetica,sans-serif" font-size="18" fill="#cbecf5">Developed by Champak Roy</text>
+<!-- Conceptual browser UI visual, not a captured product screenshot -->
+<g transform="translate(480 104)" filter="url(#shadow)">
+ <rect width="680" height="437" rx="21" fill="#f8fdff"/>
+ <path d="M20 0H660Q680 0 680 20V73H0V20Q0 0 20 0Z" fill="#08314e"/>
+ <circle cx="28" cy="21" r="6" fill="#ff7c87"/><circle cx="50" cy="21" r="6" fill="#ffd16e"/><circle cx="72" cy="21" r="6" fill="#6fe0b3"/>
+ <text x="117" y="28" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="bold">Champak's Browser</text>
+ <text x="580" y="28" fill="#a3d8eb" font-family="Arial,Helvetica,sans-serif" font-size="13">⏰ 08:45</text>
+ <rect x="16" y="43" rx="10" width="168" height="39" fill="#ffd979"/>
+ <text x="29" y="67" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="bold" fill="#082c42">◉  Learn With Champak</text>
+ <rect x="193" y="43" rx="10" width="129" height="39" fill="#246080"/><text x="210" y="67" fill="#eaf9ff" font-family="Arial,Helvetica,sans-serif" font-size="15">✧ Python</text>
+ <rect x="332" y="43" rx="10" width="127" height="39" fill="#246080"/><text x="349" y="67" fill="#eaf9ff" font-family="Arial,Helvetica,sans-serif" font-size="15">▦ Courses</text>
+ <rect x="470" y="43" rx="10" width="190" height="39" fill="#3c367a"/><text x="485" y="67" fill="#f5eaff" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="bold">◈ Incognito  +</text>
+ <rect x="0" y="82" width="680" height="61" fill="#d8eaf5"/>
+ <text x="20" y="119" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#234765">←  →  ↻</text>
+ <rect x="131" y="96" width="419" height="35" rx="13" fill="#fff" stroke="#a9d0e5"/>
+ <text x="148" y="119" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#4b7289">https://www.learnwithchampak.live</text>
+ <rect x="561" y="97" width="96" height="33" rx="11" fill="#006a9c"/><text x="609" y="120" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="16">Go</text>
+ <rect x="0" y="143" width="680" height="47" fill="#f0f8fc"/>
+ <text x="25" y="173" fill="#0f5d87" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="bold">⌂ Home</text>
+ <text x="127" y="173" fill="#0f5d87" font-family="Arial,Helvetica,sans-serif" font-size="15">★ Bookmarks</text>
+ <text x="267" y="173" fill="#0f5d87" font-family="Arial,Helvetica,sans-serif" font-size="15">◷ History</text>
+ <text x="375" y="173" fill="#0f5d87" font-family="Arial,Helvetica,sans-serif" font-size="15">↻ Rotate</text>
+ <text x="484" y="173" fill="#0f5d87" font-family="Arial,Helvetica,sans-serif" font-size="15">⬇ Download</text>
+ <rect x="18" y="207" width="645" height="215" rx="18" fill="url(#panel)"/>
+ <text x="42" y="247" fill="#084265" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="bold">Learn. Browse. Build.</text>
+ <text x="42" y="277" fill="#46778e" font-family="Arial,Helvetica,sans-serif" font-size="15">A browser with your favourite tools within reach.</text>
+ <rect x="40" y="300" width="181" height="84" rx="13" fill="#fff"/><text x="58" y="330" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#0d567a" font-weight="bold">◈ Private mode</text><text x="58" y="357" fill="#5d7b8d" font-family="Arial,Helvetica,sans-serif" font-size="13">Separate browsing</text>
+ <rect x="238" y="300" width="186" height="84" rx="13" fill="#fff"/><text x="254" y="330" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#0d567a" font-weight="bold">★ Your bookmarks</text><text x="254" y="357" fill="#5d7b8d" font-family="Arial,Helvetica,sans-serif" font-size="13">Easy organisation</text>
+ <rect x="441" y="300" width="202" height="84" rx="13" fill="#fff"/><text x="458" y="330" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#0d567a" font-weight="bold">▣ Save screenshots</text><text x="458" y="357" fill="#5d7b8d" font-family="Arial,Helvetica,sans-serif" font-size="13">Capture useful pages</text>
+</g>
+</svg>
