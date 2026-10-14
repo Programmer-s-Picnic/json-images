@@ -89,6 +89,23 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path windows | Out-Null
           Copy-Item windows_app\dist\learn-with-champak-windows-setup.exe windows\learn-with-champak-windows-setup.exe -Force
+          # Publish metadata only after the new installer builds successfully.
+          $metadataPath = "windows/learn-with-champak-windows-version.json"
+          $metadata = Get-Content $metadataPath -Raw | ConvertFrom-Json
+          $pubspec = Get-Content "windows_app/pubspec.yaml" -Raw
+          if ($pubspec -notmatch '(?m)^version:\s*(\d+\.\d+\.\d+)\+(\d+)\s* "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash origin main
+          git add windows/learn-with-champak-windows-setup.exe windows/learn-with-champak-windows-portable.zip windows/learn-with-champak-windows-version.json
+          git commit -m "Publish Learn With Champak Windows installer" || echo "No Windows app changes to commit"
+          git push
+) {
+            throw "Could not read Flutter package version from pubspec.yaml"
+          }
+          $metadata.versionName = $Matches[1]
+          $metadata.versionCode = [int]$Matches[2]
+          $metadata.updatedAt = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+          $metadata | ConvertTo-Json -Depth 5 | Set-Content $metadataPath -Encoding utf8
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull --rebase --autostash origin main
