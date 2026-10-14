@@ -14,6 +14,8 @@ import 'package:window_manager/window_manager.dart';
 
 String? _startupTimedUrl;
 String? _startupExternalUrl;
+bool _incognitoProcess = false;
+String? _incognitoProfilePath;
 
 String _appDataPath(String fileName) {
   final base = Platform.environment['APPDATA'] ?? Directory.current.path;
@@ -51,6 +53,7 @@ void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
 
+  _incognitoProcess = args.contains('--incognito');
   for (var i = 0; i < args.length; i++) {
     if (args[i] == '--timed-open' && i + 1 < args.length) {
       _startupTimedUrl = args[i + 1];
@@ -66,7 +69,7 @@ void main(List<String> args) async {
     }
   }
 
-  final saved = await _readWindowBounds();
+  final saved = _incognitoProcess ? null : await _readWindowBounds();
   final width = ((saved?['width'] as num?)?.toDouble() ?? 1280).clamp(900.0, 3840.0);
   final height = ((saved?['height'] as num?)?.toDouble() ?? 820).clamp(600.0, 2160.0);
   final hasSavedPosition = saved?['x'] is num && saved?['y'] is num;
@@ -76,7 +79,7 @@ void main(List<String> args) async {
     minimumSize: const Size(900, 600),
     center: !hasSavedPosition,
     backgroundColor: Colors.white,
-    title: "Champak's Browser",
+    title: _incognitoProcess ? "Champak's Browser — Incognito" : "Champak's Browser",
   );
 
   await windowManager.waitUntilReadyToShow(options, () async {
@@ -103,7 +106,7 @@ class LearnWithChampakWindowsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Champak's Browser",
+      title: _incognitoProcess ? "Champak's Browser — Incognito" : "Champak's Browser",
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff075985)),
         useMaterial3: true,
@@ -381,6 +384,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     'add-bookmark',
     'bookmarks',
     'history',
+    'incognito',
     'rotate-tabs',
     'developer',
     'download',
@@ -556,13 +560,16 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   void initState() {
     super.initState();
     windowManager.addListener(this);
-    unawaited(_loadWeatherLocationAndRefresh());
-    _weatherRefreshTimer = Timer.periodic(
-      const Duration(minutes: 30),
-      (_) => unawaited(_refreshWeather(silent: true)),
-    );
+    if (!_incognitoProcess) {
+      unawaited(_loadWeatherLocationAndRefresh());
+      _weatherRefreshTimer = Timer.periodic(
+        const Duration(minutes: 30),
+        (_) => unawaited(_refreshWeather(silent: true)),
+      );
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _startBrowser();
+      if (_incognitoProcess) return;
       await _refreshDefaultBrowserState();
       final promptShown = await _defaultPromptShownForCurrentVersion();
       if (mounted &&
@@ -1142,6 +1149,26 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<void> _startBrowser() async {
+    if (_incognitoProcess) {
+      _suppressSessionPersistence = true;
+      _toolbarOrder = const <String>[
+        'home', 'learn', 'inside-kashi', 'google', 'incognito',
+        'download', 'open-file', 'downloads', 'screenshot', 'privacy',
+      ];
+      try {
+        await _prepareWebView2Environment();
+        await _newTab('about:blank', false);
+        if (mounted) {
+          setState(() => _status =
+              'Incognito: isolated private profile. Close this window to clear it.');
+        }
+      } catch (e) {
+        if (mounted) {
+          setState(() => _status = 'Incognito could not start securely: $e');
+        }
+      }
+      return;
+    }
     await _loadHistory();
     await _loadBookmarks();
     await _loadToolbarLayout();
@@ -1236,6 +1263,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<void> _saveToolbarLayout() async {
+    if (_incognitoProcess) return;
     try {
       final file = File(_toolbarLayoutFilePath);
       await file.parent.create(recursive: true);
@@ -1265,6 +1293,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<void> _saveTabRotationSettings() async {
+    if (_incognitoProcess) return;
     try {
       final file = File(_tabRotationSettingsFilePath);
       await file.parent.create(recursive: true);
@@ -1334,6 +1363,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<void> _saveBookmarks() async {
+    if (_incognitoProcess) return;
     try {
       final file = File(_bookmarksFilePath);
       await file.parent.create(recursive: true);
@@ -1342,6 +1372,11 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<void> _bookmarkCurrentPage() async {
+    if (_incognitoProcess) {
+      if (mounted) setState(() => _status =
+          'Bookmarks cannot be saved from incognito');
+      return;
+    }
     final tab = _tab;
     if (tab == null) return;
     final url = tab.url.trim();
@@ -1462,6 +1497,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<void> _saveHistory() async {
+    if (_incognitoProcess) return;
     try {
       final file = File(_historyFilePath);
       await file.parent.create(recursive: true);
@@ -1470,6 +1506,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   void _addHistory(String url, String title) {
+    if (_incognitoProcess) return;
     if (!(url.startsWith('http://') || url.startsWith('https://'))) return;
     _history.removeWhere((item) => item['url'] == url);
     _history.insert(0, {
@@ -1576,13 +1613,13 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       };
 
   void _scheduleSessionSave() {
-    if (_restoringSession || _suppressSessionPersistence) return;
+    if (_incognitoProcess || _restoringSession || _suppressSessionPersistence) return;
     _sessionSaveTimer?.cancel();
     _sessionSaveTimer = Timer(const Duration(milliseconds: 250), _saveSessionNow);
   }
 
   Future<void> _saveSessionNow() async {
-    if (_restoringSession || _suppressSessionPersistence || _tabs.isEmpty) return;
+    if (_incognitoProcess || _restoringSession || _suppressSessionPersistence || _tabs.isEmpty) return;
     try {
       final file = File(_sessionFilePath);
       await file.parent.create(recursive: true);
@@ -1591,7 +1628,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   void _saveSessionNowSync() {
-    if (_restoringSession || _suppressSessionPersistence || _tabs.isEmpty) return;
+    if (_incognitoProcess || _restoringSession || _suppressSessionPersistence || _tabs.isEmpty) return;
     try {
       final file = File(_sessionFilePath);
       file.parent.createSync(recursive: true);
@@ -1608,6 +1645,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<void> _restorePreviousSessionOrStartFresh() async {
+    if (_incognitoProcess) {
+      await _newTab('about:blank', false);
+      return;
+    }
     final saved = await _readSavedSession();
     final rawTabs = saved?['tabs'];
     final savedTabs = rawTabs is List
@@ -1785,6 +1826,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   Future<void> _showTimedSiteDialog() async {
+    if (_incognitoProcess) return;
     final config = await _readTimedSiteConfig();
     if (!mounted) return;
 
@@ -1935,20 +1977,70 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
   Future<void> _prepareWebView2Environment() async {
     try {
-      final base = Platform.environment['APPDATA'] ?? Directory.current.path;
-      final userDataPath = '$base\\LearnWithChampakDesktop\\WebView2UserData';
-      await Directory(userDataPath).create(recursive: true);
+      final String userDataPath;
+      if (_incognitoProcess) {
+        // Every incognito window runs in a separate process with its own
+        // WebView2 data folder. Ordinary cookies and logins are never shared.
+        final folder = await Directory.systemTemp.createTemp('champaks_browser_incognito_');
+        _incognitoProfilePath = folder.path;
+        userDataPath = folder.path;
+      } else {
+        final base = Platform.environment['APPDATA'] ?? Directory.current.path;
+        userDataPath = '$base\\LearnWithChampakDesktop\\WebView2UserData';
+        await Directory(userDataPath).create(recursive: true);
+      }
       await WebviewController.initializeEnvironment(
         userDataPath: userDataPath,
         additionalArguments: '--enable-features=NetworkService',
       );
-      if (mounted) setState(() => _status = 'WebView2 session storage ready');
+      if (mounted) setState(() => _status = _incognitoProcess
+          ? 'Private WebView2 environment ready'
+          : 'WebView2 session storage ready');
     } catch (e) {
+      // Fail closed: an incognito session must NEVER use the normal profile.
+      if (_incognitoProcess) rethrow;
       if (mounted) setState(() => _status = 'WebView2 default session will be used: $e');
     }
   }
 
+  Future<void> _deleteIncognitoProfile() async {
+    final path = _incognitoProfilePath;
+    if (!_incognitoProcess || path == null) return;
+    final profile = Directory(path);
+    // WebView2 may briefly retain file handles after closing its controllers.
+    for (var attempt = 0; attempt < 12; attempt++) {
+      try {
+        if (await profile.exists()) await profile.delete(recursive: true);
+        _incognitoProfilePath = null;
+        return;
+      } catch (_) {
+        await Future<void>.delayed(const Duration(milliseconds: 300));
+      }
+    }
+  }
+
+  Future<void> _openIncognitoTab() async {
+    if (_incognitoProcess) {
+      await _newTab('about:blank', false);
+      return;
+    }
+    try {
+      // WebviewController shares a profile within a process. Keep private
+      // browsing in a separate private window and separate process.
+      await Process.start(
+        Platform.resolvedExecutable,
+        const ['--incognito'],
+        mode: ProcessStartMode.detached,
+        runInShell: false,
+      );
+      if (mounted) setState(() => _status = 'Incognito window opened');
+    } catch (e) {
+      if (mounted) setState(() => _status = 'Could not open incognito: $e');
+    }
+  }
+
   Future<void> _saveWindowBoundsNow() async {
+    if (_incognitoProcess) return;
     try {
       final bounds = await windowManager.getBounds();
       if (bounds.width >= 300 && bounds.height >= 300) {
@@ -1958,6 +2050,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   }
 
   void _scheduleWindowBoundsSave() {
+    if (_incognitoProcess) return;
     _windowBoundsSaveTimer?.cancel();
     _windowBoundsSaveTimer = Timer(
       const Duration(milliseconds: 250),
@@ -1971,7 +2064,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     if (mounted) {
       setState(() => _privacyHidden = false);
     }
-    unawaited(_refreshDefaultBrowserState());
+    if (!_incognitoProcess) unawaited(_refreshDefaultBrowserState());
   }
 
   @override
@@ -1997,8 +2090,19 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   @override
   void onWindowClose() async {
     _windowBoundsSaveTimer?.cancel();
-    await _saveWindowBoundsNow();
-    await _saveSessionNow();
+    if (_incognitoProcess) {
+      _sessionSaveTimer?.cancel();
+      for (final tab in _tabs) {
+        try {
+          await tab.controller.dispose();
+        } catch (_) {}
+      }
+      _tabs.clear();
+      await _deleteIncognitoProfile();
+    } else {
+      await _saveWindowBoundsNow();
+      await _saveSessionNow();
+    }
     await windowManager.setPreventClose(false);
     await windowManager.destroy();
   }
@@ -2706,7 +2810,11 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   void _closeTab(int index) {
     if (index < 0 || index >= _tabs.length) return;
     if (_tabs.length <= 1) {
-      _load('about:blank');
+      if (_incognitoProcess) {
+        unawaited(windowManager.close());
+      } else {
+        _load('about:blank');
+      }
       return;
     }
 
@@ -3487,6 +3595,12 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               '7. Default Browser registers Champak\'s Desktop Browser with Windows and opens Default Apps, where Windows asks you to confirm it.\n\n'
               '8. Use Learn With Champak, Inside Kashi, YouTube, WhatsApp Web, Google, Gmail and the other shortcuts for quick access.\n\n'
               '9. Right-click anywhere on a web page for browser actions. Right-click a link for Open Here, New Tab, Copy Link, Download Link or Open Outside. Selected text can be copied or searched directly.\n\n'
+              '10. Incognito opens a separate private window with its own tabs, '
+              'cookies and sign-ins. Incognito tabs are not saved to session restore '
+              'or browsing history. The temporary profile is deleted when the '
+              'private window closes normally. Downloads and screenshots you save '
+              'remain on disk. Websites, your network and internet provider may '
+              'still see your activity.\n\n'
               'This browser is strictly for learning purposes.',
               style: TextStyle(fontSize: 15, height: 1.4),
             ),
@@ -4107,6 +4221,15 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 subtitle: Text('Learn With Champak • Designed by Champak Roy'),
               ),
               ListTile(
+                leading: const Icon(Icons.visibility_off_outlined),
+                title: Text(_incognitoProcess ? 'New Incognito Tab' : 'New Incognito Window'),
+                subtitle: const Text('Private profile, separate from normal browsing'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _openIncognitoTab();
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.menu_book),
                 title: const Text('How to Use'),
                 onTap: () {
@@ -4431,6 +4554,13 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
           label: 'History',
           icon: Icons.history,
           onPressed: _showHistory,
+        ),
+        'incognito': _ToolbarAction(
+          id: 'incognito',
+          label: _incognitoProcess ? 'New Private Tab' : 'Incognito',
+          icon: Icons.visibility_off_outlined,
+          onPressed: _openIncognitoTab,
+          important: true,
         ),
         'rotate-tabs': _ToolbarAction(
           id: 'rotate-tabs',
@@ -4993,7 +5123,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                 child: Row(
                   children: [
-                    Icon(Icons.language, size: 16, color: selected ? Colors.black : Colors.white),
+                    Icon(_incognitoProcess ? Icons.visibility_off_outlined : Icons.language,
+                         size: 16, color: selected ? Colors.black : Colors.white),
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
@@ -5123,7 +5254,8 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       ),
       child: Row(
         children: [
-          const Text('Tabs', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          Text(_incognitoProcess ? 'Incognito tabs' : 'Tabs',
+              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           const SizedBox(width: 8),
           Expanded(
             child: ListView.builder(
@@ -5135,9 +5267,14 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
           _tabRotationIndicator(),
           if (!_tabRotationActive)
             _toolbarButton('Rotate', Icons.autorenew, _showTabRotationDialog, important: true),
-          _toolbarButton('New', Icons.add_box, () => _newTab(homeUrl), important: true),
+          _toolbarButton('New', Icons.add_box,
+              () => _newTab(_incognitoProcess ? 'about:blank' : homeUrl),
+              important: true),
+          _toolbarButton(_incognitoProcess ? 'Private +' : 'Incognito',
+              Icons.visibility_off_outlined, _openIncognitoTab, important: true),
           _toolbarButton('List', Icons.tab, _showTabs, important: true),
-          _toolbarButton('Timed', Icons.alarm, _showTimedSiteDialog, important: true),
+          if (!_incognitoProcess)
+            _toolbarButton('Timed', Icons.alarm, _showTimedSiteDialog, important: true),
         ],
       ),
     );
@@ -5184,14 +5321,18 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                       "Champak's Browser",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
                     ),
-                    const Text(
-                      'Learn With Champak • Designed by Champak Roy • Strictly for learning purposes',
+                    Text(
+                      _incognitoProcess
+                          ? 'INCOGNITO • Browsing history and session tabs are not saved'
+                          : 'Learn With Champak • Designed by Champak Roy • Strictly for learning purposes',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(color: Color(0xffffdd80), fontSize: 12.5, fontWeight: FontWeight.w700),
                     ),
                     Text(
-                      _privacyHidden ? 'Private Tab' : (_tab?.title ?? 'Browser'),
+                      _incognitoProcess
+                          ? 'Private profile • Websites, networks and downloads may retain records'
+                          : (_privacyHidden ? 'Private Tab' : (_tab?.title ?? 'Browser')),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(color: Colors.white70, fontSize: 12),
@@ -5200,7 +5341,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 ),
               ),
               const SizedBox(width: 8),
-              _localClockWeatherPanel(),
+              if (!_incognitoProcess) _localClockWeatherPanel(),
               const SizedBox(width: 8),
               _toolbarButton('How to Use', Icons.menu_book, _showHowToUse, important: true),
               _toolbarButton('Contact', Icons.contact_mail, _showContactChampak, important: true),
