@@ -93,11 +93,12 @@ jobs:
           $metadataPath = "windows/learn-with-champak-windows-version.json"
           $metadata = Get-Content $metadataPath -Raw | ConvertFrom-Json
           $pubspec = Get-Content "windows_app/pubspec.yaml" -Raw
-          if ($pubspec -notmatch '(?m)^version:\s*(\d+\.\d+\.\d+)\+(\d+)\s*$') {
+          $versionMatch = [regex]::Match($pubspec, '(?m)^version:\s*(\d+\.\d+\.\d+)\+(\d+)\s*$')
+          if (!$versionMatch.Success) {
             throw "Could not read Flutter package version from pubspec.yaml"
           }
-          $metadata.versionName = $Matches[1]
-          $metadata.versionCode = [int]$Matches[2]
+          $metadata.versionName = $versionMatch.Groups[1].Value
+          $metadata.versionCode = [int]$versionMatch.Groups[2].Value
           $metadata.updatedAt = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
           $metadata | ConvertTo-Json -Depth 5 | Set-Content $metadataPath -Encoding utf8
           git config user.name "github-actions[bot]"
