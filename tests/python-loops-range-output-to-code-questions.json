@@ -1,0 +1,680 @@
+{
+  "title": "Python Loops with range(): Output-to-Code Quiz",
+  "subtitle": "Study the required output and identify the Python range() loop that produces it. Each attempt selects 10 questions from a 50-question bank.",
+  "kicker": "Learn With Champak • Python Loops Test",
+  "instructions": "Study the required output, compare the four programs, and select the exact code that produces it.",
+  "footer": "Learn With Champak • Python • for loops • range() • break • continue • nested loops",
+  "seo": {
+    "enabled": true,
+    "title": "Python Loops with range(): Output-to-Code Quiz | Learn With Champak",
+    "description": "Identify Python for-loop and range() code from its output, with questions on start-stop-step, reverse loops, sums, indexes, break, continue, nested loops and patterns.",
+    "keywords": "Python range quiz, Python output to code, Python loops MCQ, for loop practice, nested loops, pattern printing, Learn With Champak",
+    "canonicalUrl": "",
+    "ogImage": "https://programmer-s-picnic.github.io/json-images/mee.jpg",
+    "imageAlt": "Python Loops with range() Output-to-Code Quiz by Learn With Champak",
+    "type": "website",
+    "siteName": "Learn With Champak",
+    "language": "en-IN",
+    "educationalLevel": "Beginner to Intermediate"
+  },
+  "settings": {
+    "questionsPerAttempt": 10,
+    "durationMinutes": 10,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "allowUntimed": true,
+    "showReview": true
+  },
+  "questions": [
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "0\n1\n2\n3\n4",
+      "optionType": "code",
+      "options": [
+        "for i in range(5):\n    print(i)",
+        "for i in range(1, 6):\n    print(i)",
+        "for i in range(2, 11, 2):\n    print(i)",
+        "for i in range(10, 0, -1):\n    print(i)"
+      ],
+      "answer": "for i in range(5):\n    print(i)",
+      "explanation": "range(5) starts at 0 and stops before 5."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "1\n2\n3\n4\n5",
+      "optionType": "code",
+      "options": [
+        "for i in range(2, 11, 2):\n    print(i)",
+        "for i in range(10, 0, -1):\n    print(i)",
+        "for i in range(3):\n    print(\"Hello\")",
+        "for i in range(1, 6):\n    print(i)"
+      ],
+      "answer": "for i in range(1, 6):\n    print(i)",
+      "explanation": "range(1, 6) starts at 1 and stops before 6."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "2\n4\n6\n8\n10",
+      "optionType": "code",
+      "options": [
+        "for i in range(3):\n    print(\"Hello\")",
+        "for i in range(3, 8):\n    print(i, end=\" \")",
+        "for i in range(2, 11, 2):\n    print(i)",
+        "for i in range(10, 0, -1):\n    print(i)"
+      ],
+      "answer": "for i in range(2, 11, 2):\n    print(i)",
+      "explanation": "The step is 2, so only even numbers from 2 through 10 are produced."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "10\n9\n8\n7\n6\n5\n4\n3\n2\n1",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 10, 3):\n    print(i)",
+        "for i in range(10, 0, -1):\n    print(i)",
+        "for i in range(3):\n    print(\"Hello\")",
+        "for i in range(3, 8):\n    print(i, end=\" \")"
+      ],
+      "answer": "for i in range(10, 0, -1):\n    print(i)",
+      "explanation": "A negative step makes range count backwards, stopping before 0."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "Hello\nHello\nHello",
+      "optionType": "code",
+      "options": [
+        "for i in range(3):\n    print(\"Hello\")",
+        "for i in range(3, 8):\n    print(i, end=\" \")",
+        "for i in range(1, 10, 3):\n    print(i)",
+        "for i in range(8, 1, -2):\n    print(i)"
+      ],
+      "answer": "for i in range(3):\n    print(\"Hello\")",
+      "explanation": "The loop runs three times because range(3) produces 0, 1 and 2."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "3 4 5 6 7 ",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 10, 3):\n    print(i)",
+        "for i in range(8, 1, -2):\n    print(i)",
+        "for i in range(5, 5):\n    print(i)\nprint(\"Done\")",
+        "for i in range(3, 8):\n    print(i, end=\" \")"
+      ],
+      "answer": "for i in range(3, 8):\n    print(i, end=\" \")",
+      "explanation": "The loop prints 3 through 7 on one line because end is a space."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "1\n4\n7",
+      "optionType": "code",
+      "options": [
+        "for i in range(5, 5):\n    print(i)\nprint(\"Done\")",
+        "for i in range(0):\n    print(i)\nprint(\"End\")",
+        "for i in range(1, 10, 3):\n    print(i)",
+        "for i in range(8, 1, -2):\n    print(i)"
+      ],
+      "answer": "for i in range(1, 10, 3):\n    print(i)",
+      "explanation": "Starting at 1 and adding 3 gives 1, 4 and 7 before reaching 10."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "8\n6\n4\n2",
+      "optionType": "code",
+      "options": [
+        "total = 0\nfor i in range(1, 6):\n    total += i\nprint(total)",
+        "for i in range(8, 1, -2):\n    print(i)",
+        "for i in range(5, 5):\n    print(i)\nprint(\"Done\")",
+        "for i in range(0):\n    print(i)\nprint(\"End\")"
+      ],
+      "answer": "for i in range(8, 1, -2):\n    print(i)",
+      "explanation": "The range counts down by 2 and stops before 1."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "Done",
+      "optionType": "code",
+      "options": [
+        "for i in range(5, 5):\n    print(i)\nprint(\"Done\")",
+        "for i in range(0):\n    print(i)\nprint(\"End\")",
+        "total = 0\nfor i in range(1, 6):\n    total += i\nprint(total)",
+        "total = 0\nfor i in range(2, 11, 2):\n    total += i\nprint(total)"
+      ],
+      "answer": "for i in range(5, 5):\n    print(i)\nprint(\"Done\")",
+      "explanation": "range(5, 5) is empty, so only the final print runs."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "End",
+      "optionType": "code",
+      "options": [
+        "total = 0\nfor i in range(1, 6):\n    total += i\nprint(total)",
+        "total = 0\nfor i in range(2, 11, 2):\n    total += i\nprint(total)",
+        "count = 0\nfor i in range(7):\n    count += 1\nprint(count)",
+        "for i in range(0):\n    print(i)\nprint(\"End\")"
+      ],
+      "answer": "for i in range(0):\n    print(i)\nprint(\"End\")",
+      "explanation": "range(0) is empty."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "15",
+      "optionType": "code",
+      "options": [
+        "count = 0\nfor i in range(7):\n    count += 1\nprint(count)",
+        "product = 1\nfor i in range(1, 5):\n    product *= i\nprint(product)",
+        "total = 0\nfor i in range(1, 6):\n    total += i\nprint(total)",
+        "total = 0\nfor i in range(2, 11, 2):\n    total += i\nprint(total)"
+      ],
+      "answer": "total = 0\nfor i in range(1, 6):\n    total += i\nprint(total)",
+      "explanation": "The loop adds 1 + 2 + 3 + 4 + 5."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "30",
+      "optionType": "code",
+      "options": [
+        "s = 0\nfor i in range(1, 6):\n    s += i * i\nprint(s)",
+        "total = 0\nfor i in range(2, 11, 2):\n    total += i\nprint(total)",
+        "count = 0\nfor i in range(7):\n    count += 1\nprint(count)",
+        "product = 1\nfor i in range(1, 5):\n    product *= i\nprint(product)"
+      ],
+      "answer": "total = 0\nfor i in range(2, 11, 2):\n    total += i\nprint(total)",
+      "explanation": "The even numbers 2, 4, 6, 8 and 10 add to 30."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "7",
+      "optionType": "code",
+      "options": [
+        "count = 0\nfor i in range(7):\n    count += 1\nprint(count)",
+        "product = 1\nfor i in range(1, 5):\n    product *= i\nprint(product)",
+        "s = 0\nfor i in range(1, 6):\n    s += i * i\nprint(s)",
+        "for i in range(1, 6):\n    print(i * 2)"
+      ],
+      "answer": "count = 0\nfor i in range(7):\n    count += 1\nprint(count)",
+      "explanation": "range(7) produces seven values, so count is incremented seven times."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "24",
+      "optionType": "code",
+      "options": [
+        "s = 0\nfor i in range(1, 6):\n    s += i * i\nprint(s)",
+        "for i in range(1, 6):\n    print(i * 2)",
+        "for i in range(1, 6):\n    print(i ** 2)",
+        "product = 1\nfor i in range(1, 5):\n    product *= i\nprint(product)"
+      ],
+      "answer": "product = 1\nfor i in range(1, 5):\n    product *= i\nprint(product)",
+      "explanation": "The product is 1 × 2 × 3 × 4 = 24."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "55",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 6):\n    print(i ** 2)",
+        "for i in range(1, 4):\n    print(\"2 x\", i, \"=\", 2 * i)",
+        "s = 0\nfor i in range(1, 6):\n    s += i * i\nprint(s)",
+        "for i in range(1, 6):\n    print(i * 2)"
+      ],
+      "answer": "s = 0\nfor i in range(1, 6):\n    s += i * i\nprint(s)",
+      "explanation": "The squares 1, 4, 9, 16 and 25 sum to 55."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "2\n4\n6\n8\n10",
+      "optionType": "code",
+      "options": [
+        "n = 5\nfor i in range(1, 4):\n    print(n * i)",
+        "for i in range(1, 6):\n    print(i * 2)",
+        "for i in range(1, 6):\n    print(i ** 2)",
+        "for i in range(1, 4):\n    print(\"2 x\", i, \"=\", 2 * i)"
+      ],
+      "answer": "for i in range(1, 6):\n    print(i * 2)",
+      "explanation": "Each loop value from 1 to 5 is multiplied by 2."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "1\n4\n9\n16\n25",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 6):\n    print(i ** 2)",
+        "for i in range(1, 4):\n    print(\"2 x\", i, \"=\", 2 * i)",
+        "n = 5\nfor i in range(1, 4):\n    print(n * i)",
+        "for i in range(5, 0, -1):\n    print(i, end=\" \")"
+      ],
+      "answer": "for i in range(1, 6):\n    print(i ** 2)",
+      "explanation": "The program prints the square of each number from 1 to 5."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6",
+      "optionType": "code",
+      "options": [
+        "n = 5\nfor i in range(1, 4):\n    print(n * i)",
+        "for i in range(5, 0, -1):\n    print(i, end=\" \")",
+        "for i in range(1, 8):\n    if i == 4:\n        break\n    print(i)",
+        "for i in range(1, 4):\n    print(\"2 x\", i, \"=\", 2 * i)"
+      ],
+      "answer": "for i in range(1, 4):\n    print(\"2 x\", i, \"=\", 2 * i)",
+      "explanation": "The loop builds the first three rows of the multiplication table of 2."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "5\n10\n15",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 8):\n    if i == 4:\n        break\n    print(i)",
+        "for i in range(1, 6):\n    if i == 3:\n        continue\n    print(i)",
+        "n = 5\nfor i in range(1, 4):\n    print(n * i)",
+        "for i in range(5, 0, -1):\n    print(i, end=\" \")"
+      ],
+      "answer": "n = 5\nfor i in range(1, 4):\n    print(n * i)",
+      "explanation": "The values 1, 2 and 3 are multiplied by 5."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "5 4 3 2 1 ",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 8):\n    if i % 2 == 0:\n        continue\n    print(i)",
+        "for i in range(5, 0, -1):\n    print(i, end=\" \")",
+        "for i in range(1, 8):\n    if i == 4:\n        break\n    print(i)",
+        "for i in range(1, 6):\n    if i == 3:\n        continue\n    print(i)"
+      ],
+      "answer": "for i in range(5, 0, -1):\n    print(i, end=\" \")",
+      "explanation": "The negative step counts backwards from 5 to 1."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "1\n2\n3",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 8):\n    if i == 4:\n        break\n    print(i)",
+        "for i in range(1, 6):\n    if i == 3:\n        continue\n    print(i)",
+        "for i in range(1, 8):\n    if i % 2 == 0:\n        continue\n    print(i)",
+        "for i in range(1, 10):\n    if i % 3 == 0:\n        print(i)"
+      ],
+      "answer": "for i in range(1, 8):\n    if i == 4:\n        break\n    print(i)",
+      "explanation": "break stops the loop as soon as i becomes 4."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "1\n2\n4\n5",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 8):\n    if i % 2 == 0:\n        continue\n    print(i)",
+        "for i in range(1, 10):\n    if i % 3 == 0:\n        print(i)",
+        "for i in range(1, 6):\n    if i > 3:\n        break\n    print(i * 10)",
+        "for i in range(1, 6):\n    if i == 3:\n        continue\n    print(i)"
+      ],
+      "answer": "for i in range(1, 6):\n    if i == 3:\n        continue\n    print(i)",
+      "explanation": "continue skips the print only when i is 3."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "1\n3\n5\n7",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 6):\n    if i > 3:\n        break\n    print(i * 10)",
+        "names = [\"A\", \"B\", \"C\"]\nfor i in range(len(names)):\n    print(i, names[i])",
+        "for i in range(1, 8):\n    if i % 2 == 0:\n        continue\n    print(i)",
+        "for i in range(1, 10):\n    if i % 3 == 0:\n        print(i)"
+      ],
+      "answer": "for i in range(1, 8):\n    if i % 2 == 0:\n        continue\n    print(i)",
+      "explanation": "Even values are skipped, so only odd values are printed."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "3\n6\n9",
+      "optionType": "code",
+      "options": [
+        "a = [10, 20, 30, 40]\nfor i in range(1, len(a)):\n    print(a[i])",
+        "for i in range(1, 10):\n    if i % 3 == 0:\n        print(i)",
+        "for i in range(1, 6):\n    if i > 3:\n        break\n    print(i * 10)",
+        "names = [\"A\", \"B\", \"C\"]\nfor i in range(len(names)):\n    print(i, names[i])"
+      ],
+      "answer": "for i in range(1, 10):\n    if i % 3 == 0:\n        print(i)",
+      "explanation": "Only numbers divisible by 3 are printed."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "10\n20\n30",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 6):\n    if i > 3:\n        break\n    print(i * 10)",
+        "names = [\"A\", \"B\", \"C\"]\nfor i in range(len(names)):\n    print(i, names[i])",
+        "a = [10, 20, 30, 40]\nfor i in range(1, len(a)):\n    print(a[i])",
+        "a = [5, 10, 15]\nfor i in range(len(a)):\n    a[i] += 1\nprint(a)"
+      ],
+      "answer": "for i in range(1, 6):\n    if i > 3:\n        break\n    print(i * 10)",
+      "explanation": "The loop stops before printing anything for values greater than 3."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "0 A\n1 B\n2 C",
+      "optionType": "code",
+      "options": [
+        "a = [10, 20, 30, 40]\nfor i in range(1, len(a)):\n    print(a[i])",
+        "a = [5, 10, 15]\nfor i in range(len(a)):\n    a[i] += 1\nprint(a)",
+        "a = [2, 4, 6, 8]\nfor i in range(0, len(a), 2):\n    print(a[i])",
+        "names = [\"A\", \"B\", \"C\"]\nfor i in range(len(names)):\n    print(i, names[i])"
+      ],
+      "answer": "names = [\"A\", \"B\", \"C\"]\nfor i in range(len(names)):\n    print(i, names[i])",
+      "explanation": "range(len(names)) gives valid indexes 0, 1 and 2."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "20\n30\n40",
+      "optionType": "code",
+      "options": [
+        "a = [2, 4, 6, 8]\nfor i in range(0, len(a), 2):\n    print(a[i])",
+        "word = \"LOOP\"\nfor i in range(len(word)):\n    print(i, word[i])",
+        "a = [10, 20, 30, 40]\nfor i in range(1, len(a)):\n    print(a[i])",
+        "a = [5, 10, 15]\nfor i in range(len(a)):\n    a[i] += 1\nprint(a)"
+      ],
+      "answer": "a = [10, 20, 30, 40]\nfor i in range(1, len(a)):\n    print(a[i])",
+      "explanation": "Indexing starts at 1, so the first element is skipped."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "[6, 11, 16]",
+      "optionType": "code",
+      "options": [
+        "for i in range(3):\n    for j in range(2):\n        print(i, j)",
+        "a = [5, 10, 15]\nfor i in range(len(a)):\n    a[i] += 1\nprint(a)",
+        "a = [2, 4, 6, 8]\nfor i in range(0, len(a), 2):\n    print(a[i])",
+        "word = \"LOOP\"\nfor i in range(len(word)):\n    print(i, word[i])"
+      ],
+      "answer": "a = [5, 10, 15]\nfor i in range(len(a)):\n    a[i] += 1\nprint(a)",
+      "explanation": "Each element is increased by 1 through its index."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "2\n6",
+      "optionType": "code",
+      "options": [
+        "a = [2, 4, 6, 8]\nfor i in range(0, len(a), 2):\n    print(a[i])",
+        "word = \"LOOP\"\nfor i in range(len(word)):\n    print(i, word[i])",
+        "for i in range(3):\n    for j in range(2):\n        print(i, j)",
+        "for i in range(1, 4):\n    for j in range(1, 3):\n        print(i * j, end=\" \")\n    print()"
+      ],
+      "answer": "a = [2, 4, 6, 8]\nfor i in range(0, len(a), 2):\n    print(a[i])",
+      "explanation": "Indexes 0 and 2 are selected by the step of 2."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "0 L\n1 O\n2 O\n3 P",
+      "optionType": "code",
+      "options": [
+        "for i in range(3):\n    for j in range(2):\n        print(i, j)",
+        "for i in range(1, 4):\n    for j in range(1, 3):\n        print(i * j, end=\" \")\n    print()",
+        "for i in range(3):\n    for j in range(i + 1):\n        print(\"*\", end=\"\")\n    print()",
+        "word = \"LOOP\"\nfor i in range(len(word)):\n    print(i, word[i])"
+      ],
+      "answer": "word = \"LOOP\"\nfor i in range(len(word)):\n    print(i, word[i])",
+      "explanation": "Each character is accessed using its index."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "0 0\n0 1\n1 0\n1 1\n2 0\n2 1",
+      "optionType": "code",
+      "options": [
+        "for i in range(3):\n    for j in range(i + 1):\n        print(\"*\", end=\"\")\n    print()",
+        "for i in range(3, 0, -1):\n    for j in range(i):\n        print(\"*\", end=\"\")\n    print()",
+        "for i in range(3):\n    for j in range(2):\n        print(i, j)",
+        "for i in range(1, 4):\n    for j in range(1, 3):\n        print(i * j, end=\" \")\n    print()"
+      ],
+      "answer": "for i in range(3):\n    for j in range(2):\n        print(i, j)",
+      "explanation": "For each of three outer-loop values, the inner loop runs twice."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "1 2 \n2 4 \n3 6 ",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 4):\n    for j in range(i):\n        print(i, end=\"\")\n    print()",
+        "for i in range(1, 4):\n    for j in range(1, 3):\n        print(i * j, end=\" \")\n    print()",
+        "for i in range(3):\n    for j in range(i + 1):\n        print(\"*\", end=\"\")\n    print()",
+        "for i in range(3, 0, -1):\n    for j in range(i):\n        print(\"*\", end=\"\")\n    print()"
+      ],
+      "answer": "for i in range(1, 4):\n    for j in range(1, 3):\n        print(i * j, end=\" \")\n    print()",
+      "explanation": "Each row multiplies the outer value by inner values 1 and 2."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "*\n**\n***",
+      "optionType": "code",
+      "options": [
+        "for i in range(3):\n    for j in range(i + 1):\n        print(\"*\", end=\"\")\n    print()",
+        "for i in range(3, 0, -1):\n    for j in range(i):\n        print(\"*\", end=\"\")\n    print()",
+        "for i in range(1, 4):\n    for j in range(i):\n        print(i, end=\"\")\n    print()",
+        "for i in range(1, 4):\n    for j in range(1, 4):\n        print(j, end=\"\")\n    print()"
+      ],
+      "answer": "for i in range(3):\n    for j in range(i + 1):\n        print(\"*\", end=\"\")\n    print()",
+      "explanation": "The inner loop runs 1, then 2, then 3 times."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "***\n**\n*",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 4):\n    for j in range(i):\n        print(i, end=\"\")\n    print()",
+        "for i in range(1, 4):\n    for j in range(1, 4):\n        print(j, end=\"\")\n    print()",
+        "for i in range(1, 4):\n    for j in range(1, i + 1):\n        print(j, end=\"\")\n    print()",
+        "for i in range(3, 0, -1):\n    for j in range(i):\n        print(\"*\", end=\"\")\n    print()"
+      ],
+      "answer": "for i in range(3, 0, -1):\n    for j in range(i):\n        print(\"*\", end=\"\")\n    print()",
+      "explanation": "The outer loop decreases the number of stars from 3 to 1."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "1\n22\n333",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 4):\n    for j in range(1, i + 1):\n        print(j, end=\"\")\n    print()",
+        "for i in range(2):\n    for j in range(3):\n        print(\"#\", end=\"\")\n    print()",
+        "for i in range(1, 4):\n    for j in range(i):\n        print(i, end=\"\")\n    print()",
+        "for i in range(1, 4):\n    for j in range(1, 4):\n        print(j, end=\"\")\n    print()"
+      ],
+      "answer": "for i in range(1, 4):\n    for j in range(i):\n        print(i, end=\"\")\n    print()",
+      "explanation": "Row i prints the value i exactly i times."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "123\n123\n123",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 4):\n    print(\" \" * (3 - i) + \"*\" * i)",
+        "for i in range(1, 4):\n    for j in range(1, 4):\n        print(j, end=\"\")\n    print()",
+        "for i in range(1, 4):\n    for j in range(1, i + 1):\n        print(j, end=\"\")\n    print()",
+        "for i in range(2):\n    for j in range(3):\n        print(\"#\", end=\"\")\n    print()"
+      ],
+      "answer": "for i in range(1, 4):\n    for j in range(1, 4):\n        print(j, end=\"\")\n    print()",
+      "explanation": "The inner loop always prints 1, 2, 3 for each row."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "1\n12\n123",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 4):\n    for j in range(1, i + 1):\n        print(j, end=\"\")\n    print()",
+        "for i in range(2):\n    for j in range(3):\n        print(\"#\", end=\"\")\n    print()",
+        "for i in range(1, 4):\n    print(\" \" * (3 - i) + \"*\" * i)",
+        "for i in range(3):\n    print(i, end=\"-\")"
+      ],
+      "answer": "for i in range(1, 4):\n    for j in range(1, i + 1):\n        print(j, end=\"\")\n    print()",
+      "explanation": "Each row prints numbers from 1 through the current outer-loop value."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "###\n###",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 4):\n    print(\" \" * (3 - i) + \"*\" * i)",
+        "for i in range(3):\n    print(i, end=\"-\")",
+        "for i in range(2, 10, 2):\n    print(i, end=\",\")",
+        "for i in range(2):\n    for j in range(3):\n        print(\"#\", end=\"\")\n    print()"
+      ],
+      "answer": "for i in range(2):\n    for j in range(3):\n        print(\"#\", end=\"\")\n    print()",
+      "explanation": "The inner loop prints three hashes for each of two rows."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "  *\n **\n***",
+      "optionType": "code",
+      "options": [
+        "for i in range(2, 10, 2):\n    print(i, end=\",\")",
+        "for i in range(9, 0, -3):\n    print(i)",
+        "for i in range(1, 4):\n    print(\" \" * (3 - i) + \"*\" * i)",
+        "for i in range(3):\n    print(i, end=\"-\")"
+      ],
+      "answer": "for i in range(1, 4):\n    print(\" \" * (3 - i) + \"*\" * i)",
+      "explanation": "Spaces decrease while stars increase from 1 to 3."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "0-1-2-",
+      "optionType": "code",
+      "options": [
+        "x = 0\nfor i in range(4):\n    x = x + i\nprint(x)",
+        "for i in range(3):\n    print(i, end=\"-\")",
+        "for i in range(2, 10, 2):\n    print(i, end=\",\")",
+        "for i in range(9, 0, -3):\n    print(i)"
+      ],
+      "answer": "for i in range(3):\n    print(i, end=\"-\")",
+      "explanation": "end=\"-\" keeps output on one line and adds a hyphen after each value."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "2,4,6,8,",
+      "optionType": "code",
+      "options": [
+        "for i in range(2, 10, 2):\n    print(i, end=\",\")",
+        "for i in range(9, 0, -3):\n    print(i)",
+        "x = 0\nfor i in range(4):\n    x = x + i\nprint(x)",
+        "x = 10\nfor i in range(3):\n    x -= 2\nprint(x)"
+      ],
+      "answer": "for i in range(2, 10, 2):\n    print(i, end=\",\")",
+      "explanation": "The range produces even values below 10."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "9\n6\n3",
+      "optionType": "code",
+      "options": [
+        "x = 0\nfor i in range(4):\n    x = x + i\nprint(x)",
+        "x = 10\nfor i in range(3):\n    x -= 2\nprint(x)",
+        "for i in range(1, 6):\n    print(i if i % 2 else 0)",
+        "for i in range(9, 0, -3):\n    print(i)"
+      ],
+      "answer": "for i in range(9, 0, -3):\n    print(i)",
+      "explanation": "The loop counts down by 3 and stops before 0."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "6",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 6):\n    print(i if i % 2 else 0)",
+        "for i in range(1, 5):\n    print(i + 10, end=\" \")",
+        "x = 0\nfor i in range(4):\n    x = x + i\nprint(x)",
+        "x = 10\nfor i in range(3):\n    x -= 2\nprint(x)"
+      ],
+      "answer": "x = 0\nfor i in range(4):\n    x = x + i\nprint(x)",
+      "explanation": "The sum of 0, 1, 2 and 3 is 6."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "for i in range(4):\n    print(4 - i)",
+        "x = 10\nfor i in range(3):\n    x -= 2\nprint(x)",
+        "for i in range(1, 6):\n    print(i if i % 2 else 0)",
+        "for i in range(1, 5):\n    print(i + 10, end=\" \")"
+      ],
+      "answer": "x = 10\nfor i in range(3):\n    x -= 2\nprint(x)",
+      "explanation": "Subtracting 2 three times from 10 gives 4."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "1\n0\n3\n0\n5",
+      "optionType": "code",
+      "options": [
+        "for i in range(1, 6):\n    print(i if i % 2 else 0)",
+        "for i in range(1, 5):\n    print(i + 10, end=\" \")",
+        "for i in range(4):\n    print(4 - i)",
+        "for i in range(1, 5):\n    print(\"A\" * i)"
+      ],
+      "answer": "for i in range(1, 6):\n    print(i if i % 2 else 0)",
+      "explanation": "Odd numbers are printed as themselves; even numbers produce 0."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "11 12 13 14 ",
+      "optionType": "code",
+      "options": [
+        "for i in range(4):\n    print(4 - i)",
+        "for i in range(1, 5):\n    print(\"A\" * i)",
+        "total = 0\nfor i in range(1, 10, 2):\n    total += i\nprint(total)",
+        "for i in range(1, 5):\n    print(i + 10, end=\" \")"
+      ],
+      "answer": "for i in range(1, 5):\n    print(i + 10, end=\" \")",
+      "explanation": "10 is added to each range value from 1 through 4."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "4\n3\n2\n1",
+      "optionType": "code",
+      "options": [
+        "total = 0\nfor i in range(1, 10, 2):\n    total += i\nprint(total)",
+        "for i in range(6):\n    if i in (1, 4):\n        continue\n    print(i, end=\" \")",
+        "for i in range(4):\n    print(4 - i)",
+        "for i in range(1, 5):\n    print(\"A\" * i)"
+      ],
+      "answer": "for i in range(4):\n    print(4 - i)",
+      "explanation": "As i rises from 0 to 3, 4 - i falls from 4 to 1."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "A\nAA\nAAA\nAAAA",
+      "optionType": "code",
+      "options": [
+        "for i in range(5):\n    print(i)",
+        "for i in range(1, 5):\n    print(\"A\" * i)",
+        "total = 0\nfor i in range(1, 10, 2):\n    total += i\nprint(total)",
+        "for i in range(6):\n    if i in (1, 4):\n        continue\n    print(i, end=\" \")"
+      ],
+      "answer": "for i in range(1, 5):\n    print(\"A\" * i)",
+      "explanation": "String multiplication repeats A by the current loop value."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "25",
+      "optionType": "code",
+      "options": [
+        "total = 0\nfor i in range(1, 10, 2):\n    total += i\nprint(total)",
+        "for i in range(6):\n    if i in (1, 4):\n        continue\n    print(i, end=\" \")",
+        "for i in range(5):\n    print(i)",
+        "for i in range(1, 6):\n    print(i)"
+      ],
+      "answer": "total = 0\nfor i in range(1, 10, 2):\n    total += i\nprint(total)",
+      "explanation": "The odd numbers 1, 3, 5, 7 and 9 add to 25."
+    },
+    {
+      "question": "Which Python program produces this exact output?",
+      "output": "0 2 3 5 ",
+      "optionType": "code",
+      "options": [
+        "for i in range(5):\n    print(i)",
+        "for i in range(1, 6):\n    print(i)",
+        "for i in range(2, 11, 2):\n    print(i)",
+        "for i in range(6):\n    if i in (1, 4):\n        continue\n    print(i, end=\" \")"
+      ],
+      "answer": "for i in range(6):\n    if i in (1, 4):\n        continue\n    print(i, end=\" \")",
+      "explanation": "Values 1 and 4 are skipped by continue."
+    }
+  ]
+}
