@@ -1,0 +1,630 @@
+{
+  "title": "Pandas Level 0: Code-to-Output Quiz",
+  "subtitle": "Read beginner Pandas DataFrame code and predict the exact output. Each attempt selects 10 questions from a 50-question bank.",
+  "kicker": "Learn With Champak • Pandas 0 to Infinity • Level 0",
+  "instructions": "Read each Pandas program carefully and select its exact output.",
+  "footer": "Learn With Champak • Pandas • DataFrame creation • rows • columns • index • shape",
+  "seo": {
+    "enabled": true,
+    "title": "Pandas Level 0 Code-to-Output Quiz | Learn With Champak",
+    "description": "Predict the output of beginner Pandas DataFrame programs covering DataFrame creation, rows, columns, indexes, shape, head, tail and basic inspection.",
+    "keywords": "Pandas quiz, DataFrame quiz, Pandas code to output, Python Pandas MCQ, create DataFrame, DataFrame shape, Pandas beginner quiz, Learn With Champak",
+    "canonicalUrl": "",
+    "ogImage": "https://programmer-s-picnic.github.io/json-images/mee.jpg",
+    "imageAlt": "Pandas Level 0 Code-to-Output Quiz by Learn With Champak",
+    "type": "website",
+    "siteName": "Learn With Champak",
+    "language": "en-IN",
+    "educationalLevel": "Beginner"
+  },
+  "settings": {
+    "questionsPerAttempt": 10,
+    "durationMinutes": 10,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "allowUntimed": true,
+    "showReview": true
+  },
+  "questions": [
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\": [\"Asha\", \"Ravi\"]})\nprint(df.shape)",
+      "options": [
+        "(2, 1)",
+        "(2, 2)",
+        "3",
+        "['Name', 'Marks']"
+      ],
+      "answer": "(2, 1)",
+      "explanation": "The DataFrame has 2 rows and 1 column."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\": [\"Asha\", \"Ravi\"], \"Marks\": [88, 42]})\nprint(df.shape)",
+      "options": [
+        "3",
+        "['Name', 'Marks']",
+        "[0, 1]",
+        "(2, 2)"
+      ],
+      "answer": "(2, 2)",
+      "explanation": "There are 2 rows and 2 columns."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\": [1, 2, 3], \"B\": [4, 5, 6]})\nprint(len(df))",
+      "options": [
+        "[0, 1]",
+        "['S1', 'S2']",
+        "3",
+        "['Name', 'Marks']"
+      ],
+      "answer": "3",
+      "explanation": "len(df) returns the number of rows."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\": [1, 2], \"B\": [3, 4], \"C\": [5, 6]})\nprint(len(df.columns))",
+      "options": [
+        "['S1', 'S2']",
+        "3",
+        "['Name', 'Marks']",
+        "[0, 1]"
+      ],
+      "answer": "3",
+      "explanation": "The DataFrame has three column labels."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\": [\"Asha\"], \"Marks\": [88]})\nprint(df.columns.tolist())",
+      "options": [
+        "['Name', 'Marks']",
+        "[0, 1]",
+        "['S1', 'S2']",
+        "Ravi"
+      ],
+      "answer": "['Name', 'Marks']",
+      "explanation": "Dictionary keys become column names in insertion order."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\": [\"Asha\", \"Ravi\"], \"Marks\": [88, 42]})\nprint(df.index.tolist())",
+      "options": [
+        "['S1', 'S2']",
+        "Ravi",
+        "42",
+        "[0, 1]"
+      ],
+      "answer": "[0, 1]",
+      "explanation": "Without a custom index, Pandas creates RangeIndex labels starting at 0."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\": [\"Asha\", \"Ravi\"]}, index=[\"S1\", \"S2\"])\nprint(df.index.tolist())",
+      "options": [
+        "42",
+        "88",
+        "['S1', 'S2']",
+        "Ravi"
+      ],
+      "answer": "['S1', 'S2']",
+      "explanation": "The supplied index labels replace the default numeric index."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\": [\"Asha\", \"Ravi\"], \"Marks\": [88, 42]})\nprint(df.loc[1, \"Name\"])",
+      "options": [
+        "[101, 102]",
+        "Ravi",
+        "42",
+        "88"
+      ],
+      "answer": "Ravi",
+      "explanation": "Row label 1 contains Ravi in the Name column."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\": [\"Asha\", \"Ravi\"], \"Marks\": [88, 42]}, index=[\"S1\", \"S2\"])\nprint(df.loc[\"S2\", \"Marks\"])",
+      "options": [
+        "42",
+        "88",
+        "[101, 102]",
+        "[88, 42]"
+      ],
+      "answer": "42",
+      "explanation": "The S2 row has Marks equal to 42."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\": [\"Asha\", \"Ravi\"], \"Marks\": [88, 42]})\nprint(df.iloc[0, 1])",
+      "options": [
+        "[101, 102]",
+        "[88, 42]",
+        "['Asha', 'Ravi']",
+        "88"
+      ],
+      "answer": "88",
+      "explanation": "iloc uses integer position; row 0, column 1 is 88."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\nrows = [[101, \"Asha\"], [102, \"Ravi\"]]\ndf = pd.DataFrame(rows, columns=[\"ID\", \"Name\"])\nprint(df[\"ID\"].tolist())",
+      "options": [
+        "['Asha', 'Ravi']",
+        "[{'Name': 'Asha', 'Marks': 88}, {'Name': 'Ravi', 'Marks': 42}]",
+        "[101, 102]",
+        "[88, 42]"
+      ],
+      "answer": "[101, 102]",
+      "explanation": "The first item in each row becomes the ID column."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\nrows = [[101, \"Asha\", 88], [102, \"Ravi\", 42]]\ndf = pd.DataFrame(rows, columns=[\"ID\", \"Name\", \"Marks\"])\nprint(df[\"Marks\"].tolist())",
+      "options": [
+        "['Name', 'Marks']",
+        "[88, 42]",
+        "['Asha', 'Ravi']",
+        "[{'Name': 'Asha', 'Marks': 88}, {'Name': 'Ravi', 'Marks': 42}]"
+      ],
+      "answer": "[88, 42]",
+      "explanation": "The third value in each row fills the Marks column."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame([{\"Name\":\"Asha\",\"Marks\":88},{\"Name\":\"Ravi\",\"Marks\":42}])\nprint(df[\"Name\"].tolist())",
+      "options": [
+        "['Asha', 'Ravi']",
+        "[{'Name': 'Asha', 'Marks': 88}, {'Name': 'Ravi', 'Marks': 42}]",
+        "['Name', 'Marks']",
+        "['Ravi', 'Meera']"
+      ],
+      "answer": "['Asha', 'Ravi']",
+      "explanation": "In a list of dictionaries, matching keys become columns."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame([{\"Name\":\"Asha\",\"Marks\":88},{\"Name\":\"Ravi\",\"Marks\":42}])\nprint(df.to_dict(\"records\"))",
+      "options": [
+        "['Name', 'Marks']",
+        "['Asha', 'Ravi']",
+        "['Ravi', 'Meera']",
+        "[{'Name': 'Asha', 'Marks': 88}, {'Name': 'Ravi', 'Marks': 42}]"
+      ],
+      "answer": "[{'Name': 'Asha', 'Marks': 88}, {'Name': 'Ravi', 'Marks': 42}]",
+      "explanation": "to_dict(\"records\") returns one dictionary per row."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Marks\":[88,42],\"Name\":[\"Asha\",\"Ravi\"]}, columns=[\"Name\",\"Marks\"])\nprint(df.columns.tolist())",
+      "options": [
+        "['Ravi', 'Meera']",
+        "[10]",
+        "['Name', 'Marks']",
+        "['Asha', 'Ravi']"
+      ],
+      "answer": "['Name', 'Marks']",
+      "explanation": "The columns argument controls the displayed column order."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\"],\"Marks\":[88,42,76]})\nprint(df.head(2)[\"Name\"].tolist())",
+      "options": [
+        "[30]",
+        "['Asha', 'Ravi']",
+        "['Ravi', 'Meera']",
+        "[10]"
+      ],
+      "answer": "['Asha', 'Ravi']",
+      "explanation": "head(2) keeps the first two rows."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\"],\"Marks\":[88,42,76]})\nprint(df.tail(2)[\"Name\"].tolist())",
+      "options": [
+        "['Ravi', 'Meera']",
+        "[10]",
+        "[30]",
+        "6"
+      ],
+      "answer": "['Ravi', 'Meera']",
+      "explanation": "tail(2) keeps the last two rows."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[10,20,30]})\nprint(df.head(1)[\"A\"].tolist())",
+      "options": [
+        "[30]",
+        "6",
+        "130",
+        "[10]"
+      ],
+      "answer": "[10]",
+      "explanation": "head(1) returns only the first row."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[10,20,30]})\nprint(df.tail(1)[\"A\"].tolist())",
+      "options": [
+        "130",
+        "65.0",
+        "[30]",
+        "6"
+      ],
+      "answer": "[30]",
+      "explanation": "tail(1) returns only the final row."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[1,2,3],\"B\":[4,5,6]})\nprint(df.size)",
+      "options": [
+        "88",
+        "6",
+        "130",
+        "65.0"
+      ],
+      "answer": "6",
+      "explanation": "DataFrame.size is rows multiplied by columns: 3 × 2 = 6."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"Marks\":[88,42]})\nprint(df[\"Marks\"].sum())",
+      "options": [
+        "130",
+        "65.0",
+        "88",
+        "42"
+      ],
+      "answer": "130",
+      "explanation": "88 + 42 equals 130."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"Marks\":[88,42]})\nprint(df[\"Marks\"].mean())",
+      "options": [
+        "88",
+        "42",
+        "2",
+        "65.0"
+      ],
+      "answer": "65.0",
+      "explanation": "The average of 88 and 42 is 65.0."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Marks\":[88,42,76]})\nprint(df[\"Marks\"].max())",
+      "options": [
+        "2",
+        "{'Name': 'Ravi', 'City': 'Ranchi'}",
+        "88",
+        "42"
+      ],
+      "answer": "88",
+      "explanation": "88 is the largest value in Marks."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Marks\":[88,42,76]})\nprint(df[\"Marks\"].min())",
+      "options": [
+        "{'Name': 'Asha', 'City': 'Varanasi'}",
+        "42",
+        "2",
+        "{'Name': 'Ravi', 'City': 'Ranchi'}"
+      ],
+      "answer": "42",
+      "explanation": "42 is the smallest value in Marks."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"FeePaid\":[True,False,True]})\nprint(df[\"FeePaid\"].sum())",
+      "options": [
+        "2",
+        "{'Name': 'Ravi', 'City': 'Ranchi'}",
+        "{'Name': 'Asha', 'City': 'Varanasi'}",
+        "Asha"
+      ],
+      "answer": "2",
+      "explanation": "True behaves like 1 and False like 0 when summed."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"City\":[\"Varanasi\",\"Ranchi\"]})\nprint(df.iloc[1].to_dict())",
+      "options": [
+        "{'Name': 'Asha', 'City': 'Varanasi'}",
+        "Asha",
+        "42",
+        "{'Name': 'Ravi', 'City': 'Ranchi'}"
+      ],
+      "answer": "{'Name': 'Ravi', 'City': 'Ranchi'}",
+      "explanation": "iloc[1] selects the second row."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"City\":[\"Varanasi\",\"Ranchi\"]})\nprint(df.loc[0].to_dict())",
+      "options": [
+        "42",
+        "(2, 1)",
+        "{'Name': 'Asha', 'City': 'Varanasi'}",
+        "Asha"
+      ],
+      "answer": "{'Name': 'Asha', 'City': 'Varanasi'}",
+      "explanation": "loc[0] selects the row whose label is 0."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"Marks\":[88,42]})\nprint(df[\"Name\"].iloc[0])",
+      "options": [
+        "{'A': [1, 2], 'B': [3, 4]}",
+        "Asha",
+        "42",
+        "(2, 1)"
+      ],
+      "answer": "Asha",
+      "explanation": "The first value of the Name column is Asha."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"Marks\":[88,42]})\nprint(df[\"Marks\"].iloc[-1])",
+      "options": [
+        "42",
+        "(2, 1)",
+        "{'A': [1, 2], 'B': [3, 4]}",
+        "[[1, 3], [2, 4]]"
+      ],
+      "answer": "42",
+      "explanation": "iloc[-1] selects the last value."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"Marks\":[88,42]})\nprint(df[[\"Marks\"]].shape)",
+      "options": [
+        "{'A': [1, 2], 'B': [3, 4]}",
+        "[[1, 3], [2, 4]]",
+        "[0, 1]",
+        "(2, 1)"
+      ],
+      "answer": "(2, 1)",
+      "explanation": "Double brackets return a one-column DataFrame with two rows."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[1,2],\"B\":[3,4]})\nprint(df.to_dict(\"list\"))",
+      "options": [
+        "[0, 1]",
+        "2",
+        "{'A': [1, 2], 'B': [3, 4]}",
+        "[[1, 3], [2, 4]]"
+      ],
+      "answer": "{'A': [1, 2], 'B': [3, 4]}",
+      "explanation": "to_dict(\"list\") maps each column name to its list of values."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[1,2],\"B\":[3,4]})\nprint(df.values.tolist())",
+      "options": [
+        "True",
+        "[[1, 3], [2, 4]]",
+        "[0, 1]",
+        "2"
+      ],
+      "answer": "[[1, 3], [2, 4]]",
+      "explanation": "values.tolist() returns the table row by row."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame([[1,2],[3,4]])\nprint(df.columns.tolist())",
+      "options": [
+        "[0, 1]",
+        "2",
+        "True",
+        "False"
+      ],
+      "answer": "[0, 1]",
+      "explanation": "Without explicit column labels, Pandas uses numeric labels 0 and 1."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame([[1,2],[3,4]], columns=[\"X\",\"Y\"])\nprint(df.index.tolist())",
+      "options": [
+        "2",
+        "True",
+        "False",
+        "[0, 1]"
+      ],
+      "answer": "[0, 1]",
+      "explanation": "Explicit columns do not change the default row index."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"X\":[1,2]}, index=[10,20])\nprint(df.loc[20,\"X\"])",
+      "options": [
+        "False",
+        "(0, 1)",
+        "2",
+        "True"
+      ],
+      "answer": "2",
+      "explanation": "loc uses the label 20, whose X value is 2."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"Marks\":[88,42]})\nprint(\"Name\" in df.columns)",
+      "options": [
+        "0 3",
+        "True",
+        "False",
+        "(0, 1)"
+      ],
+      "answer": "True",
+      "explanation": "Name is one of the DataFrame's column labels."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"Marks\":[88,42]})\nprint(\"City\" in df.columns)",
+      "options": [
+        "False",
+        "True",
+        "(0, 1)",
+        "0 3"
+      ],
+      "answer": "False",
+      "explanation": "City was not used as a column name."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[1,2],\"B\":[3,4]})\nprint(df.empty)",
+      "options": [
+        "True",
+        "(0, 1)",
+        "0 3",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "The DataFrame contains rows, so empty is False."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame()\nprint(df.empty)",
+      "options": [
+        "0 3",
+        "y",
+        "True",
+        "(0, 1)"
+      ],
+      "answer": "True",
+      "explanation": "A newly created DataFrame with no data is empty."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[]})\nprint(df.shape)",
+      "options": [
+        "['Asha', 'Ravi']",
+        "(0, 1)",
+        "0 3",
+        "y"
+      ],
+      "answer": "(0, 1)",
+      "explanation": "The DataFrame has zero rows but one defined column."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[1,2,3]})\nprint(df.index.start, df.index.stop)",
+      "options": [
+        "0 3",
+        "y",
+        "['Asha', 'Ravi']",
+        "['Asha', 88]"
+      ],
+      "answer": "0 3",
+      "explanation": "The default RangeIndex starts at 0 and stops before 3."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[1,2,3]}, index=[\"x\",\"y\",\"z\"])\nprint(df.index[1])",
+      "options": [
+        "['Asha', 'Ravi']",
+        "['Asha', 88]",
+        "4",
+        "y"
+      ],
+      "answer": "y",
+      "explanation": "The second custom index label is y."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"Marks\":[88,42]})\nprint(df.iloc[:, 0].tolist())",
+      "options": [
+        "4",
+        "3",
+        "['Asha', 'Ravi']",
+        "['Asha', 88]"
+      ],
+      "answer": "['Asha', 'Ravi']",
+      "explanation": "All rows of column position 0 are selected."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"Marks\":[88,42]})\nprint(df.iloc[0, :].tolist())",
+      "options": [
+        "(2, 3)",
+        "['Asha', 88]",
+        "4",
+        "3"
+      ],
+      "answer": "['Asha', 88]",
+      "explanation": "All columns of the first row are returned as a Series, then converted to a list."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[1,2],\"B\":[3,4]})\nprint(df.at[1,\"B\"])",
+      "options": [
+        "4",
+        "3",
+        "(2, 3)",
+        "[{'Item': 'Pen', 'Price': 10, 'Stock': 40}]"
+      ],
+      "answer": "4",
+      "explanation": "at accesses a scalar by row and column labels."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[1,2],\"B\":[3,4]})\nprint(df.iat[0,1])",
+      "options": [
+        "(2, 3)",
+        "[{'Item': 'Pen', 'Price': 10, 'Stock': 40}]",
+        "42",
+        "3"
+      ],
+      "answer": "3",
+      "explanation": "iat accesses a scalar by integer position."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Item\":[\"Pen\",\"Book\"],\"Price\":[10,50],\"Stock\":[40,12]})\nprint(df.shape)",
+      "options": [
+        "42",
+        "Marks",
+        "(2, 3)",
+        "[{'Item': 'Pen', 'Price': 10, 'Stock': 40}]"
+      ],
+      "answer": "(2, 3)",
+      "explanation": "The shop table contains two rows and three columns."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Item\":[\"Pen\",\"Book\"],\"Price\":[10,50],\"Stock\":[40,12]})\nprint(df.head(1).to_dict(\"records\"))",
+      "options": [
+        "(2, 1)",
+        "[{'Item': 'Pen', 'Price': 10, 'Stock': 40}]",
+        "42",
+        "Marks"
+      ],
+      "answer": "[{'Item': 'Pen', 'Price': 10, 'Stock': 40}]",
+      "explanation": "head(1) keeps the first shop record only."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Marks\":[88,42,76]}, index=[\"A\",\"B\",\"C\"])\nprint(df.loc[\"B\",\"Marks\"])",
+      "options": [
+        "42",
+        "Marks",
+        "(2, 1)",
+        "(2, 2)"
+      ],
+      "answer": "42",
+      "explanation": "The custom row label B points to the second value, 42."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf = pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\"],\"City\":[\"Varanasi\",\"Ranchi\"],\"Marks\":[88,42]})\nprint(df.columns[-1])",
+      "options": [
+        "(2, 1)",
+        "(2, 2)",
+        "3",
+        "Marks"
+      ],
+      "answer": "Marks",
+      "explanation": "Marks is the final column label."
+    }
+  ]
+}
