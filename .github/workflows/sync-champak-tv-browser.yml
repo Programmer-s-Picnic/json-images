@@ -31,3 +31,5 @@ jobs:
             git commit -m "Update Champak TV Browser APK"
             git push
           fi
+
+# sync-trigger-v1.2.1
