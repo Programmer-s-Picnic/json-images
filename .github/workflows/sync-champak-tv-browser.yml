@@ -19,14 +19,16 @@ jobs:
       - name: Download latest Champak TV Browser APK
         run: |
           mkdir -p tv
-          curl -L --fail --retry 3             "https://raw.githubusercontent.com/Programmer-s-Picnic/tv/main/downloads/champak-tv-browser.apk"             -o tv/champak-tv.apk
+          curl -L --fail --retry 3 "https://raw.githubusercontent.com/Programmer-s-Picnic/tv/main/downloads/champak-tv-browser.apk" -o tv/champak-tv.apk
+          cp tv/champak-tv.apk tv/champak-tv-v1.6.1.apk
           test -s tv/champak-tv.apk
+          test -s tv/champak-tv-v1.6.1.apk
 
       - name: Commit APK
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tv/champak-tv.apk
+          git add tv/champak-tv.apk tv/champak-tv-v1.6.1.apk
           if ! git diff --cached --quiet; then
             git commit -m "Update Champak TV Browser APK"
             git push
@@ -53,3 +55,5 @@ jobs:
 # sync-trigger-v1.6.0
 
 # sync-trigger-v1.6.1
+
+# fresh-versioned-link-v1.6.1
