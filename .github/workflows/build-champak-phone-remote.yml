@@ -1,0 +1,57 @@
+name: Build and publish Champak TV Remote APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-champak-phone-remote.yml"
+permissions:
+  contents: write
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out distribution repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Fetch remote application source
+        run: git clone --depth 1 https://github.com/Programmer-s-Picnic/tv.git "$RUNNER_TEMP/tv"
+      - name: Generate Android project
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: flutter create --platforms android --org live.learnwithchampak .
+      - name: Configure Android
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: python3 scripts/configure_android.py
+      - name: Install Flutter packages
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: flutter pub get
+      - name: Build release APK
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: flutter build apk --release
+      - name: Prepare download file
+        run: |
+          cp "$RUNNER_TEMP/tv/phone_remote/build/app/outputs/flutter-apk/app-release.apk" tv/champaks-tv-remote-v0.1.apk
+          ls -lh tv/champaks-tv-remote-v0.1.apk
+          sha256sum tv/champaks-tv-remote-v0.1.apk > tv/champaks-tv-remote-v0.1.sha256
+      - name: Publish APK to GitHub Pages repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tv/champaks-tv-remote-v0.1.apk tv/champaks-tv-remote-v0.1.sha256
+          if git diff --cached --quiet; then
+            echo "APK has not changed"
+          else
+            git commit -m "Publish Champak TV Remote v0.1 Android APK"
+            git push origin HEAD:main
+          fi
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: champaks-tv-remote-v0.1-apk
+          path: tv/champaks-tv-remote-v0.1.apk
