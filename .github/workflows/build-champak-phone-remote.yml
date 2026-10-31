@@ -36,22 +36,22 @@ jobs:
         run: flutter build apk --release
       - name: Prepare download file
         run: |
-          cp "$RUNNER_TEMP/tv/phone_remote/build/app/outputs/flutter-apk/app-release.apk" tv/champaks-tv-remote-v0.1.apk
-          ls -lh tv/champaks-tv-remote-v0.1.apk
-          sha256sum tv/champaks-tv-remote-v0.1.apk > tv/champaks-tv-remote-v0.1.sha256
+          cp "$RUNNER_TEMP/tv/phone_remote/build/app/outputs/flutter-apk/app-release.apk" tv/champaks-tv-remote-v0.2.apk
+          ls -lh tv/champaks-tv-remote-v0.2.apk
+          sha256sum tv/champaks-tv-remote-v0.2.apk > tv/champaks-tv-remote-v0.2.sha256
       - name: Publish APK to GitHub Pages repository
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tv/champaks-tv-remote-v0.1.apk tv/champaks-tv-remote-v0.1.sha256
+          git add tv/champaks-tv-remote-v0.2.apk tv/champaks-tv-remote-v0.2.sha256
           if git diff --cached --quiet; then
             echo "APK has not changed"
           else
-            git commit -m "Publish Champak TV Remote v0.1 Android APK"
+            git commit -m "Publish Champak TV Remote v0.2 Android APK"
             git push origin HEAD:main
           fi
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: champaks-tv-remote-v0.1-apk
-          path: tv/champaks-tv-remote-v0.1.apk
+          name: champaks-tv-remote-v0.2-apk
+          path: tv/champaks-tv-remote-v0.2.apk
