@@ -28,11 +28,6 @@ jobs:
       - name: Configure Android
         working-directory: ${{ runner.temp }}/tv/phone_remote
         run: python3 scripts/configure_android.py
-      - name: Generate launcher icon and store artwork
-        working-directory: ${{ runner.temp }}/tv/phone_remote
-        run: |
-          python3 -m pip install --user cairosvg pillow
-          python3 scripts/generate_branding.py
       - name: Install Flutter packages
         working-directory: ${{ runner.temp }}/tv/phone_remote
         run: flutter pub get
