@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/build-champak-phone-remote.yml"
+concurrency:
+  group: champaks-tv-remote-publish
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -56,6 +59,7 @@ jobs:
             echo "APK has not changed"
           else
             git commit -m "Publish Champak TV Remote v0.3 Android APK"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
       - name: Upload workflow artifact
