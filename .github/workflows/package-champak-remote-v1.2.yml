@@ -1,0 +1,108 @@
+name: Package Champak TV Remote V1.2 publishing assets
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/package-champak-remote-v1.2.yml"
+permissions:
+  contents: write
+concurrency:
+  group: champak-remote-v1.2-publishing
+  cancel-in-progress: false
+jobs:
+  publishing-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out distribution repository
+        uses: actions/checkout@v4
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Fetch app source
+        run: git clone --depth 1 https://github.com/Programmer-s-Picnic/tv.git "$RUNNER_TEMP/tv"
+      - name: Generate Android app
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: |
+          flutter create --platforms android --org live.learnwithchampak .
+          python3 scripts/configure_android.py
+          flutter pub get
+      - name: Generate app icon assets
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: |
+          python3 -m pip install --user cairosvg pillow
+          python3 scripts/generate_branding.py
+          dart run flutter_launcher_icons
+      - name: Build Android App Bundle
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: flutter build appbundle --release
+      - name: Prepare ZIP package
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s tv/champaks-tv-remote-v1.2.apk
+          test -s tv/champaks-tv-remote-store-icon.png
+          test -s tv/champaks-tv-remote-feature-graphic.png
+          test -s "$RUNNER_TEMP/tv/phone_remote/build/app/outputs/bundle/release/app-release.aab"
+          mkdir -p "$RUNNER_TEMP/release-files"
+          cp tv/champaks-tv-remote-v1.2.apk "$RUNNER_TEMP/release-files/Champaks_TV_Remote_v1.2.apk"
+          cp "$RUNNER_TEMP/tv/phone_remote/build/app/outputs/bundle/release/app-release.aab" "$RUNNER_TEMP/release-files/Champaks_TV_Remote_v1.2.aab"
+          cp tv/champaks-tv-remote-store-icon.png "$RUNNER_TEMP/release-files/Play_Store_Icon_512x512.png"
+          cp tv/champaks-tv-remote-feature-graphic.png "$RUNNER_TEMP/release-files/Feature_Graphic_1024x500.png"
+          cat > "$RUNNER_TEMP/release-files/README_BEFORE_PLAY_UPLOAD.txt" <<'EOF'
+          Champak's TV Remote V1.2 - publishing package
+
+          Contents:
+          - APK for manual Android testing/install
+          - Android App Bundle (AAB)
+          - 512x512 store listing icon
+          - 1024x500 feature graphic
+
+          WARNING: This AAB was built with the default Flutter Android
+          signing configuration. It has NOT been validated with your
+          production Google Play upload signing key and is NOT guaranteed
+          to be accepted as a Play Console update.
+          For Play submission, configure the release upload keystore
+          belonging to the existing Play listing, then rebuild the AAB.
+
+          Real-device testing, screenshot verification, data safety and
+          publication review must be completed separately.
+          EOF
+          python3 - <<'PY'
+          import os, zipfile, hashlib
+          folder=os.environ['RUNNER_TEMP']+'/release-files'
+          out='champaks-tv-remote-v1.2-publishing-package.zip'
+          with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6,allowZip64=True) as z:
+              for file in sorted(os.listdir(folder)):
+                  z.write(os.path.join(folder,file),arcname=file)
+          with zipfile.ZipFile(out) as z:
+              bad=z.testzip()
+              assert bad is None,bad
+              print('ZIP contents:')
+              for info in z.infolist(): print(info.filename, info.file_size)
+          print('SHA256:',hashlib.sha256(open(out,'rb').read()).hexdigest())
+          print('Total:',os.path.getsize(out),'bytes')
+          PY
+      - name: Publish ZIP to GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="champaks-tv-remote-v1.2-publishing"
+          FILE="champaks-tv-remote-v1.2-publishing-package.zip"
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$FILE" --clobber --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create "$TAG" "$FILE" --repo "$GITHUB_REPOSITORY" \
+              --title "Champak's TV Remote V1.2 — publishing assets" \
+              --notes "APK, AAB, 512x512 store icon and 1024x500 feature graphic in one ZIP. The AAB uses default build signing; configure your production upload key before Google Play submission." \
+              --latest=false
+          fi
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[] | [.name,.size,.url] | @tsv'
+      - name: Upload ZIP as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: champaks-tv-remote-v1.2-publishing-package
+          path: champaks-tv-remote-v1.2-publishing-package.zip
