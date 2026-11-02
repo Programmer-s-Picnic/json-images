@@ -57,29 +57,29 @@ jobs:
         run: flutter build apk --release
       - name: Prepare download file
         run: |
-          cp "$RUNNER_TEMP/tv/phone_remote/build/app/outputs/flutter-apk/app-release.apk" tv/champaks-tv-remote-v1.0.apk
-          cp "$RUNNER_TEMP/tv/tv_installer/build/app/outputs/flutter-apk/app-release.apk" tv/champaks-tv-installer-v1.0.apk
-          ls -lh tv/champaks-tv-remote-v1.0.apk tv/champaks-tv-installer-v1.0.apk
-          sha256sum tv/champaks-tv-remote-v1.0.apk > tv/champaks-tv-remote-v1.0.sha256
-          sha256sum tv/champaks-tv-installer-v1.0.apk > tv/champaks-tv-installer-v1.0.sha256
+          cp "$RUNNER_TEMP/tv/phone_remote/build/app/outputs/flutter-apk/app-release.apk" tv/champaks-tv-remote-v1.1.apk
+          cp "$RUNNER_TEMP/tv/tv_installer/build/app/outputs/flutter-apk/app-release.apk" tv/champaks-tv-installer-v1.1.apk
+          ls -lh tv/champaks-tv-remote-v1.1.apk tv/champaks-tv-installer-v1.1.apk
+          sha256sum tv/champaks-tv-remote-v1.1.apk > tv/champaks-tv-remote-v1.1.sha256
+          sha256sum tv/champaks-tv-installer-v1.1.apk > tv/champaks-tv-installer-v1.1.sha256
           cp "$RUNNER_TEMP/tv/phone_remote/assets/play_store_icon.png" tv/champaks-tv-remote-store-icon.png
           cp "$RUNNER_TEMP/tv/phone_remote/assets/feature_graphic.png" tv/champaks-tv-remote-feature-graphic.png
       - name: Publish APK to GitHub Pages repository
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tv/champaks-tv-remote-v1.0.apk tv/champaks-tv-remote-v1.0.sha256 tv/champaks-tv-installer-v1.0.apk tv/champaks-tv-installer-v1.0.sha256 tv/champaks-tv-remote-store-icon.png tv/champaks-tv-remote-feature-graphic.png
+          git add tv/champaks-tv-remote-v1.1.apk tv/champaks-tv-remote-v1.1.sha256 tv/champaks-tv-installer-v1.1.apk tv/champaks-tv-installer-v1.1.sha256 tv/champaks-tv-remote-store-icon.png tv/champaks-tv-remote-feature-graphic.png
           if git diff --cached --quiet; then
             echo "APK has not changed"
           else
-            git commit -m "Publish Champak TV Remote v1.0 Android APK"
+            git commit -m "Publish Champak TV Remote v1.1 Android APK"
             git pull --rebase origin main
             git push origin HEAD:main
           fi
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: champaks-tv-remote-v1.0-apk
+          name: champaks-tv-remote-v1.1-apk
           path: |
-            tv/champaks-tv-remote-v1.0.apk
-            tv/champaks-tv-installer-v1.0.apk
+            tv/champaks-tv-remote-v1.1.apk
+            tv/champaks-tv-installer-v1.1.apk
