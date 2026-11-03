@@ -1,0 +1,47 @@
+name: Build Champak TV Remote V1.4 AAB
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-champak-remote-v1.4-aab.yml"
+permissions:
+  contents: read
+jobs:
+  android-app-bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out distribution repo
+        uses: actions/checkout@v4
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Fetch app source
+        run: git clone --depth 1 https://github.com/Programmer-s-Picnic/tv.git "$RUNNER_TEMP/tv"
+      - name: Create Android project
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: |
+          flutter create --platforms android --org live.learnwithchampak .
+          python3 scripts/configure_android.py
+          flutter pub get
+          python3 scripts/patch_android_tv_voice.py
+      - name: Create launcher assets
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: |
+          python3 -m pip install --user cairosvg pillow
+          python3 scripts/generate_branding.py
+          dart run flutter_launcher_icons
+      - name: Build AAB for private local signing
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: |
+          flutter build appbundle --release
+          cp build/app/outputs/bundle/release/app-release.aab "$GITHUB_WORKSPACE/champaks-tv-remote-v1.4-to-sign.aab"
+          unzip -t "$GITHUB_WORKSPACE/champaks-tv-remote-v1.4-to-sign.aab" | tail -2
+      - name: Upload unsigned-for-Play AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: champaks-tv-remote-v1.4-aab-to-sign
+          path: champaks-tv-remote-v1.4-to-sign.aab
+          retention-days: 7
