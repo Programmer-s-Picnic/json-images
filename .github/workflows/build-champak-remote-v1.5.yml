@@ -49,7 +49,7 @@ jobs:
               with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('play_signed=false\n')
               print('Play upload keystore unavailable; APK can be built but AAB is NOT release-upload-signed.')
           else:
-              key=pathlib.Path('android/upload-key.jks')
+              key=pathlib.Path('android/upload-key.p12')
               key.write_bytes(base64.b64decode(os.environ['UPLOAD_KEYSTORE_B64'],validate=True))
               # Avoid key passwords in generated source; use process env on build runners.
               gradle=pathlib.Path('android/app/build.gradle.kts')
@@ -59,7 +59,7 @@ jobs:
               s=s.replace(anchor,'''android {
                   signingConfigs {
                       create("playUpload") {
-                          storeFile = file("../upload-key.jks")
+                          storeFile = file("../upload-key.p12")\n                          storeType = "PKCS12"
                           storePassword = System.getenv("UPLOAD_KEYSTORE_PASSWORD")
                           keyAlias = System.getenv("UPLOAD_KEY_ALIAS")
                           keyPassword = System.getenv("UPLOAD_KEY_PASSWORD")
@@ -93,15 +93,15 @@ jobs:
           UPLOAD_KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
         run: |
           set -euo pipefail
-          KEYTOOL_SHA=$(keytool -list -v -keystore android/upload-key.jks -alias "$UPLOAD_KEY_ALIAS" -storepass "$UPLOAD_KEYSTORE_PASSWORD" | sed -n 's/^[[:space:]]*SHA256: //p' | head -1 | tr -d ':[:space:]' | tr '[:lower:]' '[:upper:]')
+          KEYTOOL_SHA=$(keytool -list -v -storetype PKCS12 -keystore android/upload-key.p12 -alias "$UPLOAD_KEY_ALIAS" -storepass "$UPLOAD_KEYSTORE_PASSWORD" | sed -n 's/^[[:space:]]*SHA256: //p' | head -1 | tr -d ':[:space:]' | tr '[:lower:]' '[:upper:]')
           APK_SIGNER="$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)"
           test -n "$APK_SIGNER"
           "$APK_SIGNER" verify --verbose --print-certs build/app/outputs/flutter-apk/app-release.apk
           APK_SHA=$("$APK_SIGNER" verify --print-certs build/app/outputs/flutter-apk/app-release.apk | sed -n 's/^Signer #1 certificate SHA-256 digest: //p' | tr '[:lower:]' '[:upper:]')
-          test -n "$KEYTOOL_SHA"
+          test -n "$KEYTOOL_SHA"\n          EXPECTED_SHA="F890F03B7217ADFC59A2ABA5D4131D904AC1B403A6D7D1F0752CA9F9A9FC22A9"\n          test "$KEYTOOL_SHA" = "$EXPECTED_SHA" || { echo "Original Play upload certificate mismatch"; exit 1; }
           test "$APK_SHA" = "$KEYTOOL_SHA" || { echo 'Signing certificate mismatch'; exit 1; }
           echo "Verified APK signed using configured upload certificate: $APK_SHA"
-          jarsigner -verify build/app/outputs/bundle/release/app-release.aab
+          jarsigner -verify -strict build/app/outputs/bundle/release/app-release.aab
       - name: Publish APK and checksums
         run: |
           cp "$RUNNER_TEMP/tv/phone_remote/build/app/outputs/flutter-apk/app-release.apk" tv/champaks-tv-remote-v1.5.apk
