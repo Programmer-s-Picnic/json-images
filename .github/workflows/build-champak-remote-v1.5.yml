@@ -1,0 +1,111 @@
+name: Build Champak TV Remote v1.5 APK and signed AAB
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-champak-remote-v1.5.yml"
+permissions:
+  contents: write
+concurrency:
+  group: champaks-tv-remote-v1.5
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout downloads repo
+        uses: actions/checkout@v4
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Fetch source
+        run: git clone --depth 1 https://github.com/Programmer-s-Picnic/tv.git "$RUNNER_TEMP/tv"
+      - name: Create Flutter Android application
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        run: |
+          flutter create --platforms android --org live.learnwithchampak .
+          python3 scripts/configure_android.py
+          flutter pub get
+          python3 scripts/patch_android_tv_voice.py
+          python3 -m pip install --user cairosvg pillow
+          python3 scripts/generate_branding.py
+          dart run flutter_launcher_icons
+      - name: Install Play upload signing if configured
+        id: signing
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        env:
+          UPLOAD_KEYSTORE_B64: ${{ secrets.ANDROID_UPLOAD_KEYSTORE_BASE64 }}
+          UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_UPLOAD_STORE_PASSWORD }}
+          UPLOAD_KEY_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEY_PASSWORD }}
+          UPLOAD_KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
+        run: |
+          python3 - <<'PY'
+          import os,base64,pathlib
+          required=['UPLOAD_KEYSTORE_B64','UPLOAD_KEYSTORE_PASSWORD','UPLOAD_KEY_PASSWORD','UPLOAD_KEY_ALIAS']
+          if any(not os.getenv(k) for k in required):
+              with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('play_signed=false\n')
+              print('Play upload keystore unavailable; APK can be built but AAB is NOT release-upload-signed.')
+          else:
+              key=pathlib.Path('android/upload-key.jks')
+              key.write_bytes(base64.b64decode(os.environ['UPLOAD_KEYSTORE_B64'],validate=True))
+              # Avoid key passwords in generated source; use process env on build runners.
+              gradle=pathlib.Path('android/app/build.gradle.kts')
+              s=gradle.read_text()
+              anchor='android {'
+              if anchor not in s: raise RuntimeError('Unexpected Flutter Gradle project')
+              s=s.replace(anchor,'''android {
+                  signingConfigs {
+                      create("playUpload") {
+                          storeFile = file("../upload-key.jks")
+                          storePassword = System.getenv("UPLOAD_KEYSTORE_PASSWORD")
+                          keyAlias = System.getenv("UPLOAD_KEY_ALIAS")
+                          keyPassword = System.getenv("UPLOAD_KEY_PASSWORD")
+                      }
+                  }
+              ''',1)
+              if 'signingConfig = signingConfigs.getByName("debug")' not in s:
+                  raise RuntimeError('Generated release signing configuration changed')
+              s=s.replace('signingConfig = signingConfigs.getByName("debug")',
+                          'signingConfig = signingConfigs.getByName("playUpload")')
+              gradle.write_text(s)
+              with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('play_signed=true\n')
+              print('Configured signing using supplied existing Play upload keystore.')
+          PY
+      - name: Build release APK and AAB
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        env:
+          UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_UPLOAD_STORE_PASSWORD }}
+          UPLOAD_KEY_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEY_PASSWORD }}
+          UPLOAD_KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
+        run: |
+          flutter build apk --release
+          flutter build appbundle --release
+          test -s build/app/outputs/flutter-apk/app-release.apk
+          test -s build/app/outputs/bundle/release/app-release.aab
+      - name: Publish APK and checksums
+        run: |
+          cp "$RUNNER_TEMP/tv/phone_remote/build/app/outputs/flutter-apk/app-release.apk" tv/champaks-tv-remote-v1.5.apk
+          sha256sum tv/champaks-tv-remote-v1.5.apk > tv/champaks-tv-remote-v1.5.sha256
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tv/champaks-tv-remote-v1.5.apk tv/champaks-tv-remote-v1.5.sha256
+          git commit -m "Publish Champak TV Remote v1.5 APK" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: champaks-tv-remote-v1.5-apk
+          path: tv/champaks-tv-remote-v1.5.apk
+      - name: Upload Play-signed AAB
+        if: steps.signing.outputs.play_signed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: champaks-tv-remote-v1.5-play-signed-aab
+          path: ${{ runner.temp }}/tv/phone_remote/build/app/outputs/bundle/release/app-release.aab
+      - name: Warn when Play upload signing is unavailable
+        if: steps.signing.outputs.play_signed != 'true'
+        run: echo "::warning::AAB built but not Play upload-signed. Configure the four ANDROID_UPLOAD_* GitHub Actions secrets for a signed bundle."
