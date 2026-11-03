@@ -85,6 +85,23 @@ jobs:
           flutter build appbundle --release
           test -s build/app/outputs/flutter-apk/app-release.apk
           test -s build/app/outputs/bundle/release/app-release.aab
+      - name: Verify production APK and AAB signatures
+        working-directory: ${{ runner.temp }}/tv/phone_remote
+        env:
+          UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_UPLOAD_STORE_PASSWORD }}
+          UPLOAD_KEY_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEY_PASSWORD }}
+          UPLOAD_KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
+        run: |
+          set -euo pipefail
+          KEYTOOL_SHA=$(keytool -list -v -keystore android/upload-key.jks -alias "$UPLOAD_KEY_ALIAS" -storepass "$UPLOAD_KEYSTORE_PASSWORD" | sed -n 's/^[[:space:]]*SHA256: //p' | head -1 | tr -d ':[:space:]' | tr '[:lower:]' '[:upper:]')
+          APK_SIGNER="$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)"
+          test -n "$APK_SIGNER"
+          "$APK_SIGNER" verify --verbose --print-certs build/app/outputs/flutter-apk/app-release.apk
+          APK_SHA=$("$APK_SIGNER" verify --print-certs build/app/outputs/flutter-apk/app-release.apk | sed -n 's/^Signer #1 certificate SHA-256 digest: //p' | tr '[:lower:]' '[:upper:]')
+          test -n "$KEYTOOL_SHA"
+          test "$APK_SHA" = "$KEYTOOL_SHA" || { echo 'Signing certificate mismatch'; exit 1; }
+          echo "Verified APK signed using configured upload certificate: $APK_SHA"
+          jarsigner -verify build/app/outputs/bundle/release/app-release.aab
       - name: Publish APK and checksums
         run: |
           cp "$RUNNER_TEMP/tv/phone_remote/build/app/outputs/flutter-apk/app-release.apk" tv/champaks-tv-remote-v1.5.apk
@@ -106,6 +123,3 @@ jobs:
         with:
           name: champaks-tv-remote-v1.5-play-signed-aab
           path: ${{ runner.temp }}/tv/phone_remote/build/app/outputs/bundle/release/app-release.aab
-      - name: Warn when Play upload signing is unavailable
-        if: steps.signing.outputs.play_signed != 'true'
-        run: echo "::warning::AAB built but not Play upload-signed. Configure the four ANDROID_UPLOAD_* GitHub Actions secrets for a signed bundle."
