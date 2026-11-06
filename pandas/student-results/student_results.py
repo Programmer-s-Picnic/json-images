@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Read the source CSV into a DataFrame
-df = pd.read_csv("inputmarks_25rows.csv")
+df = pd.read_csv("inputmarks.csv")
 subjects = ["Physics", "Maths", "Chemistry"]
 
 # Pass only if ALL three subjects have marks of at least 40
