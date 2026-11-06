@@ -1,0 +1,630 @@
+{
+  "kicker": "Learn With Champak • Pandas 0 to Infinity • Level 4",
+  "footer": "Learn With Champak • Pandas • Sorting and Grouping",
+  "settings": {
+    "questionsPerAttempt": 10,
+    "durationMinutes": 10,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "allowUntimed": true,
+    "showReview": true
+  },
+  "title": "Pandas Level 4: Sorting and Grouping Code-to-Output Quiz",
+  "subtitle": "Each attempt selects 10 questions from a 50-question bank.",
+  "instructions": "Read the Pandas code and select its exact output.",
+  "seo": {
+    "enabled": true,
+    "title": "Pandas Sorting and Grouping Code-to-Output Quiz | Learn With Champak",
+    "description": "Practice Pandas sorting and grouping with 50 code-to-output questions.",
+    "keywords": "Pandas sorting quiz, groupby, sort_values, aggregation, transform, ranking",
+    "canonicalUrl": "",
+    "ogImage": "https://programmer-s-picnic.github.io/json-images/mee.jpg",
+    "imageAlt": "Pandas Sorting and Grouping Code-to-Output Quiz",
+    "type": "website",
+    "siteName": "Learn With Champak",
+    "language": "en-IN",
+    "educationalLevel": "Beginner to Intermediate"
+  },
+  "questions": [
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.sort_values(\"Marks\",ascending=False,na_position=\"last\")[\"Name\"].head(3).tolist())",
+      "options": [
+        "['Pooja', 'Kabir', 'Tara']",
+        "['Ravi', 'Sita', 'Ishan']",
+        "['Tara', 'Meera', 'Pooja']",
+        "['Arjun', 'Asha', 'Dev']"
+      ],
+      "answer": "['Pooja', 'Kabir', 'Tara']",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.sort_values(\"Marks\",ascending=True,na_position=\"last\")[\"Name\"].head(3).tolist())",
+      "options": [
+        "['Tara', 'Meera', 'Pooja']",
+        "['Arjun', 'Asha', 'Dev']",
+        "['Patna', 'Patna', 'Patna']",
+        "['Ravi', 'Sita', 'Ishan']"
+      ],
+      "answer": "['Ravi', 'Sita', 'Ishan']",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.sort_values(\"Hours\",ascending=False)[\"Name\"].head(3).tolist())",
+      "options": [
+        "['Patna', 'Patna', 'Patna']",
+        "11",
+        "['Tara', 'Meera', 'Pooja']",
+        "['Arjun', 'Asha', 'Dev']"
+      ],
+      "answer": "['Tara', 'Meera', 'Pooja']",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.sort_values(\"Name\")[\"Name\"].head(3).tolist())",
+      "options": [
+        "12",
+        "['Arjun', 'Asha', 'Dev']",
+        "['Patna', 'Patna', 'Patna']",
+        "11"
+      ],
+      "answer": "['Arjun', 'Asha', 'Dev']",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.sort_values(\"City\")[\"City\"].head(3).tolist())",
+      "options": [
+        "['Patna', 'Patna', 'Patna']",
+        "11",
+        "12",
+        "1"
+      ],
+      "answer": "['Patna', 'Patna', 'Patna']",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"Marks\"].count())",
+      "options": [
+        "12",
+        "1",
+        "75.82",
+        "11"
+      ],
+      "answer": "11",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(len(df))",
+      "options": [
+        "75.82",
+        "76.0",
+        "12",
+        "1"
+      ],
+      "answer": "12",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"Marks\"].isna().sum())",
+      "options": [
+        "95.0",
+        "1",
+        "75.82",
+        "76.0"
+      ],
+      "answer": "1",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(round(df[\"Marks\"].mean(),2))",
+      "options": [
+        "75.82",
+        "76.0",
+        "95.0",
+        "42.0"
+      ],
+      "answer": "75.82",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"Marks\"].median())",
+      "options": [
+        "95.0",
+        "42.0",
+        "68",
+        "76.0"
+      ],
+      "answer": "76.0",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"Marks\"].max())",
+      "options": [
+        "68",
+        "{'Varanasi': 5, 'Ranchi': 4, 'Patna': 3}",
+        "95.0",
+        "42.0"
+      ],
+      "answer": "95.0",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"Marks\"].min())",
+      "options": [
+        "{'Python': 4, 'Pandas': 4, 'SQL': 4}",
+        "42.0",
+        "68",
+        "{'Varanasi': 5, 'Ranchi': 4, 'Patna': 3}"
+      ],
+      "answer": "42.0",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"Hours\"].sum())",
+      "options": [
+        "68",
+        "{'Varanasi': 5, 'Ranchi': 4, 'Patna': 3}",
+        "{'Python': 4, 'Pandas': 4, 'SQL': 4}",
+        "{'Patna': 3, 'Ranchi': 4, 'Varanasi': 5}"
+      ],
+      "answer": "68",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"City\"].value_counts().to_dict())",
+      "options": [
+        "{'Python': 4, 'Pandas': 4, 'SQL': 4}",
+        "{'Patna': 3, 'Ranchi': 4, 'Varanasi': 5}",
+        "{'Patna': 2, 'Ranchi': 4, 'Varanasi': 5}",
+        "{'Varanasi': 5, 'Ranchi': 4, 'Patna': 3}"
+      ],
+      "answer": "{'Varanasi': 5, 'Ranchi': 4, 'Patna': 3}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"Course\"].value_counts().to_dict())",
+      "options": [
+        "{'Patna': 2, 'Ranchi': 4, 'Varanasi': 5}",
+        "{'Pandas': 4, 'Python': 4, 'SQL': 4}",
+        "{'Python': 4, 'Pandas': 4, 'SQL': 4}",
+        "{'Patna': 3, 'Ranchi': 4, 'Varanasi': 5}"
+      ],
+      "answer": "{'Python': 4, 'Pandas': 4, 'SQL': 4}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\").size().to_dict())",
+      "options": [
+        "{'Pandas': 4, 'Python': 3, 'SQL': 4}",
+        "{'Patna': 3, 'Ranchi': 4, 'Varanasi': 5}",
+        "{'Patna': 2, 'Ranchi': 4, 'Varanasi': 5}",
+        "{'Pandas': 4, 'Python': 4, 'SQL': 4}"
+      ],
+      "answer": "{'Patna': 3, 'Ranchi': 4, 'Varanasi': 5}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Marks\"].count().to_dict())",
+      "options": [
+        "{'Patna': 2, 'Ranchi': 4, 'Varanasi': 5}",
+        "{'Pandas': 4, 'Python': 4, 'SQL': 4}",
+        "{'Pandas': 4, 'Python': 3, 'SQL': 4}",
+        "{'Patna': 18, 'Ranchi': 19, 'Varanasi': 31}"
+      ],
+      "answer": "{'Patna': 2, 'Ranchi': 4, 'Varanasi': 5}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\").size().to_dict())",
+      "options": [
+        "{'Pandas': 4, 'Python': 3, 'SQL': 4}",
+        "{'Patna': 18, 'Ranchi': 19, 'Varanasi': 31}",
+        "{'Pandas': 25, 'Python': 17, 'SQL': 26}",
+        "{'Pandas': 4, 'Python': 4, 'SQL': 4}"
+      ],
+      "answer": "{'Pandas': 4, 'Python': 4, 'SQL': 4}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\")[\"Marks\"].count().to_dict())",
+      "options": [
+        "{'Pandas': 25, 'Python': 17, 'SQL': 26}",
+        "{'Patna': 91.0, 'Ranchi': 84.0, 'Varanasi': 95.0}",
+        "{'Pandas': 4, 'Python': 3, 'SQL': 4}",
+        "{'Patna': 18, 'Ranchi': 19, 'Varanasi': 31}"
+      ],
+      "answer": "{'Pandas': 4, 'Python': 3, 'SQL': 4}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Hours\"].sum().to_dict())",
+      "options": [
+        "{'Patna': 90.0, 'Ranchi': 42.0, 'Varanasi': 67.0}",
+        "{'Patna': 18, 'Ranchi': 19, 'Varanasi': 31}",
+        "{'Pandas': 25, 'Python': 17, 'SQL': 26}",
+        "{'Patna': 91.0, 'Ranchi': 84.0, 'Varanasi': 95.0}"
+      ],
+      "answer": "{'Patna': 18, 'Ranchi': 19, 'Varanasi': 31}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\")[\"Hours\"].sum().to_dict())",
+      "options": [
+        "{'Pandas': 25, 'Python': 17, 'SQL': 26}",
+        "{'Patna': 91.0, 'Ranchi': 84.0, 'Varanasi': 95.0}",
+        "{'Patna': 90.0, 'Ranchi': 42.0, 'Varanasi': 67.0}",
+        "{'Pandas': 91.0, 'Python': 88.0, 'SQL': 95.0}"
+      ],
+      "answer": "{'Pandas': 25, 'Python': 17, 'SQL': 26}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Marks\"].max().to_dict())",
+      "options": [
+        "{'Patna': 90.0, 'Ranchi': 42.0, 'Varanasi': 67.0}",
+        "{'Pandas': 91.0, 'Python': 88.0, 'SQL': 95.0}",
+        "{'Pandas': 55.0, 'Python': 42.0, 'SQL': 67.0}",
+        "{'Patna': 91.0, 'Ranchi': 84.0, 'Varanasi': 95.0}"
+      ],
+      "answer": "{'Patna': 91.0, 'Ranchi': 84.0, 'Varanasi': 95.0}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Marks\"].min().to_dict())",
+      "options": [
+        "{'Pandas': 55.0, 'Python': 42.0, 'SQL': 67.0}",
+        "{'Patna': 90.5, 'Ranchi': 62.75, 'Varanasi': 80.4}",
+        "{'Patna': 90.0, 'Ranchi': 42.0, 'Varanasi': 67.0}",
+        "{'Pandas': 91.0, 'Python': 88.0, 'SQL': 95.0}"
+      ],
+      "answer": "{'Patna': 90.0, 'Ranchi': 42.0, 'Varanasi': 67.0}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\")[\"Marks\"].max().to_dict())",
+      "options": [
+        "{'Pandas': 74.5, 'Python': 71.33, 'SQL': 80.5}",
+        "{'Pandas': 91.0, 'Python': 88.0, 'SQL': 95.0}",
+        "{'Pandas': 55.0, 'Python': 42.0, 'SQL': 67.0}",
+        "{'Patna': 90.5, 'Ranchi': 62.75, 'Varanasi': 80.4}"
+      ],
+      "answer": "{'Pandas': 91.0, 'Python': 88.0, 'SQL': 95.0}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\")[\"Marks\"].min().to_dict())",
+      "options": [
+        "{'Pandas': 55.0, 'Python': 42.0, 'SQL': 67.0}",
+        "{'Patna': 90.5, 'Ranchi': 62.75, 'Varanasi': 80.4}",
+        "{'Pandas': 74.5, 'Python': 71.33, 'SQL': 80.5}",
+        "{'Patna': 6.0, 'Ranchi': 4.75, 'Varanasi': 6.2}"
+      ],
+      "answer": "{'Pandas': 55.0, 'Python': 42.0, 'SQL': 67.0}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Marks\"].mean().round(2).to_dict())",
+      "options": [
+        "{'Pandas': 74.5, 'Python': 71.33, 'SQL': 80.5}",
+        "{'Patna': 6.0, 'Ranchi': 4.75, 'Varanasi': 6.2}",
+        "{'Pandas': 6.25, 'Python': 4.25, 'SQL': 6.5}",
+        "{'Patna': 90.5, 'Ranchi': 62.75, 'Varanasi': 80.4}"
+      ],
+      "answer": "{'Patna': 90.5, 'Ranchi': 62.75, 'Varanasi': 80.4}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\")[\"Marks\"].mean().round(2).to_dict())",
+      "options": [
+        "{'Pandas': 6.25, 'Python': 4.25, 'SQL': 6.5}",
+        "[['Patna', 'Kabir'], ['Patna', 'Tara'], ['Patna', 'Arjun']]",
+        "{'Pandas': 74.5, 'Python': 71.33, 'SQL': 80.5}",
+        "{'Patna': 6.0, 'Ranchi': 4.75, 'Varanasi': 6.2}"
+      ],
+      "answer": "{'Pandas': 74.5, 'Python': 71.33, 'SQL': 80.5}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Hours\"].mean().round(2).to_dict())",
+      "options": [
+        "[0, 1, 2]",
+        "{'Patna': 6.0, 'Ranchi': 4.75, 'Varanasi': 6.2}",
+        "{'Pandas': 6.25, 'Python': 4.25, 'SQL': 6.5}",
+        "[['Patna', 'Kabir'], ['Patna', 'Tara'], ['Patna', 'Arjun']]"
+      ],
+      "answer": "{'Patna': 6.0, 'Ranchi': 4.75, 'Varanasi': 6.2}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\")[\"Hours\"].mean().round(2).to_dict())",
+      "options": [
+        "{'Pandas': 6.25, 'Python': 4.25, 'SQL': 6.5}",
+        "[['Patna', 'Kabir'], ['Patna', 'Tara'], ['Patna', 'Arjun']]",
+        "[0, 1, 2]",
+        "['Asha', 'Ravi', 'Meera']"
+      ],
+      "answer": "{'Pandas': 6.25, 'Python': 4.25, 'SQL': 6.5}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.sort_values([\"City\",\"Marks\"],ascending=[True,False],na_position=\"last\")[[\"City\",\"Name\"]].head(3).values.tolist())",
+      "options": [
+        "[0, 1, 2]",
+        "['Asha', 'Ravi', 'Meera']",
+        "{'Patna': 181.0, 'Ranchi': 251.0, 'Varanasi': 402.0}",
+        "[['Patna', 'Kabir'], ['Patna', 'Tara'], ['Patna', 'Arjun']]"
+      ],
+      "answer": "[['Patna', 'Kabir'], ['Patna', 'Tara'], ['Patna', 'Arjun']]",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nr=df.sort_values(\"Marks\",ascending=False); print(r.reset_index(drop=True).index[:3].tolist())",
+      "options": [
+        "{'Patna': 181.0, 'Ranchi': 251.0, 'Varanasi': 402.0}",
+        "{'Pandas': 298.0, 'Python': 214.0, 'SQL': 322.0}",
+        "[0, 1, 2]",
+        "['Asha', 'Ravi', 'Meera']"
+      ],
+      "answer": "[0, 1, 2]",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nr=df.sort_values(\"Marks\",ascending=False); print(r.sort_index()[\"Name\"].head(3).tolist())",
+      "options": [
+        "12",
+        "['Asha', 'Ravi', 'Meera']",
+        "{'Patna': 181.0, 'Ranchi': 251.0, 'Varanasi': 402.0}",
+        "{'Pandas': 298.0, 'Python': 214.0, 'SQL': 322.0}"
+      ],
+      "answer": "['Asha', 'Ravi', 'Meera']",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Marks\"].sum().to_dict())",
+      "options": [
+        "{'Patna': 181.0, 'Ranchi': 251.0, 'Varanasi': 402.0}",
+        "{'Pandas': 298.0, 'Python': 214.0, 'SQL': 322.0}",
+        "12",
+        "5"
+      ],
+      "answer": "{'Patna': 181.0, 'Ranchi': 251.0, 'Varanasi': 402.0}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\")[\"Marks\"].sum().to_dict())",
+      "options": [
+        "12",
+        "5",
+        "3",
+        "{'Pandas': 298.0, 'Python': 214.0, 'SQL': 322.0}"
+      ],
+      "answer": "{'Pandas': 298.0, 'Python': 214.0, 'SQL': 322.0}",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby([\"City\",\"Course\"]).size().sum())",
+      "options": [
+        "3",
+        "1",
+        "12",
+        "5"
+      ],
+      "answer": "12",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\").size().max())",
+      "options": [
+        "1.0",
+        "5",
+        "3",
+        "1"
+      ],
+      "answer": "5",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\").size().min())",
+      "options": [
+        "3",
+        "1",
+        "1.0",
+        "2.0"
+      ],
+      "answer": "3",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\").size().nunique())",
+      "options": [
+        "1.0",
+        "2.0",
+        "3.0",
+        "1"
+      ],
+      "answer": "1",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"Marks\"].rank(ascending=False,method=\"min\").loc[10])",
+      "options": [
+        "3.0",
+        "80.4",
+        "1.0",
+        "2.0"
+      ],
+      "answer": "1.0",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"Marks\"].rank(ascending=False,method=\"min\").loc[3])",
+      "options": [
+        "62.75",
+        "2.0",
+        "3.0",
+        "80.4"
+      ],
+      "answer": "2.0",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df[\"Marks\"].rank(ascending=False,method=\"min\").loc[6])",
+      "options": [
+        "3.0",
+        "80.4",
+        "62.75",
+        "90.5"
+      ],
+      "answer": "3.0",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Marks\"].transform(\"mean\").round(2).iloc[0])",
+      "options": [
+        "62.75",
+        "90.5",
+        "71.33",
+        "80.4"
+      ],
+      "answer": "80.4",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Marks\"].transform(\"mean\").round(2).iloc[1])",
+      "options": [
+        "71.33",
+        "74.5",
+        "62.75",
+        "90.5"
+      ],
+      "answer": "62.75",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Marks\"].transform(\"mean\").round(2).iloc[3])",
+      "options": [
+        "80.5",
+        "90.5",
+        "71.33",
+        "74.5"
+      ],
+      "answer": "90.5",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\")[\"Marks\"].transform(\"mean\").round(2).iloc[0])",
+      "options": [
+        "71.33",
+        "74.5",
+        "80.5",
+        "[95.0, 91.0, 90.0, 88.0, 84.0]"
+      ],
+      "answer": "71.33",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\")[\"Marks\"].transform(\"mean\").round(2).iloc[2])",
+      "options": [
+        "80.5",
+        "[95.0, 91.0, 90.0, 88.0, 84.0]",
+        "[42.0, 55.0, 67.0, 70.0, 76.0]",
+        "74.5"
+      ],
+      "answer": "74.5",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"Course\")[\"Marks\"].transform(\"mean\").round(2).iloc[5])",
+      "options": [
+        "[42.0, 55.0, 67.0, 70.0, 76.0]",
+        "Patna",
+        "80.5",
+        "[95.0, 91.0, 90.0, 88.0, 84.0]"
+      ],
+      "answer": "80.5",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.sort_values(\"Marks\",ascending=False,na_position=\"last\")[\"Marks\"].head(5).tolist())",
+      "options": [
+        "['Pooja', 'Kabir', 'Tara']",
+        "[95.0, 91.0, 90.0, 88.0, 84.0]",
+        "[42.0, 55.0, 67.0, 70.0, 76.0]",
+        "Patna"
+      ],
+      "answer": "[95.0, 91.0, 90.0, 88.0, 84.0]",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.sort_values(\"Marks\",ascending=True,na_position=\"last\")[\"Marks\"].head(5).tolist())",
+      "options": [
+        "[42.0, 55.0, 67.0, 70.0, 76.0]",
+        "Patna",
+        "['Pooja', 'Kabir', 'Tara']",
+        "['Ravi', 'Sita', 'Ishan']"
+      ],
+      "answer": "[42.0, 55.0, 67.0, 70.0, 76.0]",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    },
+    {
+      "question": "What is the output of this Pandas program?",
+      "code": "import pandas as pd\ndf=pd.DataFrame([[\"Asha\",\"Varanasi\",\"Python\",88,6],[\"Ravi\",\"Ranchi\",\"Python\",42,4],[\"Meera\",\"Varanasi\",\"Pandas\",76,8],[\"Kabir\",\"Patna\",\"Pandas\",91,7],[\"Nina\",\"Ranchi\",\"Python\",84,5],[\"Ishan\",\"Varanasi\",\"SQL\",67,3],[\"Tara\",\"Patna\",\"SQL\",90,9],[\"Rahul\",\"Varanasi\",\"Pandas\",76,6],[\"Sita\",\"Ranchi\",\"Pandas\",55,4],[\"Arjun\",\"Patna\",\"Python\",None,2],[\"Pooja\",\"Varanasi\",\"SQL\",95,8],[\"Dev\",\"Ranchi\",\"SQL\",70,6]],columns=[\"Name\",\"City\",\"Course\",\"Marks\",\"Hours\"])\nprint(df.groupby(\"City\")[\"Marks\"].mean().idxmax())",
+      "options": [
+        "['Pooja', 'Kabir', 'Tara']",
+        "['Ravi', 'Sita', 'Ishan']",
+        "['Tara', 'Meera', 'Pooja']",
+        "Patna"
+      ],
+      "answer": "Patna",
+      "explanation": "Applies sorting, grouping, aggregation, ranking or transform to the lesson DataFrame."
+    }
+  ]
+}
