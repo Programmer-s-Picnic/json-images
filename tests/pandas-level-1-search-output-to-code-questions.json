@@ -1,0 +1,680 @@
+{
+  "kicker": "Learn With Champak • Pandas 0 to Infinity • Level 1",
+  "footer": "Learn With Champak • Pandas • Search and Filter",
+  "settings": {
+    "questionsPerAttempt": 10,
+    "durationMinutes": 10,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "allowUntimed": true,
+    "showReview": true
+  },
+  "title": "Pandas Level 1: Search and Filter Output-to-Code Quiz",
+  "subtitle": "Each attempt selects 10 questions from a 50-question bank.",
+  "instructions": "Study the output and select the exact Pandas code that produces it.",
+  "seo": {
+    "enabled": true,
+    "title": "Pandas Search and Filter Output-to-Code Quiz | Learn With Champak",
+    "description": "Practice Pandas search and filter with 50 output-to-code questions.",
+    "keywords": "Pandas search quiz, DataFrame filter, loc iloc, query isin between",
+    "canonicalUrl": "",
+    "ogImage": "https://programmer-s-picnic.github.io/json-images/mee.jpg",
+    "imageAlt": "Pandas Search and Filter Output-to-Code Quiz",
+    "type": "website",
+    "siteName": "Learn With Champak",
+    "language": "en-IN",
+    "educationalLevel": "Beginner to Intermediate"
+  },
+  "questions": [
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Ravi', 'Meera', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[[\"Name\",\"Marks\"]].shape)",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[1,\"Name\"])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Name\"].tolist())",
+      "explanation": "Selects the Name column."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[88, 42, 76, 91]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[[\"Name\",\"Marks\"]].shape)",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[1,\"Name\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[1,2])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].tolist())",
+      "explanation": "Selects Marks."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "(4, 2)",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[1,2])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[0:2,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[[\"Name\",\"Marks\"]].shape)",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[1,\"Name\"])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[[\"Name\",\"Marks\"]].shape)",
+      "explanation": "Four rows and two columns."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "Ravi",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[0:2,0].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[1,\"Name\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[1,2])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[0:2,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[1,\"Name\"])",
+      "explanation": "loc uses label 1."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "42",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[1,2])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[0:2,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[0:2,0].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=40,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[1,2])",
+      "explanation": "iloc uses integer positions."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Ravi', 'Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[0:2,0].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=40,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=50,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[0:2,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[0:2,\"Name\"].tolist())",
+      "explanation": "loc slice includes stop label."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Ravi']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=50,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=75,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[0:2,0].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=40,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[0:2,0].tolist())",
+      "explanation": "iloc slice excludes stop."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Ravi', 'Meera', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=80,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=40,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=50,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=75,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=40,\"Name\"].tolist())",
+      "explanation": "Marks >= 40."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Meera', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=50,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=75,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=80,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=90,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=50,\"Name\"].tolist())",
+      "explanation": "Marks >= 50."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Meera', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=80,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=90,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=95,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=75,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=75,\"Name\"].tolist())",
+      "explanation": "Marks >= 75."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=95,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<50,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=80,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=90,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=80,\"Name\"].tolist())",
+      "explanation": "Marks >= 80."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<75,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=90,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=95,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<50,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=90,\"Name\"].tolist())",
+      "explanation": "Marks >= 90."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=95,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<50,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<75,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<80,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]>=95,\"Name\"].tolist())",
+      "explanation": "Marks >= 95."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Ravi']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<75,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<80,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<90,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<50,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<50,\"Name\"].tolist())",
+      "explanation": "Marks < 50."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Ravi']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<90,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Varanasi\",\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<75,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<80,\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<75,\"Name\"].tolist())",
+      "explanation": "Marks < 75."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Ravi', 'Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Ranchi\",\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<80,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<90,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Varanasi\",\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<80,\"Name\"].tolist())",
+      "explanation": "Marks < 80."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Ravi', 'Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<90,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Varanasi\",\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Ranchi\",\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Patna\",\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"]<90,\"Name\"].tolist())",
+      "explanation": "Marks < 90."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Ranchi\",\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Patna\",\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(40,80),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Varanasi\",\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Varanasi\",\"Name\"].tolist())",
+      "explanation": "Filters Varanasi."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Ravi']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(40,80),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(70,90),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Ranchi\",\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Patna\",\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Ranchi\",\"Name\"].tolist())",
+      "explanation": "Filters Ranchi."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(80,100),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Patna\",\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(40,80),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(70,90),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"]==\"Patna\",\"Name\"].tolist())",
+      "explanation": "Filters Patna."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Ravi', 'Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(40,80),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(70,90),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(80,100),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(42,76),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(40,80),\"Name\"].tolist())",
+      "explanation": "between is inclusive."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(80,100),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(42,76),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"].isin([\"Ranchi\",\"Patna\"]),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(70,90),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(70,90),\"Name\"].tolist())",
+      "explanation": "between is inclusive."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"].isin([\"Ranchi\",\"Patna\"]),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"].isin([\"Varanasi\",\"Patna\"]),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(80,100),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(42,76),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(80,100),\"Name\"].tolist())",
+      "explanation": "between is inclusive."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Ravi', 'Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[~df[\"FeePaid\"],\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(42,76),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"].isin([\"Ranchi\",\"Patna\"]),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"].isin([\"Varanasi\",\"Patna\"]),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].between(42,76),\"Name\"].tolist())",
+      "explanation": "between is inclusive."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Ravi', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"].isin([\"Ranchi\",\"Patna\"]),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"].isin([\"Varanasi\",\"Patna\"]),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[~df[\"FeePaid\"],\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"FeePaid\"],\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"].isin([\"Ranchi\",\"Patna\"]),\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Meera', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[~df[\"FeePaid\"],\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"FeePaid\"],\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint((df[\"Marks\"]>=75).sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"].isin([\"Varanasi\",\"Patna\"]),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"City\"].isin([\"Varanasi\",\"Patna\"]),\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Ravi', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint((df[\"Marks\"]>=75).sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"FeePaid\"].sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[~df[\"FeePaid\"],\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"FeePaid\"],\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[~df[\"FeePaid\"],\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(len(df))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"FeePaid\"],\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint((df[\"Marks\"]>=75).sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"FeePaid\"].sum())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"FeePaid\"],\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "3",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint((df[\"Marks\"]>=75).sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"FeePaid\"].sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(len(df))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"City\"].value_counts().to_dict())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint((df[\"Marks\"]>=75).sum())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "2",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(len(df))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"City\"].value_counts().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].idxmax(),\"Name\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"FeePaid\"].sum())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"FeePaid\"].sum())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].idxmax(),\"Name\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].idxmin(),\"Name\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(len(df))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"City\"].value_counts().to_dict())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(len(df))",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "{'Varanasi': 2, 'Ranchi': 1, 'Patna': 1}",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].nlargest(2).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"City\"].value_counts().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].idxmax(),\"Name\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].idxmin(),\"Name\"])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"City\"].value_counts().to_dict())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "Kabir",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].idxmax(),\"Name\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].idxmin(),\"Name\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].nlargest(2).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].nsmallest(2).tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].idxmax(),\"Name\"])",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "Ravi",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].nlargest(2).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].nsmallest(2).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"Marks>=80\")[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].idxmin(),\"Name\"])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Marks\"].idxmin(),\"Name\"])",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[91, 88]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"Marks>=80\")[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"City=='Varanasi'\")[\"Marks\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].nlargest(2).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].nsmallest(2).tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].nlargest(2).tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[42, 76]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"Marks>=75 and FeePaid\")[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].nsmallest(2).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"Marks>=80\")[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"City=='Varanasi'\")[\"Marks\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].nsmallest(2).tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"Marks>=80\")[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"City=='Varanasi'\")[\"Marks\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"Marks>=75 and FeePaid\")[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.contains(\"a\",case=False,regex=False),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"Marks>=80\")[\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[88, 76]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"Marks>=75 and FeePaid\")[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.contains(\"a\",case=False,regex=False),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.startswith(\"M\"),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"City=='Varanasi'\")[\"Marks\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"City=='Varanasi'\")[\"Marks\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.startswith(\"M\"),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.endswith(\"i\"),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"Marks>=75 and FeePaid\")[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.contains(\"a\",case=False,regex=False),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.query(\"Marks>=75 and FeePaid\")[\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Ravi', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.len()==4,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.contains(\"a\",case=False,regex=False),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.startswith(\"M\"),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.endswith(\"i\"),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.contains(\"a\",case=False,regex=False),\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.startswith(\"M\"),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.endswith(\"i\"),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.len()==4,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.at[2,\"City\"])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.startswith(\"M\"),\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Ravi']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.len()==4,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.at[2,\"City\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iat[3,1])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.endswith(\"i\"),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.endswith(\"i\"),\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Ravi']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iat[3,1])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[-1][\"Name\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.len()==4,\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.at[2,\"City\"])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"Name\"].str.len()==4,\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "Varanasi",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[[0,2]][\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.at[2,\"City\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iat[3,1])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[-1][\"Name\"])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.at[2,\"City\"])",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "Patna",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iat[3,1])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[-1][\"Name\"])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[[0,2]][\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[[1,3],\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iat[3,1])",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "Kabir",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[[0,2]][\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[[1,3],\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"FeePaid\"],\"Marks\"].sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[-1][\"Name\"])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[-1][\"Name\"])",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Meera']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"FeePaid\"],\"Marks\"].sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[~df[\"FeePaid\"],\"Marks\"].max())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[[0,2]][\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[[1,3],\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.iloc[[0,2]][\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Ravi', 'Kabir']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[[1,3],\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"FeePaid\"],\"Marks\"].sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[~df[\"FeePaid\"],\"Marks\"].max())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[[1,3],\"Name\"].tolist())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "164",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"FeePaid\"],\"Marks\"].sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[~df[\"FeePaid\"],\"Marks\"].max())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[df[\"FeePaid\"],\"Marks\"].sum())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "91",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[\"Marks\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df[[\"Name\",\"Marks\"]].shape)",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[~df[\"FeePaid\"],\"Marks\"].max())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\"Asha\",\"Ravi\",\"Meera\",\"Kabir\"],\"City\":[\"Varanasi\",\"Ranchi\",\"Varanasi\",\"Patna\"],\"Marks\":[88,42,76,91],\"FeePaid\":[True,False,True,False]})\nprint(df.loc[~df[\"FeePaid\"],\"Marks\"].max())",
+      "explanation": "Applies the displayed Pandas selection/filter operation."
+    }
+  ]
+}
