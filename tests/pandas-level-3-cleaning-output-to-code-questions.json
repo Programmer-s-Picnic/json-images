@@ -1,0 +1,680 @@
+{
+  "kicker": "Learn With Champak • Pandas 0 to Infinity • Level 3",
+  "footer": "Learn With Champak • Pandas • DataFrame Cleaning",
+  "settings": {
+    "questionsPerAttempt": 10,
+    "durationMinutes": 10,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "allowUntimed": true,
+    "showReview": true
+  },
+  "title": "Pandas Level 3: DataFrame Cleaning Output-to-Code Quiz",
+  "subtitle": "Each attempt selects 10 questions from a 50-question bank.",
+  "instructions": "Study the output and select the exact Pandas code that produces it.",
+  "seo": {
+    "enabled": true,
+    "title": "Pandas DataFrame Cleaning Output-to-Code Quiz | Learn With Champak",
+    "description": "Practice Pandas dataframe cleaning with 50 output-to-code questions.",
+    "keywords": "Pandas cleaning quiz, missing values, fillna, drop_duplicates, to_numeric",
+    "canonicalUrl": "",
+    "ogImage": "https://programmer-s-picnic.github.io/json-images/mee.jpg",
+    "imageAlt": "Pandas DataFrame Cleaning Output-to-Code Quiz",
+    "type": "website",
+    "siteName": "Learn With Champak",
+    "language": "en-IN",
+    "educationalLevel": "Beginner to Intermediate"
+  },
+  "questions": [
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "{'Name': 1, 'City': 1, 'Marks': 2, 'Attendance': 1}",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().sum().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df.isna().sum().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df[\"Marks\"].isna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df[\"Name\"].notna().sum()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().sum().to_dict())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "5",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df[\"Marks\"].isna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df[\"Name\"].notna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df.duplicated().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df.isna().sum().sum()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df.isna().sum().sum()))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "2",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df.duplicated().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.drop_duplicates()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df[\"Marks\"].isna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df[\"Name\"].notna().sum()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df[\"Marks\"].isna().sum()))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().index.tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df[\"Name\"].notna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df.duplicated().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.drop_duplicates()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df[\"Name\"].notna().sum()))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "1",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df.duplicated().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.drop_duplicates()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().index.tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().reset_index(drop=True).index.tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df.duplicated().sum()))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().index.tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().reset_index(drop=True).index.tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); print(df[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.drop_duplicates()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.drop_duplicates()))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[0, 1, 2, 4]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); print(df[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"City\"]=df[\"City\"].str.title(); print(df[\"City\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().index.tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().reset_index(drop=True).index.tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().index.tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[0, 1, 2, 3]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.lower().tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().reset_index(drop=True).index.tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); print(df[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"City\"]=df[\"City\"].str.title(); print(df[\"City\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().reset_index(drop=True).index.tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Ravi', 'Meera', 'Meera', None]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); print(df[\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"City\"]=df[\"City\"].str.title(); print(df[\"City\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.lower().tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.upper().tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); print(df[\"Name\"].tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Varanasi', 'Ranchi', 'Patna', 'Patna', None]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.lower().tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.upper().tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].fillna(\"Unknown\").tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"City\"]=df[\"City\"].str.title(); print(df[\"City\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"City\"]=df[\"City\"].str.title(); print(df[\"City\"].tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['varanasi', 'ranchi', 'patna', 'patna', None]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].fillna(\"Unknown\").tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].fillna(\"Unknown\").tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.lower().tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.upper().tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.lower().tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['VARANASI', 'RANCHI', 'PATNA', 'PATNA', None]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Marks\"].fillna(\"Missing\").tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.upper().tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].fillna(\"Unknown\").tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].fillna(\"Unknown\").tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.upper().tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[' Asha ', 'Ravi', 'Meera', 'Meera', 'Unknown']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].fillna(\"Unknown\").tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].fillna(\"Unknown\").tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Marks\"].fillna(\"Missing\").tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Attendance\"].fillna(0).tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].fillna(\"Unknown\").tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['varanasi', 'RANCHI', 'Patna', 'Patna', 'Unknown']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Marks\"].fillna(\"Missing\").tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Attendance\"].fillna(0).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int(df[\"Marks\"].isna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].fillna(\"Unknown\").tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].fillna(\"Unknown\").tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['88', '42', 'Missing', 'Missing', 'absent']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int(df[\"Marks\"].isna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int(df[\"Marks\"].notna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Marks\"].fillna(\"Missing\").tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Attendance\"].fillna(0).tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Marks\"].fillna(\"Missing\").tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[92.0, 75.0, 80.0, 80.0, 0.0]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].mean())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Attendance\"].fillna(0).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int(df[\"Marks\"].isna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int(df[\"Marks\"].notna().sum()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Attendance\"].fillna(0).tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "3",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int(df[\"Marks\"].isna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int(df[\"Marks\"].notna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].mean())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].median())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int(df[\"Marks\"].isna().sum()))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "2",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].mean())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].median())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].fillna(df[\"Marks\"].median()).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int(df[\"Marks\"].notna().sum()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int(df[\"Marks\"].notna().sum()))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "65.0",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].fillna(df[\"Marks\"].median()).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].mean())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].median())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].mean())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "65.0",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna(subset=[\"Name\"])))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].median())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].fillna(df[\"Marks\"].median()).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].median())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[88.0, 42.0, 65.0, 65.0, 65.0]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].fillna(df[\"Marks\"].median()).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna(subset=[\"Name\"])))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna(subset=[\"Marks\"])))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].fillna(df[\"Marks\"].median()).tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "3",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna(subset=[\"Name\"])))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna(subset=[\"Marks\"])))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(how=\"all\").shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna()))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(how=\"all\").shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(thresh=3).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna(subset=[\"Name\"])))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna(subset=[\"Marks\"])))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna(subset=[\"Name\"])))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "3",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(subset=[\"Name\",\"City\"]).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna(subset=[\"Marks\"])))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(how=\"all\").shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(thresh=3).shape[0])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(len(df.dropna(subset=[\"Marks\"])))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "5",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(how=\"all\").shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(thresh=3).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(subset=[\"Name\",\"City\"]).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates(subset=[\"Name\"]).shape[0])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(how=\"all\").shape[0])",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(subset=[\"Name\",\"City\"]).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates(subset=[\"Name\"]).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates(subset=[\"City\"]).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(thresh=3).shape[0])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(thresh=3).shape[0])",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates(subset=[\"City\"]).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.duplicated(subset=[\"Name\"],keep=False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(subset=[\"Name\",\"City\"]).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates(subset=[\"Name\"]).shape[0])"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.dropna(subset=[\"Name\",\"City\"]).shape[0])",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.duplicated(subset=[\"City\"],keep=False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates(subset=[\"Name\"]).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates(subset=[\"City\"]).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.duplicated(subset=[\"Name\"],keep=False).tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates(subset=[\"Name\"]).shape[0])",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates(subset=[\"City\"]).shape[0])",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.duplicated(subset=[\"Name\"],keep=False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.duplicated(subset=[\"City\"],keep=False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].between(0,100).fillna(False).tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates(subset=[\"City\"]).shape[0])",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[False, False, True, True, False]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.duplicated(subset=[\"City\"],keep=False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].between(0,100).fillna(False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Attendance\"]=pd.to_numeric(df[\"Attendance\"],errors=\"coerce\"); print(df[\"Attendance\"].between(0,100).fillna(False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.duplicated(subset=[\"Name\"],keep=False).tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.duplicated(subset=[\"Name\"],keep=False).tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[False, False, True, True, False]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Attendance\"]=pd.to_numeric(df[\"Attendance\"],errors=\"coerce\"); print(df[\"Attendance\"].between(0,100).fillna(False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].str.strip().str.len().tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.duplicated(subset=[\"City\"],keep=False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].between(0,100).fillna(False).tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.duplicated(subset=[\"City\"],keep=False).tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[True, True, False, False, False]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.title().nunique(dropna=True))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].between(0,100).fillna(False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Attendance\"]=pd.to_numeric(df[\"Attendance\"],errors=\"coerce\"); print(df[\"Attendance\"].between(0,100).fillna(False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].str.strip().str.len().tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].between(0,100).fillna(False).tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[True, True, True, True, False]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Attendance\"]=pd.to_numeric(df[\"Attendance\"],errors=\"coerce\"); print(df[\"Attendance\"].between(0,100).fillna(False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].str.strip().str.len().tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.title().nunique(dropna=True))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().any().to_dict())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Attendance\"]=pd.to_numeric(df[\"Attendance\"],errors=\"coerce\"); print(df[\"Attendance\"].between(0,100).fillna(False).tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[4.0, 4.0, 5.0, 5.0, nan]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.title().nunique(dropna=True))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().any().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().all().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].str.strip().str.len().tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].str.strip().str.len().tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "3",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().all().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Marks\"].replace(\"absent\",None).isna().sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.title().nunique(dropna=True))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().any().to_dict())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].str.title().nunique(dropna=True))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "{'Name': True, 'City': True, 'Marks': True, 'Attendance': True}",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].replace({\"RANCHI\":\"Ranchi\"}).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().any().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().all().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Marks\"].replace(\"absent\",None).isna().sum())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().any().to_dict())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "{'Name': False, 'City': False, 'Marks': False, 'Attendance': False}",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().all().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Marks\"].replace(\"absent\",None).isna().sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].replace({\"RANCHI\":\"Ranchi\"}).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); print(int(df[\"Name\"].eq(\"Asha\").sum()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().all().to_dict())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "3",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].replace({\"RANCHI\":\"Ranchi\"}).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); print(int(df[\"Name\"].eq(\"Asha\").sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"City\"]=df[\"City\"].str.title(); print(df[\"City\"].value_counts().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Marks\"].replace(\"absent\",None).isna().sum())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Marks\"].replace(\"absent\",None).isna().sum())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['varanasi', 'Ranchi', 'Patna', 'Patna', None]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"City\"]=df[\"City\"].str.title(); print(df[\"City\"].value_counts().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df.loc[df[\"Marks\"].notna(),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].replace({\"RANCHI\":\"Ranchi\"}).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); print(int(df[\"Name\"].eq(\"Asha\").sum()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"City\"].replace({\"RANCHI\":\"Ranchi\"}).tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "1",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); df[\"City\"]=df[\"City\"].str.title(); print(df.loc[0,[\"Name\",\"City\"]].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); print(int(df[\"Name\"].eq(\"Asha\").sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"City\"]=df[\"City\"].str.title(); print(df[\"City\"].value_counts().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df.loc[df[\"Marks\"].notna(),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); print(int(df[\"Name\"].eq(\"Asha\").sum()))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "{'Patna': 2, 'Varanasi': 1, 'Ranchi': 1}",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"City\"]=df[\"City\"].str.title(); print(df[\"City\"].value_counts().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df.loc[df[\"Marks\"].notna(),\"Name\"].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); df[\"City\"]=df[\"City\"].str.title(); print(df.loc[0,[\"Name\",\"City\"]].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nbefore=df[\"Marks\"].notna(); df[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int((before&df[\"Marks\"].isna()).sum()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"City\"]=df[\"City\"].str.title(); print(df[\"City\"].value_counts().to_dict())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[' Asha ', 'Ravi']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); df[\"City\"]=df[\"City\"].str.title(); print(df.loc[0,[\"Name\",\"City\"]].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nbefore=df[\"Marks\"].notna(); df[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int((before&df[\"Marks\"].isna()).sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].fillna(0).sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df.loc[df[\"Marks\"].notna(),\"Name\"].tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df.loc[df[\"Marks\"].notna(),\"Name\"].tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "['Asha', 'Varanasi']",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].fillna(0).sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].str.strip().duplicated(keep=False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); df[\"City\"]=df[\"City\"].str.title(); print(df.loc[0,[\"Name\",\"City\"]].tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nbefore=df[\"Marks\"].notna(); df[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int((before&df[\"Marks\"].isna()).sum()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Name\"]=df[\"Name\"].str.strip(); df[\"City\"]=df[\"City\"].str.title(); print(df.loc[0,[\"Name\",\"City\"]].tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "1",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().isna().sum().sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nbefore=df[\"Marks\"].notna(); df[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int((before&df[\"Marks\"].isna()).sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].fillna(0).sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].str.strip().duplicated(keep=False).tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nbefore=df[\"Marks\"].notna(); df[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(int((before&df[\"Marks\"].isna()).sum()))",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "130.0",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].fillna(0).sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].str.strip().duplicated(keep=False).tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().isna().sum().sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].dtype.kind)"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].fillna(0).sum())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[False, False, True, True, False]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().isna().sum().sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].dtype.kind)",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Attendance\"].notna().sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].str.strip().duplicated(keep=False).tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].str.strip().duplicated(keep=False).tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Attendance\"].notna().sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].isna().tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().isna().sum().sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].dtype.kind)"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.drop_duplicates().isna().sum().sum())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "f",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().sum().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].dtype.kind)",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Attendance\"].notna().sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].isna().tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\ndf[\"Marks\"]=pd.to_numeric(df[\"Marks\"],errors=\"coerce\"); print(df[\"Marks\"].dtype.kind)",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "4",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Attendance\"].notna().sum())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].isna().tolist())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().sum().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df.isna().sum().sum()))"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Attendance\"].notna().sum())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    },
+    {
+      "question": "Which Pandas program produces this exact output?",
+      "output": "[False, False, False, False, True]",
+      "optionType": "code",
+      "options": [
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df.isna().sum().to_dict())",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df.isna().sum().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(int(df[\"Marks\"].isna().sum()))",
+        "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].isna().tolist())"
+      ],
+      "answer": "import pandas as pd\ndf=pd.DataFrame({\"Name\":[\" Asha \",\"Ravi\",\"Meera\",\"Meera\",None],\"City\":[\"varanasi\",\"RANCHI\",\"Patna\",\"Patna\",None],\"Marks\":[\"88\",\"42\",None,None,\"absent\"],\"Attendance\":[92,75,80,80,None]})\nprint(df[\"Name\"].isna().tolist())",
+      "explanation": "Applies the displayed cleaning operation to the messy DataFrame."
+    }
+  ]
+}
