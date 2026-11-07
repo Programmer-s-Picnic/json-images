@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#162f4b">
+<title>Simple Cards | Invitation Atelier · Learn With Champak</title>
+<meta name="description" content="Make and share exquisite greeting cards in minutes. No date, time, address or location needed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700;800&family=Great+Vibes&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#183450;--ink:#20334d;--line:#dfe7ee;--soft:#f7f9fc;--blue:#22476d}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#f1f7fc,#faf5f0);color:var(--ink);font-family:"DM Sans",Arial,sans-serif;min-height:100vh}
+button,input,textarea,select{font:inherit}button{cursor:pointer}a{color:inherit}
+.top{background:#fff;border-bottom:1px solid var(--line);padding:13px max(18px,calc((100vw - 1240px)/2));display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.brand{display:flex;gap:11px;align-items:center;text-decoration:none}.mark{background:#243d5c;color:#f6e4c2;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font:27px Georgia,serif}.brand b{display:block;font:700 25px "Cormorant Garamond",Georgia,serif}.brand small{display:block;font-size:10px;color:#788797;font-weight:800;letter-spacing:.08em}
+.btn{border:1px solid #cfdce7;border-radius:11px;background:#fff;color:#234365;padding:11px 16px;font-size:13px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:43px}
+.btn.primary{color:#fff;border-color:#213f61;background:#213f61}.btn.green{color:#fff;border-color:#168659;background:#168659}.btn:hover{filter:brightness(.96)}.btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #d2a65b;outline-offset:2px}
+.wrap{width:calc(100% - 36px);max-width:1240px;margin:0 auto}.lead{padding:38px 0 29px}.eyebrow{font-size:11px;color:#9d7444;letter-spacing:.17em;font-weight:800;text-transform:uppercase}
+h1{font:600 clamp(39px,5vw,62px)/1.02 "Cormorant Garamond",Georgia,serif;margin:8px 0;color:#1d3450}h1 em{color:#a47a51;font-weight:500}.lead p{font-size:15px;color:#667889;line-height:1.65;margin:10px 0}
+.modeNav{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.modeNav .btn.selected{background:#e4eef9;border-color:#9ab8d6}
+.workspace{display:grid;grid-template-columns:minmax(310px,520px) minmax(0,1fr);gap:26px;align-items:start;padding-bottom:55px}
+.panel{border:1px solid var(--line);border-radius:21px;background:#fff;overflow:hidden;box-shadow:0 16px 45px #1c3a5c12}
+.panelTitle{padding:17px 23px;border-bottom:1px solid var(--line);background:#f8fafc;font-weight:800;color:#203f61;display:flex;justify-content:space-between;align-items:center;gap:15px}.panelTitle span{color:#8b9caf;font-size:11px}
+.form{padding:21px 23px}.field{display:block;margin:0 0 17px}.field>span{display:block;margin:0 0 7px;font-size:12px;font-weight:800;color:#344961}
+.control{width:100%;border:1px solid #ccd9e4;border-radius:10px;padding:12px 13px;min-height:44px;background:#fff;color:#1a2d44;outline-color:#3765a4;font-size:14px}
+textarea.control{min-height:126px;resize:vertical;line-height:1.6}.hint{font-size:11px;color:#748599;margin-top:6px;display:block}
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:5px 0 20px}
+.theme{background:#fff;border:2px solid #e3e9f0;border-radius:11px;padding:8px;color:#394e65;font:700 11px "DM Sans",Arial,sans-serif;min-height:75px}.theme.selected{border-color:#2e638f;background:#edf5fb}
+.swatch{display:block;width:100%;height:30px;margin-bottom:7px;border-radius:5px;border:1px solid #00000015}
+.row{display:flex;flex-wrap:wrap;gap:9px}.row .btn{flex:1}
+.preview{position:sticky;top:18px;display:flex;flex-direction:column;align-items:center;gap:14px}.previewLabel{font-size:11px;letter-spacing:.1em;font-weight:800;color:#738395}
+.canvasShell{padding:10px;background:#fff;border:1px solid #dfe6ee;border-radius:13px;box-shadow:0 25px 60px #172f4f24;width:min(100%,455px)}
+canvas{display:block;width:100%;height:auto;aspect-ratio:720/980;border-radius:5px}.actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}
+.shareBox{text-align:center;max-width:460px}.shareBox p{font-size:12px;line-height:1.6;color:#687a8c;margin:6px 0 12px}.status{font-size:12px;color:#166b54;min-height:20px;margin-top:9px}
+#guest[hidden],#editor[hidden]{display:none!important}.guestIntro{text-align:center;padding:45px 10px 24px}.guestIntro p{color:#687a8c}.guestPreview{display:grid;justify-items:center;gap:18px;padding-bottom:35px}.guestPreview .canvasShell{max-width:460px}
+.viral{padding:22px;background:#fff;border:1px solid var(--line);border-radius:15px;text-align:center;max-width:500px;width:100%}.viral p{font-size:13px;color:#718397}.foot{text-align:center;color:#788797;font-size:12px;padding:30px 15px 45px}
+@media(max-width:860px){.workspace{grid-template-columns:1fr}.preview{position:static}.form{padding:20px}.panelTitle{padding:17px 20px}.preview{padding-top:14px}}
+@media(max-width:520px){.wrap{width:calc(100% - 22px)}.top{padding:12px}.brand b{font-size:22px}.top .btn{padding:8px 10px;font-size:11px}.lead{padding:30px 0 24px}.themes{grid-template-columns:repeat(2,1fr)}.row .btn{min-width:120px}.preview{gap:10px}}
+@media print{body{background:white}header,.lead,.panel,.actions,.shareBox,.guestIntro,.viral,.foot,.previewLabel{display:none!important}.workspace{display:block;padding:0}.preview{display:block!important}.canvasShell{border:0;padding:0;box-shadow:none;width:100%;max-width:100%}.canvasShell canvas{width:170mm;margin:auto}#guest:not([hidden]) .guestPreview .canvasShell{display:block!important} @page{size:A4;margin:8mm}}
+</style>
+</head>
+<body>
+<header class="top">
+<a class="brand" href="./"><span class="mark">✦</span><span><b>Invitation Atelier</b><small>LEARN WITH CHAMPAK · SIMPLE CARDS</small></span></a>
+<a href="./" class="btn" aria-label="Open full invitation creator">Full invitation with venue &amp; timing</a>
+</header>
+<div class="wrap">
+<section id="editor">
+  <div class="lead">
+    <span class="eyebrow">Simple Card Collection</span>
+    <h1>A beautiful card, <em>in moments.</em></h1>
+    <p>Festival wishes, greetings, congratulations and thank-you cards. No dates, addresses, maps or timings required.</p>
+    <div class="modeNav"><span class="btn selected" aria-current="page">✦ Simple card</span><a href="./" class="btn">✉ Invitation with event details</a></div>
+  </div>
+  <main class="workspace">
+    <section class="panel">
+      <div class="panelTitle">Write your card <span>LIVE EDITOR</span></div>
+      <div class="form">
+        <label class="field"><span>Card occasion</span><select id="occasion" class="control">
+          <option value="greeting">Warm wishes</option><option value="diwali">Diwali</option><option value="holi">Holi</option><option value="newyear">New Year</option><option value="birthday">Birthday</option><option value="anniversary">Anniversary</option><option value="congrats">Congratulations</option><option value="thanks">Thank you</option><option value="festival">Festival greeting</option><option value="getwell">Get well soon</option><option value="other">Other occasion</option>
+        </select></label>
+        <label class="field"><span>Card heading</span><input id="title" class="control" maxlength="65" placeholder="Warm Wishes"></label>
+        <label class="field"><span>For / Recipient (optional)</span><input id="to" class="control" maxlength="95" placeholder="To someone special"></label>
+        <label class="field"><span>Your message</span><textarea id="message" class="control" maxlength="320" rows="4" placeholder="Write something meaningful..."></textarea><span class="hint">Write a personal wish in English, Hindi, or another language.</span></label>
+        <label class="field"><span>From / Sender (optional)</span><input id="from" class="control" maxlength="95" placeholder="With love, your family"></label>
+        <label class="field"><span>Choose a design</span></label>
+        <div class="themes" id="themes" aria-label="Select a card design"></div>
+        <div class="row"><button type="button" id="save" class="btn">Save draft</button><button type="button" id="reset" class="btn">New card</button></div>
+      </div>
+    </section>
+    <aside class="preview">
+      <span class="previewLabel">✦ LIVE CARD PREVIEW</span>
+      <div class="canvasShell"><canvas id="cardCanvas" width="720" height="980" aria-label="Simple greeting card preview"></canvas></div>
+      <div class="actions"><button type="button" id="download" class="btn primary">↓ Download HD PNG</button><button type="button" id="print" class="btn">Print / PDF</button></div>
+      <div class="shareBox"><h3>Share your card</h3><p>Send a card link, post it to WhatsApp, or download the image. Anyone who opens your card can create their own.</p><div class="actions"><button type="button" id="whatsapp" class="btn green">WhatsApp</button><button type="button" id="share" class="btn primary">Share</button><button type="button" id="copy" class="btn">Copy link</button></div><div class="status" id="status" role="status" aria-live="polite"></div></div>
+    </aside>
+  </main>
+</section>
+<section id="guest" hidden>
+  <div class="guestIntro"><span class="eyebrow">A SPECIAL CARD FOR YOU</span><h1 id="guestTitle">Warm Wishes</h1><p>Thoughtfully made and shared with you.</p></div>
+  <div class="guestPreview">
+    <div class="canvasShell"><canvas id="guestCanvas" width="720" height="980" aria-label="Shared greeting card"></canvas></div>
+    <div class="actions"><button type="button" id="guestDownload" class="btn primary">↓ Download card</button><button type="button" id="guestShare" class="btn green">Share card</button></div>
+    <div class="viral"><b>Love this card?</b><p>Make a thoughtful greeting of your own, completely free.</p><a class="btn primary" href="./simple.html#new">Create your own card</a><a class="btn" href="./">Make an event invitation</a></div>
+  </div>
+</section>
+</div>
+<footer class="foot">✦ Made with care by <strong>Learn With Champak</strong> · Create and share beautiful cards</footer>
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id);};
+var themes=[
+{id:'ivory',name:'Royal Ivory',bg:'#fbf7ec',ink:'#3b3533',accent:'#a68050',soft:'#ddc59c'},
+{id:'midnight',name:'Midnight Gold',bg:'#16283f',ink:'#f7e9d4',accent:'#dfbd78',soft:'#a68c68'},
+{id:'rose',name:'Rose Garden',bg:'#fff3f3',ink:'#603c4e',accent:'#b66e83',soft:'#eab4b8'},
+{id:'marigold',name:'Marigold',bg:'#fff6e8',ink:'#663f27',accent:'#c47622',soft:'#ebae50'},
+{id:'blue',name:'Blue Porcelain',bg:'#edf6fa',ink:'#26465d',accent:'#4484ab',soft:'#97baca'},
+{id:'modern',name:'Modern Pearl',bg:'#fcfcfa',ink:'#253342',accent:'#5e7c85',soft:'#cbd2ce'}
+];
+var presets={
+greeting:['Warm Wishes','To someone special','May your days be filled with peace, happiness and beautiful moments.','With love'],
+diwali:['Happy Diwali','To you and your family','May this festival of lights bring prosperity, peace and endless happiness to your home.','With warm wishes'],
+holi:['Happy Holi','To you and your loved ones','May your life be filled with bright colours, laughter, friendship and joy.','With love'],
+newyear:['Happy New Year','To you and your family','Here is to new beginnings, good health and wonderful memories ahead.','Best wishes'],
+birthday:['Happy Birthday','To someone special','Wishing you a beautiful day and a year filled with love, laughter and happiness.','With affection'],
+anniversary:['Happy Anniversary','To a wonderful couple','Wishing you many more years of joy, companionship and cherished moments.','With love'],
+congrats:['Congratulations!','To you','Your achievement deserves a celebration. Wishing you even more success ahead!','Best wishes'],
+thanks:['Thank You','To someone wonderful','Your kindness means more than words can say. Thank you from the heart.','With gratitude'],
+festival:['Season’s Greetings','To you and yours','May this beautiful occasion bring happiness, harmony and blessings.','Warm regards'],
+getwell:['Get Well Soon','To someone dear','Sending you comfort, strength and heartfelt wishes for brighter days ahead.','Thinking of you'],
+other:['Just for You','To someone special','A little card to remind you that you are appreciated.','With love']
+};
+function tidy(s,n){return String(s==null?'':s).slice(0,n);}
+function clean(x){x=x&&typeof x==='object'?x:{};return {occasion:Object.prototype.hasOwnProperty.call(presets,x.occasion)?x.occasion:'greeting',title:tidy(x.title,65),to:tidy(x.to,95),message:tidy(x.message,320),from:tidy(x.from,95),theme:themes.some(function(t){return t.id===x.theme;})?x.theme:'ivory'};}
+function defaults(occasion){var p=presets[occasion]||presets.greeting;return clean({occasion:occasion||'greeting',title:p[0],to:p[1],message:p[2],from:p[3],theme:'ivory'});}
+var data=defaults('greeting'),guestData=null;
+function apply(){['occasion','title','to','message','from'].forEach(function(k){$(k).value=data[k];});buildThemes();draw($('cardCanvas'),data,1);}
+function currentTheme(d){return themes.find(function(t){return t.id===d.theme;})||themes[0];}
+function buildThemes(){var holder=$('themes');holder.textContent='';themes.forEach(function(t){var b=document.createElement('button');b.type='button';b.className='theme'+(data.theme===t.id?' selected':'');b.dataset.theme=t.id;b.setAttribute('aria-pressed',String(data.theme===t.id));var s=document.createElement('span');s.className='swatch';s.style.background='linear-gradient(120deg,'+t.bg+' 70%,'+t.accent+' 70%)';b.appendChild(s);b.appendChild(document.createTextNode(t.name));holder.appendChild(b);});}
+function lineText(c,str,w,max){var parts=String(str||'').replace(/\s+/g,' ').trim().split(' '),rows=[],line='';parts.forEach(function(word){var n=line?line+' '+word:word;if(c.measureText(n).width>w&&line){rows.push(line);line=word;}else{line=n;}});if(line)rows.push(line);if(rows.length>max){rows=rows.slice(0,max);while(rows[max-1].length>1&&c.measureText(rows[max-1]+'…').width>w)rows[max-1]=rows[max-1].slice(0,-1);rows[max-1]+='…';}return rows;}
+function fit(c,str,size,min,w){var s=size;while(s>min){c.font='600 '+s+'px "Cormorant Garamond","Noto Sans Devanagari",Georgia,serif';if(c.measureText(str).width<=w)break;s-=2;}return s;}
+function centered(c,str,y,font,color,w,max,lh){c.font=font;c.fillStyle=color;c.textAlign='center';c.textBaseline='middle';var lines=lineText(c,str,w,max);lines.forEach(function(x,i){c.fillText(x,360,y+(i-(lines.length-1)/2)*lh);});}
+function petal(c,x,y,r,angle,color){c.save();c.translate(x,y);c.rotate(angle);c.fillStyle=color;c.beginPath();c.ellipse(0,0,r*.62,r*1.45,0,0,Math.PI*2);c.fill();c.restore();}
+function ornament(c,x,y,t){c.save();c.translate(x,y);c.globalAlpha=.52;c.strokeStyle=t.accent;c.lineWidth=2;c.beginPath();c.arc(0,0,24,0,Math.PI*2);c.stroke();for(var i=0;i<8;i++)petal(c,Math.cos(i*Math.PI/4)*40,Math.sin(i*Math.PI/4)*40,10,i*Math.PI/4,t.soft);c.fillStyle=t.accent;c.font='32px Georgia,serif';c.textAlign='center';c.textBaseline='middle';c.fillText('✦',0,0);c.restore();}
+function leaf(c,x,y,a,t){c.save();c.translate(x,y);c.rotate(a);c.strokeStyle=t.accent;c.globalAlpha=.65;c.lineWidth=1.4;c.beginPath();c.moveTo(0,105);c.bezierCurveTo(20,50,75,55,86,0);c.stroke();for(var i=0;i<5;i++){petal(c,13+i*13,89-i*16,7,-.7,t.soft);petal(c,8+i*11,92-i*15,7,.8,t.accent);}c.restore();}
+function draw(canvas,d,scale){if(!canvas)return;var t=currentTheme(d),m=scale||1;canvas.width=720*m;canvas.height=980*m;var c=canvas.getContext('2d');if(!c)return;c.setTransform(m,0,0,m,0,0);var g=c.createLinearGradient(0,0,720,980);g.addColorStop(0,t.bg);g.addColorStop(1,t.id==='midnight'?'#203c59':t.id==='rose'?'#ffe6e9':t.id==='marigold'?'#ffedce':'#f0f0ed');c.fillStyle=g;c.fillRect(0,0,720,980);
+c.globalAlpha=.8;c.strokeStyle=t.accent;c.lineWidth=2;c.strokeRect(32,32,656,916);c.globalAlpha=.3;c.lineWidth=1;c.strokeRect(46,46,628,888);c.globalAlpha=1;
+if(t.id==='modern'){c.fillStyle=t.accent;c.fillRect(32,32,656,8);c.fillRect(32,940,656,8);}else{leaf(c,65,67,.1,t);leaf(c,655,67,1.5,t);leaf(c,65,913,-1.5,t);leaf(c,655,913,3.1,t);}
+ornament(c,360,160,t);
+var type=(d.occasion==='thanks'?'A NOTE OF GRATITUDE':d.occasion==='congrats'?'CELEBRATING YOUR SUCCESS':d.occasion==='greeting'?'A LITTLE NOTE FOR YOU':d.occasion==='other'?'WITH LOVE & THOUGHT':'A SPECIAL GREETING');
+centered(c,type,260,'800 15px "DM Sans",Arial,sans-serif',t.accent,525,1,20);
+var title=(d.title||'Warm Wishes').trim();var titleSize=fit(c,title,76,38,525);centered(c,title,363,'600 '+titleSize+'px "Cormorant Garamond","Noto Sans Devanagari",Georgia,serif',t.ink,540,2,titleSize*.91);
+c.strokeStyle=t.soft;c.lineWidth=1.4;c.beginPath();c.moveTo(150,490);c.lineTo(322,490);c.moveTo(398,490);c.lineTo(570,490);c.stroke();c.fillStyle=t.accent;c.textAlign='center';c.font='26px Georgia,serif';c.fillText('❧',360,498);
+if(d.to.trim())centered(c,d.to,557,'600 32px "Cormorant Garamond","Noto Sans Devanagari",Georgia,serif',t.accent,520,2,33);
+centered(c,d.message||'Wishing you joy and happiness.',700,'500 23px "Cormorant Garamond","Noto Sans Devanagari",Georgia,serif',t.ink,512,6,36);
+if(d.from.trim())centered(c,d.from,853,'italic 26px "Cormorant Garamond","Noto Sans Devanagari",Georgia,serif',t.accent,515,2,30);
+centered(c,'MADE WITH LOVE  ·  LEARN WITH CHAMPAK',928,'700 10px "DM Sans",Arial,sans-serif',t.accent,520,1,12);
+}
+function update(){['occasion','title','to','message','from'].forEach(function(k){data[k]=$(k).value;});draw($('cardCanvas'),data,1);}
+function status(s){$('status').textContent=s||'';}
+function fileName(d){return (d.title||'greeting-card').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||'greeting-card';}
+function download(d){var cv=document.createElement('canvas');draw(cv,d,3);cv.toBlob(function(blob){if(!blob){alert('Image export was blocked. Try another browser.');return;}var url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=fileName(d)+'-card.png';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},15000);},'image/png');}
+function link(d){return location.origin+location.pathname+'#simple='+encodeURIComponent(JSON.stringify(clean(d)));}
+function shareMessage(d){return '✦ '+(d.title||'A greeting')+'\n'+(d.to||'')+'\n'+(d.message||'')+'\n'+(d.from||'')+'\n\nView this card:\n'+link(d);}
+function whatsapp(d){window.open('https://wa.me/?text='+encodeURIComponent(shareMessage(d)),'_blank','noopener,noreferrer');}
+async function copy(s){if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(s);return;}var t=document.createElement('textarea');t.value=s;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=document.execCommand('copy');t.remove();if(!ok)throw new Error('Clipboard unavailable');}
+function share(d){if(navigator.share){navigator.share({title:d.title||'A card for you',text:'I made a special card for you.',url:link(d)}).catch(function(e){if(e.name!=='AbortError')status('You can use WhatsApp or Copy link.');});}else copy(link(d)).then(function(){status('Card link copied.');}).catch(function(){status('Use the WhatsApp button to share.');});}
+function viewHash(){if(location.hash.startsWith('#simple=')){try{var raw=location.hash.slice(8);if(raw.length>7000)throw new Error('Too long');var d=clean(JSON.parse(decodeURIComponent(raw)));guestData=d;$('editor').hidden=true;$('guest').hidden=false;$('guestTitle').textContent=d.title||'A greeting for you';draw($('guestCanvas'),d,1);document.title=(d.title||'A Greeting')+' | Learn With Champak';window.scrollTo(0,0);return;}catch(e){status('This card link could not be opened. Create a new one.');}}
+$('editor').hidden=false;$('guest').hidden=true;document.title='Simple Cards | Invitation Atelier · Learn With Champak';}
+['title','to','message','from'].forEach(function(id){$(id).addEventListener('input',update);});
+$('occasion').addEventListener('change',function(){var p=presets[this.value]||presets.greeting;data.occasion=this.value;data.title=p[0];data.to=p[1];data.message=p[2];data.from=p[3];apply();});
+$('themes').addEventListener('click',function(e){var b=e.target.closest('[data-theme]');if(!b)return;data.theme=b.dataset.theme;buildThemes();draw($('cardCanvas'),data,1);});
+$('save').addEventListener('click',function(){try{localStorage.setItem('lwc-simple-card-v1',JSON.stringify(data));status('Saved in this browser.');}catch(e){status('Local draft storage is unavailable.');}});
+$('reset').addEventListener('click',function(){if(confirm('Start a new card? Unsaved changes will be lost.')){data=defaults('greeting');apply();status('New card ready.');}});
+$('download').addEventListener('click',function(){download(data);status('Preparing your high-resolution image.');});
+$('guestDownload').addEventListener('click',function(){if(guestData)download(guestData);});
+$('print').addEventListener('click',function(){window.print();});
+$('copy').addEventListener('click',function(){copy(link(data)).then(function(){status('Card link copied.');}).catch(function(){status('Could not copy. Use WhatsApp.');});});
+$('whatsapp').addEventListener('click',function(){whatsapp(data);});
+$('share').addEventListener('click',function(){share(data);});
+$('guestShare').addEventListener('click',function(){if(guestData)share(guestData);});
+window.addEventListener('hashchange',viewHash);
+try{var saved=localStorage.getItem('lwc-simple-card-v1');if(saved)data=clean(JSON.parse(saved));}catch(e){}
+apply();viewHash();if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){draw($('cardCanvas'),data,1);if(guestData)draw($('guestCanvas'),guestData,1);}).catch(function(){});}
+})();
+</script>
+</body></html>
