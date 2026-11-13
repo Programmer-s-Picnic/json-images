@@ -24,7 +24,7 @@ class WindowsVoiceTyping {
         event.type = INPUT_KEYBOARD;
         event.ki.wVk = keys[i];
         event.ki.wScan = 0;
-        event.ki.dwFlags = i >= 2 ? KEYEVENTF_KEYUP : 0;
+        if (i >= 2) event.ki.dwFlags = KEYEVENTF_KEYUP;
         event.ki.time = 0;
         event.ki.dwExtraInfo = 0;
       }
