@@ -11,6 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter_windows/webview_flutter_windows.dart';
 import 'package:window_manager/window_manager.dart';
+import 'windows_voice_typing.dart';
 
 String? _startupTimedUrl;
 String? _startupExternalUrl;
@@ -373,6 +374,7 @@ class DesktopHomePage extends StatefulWidget {
 
 class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   static const List<String> _defaultToolbarOrder = <String>[
+    'voice-type',
     'home',
     'learn',
     'inside-kashi',
@@ -512,7 +514,76 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 })();
 ''';
 
+  // Runs in each WebView2 document to remember the last real editable field.
+  // The Windows speech panel types into the field with native keyboard focus.
+  // A per-process token prevents arbitrary pages from forging the shortcut.
+  static const voiceTypingTargetScript = r'''
+(function () {
+  if (window.__lwcVoiceInstalled) return;
+  window.__lwcVoiceInstalled = true;
+  var lastEditable = null;
+
+  function editable(node) {
+    if (!node || node.nodeType !== 1) return null;
+    if (node.tagName === 'TEXTAREA') return node;
+    if (node.tagName === 'INPUT') {
+      var type = String(node.type || 'text').toLowerCase();
+      return /^(text|search|url|email|tel|number)$/.test(type) ? node : null;
+    }
+    var host = node.closest ? node.closest('[contenteditable]') : null;
+    return host && host.isContentEditable ? host : null;
+  }
+
+  function usable(node) {
+    return !!(node && node.isConnected && !node.disabled &&
+      !node.readOnly && node.getAttribute('aria-disabled') !== 'true');
+  }
+
+  document.addEventListener('focusin', function (event) {
+    var node = editable(event.target);
+    if (usable(node)) lastEditable = node;
+  }, true);
+
+  // Clicking outside a field inside the website ends that field's targeting.
+  document.addEventListener('pointerdown', function (event) {
+    if (!editable(event.target)) lastEditable = null;
+  }, true);
+
+  window.__lwcRestoreVoiceTarget = function () {
+    var active = document.activeElement;
+    if (active && active.tagName === 'INPUT' &&
+        String(active.type).toLowerCase() === 'password') return false;
+    var candidate = editable(active);
+    var target = usable(candidate) ? candidate :
+      (usable(lastEditable) ? lastEditable : null);
+    if (!target) return false;
+    target.focus();
+    return document.activeElement === target ||
+      !!(target.contains && target.contains(document.activeElement));
+  };
+
+  document.addEventListener('keydown', function (event) {
+    if (!event.isTrusted || !event.ctrlKey || !event.altKey ||
+        event.repeat || (event.code !== 'KeyM' &&
+        String(event.key).toLowerCase() !== 'm')) return;
+    if (!window.__lwcRestoreVoiceTarget()) return;
+    event.preventDefault();
+    event.stopPropagation();
+    try {
+      window.chrome.webview.postMessage(JSON.stringify({
+        type: 'lwc-voice-hotkey',
+        token: __LWC_VOICE_TOKEN__
+      }));
+    } catch (_) {}
+  }, true);
+})();
+''';
+
   final TextEditingController _addressController = TextEditingController(text: homeUrl);
+  final FocusNode _addressFocusNode = FocusNode(debugLabel: 'Browser address bar');
+  final String _voiceHotkeyToken =
+      '${DateTime.now().microsecondsSinceEpoch}-${math.Random.secure().nextInt(0x7fffffff)}';
+  bool _voiceTypingLaunching = false;
   final GlobalKey _webViewAreaKey = GlobalKey();
   final List<BrowserTab> _tabs = [];
   final List<Map<String, String>> _history = [];
@@ -561,6 +632,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
   void initState() {
     super.initState();
     windowManager.addListener(this);
+    HardwareKeyboard.instance.addHandler(_handleVoiceKeyboardShortcut);
     if (!_incognitoProcess) {
       unawaited(_loadWeatherLocationAndRefresh());
       _weatherRefreshTimer = Timer.periodic(
@@ -1153,7 +1225,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     if (_incognitoProcess) {
       _suppressSessionPersistence = true;
       _toolbarOrder = const <String>[
-        'home', 'learn', 'inside-kashi', 'google', 'incognito',
+        'voice-type', 'home', 'learn', 'inside-kashi', 'google', 'incognito',
         'download', 'open-file', 'downloads', 'screenshot', 'privacy',
       ];
       try {
@@ -2116,8 +2188,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     _weatherRefreshTimer?.cancel();
     _tabRotationTimer?.cancel();
     windowManager.removeListener(this);
+    HardwareKeyboard.instance.removeHandler(_handleVoiceKeyboardShortcut);
     _saveSessionNowSync();
     _addressController.dispose();
+    _addressFocusNode.dispose();
     for (final tab in _tabs) {
       tab.controller.dispose();
     }
@@ -2157,6 +2231,11 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
       await controller.setPopupWindowPolicy(WebviewPopupWindowPolicy.allow);
       await controller.setUserAgent(desktopUserAgent);
       await controller.addScriptToExecuteOnDocumentCreated(newTabLinkScript);
+      await controller.addScriptToExecuteOnDocumentCreated(
+        voiceTypingTargetScript.replaceAll(
+          '__LWC_VOICE_TOKEN__', jsonEncode(_voiceHotkeyToken),
+        ),
+      );
 
       controller.webMessage.listen(_handleWebMessage);
 
@@ -2210,12 +2289,87 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
     }
   }
 
+  bool _handleVoiceKeyboardShortcut(KeyEvent event) {
+    if (event is! KeyDownEvent ||
+        event.logicalKey != LogicalKeyboardKey.keyM) return false;
+    final keys = HardwareKeyboard.instance.logicalKeysPressed;
+    final control = keys.contains(LogicalKeyboardKey.controlLeft) ||
+        keys.contains(LogicalKeyboardKey.controlRight);
+    final alt = keys.contains(LogicalKeyboardKey.altLeft) ||
+        keys.contains(LogicalKeyboardKey.altRight);
+    if (!control || !alt) return false;
+    unawaited(_startVoiceTyping(addressBar: _addressFocusNode.hasFocus));
+    return true;
+  }
+
+  Future<void> _startVoiceTyping({required bool addressBar}) async {
+    if (_voiceTypingLaunching || !mounted) return;
+    _voiceTypingLaunching = true;
+    try {
+      if (addressBar) {
+        await WebviewController.releaseFocus();
+        if (!mounted) return;
+        _addressFocusNode.requestFocus();
+        _addressController.selection = TextSelection(
+          baseOffset: 0,
+          extentOffset: _addressController.text.length,
+        );
+      } else {
+        final tab = _tab;
+        if (tab == null || !tab.ready) {
+          setState(() => _status = 'Open a website text box before using Voice Type');
+          return;
+        }
+        // Flutter toolbar buttons steal native focus from WebView2. Restore
+        // the previously focused page input before sending the Windows hotkey.
+        FocusManager.instance.primaryFocus?.unfocus();
+        final result = await tab.controller.executeScript(
+          'window.__lwcRestoreVoiceTarget ? '
+          'window.__lwcRestoreVoiceTarget() : false;',
+        );
+        if (result != true && result.toString() != 'true') {
+          if (mounted) setState(() => _status =
+              'Click a website text field first (password fields are excluded)');
+          return;
+        }
+        await tab.controller.focus();
+      }
+
+      // Ctrl+Alt+M may still be releasing; avoid injecting Ctrl+Alt+Win+H.
+      await Future<void>.delayed(const Duration(milliseconds: 250));
+      if (!mounted) return;
+      WindowsVoiceTyping.openForFocusedField();
+      setState(() => _status =
+          'Windows voice typing requested. Speak when Windows shows Listening. '
+          'Use its microphone control to stop. Change language with Win+Space.');
+    } catch (error) {
+      if (mounted) setState(() => _status =
+          'Could not start Windows voice typing: $error');
+    } finally {
+      _voiceTypingLaunching = false;
+    }
+  }
+
+  void _voiceTypeAddressBar() {
+    unawaited(_startVoiceTyping(addressBar: true));
+  }
+
+  void _voiceTypeWebsiteField() {
+    unawaited(_startVoiceTyping(addressBar: false));
+  }
+
   void _handleWebMessage(dynamic message) {
     try {
       final Object? decoded = message is String ? jsonDecode(message) : message;
       if (decoded is! Map) return;
 
       final type = decoded['type']?.toString() ?? '';
+      if (type == 'lwc-voice-hotkey') {
+        if (decoded['token'] != _voiceHotkeyToken ||
+            !_windowHasFocus || _controller?.hasNativeFocus != true) return;
+        unawaited(_startVoiceTyping(addressBar: false));
+        return;
+      }
       if (type == 'lwc-open-new-tab') {
         final url = decoded['url']?.toString() ?? '';
         if (!_isInternalTabUrl(url)) return;
@@ -3608,6 +3762,15 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               'private window closes normally. Downloads and screenshots you save '
               'remain on disk. Websites, your network and internet provider may '
               'still see your activity.\n\n'
+              '11. For voice typing in the address bar, click its microphone. '
+              'For text boxes inside websites, click the text box first, '
+              'then choose Voice Type or press Ctrl+Alt+M. This opens the '
+              'Windows Win+H speech panel: wait for Listening and speak. '
+              'To dictate in Hindi on Windows 11, install/select Hindi in '
+              'Windows language settings, switching with Win+Space. '
+              'Internet and a working microphone are required; Windows '
+              'processes speech online. Password fields are excluded. '
+              'Use the Windows voice typing panel to stop listening.\\n\\n'
               'This browser is strictly for learning purposes.',
               style: TextStyle(fontSize: 15, height: 1.4),
             ),
@@ -4237,6 +4400,15 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.mic),
+                title: const Text('Voice Type into Website'),
+                subtitle: const Text('Click a text field first; Ctrl+Alt+M also works'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _voiceTypeWebsiteField();
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.menu_book),
                 title: const Text('How to Use'),
                 onTap: () {
@@ -4493,6 +4665,13 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
 
   Map<String, _ToolbarAction> _toolbarActions() {
     final actions = <String, _ToolbarAction>{
+        'voice-type': _ToolbarAction(
+          id: 'voice-type',
+          label: 'Voice Type',
+          icon: Icons.mic,
+          onPressed: _voiceTypeWebsiteField,
+          important: true,
+        ),
         'home': _ToolbarAction(
           id: 'home',
           label: 'Home',
@@ -5366,12 +5545,18 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               Expanded(
                 child: TextField(
                   controller: _addressController,
+                  focusNode: _addressFocusNode,
                   onSubmitted: _load,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
                     hintText: 'Type a website, search, or paste a link',
                     prefixIcon: const Icon(Icons.language),
+                    suffixIcon: IconButton(
+                      tooltip: 'Voice type in address bar (Ctrl+Alt+M)',
+                      icon: const Icon(Icons.mic, color: Color(0xff075985)),
+                      onPressed: _voiceTypeAddressBar,
+                    ),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide.none),
                   ),
