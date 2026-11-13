@@ -1307,6 +1307,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
           ? rawOrder.map((e) => e.toString()).where(validIds.contains).toList()
           : <String>[];
       final completeOrder = <String>[
+        if (!savedOrder.contains('voice-type')) 'voice-type',
         ...savedOrder,
         ..._defaultToolbarOrder.where((id) => !savedOrder.contains(id)),
         ..._customToolbarLinks
@@ -3770,7 +3771,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> with WindowListener {
               'Windows language settings, switching with Win+Space. '
               'Internet and a working microphone are required; Windows '
               'processes speech online. Password fields are excluded. '
-              'Use the Windows voice typing panel to stop listening.\\n\\n'
+              'Use the Windows voice typing panel to stop listening.\n\n'
               'This browser is strictly for learning purposes.',
               style: TextStyle(fontSize: 15, height: 1.4),
             ),
