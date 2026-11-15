@@ -21,7 +21,7 @@
     - Still client-side only
   */
 
-  var PASSWORD_HASH = "1b1ca56876222a9126b81dc350abc24a920c8950ef8f7c30d3cb1c88078a8af8";
+  var PASSWORD_HASH = "9005cedad56775ec35981cdaf96f4478279fbf1f5ff5785236a093dad36f5178";
 
   var CONFIG = {
     titlePrefix: "Protected Page",
@@ -40,8 +40,8 @@
   var bodyBlurClass = "pp-pwd-blur";
 
   var currentPageKey = location.origin + location.pathname;
-  var attemptKey = "pp_page_pwd_v5::attempts::" + currentPageKey;
-  var unlockKey = "pp_page_pwd_v5::unlock::" + currentPageKey;
+  var attemptKey = "pp_page_pwd_v6::attempts::" + currentPageKey;
+  var unlockKey = "pp_page_pwd_v6::unlock::" + currentPageKey;
 
   function escapeHtml(s) {
     return String(s)
@@ -489,6 +489,6 @@ body.${bodyBlurClass} > *:not(#${overlayId}) {
     clearStoredUnlock: clearStoredUnlock,
     hasValidUnlockForToday: hasValidUnlockForToday,
     sha256Hex: sha256Hex,
-    version: "5.0.0"
+    version: "6.0.0"
   };
 })();
